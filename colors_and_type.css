@@ -1,0 +1,245 @@
+/* Synaptech Design System — Colors, Type & Base Tokens
+ * ---------------------------------------------------
+ * Import: <link rel="stylesheet" href="colors_and_type.css">
+ * Every token below is namespaced under --syn-* to avoid collisions.
+ */
+
+/* ---------- Fonts (Google Fonts — substitution flagged in README) ---------- */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
+
+:root {
+  /* ============================= COLOR ============================= */
+  /* Brand */
+  --syn-lime:           #A4E137;
+  --syn-lime-dark:      #7FB020;
+  --syn-lime-tint:      #EEFBD3;
+  --syn-black:          #111111;
+  --syn-black-deep:     #0D0D0D;
+
+  /* Neutrals */
+  --syn-white:          #FFFFFF;
+  --syn-bg-primary:     #FFFFFF;
+  --syn-bg-subtle:      #F8F9FA;
+  --syn-bg-dark:        #0D0D0D;
+
+  --syn-fg-primary:     #1A1A1A;
+  --syn-fg-secondary:   #3A3F46;
+  --syn-fg-muted:       #5A5F66;
+  --syn-fg-faint:       #8A9099;
+  --syn-fg-inverse:     #FFFFFF;
+
+  --syn-border-subtle:  #E6E8EB;
+  --syn-border-strong:  #C9CED4;
+
+  /* Semantic */
+  --syn-success:        #2E9E4B;
+  --syn-warning:        #D97706;
+  --syn-danger:         #DC2626;
+  --syn-info:           #2563EB;
+
+  /* ============================= TYPE ============================= */
+  --syn-font-display:   'Montserrat', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --syn-font-body:      'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --syn-font-mono:      'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* Type scale (semantic) */
+  --syn-h1-size:   64px;  --syn-h1-weight: 800;  --syn-h1-lh: 1.05;  --syn-h1-ls: -0.02em;
+  --syn-h2-size:   44px;  --syn-h2-weight: 700;  --syn-h2-lh: 1.15;  --syn-h2-ls: -0.01em;
+  --syn-h3-size:   28px;  --syn-h3-weight: 700;  --syn-h3-lh: 1.25;  --syn-h3-ls: -0.005em;
+  --syn-h4-size:   20px;  --syn-h4-weight: 600;  --syn-h4-lh: 1.30;  --syn-h4-ls: 0;
+  --syn-body-lg-size: 18px;
+  --syn-body-size:    16px;
+  --syn-body-sm-size: 14px;
+  --syn-caption-size: 12px;
+  --syn-overline-size:12px;
+
+  /* ============================ SPACING ============================ */
+  --syn-space-1:   4px;
+  --syn-space-2:   8px;
+  --syn-space-3:  12px;
+  --syn-space-4:  16px;
+  --syn-space-5:  24px;
+  --syn-space-6:  32px;
+  --syn-space-7:  48px;
+  --syn-space-8:  64px;
+  --syn-space-9:  96px;
+  --syn-space-10:128px;
+
+  /* ============================= RADII ============================= */
+  --syn-radius-sm:    6px;
+  --syn-radius-md:    8px;   /* buttons, inputs */
+  --syn-radius-lg:   12px;   /* image frames */
+  --syn-radius-xl:   16px;   /* cards */
+  --syn-radius-2xl:  24px;
+  --syn-radius-pill: 999px;
+
+  /* ============================ SHADOWS ============================ */
+  --syn-shadow-xs: 0 1px 2px rgba(17,17,17,.06);
+  --syn-shadow-sm: 0 2px 8px rgba(17,17,17,.06), 0 1px 2px rgba(17,17,17,.04);
+  --syn-shadow-md: 0 8px 24px rgba(17,17,17,.08), 0 2px 4px rgba(17,17,17,.04);
+  --syn-shadow-lg: 0 16px 48px rgba(17,17,17,.10), 0 4px 8px rgba(17,17,17,.05);
+  --syn-shadow-xl: 0 28px 72px rgba(17,17,17,.14);
+  --syn-shadow-lime:    0 10px 30px rgba(164,225,55,.35);
+  --syn-shadow-lime-hv: 0 14px 40px rgba(164,225,55,.50);
+
+  /* =========================== MOTION =========================== */
+  --syn-ease:        cubic-bezier(.2,.7,.2,1);
+  --syn-dur-micro:   160ms;
+  --syn-dur-base:    240ms;
+  --syn-dur-slow:    480ms;
+
+  /* =========================== LAYOUT =========================== */
+  --syn-container:   1280px;
+  --syn-gutter:      24px;
+  --syn-gutter-lg:   48px;
+  --syn-header-h:    72px;
+}
+
+/* ============================= SEMANTIC ============================= */
+
+html, body {
+  background: var(--syn-bg-primary);
+  color: var(--syn-fg-primary);
+  font-family: var(--syn-font-body);
+  font-size: var(--syn-body-size);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.syn-h1, .syn-h2, .syn-h3, .syn-h4 { font-family: var(--syn-font-display); color: var(--syn-fg-primary); margin: 0; }
+
+.syn-h1 {
+  font-size: var(--syn-h1-size); font-weight: var(--syn-h1-weight);
+  line-height: var(--syn-h1-lh); letter-spacing: var(--syn-h1-ls);
+}
+.syn-h2 {
+  font-size: var(--syn-h2-size); font-weight: var(--syn-h2-weight);
+  line-height: var(--syn-h2-lh); letter-spacing: var(--syn-h2-ls);
+}
+.syn-h3 {
+  font-size: var(--syn-h3-size); font-weight: var(--syn-h3-weight);
+  line-height: var(--syn-h3-lh); letter-spacing: var(--syn-h3-ls);
+}
+.syn-h4 {
+  font-size: var(--syn-h4-size); font-weight: var(--syn-h4-weight);
+  line-height: var(--syn-h4-lh);
+}
+
+.syn-body-lg { font-size: var(--syn-body-lg-size); line-height: 1.6; }
+.syn-body    { font-size: var(--syn-body-size);    line-height: 1.6; }
+.syn-body-sm { font-size: var(--syn-body-sm-size); line-height: 1.55; color: var(--syn-fg-muted); }
+
+.syn-overline {
+  font-size: var(--syn-overline-size);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--syn-fg-muted);
+  font-family: var(--syn-font-body);
+}
+
+.syn-caption {
+  font-size: var(--syn-caption-size);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--syn-fg-muted);
+}
+
+/* ============================= COMPONENT PRIMITIVES ============================= */
+
+.syn-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--syn-font-body);
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  padding: 14px 24px;
+  border-radius: var(--syn-radius-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all var(--syn-dur-micro) var(--syn-ease);
+  text-decoration: none;
+  line-height: 1;
+}
+
+.syn-btn--primary {
+  background: var(--syn-lime);
+  color: var(--syn-black);
+  box-shadow: var(--syn-shadow-lime);
+}
+.syn-btn--primary:hover {
+  background: var(--syn-lime-dark);
+  color: var(--syn-white);
+  box-shadow: var(--syn-shadow-lime-hv);
+  transform: translateY(-1px);
+}
+.syn-btn--primary:active { transform: translateY(1px); box-shadow: var(--syn-shadow-sm); }
+
+.syn-btn--primary-lg {
+  padding: 18px 32px; font-size: 16px; letter-spacing: 0.08em; text-transform: uppercase;
+}
+
+.syn-btn--ghost {
+  background: transparent;
+  color: var(--syn-fg-primary);
+  border-color: var(--syn-border-subtle);
+}
+.syn-btn--ghost:hover { border-color: var(--syn-black); background: var(--syn-bg-subtle); }
+
+.syn-btn--dark {
+  background: var(--syn-black);
+  color: var(--syn-white);
+}
+.syn-btn--dark:hover { background: #000; }
+
+.syn-card {
+  background: var(--syn-bg-primary);
+  border: 1px solid var(--syn-border-subtle);
+  border-radius: var(--syn-radius-xl);
+  box-shadow: var(--syn-shadow-sm);
+  padding: var(--syn-space-6);
+  transition: box-shadow var(--syn-dur-base) var(--syn-ease), transform var(--syn-dur-base) var(--syn-ease);
+}
+.syn-card:hover { box-shadow: var(--syn-shadow-md); transform: translateY(-2px); }
+
+.syn-input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid var(--syn-border-subtle);
+  border-radius: var(--syn-radius-md);
+  background: var(--syn-bg-primary);
+  font-family: var(--syn-font-body);
+  font-size: 15px;
+  color: var(--syn-fg-primary);
+  transition: border-color var(--syn-dur-micro) var(--syn-ease), box-shadow var(--syn-dur-micro) var(--syn-ease);
+  box-shadow: var(--syn-shadow-xs);
+}
+.syn-input::placeholder { color: var(--syn-fg-faint); }
+.syn-input:focus {
+  outline: none;
+  border-color: var(--syn-lime);
+  box-shadow: 0 0 0 3px rgba(164,225,55,.25);
+}
+
+.syn-pill {
+  display: inline-flex; align-items: center;
+  padding: 6px 12px;
+  border-radius: var(--syn-radius-pill);
+  background: var(--syn-lime-tint);
+  color: var(--syn-black);
+  font-size: 12px; font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+/* ============================= UTILS ============================= */
+.syn-section { padding: var(--syn-space-9) 0; }
+.syn-container { max-width: var(--syn-container); margin: 0 auto; padding: 0 var(--syn-gutter-lg); }
+.syn-divider { height: 1px; background: var(--syn-border-subtle); border: 0; margin: 0; }
+
+/* Entrance animation */
+@keyframes syn-fade-in-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.syn-reveal { animation: syn-fade-in-up var(--syn-dur-slow) var(--syn-ease) both; }

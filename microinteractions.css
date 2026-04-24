@@ -1,0 +1,203 @@
+/* Microinteractions — layered over site.css */
+
+/* Hide native cursor over interactive areas to avoid doubling with halo */
+@media (pointer: fine) {
+  html, body { cursor: none; }
+  a, button, input, textarea, select, [role="button"] { cursor: none; }
+}
+
+/* Cursor halo */
+.syn-cursor-dot, .syn-cursor-ring {
+  position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999;
+  will-change: transform;
+}
+.syn-cursor-dot {
+  width: 8px; height: 8px; border-radius: 999px;
+  background: var(--syn-lime);
+  mix-blend-mode: multiply;
+}
+.syn-cursor-ring {
+  width: 36px; height: 36px; border-radius: 999px;
+  border: 1.5px solid var(--syn-lime);
+  opacity: .55;
+  transition: opacity 220ms var(--syn-ease), border-color 220ms var(--syn-ease);
+}
+:root[data-theme="dark"] .syn-cursor-dot { mix-blend-mode: screen; }
+:root[data-theme="dark"] .syn-cursor-ring { border-color: var(--syn-lime); }
+
+/* Ripple */
+.syn-has-ripple { position: relative; overflow: hidden; }
+.syn-ripple {
+  position: absolute; width: 10px; height: 10px; border-radius: 999px;
+  background: rgba(255,255,255,0.6);
+  transform: translate(-50%, -50%) scale(0);
+  animation: syn-ripple 700ms cubic-bezier(.22,.9,.3,1) forwards;
+  pointer-events: none;
+}
+.syn-btn--ghost .syn-ripple { background: rgba(164,225,55,0.45); }
+@keyframes syn-ripple {
+  0%   { transform: translate(-50%, -50%) scale(0);  opacity: .7; }
+  100% { transform: translate(-50%, -50%) scale(40); opacity: 0;  }
+}
+
+/* Word stagger reveal */
+.syn-word { display: inline-block; opacity: 0; transform: translateY(0.4em); animation: syn-word-in 700ms cubic-bezier(.22,.9,.3,1) forwards; }
+@keyframes syn-word-in { to { opacity: 1; transform: translateY(0); } }
+
+/* Hero title emphasis glow pulse */
+.hero__title em { position: relative; }
+.hero__title em::after {
+  content: ''; position: absolute; left: -6%; right: -6%; bottom: 0; height: 22%;
+  background: var(--syn-lime); opacity: .18; z-index: -1; border-radius: 4px;
+  transform: scaleX(0); transform-origin: left;
+  animation: syn-underline-draw 900ms cubic-bezier(.22,.9,.3,1) 700ms forwards;
+}
+@keyframes syn-underline-draw { to { transform: scaleX(1); } }
+
+/* Nav link animated underline */
+.site-nav a:not(.syn-btn) { position: relative; }
+.site-nav a:not(.syn-btn)::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: -6px; height: 2px;
+  background: var(--syn-lime); border-radius: 2px;
+  transform: scaleX(0); transform-origin: right;
+  transition: transform 360ms cubic-bezier(.22,.9,.3,1);
+}
+.site-nav a:not(.syn-btn):hover::after { transform: scaleX(1); transform-origin: left; }
+
+/* Header shrink */
+.site-header.is-scrolled { height: 56px; background: rgba(255,255,255,0.94); box-shadow: 0 8px 24px rgba(0,0,0,0.05); }
+.site-header.is-scrolled .site-header__inner { height: 56px; }
+.site-header.is-scrolled .site-header__logo img { height: 30px; transition: height 300ms var(--syn-ease); }
+:root[data-theme="dark"] .site-header.is-scrolled { background: rgba(10,10,10,0.94); box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
+.site-header, .site-header__inner, .site-header__logo img { transition: height 300ms var(--syn-ease), background 300ms var(--syn-ease); }
+
+/* Logo heartbeat — the small dot in the wordmark pulses */
+.site-header__logo { position: relative; }
+.site-header__logo::after {
+  content: ''; position: absolute; left: 30px; top: 50%; width: 6px; height: 6px; border-radius: 999px;
+  background: var(--syn-lime); transform: translateY(-50%); opacity: 0;
+  animation: syn-pulse 2.8s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes syn-pulse {
+  0%, 100% { opacity: 0; transform: translateY(-50%) scale(.6); }
+  30%      { opacity: .85; transform: translateY(-50%) scale(1); }
+  60%      { opacity: 0; transform: translateY(-50%) scale(2.2); }
+}
+
+/* Card tilt + aura spotlight */
+.service-card, .case-card, .insight-card {
+  transform-style: preserve-3d;
+  will-change: transform;
+  position: relative;
+}
+.service-card::before, .case-card::before, .insight-card::before {
+  content: ''; position: absolute; inset: 0; border-radius: inherit;
+  background: radial-gradient(circle at var(--aura-x, 50%) var(--aura-y, 50%), rgba(164,225,55,0.22), transparent 50%);
+  opacity: var(--aura-opacity, 0);
+  transition: opacity 300ms var(--syn-ease);
+  pointer-events: none;
+  z-index: 1;
+}
+.service-card > *, .case-card > *, .insight-card > * { position: relative; z-index: 2; }
+/* Override previous hover transforms so tilt hook takes over */
+.service-card:hover, .case-card:hover, .insight-card:hover { transform: none; }
+
+/* Service icon: inner shine + dot twinkle on hover */
+.service-card__icon { overflow: hidden; position: relative; transition: transform 360ms var(--syn-ease); }
+.service-card__icon::after {
+  content: ''; position: absolute; inset: -40%; background: conic-gradient(from 0deg, transparent, rgba(164,225,55,0.35), transparent 40%);
+  opacity: 0; transition: opacity 400ms var(--syn-ease);
+  animation: syn-spin 6s linear infinite; animation-play-state: paused;
+}
+.service-card:hover .service-card__icon::after { opacity: 1; animation-play-state: running; }
+.service-card:hover .service-card__icon { transform: scale(1.06) rotate(-2deg); }
+@keyframes syn-spin { to { transform: rotate(360deg); } }
+
+/* Service card link arrow slides */
+.service-card__link svg { transition: transform 280ms cubic-bezier(.22,.9,.3,1); }
+.service-card:hover .service-card__link svg { transform: translateX(4px); }
+.service-card__link { position: relative; }
+.service-card__link::after {
+  content: ''; position: absolute; left: 0; bottom: -2px; height: 1px; width: 100%;
+  background: currentColor; transform: scaleX(0); transform-origin: left;
+  transition: transform 340ms cubic-bezier(.22,.9,.3,1);
+}
+.service-card:hover .service-card__link::after { transform: scaleX(1); }
+
+/* Case card metric — lime inner bar slides in */
+.case-card__metric { overflow: hidden; }
+.case-card__metric::after {
+  /* repurpose the dot marker kept — we keep both ::before and ::after dots but add a subtle wipe via background transition */
+}
+.case-card__metric b { display: inline-block; transition: transform 500ms cubic-bezier(.22,.9,.3,1); }
+.case-card:hover .case-card__metric b { transform: translateY(-2px); }
+
+/* Insight card image: parallax + zoom on hover */
+.insight-card__img { overflow: hidden; }
+.insight-card__img svg { transition: transform 700ms cubic-bezier(.22,.9,.3,1); }
+.insight-card:hover .insight-card__img svg { transform: scale(1.08) rotate(1.5deg); }
+
+/* Input focus: lime ring that draws */
+.syn-input { position: relative; transition: border-color 220ms var(--syn-ease), box-shadow 220ms var(--syn-ease), transform 260ms var(--syn-ease); }
+.syn-input:focus { border-color: var(--syn-lime); box-shadow: 0 0 0 4px rgba(164,225,55,0.18); outline: none; transform: translateY(-1px); }
+
+/* Process step — number "ignites" on view */
+.process-step__num {
+  transition: transform 360ms cubic-bezier(.22,.9,.3,1), box-shadow 360ms var(--syn-ease);
+  position: relative;
+}
+.process-step__num::after {
+  content: ''; position: absolute; inset: -8px; border-radius: 999px;
+  background: radial-gradient(circle, rgba(164,225,55,0.5), transparent 70%);
+  opacity: 0; pointer-events: none;
+}
+.process-step.is-in .process-step__num { animation: syn-ignite 900ms cubic-bezier(.22,.9,.3,1) both; }
+.process-step.is-in .process-step__num::after { animation: syn-halo 900ms ease-out both; }
+@keyframes syn-ignite { 0% { transform: scale(.6); } 60% { transform: scale(1.12); } 100% { transform: scale(1); } }
+@keyframes syn-halo   { 0% { opacity: 0; transform: scale(.8); } 40% { opacity: 1; } 100% { opacity: 0; transform: scale(1.6); } }
+.process-step:hover .process-step__num { transform: scale(1.08) rotate(-3deg); box-shadow: 0 12px 32px rgba(164,225,55,0.35); }
+
+/* Process connector — animated dash */
+.process__connector { background: repeating-linear-gradient(to right, var(--syn-lime) 0 6px, transparent 6px 12px); background-size: 12px 2px; animation: syn-dash 1.4s linear infinite; }
+@keyframes syn-dash { to { background-position: 12px 0; } }
+
+/* Bridge SVG polish */
+.bridge path { transition: none; }
+.bridge .bridge-dot { transform-origin: center; transition: none; }
+
+/* Section section-titles: overline fade-in line */
+.services__kicker, .hero__overline { position: relative; display: inline-block; padding-left: 0; }
+.services__kicker::before, .hero__overline::before {
+  content: ''; display: inline-block; width: 24px; height: 2px; background: var(--syn-lime); margin-right: 10px; vertical-align: middle;
+  transform: scaleX(0); transform-origin: left; transition: transform 700ms cubic-bezier(.22,.9,.3,1);
+}
+.is-reveal.is-in .services__kicker::before, .is-reveal.is-in .hero__overline::before,
+.hero .is-in .hero__overline::before { transform: scaleX(1); }
+/* Always-on kickers not inside reveal wrappers */
+.hero__overline::before { transform: scaleX(1); }
+.hero__overline { animation: syn-fade-up 600ms cubic-bezier(.22,.9,.3,1) both; }
+@keyframes syn-fade-up { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Footer social hover pop */
+.site-footer__socials a { transition: transform 280ms cubic-bezier(.22,.9,.3,1), background 280ms var(--syn-ease); }
+.site-footer__socials a:hover { transform: translateY(-3px) rotate(-4deg); }
+
+/* Header CTA magnetic needs relative-positioned container inside anchor — already inline-flex */
+
+/* Hero button lime pulse glow */
+.hero__ctas .syn-btn--primary {
+  box-shadow: 0 10px 28px rgba(164,225,55,0.35);
+  animation: syn-cta-pulse 3.2s ease-in-out infinite;
+}
+@keyframes syn-cta-pulse {
+  0%, 100% { box-shadow: 0 10px 28px rgba(164,225,55,0.3); }
+  50%      { box-shadow: 0 14px 36px rgba(164,225,55,0.55); }
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+  .syn-cursor-dot, .syn-cursor-ring { display: none; }
+  html, body { cursor: auto !important; }
+}

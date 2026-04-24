@@ -1,0 +1,330 @@
+/* Futuristic layer — HUD, scanlines, glitch, holo, corner brackets.
+   Layered on top of site.css + microinteractions.css. */
+
+/* ========== Global HUD frame ========== */
+.syn-hud {
+  position: fixed; inset: 0; pointer-events: none; z-index: 9990;
+  mix-blend-mode: multiply;
+  opacity: .55;
+}
+:root[data-theme="dark"] .syn-hud { mix-blend-mode: screen; opacity: .45; }
+.syn-hud__grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(17,17,17,0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(17,17,17,0.05) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse at center, #000 40%, transparent 90%);
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 40%, transparent 90%);
+}
+:root[data-theme="dark"] .syn-hud__grid {
+  background-image:
+    linear-gradient(to right, rgba(164,225,55,0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(164,225,55,0.07) 1px, transparent 1px);
+}
+.syn-hud__scan {
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0 3px,
+    rgba(17,17,17,0.025) 3px 4px
+  );
+  animation: syn-scan-drift 8s linear infinite;
+}
+:root[data-theme="dark"] .syn-hud__scan {
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0 3px,
+    rgba(164,225,55,0.04) 3px 4px
+  );
+}
+@keyframes syn-scan-drift { from { background-position: 0 0; } to { background-position: 0 8px; } }
+
+/* Moving scanline beam */
+.syn-hud__beam {
+  position: absolute; left: 0; right: 0; height: 140px;
+  top: -140px;
+  background: linear-gradient(to bottom,
+    transparent 0%,
+    rgba(164,225,55,0.0) 30%,
+    rgba(164,225,55,0.12) 50%,
+    rgba(164,225,55,0.0) 70%,
+    transparent 100%);
+  animation: syn-beam 9s cubic-bezier(.6,0,.4,1) infinite;
+}
+@keyframes syn-beam {
+  0%   { transform: translateY(0);        opacity: 0; }
+  6%   { opacity: 1; }
+  80%  { opacity: 1; }
+  100% { transform: translateY(110vh);    opacity: 0; }
+}
+
+/* Corner tick marks */
+.syn-hud__corner {
+  position: absolute; width: 28px; height: 28px;
+  border-color: var(--syn-lime);
+  border-style: solid;
+  border-width: 0;
+}
+.syn-hud__corner--tl { top: 18px; left: 18px; border-top-width: 2px; border-left-width: 2px; }
+.syn-hud__corner--tr { top: 18px; right: 18px; border-top-width: 2px; border-right-width: 2px; }
+.syn-hud__corner--bl { bottom: 18px; left: 18px; border-bottom-width: 2px; border-left-width: 2px; }
+.syn-hud__corner--br { bottom: 18px; right: 18px; border-bottom-width: 2px; border-right-width: 2px; }
+.syn-hud__corner::after {
+  content: ''; position: absolute; width: 4px; height: 4px; background: var(--syn-lime);
+  border-radius: 999px;
+  box-shadow: 0 0 8px rgba(164,225,55,0.9);
+}
+.syn-hud__corner--tl::after { top: -3px; left: -3px; }
+.syn-hud__corner--tr::after { top: -3px; right: -3px; }
+.syn-hud__corner--bl::after { bottom: -3px; left: -3px; }
+.syn-hud__corner--br::after { bottom: -3px; right: -3px; }
+
+/* Telemetry readouts in corners */
+.syn-hud__readout {
+  position: absolute;
+  font-family: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+  font-size: 10px; letter-spacing: 0.12em;
+  color: var(--syn-fg-primary); opacity: .55;
+  text-transform: uppercase;
+  line-height: 1.5;
+}
+:root[data-theme="dark"] .syn-hud__readout { color: var(--syn-lime); opacity: .75; }
+.syn-hud__readout--tl { top: 18px; left: 58px; }
+.syn-hud__readout--tr { top: 18px; right: 58px; text-align: right; }
+.syn-hud__readout--bl { bottom: 18px; left: 58px; }
+.syn-hud__readout--br { bottom: 18px; right: 58px; text-align: right; }
+.syn-hud__readout span { display: block; }
+.syn-hud__readout b {
+  color: var(--syn-lime-dark); font-weight: 600;
+}
+:root[data-theme="dark"] .syn-hud__readout b { color: var(--syn-lime); }
+.syn-hud__readout .blink { animation: syn-blink 1.4s steps(2) infinite; }
+@keyframes syn-blink { 50% { opacity: 0.25; } }
+
+/* Vignette on edges */
+.syn-hud__vignette {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.18) 100%);
+}
+:root[data-theme="dark"] .syn-hud__vignette {
+  background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.6) 100%);
+}
+
+/* ========== Side progress rail ========== */
+.syn-rail {
+  position: fixed; right: 18px; top: 50%; transform: translateY(-50%);
+  z-index: 9995;
+  display: flex; flex-direction: column; gap: 14px;
+  align-items: flex-end;
+  pointer-events: auto;
+}
+.syn-rail__item {
+  display: flex; align-items: center; gap: 10px;
+  font-family: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+  font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--syn-fg-primary); opacity: .55;
+  text-decoration: none;
+  transition: opacity 240ms var(--syn-ease), transform 240ms var(--syn-ease);
+  cursor: none;
+}
+:root[data-theme="dark"] .syn-rail__item { color: rgba(255,255,255,0.7); }
+.syn-rail__item:hover { opacity: 1; transform: translateX(-3px); }
+.syn-rail__label {
+  opacity: 0; transform: translateX(8px);
+  transition: opacity 240ms var(--syn-ease), transform 240ms var(--syn-ease);
+}
+.syn-rail__item:hover .syn-rail__label { opacity: 1; transform: translateX(0); }
+.syn-rail__tick {
+  display: inline-block; width: 22px; height: 2px; background: currentColor;
+  border-radius: 2px;
+  transition: width 260ms var(--syn-ease), background 260ms var(--syn-ease);
+}
+.syn-rail__item.is-active { opacity: 1; color: var(--syn-lime-dark); }
+:root[data-theme="dark"] .syn-rail__item.is-active { color: var(--syn-lime); }
+.syn-rail__item.is-active .syn-rail__tick { width: 40px; background: var(--syn-lime); box-shadow: 0 0 8px rgba(164,225,55,0.7); }
+.syn-rail__item.is-active .syn-rail__label { opacity: 1; transform: translateX(0); }
+
+@media (max-width: 880px) { .syn-rail { display: none; } }
+
+/* ========== Glitch hero title ========== */
+.hero__title {
+  position: relative;
+}
+.hero__title.syn-glitch { animation: syn-glitch-kick 4.2s cubic-bezier(.2,.8,.2,1) 2.2s infinite; }
+@keyframes syn-glitch-kick {
+  0%, 96%, 100% { transform: translate(0,0); filter: none; }
+  96.5% { transform: translate(-2px, 0); filter: hue-rotate(8deg); }
+  97%   { transform: translate(2px, 1px); filter: contrast(1.1); }
+  97.5% { transform: translate(-1px, -1px); }
+  98%   { transform: translate(1px, 0); }
+}
+
+/* Typewriter caret on hero overline */
+.hero__overline.syn-type::after {
+  content: '_';
+  display: inline-block; margin-left: 4px; color: var(--syn-lime);
+  animation: syn-caret 1s steps(2) infinite;
+}
+@keyframes syn-caret { 50% { opacity: 0; } }
+
+/* ========== Data matrix stream (hero bg overlay) ========== */
+.hero__matrix {
+  position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+  opacity: .28; mix-blend-mode: multiply;
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 30%, #000 70%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 30%, #000 70%, transparent 100%);
+}
+:root[data-theme="dark"] .hero__matrix { mix-blend-mode: screen; opacity: .4; }
+
+/* ========== Holographic card shine ========== */
+.service-card, .case-card, .insight-card { overflow: hidden; }
+.service-card::after, .case-card::after, .insight-card::after {
+  content: ''; position: absolute; inset: 0; border-radius: inherit;
+  background: linear-gradient(115deg,
+    transparent 30%,
+    rgba(164,225,55,0.35) 48%,
+    rgba(255,255,255,0.5) 50%,
+    rgba(164,225,55,0.35) 52%,
+    transparent 70%);
+  transform: translateX(-110%);
+  opacity: 0;
+  transition: opacity 200ms var(--syn-ease);
+  pointer-events: none;
+  z-index: 3;
+  mix-blend-mode: overlay;
+}
+.service-card:hover::after, .case-card:hover::after, .insight-card:hover::after {
+  opacity: 1;
+  animation: syn-holo-sweep 1.2s cubic-bezier(.3,.8,.3,1) forwards;
+}
+@keyframes syn-holo-sweep {
+  0%   { transform: translateX(-110%); }
+  100% { transform: translateX(110%); }
+}
+
+/* Card corner tick marks (HUD-style) */
+.service-card, .case-card, .insight-card {
+  --tick: 10px;
+}
+.service-card .hud-corners, .case-card .hud-corners, .insight-card .hud-corners {
+  position: absolute; inset: 0; pointer-events: none; z-index: 2;
+}
+.hud-corners::before, .hud-corners::after,
+.hud-corners > .tl, .hud-corners > .tr, .hud-corners > .bl, .hud-corners > .br {
+  content: ''; position: absolute; width: 14px; height: 14px;
+  border: 0 solid var(--syn-lime);
+  opacity: 0; transition: opacity 280ms var(--syn-ease), width 280ms var(--syn-ease), height 280ms var(--syn-ease);
+}
+.hud-corners > .tl { top: 8px; left: 8px; border-top-width: 2px; border-left-width: 2px; }
+.hud-corners > .tr { top: 8px; right: 8px; border-top-width: 2px; border-right-width: 2px; }
+.hud-corners > .bl { bottom: 8px; left: 8px; border-bottom-width: 2px; border-left-width: 2px; }
+.hud-corners > .br { bottom: 8px; right: 8px; border-bottom-width: 2px; border-right-width: 2px; }
+.service-card:hover .hud-corners > *, .case-card:hover .hud-corners > *, .insight-card:hover .hud-corners > * {
+  opacity: 1; width: 18px; height: 18px;
+}
+
+/* ========== Section corner brackets on reveal ========== */
+.syn-section-frame {
+  position: absolute; pointer-events: none;
+  border: 0 solid var(--syn-lime);
+  width: 30px; height: 30px;
+  opacity: 0;
+  transition: opacity 700ms var(--syn-ease), transform 700ms cubic-bezier(.22,.9,.3,1);
+}
+.is-reveal.is-in .syn-section-frame { opacity: .6; }
+.syn-section-frame--tl { top: 18px; left: 18px; border-top-width: 2px; border-left-width: 2px; transform: translate(-10px,-10px); }
+.syn-section-frame--tr { top: 18px; right: 18px; border-top-width: 2px; border-right-width: 2px; transform: translate(10px,-10px); }
+.syn-section-frame--bl { bottom: 18px; left: 18px; border-bottom-width: 2px; border-left-width: 2px; transform: translate(-10px,10px); }
+.syn-section-frame--br { bottom: 18px; right: 18px; border-bottom-width: 2px; border-right-width: 2px; transform: translate(10px,10px); }
+.is-reveal.is-in .syn-section-frame { transform: translate(0,0); }
+
+/* ========== Boot sequence ========== */
+.syn-boot {
+  position: fixed; inset: 0; z-index: 10000;
+  background: #0A0A0A; color: var(--syn-lime);
+  font-family: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+  font-size: 13px;
+  display: flex; align-items: center; justify-content: center;
+  animation: syn-boot-out 500ms cubic-bezier(.5,0,.5,1) 2.4s forwards;
+  overflow: hidden;
+}
+.syn-boot__inner {
+  max-width: 440px; width: 100%; padding: 0 24px;
+}
+.syn-boot__brand {
+  font-size: 11px; letter-spacing: 0.3em; opacity: .6; margin-bottom: 18px;
+}
+.syn-boot__line {
+  display: flex; align-items: center; gap: 10px;
+  padding: 4px 0; opacity: 0;
+  animation: syn-boot-line-in 200ms cubic-bezier(.22,.9,.3,1) forwards;
+}
+.syn-boot__line b { color: var(--syn-lime); font-weight: 500; }
+.syn-boot__line .ok { color: var(--syn-lime); margin-left: auto; font-weight: 600; }
+.syn-boot__bar {
+  margin-top: 14px; height: 2px; background: rgba(164,225,55,0.2); overflow: hidden; position: relative;
+}
+.syn-boot__bar::after {
+  content: ''; position: absolute; inset: 0; background: var(--syn-lime);
+  width: 0%; animation: syn-boot-bar 2.2s cubic-bezier(.3,.8,.3,1) forwards;
+  box-shadow: 0 0 8px rgba(164,225,55,0.8);
+}
+@keyframes syn-boot-bar { to { width: 100%; } }
+@keyframes syn-boot-line-in { to { opacity: 1; } }
+@keyframes syn-boot-out {
+  to { opacity: 0; transform: scale(1.04); visibility: hidden; pointer-events: none; }
+}
+
+/* ========== Process connector — beam pulse ========== */
+.process__connector { position: relative; overflow: hidden; }
+.process__connector::after {
+  content: ''; position: absolute; top: 0; left: 0; width: 20%; height: 100%;
+  background: linear-gradient(to right, transparent, rgba(164,225,55,0.9), transparent);
+  filter: blur(1px);
+  animation: syn-beam-h 3.2s linear infinite;
+}
+@keyframes syn-beam-h {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(600%); }
+}
+
+/* Process step num: HUD ring */
+.process-step__num { position: relative; }
+.process-step__num::before {
+  content: ''; position: absolute; inset: -10px; border: 1px solid var(--syn-lime);
+  border-radius: 999px; opacity: 0;
+  animation: syn-ring-expand 2.6s ease-out infinite;
+}
+.process-step.is-in .process-step__num::before { animation-play-state: running; }
+@keyframes syn-ring-expand {
+  0%   { opacity: .7; transform: scale(0.9); }
+  100% { opacity: 0;  transform: scale(1.8); }
+}
+
+/* ========== Number Metric — lime digital glow ========== */
+.case-card__metric b {
+  text-shadow: 0 0 18px rgba(164,225,55,0.45);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ========== Services icon — diagonal HUD scan line ========== */
+.service-card__icon { position: relative; }
+.service-card__icon::before {
+  content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+  background: linear-gradient(115deg, transparent 45%, rgba(164,225,55,0.45) 50%, transparent 55%);
+  opacity: 0; transform: translateX(-50%);
+  transition: opacity 200ms;
+  z-index: 1;
+}
+.service-card:hover .service-card__icon::before {
+  opacity: 1; animation: syn-scan-diag 900ms cubic-bezier(.3,.8,.3,1) forwards;
+}
+@keyframes syn-scan-diag { to { transform: translateX(50%); } }
+
+/* Hide boot on reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .syn-boot { display: none; }
+  .syn-hud__beam, .syn-hud__scan, .syn-hud__grid, .hero__matrix, .process__connector::after,
+  .process-step__num::before, .hero__title.syn-glitch { animation: none !important; }
+}
