@@ -157,25 +157,24 @@ const NeuralBG = () => {
   return <canvas ref={ref} className="hero__net"/>;
 };
 
-const Hero = ({ heroBg = 'neural', matrix = true }) => {
+const Hero = ({ heroBg = 'neural' }) => {
   const ctaPrimary = useMagnetic(0.32, 140);
   const ctaGhost = useMagnetic(0.22, 110);
   return (
   <section className="hero" id="inicio" data-hero-bg={heroBg}>
     {heroBg === 'neural' && <NeuralBG/>}
     {heroBg === 'puntos' && <div className="hero__dots" aria-hidden="true"/>}
-    {matrix && <MatrixRain/>}
     <div className="hero__inner">
       <div className="hero__overline syn-type">Sinapsis Tecnológica · IA · Automatización</div>
       <h1 className="hero__title syn-glitch">
-        <SplitText stagger={70}>CONECTANDO DATOS,</SplitText>
+        <SplitText stagger={70}>SOFTWARE ESCALABLE.</SplitText>
         <br/>
-        <em><SplitText stagger={70} delay={400}>POTENCIANDO FUTUROS.</SplitText></em>
+        <em><SplitText stagger={70} delay={400}>OPERACIONES INTELIGENTES.</SplitText></em>
       </h1>
-      <p className="hero__sub">En Synaptech SpA somos el puente inteligente que transforma tus datos dispersos en inteligencia empresarial de vanguardia. Soluciones de IA, redes neuronales y automatización inteligente para empresas líderes.</p>
+      <p className="hero__sub">En Synaptech SpA desarrollamos software a medida para transformar la operación de tu clínica, institución o negocio en un flujo digital seguro y eficiente. Nos especializamos en HealthTech, portales de pago y aplicaciones progresivas (PWA).</p>
       <div className="hero__ctas">
         <span ref={ctaPrimary} style={{display:'inline-block'}}>
-          <Ripple href="#servicios" className="syn-btn syn-btn--primary syn-btn--primary-lg">DESCUBRE TU POTENCIAL</Ripple>
+          <Ripple href="#casos" className="syn-btn syn-btn--primary syn-btn--primary-lg">VER CASOS DE ÉXITO</Ripple>
         </span>
         <span ref={ctaGhost} style={{display:'inline-block'}}>
           <Ripple href="#proceso" className="syn-btn syn-btn--ghost">Cómo funcionamos <Icon name="arrow" size={16}/></Ripple>
@@ -330,9 +329,9 @@ const Process = () => (
 
 // ----- Cases -----
 const CASES = [
-  { client: 'Banco Andes', title: 'Aumento de Eficiencia Operativa', metric: '+30%', metricLbl: 'Eficiencia', summary: 'Automatización de back-office con modelos predictivos para el área de riesgo crediticio.' },
-  { client: 'Retail Norte', title: 'Optimización de Cadena Logística', metric: '-20%', metricLbl: 'Costos', summary: 'Red IoT de sensores en 48 centros de distribución con analítica en tiempo real.' },
-  { client: 'MinerTech', title: 'Mantenimiento Predictivo de Flota', metric: '24/7', metricLbl: 'Monitoreo', summary: 'Modelos neuronales para anticipar fallas en equipos pesados en operación continua.' },
+  { client: 'ViñaMed', title: 'Trazabilidad Clínica', metric: 'DICOM', metricLbl: 'Trazabilidad Clínica', summary: 'Desarrollo de plataforma segura para gestión de pacientes, protocolos sanitarios y visor DICOM para Salas de Toma de Muestras (SETM).' },
+  { client: 'Patio Curauma', title: 'Fidelización Wallet', metric: 'Wallet', metricLbl: 'Fidelización Wallet', summary: 'Implementación de sistema de retención de clientes mediante sellos digitales, integración con Google Wallet y notificaciones por Geocercas.' },
+  { client: 'Colegio Diego Thompson', title: 'Gestión Institucional', metric: 'PWA', metricLbl: 'Gestión Institucional', summary: 'Desarrollo de portal administrativo integral para la gestión de nóminas estudiantiles y automatización de pagos digitales seguros.' },
 ];
 const CaseCard = ({ c, i }) => {
   const ref = useTilt(4);
@@ -440,15 +439,15 @@ const Contact = () => {
         <div className="contact__info" data-reveal>
           <div className="contact__info-item">
             <div className="contact__info-item__icon"><Icon name="pin" size={20} stroke="#7FB020"/></div>
-            <div><h5>Oficina</h5><p>Av. Providencia 1234, Oficina 501<br/>Santiago, Chile</p></div>
+            <div><h5>Oficina</h5><p>Viña del Mar,<br/>Región de Valparaíso, Chile</p></div>
           </div>
           <div className="contact__info-item">
             <div className="contact__info-item__icon"><Icon name="phone" size={20} stroke="#7FB020"/></div>
-            <div><h5>Teléfono</h5><p>+56 2 2345 6789</p></div>
+            <div><h5>Teléfono</h5><p>+569 83568212</p></div>
           </div>
           <div className="contact__info-item">
             <div className="contact__info-item__icon"><Icon name="mail" size={20} stroke="#7FB020"/></div>
-            <div><h5>Email</h5><p>contacto@synaptech.cl</p></div>
+            <div><h5>Email</h5><p>hola@sinpatech.cl<br/>ignaciiio.mate@gmail.com</p></div>
           </div>
           <div className="contact__info-item">
             <div className="contact__info-item__icon"><Icon name="clock" size={20} stroke="#7FB020"/></div>
@@ -478,7 +477,7 @@ const Footer = () => (
     <div className="site-footer__inner">
       <div className="site-footer__brand">
         <b>Synaptech <span style={{fontWeight:400, fontSize:14, color:'rgba(255,255,255,.5)'}}>SpA</span></b>
-        <p>Soluciones de Inteligencia Artificial, Redes Neuronales y Automatización Inteligente. Tu socio tecnológico de confianza en la era digital.</p>
+        <p>Desarrollo de software a medida, plataformas HealthTech y automatización de operaciones. Arquitectura digital segura y escalable.</p>
         <div className="site-footer__socials">
           <a href="#"><Icon name="linkedin" size={18}/></a>
           <a href="#"><Icon name="twitter" size={18}/></a>
@@ -491,7 +490,6 @@ const Footer = () => (
           <li><a href="#inicio">Inicio</a></li>
           <li><a href="#servicios">Servicios</a></li>
           <li><a href="#casos">Casos</a></li>
-          <li><a href="#blog">Blog</a></li>
           <li><a href="#contacto">Contacto</a></li>
         </ul>
       </div>
@@ -506,15 +504,16 @@ const Footer = () => (
       <div>
         <h6>Contacto</h6>
         <ul>
-          <li><a href="mailto:contacto@synaptech.cl">contacto@synaptech.cl</a></li>
-          <li><a href="tel:+56223456789">+56 2 2345 6789</a></li>
-          <li style={{color:'rgba(255,255,255,.5)'}}>Av. Providencia 1234,<br/>Santiago, Chile</li>
+          <li><a href="mailto:hola@sinpatech.cl">hola@sinpatech.cl</a></li>
+          <li><a href="mailto:ignaciiio.mate@gmail.com">ignaciiio.mate@gmail.com</a></li>
+          <li><a href="tel:+56983568212">+569 83568212</a></li>
+          <li style={{color:'rgba(255,255,255,.5)'}}>Viña del Mar,<br/>Región de Valparaíso, Chile</li>
         </ul>
       </div>
     </div>
     <div className="site-footer__bottom">
       <div>© 2026 Synaptech SpA. Todos los derechos reservados. Soluciones Tecnológicas Avanzadas.</div>
-      <div>Hecho en Santiago, Chile.</div>
+      <div>Hecho en Viña del Mar, Chile.</div>
     </div>
   </footer>
 );
@@ -526,7 +525,6 @@ const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "accent": "#A4E137",
   "hud": true,
   "rail": true,
-  "matrix": true,
   "boot": true
 }/*EDITMODE-END*/;
 
@@ -555,7 +553,7 @@ const App = () => {
     <>
       {t.boot && <BootSequence/>}
       <Header/>
-      <Hero heroBg={t.hero_bg} matrix={t.matrix}/>
+      <Hero heroBg={t.hero_bg} />
       <Essence/>
       <Services/>
       <Process/>
@@ -576,7 +574,6 @@ const App = () => {
         <TweakRadio label="Fondo" value={t.hero_bg}
                     options={['neural','puntos','limpio']}
                     onChange={v => setTweak('hero_bg', v)}/>
-        <TweakToggle label="Matrix rain" value={t.matrix} onChange={v => setTweak('matrix', v)}/>
         <TweakSection label="HUD Futurista"/>
         <TweakToggle label="Marco HUD" value={t.hud} onChange={v => setTweak('hud', v)}/>
         <TweakToggle label="Riel de sección" value={t.rail} onChange={v => setTweak('rail', v)}/>
