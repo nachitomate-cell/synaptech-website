@@ -41,27 +41,27 @@ const TrendIcon = () => (
 const SERVICES = [
   {
     n: "01", Icon: BrainIcon,
-    title: "IA y Aprendizaje Automático",
-    desc: "Modelos predictivos y neuronales para decisiones basadas en datos reales de tu negocio.",
-    items: ["Modelos de clasificación y predicción", "NLP y visión por computador", "Dashboards de ML en producción"],
+    title: "Plataformas HealthTech",
+    desc: "Portales clínicos, visores DICOM, gestión de perfiles médicos y flujos HL7. Software de salud que cumple estándares clínicos reales.",
+    items: ["Visor DICOM y gestión de imágenes", "Ficha clínica digital y perfiles profesionales", "Integración HL7 y sistemas hospitalarios", "Portal seguro para médicos y tecnólogos"],
   },
   {
-    n: "02", Icon: CpuIcon,
-    title: "Automatización Inteligente",
-    desc: "Eliminamos trabajo manual repetitivo con flujos inteligentes integrados a tus sistemas actuales.",
-    items: ["RPA y orquestación de procesos", "Integraciones API y webhooks", "Alertas y acciones autónomas"],
+    n: "02", Icon: TrendIcon,
+    title: "Apps de Fidelización y Retail",
+    desc: "Programas de sellos digitales, integración con Google Wallet, gamificación y notificaciones push para comercios y centros comerciales.",
+    items: ["Sellos digitales con Google Wallet", "Gamificación y recompensas", "Notificaciones push y campañas"],
   },
   {
-    n: "03", Icon: WifiIcon,
-    title: "Ecosistemas IoT",
-    desc: "Conectamos sensores y dispositivos para monitoreo en tiempo real con dashboards personalizados.",
-    items: ["Protocolos MQTT/OPC-UA", "Edge computing y gateways", "Visualización y alertas en tiempo real"],
+    n: "03", Icon: CpuIcon,
+    title: "Portales Educativos (PWA)",
+    desc: "Portales institucionales instalables offline, automatización de pagos de colegiaturas y comunicación familia-colegio centralizada.",
+    items: ["PWA offline-first instalable", "Automatización de pagos con Webpay", "Comunicación familia-institución"],
   },
   {
-    n: "04", Icon: TrendIcon,
-    title: "Consultoría Digital",
-    desc: "Estrategias de transformación digital diseñadas para la realidad de la empresa chilena B2B.",
-    items: ["Diagnóstico y roadmap tecnológico", "Selección de stack y arquitectura", "Acompañamiento post-lanzamiento"],
+    n: "04", Icon: WifiIcon,
+    title: "Reservas y Automatización",
+    desc: "Agendas 24/7, gestión de equipos, confirmaciones automáticas por WhatsApp y sistemas de fidelidad para belleza y comercio.",
+    items: ["Agenda online 24/7 con recordatorios", "Gestión de trabajadores y turnos", "Club de fidelidad integrado"],
   },
 ];
 

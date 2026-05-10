@@ -3,10 +3,9 @@ import { motion } from "framer-motion";
 import NeuralCanvas from "./NeuralCanvas";
 
 const METRICS = [
-  { value: "+50",  label: "proyectos" },
-  { value: "98%",  label: "retención" },
-  { value: "3",    label: "países" },
-  { value: "4",    label: "industrias" },
+  { value: "+5",    label: "proyectos\nentregados" },
+  { value: "100%",  label: "en\nproducción" },
+  { value: "4",     label: "industrias\natendidas" },
 ];
 
 const rise = (delay = 0) => ({
@@ -82,11 +81,11 @@ export default function Hero() {
         transition={{ duration: 0.6, delay: 0.8 }}
         className="relative z-10 border-t border-border-subtle"
       >
-        <div className="max-w-screen-xl mx-auto px-6 md:px-12 grid grid-cols-2 md:grid-cols-4 divide-x divide-border-subtle">
+        <div className="max-w-screen-xl mx-auto px-6 md:px-12 grid grid-cols-3 divide-x divide-border-subtle">
           {METRICS.map((m) => (
             <div key={m.label} className="flex flex-col items-center py-7 px-4 gap-1.5">
               <span className="font-mono font-semibold text-[2rem] leading-none text-accent">{m.value}</span>
-              <span className="font-mono text-[11px] text-text-muted uppercase tracking-widest">{m.label}</span>
+              <span className="font-mono text-[11px] text-text-muted uppercase tracking-widest text-center whitespace-pre-line">{m.label}</span>
             </div>
           ))}
         </div>

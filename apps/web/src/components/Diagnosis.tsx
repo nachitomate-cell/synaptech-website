@@ -2,14 +2,14 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const RUBROS = ["Clínica", "Retail", "Educación", "Belleza"] as const;
+const RUBROS = ["Salud", "Retail", "Educación", "Belleza"] as const;
 type Rubro = typeof RUBROS[number];
 
 const PROBLEMS: Record<Rubro, string[]> = {
-  Clínica:   ["Alta tasa de no-shows", "Ficha clínica en papel", "Sin agenda online", "Cobros manuales"],
-  Retail:    ["Inventario desactualizado", "Sin e-commerce", "Sin fidelización", "Reportes en Excel"],
-  Educación: ["Comunicaciones dispersas", "Pagos de arancel manuales", "Sin portal de notas", "Sin app para padres"],
-  Belleza:   ["Agenda solo por WhatsApp", "Sin recordatorios automáticos", "Sin CRM de clientes", "Sin venta online"],
+  Salud:     ["Alta tasa de no-shows", "Ficha clínica en papel", "Sin visualización DICOM", "Cobros manuales"],
+  Retail:    ["Sin programa de fidelización", "Sin integración Google Wallet", "Sin notificaciones push", "Reportes en Excel"],
+  Educación: ["Comunicaciones dispersas", "Pagos de arancel manuales", "Sin portal institucional PWA", "Sin app para apoderados"],
+  Belleza:   ["Agenda solo por WhatsApp", "Sin recordatorios automáticos", "Sin club de fidelidad", "Sin cobro online"],
 };
 
 const DOT_GRID = Array.from({ length: 80 }, (_, i) => i);

@@ -25,12 +25,13 @@ const jetbrains = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Synaptech SpA — Tecnología con Alma Digital",
+  title: "Synaptech — Software a medida, IA y automatización para empresas chilenas",
   description:
-    "Agencia chilena de software a medida, IA, automatización e IoT para clínicas, retail, educación y belleza. Viña del Mar.",
+    "Desarrollamos software a medida, plataformas HealthTech, apps de fidelización y automatización de procesos para clínicas, retail, educación y belleza en Chile. Proyectos reales en producción desde Viña del Mar.",
+  keywords: ["software a medida Chile", "desarrollo web Viña del Mar", "HealthTech", "portal clínico DICOM", "fidelización Google Wallet", "PWA educación", "automatización pagos", "barbería reservas online"],
   openGraph: {
-    title: "Synaptech SpA — Tecnología con Alma Digital",
-    description: "Software a medida · IA · Automatización · IoT · Viña del Mar",
+    title: "Synaptech — Software a medida, IA y automatización",
+    description: "Software a medida para clínicas, retail, educación y belleza. Proyectos en producción desde Viña del Mar, Chile.",
     locale: "es_CL",
     type: "website",
   },
