@@ -1,0 +1,17 @@
+{
+  "name": "@synaptech/firebase",
+  "version": "0.0.1",
+  "private": true,
+  "main": "./src/index.ts",
+  "exports": {
+    ".":            "./src/index.ts",
+    "./auth":       "./src/auth.ts",
+    "./db":         "./src/db.ts"
+  },
+  "dependencies": {
+    "firebase": "^10.12.0"
+  },
+  "devDependencies": {
+    "typescript": "^5"
+  }
+}
