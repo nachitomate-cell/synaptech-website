@@ -1,3 +1,8 @@
+export type FeatureGroup = {
+  titulo: string;
+  items: string[];
+};
+
 export type CaseData = {
   slug: string;
   sector: string;
@@ -10,6 +15,7 @@ export type CaseData = {
   estado: string;
   año: string;
   accentColor: string;
+  features?: FeatureGroup[];
 };
 
 export const CASES_DATA: CaseData[] = [
@@ -35,15 +41,48 @@ export const CASES_DATA: CaseData[] = [
     cliente: "Patio Curauma",
     titulo: "App de fidelización con Google Wallet",
     descripcion:
-      "Sistema de sellos digitales con integración nativa a Google Wallet. Recompensas, gamificación y push notifications para impulsar visitas recurrentes en el centro comercial.",
+      "PWA instalable sin pasar por las tiendas de aplicaciones. Sellos digitales, canje de premios, Google Wallet, directorio de emprendedores con mapa interactivo, notificaciones push con IA y programa de referidos. Tres paneles: socios, vendedores y administración.",
     problema:
-      "Sin sistema de fidelización digital, las visitas recurrentes dependían únicamente de factores externos. No había mecanismo para medir engagement, recompensar a clientes frecuentes ni generar comunicación directa con ellos.",
+      "Sin sistema de fidelización digital, las visitas recurrentes dependían de factores externos y no había mecanismo para medir engagement, recompensar clientes frecuentes ni comunicarse directamente con ellos. Los emprendedores del patio tampoco tenían visibilidad de su actividad de ventas.",
     solucion:
-      "App móvil con integración nativa a Google Wallet: sellos digitales acumulables, gamificación, notificaciones push y reportes de comportamiento de visitas. Todo el flujo de fidelización sin fricción desde el teléfono del cliente.",
-    stack: ["React Native", "Google Wallet API", "Node.js", "Firebase"],
+      "PWA instalable en Android e iOS sin pasar por las tiendas de aplicaciones. Para socios: tarjeta de sellos digital, canje de premios, Google Wallet, directorio con mapa interactivo, notificaciones push y programa de referidos. Para vendedores: panel de escaneo QR, historial de ventas y perfil público. Para administración: métricas globales, gestión de usuarios y notificaciones automáticas generadas con IA (Gemini) enviadas en horarios estratégicos.",
+    stack: ["Next.js", "Firebase", "PWA", "Google Wallet API", "Gemini AI"],
     estado: "En producción",
     año: "2025",
     accentColor: "#f59e0b",
+    features: [
+      {
+        titulo: "Para los Socios",
+        items: [
+          "Tarjeta digital de sellos — acumula sellos por cada compra en locales participantes",
+          "Canje de premios — canjea tus sellos por recompensas exclusivas desde la app",
+          "Google Wallet — guarda tu tarjeta de socio en la billetera digital de tu teléfono",
+          "Directorio de emprendedores — explora todos los locales con perfiles, fotos y descripción",
+          "Mapa interactivo — encuentra locales con geolocalización en tiempo real",
+          "Notificaciones push — recibe ofertas y novedades personalizadas en tu pantalla",
+          "Programa de referidos — invita amigos y gana sellos cuando se registran",
+          "Buzón de sugerencias — envía comentarios directamente al equipo",
+        ],
+      },
+      {
+        titulo: "Para los Emprendedores",
+        items: [
+          "Panel de vendedor — escanea el QR del cliente para otorgar sellos al instante",
+          "Historial de ventas — registro completo de cada transacción realizada",
+          "Perfil público — vitrina digital dentro del directorio de la app",
+          "Validación de canjes — confirma o rechaza canjes de premios de tus clientes",
+        ],
+      },
+      {
+        titulo: "Para la Administración",
+        items: [
+          "Panel del Director — métricas globales: socios activos, sellos emitidos, canjes y actividad por local",
+          "Panel del Moderador — gestión completa de usuarios, roles, premios y configuración del programa",
+          "Notificaciones automáticas con IA — Gemini genera mensajes persuasivos y los envía en horarios estratégicos",
+          "Radar de anomalías — detecta comportamientos sospechosos en tiempo real",
+        ],
+      },
+    ],
   },
   {
     slug: "diego-thompson",

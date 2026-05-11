@@ -92,6 +92,22 @@ export default function CasoPage({ params }: Props) {
               </div>
               <p className="text-text-secondary leading-relaxed font-body">{caso.solucion}</p>
             </section>
+
+            {/* Feature groups — solo si el caso los tiene */}
+            {caso.features && caso.features.map((group) => (
+              <section key={group.titulo} className="bg-bg-secondary border border-border-subtle rounded-2xl p-8">
+                <h2 className="font-display text-base font-semibold text-text-primary mb-5"
+                  style={{ color: caso.accentColor }}>{group.titulo}</h2>
+                <ul className="flex flex-col gap-2.5">
+                  {group.items.map((item) => (
+                    <li key={item} className="flex items-start gap-2.5">
+                      <span className="w-1.5 h-1.5 rounded-full shrink-0 mt-1.5" style={{ background: caso.accentColor }} />
+                      <span className="text-sm text-text-secondary font-body leading-relaxed">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            ))}
           </div>
 
           {/* Sidebar */}
