@@ -23,17 +23,57 @@ export const CASES_DATA: CaseData[] = [
     slug: "vinamed",
     sector: "HealthTech · Salud",
     cliente: "ViñaMed",
-    titulo: "Portal clínico con visor DICOM",
+    titulo: "Dashboard clínico con visor DICOM y gestión de flujos",
     descripcion:
-      "Plataforma para gestión de perfiles profesionales (médicos y tecnólogos médicos) y visualización de reportes ecográficos en formato DICOM. Flujos clínicos digitalizados de extremo a extremo.",
+      "Plataforma clínica integral que digitaliza toda la operación de ViñaMed: gestión de pacientes, agendamiento, visor DICOM integrado con Cornerstone.js, generación de informes en PDF y comunicación automatizada por correo. Cinco roles de usuario, dos layouts diferenciados y doce módulos operando en producción.",
     problema:
-      "ViñaMed operaba con fichas clínicas en papel y reportes ecográficos distribuidos por correo, sin trazabilidad ni acceso centralizado para el equipo médico. El tiempo entre el examen y la entrega del informe era alto y dependía de procesos manuales.",
+      "ViñaMed operaba con fichas clínicas en papel y reportes ecográficos distribuidos por correo sin trazabilidad. No existía una herramienta centralizada para que médicos, tecnólogos y administración coordinaran la atención: los turnos se gestionaban por WhatsApp, los informes se enviaban manualmente y no había historial de pacientes consolidado. El tiempo entre el examen y la entrega del informe dependía completamente de procesos manuales.",
     solucion:
-      "Desarrollamos un portal clínico completo con visor DICOM integrado, gestión centralizada de perfiles para médicos y tecnólogos médicos, y digitalización completa de los flujos de atención. El sistema corre en producción gestionando la operación clínica diaria.",
-    stack: ["Next.js", "FastAPI", "PostgreSQL", "DICOM.js"],
+      "Construimos un dashboard clínico completo con React 18 + Vite y Firebase como backend en tiempo real. Cornerstone.js permite visualizar estudios DICOM directamente en el navegador; jsPDF genera los informes firmados listos para entregar. Cloud Functions de Firebase automatizan el envío de confirmaciones y reportes por correo vía Resend. El sistema tiene cinco roles diferenciados (Superadmin, Admin, Médico, Tecnólogo Médico, Paciente) y dos layouts de interfaz según el perfil. Doce módulos en producción cubren desde el agendamiento y la agenda del médico hasta el historial clínico completo del paciente.",
+    stack: ["React 18", "Vite", "Firebase", "Firestore", "Cloud Functions", "Cornerstone.js", "jsPDF", "Resend"],
     estado: "En producción",
     año: "2025",
     accentColor: "#10b981",
+    features: [
+      {
+        titulo: "Módulos del sistema (12 en producción)",
+        items: [
+          "Dashboard principal — métricas del día: citas, ingresos, ocupación por médico",
+          "Agenda del médico — vista semanal con slots de disponibilidad y estado de cada cita",
+          "Agendamiento — flujo de 4 pasos para crear citas con selección de médico, servicio y hora",
+          "Gestión de pacientes — base de datos completa con historial de visitas y datos de contacto",
+          "Historial clínico — registro de cada atención con notas, diagnóstico y documentos adjuntos",
+          "Visor DICOM — visualización de estudios ecográficos directamente en el navegador con Cornerstone.js",
+          "Generación de informes — PDF firmado generado con jsPDF, listo para entregar o enviar por correo",
+          "Panel de tecnólogos médicos — gestión de turnos, carga de estudios DICOM y estado de exámenes",
+          "Panel administrativo — control de médicos, servicios, horarios y configuración del centro",
+          "Notificaciones automáticas — Cloud Functions envían confirmaciones y recordatorios vía Resend",
+          "Panel del paciente — acceso a sus citas, informes y resultados de exámenes",
+          "Reportes de negocio — ingresos, ocupación y métricas de retención por período",
+        ],
+      },
+      {
+        titulo: "Roles y accesos",
+        items: [
+          "Superadmin — acceso total al sistema, configuración global y gestión de cuentas",
+          "Admin — gestión operativa: médicos, agendas, pacientes y reportes del centro",
+          "Médico — agenda personal, historial de sus pacientes e informes propios",
+          "Tecnólogo Médico — carga de estudios DICOM, gestión de exámenes y estado de procesamiento",
+          "Paciente — portal propio con citas activas, historial e informes descargables",
+        ],
+      },
+      {
+        titulo: "Infraestructura y automatizaciones",
+        items: [
+          "Firebase Realtime + Firestore — datos en tiempo real con reglas de seguridad por rol",
+          "5 Cloud Functions serverless — confirmaciones de cita, recordatorios 24h antes, entrega de informes",
+          "Resend — envío transaccional de correos con plantillas HTML personalizadas",
+          "Cornerstone.js — visor DICOM nativo en el navegador, sin plugins ni software externo",
+          "jsPDF — generación de informes clínicos con firma digital y logo del centro",
+          "Dos layouts de interfaz — clínico (médicos y tecnólogos) y administrativo (admin y superadmin)",
+        ],
+      },
+    ],
   },
   {
     slug: "patio-curauma",
@@ -101,35 +141,70 @@ export const CASES_DATA: CaseData[] = [
     accentColor: "#3b82f6",
   },
   {
-    slug: "barberia-ferraza",
-    sector: "Belleza · Reservas",
-    cliente: "Barbería Ferraza",
-    titulo: "Reservas 24/7 + club de fidelidad",
+    slug: "plataforma-belleza",
+    sector: "Belleza · SaaS Multi-tenant",
+    cliente: "Elegance · Ferraza · Gitana Nails",
+    titulo: "SaaS multi-tenant para barberías y salones",
     descripcion:
-      "Sistema de reservas de turnos online, gestión de clientes y trabajadores, y club de fidelidad integrado. Disponibilidad 24/7 con confirmaciones automatizadas vía WhatsApp.",
+      "Una sola plataforma que sirve a tres negocios con marcas, equipos y servicios completamente distintos. Agenda pública, dashboard con +20 módulos, 15+ automatizaciones serverless y BarberTV para la sala de espera. Arquitectura multi-tenant sobre Firebase: un nuevo local puede estar operativo en horas.",
     problema:
-      "Las reservas se gestionaban exclusivamente por WhatsApp personal, sin posibilidad de agendar fuera del horario de atención. Sin sistema de gestión de múltiples barberos, el dueño operaba como cuello de botella.",
+      "Tres negocios de belleza en la Quinta Región operaban con WhatsApp, cuadernos y Excel para gestionar citas, clientes y equipos. Sin agenda digital, sin fidelización automatizada y sin datos de negocio, los dueños perdían horas diarias en coordinación manual. El desafío adicional: Elegance (barbería premium, estética dorada), Ferraza (barbería tradicional, diseño oscuro) y Gitana Nails (estudio de uñas, identidad femenina) tenían marcas completamente distintas — necesitaban una solución única que los contuviera a todos sin mezclar datos ni imagen.",
     solucion:
-      "Plataforma de reservas 24/7 con gestión de agenda por barbero, confirmaciones y recordatorios automáticos por WhatsApp Business, club de fidelidad integrado y cobro online mediante Webpay.",
-    stack: ["Next.js", "PostgreSQL", "WhatsApp Business API", "Webpay"],
+      "Plataforma SaaS multi-tenant sobre Firebase. Cada local opera con su propia marca, servicios, equipo y horarios, con datos completamente aislados. Un mismo codebase sirve a los tres negocios; un nuevo tenant puede estar activo en horas sin desarrollo adicional.",
+    stack: ["React 18", "Firebase", "Firestore", "FCM", "Vercel", "PWA"],
     estado: "En producción",
     año: "2025",
-    accentColor: "#8b5cf6",
-  },
-  {
-    slug: "barberia-elegance",
-    sector: "Belleza · Reservas",
-    cliente: "Barbería Elegance",
-    titulo: "Agenda online y gestión de barberos",
-    descripcion:
-      "Misma base tecnológica que Ferraza, adaptada al flujo de Elegance: agenda 24/7, gestión de barberos, programa de clientes frecuentes y métricas operativas.",
-    problema:
-      "Mismo patrón que Ferraza: agenda manual por WhatsApp, sin visibilidad de la carga de trabajo por barbero y sin métricas operativas para tomar decisiones sobre el negocio.",
-    solucion:
-      "Sistema de agenda online adaptado al flujo específico de Elegance, con gestión de equipo, programa de clientes frecuentes y dashboard de métricas operativas en tiempo real.",
-    stack: ["Next.js", "PostgreSQL", "WhatsApp Business API", "Webpay"],
-    estado: "En producción",
-    año: "2025",
-    accentColor: "#f43f5e",
+    accentColor: "#c084fc",
+    features: [
+      {
+        titulo: "Agenda pública sin fricción",
+        items: [
+          "Reservas en 4 pasos: servicio → profesional → fecha y hora → confirmación",
+          "Calendario con disponibilidad en tiempo real, slots de 30 minutos",
+          "Confirmación con resumen QR y enlace directo a WhatsApp del local",
+          "Sin app que descargar, sin registro obligatorio para el cliente",
+        ],
+      },
+      {
+        titulo: "Panel de administración (+20 módulos)",
+        items: [
+          "Agenda semanal por barbero, base de clientes con historial de visitas",
+          "Métricas de negocio: ingresos, ocupación, retención, ticket promedio",
+          "Gestión de equipo con horarios y ausencias, catálogo con drag & drop",
+          "Tienda de productos con stock, chat con clientes, registro de gastos",
+          "Galería de trabajos (lookbook) y configuración de marca por local",
+          "Panel instalable como PWA — funciona como app nativa en el celular del barbero",
+        ],
+      },
+      {
+        titulo: "15+ automatizaciones serverless",
+        items: [
+          "Notificación push al barbero en el momento que llega una reserva nueva",
+          "Recordatorio automático al cliente 24 horas antes de la cita",
+          "Sello de fidelidad acreditado automáticamente al completar cada cita",
+          "Sello de cumpleaños enviado con felicitación push el día del cliente",
+          "Recordatorio predictivo: si el cliente no tiene reserva cerca de su próxima fecha estimada de corte, el sistema le escribe solo — sin molestar si ya tiene cita",
+          "Limpieza semanal de tokens de notificación inactivos (cron dominical 3am)",
+        ],
+      },
+      {
+        titulo: "BarberTV — señalética digital para la sala de espera",
+        items: [
+          "Vista fullscreen diseñada para el televisor del local",
+          "Rota entre 4 slides animados: promoción del mes, galería del equipo, presentación de profesionales y turno en vivo",
+          "Muestra quién está en sillón y quién sigue en tiempo real",
+          "QR en pantalla para que los clientes en sala reserven directamente desde su celular",
+        ],
+      },
+      {
+        titulo: "Arquitectura multi-tenant",
+        items: [
+          "Tres tenants activos: Elegance (paleta dorada), Ferraza (plateada), Gitana Nails (magenta)",
+          "Cada tenant se identifica por dominio o parámetro de URL",
+          "Aislamiento de datos a nivel de reglas de seguridad Firestore, no de aplicación",
+          "Un nuevo local puede estar operativo en horas sin desarrollo adicional",
+        ],
+      },
+    ],
   },
 ];

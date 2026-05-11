@@ -155,80 +155,88 @@ const CASES = [
     ),
   },
   {
-    slug: "barberia-ferraza",
-    client: "Barbería Ferraza",
-    industry: "Belleza · Reservas",
-    title: "Plataforma de reservas 24/7 + club de fidelidad",
-    desc: "Sistema de reservas de turnos online, gestión de clientes y trabajadores, y club de fidelidad integrado. Disponibilidad 24/7 con confirmaciones automatizadas.",
-    stack: ["Next.js", "PostgreSQL", "WhatsApp API", "Webpay"],
+    slug: "plataforma-belleza",
+    client: "Elegance · Ferraza · Gitana Nails",
+    industry: "Belleza · SaaS Multi-tenant",
+    title: "SaaS multi-tenant para barberías y salones",
+    desc: "Una sola plataforma que sirve a tres negocios con marcas, equipos y servicios distintos. Agenda pública, dashboard con +20 módulos, 15+ automatizaciones serverless y BarberTV para la sala de espera.",
+    stack: ["React 18", "Firebase", "Firestore", "FCM", "Vercel", "PWA"],
     status: "En producción",
-    accentColor: "#8b5cf6",
-    from: "#0c0a1c", to: "#0e0b20",
+    accentColor: "#c084fc",
+    from: "#0e0814", to: "#120a1a",
     Mockup: () => (
-      <svg viewBox="0 0 420 200" width="100%" height="100%" aria-hidden
+      <svg viewBox="0 0 560 220" width="100%" height="100%" aria-hidden
         className="absolute inset-0 w-full h-full" preserveAspectRatio="xMidYMid slice">
-        <rect width="420" height="200" fill="#09071a"/>
-        <rect x="0" y="0" width="420" height="28" fill="#0c0a1e"/>
-        <text x="14" y="18" fill="rgba(139,92,246,0.85)" fontSize="8.5" fontFamily="monospace" fontWeight="700">Ferraza · Agenda semanal</text>
-        {["LUN","MAR","MIÉ","JUE","VIE","SÁB"].map((d, i) => (
-          <g key={d}>
-            <text x={22 + i * 65} y="42" fill="rgba(255,255,255,0.35)" fontSize="6.5" fontFamily="monospace" textAnchor="middle">{d}</text>
-            <text x={22 + i * 65} y="54" fill={i === 4 ? "rgba(139,92,246,0.9)" : "rgba(255,255,255,0.5)"}
-              fontSize="8" fontFamily="monospace" fontWeight="700" textAnchor="middle">{5 + i}</text>
-          </g>
-        ))}
+        <rect width="560" height="220" fill="#0c0812"/>
+        {/* Sidebar */}
+        <rect x="0" y="0" width="100" height="220" fill="#08060f"/>
+        <text x="50" y="22" fill="rgba(192,132,252,0.7)" fontSize="7.5" fontFamily="monospace" fontWeight="700" textAnchor="middle">SaaS</text>
+        {/* Tenant pills */}
         {[
-          [1,0,1,1,0,1], [0,1,1,0,1,0], [1,1,0,1,1,0],
-          [0,0,1,0,1,1], [1,0,0,1,0,1], [0,1,1,0,1,0], [1,0,1,1,0,1],
-        ].map((row, ri) => (
+          { label: "Elegance", color: "rgba(212,175,55,0.85)", bg: "rgba(212,175,55,0.12)" },
+          { label: "Ferraza",  color: "rgba(180,180,200,0.85)", bg: "rgba(180,180,200,0.10)" },
+          { label: "Gitana",   color: "rgba(236,72,153,0.85)",  bg: "rgba(236,72,153,0.12)" },
+        ].map((t, i) => (
+          <g key={i}>
+            <rect x="8" y={34 + i * 26} width="84" height="18" rx="5" fill={i === 0 ? t.bg : "transparent"}
+              stroke={i === 0 ? t.color : "rgba(255,255,255,0.07)"} strokeWidth="0.8"/>
+            <circle cx="19" cy={43 + i * 26} r="3.5" fill={t.color}/>
+            <text x="28" y={46 + i * 26} fill={i === 0 ? t.color : "rgba(255,255,255,0.3)"}
+              fontSize="6.5" fontFamily="monospace">{t.label}</text>
+          </g>
+        ))}
+        {/* Nav icons */}
+        {["📅","👥","📊","⚙️","💬"].map((ic, i) => (
+          <text key={i} x="50" y={120 + i * 20} fontSize="9" textAnchor="middle" opacity={i === 0 ? 1 : 0.35}>{ic}</text>
+        ))}
+        {/* Main area */}
+        {/* Header */}
+        <rect x="108" y="8" width="444" height="20" rx="4" fill="rgba(255,255,255,0.03)"/>
+        <text x="118" y="21" fill="rgba(212,175,55,0.7)" fontSize="7.5" fontFamily="monospace" fontWeight="700">Elegance Barbershop · Dashboard</text>
+        <rect x="496" y="12" width="48" height="12" rx="4" fill="rgba(212,175,55,0.15)"
+          stroke="rgba(212,175,55,0.35)" strokeWidth="0.7"/>
+        <text x="520" y="21" fill="rgba(212,175,55,0.8)" fontSize="6.5" fontFamily="monospace" textAnchor="middle">● Live</text>
+        {/* Metric cards */}
+        {[
+          { l: "Citas hoy", v: "14", c: "rgba(212,175,55,0.9)" },
+          { l: "Ocupación", v: "87%", c: "rgba(192,132,252,0.9)" },
+          { l: "Ticket avg", v: "$12k", c: "rgba(52,211,153,0.9)" },
+        ].map((m, i) => (
+          <g key={i}>
+            <rect x={116 + i * 100} y="36" width="90" height="44" rx="6"
+              fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.07)" strokeWidth="0.7"/>
+            <text x={161 + i * 100} y="57" fill={m.c} fontSize="16" fontFamily="monospace" fontWeight="800" textAnchor="middle">{m.v}</text>
+            <text x={161 + i * 100} y="70" fill="rgba(255,255,255,0.3)" fontSize="6" fontFamily="monospace" textAnchor="middle">{m.l}</text>
+          </g>
+        ))}
+        {/* Agenda weekly grid */}
+        <rect x="116" y="88" width="290" height="124" rx="6" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.06)" strokeWidth="0.7"/>
+        <text x="126" y="102" fill="rgba(255,255,255,0.5)" fontSize="7" fontFamily="monospace" fontWeight="700">Agenda semanal</text>
+        {["L","M","M","J","V","S"].map((d, i) => (
+          <text key={i} x={138 + i * 44} y="116" fill="rgba(255,255,255,0.25)" fontSize="6.5" fontFamily="monospace" textAnchor="middle">{d}</text>
+        ))}
+        {[[1,0,1,1,0,1],[0,1,1,0,1,0],[1,1,0,1,1,1],[0,0,1,0,1,0]].map((row, ri) => (
           <g key={ri}>
-            <text x="10" y={70 + ri * 18} fill="rgba(255,255,255,0.22)" fontSize="6" fontFamily="monospace" textAnchor="middle">
-              {(9 + ri).toString().padStart(2,"0")}:00
-            </text>
             {row.map((s, ci) => (
-              <rect key={ci} x={34 + ci * 65} y={62 + ri * 18} width="52" height="13" rx="3"
-                fill={s === 1 ? "rgba(139,92,246,0.55)" : "rgba(255,255,255,0.04)"}
-                stroke={s === 1 ? "rgba(139,92,246,0.3)" : "rgba(255,255,255,0.07)"} strokeWidth="0.5"/>
+              <rect key={ci} x={116 + ci * 44} y={120 + ri * 22} width="40" height="16" rx="3"
+                fill={s === 1 ? "rgba(212,175,55,0.45)" : "rgba(255,255,255,0.03)"}
+                stroke={s === 1 ? "rgba(212,175,55,0.25)" : "rgba(255,255,255,0.05)"} strokeWidth="0.5"/>
             ))}
           </g>
         ))}
-      </svg>
-    ),
-  },
-  {
-    slug: "barberia-elegance",
-    client: "Barbería Elegance",
-    industry: "Belleza · Reservas",
-    title: "Reservas online y gestión de equipo",
-    desc: "Misma base tecnológica que Ferraza, adaptada al flujo de Elegance: agenda 24/7, gestión de barberos, programa de clientes frecuentes y métricas operativas.",
-    stack: ["Next.js", "PostgreSQL", "WhatsApp API", "Webpay"],
-    status: "En producción",
-    accentColor: "#f43f5e",
-    from: "#1a0608", to: "#140408",
-    Mockup: () => (
-      <svg viewBox="0 0 420 200" width="100%" height="100%" aria-hidden
-        className="absolute inset-0 w-full h-full" preserveAspectRatio="xMidYMid slice">
-        <rect width="420" height="200" fill="#110407"/>
-        <rect x="0" y="0" width="420" height="28" fill="#180508"/>
-        <text x="14" y="18" fill="rgba(244,63,94,0.85)" fontSize="8.5" fontFamily="monospace" fontWeight="700">Elegance · Dashboard</text>
-        {[{ l: "Citas hoy", v: "12" }, { l: "Confirmadas", v: "9" }, { l: "Ingresos", v: "$147k" }].map((s, i) => (
+        {/* Automations panel */}
+        <rect x="414" y="88" width="138" height="124" rx="6" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.06)" strokeWidth="0.7"/>
+        <text x="424" y="102" fill="rgba(192,132,252,0.7)" fontSize="7" fontFamily="monospace" fontWeight="700">Automatizaciones</text>
+        {[
+          { label: "Reserva nueva", ok: true },
+          { label: "Recordatorio 24h", ok: true },
+          { label: "Sello por cita", ok: true },
+          { label: "Cumpleaños", ok: true },
+          { label: "Predictivo retorno", ok: true },
+        ].map((a, i) => (
           <g key={i}>
-            <rect x={14 + i * 132} y="36" width="118" height="46" rx="6"
-              fill="rgba(244,63,94,0.07)" stroke="rgba(244,63,94,0.18)" strokeWidth="0.8"/>
-            <text x={73 + i * 132} y="58" fill="rgba(244,63,94,0.9)" fontSize="18" fontFamily="monospace" fontWeight="800" textAnchor="middle">{s.v}</text>
-            <text x={73 + i * 132} y="73" fill="rgba(255,255,255,0.35)" fontSize="6.5" fontFamily="monospace" textAnchor="middle">{s.l}</text>
-          </g>
-        ))}
-        <text x="14" y="100" fill="rgba(255,255,255,0.4)" fontSize="7.5" fontFamily="monospace">Equipo activo</text>
-        {[{ n: "Carlos R.", c: 4 }, { n: "Matías P.", c: 3 }, { n: "Diego S.", c: 5 }].map((b, i) => (
-          <g key={i}>
-            <rect x="14" y={108 + i * 30} width="392" height="24" rx="4" fill="rgba(255,255,255,0.03)"/>
-            <circle cx="30" cy={120 + i * 30} r="7" fill="rgba(244,63,94,0.35)"/>
-            <text x="44" y={123 + i * 30} fill="rgba(255,255,255,0.7)" fontSize="7.5" fontFamily="monospace">{b.n}</text>
-            {Array.from({ length: 5 }, (_, k) => (
-              <rect key={k} x={280 + k * 22} y={113 + i * 30} width="16" height="14" rx="3"
-                fill={k < b.c ? "rgba(244,63,94,0.65)" : "rgba(255,255,255,0.05)"}/>
-            ))}
+            <circle cx="424" cy={113 + i * 18} r="3" fill={a.ok ? "rgba(52,211,153,0.8)" : "rgba(255,255,255,0.15)"}/>
+            <text x="432" y={117 + i * 18} fill="rgba(255,255,255,0.45)" fontSize="6" fontFamily="monospace">{a.label}</text>
           </g>
         ))}
       </svg>

@@ -10,8 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/casos/vinamed`,                lastModified: now, priority: 0.7 },
     { url: `${BASE}/casos/patio-curauma`,          lastModified: now, priority: 0.7 },
     { url: `${BASE}/casos/diego-thompson`,         lastModified: now, priority: 0.7 },
-    { url: `${BASE}/casos/barberia-ferraza`,       lastModified: now, priority: 0.7 },
-    { url: `${BASE}/casos/barberia-elegance`,      lastModified: now, priority: 0.7 },
+    { url: `${BASE}/casos/plataforma-belleza`,     lastModified: now, priority: 0.7 },
     { url: `${BASE}/privacidad`,                   lastModified: now, priority: 0.3 },
     { url: `${BASE}/terminos`,                     lastModified: now, priority: 0.3 },
   ];
