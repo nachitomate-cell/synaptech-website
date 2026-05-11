@@ -39,13 +39,13 @@ export const CASES_DATA: CaseData[] = [
     slug: "patio-curauma",
     sector: "Retail · Fidelización",
     cliente: "Patio Curauma",
-    titulo: "App de fidelización con Google Wallet",
+    titulo: "Plataforma de fidelización para centro comercial",
     descripcion:
-      "PWA instalable sin pasar por las tiendas de aplicaciones. Sellos digitales, canje de premios, Google Wallet, directorio de emprendedores con mapa interactivo, notificaciones push con IA y programa de referidos. Tres paneles: socios, vendedores y administración.",
+      "Ecosistema digital completo para Patio Curauma: PWA instalable sin pasar por las tiendas de aplicaciones, sellos digitales, canje de premios, directorio de emprendedores con mapa interactivo, notificaciones con IA, programa de referidos y tres paneles diferenciados para socios, vendedores y administración.",
     problema:
       "Sin sistema de fidelización digital, las visitas recurrentes dependían de factores externos y no había mecanismo para medir engagement, recompensar clientes frecuentes ni comunicarse directamente con ellos. Los emprendedores del patio tampoco tenían visibilidad de su actividad de ventas.",
     solucion:
-      "PWA instalable en Android e iOS sin pasar por las tiendas de aplicaciones. Para socios: tarjeta de sellos digital, canje de premios, Google Wallet, directorio con mapa interactivo, notificaciones push y programa de referidos. Para vendedores: panel de escaneo QR, historial de ventas y perfil público. Para administración: métricas globales, gestión de usuarios y notificaciones automáticas generadas con IA (Gemini) enviadas en horarios estratégicos.",
+      "La solución no es un feature — es un ecosistema. Una PWA instalable en Android e iOS que conecta tres actores: los socios acumulan sellos y canjean premios sin descargar nada; los vendedores escanean QR, ven su historial y gestionan su perfil público; la administración tiene métricas globales, control de roles y un motor de notificaciones con IA (Gemini) que genera mensajes persuasivos y los envía en horarios estratégicos. Google Wallet es una pieza del sistema, no el sistema.",
     stack: ["Next.js", "Firebase", "PWA", "Google Wallet API", "Gemini AI"],
     estado: "En producción",
     año: "2025",

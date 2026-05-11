@@ -56,7 +56,7 @@ const CASES = [
     slug: "patio-curauma",
     client: "Patio Curauma",
     industry: "Retail · Fidelización",
-    title: "App de fidelización con Google Wallet",
+    title: "Plataforma de fidelización para centro comercial",
     desc: "PWA instalable sin app store. Sellos digitales, canje de premios, Google Wallet, directorio con mapa interactivo y notificaciones push generadas con IA. Paneles para socios, vendedores y administración.",
     stack: ["Next.js", "Firebase", "PWA", "Google Wallet API", "Gemini AI"],
     status: "En producción",
