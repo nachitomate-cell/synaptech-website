@@ -1,8 +1,6 @@
 import { Resend } from "resend";
 import { NextResponse } from "next/server";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 const DEST = "hola@synaptech.cl";
 
 function html(nombre: string, empresa: string, email: string, phone: string, msg: string) {
@@ -49,6 +47,8 @@ function html(nombre: string, empresa: string, email: string, phone: string, msg
 }
 
 export async function POST(request: Request) {
+  const resend = new Resend(process.env.RESEND_API_KEY);
+
   let body: Record<string, string>;
   try {
     body = await request.json();
