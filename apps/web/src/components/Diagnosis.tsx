@@ -19,15 +19,30 @@ export default function Diagnosis() {
   const [rubro,   setRubro]   = useState<Rubro | null>(null);
   const [problem, setProblem] = useState<string | null>(null);
   const [form,    setForm]    = useState({ nombre: "", empresa: "", email: "", phone: "" });
-  const [done,    setDone]    = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [done,     setDone]     = useState(false);
+  const [loading,  setLoading]  = useState(false);
+  const [errMsg,   setErrMsg]   = useState("");
+  const [honeypot, setHoneypot] = useState("");
 
   const upd = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement>) =>
     setForm(f => ({ ...f, [k]: e.target.value }));
 
-  const submit = () => {
+  const submit = async () => {
     setLoading(true);
-    setTimeout(() => { setLoading(false); setDone(true); }, 1600);
+    setErrMsg("");
+    try {
+      const res = await fetch("/api/diagnostico", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...form, rubro, problema: problem, website: honeypot }),
+      });
+      if (!res.ok) throw new Error();
+      setDone(true);
+    } catch {
+      setErrMsg("Hubo un error al enviar. Escríbenos directamente a hola@synaptech.cl");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -101,8 +116,25 @@ export default function Diagnosis() {
                   </div>
                   <div>
                     <h3 className="font-display text-2xl font-bold text-text-primary mb-2">¡Listo, {form.nombre.split(" ")[0]}!</h3>
-                    <p className="text-text-secondary text-sm leading-relaxed max-w-sm">
-                      Nos contactaremos en menos de 24 horas para coordinar tu diagnóstico sin costo.
+                    <p className="text-text-secondary text-sm leading-relaxed max-w-sm mb-6">
+                      Recibimos tu diagnóstico. ¿Qué pasa ahora?
+                    </p>
+                    <ol className="flex flex-col gap-3 text-left max-w-sm">
+                      {[
+                        "Recibirás un email de confirmación en menos de 5 minutos.",
+                        "En menos de 48 horas hábiles te enviamos una propuesta inicial con alcance y rango de inversión.",
+                        "Si hay encaje, agendamos una llamada de 30 minutos para profundizar.",
+                      ].map((step, i) => (
+                        <li key={i} className="flex items-start gap-3">
+                          <span className="shrink-0 w-5 h-5 rounded-full bg-accent/20 border border-accent/40 flex items-center justify-center font-mono text-[10px] text-accent font-bold">
+                            {i + 1}
+                          </span>
+                          <span className="text-text-secondary text-sm leading-relaxed">{step}</span>
+                        </li>
+                      ))}
+                    </ol>
+                    <p className="mt-6 font-mono text-[11px] text-text-muted">
+                      Sin compromiso. Sin venta agresiva.
                     </p>
                   </div>
                 </motion.div>
@@ -148,15 +180,24 @@ export default function Diagnosis() {
                   transition={{ duration: 0.3 }}
                   className="flex flex-col gap-4">
                   <p className="text-text-secondary text-sm">Completa tus datos para enviarte el diagnóstico.</p>
+                  {/* Honeypot — invisible para usuarios, visible para bots */}
+                  <input
+                    type="text" name="website" tabIndex={-1} aria-hidden="true"
+                    value={honeypot} onChange={e => setHoneypot(e.target.value)}
+                    style={{ position: "absolute", left: "-9999px", width: "1px", height: "1px" }}
+                  />
                   {(["nombre","empresa","email","phone"] as const).map((k) => (
                     <input key={k} type={k === "email" ? "email" : "text"}
-                      placeholder={{ nombre: "Nombre completo", empresa: "Empresa", email: "Correo electrónico", phone: "Teléfono" }[k]}
+                      placeholder={{ nombre: "Nombre completo", empresa: "Empresa", email: "Correo electrónico", phone: "Teléfono (opcional)" }[k]}
                       value={form[k]} onChange={upd(k)}
                       className="w-full bg-bg-primary border border-border-subtle rounded-lg px-4 py-3 text-sm font-mono
                         text-text-primary placeholder:text-text-muted
                         focus:outline-none focus:border-accent transition-colors"
                     />
                   ))}
+                  {errMsg && (
+                    <p className="text-red-400 text-xs font-mono">{errMsg}</p>
+                  )}
                   <button onClick={submit} disabled={!form.nombre || !form.email || loading}
                     className="mt-2 bg-accent text-black font-bold text-sm px-6 py-3.5 rounded-lg
                       hover:bg-accent-dim hover:text-white transition-all shadow-lime

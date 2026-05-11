@@ -5,15 +5,33 @@ import { motion } from "framer-motion";
 const DOTS = Array.from({ length: 100 }, (_, i) => i);
 
 export default function Contact() {
-  const [form, setForm] = useState({ nombre: "", empresa: "", email: "", phone: "", msg: "" });
-  const [sent, setSent] = useState(false);
+  const [form,     setForm]     = useState({ nombre: "", empresa: "", email: "", phone: "", msg: "" });
+  const [sent,     setSent]     = useState(false);
+  const [loading,  setLoading]  = useState(false);
+  const [errMsg,   setErrMsg]   = useState("");
+  const [honeypot, setHoneypot] = useState("");
+
   const upd = (k: keyof typeof form) =>
     (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
       setForm(f => ({ ...f, [k]: e.target.value }));
 
-  const submit = (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSent(true);
+    setLoading(true);
+    setErrMsg("");
+    try {
+      const res = await fetch("/api/contacto", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...form, website: honeypot }),
+      });
+      if (!res.ok) throw new Error();
+      setSent(true);
+    } catch {
+      setErrMsg("Hubo un error al enviar. Escríbenos directamente a hola@synaptech.cl");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -52,6 +70,12 @@ export default function Contact() {
               </div>
             ) : (
               <form onSubmit={submit} className="flex flex-col gap-4">
+                {/* Honeypot */}
+                <input
+                  type="text" name="website" tabIndex={-1} aria-hidden="true"
+                  value={honeypot} onChange={e => setHoneypot(e.target.value)}
+                  style={{ position: "absolute", left: "-9999px", width: "1px", height: "1px" }}
+                />
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {(["nombre","empresa"] as const).map(k => (
                     <input key={k} type="text"
@@ -75,9 +99,12 @@ export default function Contact() {
                   value={form.msg} onChange={upd("msg")} required
                   className="bg-bg-primary border border-border-subtle rounded-lg px-4 py-3 text-sm font-body text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent transition-colors resize-none"
                 />
-                <button type="submit"
-                  className="bg-accent text-black font-bold text-sm px-6 py-3.5 rounded-lg hover:bg-accent-dim hover:text-white hover:scale-[1.01] transition-all shadow-lime mt-1 self-start">
-                  Enviar mensaje
+                {errMsg && (
+                  <p className="text-red-400 text-xs font-mono">{errMsg}</p>
+                )}
+                <button type="submit" disabled={loading}
+                  className="bg-accent text-black font-bold text-sm px-6 py-3.5 rounded-lg hover:bg-accent-dim hover:text-white hover:scale-[1.01] transition-all shadow-lime mt-1 self-start disabled:opacity-40 disabled:cursor-not-allowed">
+                  {loading ? "Enviando..." : "Enviar mensaje"}
                 </button>
               </form>
             )}
@@ -93,7 +120,7 @@ export default function Contact() {
             <div className="flex flex-col gap-5">
               {[
                 { label: "Email", value: "hola@synaptech.cl", href: "mailto:hola@synaptech.cl" },
-                { label: "Teléfono", value: "+56 9 0000 0000", href: "tel:+5690000000" },
+                { label: "WhatsApp", value: "+569 83568212", href: "https://wa.me/56983568212" },
                 { label: "Ubicación", value: "Viña del Mar, Chile" },
               ].map(item => (
                 <div key={item.label} className="flex flex-col gap-0.5">

@@ -6,8 +6,7 @@ import Image from "next/image";
 const NAV = [
   { label: "Servicios",   href: "#servicios" },
   { label: "Metodología", href: "#metodologia" },
-  { label: "Casos",       href: "#casos" },
-  { label: "Blog",        href: "#blog" },
+  { label: "Casos",       href: "/casos" },
   { label: "Contacto",    href: "#contacto" },
 ];
 
@@ -40,17 +39,24 @@ export default function Header() {
 
         {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-7">
-          {NAV.map((n) => (
-            <a key={n.href} href={n.href}
-              className="text-[13px] text-text-secondary hover:text-text-primary transition-colors font-body tracking-wide">
-              {n.label}
-            </a>
-          ))}
+          {NAV.map((n) =>
+            n.href.startsWith("/") ? (
+              <Link key={n.href} href={n.href}
+                className="text-[13px] text-text-secondary hover:text-text-primary transition-colors font-body tracking-wide">
+                {n.label}
+              </Link>
+            ) : (
+              <a key={n.href} href={n.href}
+                className="text-[13px] text-text-secondary hover:text-text-primary transition-colors font-body tracking-wide">
+                {n.label}
+              </a>
+            )
+          )}
         </nav>
 
         {/* Desktop CTAs */}
         <div className="hidden md:flex items-center gap-4 shrink-0">
-          <a href="#acceso" className="font-mono text-xs text-text-muted hover:text-accent transition-colors">
+          <a href="mailto:hola@synaptech.cl?subject=Acceso%20Clientes" className="font-mono text-xs text-text-muted hover:text-accent transition-colors">
             Acceso Clientes
           </a>
           <a href="#diagnostico"
@@ -71,12 +77,19 @@ export default function Header() {
       {/* Mobile drawer */}
       {open && (
         <div className="md:hidden bg-bg-secondary border-t border-border-subtle px-6 py-5 flex flex-col gap-5">
-          {NAV.map((n) => (
-            <a key={n.href} href={n.href} onClick={() => setOpen(false)}
-              className="text-sm text-text-secondary hover:text-text-primary transition-colors">
-              {n.label}
-            </a>
-          ))}
+          {NAV.map((n) =>
+            n.href.startsWith("/") ? (
+              <Link key={n.href} href={n.href} onClick={() => setOpen(false)}
+                className="text-sm text-text-secondary hover:text-text-primary transition-colors">
+                {n.label}
+              </Link>
+            ) : (
+              <a key={n.href} href={n.href} onClick={() => setOpen(false)}
+                className="text-sm text-text-secondary hover:text-text-primary transition-colors">
+                {n.label}
+              </a>
+            )
+          )}
           <a href="#diagnostico" onClick={() => setOpen(false)}
             className="bg-accent text-black font-bold text-sm px-5 py-3 rounded-lg text-center mt-1">
             Diagnóstico Gratis

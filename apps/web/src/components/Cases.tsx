@@ -3,11 +3,12 @@ import { motion } from "framer-motion";
 
 const CASES = [
   {
+    slug: "vinamed",
     client: "ViñaMed",
     industry: "HealthTech · Salud",
     title: "Portal clínico con visor DICOM",
     desc: "Plataforma integral para gestión de perfiles profesionales (médicos y tecnólogos médicos) y visualización de reportes ecográficos en formato DICOM. Flujos clínicos digitalizados de extremo a extremo.",
-    stack: ["Next.js", "FastAPI", "PostgreSQL", "DICOM.js", "HL7"],
+    stack: ["Next.js", "FastAPI", "PostgreSQL", "DICOM.js"],
     status: "En producción",
     flagship: true,
     accentColor: "#10b981",
@@ -52,12 +53,13 @@ const CASES = [
     ),
   },
   {
+    slug: "patio-curauma",
     client: "Patio Curauma",
     industry: "Retail · Fidelización",
     title: "App de fidelización con Google Wallet",
     desc: "Sistema de sellos digitales con integración nativa a Google Wallet. Recompensas, gamificación y notificaciones push para impulsar visitas recurrentes en el centro comercial.",
     stack: ["React Native", "Google Wallet API", "Node.js", "Firebase"],
-    status: "Live desde 2025",
+    status: "En producción",
     accentColor: "#f59e0b",
     from: "#1c1000", to: "#100a00",
     Mockup: () => (
@@ -96,6 +98,7 @@ const CASES = [
     ),
   },
   {
+    slug: "diego-thompson",
     client: "Colegio Diego Thompson",
     industry: "EdTech · Educación",
     title: "Portal institucional + automatización de pagos (PWA)",
@@ -152,6 +155,7 @@ const CASES = [
     ),
   },
   {
+    slug: "barberia-ferraza",
     client: "Barbería Ferraza",
     industry: "Belleza · Reservas",
     title: "Plataforma de reservas 24/7 + club de fidelidad",
@@ -192,6 +196,7 @@ const CASES = [
     ),
   },
   {
+    slug: "barberia-elegance",
     client: "Barbería Elegance",
     industry: "Belleza · Reservas",
     title: "Reservas online y gestión de equipo",
@@ -302,9 +307,9 @@ export default function Cases() {
                       <span className="w-1.5 h-1.5 rounded-full bg-accent shadow-[0_0_6px_rgba(163,230,53,0.6)]" />
                       {c.status}
                     </span>
-                    <a href="#contacto"
+                    <a href={`/casos/${c.slug}`}
                       className="inline-flex items-center gap-1.5 text-sm text-accent font-medium group-hover:gap-2.5 transition-all">
-                      Saber más
+                      Ver caso completo
                       <svg className="w-3.5 h-3.5" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
                         <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>

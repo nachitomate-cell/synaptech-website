@@ -15,7 +15,7 @@ export default function WhatsAppFloat() {
 
   return (
     <a
-      href="https://wa.me/56900000000?text=Hola%20Synaptech%2C%20quiero%20saber%20m%C3%A1s%20sobre%20sus%20servicios"
+      href="https://wa.me/56983568212?text=Hola%20Synaptech%2C%20quiero%20saber%20m%C3%A1s%20sobre%20sus%20servicios"
       target="_blank"
       rel="noopener noreferrer"
       aria-label="WhatsApp"
