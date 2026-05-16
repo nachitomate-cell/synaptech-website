@@ -4,10 +4,12 @@ import Link from "next/link";
 import Image from "next/image";
 
 const NAV = [
-  { label: "Servicios",   href: "#servicios" },
-  { label: "Metodología", href: "#metodologia" },
-  { label: "Casos",       href: "/casos" },
-  { label: "Contacto",    href: "#contacto" },
+  { label: "Servicios",              href: "#servicios" },
+  { label: "Metodología",            href: "#metodologia" },
+  { label: "Casos",                  href: "/casos" },
+  { label: "Agenda Profesional",     href: "/agenda-profesional" },
+  { label: "Fidelización de Clientes", href: "/agenda-profesional#fidelizacion" },
+  { label: "Contacto",               href: "#contacto" },
 ];
 
 export default function Header() {
