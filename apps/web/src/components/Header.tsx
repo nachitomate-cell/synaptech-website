@@ -7,6 +7,7 @@ const NAV = [
   { label: "Servicios",              href: "#servicios" },
   { label: "Metodología",            href: "#metodologia" },
   { label: "Casos",                  href: "/casos" },
+  { label: "Nosotros",               href: "/nosotros" },
   { label: "Agenda Profesional",     href: "/agenda-profesional" },
   { label: "Fidelización de Clientes", href: "/agenda-profesional#fidelizacion" },
   { label: "Contacto",               href: "#contacto" },
