@@ -1,5 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
+import RevealHeading from "./RevealHeading";
 
 const STEPS = [
   {
@@ -32,19 +33,19 @@ export default function Process() {
   return (
     <section id="metodologia" className="py-32 section-blend overflow-hidden">
       <div className="max-w-screen-xl mx-auto px-6 md:px-12">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-20"
-        >
-          <p className="eyebrow mb-5">Nuestra Metodología</p>
-          <h2 className="text-text-primary max-w-2xl">
+        <div className="mb-20">
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+            className="eyebrow mb-5"
+          >Nuestra Metodología</motion.p>
+          <RevealHeading className="text-text-primary max-w-2xl">
             Tu camino hacia la{" "}
             <em className="italic text-accent font-display">inteligencia</em>.
-          </h2>
-        </motion.div>
+          </RevealHeading>
+        </div>
 
         {/* Timeline */}
         <div className="relative">

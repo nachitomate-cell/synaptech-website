@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import RevealHeading from "./RevealHeading";
 
 const RUBROS = ["Salud", "Retail", "Educación", "Belleza"] as const;
 type Rubro = typeof RUBROS[number];
@@ -91,10 +92,10 @@ export default function Diagnosis() {
           {/* Right: form */}
           <div>
             <p className="eyebrow mb-5">Diagnóstico Gratis</p>
-            <h2 className="text-text-primary mb-10">
+            <RevealHeading className="text-text-primary mb-10">
               ¿Listo para{" "}
               <em className="italic text-accent font-display">transformar</em>?
-            </h2>
+            </RevealHeading>
 
             {/* Progress bar */}
             <div className="flex gap-1.5 mb-10">

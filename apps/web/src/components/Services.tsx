@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import RevealHeading from "./RevealHeading";
 
 const ArrowRight = () => (
   <svg className="w-3.5 h-3.5 transition-transform group-hover/lnk:translate-x-1" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -147,19 +148,19 @@ export default function Services() {
   return (
     <section id="servicios" className="py-32 bg-bg-primary">
       <div className="max-w-screen-xl mx-auto px-6 md:px-12">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-16"
-        >
-          <p className="eyebrow mb-5">Nuestros Servicios</p>
-          <h2 className="text-text-primary max-w-xl">
+        <div className="mb-16">
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+            className="eyebrow mb-5"
+          >Nuestros Servicios</motion.p>
+          <RevealHeading className="text-text-primary max-w-xl">
             Cuatro disciplinas,{" "}
             <em className="italic text-accent font-display">un puente</em>.
-          </h2>
-        </motion.div>
+          </RevealHeading>
+        </div>
 
         <motion.div
           variants={{ show: { transition: { staggerChildren: 0.07 } } }}

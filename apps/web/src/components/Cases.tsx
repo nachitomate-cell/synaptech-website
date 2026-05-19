@@ -1,5 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
+import RevealHeading from "./RevealHeading";
 
 const CASES = [
   {
@@ -248,17 +249,19 @@ export default function Cases() {
   return (
     <section id="casos" className="py-32 bg-bg-primary">
       <div className="max-w-screen-xl mx-auto px-6 md:px-12">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }} transition={{ duration: 0.6 }}
-          className="mb-16"
-        >
-          <p className="eyebrow mb-5">Casos de Éxito</p>
-          <h2 className="text-text-primary max-w-xl">
+        <div className="mb-16">
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+            className="eyebrow mb-5"
+          >Casos de Éxito</motion.p>
+          <RevealHeading className="text-text-primary max-w-xl">
             Transformando negocios,{" "}
             <em className="italic text-accent font-display">cliente a cliente</em>.
-          </h2>
-        </motion.div>
+          </RevealHeading>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {CASES.map((c, i) => {

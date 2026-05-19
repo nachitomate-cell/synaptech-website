@@ -1,7 +1,9 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import { motion, useScroll } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 const NAV_MAIN = [
   { label: "Servicios",   href: "#servicios" },
@@ -23,22 +25,14 @@ const NAV_PRODUCTS = [
   },
 ];
 
-function NavLink({ href, label }: { href: string; label: string }) {
-  const isExternal = href.startsWith("/");
-  const cls =
-    "text-[13px] text-text-secondary hover:text-text-primary transition-colors font-body tracking-wide whitespace-nowrap";
-  return isExternal ? (
-    <Link href={href} className={cls}>{label}</Link>
-  ) : (
-    <a href={href} className={cls}>{label}</a>
-  );
-}
-
 export default function Header() {
-  const [scrolled, setScrolled]       = useState(false);
-  const [mobileOpen, setMobileOpen]   = useState(false);
-  const [dropOpen, setDropOpen]       = useState(false);
+  const [scrolled, setScrolled]         = useState(false);
+  const [mobileOpen, setMobileOpen]     = useState(false);
+  const [dropOpen, setDropOpen]         = useState(false);
+  const [activeSection, setActiveSection] = useState("");
   const dropRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
+  const { scrollYProgress } = useScroll();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -56,6 +50,30 @@ export default function Header() {
     return () => document.removeEventListener("mousedown", onClickOutside);
   }, []);
 
+  useEffect(() => {
+    const sections = document.querySelectorAll("section[id]");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActiveSection(entry.target.id);
+        });
+      },
+      { rootMargin: "-25% 0px -65% 0px" }
+    );
+    sections.forEach((s) => observer.observe(s));
+    return () => observer.disconnect();
+  }, [pathname]);
+
+  const isActive = (href: string) => {
+    if (href.startsWith("#")) return activeSection === href.slice(1);
+    return pathname === href || pathname.startsWith(href + "/");
+  };
+
+  const linkCls = (href: string) =>
+    `text-[13px] font-body tracking-wide whitespace-nowrap transition-colors ${
+      isActive(href) ? "text-accent" : "text-text-secondary hover:text-text-primary"
+    }`;
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -64,6 +82,12 @@ export default function Header() {
           : "bg-transparent"
       }`}
     >
+      {/* Scroll progress bar */}
+      <motion.div
+        style={{ scaleX: scrollYProgress }}
+        className="absolute bottom-0 left-0 right-0 h-px origin-left bg-accent opacity-70"
+      />
+
       <div className="max-w-screen-xl mx-auto px-6 md:px-12 h-16 flex items-center justify-between gap-6">
 
         {/* Wordmark */}
@@ -77,7 +101,11 @@ export default function Header() {
         {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-6">
           {NAV_MAIN.map((n) => (
-            <NavLink key={n.href} href={n.href} label={n.label} />
+            n.href.startsWith("/") ? (
+              <Link key={n.href} href={n.href} className={linkCls(n.href)}>{n.label}</Link>
+            ) : (
+              <a key={n.href} href={n.href} className={linkCls(n.href)}>{n.label}</a>
+            )
           ))}
 
           {/* Products dropdown */}
@@ -119,7 +147,6 @@ export default function Header() {
                     </Link>
                   ))}
                 </div>
-                {/* Bottom accent line */}
                 <div className="h-px mx-4 mb-3 mt-1" style={{ background: "linear-gradient(90deg, transparent, rgba(163,230,53,0.3), transparent)" }} />
                 <div className="px-4 pb-3">
                   <span className="font-mono text-[10px] text-text-muted/50 uppercase tracking-widest">
@@ -166,12 +193,12 @@ export default function Header() {
             {NAV_MAIN.map((n) => (
               n.href.startsWith("/") ? (
                 <Link key={n.href} href={n.href} onClick={() => setMobileOpen(false)}
-                  className="text-sm text-text-secondary hover:text-text-primary transition-colors py-2.5 border-b border-border-subtle/50">
+                  className={`text-sm transition-colors py-2.5 border-b border-border-subtle/50 ${isActive(n.href) ? "text-accent" : "text-text-secondary hover:text-text-primary"}`}>
                   {n.label}
                 </Link>
               ) : (
                 <a key={n.href} href={n.href} onClick={() => setMobileOpen(false)}
-                  className="text-sm text-text-secondary hover:text-text-primary transition-colors py-2.5 border-b border-border-subtle/50">
+                  className={`text-sm transition-colors py-2.5 border-b border-border-subtle/50 ${isActive(n.href) ? "text-accent" : "text-text-secondary hover:text-text-primary"}`}>
                   {n.label}
                 </a>
               )

@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import RevealHeading from "./RevealHeading";
 
 const DOTS = Array.from({ length: 100 }, (_, i) => i);
 
@@ -37,17 +38,19 @@ export default function Contact() {
   return (
     <section id="contacto" className="py-32 bg-bg-primary">
       <div className="max-w-screen-xl mx-auto px-6 md:px-12">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }} transition={{ duration: 0.6 }}
-          className="mb-16"
-        >
-          <p className="eyebrow mb-5">Contacto</p>
-          <h2 className="text-text-primary max-w-xl">
+        <div className="mb-16">
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+            className="eyebrow mb-5"
+          >Contacto</motion.p>
+          <RevealHeading className="text-text-primary max-w-xl">
             Hablemos de tu{" "}
             <em className="italic text-accent font-display">próximo proyecto</em>.
-          </h2>
-        </motion.div>
+          </RevealHeading>
+        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-10 items-start">
           {/* Form */}

@@ -1,5 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
+import RevealHeading from "./RevealHeading";
 
 const TIERS = [
   {
@@ -47,21 +48,29 @@ export default function Pricing() {
   return (
     <section id="inversion" className="py-32 section-blend">
       <div className="max-w-screen-xl mx-auto px-6 md:px-12">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }} transition={{ duration: 0.6 }}
-          className="mb-16"
-        >
-          <p className="eyebrow mb-5">Inversión</p>
-          <h2 className="text-text-primary max-w-xl">
+        <div className="mb-16">
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+            className="eyebrow mb-5"
+          >Inversión</motion.p>
+          <RevealHeading className="text-text-primary max-w-xl">
             Rangos de inversión{" "}
             <em className="italic text-accent font-display">por tipo de proyecto</em>.
-          </h2>
-          <p className="mt-5 text-text-secondary text-base leading-relaxed max-w-2xl font-body">
+          </RevealHeading>
+          <motion.p
+            initial={{ opacity: 0, y: 8 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="mt-5 text-text-secondary text-base leading-relaxed max-w-2xl font-body"
+          >
             Publicamos rangos referenciales para que llegues al diagnóstico con expectativas alineadas.
             El proyecto definitivo se cotiza tras conocer tu caso específico.
-          </p>
-        </motion.div>
+          </motion.p>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
           {TIERS.map((t, i) => (

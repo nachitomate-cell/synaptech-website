@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import RevealHeading from "./RevealHeading";
 
 const FAQS = [
   {
@@ -43,17 +44,19 @@ export default function FAQ() {
   return (
     <section id="faq" className="py-32 bg-bg-primary">
       <div className="max-w-screen-xl mx-auto px-6 md:px-12">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }} transition={{ duration: 0.6 }}
-          className="mb-16"
-        >
-          <p className="eyebrow mb-5">Preguntas frecuentes</p>
-          <h2 className="text-text-primary max-w-xl">
+        <div className="mb-16">
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+            className="eyebrow mb-5"
+          >Preguntas frecuentes</motion.p>
+          <RevealHeading className="text-text-primary max-w-xl">
             Todo lo que necesitas{" "}
             <em className="italic text-accent font-display">saber antes</em>.
-          </h2>
-        </motion.div>
+          </RevealHeading>
+        </div>
 
         <div className="max-w-3xl flex flex-col divide-y divide-border-subtle">
           {FAQS.map((faq, i) => (
