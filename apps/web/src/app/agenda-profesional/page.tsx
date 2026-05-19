@@ -211,7 +211,7 @@ export default function AgendaProfesionalPage() {
 
             <h1 className="text-text-primary max-w-4xl mb-6 animate-fade-up">
               Sistema de Gestión{" "}
-              <em className="text-accent not-italic font-display">
+              <em className="italic text-accent font-display">
                 para Barberías
               </em>
             </h1>
@@ -271,7 +271,7 @@ export default function AgendaProfesionalPage() {
                 <p className="eyebrow mb-5">01 — Reservas Online</p>
                 <h2 className="text-text-primary mb-8">
                   Booking para{" "}
-                  <em className="text-accent not-italic font-display">
+                  <em className="italic text-accent font-display">
                     tus clientes
                   </em>
                 </h2>
@@ -306,7 +306,7 @@ export default function AgendaProfesionalPage() {
                 <p className="eyebrow mb-5">02 — Agenda del Barbero</p>
                 <h2 className="text-text-primary mb-8">
                   Tu día en un{" "}
-                  <em className="text-accent not-italic font-display">
+                  <em className="italic text-accent font-display">
                     solo vistazo
                   </em>
                 </h2>
@@ -332,7 +332,7 @@ export default function AgendaProfesionalPage() {
               <p className="eyebrow mb-5">03 — Panel de Administración</p>
               <h2 className="text-text-primary mb-6">
                 Control total{" "}
-                <em className="text-accent not-italic font-display">
+                <em className="italic text-accent font-display">
                   del negocio
                 </em>
               </h2>
@@ -378,7 +378,7 @@ export default function AgendaProfesionalPage() {
                 <p className="eyebrow mb-5">04 — Club de Fidelización</p>
                 <h2 className="text-text-primary mb-6">
                   Clientes que{" "}
-                  <em className="text-accent not-italic font-display">
+                  <em className="italic text-accent font-display">
                     vuelven siempre
                   </em>
                 </h2>
@@ -435,7 +435,7 @@ export default function AgendaProfesionalPage() {
                 <p className="eyebrow mb-5">05 — Notificaciones Push</p>
                 <h2 className="text-text-primary mb-8">
                   Siempre{" "}
-                  <em className="text-accent not-italic font-display">
+                  <em className="italic text-accent font-display">
                     al instante
                   </em>
                 </h2>
@@ -512,7 +512,7 @@ export default function AgendaProfesionalPage() {
               <p className="eyebrow mb-5">06 — Tecnología</p>
               <h2 className="text-text-primary mb-4">
                 Construido para{" "}
-                <em className="text-accent not-italic font-display">
+                <em className="italic text-accent font-display">
                   escalar
                 </em>
               </h2>
@@ -560,7 +560,7 @@ export default function AgendaProfesionalPage() {
                 <p className="eyebrow mb-5">¿Tu barbería está lista?</p>
                 <h2 className="text-text-primary max-w-lg mx-auto mb-6">
                   Agenda una demo{" "}
-                  <em className="text-accent not-italic font-display">
+                  <em className="italic text-accent font-display">
                     sin compromiso
                   </em>
                 </h2>

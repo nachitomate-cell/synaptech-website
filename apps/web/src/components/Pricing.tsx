@@ -45,7 +45,7 @@ const TIERS = [
 
 export default function Pricing() {
   return (
-    <section id="inversion" className="py-32 bg-bg-secondary">
+    <section id="inversion" className="py-32 section-blend">
       <div className="max-w-screen-xl mx-auto px-6 md:px-12">
         <motion.div
           initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
@@ -55,7 +55,7 @@ export default function Pricing() {
           <p className="eyebrow mb-5">Inversión</p>
           <h2 className="text-text-primary max-w-xl">
             Rangos de inversión{" "}
-            <em className="italic text-accent not-italic font-display">por tipo de proyecto</em>.
+            <em className="italic text-accent font-display">por tipo de proyecto</em>.
           </h2>
           <p className="mt-5 text-text-secondary text-base leading-relaxed max-w-2xl font-body">
             Publicamos rangos referenciales para que llegues al diagnóstico con expectativas alineadas.

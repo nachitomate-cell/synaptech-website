@@ -46,7 +46,7 @@ export default function Diagnosis() {
   };
 
   return (
-    <section id="diagnostico" className="py-32 bg-bg-secondary overflow-hidden">
+    <section id="diagnostico" className="py-32 section-blend overflow-hidden">
       <div className="max-w-screen-xl mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
@@ -93,7 +93,7 @@ export default function Diagnosis() {
             <p className="eyebrow mb-5">Diagnóstico Gratis</p>
             <h2 className="text-text-primary mb-10">
               ¿Listo para{" "}
-              <em className="italic text-accent not-italic font-display">transformar</em>?
+              <em className="italic text-accent font-display">transformar</em>?
             </h2>
 
             {/* Progress bar */}

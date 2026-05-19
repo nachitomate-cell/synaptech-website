@@ -41,24 +41,28 @@ const TrendIcon = () => (
 const SERVICES = [
   {
     n: "01", Icon: BrainIcon,
+    color: "#10b981",
     title: "Plataformas HealthTech",
     desc: "Portales clínicos, visores DICOM, gestión de perfiles médicos y flujos HL7. Software de salud que cumple estándares clínicos reales.",
     items: ["Visor DICOM y gestión de imágenes", "Ficha clínica digital y perfiles profesionales", "Integración HL7 y sistemas hospitalarios", "Portal seguro para médicos y tecnólogos"],
   },
   {
     n: "02", Icon: TrendIcon,
+    color: "#f59e0b",
     title: "Apps de Fidelización y Retail",
     desc: "Programas de sellos digitales, integración con Google Wallet, gamificación y notificaciones push para comercios y centros comerciales.",
     items: ["Sellos digitales con Google Wallet", "Gamificación y recompensas", "Notificaciones push y campañas"],
   },
   {
     n: "03", Icon: CpuIcon,
+    color: "#3b82f6",
     title: "Portales Educativos (PWA)",
     desc: "Portales institucionales instalables offline, automatización de pagos de colegiaturas y comunicación familia-colegio centralizada.",
     items: ["PWA offline-first instalable", "Automatización de pagos con Webpay", "Comunicación familia-institución"],
   },
   {
     n: "04", Icon: WifiIcon,
+    color: "#c084fc",
     title: "Reservas y Automatización",
     desc: "Agendas 24/7, gestión de equipos, confirmaciones automáticas por WhatsApp y sistemas de fidelidad para belleza y comercio.",
     items: ["Agenda online 24/7 con recordatorios", "Gestión de trabajadores y turnos", "Club de fidelidad integrado"],
@@ -84,43 +88,46 @@ export default function Services() {
           <p className="eyebrow mb-5">Nuestros Servicios</p>
           <h2 className="text-text-primary max-w-xl">
             Cuatro disciplinas,{" "}
-            <em className="italic text-accent not-italic font-display">un puente</em>.
+            <em className="italic text-accent font-display">un puente</em>.
           </h2>
         </motion.div>
 
-        {/* Bento: first card spans 2 rows on desktop */}
         <motion.div
           variants={{ show: { transition: { staggerChildren: 0.08 } } }}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-80px" }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
-          style={{ gridAutoRows: "auto" }}
+          className="grid grid-cols-1 md:grid-cols-2 gap-5"
         >
-          {SERVICES.map((s, i) => {
+          {SERVICES.map((s) => {
             const { Icon } = s;
-            const big = i === 0;
             return (
               <motion.article
-                key={i}
+                key={s.n}
                 variants={cardVariant}
                 whileHover={{ y: -4, transition: { duration: 0.25 } }}
-                className={`group relative bg-bg-secondary border border-border-subtle rounded-2xl p-8 flex flex-col gap-5 overflow-hidden
-                  hover:border-accent/50 transition-colors
-                  ${big ? "lg:row-span-2" : ""}
-                `}
+                className="group relative bg-bg-secondary border border-border-subtle rounded-2xl p-8 flex flex-col gap-5 overflow-hidden hover:border-opacity-60 transition-colors"
+                style={{ ["--card-color" as string]: s.color }}
               >
-                {/* Inner hover glow */}
-                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                  style={{ boxShadow: "0 0 60px -20px rgba(163,230,53,0.4) inset" }} />
+                {/* Dynamic border color on hover */}
+                <div
+                  className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                  style={{ boxShadow: `0 0 0 1px ${s.color}35, 0 0 60px -20px ${s.color}30 inset` }}
+                />
 
                 {/* Step number */}
-                <span className="font-mono text-5xl font-semibold text-bg-elevated group-hover:text-border-subtle transition-colors self-end leading-none select-none">
+                <span
+                  className="font-mono text-5xl font-semibold leading-none select-none self-end transition-colors duration-300"
+                  style={{ color: `${s.color}18` }}
+                >
                   {s.n}
                 </span>
 
                 {/* Icon */}
-                <div className="w-11 h-11 rounded-xl border border-border-subtle flex items-center justify-center text-accent group-hover:border-accent/40 transition-colors shrink-0">
+                <div
+                  className="w-11 h-11 rounded-xl border flex items-center justify-center shrink-0 transition-colors duration-300"
+                  style={{ borderColor: `${s.color}30`, color: s.color, background: `${s.color}08` }}
+                >
                   <Icon />
                 </div>
 
@@ -131,14 +138,14 @@ export default function Services() {
                   <ul className="space-y-2">
                     {s.items.map((item) => (
                       <li key={item} className="flex items-start gap-2 text-sm text-text-muted">
-                        <span className="text-accent text-xs mt-0.5 shrink-0">▪</span>
+                        <span className="text-xs mt-0.5 shrink-0" style={{ color: s.color }}>▪</span>
                         {item}
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                <a href="#contacto" className="group/lnk inline-flex items-center gap-1.5 text-sm text-accent font-medium mt-auto">
+                <a href="#contacto" className="group/lnk inline-flex items-center gap-1.5 text-sm font-medium mt-auto transition-colors" style={{ color: s.color }}>
                   Ver más <ArrowRight />
                 </a>
               </motion.article>

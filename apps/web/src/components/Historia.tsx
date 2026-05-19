@@ -171,7 +171,7 @@ export default function Historia() {
 
           <motion.h1 {...rise(0.1)} className="text-text-primary mb-8 max-w-4xl">
             Una sinapsis entre{" "}
-            <em className="italic text-accent not-italic font-display">
+            <em className="italic text-accent font-display">
               negocios
             </em>{" "}
             y su potencial.
@@ -239,7 +239,7 @@ export default function Historia() {
 
           <motion.h2 {...rise(0.1)} className="text-text-primary mb-10">
             La sinapsis es el{" "}
-            <em className="italic text-accent not-italic">instante</em>{" "}
+            <em className="italic text-accent">instante</em>{" "}
             donde todo ocurre.
           </motion.h2>
 
@@ -273,7 +273,7 @@ export default function Historia() {
           <motion.p {...rise(0)} className="eyebrow mb-5">Cronología</motion.p>
           <motion.h2 {...rise(0.08)} className="text-text-primary mb-20 max-w-xl">
             33 días.{" "}
-            <em className="italic text-accent not-italic">Cuatro industrias.</em>
+            <em className="italic text-accent">Cuatro industrias.</em>
           </motion.h2>
 
           <div className="relative">
@@ -346,7 +346,7 @@ export default function Historia() {
           <motion.p {...rise(0)} className="eyebrow mb-5">Hoy</motion.p>
           <motion.h2 {...rise(0.08)} className="text-text-primary mb-16 max-w-xl">
             Menos de dos meses.{" "}
-            <em className="italic text-accent not-italic">Cinco proyectos en producción.</em>
+            <em className="italic text-accent">Cinco proyectos en producción.</em>
           </motion.h2>
 
           <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-border-subtle border border-border-subtle rounded-2xl overflow-hidden">
@@ -382,7 +382,7 @@ export default function Historia() {
             <motion.p {...rise(0)} className="eyebrow mb-5">¿Tienes un problema concreto?</motion.p>
             <motion.h2 {...rise(0.08)} className="text-text-primary max-w-lg">
               La primera conversación{" "}
-              <em className="italic text-accent not-italic">es gratis.</em>
+              <em className="italic text-accent">es gratis.</em>
             </motion.h2>
           </div>
           <motion.div {...rise(0.15)} className="flex flex-wrap gap-4 shrink-0">

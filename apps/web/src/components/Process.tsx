@@ -30,7 +30,7 @@ const STEPS = [
 
 export default function Process() {
   return (
-    <section id="metodologia" className="py-32 bg-bg-secondary overflow-hidden">
+    <section id="metodologia" className="py-32 section-blend overflow-hidden">
       <div className="max-w-screen-xl mx-auto px-6 md:px-12">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -42,14 +42,12 @@ export default function Process() {
           <p className="eyebrow mb-5">Nuestra Metodología</p>
           <h2 className="text-text-primary max-w-2xl">
             Tu camino hacia la{" "}
-            <em className="italic text-accent not-italic font-display">inteligencia</em>.
+            <em className="italic text-accent font-display">inteligencia</em>.
           </h2>
         </motion.div>
 
         {/* Timeline */}
         <div className="relative">
-          {/* Connector line (desktop only) */}
-          <div className="hidden lg:block absolute top-6 left-[12.5%] right-[12.5%] h-px bg-border-subtle z-0" />
 
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-6">
             {STEPS.map((s, i) => (

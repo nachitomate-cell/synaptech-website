@@ -69,6 +69,17 @@ h2 {
   outline-offset: 3px;
 }
 
+/* ── Section blend — fades bg-secondary into bg-primary at edges ── */
+.section-blend {
+  background: linear-gradient(
+    180deg,
+    var(--bg-primary)   0px,
+    var(--bg-secondary) 88px,
+    var(--bg-secondary) calc(100% - 88px),
+    var(--bg-primary)   100%
+  );
+}
+
 /* ── Corner bracket ── */
 .bracket {
   position: relative;

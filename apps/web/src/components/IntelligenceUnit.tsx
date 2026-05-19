@@ -102,7 +102,7 @@ export default function IntelligenceUnit() {
           <p className="eyebrow mb-5">Intelligence Unit</p>
           <h2 className="text-text-primary max-w-xl">
             Investigación en la{" "}
-            <em className="italic text-accent not-italic font-display">vanguardia</em>.
+            <em className="italic text-accent font-display">vanguardia</em>.
           </h2>
         </motion.div>
 

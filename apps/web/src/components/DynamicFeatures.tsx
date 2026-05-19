@@ -25,7 +25,7 @@ export default function DynamicFeatures() {
           <p className="eyebrow mb-5">Módulos en acción</p>
           <h2 className="text-text-primary mb-4">
             Cada pantalla,{" "}
-            <em className="text-accent not-italic font-display">pensada</em>
+            <em className="italic text-accent font-display">pensada</em>
           </h2>
           <p className="text-text-secondary leading-relaxed">
             Explorá cada módulo y ve cómo se ve en la plataforma real.

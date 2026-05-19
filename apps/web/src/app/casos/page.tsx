@@ -31,7 +31,7 @@ export default function CasosPage() {
           <p className="eyebrow mb-5">Casos de Éxito</p>
           <h1 className="text-text-primary max-w-2xl">
             Proyectos reales,{" "}
-            <em className="italic text-accent not-italic font-display">en producción</em>.
+            <em className="italic text-accent font-display">en producción</em>.
           </h1>
           <p className="mt-5 text-text-secondary text-lg max-w-xl leading-relaxed font-body">
             Cinco industrias, cinco soluciones a medida. Cada proyecto parte de un diagnóstico
@@ -93,7 +93,7 @@ export default function CasosPage() {
           <p className="eyebrow mb-4">¿Tienes un proyecto similar?</p>
           <h2 className="text-text-primary mb-6 max-w-lg mx-auto">
             Conversemos sobre{" "}
-            <em className="italic text-accent not-italic font-display">tu desafío</em>.
+            <em className="italic text-accent font-display">tu desafío</em>.
           </h2>
           <a
             href="/#diagnostico"

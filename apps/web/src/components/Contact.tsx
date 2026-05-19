@@ -45,7 +45,7 @@ export default function Contact() {
           <p className="eyebrow mb-5">Contacto</p>
           <h2 className="text-text-primary max-w-xl">
             Hablemos de tu{" "}
-            <em className="italic text-accent not-italic font-display">próximo proyecto</em>.
+            <em className="italic text-accent font-display">próximo proyecto</em>.
           </h2>
         </motion.div>
 

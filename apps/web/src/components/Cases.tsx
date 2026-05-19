@@ -256,7 +256,7 @@ export default function Cases() {
           <p className="eyebrow mb-5">Casos de Éxito</p>
           <h2 className="text-text-primary max-w-xl">
             Transformando negocios,{" "}
-            <em className="italic text-accent not-italic font-display">cliente a cliente</em>.
+            <em className="italic text-accent font-display">cliente a cliente</em>.
           </h2>
         </motion.div>
 

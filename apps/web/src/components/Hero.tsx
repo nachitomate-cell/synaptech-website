@@ -36,7 +36,7 @@ export default function Hero() {
 
             <motion.h1 {...rise(0.1)} className="text-text-primary mb-8">
               Tecnología con{" "}
-              <em className="italic text-accent not-italic font-display">
+              <em className="italic text-accent font-display">
                 Alma
               </em>{" "}
               Digital

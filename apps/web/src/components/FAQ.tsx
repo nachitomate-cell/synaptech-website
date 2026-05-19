@@ -51,7 +51,7 @@ export default function FAQ() {
           <p className="eyebrow mb-5">Preguntas frecuentes</p>
           <h2 className="text-text-primary max-w-xl">
             Todo lo que necesitas{" "}
-            <em className="italic text-accent not-italic font-display">saber antes</em>.
+            <em className="italic text-accent font-display">saber antes</em>.
           </h2>
         </motion.div>
 
