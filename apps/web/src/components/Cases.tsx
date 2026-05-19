@@ -271,9 +271,14 @@ export default function Cases() {
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: (i % 2) * 0.1 }}
                 whileHover={{ y: -4, transition: { duration: 0.25 } }}
-                className={`group bg-bg-secondary border border-border-subtle rounded-2xl overflow-hidden
+                className={`card-spotlight group bg-bg-secondary border border-border-subtle rounded-2xl overflow-hidden
                   hover:border-accent/30 transition-colors flex flex-col
                   ${c.flagship ? "md:col-span-2" : ""}`}
+                onMouseMove={e => {
+                  const r = e.currentTarget.getBoundingClientRect();
+                  (e.currentTarget as HTMLElement).style.setProperty("--x", `${e.clientX - r.left}px`);
+                  (e.currentTarget as HTMLElement).style.setProperty("--y", `${e.clientY - r.top}px`);
+                }}
               >
                 {/* Visual header */}
                 <div

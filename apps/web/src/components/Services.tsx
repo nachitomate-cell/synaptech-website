@@ -1,5 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 const ArrowRight = () => (
   <svg className="w-3.5 h-3.5 transition-transform group-hover/lnk:translate-x-1" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -40,39 +41,107 @@ const TrendIcon = () => (
 
 const SERVICES = [
   {
-    n: "01", Icon: BrainIcon,
-    color: "#10b981",
+    n: "01", Icon: BrainIcon, color: "#10b981",
     title: "Plataformas HealthTech",
     desc: "Portales clínicos, visores DICOM, gestión de perfiles médicos y flujos HL7. Software de salud que cumple estándares clínicos reales.",
     items: ["Visor DICOM y gestión de imágenes", "Ficha clínica digital y perfiles profesionales", "Integración HL7 y sistemas hospitalarios", "Portal seguro para médicos y tecnólogos"],
   },
   {
-    n: "02", Icon: TrendIcon,
-    color: "#f59e0b",
+    n: "02", Icon: TrendIcon, color: "#f59e0b",
     title: "Apps de Fidelización y Retail",
     desc: "Programas de sellos digitales, integración con Google Wallet, gamificación y notificaciones push para comercios y centros comerciales.",
     items: ["Sellos digitales con Google Wallet", "Gamificación y recompensas", "Notificaciones push y campañas"],
   },
   {
-    n: "03", Icon: CpuIcon,
-    color: "#3b82f6",
+    n: "03", Icon: CpuIcon, color: "#3b82f6",
     title: "Portales Educativos (PWA)",
     desc: "Portales institucionales instalables offline, automatización de pagos de colegiaturas y comunicación familia-colegio centralizada.",
     items: ["PWA offline-first instalable", "Automatización de pagos con Webpay", "Comunicación familia-institución"],
   },
   {
-    n: "04", Icon: WifiIcon,
-    color: "#c084fc",
+    n: "04", Icon: WifiIcon, color: "#c084fc",
     title: "Reservas y Automatización",
     desc: "Agendas 24/7, gestión de equipos, confirmaciones automáticas por WhatsApp y sistemas de fidelidad para belleza y comercio.",
     items: ["Agenda online 24/7 con recordatorios", "Gestión de trabajadores y turnos", "Club de fidelidad integrado"],
   },
 ];
 
-const cardVariant = {
-  hidden: { opacity: 0, y: 20 },
-  show:   { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.16, 1, 0.3, 1] } },
-};
+type Service = typeof SERVICES[0];
+
+/* ── Per-card spotlight that tracks the cursor ── */
+function ServiceCard({ s, index }: { s: Service; index: number }) {
+  const [spot, setSpot] = useState({ x: "50%", y: "50%", on: false });
+  const { Icon } = s;
+
+  return (
+    <motion.article
+      variants={{
+        hidden: { opacity: 0, y: 20 },
+        show:   { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.16, 1, 0.3, 1], delay: index * 0.07 } },
+      }}
+      whileHover={{ y: -5, transition: { duration: 0.25 } }}
+      className="group relative bg-bg-secondary border border-border-subtle rounded-2xl p-8 flex flex-col gap-5 overflow-hidden"
+      onMouseMove={e => {
+        const r = e.currentTarget.getBoundingClientRect();
+        setSpot({ x: `${e.clientX - r.left}px`, y: `${e.clientY - r.top}px`, on: true });
+      }}
+      onMouseLeave={() => setSpot(p => ({ ...p, on: false }))}
+    >
+      {/* Cursor-following spotlight */}
+      <div
+        className="pointer-events-none absolute inset-0 rounded-2xl transition-opacity duration-500"
+        style={{
+          background: `radial-gradient(380px circle at ${spot.x} ${spot.y}, ${s.color}18, transparent 65%)`,
+          opacity: spot.on ? 1 : 0,
+        }}
+      />
+
+      {/* Hover border ring */}
+      <div
+        className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        style={{ boxShadow: `inset 0 0 0 1px ${s.color}40` }}
+      />
+
+      {/* Step number */}
+      <span
+        className="relative z-10 font-mono text-5xl font-semibold leading-none select-none self-end"
+        style={{ color: `${s.color}1a` }}
+      >
+        {s.n}
+      </span>
+
+      {/* Icon */}
+      <div
+        className="relative z-10 w-11 h-11 rounded-xl border flex items-center justify-center shrink-0"
+        style={{ borderColor: `${s.color}35`, color: s.color, background: `${s.color}0a` }}
+      >
+        <Icon />
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10 flex flex-col flex-1 gap-4">
+        <h3 className="font-display text-xl font-semibold text-text-primary leading-snug">{s.title}</h3>
+        <p className="text-text-secondary text-sm leading-relaxed">{s.desc}</p>
+        <ul className="space-y-2">
+          {s.items.map((item) => (
+            <li key={item} className="flex items-start gap-2 text-sm text-text-muted">
+              <span className="text-xs mt-0.5 shrink-0" style={{ color: s.color }}>▪</span>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <a
+        href="#contacto"
+        className="group/lnk relative z-10 inline-flex items-center gap-1.5 text-sm font-medium mt-auto"
+        style={{ color: s.color }}
+      >
+        Ver más <ArrowRight />
+      </a>
+    </motion.article>
+  );
+}
 
 export default function Services() {
   return (
@@ -93,64 +162,15 @@ export default function Services() {
         </motion.div>
 
         <motion.div
-          variants={{ show: { transition: { staggerChildren: 0.08 } } }}
+          variants={{ show: { transition: { staggerChildren: 0.07 } } }}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-80px" }}
           className="grid grid-cols-1 md:grid-cols-2 gap-5"
         >
-          {SERVICES.map((s) => {
-            const { Icon } = s;
-            return (
-              <motion.article
-                key={s.n}
-                variants={cardVariant}
-                whileHover={{ y: -4, transition: { duration: 0.25 } }}
-                className="group relative bg-bg-secondary border border-border-subtle rounded-2xl p-8 flex flex-col gap-5 overflow-hidden hover:border-opacity-60 transition-colors"
-                style={{ ["--card-color" as string]: s.color }}
-              >
-                {/* Dynamic border color on hover */}
-                <div
-                  className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                  style={{ boxShadow: `0 0 0 1px ${s.color}35, 0 0 60px -20px ${s.color}30 inset` }}
-                />
-
-                {/* Step number */}
-                <span
-                  className="font-mono text-5xl font-semibold leading-none select-none self-end transition-colors duration-300"
-                  style={{ color: `${s.color}18` }}
-                >
-                  {s.n}
-                </span>
-
-                {/* Icon */}
-                <div
-                  className="w-11 h-11 rounded-xl border flex items-center justify-center shrink-0 transition-colors duration-300"
-                  style={{ borderColor: `${s.color}30`, color: s.color, background: `${s.color}08` }}
-                >
-                  <Icon />
-                </div>
-
-                {/* Content */}
-                <div className="flex flex-col flex-1 gap-4">
-                  <h3 className="font-display text-xl font-semibold text-text-primary leading-snug">{s.title}</h3>
-                  <p className="text-text-secondary text-sm leading-relaxed">{s.desc}</p>
-                  <ul className="space-y-2">
-                    {s.items.map((item) => (
-                      <li key={item} className="flex items-start gap-2 text-sm text-text-muted">
-                        <span className="text-xs mt-0.5 shrink-0" style={{ color: s.color }}>▪</span>
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <a href="#contacto" className="group/lnk inline-flex items-center gap-1.5 text-sm font-medium mt-auto transition-colors" style={{ color: s.color }}>
-                  Ver más <ArrowRight />
-                </a>
-              </motion.article>
-            );
-          })}
+          {SERVICES.map((s, i) => (
+            <ServiceCard key={s.n} s={s} index={i} />
+          ))}
         </motion.div>
       </div>
     </section>

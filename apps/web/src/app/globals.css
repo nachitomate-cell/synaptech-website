@@ -80,6 +80,42 @@ h2 {
   );
 }
 
+/* ── Aurora background animation ── */
+@keyframes aurora-drift {
+  0%, 100% { transform: translate(0px,   0px)  scale(1);    }
+  25%       { transform: translate(28px, -18px) scale(1.07); }
+  50%       { transform: translate(-18px, 14px) scale(0.95); }
+  75%       { transform: translate(12px,  22px) scale(1.04); }
+}
+
+/* ── NeuralCanvas breathing glow ── */
+@keyframes canvas-glow {
+  0%, 100% { box-shadow: 0 0 30px -10px rgba(163,230,53,0.08); }
+  50%       { box-shadow: 0 0 70px -10px rgba(163,230,53,0.22); }
+}
+
+/* ── Spotlight card (cursor-tracked glow via CSS vars) ── */
+.card-spotlight {
+  --x: 50%;
+  --y: 50%;
+}
+.card-spotlight::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    360px circle at var(--x) var(--y),
+    rgba(255,255,255,0.04),
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+.card-spotlight:hover::after { opacity: 1; }
+
 /* ── Corner bracket ── */
 .bracket {
   position: relative;
