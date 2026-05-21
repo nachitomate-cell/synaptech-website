@@ -46,9 +46,9 @@ const TIERS = [
 
 export default function Pricing() {
   return (
-    <section id="inversion" className="py-32 section-blend">
+    <section id="inversion" className="py-16 section-blend">
       <div className="max-w-screen-xl mx-auto px-6 md:px-12">
-        <div className="mb-16">
+        <div className="mb-8">
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}

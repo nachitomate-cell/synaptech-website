@@ -72,7 +72,7 @@ function QuoteMark() {
 /* ── Component ── */
 export default function Testimonials() {
   return (
-    <section id="testimonios" className="py-32 relative overflow-hidden">
+    <section id="testimonios" className="py-16 relative overflow-hidden">
       {/* Subtle radial glow behind the section */}
       <div
         aria-hidden="true"
@@ -85,7 +85,7 @@ export default function Testimonials() {
 
       <div className="relative max-w-screen-xl mx-auto px-6 md:px-12">
         {/* Heading */}
-        <div className="mb-16">
+        <div className="mb-8">
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}

@@ -36,9 +36,9 @@ export default function Contact() {
   };
 
   return (
-    <section id="contacto" className="py-32 bg-bg-primary">
+    <section id="contacto" className="py-16 bg-bg-primary">
       <div className="max-w-screen-xl mx-auto px-6 md:px-12">
-        <div className="mb-16">
+        <div className="mb-8">
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}

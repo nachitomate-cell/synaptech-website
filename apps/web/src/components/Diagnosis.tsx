@@ -47,7 +47,7 @@ export default function Diagnosis() {
   };
 
   return (
-    <section id="diagnostico" className="py-32 section-blend overflow-hidden">
+    <section id="diagnostico" className="py-16 section-blend overflow-hidden">
       <div className="max-w-screen-xl mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
@@ -92,13 +92,13 @@ export default function Diagnosis() {
           {/* Right: form */}
           <div>
             <p className="eyebrow mb-5">Diagnóstico Gratis</p>
-            <RevealHeading className="text-text-primary mb-10">
+            <RevealHeading className="text-text-primary mb-6">
               ¿Listo para{" "}
               <em className="italic text-accent font-display">transformar</em>?
             </RevealHeading>
 
             {/* Progress bar */}
-            <div className="flex gap-1.5 mb-10">
+            <div className="flex gap-1.5 mb-6">
               {[0,1,2].map(i => (
                 <div key={i} className={`h-1 flex-1 rounded-full transition-all duration-500
                   ${i < step ? "bg-accent" : i === step ? "bg-accent/60" : "bg-border-subtle"}`} />

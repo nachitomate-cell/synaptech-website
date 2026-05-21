@@ -247,9 +247,9 @@ const CASES = [
 
 export default function Cases() {
   return (
-    <section id="casos" className="py-32 bg-bg-primary">
+    <section id="casos" className="py-16 bg-bg-primary">
       <div className="max-w-screen-xl mx-auto px-6 md:px-12">
-        <div className="mb-16">
+        <div className="mb-8">
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}

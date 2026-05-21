@@ -31,9 +31,9 @@ const STEPS = [
 
 export default function Process() {
   return (
-    <section id="metodologia" className="py-32 section-blend overflow-hidden">
+    <section id="metodologia" className="py-16 section-blend overflow-hidden">
       <div className="max-w-screen-xl mx-auto px-6 md:px-12">
-        <div className="mb-20">
+        <div className="mb-10">
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
