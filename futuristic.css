@@ -19,8 +19,8 @@
 }
 :root[data-theme="dark"] .syn-hud__grid {
   background-image:
-    linear-gradient(to right, rgba(164,225,55,0.07) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(164,225,55,0.07) 1px, transparent 1px);
+    linear-gradient(to right, rgba(164,212,60,0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(164,212,60,0.07) 1px, transparent 1px);
 }
 .syn-hud__scan {
   position: absolute; inset: 0;
@@ -35,7 +35,7 @@
   background: repeating-linear-gradient(
     to bottom,
     transparent 0 3px,
-    rgba(164,225,55,0.04) 3px 4px
+    rgba(164,212,60,0.04) 3px 4px
   );
 }
 @keyframes syn-scan-drift { from { background-position: 0 0; } to { background-position: 0 8px; } }
@@ -46,9 +46,9 @@
   top: -140px;
   background: linear-gradient(to bottom,
     transparent 0%,
-    rgba(164,225,55,0.0) 30%,
-    rgba(164,225,55,0.12) 50%,
-    rgba(164,225,55,0.0) 70%,
+    rgba(164,212,60,0.0) 30%,
+    rgba(164,212,60,0.10) 50%,
+    rgba(164,212,60,0.0) 70%,
     transparent 100%);
   animation: syn-beam 9s cubic-bezier(.6,0,.4,1) infinite;
 }
@@ -73,7 +73,7 @@
 .syn-hud__corner::after {
   content: ''; position: absolute; width: 4px; height: 4px; background: var(--syn-lime);
   border-radius: 999px;
-  box-shadow: 0 0 8px rgba(164,225,55,0.9);
+  box-shadow: 0 0 8px rgba(164,212,60,0.7);
 }
 .syn-hud__corner--tl::after { top: -3px; left: -3px; }
 .syn-hud__corner--tr::after { top: -3px; right: -3px; }
@@ -142,7 +142,7 @@
 }
 .syn-rail__item.is-active { opacity: 1; color: var(--syn-lime-dark); }
 :root[data-theme="dark"] .syn-rail__item.is-active { color: var(--syn-lime); }
-.syn-rail__item.is-active .syn-rail__tick { width: 40px; background: var(--syn-lime); box-shadow: 0 0 8px rgba(164,225,55,0.7); }
+.syn-rail__item.is-active .syn-rail__tick { width: 40px; background: var(--syn-lime); box-shadow: 0 0 8px rgba(164,212,60,0.6); }
 .syn-rail__item.is-active .syn-rail__label { opacity: 1; transform: translateX(0); }
 
 @media (max-width: 880px) { .syn-rail { display: none; } }
@@ -183,9 +183,9 @@
   content: ''; position: absolute; inset: 0; border-radius: inherit;
   background: linear-gradient(115deg,
     transparent 30%,
-    rgba(164,225,55,0.35) 48%,
-    rgba(255,255,255,0.5) 50%,
-    rgba(164,225,55,0.35) 52%,
+    rgba(164,212,60,0.28) 48%,
+    rgba(255,255,255,0.4) 50%,
+    rgba(164,212,60,0.28) 52%,
     transparent 70%);
   transform: translateX(-110%);
   opacity: 0;
@@ -239,48 +239,11 @@
 .syn-section-frame--br { bottom: 18px; right: 18px; border-bottom-width: 2px; border-right-width: 2px; transform: translate(10px,10px); }
 .is-reveal.is-in .syn-section-frame { transform: translate(0,0); }
 
-/* ========== Boot sequence ========== */
-.syn-boot {
-  position: fixed; inset: 0; z-index: 10000;
-  background: #0A0A0A; color: var(--syn-lime);
-  font-family: 'JetBrains Mono', ui-monospace, Menlo, monospace;
-  font-size: 13px;
-  display: flex; align-items: center; justify-content: center;
-  animation: syn-boot-out 500ms cubic-bezier(.5,0,.5,1) 2.4s forwards;
-  overflow: hidden;
-}
-.syn-boot__inner {
-  max-width: 440px; width: 100%; padding: 0 24px;
-}
-.syn-boot__brand {
-  font-size: 11px; letter-spacing: 0.3em; opacity: .6; margin-bottom: 18px;
-}
-.syn-boot__line {
-  display: flex; align-items: center; gap: 10px;
-  padding: 4px 0; opacity: 0;
-  animation: syn-boot-line-in 200ms cubic-bezier(.22,.9,.3,1) forwards;
-}
-.syn-boot__line b { color: var(--syn-lime); font-weight: 500; }
-.syn-boot__line .ok { color: var(--syn-lime); margin-left: auto; font-weight: 600; }
-.syn-boot__bar {
-  margin-top: 14px; height: 2px; background: rgba(164,225,55,0.2); overflow: hidden; position: relative;
-}
-.syn-boot__bar::after {
-  content: ''; position: absolute; inset: 0; background: var(--syn-lime);
-  width: 0%; animation: syn-boot-bar 2.2s cubic-bezier(.3,.8,.3,1) forwards;
-  box-shadow: 0 0 8px rgba(164,225,55,0.8);
-}
-@keyframes syn-boot-bar { to { width: 100%; } }
-@keyframes syn-boot-line-in { to { opacity: 1; } }
-@keyframes syn-boot-out {
-  to { opacity: 0; transform: scale(1.04); visibility: hidden; pointer-events: none; }
-}
-
 /* ========== Process connector — beam pulse ========== */
 .process__connector { position: relative; overflow: hidden; }
 .process__connector::after {
   content: ''; position: absolute; top: 0; left: 0; width: 20%; height: 100%;
-  background: linear-gradient(to right, transparent, rgba(164,225,55,0.9), transparent);
+  background: linear-gradient(to right, transparent, rgba(164,212,60,0.7), transparent);
   filter: blur(1px);
   animation: syn-beam-h 3.2s linear infinite;
 }
@@ -302,17 +265,11 @@
   100% { opacity: 0;  transform: scale(1.8); }
 }
 
-/* ========== Number Metric — lime digital glow ========== */
-.case-card__metric b {
-  text-shadow: 0 0 18px rgba(164,225,55,0.45);
-  font-variant-numeric: tabular-nums;
-}
-
-/* ========== Services icon — diagonal HUD scan line ========== */
+/* ========== Services icon — diagonal scan line ========== */
 .service-card__icon { position: relative; }
 .service-card__icon::before {
   content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
-  background: linear-gradient(115deg, transparent 45%, rgba(164,225,55,0.45) 50%, transparent 55%);
+  background: linear-gradient(115deg, transparent 45%, rgba(164,212,60,0.40) 50%, transparent 55%);
   opacity: 0; transform: translateX(-50%);
   transition: opacity 200ms;
   z-index: 1;
@@ -322,9 +279,7 @@
 }
 @keyframes syn-scan-diag { to { transform: translateX(50%); } }
 
-/* Hide boot on reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  .syn-boot { display: none; }
-  .syn-hud__beam, .syn-hud__scan, .syn-hud__grid, .hero__matrix, .process__connector::after,
-  .process-step__num::before, .hero__title.syn-glitch { animation: none !important; }
+  .syn-hud__beam, .syn-hud__scan, .syn-hud__grid, .process__connector::after,
+  .process-step__num::before { animation: none !important; }
 }

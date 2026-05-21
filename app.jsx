@@ -800,6 +800,68 @@ const DigitalDiagnosis = ({ onRubroSelect }) => {
     </section>
   );
 };
+// ----- Testimonials (PRUEBA SOCIAL) -----
+const Testimonials = () => {
+  const list = [
+    {
+      avatar: 'CS',
+      client: 'Chameleon Barber Studio',
+      quote: 'Tenemos muy buenas expectativas con el software; el producto es sumamente completo, los precios son accesibles y el soporte técnico que brindan es de excelente nivel.',
+      role: 'Estudio de Barbería y Estética',
+      rating: 5
+    },
+    {
+      avatar: 'BF',
+      client: 'Barbería Ferraza',
+      quote: 'Valoro y admiro profundamente el trabajo de digitalización que realizan. Es un sistema robusto que aporta un valor real a nuestro negocio diario.',
+      role: 'Barbería y Gestión Comercial',
+      rating: 5
+    }
+  ];
+
+  return (
+    <section className="testimonials" id="testimonios">
+      <div className="testimonials__inner">
+        <div className="testimonials__head" data-reveal>
+          <div className="services__kicker">Prueba Social</div>
+          <h2 className="testimonials__title">La opinión de quienes <em style={{fontStyle:'normal', color:'var(--syn-lime-dark)'}}>confían</em> en nosotros.</h2>
+        </div>
+        <div className="testimonials__grid">
+          {list.map((t, i) => (
+            <figure key={i} className="testimonial-card" data-reveal style={{transitionDelay: `${i*100}ms`}}>
+              <div className="testimonial-card__quote-icon" aria-hidden="true">“</div>
+              <div className="testimonial-card__stars" aria-label="Calificación 5 de 5 estrellas">
+                {[...Array(t.rating)].map((_, idx) => (
+                  <svg key={idx} width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon points="12,2 15,9 22,9 17,14 19,21 12,17 5,21 7,14 2,9 9,9" />
+                  </svg>
+                ))}
+              </div>
+              <blockquote className="testimonial-quote">
+                <p>"{t.quote}"</p>
+              </blockquote>
+              <figcaption className="testimonial-caption">
+                <div className="testimonial-card__avatar">{t.avatar}</div>
+                <div className="testimonial-card__meta">
+                  <div className="testimonial-card__name-row">
+                    <span className="testimonial-card__name">{t.client}</span>
+                    <span className="testimonial-card__verified" title="Cliente verificado">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                        <polyline points="22 4 12 14.01 9 11.01" />
+                      </svg>
+                    </span>
+                  </div>
+                  <span className="testimonial-card__role">{t.role}</span>
+                </div>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
 
 // ----- Booking (Calendly placeholder) -----
 const Booking = () => (
@@ -890,6 +952,7 @@ const App = () => {
       <Process/>
       <TechBand/>
       <Cases/>
+      <Testimonials/>
       <Booking/>
       <DigitalDiagnosis onRubroSelect={setSelectedRubro}/>
       <Insights/>

@@ -79,40 +79,6 @@ function SideRail() {
   );
 }
 
-// ---------- Boot sequence (briefly covers on load) ----------
-function BootSequence() {
-  const [mounted, setMounted] = _fState(true);
-  _fEffect(() => {
-    const seen = sessionStorage.getItem('syn_boot_seen');
-    if (seen) { setMounted(false); return; }
-    sessionStorage.setItem('syn_boot_seen', '1');
-    const id = setTimeout(() => setMounted(false), 3200);
-    return () => clearTimeout(id);
-  }, []);
-  if (!mounted) return null;
-  const lines = [
-    { t: 90, text: 'synaptech.os', tag: 'INIT' },
-    { t: 300, text: 'loading neural kernel', tag: 'OK' },
-    { t: 650, text: 'mounting data bridge', tag: 'OK' },
-    { t: 950, text: 'calibrating IA models', tag: 'OK' },
-    { t: 1300, text: 'secure link established', tag: 'OK' },
-    { t: 1700, text: 'interface ready', tag: 'GO' },
-  ];
-  return (
-    <div className="syn-boot" aria-hidden="true">
-      <div className="syn-boot__inner">
-        <div className="syn-boot__brand">SYNAPTECH · SINAPSIS TECNOLÓGICA</div>
-        {lines.map((l, i) => (
-          <div key={i} className="syn-boot__line" style={{ animationDelay: `${l.t}ms` }}>
-            <span>›</span> <b>{l.text}</b> <span className="ok">[{l.tag}]</span>
-          </div>
-        ))}
-        <div className="syn-boot__bar" />
-      </div>
-    </div>
-  );
-}
-
 // ---------- Section corner brackets (injected) ----------
 function SectionFrames({ selector = 'section[id]' }) {
   _fEffect(() => {
@@ -156,4 +122,4 @@ function CardCorners() {
 }
 
 // Export
-Object.assign(window, { HUD, SideRail, BootSequence, SectionFrames, CardCorners });
+Object.assign(window, { HUD, SideRail, SectionFrames, CardCorners });

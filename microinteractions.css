@@ -34,7 +34,7 @@
   animation: syn-ripple 700ms cubic-bezier(.22,.9,.3,1) forwards;
   pointer-events: none;
 }
-.syn-btn--ghost .syn-ripple { background: rgba(164,225,55,0.45); }
+.syn-btn--ghost .syn-ripple { background: rgba(164,212,60,0.35); }
 @keyframes syn-ripple {
   0%   { transform: translate(-50%, -50%) scale(0);  opacity: .7; }
   100% { transform: translate(-50%, -50%) scale(40); opacity: 0;  }
@@ -93,7 +93,7 @@
 }
 .service-card::before, .case-card::before, .insight-card::before {
   content: ''; position: absolute; inset: 0; border-radius: inherit;
-  background: radial-gradient(circle at var(--aura-x, 50%) var(--aura-y, 50%), rgba(164,225,55,0.22), transparent 50%);
+  background: radial-gradient(circle at var(--aura-x, 50%) var(--aura-y, 50%), rgba(164,212,60,0.18), transparent 50%);
   opacity: var(--aura-opacity, 0);
   transition: opacity 300ms var(--syn-ease);
   pointer-events: none;
@@ -106,7 +106,7 @@
 /* Service icon: inner shine + dot twinkle on hover */
 .service-card__icon { overflow: hidden; position: relative; transition: transform 360ms var(--syn-ease); }
 .service-card__icon::after {
-  content: ''; position: absolute; inset: -40%; background: conic-gradient(from 0deg, transparent, rgba(164,225,55,0.35), transparent 40%);
+  content: ''; position: absolute; inset: -40%; background: conic-gradient(from 0deg, transparent, rgba(164,212,60,0.35), transparent 40%);
   opacity: 0; transition: opacity 400ms var(--syn-ease);
   animation: syn-spin 6s linear infinite; animation-play-state: paused;
 }
@@ -140,7 +140,7 @@
 
 /* Input focus: lime ring that draws */
 .syn-input { position: relative; transition: border-color 220ms var(--syn-ease), box-shadow 220ms var(--syn-ease), transform 260ms var(--syn-ease); }
-.syn-input:focus { border-color: var(--syn-lime); box-shadow: 0 0 0 4px rgba(164,225,55,0.18); outline: none; transform: translateY(-1px); }
+.syn-input:focus { border-color: var(--syn-lime); box-shadow: 0 0 0 4px rgba(164,212,60,0.16); outline: none; transform: translateY(-1px); }
 
 /* Process step — number "ignites" on view */
 .process-step__num {
@@ -149,14 +149,14 @@
 }
 .process-step__num::after {
   content: ''; position: absolute; inset: -8px; border-radius: 999px;
-  background: radial-gradient(circle, rgba(164,225,55,0.5), transparent 70%);
+  background: radial-gradient(circle, rgba(164,212,60,0.4), transparent 70%);
   opacity: 0; pointer-events: none;
 }
 .process-step.is-in .process-step__num { animation: syn-ignite 900ms cubic-bezier(.22,.9,.3,1) both; }
 .process-step.is-in .process-step__num::after { animation: syn-halo 900ms ease-out both; }
 @keyframes syn-ignite { 0% { transform: scale(.6); } 60% { transform: scale(1.12); } 100% { transform: scale(1); } }
 @keyframes syn-halo   { 0% { opacity: 0; transform: scale(.8); } 40% { opacity: 1; } 100% { opacity: 0; transform: scale(1.6); } }
-.process-step:hover .process-step__num { transform: scale(1.08) rotate(-3deg); box-shadow: 0 12px 32px rgba(164,225,55,0.35); }
+.process-step:hover .process-step__num { transform: scale(1.08) rotate(-3deg); box-shadow: 0 12px 32px rgba(164,212,60,0.30); }
 
 /* Process connector — animated dash */
 .process__connector { background: repeating-linear-gradient(to right, var(--syn-lime) 0 6px, transparent 6px 12px); background-size: 12px 2px; animation: syn-dash 1.4s linear infinite; }
@@ -185,14 +185,14 @@
 
 /* Header CTA magnetic needs relative-positioned container inside anchor — already inline-flex */
 
-/* Hero button lime pulse glow */
+/* Hero button pulse glow */
 .hero__ctas .syn-btn--primary {
-  box-shadow: 0 10px 28px rgba(164,225,55,0.35);
+  box-shadow: 0 10px 28px rgba(164,212,60,0.30);
   animation: syn-cta-pulse 3.2s ease-in-out infinite;
 }
 @keyframes syn-cta-pulse {
-  0%, 100% { box-shadow: 0 10px 28px rgba(164,225,55,0.3); }
-  50%      { box-shadow: 0 14px 36px rgba(164,225,55,0.55); }
+  0%, 100% { box-shadow: 0 10px 28px rgba(164,212,60,0.25); }
+  50%      { box-shadow: 0 14px 36px rgba(164,212,60,0.50); }
 }
 
 /* Reduce motion */

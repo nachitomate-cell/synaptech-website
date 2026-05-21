@@ -9,8 +9,8 @@
 
 :root {
   /* ============================= COLOR ============================= */
-  /* Brand */
-  --syn-lime:           #A4E137;
+  /* Brand — Verde SynapTech (extraído del logo) */
+  --syn-lime:           #A4D43C;
   --syn-lime-dark:      #7FB020;
   --syn-lime-tint:      #EEFBD3;
   --syn-black:          #111111;
@@ -79,8 +79,8 @@
   --syn-shadow-md: 0 8px 24px rgba(17,17,17,.08), 0 2px 4px rgba(17,17,17,.04);
   --syn-shadow-lg: 0 16px 48px rgba(17,17,17,.10), 0 4px 8px rgba(17,17,17,.05);
   --syn-shadow-xl: 0 28px 72px rgba(17,17,17,.14);
-  --syn-shadow-lime:    0 10px 30px rgba(164,225,55,.35);
-  --syn-shadow-lime-hv: 0 14px 40px rgba(164,225,55,.50);
+  --syn-shadow-lime:    0 10px 30px rgba(164,212,60,.30);
+  --syn-shadow-lime-hv: 0 14px 40px rgba(164,212,60,.45);
 
   /* =========================== MOTION =========================== */
   --syn-ease:        cubic-bezier(.2,.7,.2,1);
@@ -165,12 +165,12 @@ html, body {
 
 .syn-btn--primary {
   background: var(--syn-lime);
-  color: var(--syn-black);
+  color: #111111;
   box-shadow: var(--syn-shadow-lime);
 }
 .syn-btn--primary:hover {
   background: var(--syn-lime-dark);
-  color: var(--syn-white);
+  color: #ffffff; /* blanco sobre verde oscuro en hover */
   box-shadow: var(--syn-shadow-lime-hv);
   transform: translateY(-1px);
 }
@@ -219,7 +219,7 @@ html, body {
 .syn-input:focus {
   outline: none;
   border-color: var(--syn-lime);
-  box-shadow: 0 0 0 3px rgba(164,225,55,.25);
+  box-shadow: 0 0 0 3px rgba(164,212,60,.22);
 }
 
 .syn-pill {
