@@ -26,26 +26,40 @@ const jetbrains = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Synaptech — Software a medida, IA y automatización para empresas chilenas",
+  title: "SynapTech SpA | Desarrollo de Software a Medida y Soluciones Digitales",
   description:
-    "Agencia de Viña del Mar especializada en software B2B, IA y automatización para clínicas, retail, educación y belleza. 5 proyectos en producción. Diagnóstico gratuito.",
+    "Desarrollamos software a medida, portales clínicos, sistemas de fidelización y plataformas SaaS para transformar la operación de tu negocio en un flujo digital eficiente.",
   keywords: ["software a medida Chile", "desarrollo web Viña del Mar", "agencia software B2B chile", "HealthTech DICOM", "fidelización Google Wallet", "PWA educación", "automatización pagos Webpay", "barbería reservas online"],
   alternates: { canonical: "https://synaptechspa.cl" },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.svg", type: "image/svg+xml" }
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }
+    ]
+  },
+  manifest: "/manifest.webmanifest",
   openGraph: {
     type: "website",
     locale: "es_CL",
     url: "https://synaptechspa.cl",
-    siteName: "Synaptech",
-    title: "Synaptech — Tecnología con Alma Digital",
-    description: "Software a medida, IA y automatización para empresas chilenas B2B. 5 proyectos en producción desde Viña del Mar.",
-    images: [{ url: "https://synaptechspa.cl/og-image.png", width: 1200, height: 630, alt: "Synaptech — Agencia de software B2B Chile" }],
+    siteName: "SynapTech SpA",
+    title: "SynapTech SpA | Desarrollo de Software a Medida y Soluciones Digitales",
+    description: "Desarrollamos software a medida, portales clínicos, sistemas de fidelización y plataformas SaaS para transformar la operación de tu negocio en un flujo digital eficiente.",
+    images: [{ url: "https://synaptechspa.cl/og-image.png", width: 1200, height: 630, alt: "SynapTech SpA — Agencia de software Chile" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Synaptech — Tecnología con Alma Digital",
-    description: "Software a medida, IA y automatización para empresas chilenas B2B.",
+    title: "SynapTech SpA | Desarrollo de Software a Medida y Soluciones Digitales",
+    description: "Desarrollamos software a medida, portales clínicos, sistemas de fidelización y plataformas SaaS para transformar la operación de tu negocio en un flujo digital eficiente.",
     images: ["https://synaptechspa.cl/og-image.png"],
   },
+  other: {
+    "geo.region": "CL-VS",
+    "geo.placename": "Viña del Mar, Valparaíso",
+  }
 };
 
 export default function RootLayout({

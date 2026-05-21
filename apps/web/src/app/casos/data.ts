@@ -150,7 +150,7 @@ export const CASES_DATA: CaseData[] = [
     problema:
       "Tres negocios de belleza en la Quinta Región operaban con WhatsApp, cuadernos y Excel para gestionar citas, clientes y equipos. Sin agenda digital, sin fidelización automatizada y sin datos de negocio, los dueños perdían horas diarias en coordinación manual. El desafío adicional: Elegance (barbería premium, estética dorada), Ferraza (barbería tradicional, diseño oscuro) y Gitana Nails (estudio de uñas, identidad femenina) tenían marcas completamente distintas — necesitaban una solución única que los contuviera a todos sin mezclar datos ni imagen.",
     solucion:
-      "Plataforma SaaS multi-tenant sobre Firebase. Cada local opera con su propia marca, servicios, equipo y horarios, con datos completamente aislados. Un mismo codebase sirve a los tres negocios; un nuevo tenant puede estar activo en horas sin desarrollo adicional.",
+      "Plataforma SaaS multi-tenant con identidad 100% marca blanca. Vercel Edge Middleware inyecta SEO local dinámico para cada barbería, evitando el 'data bleed'. Además, incluye un Club de Fidelización VIP con tarjetas 3D y gamificación por rangos. Cada local opera con sus propios datos aislados y un nuevo tenant se despliega en horas.",
     stack: ["React 18", "Firebase", "Firestore", "FCM", "Vercel", "PWA"],
     estado: "En producción",
     año: "2025",

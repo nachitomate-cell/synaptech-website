@@ -11,14 +11,13 @@ export const metadata: Metadata = {
 };
 
 const RESERVAS = [
-  "Booking 100% online sin registrarse — nombre, teléfono y listo",
-  "Selección de servicio con precio y duración visible",
+  "Flujo en 5 pasos interactivos optimizado para maximizar conversión móvil",
+  "Sistema de calificaciones de Google Maps integrado (Prueba social directa)",
+  "Barra de información rápida con botón de WhatsApp dinámico",
+  "Detección de sucursales y enrutamiento transparente inteligente",
+  "Booking 100% online sin registro obligatorio — nombre, teléfono y listo",
   "Elección de barbero con foto y disponibilidad en tiempo real",
-  "Calendario interactivo con horarios disponibles actualizados al instante",
   "Confirmación automática por WhatsApp al cliente",
-  "Bloqueo automático de horarios ya tomados (sin doble reserva)",
-  "Respeta colaciones, días libres y bloqueos del barbero",
-  "Installable como app en celular (iOS y Android)",
 ];
 
 const AGENDA_BARBERO = [
@@ -33,25 +32,23 @@ const AGENDA_BARBERO = [
 
 const PANEL_ADMIN = [
   "Agenda visual de todo el equipo con vista por barbero",
-  "Crear, editar y cancelar citas manualmente",
-  "Gestión completa de servicios (nombre, precio, duración, categoría)",
-  "Gestión del equipo (agregar/editar barberos, fotos, horarios individuales)",
+  "Gestión completa de servicios, precios y categorías",
+  "Módulo Lookbook: Galería gestionable para mostrar tendencias y estilos",
+  "Módulo Tienda / Catálogo: Venta de productos de styling con stock local",
+  "Aprovisionamiento Express (Fast Onboarding) para nuevos barberos",
   "CRM de clientes con historial de visitas y datos de contacto",
-  "Registro de gastos e ingresos",
-  "Métricas y reportes financieros",
-  "Configuración de horario de atención, colaciones y días libres",
-  "Lookbook de fotos de estilos gestionable desde el panel",
-  "Chat interno con clientes",
-  "Pantalla para sala de espera (TV Mode)",
+  "Métricas y reportes financieros (Ingresos, tickets, etc.)",
+  "Chat interno con miembros / comunidad",
+  "Pantalla BarberTV para sala de espera",
 ];
 
 const FIDELIZACION = [
-  "Sistema de sellos acumulables por cada visita",
+  "Tarjeta VIP de vidrio esmerilado con destellos 3D (Shimmer)",
+  "Grilla de sellos interactiva con física de resortes y respuesta táctil",
+  "Gamificación por rangos (Silver, Gold, Platinum) motivando a regresar",
+  "Barra de navegación con indicador deslizable matemáticamente fluido",
+  "Panel de registro optimizado con escape táctil para no perder reservas",
   "Catálogo de premios canjeables al alcanzar cierta cantidad de sellos",
-  "Tiers automáticos (Silver, Gold, Platinum) según actividad",
-  "Descuentos permanentes por membresía",
-  "Panel del cliente con historial, sellos y próxima cita",
-  "Planes mensuales o anuales con beneficios diferenciados",
 ];
 
 const NOTIFICACIONES = [
@@ -64,28 +61,28 @@ const NOTIFICACIONES = [
 const TECH_PILLARS = [
   {
     idx: "01",
-    label: "Multi-negocio",
-    desc: "Una sola plataforma gestiona múltiples sucursales o negocios independientes, cada uno con su marca, dominio y configuración.",
+    label: "Marca Blanca Total",
+    desc: "Tu propio subdominio, logotipo y paleta. Cero referencias a plataformas de terceros.",
   },
   {
     idx: "02",
-    label: "Tiempo real",
-    desc: "Cambios visibles al instante en todas las pantallas sin recargar la página.",
+    label: "SEO de Borde",
+    desc: "Vercel Edge Middleware inyecta meta tags, logos y miniaturas reales en los resultados de Google al instante.",
   },
   {
     idx: "03",
-    label: "PWA",
-    desc: "Installable como app nativa en cualquier celular sin pasar por App Store ni Google Play.",
+    label: "Anti-Data Bleed",
+    desc: "Aislamiento total de contenido para evitar que Google mezcle tus servicios con los de tu competencia.",
   },
   {
     idx: "04",
-    label: "Seguridad",
-    desc: "Reglas de acceso por rol (cliente / barbero / admin), sin acceso cruzado entre negocios.",
+    label: "PWA Native Feel",
+    desc: "Instalable como app en el celular, con diseño UX/UI de clase mundial, rápido y fluido.",
   },
   {
     idx: "05",
-    label: "Disponibilidad",
-    desc: "99.9% uptime garantizado. Infraestructura en la nube con redundancia automática.",
+    label: "Fast Onboarding",
+    desc: "Scripts de inicialización que permiten lanzar un nuevo negocio en la plataforma en un par de horas.",
   },
 ];
 
@@ -210,15 +207,14 @@ export default function AgendaProfesionalPage() {
             <p className="eyebrow mb-6">Producto · Barbería SaaS</p>
 
             <h1 className="text-text-primary max-w-4xl mb-6 animate-fade-up">
-              Sistema de Gestión{" "}
+              La Plataforma Definitiva{" "}
               <em className="italic text-accent font-display">
                 para Barberías
               </em>
             </h1>
 
             <p className="text-text-secondary text-xl max-w-2xl leading-relaxed font-body mb-12 animate-fade-up" style={{ animationDelay: "80ms" }}>
-              Plataforma SaaS multi-negocio con reservas online, panel de
-              administración y fidelización de clientes.
+              Deja de derivar tus clientes a plataformas genéricas. Sistema 100% marca blanca con fidelización gamificada VIP y SEO de borde ultra-veloz.
             </p>
 
             <div className="flex flex-wrap gap-4 mb-20 animate-fade-up" style={{ animationDelay: "160ms" }}>
@@ -268,11 +264,11 @@ export default function AgendaProfesionalPage() {
           <div className="max-w-screen-xl mx-auto px-6 md:px-12">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div>
-                <p className="eyebrow mb-5">01 — Reservas Online</p>
+                <p className="eyebrow mb-5">01 — Agendamiento de Alta Conversión</p>
                 <h2 className="text-text-primary mb-8">
-                  Booking para{" "}
+                  Diseñado para{" "}
                   <em className="italic text-accent font-display">
-                    tus clientes
+                    convertir más
                   </em>
                 </h2>
                 <ul className="space-y-4">
@@ -375,7 +371,7 @@ export default function AgendaProfesionalPage() {
           <div className="max-w-screen-xl mx-auto px-6 md:px-12">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div>
-                <p className="eyebrow mb-5">04 — Club de Fidelización</p>
+                <p className="eyebrow mb-5">04 — Fidelización VIP y Gamificación</p>
                 <h2 className="text-text-primary mb-6">
                   Clientes que{" "}
                   <em className="italic text-accent font-display">
@@ -383,9 +379,7 @@ export default function AgendaProfesionalPage() {
                   </em>
                 </h2>
                 <p className="text-text-secondary mb-8 leading-relaxed">
-                  Sistema de recompensas integrado que aumenta la frecuencia de
-                  visitas y convierte clientes ocasionales en fans de tu
-                  barbería.
+                  La tarjeta de fidelización de papel ha muerto. Dale a tus clientes una billetera digital premium con tarjetas 3D interactivas y rangos VIP para disparar tu retención.
                 </p>
                 <ul className="space-y-4 mb-8">
                   {FIDELIZACION.map((item) => (
@@ -509,16 +503,15 @@ export default function AgendaProfesionalPage() {
         <section id="tecnologia" className="py-24 border-t border-border-subtle bg-bg-secondary">
           <div className="max-w-screen-xl mx-auto px-6 md:px-12">
             <div className="text-center max-w-xl mx-auto mb-16">
-              <p className="eyebrow mb-5">06 — Tecnología</p>
+              <p className="eyebrow mb-5">06 — SEO Edge & Marca Blanca</p>
               <h2 className="text-text-primary mb-4">
-                Construido para{" "}
+                Domina tu{" "}
                 <em className="italic text-accent font-display">
-                  escalar
+                  comuna en Google
                 </em>
               </h2>
               <p className="text-text-secondary leading-relaxed">
-                Infraestructura moderna pensada para crecer con tu negocio desde
-                el primer día.
+                Mientras tu competencia aparece con globos genéricos, tu negocio destaca con identidad propia, imágenes reales y meta descripciones automáticas gracias a nuestro Edge Middleware.
               </p>
             </div>
 

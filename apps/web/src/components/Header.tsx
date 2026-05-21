@@ -9,18 +9,23 @@ const NAV_MAIN = [
   { label: "Servicios",   href: "#servicios" },
   { label: "Casos",       href: "/casos" },
   { label: "Nosotros",    href: "/nosotros" },
-  { label: "Contacto",    href: "#contacto" },
+  { label: "Contacto",    href: "/contacto" },
 ];
 
 const NAV_PRODUCTS = [
   {
-    label: "Agenda Profesional",
-    href: "/agenda-profesional",
+    label: "Portales Clínicos",
+    href: "/portales-clinicos",
+    desc: "Gestión médica y portal de pacientes",
+  },
+  {
+    label: "SaaS Comercial",
+    href: "/saas-comercial",
     desc: "Reservas, agenda y gestión de clientes",
   },
   {
     label: "Fidelización de Clientes",
-    href: "/agenda-profesional#fidelizacion",
+    href: "/fidelizacion",
     desc: "Sellos digitales, premios y Google Wallet",
   },
 ];
@@ -30,7 +35,7 @@ export default function Header() {
   const [mobileOpen, setMobileOpen]     = useState(false);
   const [dropOpen, setDropOpen]         = useState(false);
   const [activeSection, setActiveSection] = useState("");
-  const dropRef = useRef<HTMLDivElement>(null);
+  const dropRef = useRef<HTMLLIElement>(null);
   const pathname = usePathname();
   const { scrollYProgress } = useScroll();
 
@@ -99,63 +104,70 @@ export default function Header() {
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-6">
-          {NAV_MAIN.map((n) => (
-            n.href.startsWith("/") ? (
-              <Link key={n.href} href={n.href} className={linkCls(n.href)}>{n.label}</Link>
-            ) : (
-              <a key={n.href} href={n.href} className={linkCls(n.href)}>{n.label}</a>
-            )
-          ))}
+        <nav className="hidden md:flex items-center gap-6" aria-label="Navegación principal">
+          <ul className="flex items-center gap-6 m-0 p-0 list-none">
+            {NAV_MAIN.map((n) => (
+              <li key={n.href}>
+                {n.href.startsWith("/") ? (
+                  <Link href={n.href} className={linkCls(n.href)}>{n.label}</Link>
+                ) : (
+                  <a href={n.href} className={linkCls(n.href)}>{n.label}</a>
+                )}
+              </li>
+            ))}
 
-          {/* Products dropdown */}
-          <div ref={dropRef} className="relative">
-            <button
-              onClick={() => setDropOpen((v) => !v)}
-              className={`flex items-center gap-1 text-[13px] font-body tracking-wide transition-colors whitespace-nowrap ${
-                dropOpen ? "text-text-primary" : "text-text-secondary hover:text-text-primary"
-              }`}
-            >
-              Productos
-              <svg
-                className={`w-3 h-3 transition-transform duration-200 ${dropOpen ? "rotate-180" : ""}`}
-                viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5"
+            {/* Products dropdown */}
+            <li ref={dropRef} className="relative">
+              <button
+                onClick={() => setDropOpen((v) => !v)}
+                className={`flex items-center gap-1 text-[13px] font-body tracking-wide transition-colors whitespace-nowrap ${
+                  dropOpen ? "text-text-primary" : "text-text-secondary hover:text-text-primary"
+                }`}
+                aria-expanded={dropOpen}
+                aria-haspopup="true"
               >
-                <path d="M2 4l4 4 4-4" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
+                Productos
+                <svg
+                  className={`w-3 h-3 transition-transform duration-200 ${dropOpen ? "rotate-180" : ""}`}
+                  viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5"
+                >
+                  <path d="M2 4l4 4 4-4" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
 
-            {dropOpen && (
-              <div
-                className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-72 rounded-xl border border-border-subtle overflow-hidden shadow-2xl"
-                style={{ background: "rgba(10,10,10,0.96)", backdropFilter: "blur(20px)" }}
-              >
-                <div className="p-1.5">
-                  {NAV_PRODUCTS.map((p) => (
-                    <Link
-                      key={p.href}
-                      href={p.href}
-                      onClick={() => setDropOpen(false)}
-                      className="flex flex-col gap-0.5 px-4 py-3 rounded-lg hover:bg-white/5 transition-colors group"
-                    >
-                      <span className="text-[13px] font-medium text-text-primary group-hover:text-accent transition-colors">
-                        {p.label}
-                      </span>
-                      <span className="text-[11px] text-text-muted font-mono">
-                        {p.desc}
-                      </span>
-                    </Link>
-                  ))}
+              {dropOpen && (
+                <div
+                  className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-72 rounded-xl border border-border-subtle overflow-hidden shadow-2xl"
+                  style={{ background: "rgba(10,10,10,0.96)", backdropFilter: "blur(20px)" }}
+                >
+                  <ul className="p-1.5 list-none m-0">
+                    {NAV_PRODUCTS.map((p) => (
+                      <li key={p.href}>
+                        <Link
+                          href={p.href}
+                          onClick={() => setDropOpen(false)}
+                          className="flex flex-col gap-0.5 px-4 py-3 rounded-lg hover:bg-white/5 transition-colors group"
+                        >
+                          <span className="text-[13px] font-medium text-text-primary group-hover:text-accent transition-colors">
+                            {p.label}
+                          </span>
+                          <span className="text-[11px] text-text-muted font-mono">
+                            {p.desc}
+                          </span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="h-px mx-4 mb-3 mt-1" style={{ background: "linear-gradient(90deg, transparent, rgba(163,230,53,0.3), transparent)" }} />
+                  <div className="px-4 pb-3">
+                    <span className="font-mono text-[10px] text-text-muted/50 uppercase tracking-widest">
+                      Plataformas SynapTech
+                    </span>
+                  </div>
                 </div>
-                <div className="h-px mx-4 mb-3 mt-1" style={{ background: "linear-gradient(90deg, transparent, rgba(163,230,53,0.3), transparent)" }} />
-                <div className="px-4 pb-3">
-                  <span className="font-mono text-[10px] text-text-muted/50 uppercase tracking-widest">
-                    Plataformas SynapTech
-                  </span>
-                </div>
-              </div>
-            )}
-          </div>
+              )}
+            </li>
+          </ul>
         </nav>
 
         {/* Desktop CTAs */}
@@ -188,44 +200,52 @@ export default function Header() {
 
       {/* Mobile drawer */}
       {mobileOpen && (
-        <div className="md:hidden bg-bg-secondary border-t border-border-subtle">
-          <div className="px-6 py-5 flex flex-col gap-1">
+        <nav className="md:hidden bg-bg-secondary border-t border-border-subtle" aria-label="Navegación móvil">
+          <ul className="px-6 py-5 flex flex-col gap-1 list-none m-0">
             {NAV_MAIN.map((n) => (
-              n.href.startsWith("/") ? (
-                <Link key={n.href} href={n.href} onClick={() => setMobileOpen(false)}
-                  className={`text-sm transition-colors py-2.5 border-b border-border-subtle/50 ${isActive(n.href) ? "text-accent" : "text-text-secondary hover:text-text-primary"}`}>
-                  {n.label}
-                </Link>
-              ) : (
-                <a key={n.href} href={n.href} onClick={() => setMobileOpen(false)}
-                  className={`text-sm transition-colors py-2.5 border-b border-border-subtle/50 ${isActive(n.href) ? "text-accent" : "text-text-secondary hover:text-text-primary"}`}>
-                  {n.label}
-                </a>
-              )
+              <li key={n.href}>
+                {n.href.startsWith("/") ? (
+                  <Link href={n.href} onClick={() => setMobileOpen(false)}
+                    className={`block text-sm transition-colors py-2.5 border-b border-border-subtle/50 ${isActive(n.href) ? "text-accent" : "text-text-secondary hover:text-text-primary"}`}>
+                    {n.label}
+                  </Link>
+                ) : (
+                  <a href={n.href} onClick={() => setMobileOpen(false)}
+                    className={`block text-sm transition-colors py-2.5 border-b border-border-subtle/50 ${isActive(n.href) ? "text-accent" : "text-text-secondary hover:text-text-primary"}`}>
+                    {n.label}
+                  </a>
+                )}
+              </li>
             ))}
 
             {/* Products group in mobile */}
-            <div className="pt-1">
-              <p className="font-mono text-[10px] uppercase tracking-widest text-text-muted/60 pt-2 pb-3">
+            <li className="pt-1">
+              <p className="font-mono text-[10px] uppercase tracking-widest text-text-muted/60 pt-2 pb-3 m-0">
                 Productos
               </p>
-              {NAV_PRODUCTS.map((p) => (
-                <Link key={p.href} href={p.href} onClick={() => setMobileOpen(false)}
-                  className="flex flex-col gap-0.5 py-2.5 border-b border-border-subtle/50 group">
-                  <span className="text-sm text-text-secondary group-hover:text-text-primary transition-colors">
-                    {p.label}
-                  </span>
-                  <span className="font-mono text-[10px] text-text-muted/60">{p.desc}</span>
-                </Link>
-              ))}
-            </div>
+              <ul className="flex flex-col list-none m-0 p-0">
+                {NAV_PRODUCTS.map((p) => (
+                  <li key={p.href}>
+                    <Link href={p.href} onClick={() => setMobileOpen(false)}
+                      className="flex flex-col gap-0.5 py-2.5 border-b border-border-subtle/50 group">
+                      <span className="text-sm text-text-secondary group-hover:text-text-primary transition-colors">
+                        {p.label}
+                      </span>
+                      <span className="font-mono text-[10px] text-text-muted/60">{p.desc}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </li>
 
-            <a href="#diagnostico" onClick={() => setMobileOpen(false)}
-              className="bg-accent text-black font-bold text-sm px-5 py-3 rounded-lg text-center mt-3">
-              Diagnóstico Gratis
-            </a>
-          </div>
-        </div>
+            <li className="mt-3">
+              <a href="#diagnostico" onClick={() => setMobileOpen(false)}
+                className="block bg-accent text-black font-bold text-sm px-5 py-3 rounded-lg text-center">
+                Diagnóstico Gratis
+              </a>
+            </li>
+          </ul>
+        </nav>
       )}
     </header>
   );

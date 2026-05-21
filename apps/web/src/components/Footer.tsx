@@ -1,12 +1,12 @@
 import Image from "next/image";
 
 const LINKS = {
-  "Empresa":   [{ l: "Servicios", h: "#servicios" }, { l: "Metodología", h: "#proceso" }, { l: "Casos de éxito", h: "/casos" }],
-  "Recursos":  [{ l: "Diagnóstico Gratis", h: "#diagnostico" }, { l: "Precios", h: "#inversion" }, { l: "FAQ", h: "#faq" }, { l: "Contacto", h: "#contacto" }],
+  "Empresa":   [{ l: "Servicios", h: "#servicios" }, { l: "Metodología", h: "#proceso" }, { l: "Casos de éxito", h: "/casos" }, { l: "Nosotros", h: "/nosotros" }],
+  "Recursos":  [{ l: "Diagnóstico Gratis", h: "#diagnostico" }, { l: "Precios", h: "#inversion" }, { l: "FAQ", h: "#faq" }],
   "Contacto":  [
     { l: "hola@synaptech.cl", h: "mailto:hola@synaptech.cl" },
     { l: "+569 83568212", h: "tel:+56983568212" },
-    { l: "Viña del Mar, Valparaíso, Chile", h: "#contacto" },
+    { l: "Viña del Mar, Valparaíso, Chile", h: "/contacto" },
   ],
 };
 
@@ -52,16 +52,18 @@ export default function Footer() {
               <h6 className="font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-text-primary mb-5">
                 {heading}
               </h6>
-              <ul className="flex flex-col gap-3">
-                {links.map(l => (
-                  <li key={l.l}>
-                    <a href={l.h}
-                      className="text-sm text-text-secondary hover:text-text-primary transition-colors font-body">
-                      {l.l}
-                    </a>
-                  </li>
-                ))}
-              </ul>
+              <nav aria-label={heading}>
+                <ul className="flex flex-col gap-3">
+                  {links.map(l => (
+                    <li key={l.l}>
+                      <a href={l.h}
+                        className="text-sm text-text-secondary hover:text-text-primary transition-colors font-body">
+                        {l.l}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
             </div>
           ))}
         </div>
