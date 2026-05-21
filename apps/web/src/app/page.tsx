@@ -4,6 +4,7 @@ import Services     from "@/components/Services";
 import Process      from "@/components/Process";
 import TechBand     from "@/components/TechBand";
 import Cases        from "@/components/Cases";
+import Testimonials from "@/components/Testimonials";
 import Diagnosis    from "@/components/Diagnosis";
 import Pricing      from "@/components/Pricing";
 import FAQ          from "@/components/FAQ";
@@ -23,6 +24,7 @@ export default function Home() {
         <Process />
         <TechBand />
         <Cases />
+        <Testimonials />
         <Diagnosis />
         <Pricing />
         <FAQ />
