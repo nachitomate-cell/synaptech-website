@@ -1013,3 +1013,21 @@ body { margin: 0; }
   }
 }
 
+/* ---- Scroll-Reveal Animation System (data-reveal / is-reveal / is-in) ---- */
+.is-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+.is-reveal.is-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Respect reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .is-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
