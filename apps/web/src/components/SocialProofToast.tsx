@@ -1,35 +1,56 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 const TOASTS = [
-  { industry: "Retail",     action: "solicitó un diagnóstico", city: "Santiago",    time: "hace 2 min"  },
-  { industry: "Salud",      action: "pidió una propuesta",     city: "Viña del Mar",time: "hace 5 min"  },
-  { industry: "Educación",  action: "solicitó información",    city: "Concepción",  time: "hace 8 min"  },
-  { industry: "Belleza",    action: "solicitó un diagnóstico", city: "Las Condes",  time: "hace 1 min"  },
-  { industry: "Retail",     action: "pidió una propuesta",     city: "Valparaíso",  time: "hace 12 min" },
-  { industry: "Salud",      action: "solicitó un diagnóstico", city: "Providencia", time: "hace 3 min"  },
+  { industry: "Retail",     action: "solicitó un diagnóstico", city: "Santiago",    time: "hace 3 min"  },
+  { industry: "Salud",      action: "pidió una propuesta",     city: "Viña del Mar",time: "hace 18 min" },
+  { industry: "Belleza",    action: "solicitó un diagnóstico", city: "Las Condes",  time: "hace 7 min"  },
+  { industry: "Educación",  action: "pidió una propuesta",     city: "Concepción",  time: "hace 41 min" },
+  { industry: "Salud",      action: "solicitó información",    city: "Providencia", time: "hace 25 min" },
+  { industry: "Retail",     action: "solicitó un diagnóstico", city: "Valparaíso",  time: "hace 52 min" },
 ] as const;
 
 const COLOR: Record<string, string> = {
   Retail: "#a3e635", Salud: "#38bdf8", Educación: "#fb923c", Belleza: "#f472b6",
 };
 
+const MAX_PER_SESSION = 3;
+const SESSION_KEY = "fomo_count";
+
 export default function SocialProofToast() {
   const [idx, setIdx] = useState<number | null>(null);
+  const countRef = useRef(0);
+  const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
 
   useEffect(() => {
-    let hideTimer: ReturnType<typeof setTimeout>;
-    let nextTimer: ReturnType<typeof setTimeout>;
+    const shown = parseInt(sessionStorage.getItem(SESSION_KEY) ?? "0", 10);
+    if (shown >= MAX_PER_SESSION) return;
+    countRef.current = shown;
 
-    const show = (i: number) => {
-      setIdx(i);
-      hideTimer = setTimeout(() => setIdx(null), 5000);
-      nextTimer = setTimeout(() => show((i + 1) % TOASTS.length), 5000 + 22000 + Math.random() * 8000);
+    const schedule = (i: number, delay: number) => {
+      const t = setTimeout(() => {
+        if (countRef.current >= MAX_PER_SESSION) return;
+        setIdx(i);
+        countRef.current += 1;
+        sessionStorage.setItem(SESSION_KEY, String(countRef.current));
+
+        const hide = setTimeout(() => setIdx(null), 5500);
+        timers.current.push(hide);
+
+        if (countRef.current < MAX_PER_SESSION) {
+          // 70–120 seconds between toasts
+          const next = 70000 + Math.random() * 50000;
+          schedule((i + 1) % TOASTS.length, next);
+        }
+      }, delay);
+      timers.current.push(t);
     };
 
-    const first = setTimeout(() => show(0), 10000);
-    return () => { clearTimeout(first); clearTimeout(hideTimer); clearTimeout(nextTimer); };
+    // First toast: 20–35 seconds after load
+    schedule(shown % TOASTS.length, 20000 + Math.random() * 15000);
+
+    return () => timers.current.forEach(clearTimeout);
   }, []);
 
   const toast = idx !== null ? TOASTS[idx] : null;

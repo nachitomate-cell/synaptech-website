@@ -238,10 +238,10 @@ export default function AgendaProfesionalPage() {
             {/* Stats row */}
             <div className="flex flex-wrap gap-10 pt-6 border-t border-border-subtle animate-fade-up" style={{ animationDelay: "240ms" }}>
               {[
-                { val: "99.9%",        label: "Uptime" },
-                { val: "Tiempo real",  label: "Sin recargar" },
-                { val: "Multi-negocio", label: "Sucursales" },
-                { val: "PWA",          label: "Sin App Store" },
+                { val: "1.341",  label: "Clientes registrados" },
+                { val: "12",     label: "Locales activos" },
+                { val: "51",     label: "Profesionales" },
+                { val: "93+",    label: "Citas gestionadas" },
               ].map((s) => (
                 <div key={s.label} className="flex flex-col gap-1">
                   <span className="font-mono text-accent font-semibold text-lg">
@@ -495,6 +495,36 @@ export default function AgendaProfesionalPage() {
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── Plataforma en números ── */}
+        <section className="py-24 border-t border-border-subtle">
+          <div className="max-w-screen-xl mx-auto px-6 md:px-12">
+            <div className="text-center max-w-xl mx-auto mb-14">
+              <p className="eyebrow mb-4">Plataforma en producción</p>
+              <h2 className="text-text-primary">
+                Números{" "}
+                <em className="italic text-accent font-display">reales</em>
+              </h2>
+            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-px bg-border-subtle rounded-2xl overflow-hidden border border-border-subtle">
+              {[
+                { val: "93+",    label: "Citas gestionadas",      sub: "y contando"        },
+                { val: "12",     label: "Locales activos",         sub: "multi-sede"        },
+                { val: "1.341",  label: "Clientes registrados",    sub: "en la plataforma"  },
+                { val: "51",     label: "Profesionales",           sub: "en agenda"         },
+                { val: "18",     label: "Servicios distintos",     sub: "configurados"      },
+                { val: "17%",    label: "Tasa de cancelación",     sub: "vs 35–45% industria" },
+                { val: "6%",     label: "Churn de suscripción",    sub: "retención 94%"     },
+              ].map((m) => (
+                <div key={m.label} className="bg-bg-secondary flex flex-col items-center justify-center gap-1 py-8 px-4 text-center">
+                  <span className="font-mono text-accent font-semibold text-2xl leading-none">{m.val}</span>
+                  <span className="font-mono text-[10px] text-text-primary uppercase tracking-widest mt-2 leading-tight">{m.label}</span>
+                  <span className="font-mono text-[9px] text-text-muted leading-tight">{m.sub}</span>
+                </div>
+              ))}
             </div>
           </div>
         </section>

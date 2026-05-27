@@ -81,7 +81,7 @@ export const CASES_DATA: CaseData[] = [
     cliente: "Patio Curauma",
     titulo: "Plataforma de fidelización para centro comercial",
     descripcion:
-      "Ecosistema digital completo para Patio Curauma: PWA instalable sin pasar por las tiendas de aplicaciones, sellos digitales, canje de premios, directorio de emprendedores con mapa interactivo, notificaciones con IA, programa de referidos y tres paneles diferenciados para socios, vendedores y administración.",
+      "Ecosistema digital completo para Patio Curauma: PWA instalable sin pasar por las tiendas de aplicaciones, sellos digitales, canje de premios, directorio de emprendedores con mapa interactivo, notificaciones con IA, programa de referidos y tres paneles diferenciados para socios, vendedores y administración. En producción: +215 socios registrados, 46 locales participantes, +328 sellos entregados, 15 premios canjeados y 8.6/10 de satisfacción promedio (NPS).",
     problema:
       "Sin sistema de fidelización digital, las visitas recurrentes dependían de factores externos y no había mecanismo para medir engagement, recompensar clientes frecuentes ni comunicarse directamente con ellos. Los emprendedores del patio tampoco tenían visibilidad de su actividad de ventas.",
     solucion:
@@ -120,6 +120,16 @@ export const CASES_DATA: CaseData[] = [
           "Panel del Moderador — gestión completa de usuarios, roles, premios y configuración del programa",
           "Notificaciones automáticas con IA — Gemini genera mensajes persuasivos y los envía en horarios estratégicos",
           "Radar de anomalías — detecta comportamientos sospechosos en tiempo real",
+        ],
+      },
+      {
+        titulo: "Resultados en producción",
+        items: [
+          "+215 socios registrados en la plataforma",
+          "46 locales participantes activos",
+          "+328 sellos de fidelización entregados",
+          "15 premios canjeados por socios",
+          "8.6 / 10 de satisfacción promedio (NPS) según sus propios usuarios",
         ],
       },
     ],

@@ -337,6 +337,74 @@ export default function FidelizacionPage() {
           </div>
         </section>
 
+        {/* Caso real */}
+        <section className="py-24 border-t border-border-subtle">
+          <div className="max-w-screen-xl mx-auto px-6 md:px-12">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <div>
+                <p className="eyebrow mb-5">Caso real · Patio Curauma</p>
+                <h2 className="text-text-primary mb-6">
+                  Club de fidelización{" "}
+                  <em className="italic text-accent font-display">en producción</em>
+                </h2>
+                <p className="text-text-secondary leading-relaxed mb-4">
+                  Centro comercial en Valparaíso con 46 locales participantes. Implementamos una PWA instalable con sellos digitales, Google Wallet, canje de premios, directorio de emprendedores con mapa y notificaciones con IA.
+                </p>
+                <p className="text-text-secondary leading-relaxed mb-8 italic text-sm border-l-2 border-accent/40 pl-4">
+                  "Club Patio Curauma cuenta con más de 215 socios activos, 46 locales participantes y ha entregado más de 328 sellos de fidelización — con una satisfacción promedio de 8.6 / 10 según sus propios usuarios."
+                </p>
+                <div className="grid grid-cols-2 gap-4">
+                  {[
+                    { val: "+215",    label: "Socios registrados" },
+                    { val: "46",      label: "Locales participantes" },
+                    { val: "+328",    label: "Sellos entregados" },
+                    { val: "8.6/10", label: "Satisfacción NPS" },
+                  ].map((m) => (
+                    <div key={m.label} className="bg-bg-secondary border border-border-subtle rounded-xl p-5">
+                      <p className="font-mono text-accent font-semibold text-xl mb-1">{m.val}</p>
+                      <p className="font-mono text-[11px] text-text-muted uppercase tracking-widest">{m.label}</p>
+                    </div>
+                  ))}
+                </div>
+                <Link href="/casos/patio-curauma" className="mt-8 inline-flex items-center gap-2 font-mono text-xs text-accent hover:gap-3 transition-all">
+                  Ver caso completo
+                  <svg className="w-3.5 h-3.5" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
+                    <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </Link>
+              </div>
+              <div className="bg-bg-secondary border border-border-subtle rounded-2xl p-8">
+                <p className="font-mono text-[10px] text-text-muted uppercase tracking-widest mb-6">Stack tecnológico</p>
+                <div className="flex flex-wrap gap-2 mb-8">
+                  {["Next.js", "Firebase", "PWA", "Google Wallet API", "Gemini AI", "Firestore", "FCM", "Vercel"].map((t) => (
+                    <span key={t} className="font-mono text-[11px] text-text-secondary border border-border-subtle rounded-full px-3 py-1.5 bg-bg-elevated">
+                      {t}
+                    </span>
+                  ))}
+                </div>
+                <div className="border-t border-border-subtle pt-6">
+                  <p className="font-mono text-[10px] text-text-muted uppercase tracking-widest mb-4">También incluye</p>
+                  <ul className="flex flex-col gap-2.5">
+                    {[
+                      "15 premios canjeados por socios",
+                      "Notificaciones push con IA (Gemini)",
+                      "Programa de referidos integrado",
+                      "Radar de anomalías en tiempo real",
+                    ].map((item) => (
+                      <li key={item} className="flex items-start gap-2.5">
+                        <svg className="w-3.5 h-3.5 text-accent shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none">
+                          <path d="M3 8l3.5 3.5L13 4.5" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                        <span className="text-text-secondary text-sm">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* CTA */}
         <section id="contacto-fidelizacion" className="py-24 border-t border-border-subtle bg-bg-secondary">
           <div className="max-w-screen-xl mx-auto px-6 md:px-12">
