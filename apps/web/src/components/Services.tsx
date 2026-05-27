@@ -61,9 +61,10 @@ const SERVICES = [
   },
   {
     n: "04", Icon: WifiIcon, color: "#c084fc",
-    title: "Reservas y Automatización",
-    desc: "Agendas 24/7, gestión de equipos, confirmaciones automáticas por WhatsApp y sistemas de fidelidad para belleza y comercio.",
-    items: ["Agenda online 24/7 con recordatorios", "Gestión de trabajadores y turnos", "Club de fidelidad integrado"],
+    title: "Agenda Profesional para Barberías",
+    desc: "Plataforma SaaS multi-tenant con reservas 24/7, club de fidelización VIP, notificaciones push y panel de administración completo. En producción con 12 locales activos.",
+    items: ["Agenda online 24/7 con recordatorios push", "Club de fidelización + Google Wallet", "Multi-tenant — un local operativo en horas"],
+    href: "/saas-comercial",
   },
 ];
 
@@ -134,11 +135,11 @@ function ServiceCard({ s, index }: { s: Service; index: number }) {
       </div>
 
       <a
-        href="#contacto"
+        href={(s as any).href ?? "#contacto"}
         className="group/lnk relative z-10 inline-flex items-center gap-1.5 text-sm font-medium mt-auto"
         style={{ color: s.color }}
       >
-        Ver más <ArrowRight />
+        {(s as any).href ? "Ver plataforma" : "Ver más"} <ArrowRight />
       </a>
     </motion.article>
   );

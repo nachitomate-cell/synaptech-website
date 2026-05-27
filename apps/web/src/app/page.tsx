@@ -1,5 +1,6 @@
 import Header      from "@/components/Header";
 import Hero         from "@/components/Hero";
+import SaaSBanner   from "@/components/SaaSBanner";
 import Services     from "@/components/Services";
 import Process      from "@/components/Process";
 import TechBand     from "@/components/TechBand";
@@ -20,6 +21,7 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
+        <SaaSBanner />
         <Services />
         <Process />
         <TechBand />

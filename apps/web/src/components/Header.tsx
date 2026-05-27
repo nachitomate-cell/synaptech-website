@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 
 const NAV_MAIN = [
   { label: "Servicios",   href: "#servicios" },
+  { label: "Barberías",   href: "/saas-comercial", accent: true },
   { label: "Casos",       href: "/casos" },
   { label: "Blog",        href: "/blog" },
   { label: "Nosotros",    href: "/nosotros" },
@@ -75,9 +76,13 @@ export default function Header() {
     return pathname === href || pathname.startsWith(href + "/");
   };
 
-  const linkCls = (href: string) =>
+  const linkCls = (href: string, accent?: boolean) =>
     `text-[13px] font-body tracking-wide whitespace-nowrap transition-colors ${
-      isActive(href) ? "text-accent" : "text-text-secondary hover:text-text-primary"
+      isActive(href)
+        ? "text-accent"
+        : accent
+        ? "text-accent/80 hover:text-accent font-semibold"
+        : "text-text-secondary hover:text-text-primary"
     }`;
 
   return (
@@ -110,9 +115,9 @@ export default function Header() {
             {NAV_MAIN.map((n) => (
               <li key={n.href}>
                 {n.href.startsWith("/") ? (
-                  <Link href={n.href} className={linkCls(n.href)}>{n.label}</Link>
+                  <Link href={n.href} className={linkCls(n.href, n.accent)}>{n.label}</Link>
                 ) : (
-                  <a href={n.href} className={linkCls(n.href)}>{n.label}</a>
+                  <a href={n.href} className={linkCls(n.href, n.accent)}>{n.label}</a>
                 )}
               </li>
             ))}
@@ -207,12 +212,12 @@ export default function Header() {
               <li key={n.href}>
                 {n.href.startsWith("/") ? (
                   <Link href={n.href} onClick={() => setMobileOpen(false)}
-                    className={`block text-sm transition-colors py-2.5 border-b border-border-subtle/50 ${isActive(n.href) ? "text-accent" : "text-text-secondary hover:text-text-primary"}`}>
+                    className={`block text-sm transition-colors py-2.5 border-b border-border-subtle/50 ${isActive(n.href) ? "text-accent" : n.accent ? "text-accent/80 font-semibold hover:text-accent" : "text-text-secondary hover:text-text-primary"}`}>
                     {n.label}
                   </Link>
                 ) : (
                   <a href={n.href} onClick={() => setMobileOpen(false)}
-                    className={`block text-sm transition-colors py-2.5 border-b border-border-subtle/50 ${isActive(n.href) ? "text-accent" : "text-text-secondary hover:text-text-primary"}`}>
+                    className={`block text-sm transition-colors py-2.5 border-b border-border-subtle/50 ${isActive(n.href) ? "text-accent" : n.accent ? "text-accent/80 font-semibold hover:text-accent" : "text-text-secondary hover:text-text-primary"}`}>
                     {n.label}
                   </a>
                 )}

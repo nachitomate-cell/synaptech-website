@@ -132,9 +132,9 @@ export default function Hero() {
                 className="inline-flex items-center gap-2 bg-accent text-black font-bold text-sm px-7 py-3.5 rounded-lg shadow-lime hover:bg-accent-dim hover:text-white hover:scale-[1.02] transition-all">
                 Diagnóstico Gratis
               </a>
-              <a href="#servicios"
+              <a href="/saas-comercial"
                 className="inline-flex items-center gap-2 text-text-secondary border border-border-subtle px-6 py-3.5 rounded-lg text-sm font-medium hover:border-accent/40 hover:text-text-primary transition-all">
-                Conocer servicios
+                Agenda para barberías
                 <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
                   <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
