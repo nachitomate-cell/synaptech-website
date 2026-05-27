@@ -566,6 +566,94 @@ export default function AgendaProfesionalPage() {
           </div>
         </section>
 
+        {/* ── Precios ── */}
+        <section id="precios" className="py-24 border-t border-border-subtle">
+          <div className="max-w-screen-xl mx-auto px-6 md:px-12">
+            <div className="text-center max-w-xl mx-auto mb-14">
+              <p className="eyebrow mb-5">Precios</p>
+              <h2 className="text-text-primary mb-4">
+                Simple,{" "}
+                <em className="italic text-accent font-display">sin letra chica</em>
+              </h2>
+              <p className="text-text-secondary leading-relaxed">
+                El primer mes es gratis. Sin contratos largos. Cancela cuando quieras.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto mb-10">
+              {/* Mensual */}
+              <div className="rounded-2xl border border-border-subtle bg-bg-primary p-8 flex flex-col gap-5">
+                <div>
+                  <p className="font-mono text-[10px] text-text-muted uppercase tracking-widest mb-1">Suscripción mensual</p>
+                  <h3 className="font-display text-2xl font-bold text-text-primary">Mensual</h3>
+                </div>
+
+                <div className="flex flex-col gap-3">
+                  {[
+                    { period: "1er mes",          price: "$0",           sub: "completamente gratis",   accent: true  },
+                    { period: "2do y 3er mes",     price: "$30.000/mes",  sub: "precio de lanzamiento",  accent: false },
+                    { period: "Desde el 4to mes",  price: "$50.000/mes",  sub: "precio regular",         accent: false },
+                  ].map((row) => (
+                    <div key={row.period} className={`flex items-center justify-between px-4 py-3 rounded-xl border ${row.accent ? "border-accent/30 bg-accent/5" : "border-border-subtle"}`}>
+                      <span className="font-mono text-[11px] text-text-muted">{row.period}</span>
+                      <div className="text-right">
+                        <span className={`font-mono font-semibold text-sm ${row.accent ? "text-accent" : "text-text-primary"}`}>{row.price}</span>
+                        <p className="font-mono text-[9px] text-text-muted mt-0.5">{row.sub}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <ul className="flex flex-col gap-2.5 mt-auto">
+                  {["Todos los módulos incluidos", "Sin costo de implementación", "Cancela cuando quieras"].map((b) => (
+                    <li key={b} className="flex items-start gap-2.5">
+                      <Check />
+                      <span className="text-sm text-text-secondary font-body">{b}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Anual */}
+              <div className="relative rounded-2xl border border-accent/40 bg-accent/5 p-8 flex flex-col gap-5">
+                <div className="absolute -top-3 left-8">
+                  <span className="bg-accent text-black font-mono text-[10px] font-bold px-3 py-1 rounded-full">
+                    🔥 Mejor valor
+                  </span>
+                </div>
+
+                <div>
+                  <p className="font-mono text-[10px] text-text-muted uppercase tracking-widest mb-1">Suscripción anual</p>
+                  <h3 className="font-display text-2xl font-bold text-text-primary">Anual</h3>
+                </div>
+
+                <div>
+                  <p className="font-mono text-3xl font-bold text-accent">$30.000<span className="text-lg font-normal text-text-muted">/mes</span></p>
+                  <p className="font-mono text-[11px] text-text-muted mt-1">todo el año · $360.000 anuales</p>
+                </div>
+
+                <div className="bg-bg-secondary border border-border-subtle rounded-xl px-4 py-3">
+                  <p className="font-mono text-[11px] text-text-muted">vs plan mensual regular</p>
+                  <p className="font-mono text-accent font-semibold text-sm mt-0.5">Ahorra $240.000 al año</p>
+                </div>
+
+                <ul className="flex flex-col gap-2.5 mt-auto">
+                  {["Todos los módulos incluidos", "Sin costo de implementación", "Precio fijo garantizado 12 meses"].map((b) => (
+                    <li key={b} className="flex items-start gap-2.5">
+                      <Check />
+                      <span className="text-sm text-text-secondary font-body">{b}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <p className="font-mono text-[11px] text-text-muted text-center">
+              Precios en CLP + IVA · Un local incluido · Locales adicionales con tarifa especial
+            </p>
+          </div>
+        </section>
+
         {/* ── CTA final ── */}
         <section id="contacto-agenda" className="py-24 border-t border-border-subtle">
           <div className="max-w-screen-xl mx-auto px-6 md:px-12">
