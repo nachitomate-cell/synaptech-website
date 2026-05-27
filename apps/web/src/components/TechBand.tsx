@@ -30,16 +30,6 @@ export default function TechBand() {
           </span>
         ))}
       </div>
-
-      <style>{`
-        @keyframes tech-scroll {
-          from { transform: translateX(0); }
-          to   { transform: translateX(-50%); }
-        }
-        @media (prefers-reduced-motion: reduce) {
-          [style*="tech-scroll"] { animation: none; }
-        }
-      `}</style>
     </div>
   );
 }

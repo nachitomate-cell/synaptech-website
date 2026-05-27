@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import RevealHeading from "./RevealHeading";
+import CalButton from "./CalButton";
 
 const RUBROS = ["Salud", "Retail", "Educación", "Belleza"] as const;
 type Rubro = typeof RUBROS[number];
@@ -134,7 +135,8 @@ export default function Diagnosis() {
                         </li>
                       ))}
                     </ol>
-                    <p className="mt-6 font-mono text-[11px] text-text-muted">
+                    <CalButton />
+                    <p className="mt-4 font-mono text-[11px] text-text-muted">
                       Sin compromiso. Sin venta agresiva.
                     </p>
                   </div>

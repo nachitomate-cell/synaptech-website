@@ -1,7 +1,7 @@
 import { Resend } from "resend";
 import { NextResponse } from "next/server";
 
-const DEST = "hola@synaptech.cl";
+const DEST = process.env.CONTACT_EMAIL ?? "hola@synaptech.cl";
 
 function html(nombre: string, empresa: string, email: string, phone: string, rubro: string, problema: string) {
   return `<!DOCTYPE html>
@@ -106,14 +106,14 @@ export async function POST(request: Request) {
 
   const [internalResult, confirmResult] = await Promise.allSettled([
     resend.emails.send({
-      from: "Synaptech Diagnósticos <onboarding@resend.dev>",
+      from: "Synaptech Diagnósticos <contacto@synaptechspa.cl>",
       to: [DEST],
       replyTo: email,
       subject: `[Diagnóstico] ${rubro} · ${empresa || nombre}`,
       html: html(nombre, empresa || "—", email, phone || "", rubro, problema),
     }),
     resend.emails.send({
-      from: "Synaptech <onboarding@resend.dev>",
+      from: "Synaptech <contacto@synaptechspa.cl>",
       to: [email],
       subject: "Recibimos tu diagnóstico — Synaptech",
       html: confirmHtml(nombre),

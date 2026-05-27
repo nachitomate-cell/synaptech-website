@@ -8,6 +8,7 @@ import { usePathname } from "next/navigation";
 const NAV_MAIN = [
   { label: "Servicios",   href: "#servicios" },
   { label: "Casos",       href: "/casos" },
+  { label: "Blog",        href: "/blog" },
   { label: "Nosotros",    href: "/nosotros" },
   { label: "Contacto",    href: "/contacto" },
 ];

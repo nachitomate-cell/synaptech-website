@@ -5,7 +5,7 @@
       "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
       "outputs": [".next/**", "!.next/cache/**"],
-      "env": ["RESEND_API_KEY"]
+      "env": ["RESEND_API_KEY", "CONTACT_EMAIL", "NEXT_PUBLIC_CAL_LINK", "NEXT_PUBLIC_META_PIXEL_ID", "NEXT_PUBLIC_LINKEDIN_PARTNER_ID"]
     },
     "dev": {
       "cache": false,

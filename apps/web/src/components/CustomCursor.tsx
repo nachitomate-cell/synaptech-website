@@ -61,7 +61,6 @@ export default function CustomCursor() {
         className="fixed pointer-events-none z-[9998] -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full border border-accent/40 hidden md:block transition-[width,height,border-color] duration-150 is-ring"
         style={{ transition: "width 0.15s,height 0.15s,border-color 0.15s" }}
       />
-      <style>{`.is-ring.is-hover{width:3rem!important;height:3rem!important;border-color:rgba(163,230,53,0.8)!important}`}</style>
     </>
   );
 }

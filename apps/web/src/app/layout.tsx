@@ -2,6 +2,12 @@ import type { Metadata } from "next";
 import { Fraunces, DM_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import PageTransition from "@/components/PageTransition";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import WhatsAppButton from "@/components/WhatsAppButton";
+import ExitIntentPopup from "@/components/ExitIntentPopup";
+import SocialProofToast from "@/components/SocialProofToast";
+import TrackingScripts from "@/components/TrackingScripts";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -121,6 +127,12 @@ export default function RootLayout({
         className={`${fraunces.variable} ${dmSans.variable} ${jetbrains.variable} font-body bg-bg-primary text-text-primary antialiased`}
       >
         <PageTransition>{children}</PageTransition>
+        <WhatsAppButton />
+        <ExitIntentPopup />
+        <SocialProofToast />
+        <TrackingScripts />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

@@ -1,8 +1,8 @@
 import Image from "next/image";
 
 const LINKS = {
-  "Empresa":   [{ l: "Servicios", h: "#servicios" }, { l: "Metodología", h: "#proceso" }, { l: "Casos de éxito", h: "/casos" }, { l: "Nosotros", h: "/nosotros" }],
-  "Recursos":  [{ l: "Diagnóstico Gratis", h: "#diagnostico" }, { l: "Precios", h: "#inversion" }, { l: "FAQ", h: "#faq" }],
+  "Empresa":   [{ l: "Servicios", h: "#servicios" }, { l: "Metodología", h: "#metodologia" }, { l: "Casos de éxito", h: "/casos" }, { l: "Nosotros", h: "/nosotros" }],
+  "Recursos":  [{ l: "Blog", h: "/blog" }, { l: "Diagnóstico Gratis", h: "#diagnostico" }, { l: "Precios", h: "#inversion" }, { l: "FAQ", h: "#faq" }],
   "Contacto":  [
     { l: "hola@synaptech.cl", h: "mailto:hola@synaptech.cl" },
     { l: "+569 83568212", h: "tel:+56983568212" },

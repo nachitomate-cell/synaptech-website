@@ -1,7 +1,7 @@
 import { Resend } from "resend";
 import { NextResponse } from "next/server";
 
-const DEST = "hola@synaptech.cl";
+const DEST = process.env.CONTACT_EMAIL ?? "hola@synaptech.cl";
 
 function html(nombre: string, empresa: string, email: string, phone: string, msg: string) {
   return `<!DOCTYPE html>
@@ -66,7 +66,7 @@ export async function POST(request: Request) {
   }
 
   const { error } = await resend.emails.send({
-    from: "Synaptech Contacto <onboarding@resend.dev>",
+    from: "Synaptech Contacto <contacto@synaptechspa.cl>",
     to: [DEST],
     replyTo: email,
     subject: `[Contacto] ${empresa ? empresa + " · " : ""}${nombre}`,
