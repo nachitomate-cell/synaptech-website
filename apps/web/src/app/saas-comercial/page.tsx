@@ -464,7 +464,7 @@ export default function AgendaProfesionalPage() {
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="font-mono text-[11px] text-text-muted uppercase tracking-wider">
-                        Agenda Pro
+                        Tu Barbería
                       </p>
                     </div>
                     <div className="flex items-center gap-2 shrink-0">
