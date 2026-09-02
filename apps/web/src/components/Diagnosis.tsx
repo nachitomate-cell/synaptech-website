@@ -41,7 +41,7 @@ export default function Diagnosis() {
       if (!res.ok) throw new Error();
       setDone(true);
     } catch {
-      setErrMsg("Hubo un error al enviar. Escríbenos directamente a hola@synaptech.cl");
+      setErrMsg("Hubo un error al enviar. Escríbenos directamente a hola@synaptechspa.cl");
     } finally {
       setLoading(false);
     }

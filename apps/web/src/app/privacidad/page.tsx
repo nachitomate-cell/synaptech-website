@@ -25,7 +25,7 @@ export default function Privacidad() {
             <h2 className="font-display text-lg font-semibold text-text-primary mb-3">1. Responsable del tratamiento</h2>
             <p>
               Synaptech SpA, RUT 78402009-6, con domicilio en Viña del Mar, Región de Valparaíso, Chile.
-              Correo de contacto: <a href="mailto:hola@synaptech.cl" className="text-accent hover:underline">hola@synaptech.cl</a>.
+              Correo de contacto: <a href="mailto:hola@synaptechspa.cl" className="text-accent hover:underline">hola@synaptechspa.cl</a>.
             </p>
           </section>
 
@@ -73,7 +73,7 @@ export default function Privacidad() {
             <p>
               De acuerdo con la Ley 19.628, tienes derecho a acceder, rectificar, cancelar u oponerte
               al tratamiento de tus datos personales. Para ejercer estos derechos escríbenos a{" "}
-              <a href="mailto:hola@synaptech.cl" className="text-accent hover:underline">hola@synaptech.cl</a>.
+              <a href="mailto:hola@synaptechspa.cl" className="text-accent hover:underline">hola@synaptechspa.cl</a>.
             </p>
           </section>
 

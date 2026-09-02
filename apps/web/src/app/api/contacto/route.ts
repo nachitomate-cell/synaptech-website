@@ -1,7 +1,7 @@
 import { Resend } from "resend";
 import { NextResponse } from "next/server";
 
-const DEST = process.env.CONTACT_EMAIL ?? "hola@synaptech.cl";
+const DEST = process.env.CONTACT_EMAIL ?? "hola@synaptechspa.cl";
 
 function html(nombre: string, empresa: string, email: string, phone: string, msg: string) {
   return `<!DOCTYPE html>
