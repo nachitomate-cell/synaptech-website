@@ -179,7 +179,7 @@ export default function Header() {
         {/* Desktop CTAs */}
         <div className="hidden md:flex items-center gap-4 shrink-0">
           <a
-            href="mailto:hola@synaptech.cl?subject=Acceso%20Clientes"
+            href="mailto:hola@synaptechspa.cl?subject=Acceso%20Clientes"
             className="font-mono text-xs text-text-muted hover:text-accent transition-colors whitespace-nowrap"
           >
             Acceso Clientes

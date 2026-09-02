@@ -1,7 +1,7 @@
 import { Resend } from "resend";
 import { NextResponse } from "next/server";
 
-const DEST = process.env.CONTACT_EMAIL ?? "hola@synaptech.cl";
+const DEST = process.env.CONTACT_EMAIL ?? "hola@synaptechspa.cl";
 
 function html(nombre: string, empresa: string, email: string, phone: string, rubro: string, problema: string) {
   return `<!DOCTYPE html>
@@ -78,7 +78,7 @@ function confirmHtml(nombre: string) {
     </a>
 
     <p style="margin:32px 0 0;font-size:11px;color:#52525b;">
-      Synaptech SpA · Viña del Mar, Chile · <a href="mailto:hola@synaptech.cl" style="color:#a3e635;text-decoration:none;">hola@synaptech.cl</a>
+      Synaptech SpA · Viña del Mar, Chile · <a href="mailto:hola@synaptechspa.cl" style="color:#a3e635;text-decoration:none;">hola@synaptechspa.cl</a>
     </p>
   </div>
 </body>

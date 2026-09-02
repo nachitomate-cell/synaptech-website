@@ -77,7 +77,7 @@ export default function Terminos() {
             <h2 className="font-display text-lg font-semibold text-text-primary mb-3">7. Contacto</h2>
             <p>
               Para cualquier consulta relacionada con estos términos, escríbenos a{" "}
-              <a href="mailto:hola@synaptech.cl" className="text-accent hover:underline">hola@synaptech.cl</a>.
+              <a href="mailto:hola@synaptechspa.cl" className="text-accent hover:underline">hola@synaptechspa.cl</a>.
             </p>
           </section>
         </div>

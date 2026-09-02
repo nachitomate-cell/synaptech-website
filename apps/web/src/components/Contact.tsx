@@ -29,7 +29,7 @@ export default function Contact() {
       if (!res.ok) throw new Error();
       setSent(true);
     } catch {
-      setErrMsg("Hubo un error al enviar. Escríbenos directamente a hola@synaptech.cl");
+      setErrMsg("Hubo un error al enviar. Escríbenos directamente a hola@synaptechspa.cl");
     } finally {
       setLoading(false);
     }
@@ -122,7 +122,7 @@ export default function Contact() {
             {/* Contact info */}
             <div className="flex flex-col gap-5">
               {[
-                { label: "Email", value: "hola@synaptech.cl", href: "mailto:hola@synaptech.cl" },
+                { label: "Email", value: "hola@synaptechspa.cl", href: "mailto:hola@synaptechspa.cl" },
                 { label: "WhatsApp", value: "+569 83568212", href: "https://wa.me/56983568212" },
                 { label: "Ubicación", value: "Viña del Mar, Chile" },
               ].map(item => (
