@@ -31,11 +31,18 @@ const jetbrains = JetBrains_Mono({
   display: "swap",
 });
 
+/* Posicionamiento: SynapTech es un PRODUCTO SaaS por suscripción, no una
+   agencia. El title/description anteriores ("software a medida") hicieron que
+   Google for Startups nos clasificara como consultora (07-09-2026). */
+const SITE_TITLE =
+  "SynapTech | Agenda online, club de fidelidad y asistente IA por WhatsApp para barberías y salones";
+const SITE_DESC =
+  "Plataforma SaaS por suscripción para barberías y salones en Chile: reservas online 24/7, club de fidelidad con sellos y premios, y un asistente con IA que responde y agenda por WhatsApp. Desde $29.900 + IVA al mes, sin comisiones por cita.";
+
 export const metadata: Metadata = {
-  title: "SynapTech SpA | Desarrollo de Software a Medida y Soluciones Digitales",
-  description:
-    "Desarrollamos software a medida, portales clínicos, sistemas de fidelización y plataformas SaaS para transformar la operación de tu negocio en un flujo digital eficiente.",
-  keywords: ["software a medida Chile", "desarrollo web Viña del Mar", "agencia software B2B chile", "HealthTech DICOM", "fidelización Google Wallet", "PWA educación", "automatización pagos Webpay", "barbería reservas online"],
+  title: SITE_TITLE,
+  description: SITE_DESC,
+  keywords: ["agenda online barbería", "software para barberías Chile", "reservas online peluquería", "club de fidelidad barbería", "asistente IA WhatsApp reservas", "SaaS barberías", "agenda para salones de belleza", "fidelización Google Wallet"],
   alternates: { canonical: "https://synaptechspa.cl" },
   icons: {
     icon: [
@@ -51,15 +58,15 @@ export const metadata: Metadata = {
     type: "website",
     locale: "es_CL",
     url: "https://synaptechspa.cl",
-    siteName: "SynapTech SpA",
-    title: "SynapTech SpA | Desarrollo de Software a Medida y Soluciones Digitales",
-    description: "Desarrollamos software a medida, portales clínicos, sistemas de fidelización y plataformas SaaS para transformar la operación de tu negocio en un flujo digital eficiente.",
-    images: [{ url: "https://synaptechspa.cl/og-image.png", width: 1200, height: 630, alt: "SynapTech SpA — Agencia de software Chile" }],
+    siteName: "SynapTech",
+    title: SITE_TITLE,
+    description: SITE_DESC,
+    images: [{ url: "https://synaptechspa.cl/og-image.png", width: 1200, height: 630, alt: "SynapTech — plataforma SaaS para barberías y salones" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "SynapTech SpA | Desarrollo de Software a Medida y Soluciones Digitales",
-    description: "Desarrollamos software a medida, portales clínicos, sistemas de fidelización y plataformas SaaS para transformar la operación de tu negocio en un flujo digital eficiente.",
+    title: SITE_TITLE,
+    description: SITE_DESC,
     images: ["https://synaptechspa.cl/og-image.png"],
   },
   other: {
@@ -78,10 +85,11 @@ export default function RootLayout({
     "@graph": [
       {
         "@type": "Organization",
-        name: "Synaptech SpA",
+        "@id": "https://synaptechspa.cl/#org",
+        name: "SynapTech",
         url: "https://synaptechspa.cl",
         logo: "https://synaptechspa.cl/assets/synaptech-icon.png",
-        description: "Agencia chilena de software a medida, IA y automatización para empresas B2B.",
+        description: "Empresa chilena de software. Desarrolla SynapTech, la plataforma SaaS de agenda online, fidelización y asistente con IA para barberías y salones.",
         address: {
           "@type": "PostalAddress",
           addressLocality: "Viña del Mar",
@@ -95,22 +103,22 @@ export default function RootLayout({
         sameAs: ["https://www.instagram.com/synaptechspa"],
       },
       {
-        "@type": "LocalBusiness",
-        name: "Synaptech SpA",
+        "@type": "SoftwareApplication",
+        "@id": "https://synaptechspa.cl/#app",
+        name: "SynapTech",
         url: "https://synaptechspa.cl",
-        "@id": "https://synaptechspa.cl/#business",
-        description: "Desarrollo de software a medida, inteligencia artificial y automatización para empresas B2B en Chile.",
-        address: {
-          "@type": "PostalAddress",
-          addressLocality: "Viña del Mar",
-          addressRegion: "Valparaíso",
-          postalCode: "2520000",
-          addressCountry: "CL",
-        },
-        email: "hola@synaptechspa.cl",
-        telephone: "+56983568212",
-        priceRange: "$$$",
+        applicationCategory: "BusinessApplication",
+        operatingSystem: "Web",
+        description: SITE_DESC,
+        publisher: { "@id": "https://synaptechspa.cl/#org" },
         areaServed: "CL",
+        // Lista pública oficial (netos + IVA, por local). Misma fuente que la
+        // sección de precios de la home: cambiar allá y acá juntos.
+        offers: [
+          { "@type": "Offer", name: "Básico", price: "29900", priceCurrency: "CLP", url: "https://crea.synaptechspa.cl/" },
+          { "@type": "Offer", name: "Pro",    price: "49900", priceCurrency: "CLP", url: "https://crea.synaptechspa.cl/" },
+          { "@type": "Offer", name: "Full",   price: "69900", priceCurrency: "CLP", url: "https://crea.synaptechspa.cl/" },
+        ],
       },
     ],
   };

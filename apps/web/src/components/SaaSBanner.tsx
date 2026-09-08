@@ -16,7 +16,7 @@ export default function SaaSBanner() {
             <span className="font-mono text-[10px] text-border-subtle">·</span>
             <span className="text-sm font-semibold text-text-primary">Agenda Profesional para Barberías</span>
             <span className="hidden sm:inline font-mono text-[10px] text-border-subtle">—</span>
-            <span className="hidden sm:inline font-mono text-[11px] text-text-muted">1.341 clientes · 12 locales · 1er mes gratis</span>
+            <span className="hidden sm:inline font-mono text-[11px] text-text-muted">+60 locales · +21.000 clientes · 14 días gratis</span>
           </div>
         </div>
 

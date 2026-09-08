@@ -7,17 +7,23 @@ import NeuralCanvas from "./NeuralCanvas";
 function AnimatedCount({ value }: { value: string }) {
   const ref   = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true });
-  const [display, setDisplay] = useState("0");
+  // Arranca con el valor real: el HTML del servidor (y quien lea sin JS) ve la
+  // cifra, no un "0". La animación 0 → valor corre cuando entra en pantalla.
+  const [display, setDisplay] = useState(value);
 
   useEffect(() => {
     if (!inView) return;
     const num    = parseInt(value.replace(/\D/g, ""), 10);
     const prefix = value.match(/^\D*/)?.[0]  ?? "";
     const suffix = value.match(/\D+$/)?.[0]  ?? "";
+    // Miles con punto (es-CL): 21000 → "21.000". Sin Intl para no arriesgar
+    // diferencias entre servidor y cliente.
+    const miles  = (n: number) => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     const ctrl   = animate(0, num, {
       duration: 1.6,
       ease: [0.16, 1, 0.3, 1],
-      onUpdate: (v) => setDisplay(`${prefix}${Math.round(v)}${suffix}`),
+      onUpdate: (v) => setDisplay(`${prefix}${miles(Math.round(v))}${suffix}`),
+      onComplete: () => setDisplay(value),
     });
     return ctrl.stop;
   }, [inView, value]);
@@ -26,16 +32,25 @@ function AnimatedCount({ value }: { value: string }) {
 }
 
 const WORDS: { text: string; delay: number; accent: boolean }[] = [
-  { text: "Tecnología", delay: 0.05, accent: false },
-  { text: "con",        delay: 0.13, accent: false },
-  { text: "Alma",       delay: 0.21, accent: true  },
-  { text: "Digital",    delay: 0.29, accent: false },
+  { text: "Agenda,",      delay: 0.05, accent: false },
+  { text: "fidelización", delay: 0.12, accent: false },
+  { text: "y",            delay: 0.19, accent: false },
+  { text: "WhatsApp",     delay: 0.26, accent: false },
+  { text: "con",          delay: 0.33, accent: false },
+  { text: "IA",           delay: 0.40, accent: true  },
+  { text: "para",         delay: 0.47, accent: false },
+  { text: "barberías",    delay: 0.54, accent: false },
+  { text: "y",            delay: 0.61, accent: false },
+  { text: "salones.",     delay: 0.68, accent: false },
 ];
 
+/* Cifras reales de la plataforma, contadas en Firestore el 08-09-2026
+   (64 locales configurados · 21.725 fichas de clientes · 8.626 citas).
+   Se redondean hacia abajo; si cambian mucho, volver a contar antes de tocar. */
 const METRICS = [
-  { value: "+5",   label: "proyectos\nentregados" },
-  { value: "100%", label: "en\nproducción"        },
-  { value: "4",    label: "industrias\natendidas"  },
+  { value: "+60",     label: "locales en la\nplataforma"   },
+  { value: "+21.000", label: "clientes\nregistrados"       },
+  { value: "+8.000",  label: "citas\ngestionadas"          },
 ];
 
 const rise = (delay = 0) => ({
@@ -101,11 +116,13 @@ export default function Hero() {
           {/* Left: copy */}
           <div>
             <motion.p {...rise(0)} className="eyebrow mb-7">
-              Viña del Mar · Chile · Software B2B
+              Plataforma SaaS · Barberías y salones · Chile
             </motion.p>
 
             {/* Word-by-word blur reveal */}
-            <h1 className="text-text-primary mb-8">
+            {/* Titular largo (10 palabras): un escalón más chico que el h1
+                global para que el subtítulo y el CTA queden sobre el fold. */}
+            <h1 className="text-text-primary mb-8 !text-[clamp(2.6rem,5.6vw,4.9rem)]">
               {WORDS.map((w) => (
                 <motion.span
                   key={w.text}
@@ -123,18 +140,20 @@ export default function Hero() {
 
             <motion.p {...rise(0.36)}
               className="text-text-secondary text-lg md:text-xl leading-relaxed max-w-xl mb-10 font-body">
-              Desarrollamos software a medida, IA y automatización para clínicas,
-              retail, educación y belleza. Operaciones inteligentes desde el primer día.
+              SynapTech es una plataforma por suscripción: reservas online 24/7 con tu
+              propia página, club de fidelidad con sellos y premios, y un asistente con IA
+              que responde y agenda por WhatsApp, incluido en el plan Pro. Un precio por
+              local, sin comisiones por cita.
             </motion.p>
 
             <motion.div {...rise(0.46)} className="flex flex-wrap gap-4">
-              <a href="#diagnostico"
+              <a href="https://crea.synaptechspa.cl/?ref=home-hero"
                 className="inline-flex items-center gap-2 bg-accent text-black font-bold text-sm px-7 py-3.5 rounded-lg shadow-lime hover:bg-accent-dim hover:text-white hover:scale-[1.02] transition-all">
-                Diagnóstico Gratis
+                Prueba gratis 14 días
               </a>
-              <a href="/saas-comercial"
+              <a href="#precios"
                 className="inline-flex items-center gap-2 text-text-secondary border border-border-subtle px-6 py-3.5 rounded-lg text-sm font-medium hover:border-accent/40 hover:text-text-primary transition-all">
-                Agenda para barberías
+                Ver planes y precios
                 <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
                   <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
