@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const LINKS = {
   "Empresa":   [{ l: "Servicios", h: "#servicios" }, { l: "Metodología", h: "#metodologia" }, { l: "Casos de éxito", h: "/casos" }, { l: "Nosotros", h: "/nosotros" }],
-  "Recursos":  [{ l: "Blog", h: "/blog" }, { l: "Diagnóstico Gratis", h: "#diagnostico" }, { l: "Precios", h: "#inversion" }, { l: "FAQ", h: "#faq" }],
+  "Recursos":  [{ l: "Blog", h: "/blog" }, { l: "Diagnóstico Gratis", h: "#diagnostico" }, { l: "Precios", h: "#precios" }, { l: "FAQ", h: "#faq" }],
   "Contacto":  [
     { l: "hola@synaptechspa.cl", h: "mailto:hola@synaptechspa.cl" },
     { l: "+569 83568212", h: "tel:+56983568212" },
@@ -25,8 +25,8 @@ export default function Footer() {
               <span className="font-mono font-semibold text-[17px] text-text-primary">synaptech</span>
             </div>
             <p className="font-mono text-xs text-text-muted leading-relaxed max-w-xs">
-              Tecnología con Alma Digital. Agencia chilena de software a medida,
-              IA y automatización para empresas B2B.
+              Plataforma SaaS chilena de agenda online, fidelización y
+              asistente con IA para barberías y salones.
             </p>
             <div className="flex gap-3 mt-2">
               <a href="https://wa.me/56983568212" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"

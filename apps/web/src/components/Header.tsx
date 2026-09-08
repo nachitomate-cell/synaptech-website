@@ -6,7 +6,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 const NAV_MAIN = [
-  { label: "Servicios",   href: "#servicios" },
+  { label: "Precios",     href: "#precios" },
   { label: "Barberías",   href: "/saas-comercial", accent: true },
   { label: "Casos",       href: "/casos" },
   { label: "Blog",        href: "/blog" },
