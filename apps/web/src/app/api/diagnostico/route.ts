@@ -11,7 +11,7 @@ function html(nombre: string, empresa: string, email: string, phone: string, rub
   <div style="max-width:560px;margin:32px auto;padding:40px 36px;background:#111113;border:1px solid #27272a;border-radius:16px;">
     <div style="display:flex;align-items:center;gap:10px;margin-bottom:32px;">
       <span style="font-size:20px;font-weight:700;letter-spacing:-0.5px;color:#fafafa;">synaptech</span>
-      <span style="font-size:11px;color:#a3e635;background:rgba(163,230,53,0.12);border:1px solid rgba(163,230,53,0.3);padding:2px 8px;border-radius:99px;font-weight:600;">nuevo diagnóstico</span>
+      <span style="font-size:11px;color:#a3e635;background:rgba(163,230,53,0.12);border:1px solid rgba(163,230,53,0.3);padding:2px 8px;border-radius:99px;font-weight:600;">nuevo lead</span>
     </div>
 
     <h2 style="margin:0 0 24px;font-size:22px;font-weight:700;color:#fafafa;">
@@ -36,7 +36,7 @@ function html(nombre: string, empresa: string, email: string, phone: string, rub
     <div style="margin-top:32px;padding:20px;background:rgba(163,230,53,0.06);border:1px solid rgba(163,230,53,0.2);border-radius:10px;">
       <p style="margin:0;font-size:12px;color:#a3a3a3;">
         Responde a este email directamente para contactar a <strong style="color:#fafafa;">${nombre}</strong>.<br>
-        Recuerda enviar propuesta en <strong style="color:#a3e635;">menos de 48 horas hábiles</strong>.
+        Responde dentro del día hábil para dejarle el local andando.
       </p>
     </div>
   </div>
@@ -55,17 +55,17 @@ function confirmHtml(nombre: string) {
     </div>
 
     <h2 style="margin:0 0 16px;font-size:22px;font-weight:700;color:#fafafa;">
-      Recibimos tu diagnóstico, ${nombre.split(" ")[0]}
+      Recibimos tus datos, ${nombre.split(" ")[0]}
     </h2>
     <p style="margin:0 0 24px;font-size:15px;color:#a1a1aa;line-height:1.6;">
-      Gracias por contactarnos. Esto es lo que pasa ahora:
+      Gracias por escribirnos. Esto es lo que pasa ahora:
     </p>
 
     <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:32px;">
       ${[
-        ["1", "Te contactaremos en menos de 48 horas hábiles con una propuesta inicial y alcance estimado."],
-        ["2", "Si hay encaje, agendamos una llamada de 30 minutos para profundizar en tu proyecto."],
-        ["3", "Sin compromiso. Sin venta agresiva. Si no es el momento, quedas en nuestra lista para retomar cuando corresponda."],
+        ["1", "Te escribimos dentro del día hábil para dejar tu local andando: cargamos tus servicios, tu equipo y tus horarios."],
+        ["2", "Pruebas la plataforma con tus datos reales, sin costo y sin tarjeta."],
+        ["3", "Si te sirve, eliges plan. Si no, no pasa nada: no pedimos tarjeta para probar."],
       ].map(([num, text]) => `
       <div style="display:flex;align-items:flex-start;gap:14px;">
         <div style="min-width:28px;height:28px;background:rgba(163,230,53,0.12);border:1px solid rgba(163,230,53,0.35);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#a3e635;font-family:monospace;">${num}</div>
@@ -73,8 +73,8 @@ function confirmHtml(nombre: string) {
       </div>`).join("")}
     </div>
 
-    <a href="https://synaptechspa.cl/casos" style="display:inline-block;background:#a3e635;color:#09090b;font-weight:700;font-size:13px;padding:12px 24px;border-radius:8px;text-decoration:none;">
-      Conoce nuestros proyectos →
+    <a href="https://crea.synaptechspa.cl" style="display:inline-block;background:#a3e635;color:#09090b;font-weight:700;font-size:13px;padding:12px 24px;border-radius:8px;text-decoration:none;">
+      Empieza tu prueba →
     </a>
 
     <p style="margin:32px 0 0;font-size:11px;color:#52525b;">
@@ -115,7 +115,7 @@ export async function POST(request: Request) {
     resend.emails.send({
       from: "Synaptech <contacto@synaptechspa.cl>",
       to: [email],
-      subject: "Recibimos tu diagnóstico — Synaptech",
+      subject: "Recibimos tus datos — SynapTech",
       html: confirmHtml(nombre),
     }),
   ]);
