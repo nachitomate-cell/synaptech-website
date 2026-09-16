@@ -1,0 +1,67 @@
+"use client";
+import Image from "next/image";
+
+/* Locales reales operando sobre la plataforma. El criterio para entrar acá no es
+   "es cliente", es ACTIVIDAD MEDIDA: citas agendadas en los últimos 30 días
+   (consultado en Firestore el 16-09-2026). Si un local se apaga, sale de la
+   lista — un carrusel de logos que incluye locales muertos es prueba social
+   falsa y se nota.
+
+       INFINITY STUDIO   400 citas
+       AURA Salón        400
+       D'Jones Barber    372
+       Sion Barbería     283
+       Latin Caribe      175
+
+   Los logos salen del propio repo de la plataforma, que es donde cada local
+   tiene su marca cargada. */
+const LOCALES = [
+  { nombre: "INFINITY STUDIO",  img: "/locales/infinity.png"    },
+  { nombre: "AURA Salón",       img: "/locales/aura.png"        },
+  { nombre: "D'Jones Barber",   img: "/locales/djones.png"      },
+  { nombre: "Sion Barbería",    img: "/locales/sion.png"        },
+  { nombre: "Latin Caribe",     img: "/locales/latincaribe.png" },
+];
+
+function Fila({ ariaHidden = false }: { ariaHidden?: boolean }) {
+  return (
+    <ul
+      className="flex items-center gap-14 shrink-0 m-0 p-0 list-none animate-marquee"
+      aria-hidden={ariaHidden || undefined}
+    >
+      {LOCALES.map((l) => (
+        <li key={l.nombre} className="shrink-0">
+          <div
+            className="relative w-[120px] h-[60px] opacity-60 hover:opacity-100 transition-opacity duration-300"
+            title={l.nombre}
+          >
+            <Image
+              src={l.img}
+              alt={l.nombre}
+              fill
+              sizes="120px"
+              className="object-contain"
+            />
+          </div>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+export default function LogosLocales() {
+  return (
+    <section className="py-14 border-t border-border-subtle overflow-hidden">
+      <div className="max-w-screen-xl mx-auto px-6 md:px-12">
+        <p className="eyebrow mb-8 text-center">Locales que ya la usan</p>
+
+        {/* Dos filas idénticas en secuencia: cuando la primera termina su
+            recorrido, la segunda ya está en posición y el loop no salta. */}
+        <div className="relative flex gap-14 [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]">
+          <Fila />
+          <Fila ariaHidden />
+        </div>
+      </div>
+    </section>
+  );
+}

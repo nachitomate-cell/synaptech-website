@@ -3,6 +3,7 @@ import Hero         from "@/components/Hero";
 import SaaSBanner   from "@/components/SaaSBanner";
 import Services     from "@/components/Services";
 import TechBand     from "@/components/TechBand";
+import LogosLocales from "@/components/LogosLocales";
 import Testimonials from "@/components/Testimonials";
 import Diagnosis    from "@/components/Diagnosis";
 import Pricing      from "@/components/Pricing";
@@ -22,6 +23,7 @@ export default function Home() {
         <SaaSBanner />
         <Services />
         <TechBand />
+        <LogosLocales />
         <Testimonials />
         <Diagnosis />
         <Pricing />
