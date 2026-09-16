@@ -144,7 +144,7 @@ export default function CasoPage({ params }: Props) {
                 href="/#diagnostico"
                 className="block w-full text-center bg-accent text-black font-bold text-sm px-5 py-3 rounded-lg hover:bg-accent-dim hover:text-white transition-all shadow-lime"
               >
-                Diagnóstico Gratis
+                Pruébala gratis
               </a>
             </div>
           </aside>

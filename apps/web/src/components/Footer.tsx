@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const LINKS = {
   "Empresa":   [{ l: "La plataforma", h: "#servicios" }, { l: "Precios", h: "#precios" }, { l: "Nosotros", h: "/nosotros" }],
-  "Recursos":  [{ l: "Blog", h: "/blog" }, { l: "Diagnóstico Gratis", h: "#diagnostico" }, { l: "Precios", h: "#precios" }, { l: "FAQ", h: "#faq" }],
+  "Recursos":  [{ l: "Blog", h: "/blog" }, { l: "Pruébala gratis", h: "#diagnostico" }, { l: "Precios", h: "#precios" }, { l: "FAQ", h: "#faq" }],
   "Contacto":  [
     { l: "hola@synaptechspa.cl", h: "mailto:hola@synaptechspa.cl" },
     { l: "+569 83568212", h: "tel:+56983568212" },

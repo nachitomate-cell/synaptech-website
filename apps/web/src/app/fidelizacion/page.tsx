@@ -421,7 +421,7 @@ export default function FidelizacionPage() {
                   Te mostramos el sistema funcionando con los datos de tu negocio. Sin contratos largos, sin letra chica. Si no hay encaje, te lo decimos de frente.
                 </p>
                 <a href="/#diagnostico" className="inline-flex items-center gap-2 bg-accent text-black font-bold text-sm px-8 py-4 rounded-lg shadow-lime hover:bg-accent-dim hover:text-white hover:scale-[1.02] transition-all">
-                  Solicitar Diagnóstico Gratis
+                  Pruébala gratis
                   <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
                     <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
