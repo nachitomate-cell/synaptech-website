@@ -32,7 +32,7 @@ export default function Terminos() {
           <section>
             <h2 className="font-display text-lg font-semibold text-text-primary mb-3">2. Descripción del servicio</h2>
             <p>
-              Synaptech SpA es una empresa chilena de desarrollo de software a medida, inteligencia
+              Synaptech SpA es una empresa chilena de tecnología que desarrolla y opera una plataforma SaaS de agenda, fidelización, cobros e inteligencia
               artificial y automatización de procesos para empresas B2B. Este sitio web tiene como
               propósito presentar nuestros servicios y facilitar el contacto inicial con potenciales clientes.
             </p>
@@ -41,7 +41,7 @@ export default function Terminos() {
           <section>
             <h2 className="font-display text-lg font-semibold text-text-primary mb-3">3. Uso del sitio</h2>
             <p>
-              El contenido de este sitio es de carácter informativo. El diagnóstico gratuito es una
+              El contenido de este sitio es de carácter informativo. La prueba sin costo es una
               herramienta de evaluación preliminar y no constituye compromiso contractual de ninguna
               parte. Cualquier acuerdo de servicios debe formalizarse mediante contrato escrito.
             </p>

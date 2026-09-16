@@ -4,7 +4,7 @@ import { BLOG_POSTS } from "@/content/blog";
 
 export const metadata: Metadata = {
   title: "Blog — Software, IA y Automatización | SynapTech SpA",
-  description: "Artículos sobre desarrollo de software a medida, automatización y transformación digital para empresas en Chile.",
+  description: "Artículos sobre agenda online, fidelización, cobros y asistentes con IA para barberías, salones y centros de estética en Chile.",
   alternates: { canonical: "https://synaptechspa.cl/blog" },
 };
 
@@ -26,7 +26,7 @@ export default function BlogPage() {
             negocios.
           </h1>
           <p className="mt-5 text-text-secondary text-lg max-w-xl leading-relaxed font-body">
-            Artículos sobre software a medida, automatización e inteligencia artificial
+            Artículos sobre agenda, fidelización, cobros e inteligencia artificial
             aplicada a empresas B2B en Chile.
           </p>
         </div>
