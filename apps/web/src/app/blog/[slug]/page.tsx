@@ -138,7 +138,7 @@ export default function BlogPostPage({ params }: Props) {
                 href="/#diagnostico"
                 className="block text-center bg-accent text-black font-bold text-xs px-5 py-3 rounded-lg hover:bg-accent-dim hover:text-white transition-all"
               >
-                Diagnóstico Gratis
+                Pruébala gratis
               </a>
             </div>
           </aside>

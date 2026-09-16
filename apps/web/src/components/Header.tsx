@@ -15,17 +15,12 @@ const NAV_MAIN = [
 
 const NAV_PRODUCTS = [
   {
-    label: "Portales Clínicos",
-    href: "/portales-clinicos",
-    desc: "Gestión médica y portal de pacientes",
-  },
-  {
-    label: "SaaS Comercial",
+    label: "Agenda y asistente IA",
     href: "/saas-comercial",
-    desc: "Reservas, agenda y gestión de clientes",
+    desc: "Reservas 24/7 y atención por WhatsApp",
   },
   {
-    label: "Fidelización de Clientes",
+    label: "Club de fidelización",
     href: "/fidelizacion",
     desc: "Sellos digitales, premios y Google Wallet",
   },
@@ -166,7 +161,7 @@ export default function Header() {
                   <div className="h-px mx-4 mb-3 mt-1" style={{ background: "linear-gradient(90deg, transparent, rgba(163,230,53,0.3), transparent)" }} />
                   <div className="px-4 pb-3">
                     <span className="font-mono text-[10px] text-text-muted/50 uppercase tracking-widest">
-                      Plataformas SynapTech
+                      La plataforma SynapTech
                     </span>
                   </div>
                 </div>
@@ -187,7 +182,7 @@ export default function Header() {
             href="#diagnostico"
             className="bg-accent text-black font-bold text-xs px-5 py-2.5 rounded-lg hover:bg-accent-dim hover:text-white hover:scale-[1.02] transition-all shadow-[0_0_18px_rgba(163,230,53,0.2)] whitespace-nowrap"
           >
-            Diagnóstico Gratis
+            Pruébala gratis
           </a>
         </div>
 
@@ -246,7 +241,7 @@ export default function Header() {
             <li className="mt-3">
               <a href="#diagnostico" onClick={() => setMobileOpen(false)}
                 className="block bg-accent text-black font-bold text-sm px-5 py-3 rounded-lg text-center">
-                Diagnóstico Gratis
+                Pruébala gratis
               </a>
             </li>
           </ul>
