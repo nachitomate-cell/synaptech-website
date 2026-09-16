@@ -362,9 +362,9 @@ export default function PortalesClinicosPage() {
                   <em className="italic text-accent font-display">en 48 horas</em>
                 </h2>
                 <p className="text-text-secondary max-w-md mx-auto mb-10 leading-relaxed">
-                  Analizamos tu operación actual, identificamos los cuellos de botella y te entregamos una propuesta con alcance y rango de inversión — sin costo y sin compromiso.
+                  Prueba la plataforma con tus datos reales: agenda, fichas, recordatorios y cobros andando. Sin costo y sin tarjeta.
                 </p>
-                <a href="/#diagnostico" className="inline-flex items-center gap-2 bg-accent text-black font-bold text-sm px-8 py-4 rounded-lg shadow-lime hover:bg-accent-dim hover:text-white hover:scale-[1.02] transition-all">
+                <a href="https://empieza.synaptechspa.cl" className="inline-flex items-center gap-2 bg-accent text-black font-bold text-sm px-8 py-4 rounded-lg shadow-lime hover:bg-accent-dim hover:text-white hover:scale-[1.02] transition-all">
                   Solicitar Diagnóstico Gratis
                   <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
                     <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round"/>

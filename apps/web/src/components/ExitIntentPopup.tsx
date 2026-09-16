@@ -67,11 +67,11 @@ export default function ExitIntentPopup() {
               <em className="italic text-accent">gratuito</em>?
             </p>
             <p className="text-text-secondary text-sm leading-relaxed mb-6">
-              En 2 minutos descubrimos qué tecnología necesita tu empresa y te enviamos una propuesta en 48 horas hábiles — sin costo y sin compromiso.
+              Deja tu local andando en minutos: agenda, club de fidelidad y asistente por WhatsApp. Sin costo y sin tarjeta.
             </p>
 
             <a
-              href="/#diagnostico"
+              href="https://empieza.synaptechspa.cl"
               onClick={close}
               className="block w-full text-center bg-accent text-black font-bold text-sm px-6 py-3.5 rounded-lg
                 hover:bg-accent-dim hover:text-white transition-all shadow-lime"

@@ -96,13 +96,13 @@ export default function CasosPage() {
 
         {/* CTA */}
         <div className="mt-20 text-center border border-border-subtle rounded-2xl p-12 bg-bg-secondary">
-          <p className="eyebrow mb-4">¿Tienes un proyecto similar?</p>
+          <p className="eyebrow mb-4">¿Lo pruebas en tu local?</p>
           <h2 className="text-text-primary mb-6 max-w-lg mx-auto">
             Conversemos sobre{" "}
             <em className="italic text-accent font-display">tu desafío</em>.
           </h2>
           <a
-            href="/#diagnostico"
+            href="https://empieza.synaptechspa.cl"
             className="inline-flex items-center gap-2 bg-accent text-black font-bold text-sm px-7 py-3.5 rounded-lg shadow-lime hover:bg-accent-dim hover:text-white hover:scale-[1.02] transition-all"
           >
             Diagnóstico Gratis

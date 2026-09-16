@@ -51,7 +51,7 @@ export const BLOG_POSTS: BlogPost[] = [
 
 <h2>Conclusión</h2>
 <p>No hay una respuesta universal. Pero si tu empresa tiene procesos propios que definen cómo compites —y hay pocas que no los tengan— el software a medida no es un lujo: es la herramienta que te permite escalar sin que el sistema sea el cuello de botella.</p>
-<p>¿No estás seguro cuál te conviene? <a href="/#diagnostico" style="color:#a3e635;">Solicita un diagnóstico gratuito</a> y te ayudamos a entender qué camino tiene más sentido para tu caso específico.</p>`,
+<p>¿No estás seguro cuál te conviene? <a href="https://empieza.synaptechspa.cl" style="color:#a3e635;">Prueba la plataforma gratis</a> y te ayudamos a entender qué camino tiene más sentido para tu caso específico.</p>`,
   },
   {
     slug: "cuanto-cuesta-software-a-medida-chile-2026",
@@ -98,7 +98,7 @@ export const BLOG_POSTS: BlogPost[] = [
 
 <h2>Cómo obtener una cotización real</h2>
 <p>La única forma de obtener un precio preciso es con un diagnóstico detallado. En SynapTech hacemos esto sin costo: analizamos tu operación, identificamos el alcance real del proyecto, y te entregamos una propuesta con rango de inversión en menos de 48 horas hábiles.</p>
-<p><a href="/#diagnostico" style="color:#a3e635;">Solicita tu diagnóstico gratuito aquí</a>.</p>`,
+<p><a href="https://empieza.synaptechspa.cl" style="color:#a3e635;">Prueba la plataforma gratis</a>.</p>`,
   },
   {
     slug: "automatizacion-clinicas-reducir-errores-tiempo-administrativo",
@@ -135,6 +135,6 @@ export const BLOG_POSTS: BlogPost[] = [
 <h2>Por dónde empezar</h2>
 <p>Antes de invertir en tecnología, conviene mapear los procesos actuales: ¿dónde se pierde más tiempo? ¿Dónde ocurren más errores? ¿Qué tareas se están haciendo manualmente que deberían estar automatizadas?</p>
 <p>En SynapTech ofrecemos un diagnóstico gratuito específico para el sector salud. En 48 horas hábiles entregamos una propuesta con el alcance priorizado y el rango de inversión estimado.</p>
-<p><a href="/#diagnostico" style="color:#a3e635;">Solicita tu diagnóstico gratuito aquí</a>.</p>`,
+<p><a href="https://empieza.synaptechspa.cl" style="color:#a3e635;">Prueba la plataforma gratis</a>.</p>`,
   },
 ];

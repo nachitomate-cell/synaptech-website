@@ -5,36 +5,36 @@ import RevealHeading from "./RevealHeading";
 
 const FAQS = [
   {
-    q: "¿Cuánto demora un proyecto típico?",
-    a: "Entre 8 y 12 semanas para un MVP, dependiendo del alcance. En el diagnóstico gratuito te damos un timeline más preciso con hitos claros.",
+    q: "¿Qué incluye y cuánto cuesta?",
+    a: "Agenda online, ficha de clientes, club de fidelización y panel de administración desde $29.900 + IVA al mes. El asistente con IA por WhatsApp y la tarjeta en Google Wallet vienen en el plan Pro ($49.900 + IVA). El plan anual son $399.000 + IVA, equivalente a ocho meses.",
   },
   {
-    q: "¿Trabajan con empresas pequeñas o solo grandes?",
-    a: "Trabajamos con empresas de cualquier tamaño que tengan un problema real para resolver. Hemos desarrollado proyectos desde pilotos de 800.000 CLP hasta plataformas de varios millones.",
+    q: "¿Necesito tarjeta para probar?",
+    a: "No. Creas tu local, cargas tus servicios y tu equipo, y lo pruebas con datos reales sin ingresar medios de pago. Recién eliges plan cuando te sirve.",
   },
   {
-    q: "¿Cómo cobran? ¿Setup + mensualidad o pago único?",
-    a: "Ambos modelos. En el diagnóstico te recomendamos el que mejor se ajuste a tu flujo de caja y al tipo de proyecto. Hay soluciones que tiene más sentido como servicio mensual y otras como entrega única.",
+    q: "¿Cómo cobro a mis clientes?",
+    a: "Como te acomode: Mercado Pago para reservas y abonos online, la máquina POS de TUU en el mesón, link de pago a distancia, o transferencia pedida desde la misma cita. Todo queda registrado en la caja del día, así que el cierre cuadra sin planillas.",
   },
   {
-    q: "¿Manejan datos sensibles? (clínicos, financieros, escolares)",
-    a: "Sí. Trabajamos bajo la Ley 19.628 chilena y aplicamos buenas prácticas de seguridad: encriptación en tránsito y reposo, auditoría de accesos y backups automatizados. El proyecto ViñaMed, por ejemplo, gestiona datos clínicos y reportes ecográficos en producción.",
+    q: "¿El asistente con IA responde por mi número?",
+    a: "Sí. Se conecta al WhatsApp del local, responde las preguntas de siempre — precios, horarios, dirección, disponibilidad — y agenda la hora dentro de la misma conversación, de día y de noche. Si la conversación se complica, la escala a una persona y avisa al equipo.",
   },
   {
-    q: "¿Qué pasa después del lanzamiento?",
-    a: "Incluimos 60 días de garantía y ajustes post-lanzamiento sin costo adicional. Después hay un plan de mantenimiento opcional para soporte continuo, mejoras menores y monitoreo.",
+    q: "¿Se puede dividir la comisión de cada profesional?",
+    a: "Sí. Cada servicio y cada producto puede tener su porcentaje, y la liquidación de cada profesional sale calculada del cierre de caja. Funciona también con reparto a ayudantes.",
   },
   {
-    q: "¿Trabajan con tecnologías específicas o son agnósticos?",
-    a: "Elegimos el stack según el problema. Tenemos especialidad en Next.js, Python/FastAPI, PostgreSQL, React Native e integraciones con Google Wallet, WhatsApp Business y Webpay. No atamos al cliente a tecnologías propietarias.",
+    q: "¿Y los documentos tributarios?",
+    a: "Tenemos construido el módulo de arriendo de sillón: emite la boleta de honorarios del profesional con su propio RUT y la boleta afecta del local, según la estructura que indica el SII. Está en piloto, no disponible para todos los planes todavía: escríbenos y te contamos en qué está y si tu local califica.",
   },
   {
-    q: "¿Puedo ver un proyecto en vivo antes de contratar?",
-    a: "Sí. Si encaja, te conectamos con uno de nuestros clientes actuales para que conozca el sistema funcionando antes de tomar la decisión.",
+    q: "¿Sirve si tengo más de un local?",
+    a: "Sí. Cada sede tiene su agenda, su equipo y su caja, y puedes moverte entre ellas desde el mismo panel. Para dos o más locales hay precio por volumen.",
   },
   {
-    q: "¿Cómo empezamos?",
-    a: "Con el diagnóstico gratuito de 3 preguntas en este sitio. En menos de 48 horas hábiles te respondemos con una propuesta inicial y alcance estimado. Sin compromiso.",
+    q: "¿Qué pasa si me quiero ir?",
+    a: "Te vas cuando quieras, sin permanencia ni multa. Tus datos son tuyos y te los entregamos exportados.",
   },
 ];
 
