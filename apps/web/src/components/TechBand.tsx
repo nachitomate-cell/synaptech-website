@@ -1,9 +1,14 @@
 "use client";
 
+/* Solo lo que la plataforma usa de verdad en producción. Antes esto era una
+   vitrina de capacidades de agencia — DICOM.js, HL7, FastAPI, React Native — que
+   anunciaba "hacemos software a medida de lo que sea" en vez del stack de UN
+   producto. Fue parte de lo que hizo que Google for Startups nos leyera como
+   consultora (15-09-2026). Al sumar una tecnología acá, que sea una que corra. */
 const STACK = [
-  "Next.js", "React", "TypeScript", "PostgreSQL", "FastAPI", "Python",
-  "DICOM.js", "Google Wallet", "WhatsApp API", "Webpay", "Firebase",
-  "Tailwind CSS", "Node.js", "React Native", "HL7", "Framer Motion",
+  "Google Cloud", "Firebase", "Firestore", "Cloud Run", "React", "TypeScript",
+  "WhatsApp API", "Google Wallet", "Mercado Pago", "Next.js", "Tailwind CSS",
+  "Framer Motion",
 ];
 
 export default function TechBand() {
