@@ -4,7 +4,13 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Portales Clínicos a Medida — Synaptech",
+  /* Fuera del índice de Google (16-09-2026): esta ruta es herencia de cuando
+     SynapTech vendía desarrollo a medida, y era parte de lo que hizo que el
+     dominio se evaluara como consultora. No se borra para no romper URLs ya
+     indexadas; se saca del índice y del sitemap. */
+  robots: { index: false, follow: true },
+
+  title: "Portales clínicos — SynapTech",
   description:
     "Software clínico a medida para centros de salud en Chile: agendamiento online, ficha electrónica, DICOM, facturación SII y gestión Fonasa/Isapre. Caso real: ViñaMed redujo no-shows de 38% a 17%.",
   keywords: ["portal clínico Chile", "software médico a medida", "ficha clínica electrónica", "DICOM Chile", "gestión pacientes digital", "automatización clínica Chile"],

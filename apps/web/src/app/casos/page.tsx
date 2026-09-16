@@ -3,6 +3,12 @@ import type { Metadata } from "next";
 import { CASES_DATA } from "./data";
 
 export const metadata: Metadata = {
+  /* Fuera del índice de Google (16-09-2026): esta ruta es herencia de cuando
+     SynapTech vendía desarrollo a medida, y era parte de lo que hizo que el
+     dominio se evaluara como consultora. No se borra para no romper URLs ya
+     indexadas; se saca del índice y del sitemap. */
+  robots: { index: false, follow: true },
+
   title: "Casos de Éxito — Synaptech",
   description:
     "Proyectos reales en producción: HealthTech, retail, educación y belleza. Conoce cómo Synaptech transforma operaciones con software a medida.",

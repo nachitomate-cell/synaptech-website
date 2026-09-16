@@ -12,10 +12,19 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = BLOG_POSTS.find((p) => p.slug === params.slug);
   if (!post) return {};
+  /* Artículos heredados de la etapa de desarrollo a medida. Su slug dice
+     literalmente "software-a-medida", así que declaran el foco del dominio ante
+     Google — el motivo textual por el que nos evaluó como consultora el
+     15-09-2026. No se borran (romperían URLs indexadas ni conservarían el
+     tráfico entrante), pero salen del índice: el tráfico que traen busca cotizar
+     proyectos que SynapTech ya no vende. Ver app/sitemap.ts. */
+  const esHerenciaAMedida = post.slug.includes("software-a-medida");
+
   return {
     title: `${post.title} | SynapTech SpA`,
     description: post.excerpt,
     keywords: post.keywords,
+    ...(esHerenciaAMedida ? { robots: { index: false, follow: true } } : {}),
     alternates: { canonical: `https://synaptechspa.cl/blog/${post.slug}` },
     openGraph: {
       title: post.title,

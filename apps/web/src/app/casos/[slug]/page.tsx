@@ -15,6 +15,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${caso.titulo} — ${caso.cliente} · Synaptech`,
     description: caso.descripcion,
+    /* Fuera del índice: son casos de proyectos a medida, herencia de cómo partió
+       la empresa. Ver el comentario en app/sitemap.ts. */
+    robots: { index: false, follow: true },
   };
 }
 
