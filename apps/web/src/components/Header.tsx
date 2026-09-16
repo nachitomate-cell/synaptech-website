@@ -179,7 +179,7 @@ export default function Header() {
             Acceso Clientes
           </a>
           <a
-            href="#diagnostico"
+            href="https://empieza.synaptechspa.cl"
             className="bg-accent text-black font-bold text-xs px-5 py-2.5 rounded-lg hover:bg-accent-dim hover:text-white hover:scale-[1.02] transition-all shadow-[0_0_18px_rgba(163,230,53,0.2)] whitespace-nowrap"
           >
             Pruébala gratis
@@ -239,7 +239,7 @@ export default function Header() {
             </li>
 
             <li className="mt-3">
-              <a href="#diagnostico" onClick={() => setMobileOpen(false)}
+              <a href="https://empieza.synaptechspa.cl" onClick={() => setMobileOpen(false)}
                 className="block bg-accent text-black font-bold text-sm px-5 py-3 rounded-lg text-center">
                 Pruébala gratis
               </a>
