@@ -93,7 +93,7 @@ const SERVICES = [
   {
     n: "06", Icon: DocIcon, color: "#a78bfa",
     title: "Arriendo de sillón y documentos",
-    desc: "Para locales que arriendan sillón: la boleta de honorarios de cada profesional con su propio RUT y la boleta afecta del local, según la estructura del SII. En piloto — escríbenos para ver si tu local califica.",
+    desc: "Para locales que arriendan sillón: al cerrar la cita se emite sola la boleta de honorarios del profesional, con su propio RUT, y la boleta afecta del local por los productos. Ya funcionando en producción contra el SII.",
     items: ["Boleta de honorarios por profesional", "Boleta afecta del local", "Sin máquina obligatoria ni cobro por barbero"],
     href: "/contacto",
   },
