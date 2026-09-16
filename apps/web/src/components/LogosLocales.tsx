@@ -7,25 +7,31 @@ import Image from "next/image";
    lista — un carrusel de logos que incluye locales muertos es prueba social
    falsa y se nota.
 
-       INFINITY STUDIO   400 citas
-       AURA Salón        400
-       D'Jones Barber    372
-       Sion Barbería     283
-       Latin Caribe      175
+       INFINITY 400 · AURA 400 · Oren 400 · D'Jones 372 · El 10 334
+       Sion 283 · New Glow 262 · Renacer 228 · GLOW Studio 182 · Latin Caribe 175
 
-   Los logos salen del propio repo de la plataforma, que es donde cada local
-   tiene su marca cargada. */
+   🔴 DÓNDE ESTÁN LOS LOGOS, que cuesta encontrarlos: cada local tiene el suyo en
+   `<tenant>/logo.png|webp` DENTRO del repo de la plataforma — en una subcarpeta
+   por tenant, no en la raíz. La ruta canónica la declara Firestore en
+   `tenants/<tid>/configuracion/wallet.logoUrl`. Buscar por nombre de archivo en
+   la raíz o en Storage da casi nada y lleva a concluir, en falso, que no hay
+   logos. */
 /* `invertir` es para los logos que vienen con FONDO BLANCO: sobre el fondo
    oscuro del sitio se ven como un parche. Invertirlos funde el blanco con el
    fondo y deja el texto legible en claro. Solo aplica a marcas monocromas —
    con un logo a color lo arruinaría, y ahí la salida es pedir la versión en
    PNG transparente. */
 const LOCALES = [
-  { nombre: "INFINITY STUDIO",  img: "/locales/infinity.png"                     },
-  { nombre: "AURA Salón",       img: "/locales/aura.png",        invertir: true  },
-  { nombre: "D'Jones Barber",   img: "/locales/djones.png"                       },
-  { nombre: "Sion Barbería",    img: "/locales/sion.png"                         },
-  { nombre: "Latin Caribe",     img: "/locales/latincaribe.png"                  },
+  { nombre: "INFINITY STUDIO",   img: "/locales/infinity.png"                     },
+  { nombre: "AURA Salón",        img: "/locales/aura.png",        invertir: true  },
+  { nombre: "Oren Barber",       img: "/locales/oren.webp"                        },
+  { nombre: "D'Jones Barber",    img: "/locales/djones.png"                       },
+  { nombre: "El 10 Salón",       img: "/locales/el10.png"                         },
+  { nombre: "Sion Barbería",     img: "/locales/sion.png"                         },
+  { nombre: "New Glow",          img: "/locales/newglow.png"                      },
+  { nombre: "Peluquería Renacer", img: "/locales/renacer.webp"                    },
+  { nombre: "GLOW Studio",       img: "/locales/glowstudio.png"                   },
+  { nombre: "Latin Caribe",      img: "/locales/latincaribe.png"                  },
 ];
 
 function Fila({ ariaHidden = false }: { ariaHidden?: boolean }) {
