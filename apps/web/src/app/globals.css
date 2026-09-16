@@ -229,3 +229,17 @@ body::after {
 @media (prefers-reduced-motion: reduce) {
   .animate-marquee { animation: none; }
 }
+
+/* Marquesina de integraciones: más lenta que la de logos porque las tarjetas
+   son más anchas y hay 22, así se alcanzan a leer. `gap-4` = 1rem. */
+@keyframes marquee-integraciones {
+  from { transform: translateX(0); }
+  to   { transform: translateX(calc(-100% - 1rem)); }
+}
+.animate-marquee-lento {
+  animation: marquee-integraciones 60s linear infinite;
+}
+.animate-marquee-lento:hover { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee-lento { animation: none; }
+}
