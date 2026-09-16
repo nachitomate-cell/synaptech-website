@@ -141,10 +141,10 @@ export default function CasoPage({ params }: Props) {
             {/* CTA sidebar */}
             <div className="bg-bg-secondary border border-border-subtle rounded-2xl p-6">
               <p className="font-mono text-xs text-text-muted mb-3 leading-relaxed">
-                ¿Tienes un desafío similar?
+                ¿Quieres probarla en tu local?
               </p>
               <a
-                href="/#diagnostico"
+                href="https://empieza.synaptechspa.cl"
                 className="block w-full text-center bg-accent text-black font-bold text-sm px-5 py-3 rounded-lg hover:bg-accent-dim hover:text-white transition-all shadow-lime"
               >
                 Pruébala gratis

@@ -40,6 +40,20 @@ const TrendIcon = () => (
   </svg>
 );
 
+const CardIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+    <rect x="2" y="5" width="20" height="14" rx="2"/>
+    <path d="M2 10h20M6 15h4"/>
+  </svg>
+);
+
+const DocIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+    <path d="M14 2v6h6M9 13h6M9 17h4"/>
+  </svg>
+);
+
 const SERVICES = [
   {
     n: "01", Icon: WifiIcon, color: "#c084fc",
@@ -56,18 +70,32 @@ const SERVICES = [
     href: "/saas-comercial",
   },
   {
-    n: "03", Icon: TrendIcon, color: "#f59e0b",
+    n: "03", Icon: CardIcon, color: "#38bdf8",
+    title: "Pagos por donde quieras",
+    desc: "Cobra en el mesón con la máquina, por un link a distancia o en línea al reservar. El abono queda tomado antes de que llegue.",
+    items: ["Mercado Pago para reservas y abonos", "Máquina POS TUU integrada al cobro", "Link de pago y transferencia desde la cita"],
+    href: "/saas-comercial",
+  },
+  {
+    n: "04", Icon: CpuIcon, color: "#3b82f6",
+    title: "Caja y comisiones",
+    desc: "Cierra el día cuadrado sin planillas: cada venta queda con su medio de pago y la comisión de cada profesional sale sola.",
+    items: ["Cierre de caja y arqueo diario", "Comisión por servicio y por producto", "Liquidación lista para pagar al equipo"],
+    href: "/saas-comercial",
+  },
+  {
+    n: "05", Icon: TrendIcon, color: "#f59e0b",
     title: "Club de fidelización",
     desc: "Sellos, rangos y premios para que el cliente vuelva, con su tarjeta guardada en Google Wallet y avisos que llegan al teléfono.",
     items: ["Sellos digitales y premios por visita", "Tarjeta en Google Wallet", "Referidos y campañas de reactivación"],
     href: "/fidelizacion",
   },
   {
-    n: "04", Icon: CpuIcon, color: "#3b82f6",
-    title: "Cobros y caja",
-    desc: "Cobra en el mesón o por un link, y cierra el día cuadrado sin planillas: la comisión de cada profesional sale sola.",
-    items: ["Mercado Pago, POS y pago online", "Cierre de caja y arqueo diario", "Comisiones por profesional"],
-    href: "/saas-comercial",
+    n: "06", Icon: DocIcon, color: "#a78bfa",
+    title: "Arriendo de sillón y documentos",
+    desc: "Para locales que arriendan sillón: la boleta de honorarios de cada profesional con su propio RUT y la boleta afecta del local, según la estructura del SII. En piloto — escríbenos para ver si tu local califica.",
+    items: ["Boleta de honorarios por profesional", "Boleta afecta del local", "Sin máquina obligatoria ni cobro por barbero"],
+    href: "/contacto",
   },
 ];
 
@@ -161,8 +189,8 @@ export default function Services() {
             className="eyebrow mb-5"
           >La plataforma</motion.p>
           <RevealHeading className="text-text-primary max-w-xl">
-            Cuatro módulos,{" "}
-            <em className="italic text-accent font-display">un solo panel</em>.
+            Todo el local,{" "}
+            <em className="italic text-accent font-display">en un solo panel</em>.
           </RevealHeading>
         </div>
 

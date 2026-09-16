@@ -139,12 +139,12 @@ export default function BlogPostPage({ params }: Props) {
             </div>
 
             <div className="bg-accent/5 border border-accent/20 rounded-2xl p-6">
-              <p className="font-mono text-[10px] text-accent uppercase tracking-widest mb-3">¿Tienes un proyecto?</p>
+              <p className="font-mono text-[10px] text-accent uppercase tracking-widest mb-3">¿Lo pruebas?</p>
               <p className="text-sm text-text-secondary leading-relaxed mb-5">
-                Cuéntanos tu desafío. En 48 horas hábiles te enviamos una propuesta con alcance y rango de inversión.
+                Deja andando tu local con tus servicios, tu equipo y tus horarios. Sin costo y sin tarjeta.
               </p>
               <a
-                href="/#diagnostico"
+                href="https://empieza.synaptechspa.cl"
                 className="block text-center bg-accent text-black font-bold text-xs px-5 py-3 rounded-lg hover:bg-accent-dim hover:text-white transition-all"
               >
                 Pruébala gratis

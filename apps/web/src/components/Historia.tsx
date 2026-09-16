@@ -386,7 +386,7 @@ export default function Historia() {
             </motion.h2>
           </div>
           <motion.div {...rise(0.15)} className="flex flex-wrap gap-4 shrink-0">
-            <a href="/#diagnostico"
+            <a href="https://empieza.synaptechspa.cl"
               className="inline-flex items-center gap-2 bg-accent text-black font-bold text-sm px-7 py-3.5 rounded-lg shadow-[0_0_24px_rgba(163,230,53,0.25)] hover:bg-accent-dim hover:text-white hover:scale-[1.02] transition-all">
               Diagnóstico Gratis
             </a>
