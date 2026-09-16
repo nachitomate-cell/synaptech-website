@@ -3,6 +3,9 @@ import Image from "next/image";
 const LINKS = {
   "Empresa":   [{ l: "La plataforma", h: "#servicios" }, { l: "Precios", h: "#precios" }, { l: "Nosotros", h: "/nosotros" }],
   "Recursos":  [{ l: "Blog", h: "/blog" }, { l: "Pruébala gratis", h: "https://empieza.synaptechspa.cl" }, { l: "Precios", h: "#precios" }, { l: "FAQ", h: "#faq" }],
+  /* SynapTech Studio, la app del dueño: publicada y distribuida en ambas
+     tiendas (Play desde 2026-09-01, App Store id 6794530086 en cl/us/mx). */
+  "La app":    [{ l: "Google Play", h: "https://play.google.com/store/apps/details?id=cl.synaptechspa.studio" }, { l: "App Store", h: "https://apps.apple.com/cl/app/synaptech-studio/id6794530086" }],
   "Contacto":  [
     { l: "hola@synaptechspa.cl", h: "mailto:hola@synaptechspa.cl" },
     { l: "+569 83568212", h: "tel:+56983568212" },
@@ -16,7 +19,7 @@ export default function Footer() {
   return (
     <footer className="bg-bg-secondary border-t border-border-subtle">
       <div className="max-w-screen-xl mx-auto px-6 md:px-12 pt-16 pb-8">
-        <div className="grid grid-cols-1 md:grid-cols-[1.6fr_1fr_1fr_1fr] gap-12 mb-14">
+        <div className="grid grid-cols-1 md:grid-cols-[1.6fr_1fr_1fr_1fr_1fr] gap-12 mb-14">
           {/* Brand column */}
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-2.5">

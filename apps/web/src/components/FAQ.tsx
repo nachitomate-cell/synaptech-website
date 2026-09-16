@@ -14,7 +14,7 @@ const FAQS = [
   },
   {
     q: "¿Cómo cobro a mis clientes?",
-    a: "Como te acomode: Mercado Pago para reservas y abonos online, la máquina POS de TUU en el mesón, link de pago a distancia, o transferencia pedida desde la misma cita. Todo queda registrado en la caja del día, así que el cierre cuadra sin planillas.",
+    a: "Como te acomode: Mercado Pago o Flow para reservas y abonos online, la máquina POS de TUU en el mesón, link de pago a distancia, o transferencia pedida desde la misma cita. Todo queda registrado en la caja del día, así que el cierre cuadra sin planillas.",
   },
   {
     q: "¿El asistente con IA responde por mi número?",
