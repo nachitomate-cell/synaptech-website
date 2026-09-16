@@ -42,28 +42,31 @@ const TrendIcon = () => (
 
 const SERVICES = [
   {
-    n: "01", Icon: BrainIcon, color: "#10b981",
-    title: "Plataformas HealthTech",
-    desc: "Portales clínicos, visores DICOM, gestión de perfiles médicos y flujos HL7. Software de salud que cumple estándares clínicos reales.",
-    items: ["Visor DICOM y gestión de imágenes", "Ficha clínica digital y perfiles profesionales", "Integración HL7 y sistemas hospitalarios", "Portal seguro para médicos y tecnólogos"],
+    n: "01", Icon: WifiIcon, color: "#c084fc",
+    title: "Agenda online 24/7",
+    desc: "Tus clientes reservan solos, a cualquier hora, desde su teléfono. Cada profesional ve su día y el local ve todo.",
+    items: ["Reserva sin llamadas ni mensajes", "Recordatorios y confirmaciones automáticas", "Agenda por profesional y por sucursal"],
+    href: "/saas-comercial",
   },
   {
-    n: "02", Icon: TrendIcon, color: "#f59e0b",
-    title: "Apps de Fidelización y Retail",
-    desc: "Programas de sellos digitales, integración con Google Wallet, gamificación y notificaciones push para comercios y centros comerciales.",
-    items: ["Sellos digitales con Google Wallet", "Gamificación y recompensas", "Notificaciones push y campañas"],
+    n: "02", Icon: BrainIcon, color: "#10b981",
+    title: "Asistente con IA en WhatsApp",
+    desc: "Responde las preguntas de siempre y agenda la hora dentro de la conversación, en el número del local, de día y de noche.",
+    items: ["Atiende y agenda sin que nadie escriba", "Confirma citas y avisa las cancelaciones", "Escala a una persona cuando hace falta"],
+    href: "/saas-comercial",
   },
   {
-    n: "03", Icon: CpuIcon, color: "#3b82f6",
-    title: "Portales Educativos (PWA)",
-    desc: "Portales institucionales instalables offline, automatización de pagos de colegiaturas y comunicación familia-colegio centralizada.",
-    items: ["PWA offline-first instalable", "Automatización de pagos con Webpay", "Comunicación familia-institución"],
+    n: "03", Icon: TrendIcon, color: "#f59e0b",
+    title: "Club de fidelización",
+    desc: "Sellos, rangos y premios para que el cliente vuelva, con su tarjeta guardada en Google Wallet y avisos que llegan al teléfono.",
+    items: ["Sellos digitales y premios por visita", "Tarjeta en Google Wallet", "Referidos y campañas de reactivación"],
+    href: "/fidelizacion",
   },
   {
-    n: "04", Icon: WifiIcon, color: "#c084fc",
-    title: "Agenda Profesional para Barberías",
-    desc: "Plataforma SaaS multi-tenant con reservas 24/7, club de fidelización VIP, notificaciones push y panel de administración completo. En producción con 12 locales activos.",
-    items: ["Agenda online 24/7 con recordatorios push", "Club de fidelización + Google Wallet", "Multi-tenant — un local operativo en horas"],
+    n: "04", Icon: CpuIcon, color: "#3b82f6",
+    title: "Cobros y caja",
+    desc: "Cobra en el mesón o por un link, y cierra el día cuadrado sin planillas: la comisión de cada profesional sale sola.",
+    items: ["Mercado Pago, POS y pago online", "Cierre de caja y arqueo diario", "Comisiones por profesional"],
     href: "/saas-comercial",
   },
 ];
@@ -156,10 +159,10 @@ export default function Services() {
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
             className="eyebrow mb-5"
-          >Nuestros Servicios</motion.p>
+          >La plataforma</motion.p>
           <RevealHeading className="text-text-primary max-w-xl">
-            Cuatro disciplinas,{" "}
-            <em className="italic text-accent font-display">un puente</em>.
+            Cuatro módulos,{" "}
+            <em className="italic text-accent font-display">un solo panel</em>.
           </RevealHeading>
         </div>
 
