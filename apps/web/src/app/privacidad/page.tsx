@@ -45,7 +45,7 @@ export default function Privacidad() {
             <h2 className="font-display text-lg font-semibold text-text-primary mb-3">3. Finalidad del tratamiento</h2>
             <p>
               Los datos se utilizan exclusivamente para responder a tu consulta, evaluar si existe encaje con
-              nuestros servicios y, en caso afirmativo, preparar una propuesta comercial. No utilizamos los
+              la plataforma y, en caso afirmativo, acompañarte a ponerla en marcha. No utilizamos los
               datos para fines distintos a los indicados sin consentimiento expreso.
             </p>
           </section>
