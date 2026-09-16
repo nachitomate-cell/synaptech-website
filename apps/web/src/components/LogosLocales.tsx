@@ -15,12 +15,17 @@ import Image from "next/image";
 
    Los logos salen del propio repo de la plataforma, que es donde cada local
    tiene su marca cargada. */
+/* `invertir` es para los logos que vienen con FONDO BLANCO: sobre el fondo
+   oscuro del sitio se ven como un parche. Invertirlos funde el blanco con el
+   fondo y deja el texto legible en claro. Solo aplica a marcas monocromas —
+   con un logo a color lo arruinaría, y ahí la salida es pedir la versión en
+   PNG transparente. */
 const LOCALES = [
-  { nombre: "INFINITY STUDIO",  img: "/locales/infinity.png"    },
-  { nombre: "AURA Salón",       img: "/locales/aura.png"        },
-  { nombre: "D'Jones Barber",   img: "/locales/djones.png"      },
-  { nombre: "Sion Barbería",    img: "/locales/sion.png"        },
-  { nombre: "Latin Caribe",     img: "/locales/latincaribe.png" },
+  { nombre: "INFINITY STUDIO",  img: "/locales/infinity.png"                     },
+  { nombre: "AURA Salón",       img: "/locales/aura.png",        invertir: true  },
+  { nombre: "D'Jones Barber",   img: "/locales/djones.png"                       },
+  { nombre: "Sion Barbería",    img: "/locales/sion.png"                         },
+  { nombre: "Latin Caribe",     img: "/locales/latincaribe.png"                  },
 ];
 
 function Fila({ ariaHidden = false }: { ariaHidden?: boolean }) {
@@ -41,6 +46,7 @@ function Fila({ ariaHidden = false }: { ariaHidden?: boolean }) {
               fill
               sizes="120px"
               className="object-contain"
+              style={l.invertir ? { filter: "invert(1)" } : undefined}
             />
           </div>
         </li>
