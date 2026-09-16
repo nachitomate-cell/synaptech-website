@@ -72,8 +72,8 @@ const SERVICES = [
   {
     n: "03", Icon: CardIcon, color: "#38bdf8",
     title: "Pagos por donde quieras",
-    desc: "Cobra en el mesón con la máquina, por un link a distancia o en línea al reservar. El abono queda tomado antes de que llegue.",
-    items: ["Mercado Pago para reservas y abonos", "Máquina POS TUU integrada al cobro", "Link de pago y transferencia desde la cita"],
+    desc: "Cobra en el mesón con la máquina, por un link a distancia o en línea al reservar. Mercado Pago, Flow y POS TUU, todo dentro de la misma cita.",
+    items: ["Mercado Pago y Flow para reservas y abonos", "Máquina POS TUU integrada al cobro", "Link de pago y transferencia desde la cita"],
     href: "/saas-comercial",
   },
   {
@@ -86,8 +86,8 @@ const SERVICES = [
   {
     n: "05", Icon: TrendIcon, color: "#f59e0b",
     title: "Club de fidelización",
-    desc: "Sellos, rangos y premios para que el cliente vuelva, con su tarjeta guardada en Google Wallet y avisos que llegan al teléfono.",
-    items: ["Sellos digitales y premios por visita", "Tarjeta en Google Wallet", "Referidos y campañas de reactivación"],
+    desc: "Sellos, rangos y premios para que el cliente vuelva, con su tarjeta guardada en Google Wallet o Apple Wallet y avisos que llegan al teléfono.",
+    items: ["Sellos digitales y premios por visita", "Tarjeta en Google Wallet y Apple Wallet", "Referidos y campañas de reactivación"],
     href: "/fidelizacion",
   },
   {

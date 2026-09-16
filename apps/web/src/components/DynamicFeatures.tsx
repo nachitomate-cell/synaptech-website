@@ -4,13 +4,21 @@ import { useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 
+/* Capturas reales del panel, con los datos de los clientes difuminados.
+   Las de métricas, servicios, productos y premios estaban subidas en /public
+   desde hace tiempo pero nunca se agregaron acá, así que la sección mostraba
+   seis módulos de los diez que existen. */
 const MODULES = [
-  { id: "agenda",   name: "Agenda",   label: "Vista del día dividida en Mañana / Tarde",  img: "/agenda.png"   },
-  { id: "chat",     name: "Chat",     label: "Mensajería interna con tus clientes",        img: "/chat.png"     },
-  { id: "clientes", name: "Clientes", label: "CRM con historial de visitas y contacto",    img: "/clientes.png" },
-  { id: "equipo",   name: "Equipo",   label: "Gestión de barberos, fotos y horarios",      img: "/equipo.png"   },
-  { id: "look",     name: "Look",     label: "Estilos destacados para la sala de espera",  img: "/look.png"     },
-  { id: "lookbook", name: "Lookbook", label: "Galería gestionable desde el panel admin",   img: "/lookbook.png" },
+  { id: "agenda",    name: "Agenda",    label: "Vista del día dividida en Mañana / Tarde",        img: "/agenda.png"    },
+  { id: "clientes",  name: "Clientes",  label: "Ficha con historial de visitas y contacto",       img: "/clientes.png"  },
+  { id: "metricas",  name: "Métricas",  label: "Ingresos, ocupación y ranking del equipo",        img: "/metricas.png"  },
+  { id: "servicios", name: "Servicios", label: "Precios, duración y quién atiende cada servicio", img: "/servicios.png" },
+  { id: "productos", name: "Productos", label: "Inventario y venta de productos en el mesón",     img: "/productos.png" },
+  { id: "premios",   name: "Premios",   label: "Sellos, rangos y canjes del club de fidelidad",   img: "/premios.png"   },
+  { id: "equipo",    name: "Equipo",    label: "Profesionales, fotos, horarios y comisiones",     img: "/equipo.png"    },
+  { id: "chat",      name: "Chat",      label: "Conversaciones con tus clientes, en un lugar",    img: "/chat.png"      },
+  { id: "lookbook",  name: "Lookbook",  label: "Galería de trabajos gestionable desde el panel",  img: "/lookbook.png"  },
+  { id: "look",      name: "Look",      label: "Estilos destacados para la sala de espera",       img: "/look.png"      },
 ];
 
 export default function DynamicFeatures() {
