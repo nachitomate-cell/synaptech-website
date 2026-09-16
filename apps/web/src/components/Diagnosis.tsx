@@ -4,14 +4,14 @@ import { motion, AnimatePresence } from "framer-motion";
 import RevealHeading from "./RevealHeading";
 import CalButton from "./CalButton";
 
-const RUBROS = ["Salud", "Retail", "Educación", "Belleza"] as const;
+const RUBROS = ["Barbería", "Salón", "Estética", "Clínica"] as const;
 type Rubro = typeof RUBROS[number];
 
 const PROBLEMS: Record<Rubro, string[]> = {
-  Salud:     ["Alta tasa de no-shows", "Ficha clínica en papel", "Sin visualización DICOM", "Cobros manuales"],
-  Retail:    ["Sin programa de fidelización", "Sin integración Google Wallet", "Sin notificaciones push", "Reportes en Excel"],
-  Educación: ["Comunicaciones dispersas", "Pagos de arancel manuales", "Sin portal institucional PWA", "Sin app para apoderados"],
-  Belleza:   ["Agenda solo por WhatsApp", "Sin recordatorios automáticos", "Sin club de fidelidad", "Sin cobro online"],
+  Barbería: ["Agendo solo por WhatsApp", "Clientes que no llegan", "Sin club de fidelidad", "Caja y comisiones a mano"],
+  Salón:    ["Agendo solo por WhatsApp", "Pierdo reservas fuera de horario", "Sin recordatorios automáticos", "Cobros y propinas a mano"],
+  Estética: ["Agendo por teléfono", "Clientes que no vuelven", "Sin abonos ni cobro online", "Fichas en papel"],
+  Clínica:  ["Muchas horas perdidas", "Agendo por teléfono", "Sin recordatorios automáticos", "Cobros manuales"],
 };
 
 const DOT_GRID = Array.from({ length: 80 }, (_, i) => i);
@@ -76,7 +76,7 @@ export default function Diagnosis() {
             <div className="absolute inset-0 flex flex-col items-center justify-center gap-6 p-10">
               <span className="font-mono text-[11px] text-accent uppercase tracking-widest">Proceso en 3 pasos</span>
               <div className="flex flex-col gap-4 w-full max-w-xs">
-                {["Tu industria", "Tu desafío", "Tus datos"].map((label, i) => (
+                {["Tu local", "Qué te pasa", "Tus datos"].map((label, i) => (
                   <div key={label} className={`flex items-center gap-3 px-4 py-3 rounded-xl border transition-all duration-300
                     ${step > i ? "border-accent/40 bg-accent/5" : step === i ? "border-accent bg-accent/10" : "border-border-subtle"}`}>
                     <div className={`w-6 h-6 rounded-full border flex items-center justify-center font-mono text-[11px] font-semibold shrink-0
@@ -92,7 +92,7 @@ export default function Diagnosis() {
 
           {/* Right: form */}
           <div>
-            <p className="eyebrow mb-5">Diagnóstico Gratis</p>
+            <p className="eyebrow mb-5">Pruébala sin costo</p>
             <RevealHeading className="text-text-primary mb-6">
               ¿Listo para{" "}
               <em className="italic text-accent font-display">transformar</em>?
@@ -119,13 +119,13 @@ export default function Diagnosis() {
                   <div>
                     <h3 className="font-display text-2xl font-bold text-text-primary mb-2">¡Listo, {form.nombre.split(" ")[0]}!</h3>
                     <p className="text-text-secondary text-sm leading-relaxed max-w-sm mb-6">
-                      Recibimos tu diagnóstico. ¿Qué pasa ahora?
+                      Recibimos tus datos. ¿Qué pasa ahora?
                     </p>
                     <ol className="flex flex-col gap-3 text-left max-w-sm">
                       {[
-                        "Recibirás un email de confirmación en menos de 5 minutos.",
-                        "En menos de 48 horas hábiles te enviamos una propuesta inicial con alcance y rango de inversión.",
-                        "Si hay encaje, agendamos una llamada de 30 minutos para profundizar.",
+                        "Recibirás un correo de confirmación en menos de 5 minutos.",
+                        "Te contactamos para dejar tu local andando: cargamos tus servicios, tu equipo y tus horarios.",
+                        "Pruebas la plataforma con tus datos reales, sin costo y sin tarjeta.",
                       ].map((step, i) => (
                         <li key={i} className="flex items-start gap-3">
                           <span className="shrink-0 w-5 h-5 rounded-full bg-accent/20 border border-accent/40 flex items-center justify-center font-mono text-[10px] text-accent font-bold">
@@ -146,7 +146,7 @@ export default function Diagnosis() {
                 <motion.div key="step0"
                   initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}
                   transition={{ duration: 0.3 }}>
-                  <p className="text-text-secondary text-sm mb-5">¿En qué industria opera tu empresa?</p>
+                  <p className="text-text-secondary text-sm mb-5">¿Qué tipo de local tienes?</p>
                   <div className="grid grid-cols-2 gap-3">
                     {RUBROS.map(r => (
                       <button key={r} onClick={() => { setRubro(r); setStep(1); }}
@@ -182,7 +182,7 @@ export default function Diagnosis() {
                   initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}
                   transition={{ duration: 0.3 }}
                   className="flex flex-col gap-4">
-                  <p className="text-text-secondary text-sm">Completa tus datos para enviarte el diagnóstico.</p>
+                  <p className="text-text-secondary text-sm">Completa tus datos y te escribimos para dejarte andando.</p>
                   {/* Honeypot — invisible para usuarios, visible para bots */}
                   <input
                     type="text" name="website" tabIndex={-1} aria-hidden="true"
@@ -205,7 +205,7 @@ export default function Diagnosis() {
                     className="mt-2 bg-accent text-black font-bold text-sm px-6 py-3.5 rounded-lg
                       hover:bg-accent-dim hover:text-white transition-all shadow-lime
                       disabled:opacity-40 disabled:cursor-not-allowed">
-                    {loading ? "Enviando..." : "Solicitar Diagnóstico Gratis"}
+                    {loading ? "Enviando..." : "Quiero probar la plataforma"}
                   </button>
                   <button onClick={() => setStep(1)} className="text-xs font-mono text-text-muted hover:text-text-secondary transition-colors text-center">
                     ← Volver

@@ -141,7 +141,7 @@ export default function Pricing() {
 
         <p className="font-mono text-[11px] text-text-muted text-center max-w-3xl mx-auto leading-relaxed">
           Precios netos en CLP, se suma IVA. Confirmaciones y recordatorios automáticos por WhatsApp
-          se contratan aparte. Dos o más locales: cotización a medida.
+          se contratan aparte. Dos o más locales: consulta el precio por volumen.
         </p>
       </div>
     </section>

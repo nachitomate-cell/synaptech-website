@@ -2,9 +2,7 @@ import Header      from "@/components/Header";
 import Hero         from "@/components/Hero";
 import SaaSBanner   from "@/components/SaaSBanner";
 import Services     from "@/components/Services";
-import Process      from "@/components/Process";
 import TechBand     from "@/components/TechBand";
-import Cases        from "@/components/Cases";
 import Testimonials from "@/components/Testimonials";
 import Diagnosis    from "@/components/Diagnosis";
 import Pricing      from "@/components/Pricing";
@@ -23,9 +21,7 @@ export default function Home() {
         <Hero />
         <SaaSBanner />
         <Services />
-        <Process />
         <TechBand />
-        <Cases />
         <Testimonials />
         <Diagnosis />
         <Pricing />
