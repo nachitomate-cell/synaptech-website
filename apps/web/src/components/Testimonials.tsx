@@ -2,8 +2,21 @@
 import { motion } from "framer-motion";
 import RevealHeading from "./RevealHeading";
 
-/* ── Testimonial data ── */
+/* ── Testimonial data ──
+   Textuales de clientes. Los marcados `destacado` abren la sección en grande;
+   el resto va en una grilla secundaria más compacta. Cada cita es literal: no
+   se pulen ni se completan frases, porque el valor de un testimonio real está
+   justamente en que suena a persona y no a copy. */
 const TESTIMONIALS = [
+  {
+    initials: "YS",
+    client: "Yūgen Studio",
+    quote:
+      "Solo pasaba por aquí para decirte que el sistema es muy bueno, me tiene muy conforme.",
+    role: "Estudio de Barbería",
+    rating: 5,
+    destacado: true,
+  },
   {
     initials: "CS",
     client: "Chameleon Barber Studio",
@@ -11,6 +24,7 @@ const TESTIMONIALS = [
       "Tenemos muy buenas expectativas con el software; el producto es sumamente completo, los precios son accesibles y el soporte técnico que brindan es de excelente nivel.",
     role: "Estudio de Barbería y Estética",
     rating: 5,
+    destacado: true,
   },
   {
     initials: "BF",
@@ -19,8 +33,54 @@ const TESTIMONIALS = [
       "Valoro y admiro profundamente el trabajo de digitalización que realizan. Es un sistema robusto que aporta un valor real a nuestro negocio diario.",
     role: "Barbería y Gestión Comercial",
     rating: 5,
+    destacado: true,
+  },
+  {
+    initials: "JR",
+    client: "Jorge Rosales",
+    quote: "Sigo atento a cualquier cosa, pero igual estoy súper conforme.",
+    role: "El 10 Salón Masculino",
+    rating: 5,
+  },
+  {
+    initials: "JR",
+    client: "Jorge Rosales",
+    quote: "Genial, gran trabajo. Nos acercamos a tener a Ámbar como nos identificamos.",
+    role: "El 10 Salón Masculino",
+    rating: 5,
+  },
+  {
+    initials: "CB",
+    client: "Claudio Burgos",
+    quote: "Estoy contento por trabajar contigo.",
+    role: "Viking Barber",
+    rating: 5,
+  },
+  {
+    initials: "MM",
+    client: "Matías Mella",
+    quote: "Agradecido de tus servicios. Ya estamos funcionando.",
+    role: "Barbería",
+    rating: 5,
+  },
+  {
+    initials: "DX",
+    client: "Dexter",
+    quote: "Gracias Ignacio, te pasaste.",
+    role: "Barbería y Salón",
+    rating: 5,
+  },
+  {
+    initials: "JB",
+    client: "Jhoseth",
+    quote: "Está increíble.",
+    role: "Barbero",
+    rating: 5,
   },
 ];
+
+const DESTACADOS = TESTIMONIALS.filter((t) => t.destacado);
+const SECUNDARIOS = TESTIMONIALS.filter((t) => !t.destacado);
 
 /* ── Inline SVG icons ── */
 function StarIcon() {
@@ -102,9 +162,9 @@ export default function Testimonials() {
           </RevealHeading>
         </div>
 
-        {/* Cards grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {TESTIMONIALS.map((t, i) => (
+        {/* Destacados: los que hablan del producto, no solo agradecen */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {DESTACADOS.map((t, i) => (
             <motion.figure
               key={i}
               initial={{ opacity: 0, y: 28 }}
@@ -174,6 +234,45 @@ export default function Testimonials() {
                   <span className="font-mono text-[11px] text-text-muted tracking-wide">
                     {t.role}
                   </span>
+                </div>
+              </figcaption>
+            </motion.figure>
+          ))}
+        </div>
+
+        {/* Secundarios: citas cortas, en tarjetas compactas. Son igual de
+            reales, pero pesan menos y no deben competir con las de arriba. */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
+          {SECUNDARIOS.map((t, i) => (
+            <motion.figure
+              key={`s${i}`}
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: i * 0.07 }}
+              className="bg-syn-surface/50 border border-white/[0.05] rounded-xl p-5
+                hover:border-accent/15 transition-colors"
+            >
+              <div className="flex gap-0.5 text-accent mb-3" aria-label={`Calificación ${t.rating} de 5`}>
+                {[...Array(t.rating)].map((_, idx) => (
+                  <StarIcon key={idx} />
+                ))}
+              </div>
+              <blockquote>
+                <p className="text-sm leading-relaxed text-text-primary/85 font-body">
+                  &ldquo;{t.quote}&rdquo;
+                </p>
+              </blockquote>
+              <figcaption className="flex items-center gap-2.5 mt-4 pt-3 border-t border-white/[0.05]">
+                <div
+                  className="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center
+                    bg-accent/10 border border-accent/20 text-accent font-mono text-[10px] font-semibold"
+                >
+                  {t.initials}
+                </div>
+                <div className="flex flex-col leading-tight">
+                  <span className="font-body text-xs font-semibold text-text-primary">{t.client}</span>
+                  <span className="font-mono text-[10px] text-text-muted">{t.role}</span>
                 </div>
               </figcaption>
             </motion.figure>
