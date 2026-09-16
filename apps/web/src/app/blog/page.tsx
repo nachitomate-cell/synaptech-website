@@ -74,7 +74,7 @@ export default function BlogPage() {
             href="/#diagnostico"
             className="inline-flex items-center gap-2 bg-accent text-black font-bold text-sm px-7 py-3.5 rounded-lg shadow-lime hover:bg-accent-dim hover:text-white hover:scale-[1.02] transition-all"
           >
-            Diagnóstico Gratis
+            Pruébala gratis
           </a>
         </div>
       </div>
