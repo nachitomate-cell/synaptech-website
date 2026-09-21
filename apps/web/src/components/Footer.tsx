@@ -6,6 +6,20 @@ const LINKS = {
   /* SynapTech Studio, la app del dueño: publicada y distribuida en ambas
      tiendas (Play desde 2026-09-01, App Store id 6794530086 en cl/us/mx). */
   "La app":    [{ l: "Google Play", h: "https://play.google.com/store/apps/details?id=cl.synaptechspa.studio" }, { l: "App Store", h: "https://apps.apple.com/cl/app/synaptech-studio/id6794530086" }],
+  /* DIRECTORIO — el enlace que le faltaba a Google.
+     Las cuatro paginas viven en app.synaptechspa.cl y hasta hoy no las
+     enlazaba nadie: Google no conocia ese host (favicon 404) y por lo tanto
+     tampoco llegaba a los subdominios de los locales, que cuelgan de ahi.
+     Medido el 21-09-2026: buscando "barberia Villa Alemana reservar hora"
+     AgendaPro ocupa 3 de los 10 resultados con paginas de directorio iguales
+     a estas, y Kronnos Penablanca —341 citas al mes, en Villa Alemana— no
+     aparece. El texto del enlace ES la palabra clave a proposito. */
+  "Directorio": [
+    { l: "Barberías en Viña del Mar",   h: "https://app.synaptechspa.cl/barberias-vina-del-mar" },
+    { l: "Peluquerías en Viña del Mar", h: "https://app.synaptechspa.cl/peluquerias-vina-del-mar" },
+    { l: "Barberías en la Quinta Región",   h: "https://app.synaptechspa.cl/barberias-quinta-region" },
+    { l: "Peluquerías en la Quinta Región", h: "https://app.synaptechspa.cl/peluquerias-quinta-region" },
+  ],
   "Contacto":  [
     { l: "hola@synaptechspa.cl", h: "mailto:hola@synaptechspa.cl" },
     { l: "+569 83568212", h: "tel:+56983568212" },
@@ -19,7 +33,7 @@ export default function Footer() {
   return (
     <footer className="bg-bg-secondary border-t border-border-subtle">
       <div className="max-w-screen-xl mx-auto px-6 md:px-12 pt-16 pb-8">
-        <div className="grid grid-cols-1 md:grid-cols-[1.6fr_1fr_1fr_1fr_1fr] gap-12 mb-14">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-[1.5fr_1fr_1fr_1fr_1.2fr_1fr] gap-10 md:gap-12 mb-14">
           {/* Brand column */}
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-2.5">
