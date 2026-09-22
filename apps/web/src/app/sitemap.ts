@@ -24,6 +24,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/nosotros`,            lastModified: now, priority: 0.6 },
     { url: `${BASE}/contacto`,            lastModified: now, priority: 0.6 },
     { url: `${BASE}/blog`,                lastModified: now, priority: 0.5 },
+    /* El directorio de locales. Lo sirve app.synaptechspa.cl por un rewrite
+       (ver next.config.mjs), pero su URL publica es esta, y un sitemap solo
+       vale para URLs del MISMO host: por eso van aca y no en el sitemap de
+       app. Prioridad alta porque son las paginas que compiten con las de
+       AgendaPro por "barberia en <comuna>". */
+    { url: `${BASE}/barberias-vina-del-mar`,     lastModified: now, priority: 0.8 },
+    { url: `${BASE}/peluquerias-vina-del-mar`,   lastModified: now, priority: 0.8 },
+    { url: `${BASE}/barberias-quinta-region`,    lastModified: now, priority: 0.8 },
+    { url: `${BASE}/peluquerias-quinta-region`,  lastModified: now, priority: 0.8 },
     { url: `${BASE}/privacidad`,          lastModified: now, priority: 0.3 },
     { url: `${BASE}/terminos`,            lastModified: now, priority: 0.3 },
   ];
