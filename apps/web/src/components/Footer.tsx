@@ -13,12 +13,20 @@ const LINKS = {
      Medido el 21-09-2026: buscando "barberia Villa Alemana reservar hora"
      AgendaPro ocupa 3 de los 10 resultados con paginas de directorio iguales
      a estas, y Kronnos Penablanca —341 citas al mes, en Villa Alemana— no
-     aparece. El texto del enlace ES la palabra clave a proposito. */
+     aparece. El texto del enlace ES la palabra clave a proposito.
+
+     Las rutas van RELATIVAS, a este mismo dominio. Al principio apuntaban a
+     app.synaptechspa.cl y quedaron desalineadas cuando el canonical se mudo
+     aca: Search Console mostraba "Pagina de referencia: no se ha detectado
+     ninguna" para synaptechspa.cl/barberias-vina-del-mar, porque el unico
+     enlace que existia apuntaba a la otra direccion. El rewrite de
+     next.config.mjs trae el HTML; el enlace tiene que nombrar la URL que
+     queremos indexada, no la que la sirve. */
   "Directorio": [
-    { l: "Barberías en Viña del Mar",   h: "https://app.synaptechspa.cl/barberias-vina-del-mar" },
-    { l: "Peluquerías en Viña del Mar", h: "https://app.synaptechspa.cl/peluquerias-vina-del-mar" },
-    { l: "Barberías en la Quinta Región",   h: "https://app.synaptechspa.cl/barberias-quinta-region" },
-    { l: "Peluquerías en la Quinta Región", h: "https://app.synaptechspa.cl/peluquerias-quinta-region" },
+    { l: "Barberías en Viña del Mar",   h: "/barberias-vina-del-mar" },
+    { l: "Peluquerías en Viña del Mar", h: "/peluquerias-vina-del-mar" },
+    { l: "Barberías en la Quinta Región",   h: "/barberias-quinta-region" },
+    { l: "Peluquerías en la Quinta Región", h: "/peluquerias-quinta-region" },
   ],
   "Contacto":  [
     { l: "hola@synaptechspa.cl", h: "mailto:hola@synaptechspa.cl" },
