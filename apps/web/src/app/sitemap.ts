@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { COMPETIDORES } from "@/content/competidores";
 
-const BASE = "https://synaptechspa.cl";
+const BASE = "https://www.synaptechspa.cl";
 
 /* Solo rutas del PRODUCTO.
  *
@@ -16,11 +16,15 @@ const BASE = "https://synaptechspa.cl";
  * del producto que las reemplaza (ver next.config.mjs).
  */
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
+  // Fecha fija de la última revisión de contenido (auditoría SEO 09-10-2026):
+  // con new Date() cada pedido traía una fecha nueva y Google deja de creerle.
+  const now = new Date("2026-10-09");
   return [
     { url: BASE,                          lastModified: now, priority: 1.0 },
     { url: `${BASE}/como-funciona`,       lastModified: now, priority: 0.9 },
     { url: `${BASE}/barberias`,           lastModified: now, priority: 0.9 },
+    { url: `${BASE}/peluquerias`,         lastModified: now, priority: 0.9 },
+    { url: `${BASE}/asistente-ia-whatsapp`, lastModified: now, priority: 0.9 },
     { url: `${BASE}/estetica`,            lastModified: now, priority: 0.9 },
     { url: `${BASE}/clinicas`,            lastModified: now, priority: 0.9 },
     { url: `${BASE}/agencias`,            lastModified: now, priority: 0.8 },

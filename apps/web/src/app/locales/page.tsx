@@ -1,19 +1,19 @@
-import type { Metadata } from "next";
 import Header   from "@/components/Header";
 import Footer   from "@/components/Footer";
 import ListaLocales from "@/components/ListaLocales";
 import { obtenerLocales, PAGINAS } from "@/lib/directorio";
 import { SIGNUP_URL, waLink } from "@/content/catalogo";
+import { metaPagina } from "@/lib/seo";
 
 /* Portada del directorio de locales (Red Synaptech). Se regenera una vez al
    día con la lista viva del directorio: ver lib/directorio.ts. */
 export const revalidate = 86400;
 
-export const metadata: Metadata = {
-  title: "Encuentra tu barbería o salón | Reserva online en la Red Synaptech",
-  description: "Mapa de barberías, peluquerías, clínicas estéticas y estudios de Chile que trabajan con SynapTech: Viña del Mar, Santiago, Rancagua, Quillota y más. Mira sus opiniones y reserva tu hora online, las 24 horas.",
-  alternates: { canonical: "https://synaptechspa.cl/locales" },
-};
+export const metadata = metaPagina({
+  title: "Barberías y salones con reserva online | Red Synaptech",
+  description: "Mapa de barberías, peluquerías, clínicas estéticas y estudios de Chile que trabajan con SynapTech. Encuentra uno cerca y reserva tu hora online.",
+  path: "/locales",
+});
 
 export default async function LocalesPage() {
   const locales = await obtenerLocales();
@@ -24,7 +24,7 @@ export default async function LocalesPage() {
         <section className="pt-28 md:pt-36 pb-10">
           <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10">
             <p className="eyebrow mb-5">Red Synaptech · Directorio de locales</p>
-            <h1 className="text-ink max-w-4xl">Encuentra tu local y reserva tu hora.</h1>
+            <h1 className="text-ink max-w-4xl">Barberías y salones con reserva online: encuentra el tuyo.</h1>
             <p className="text-text-secondary text-lg md:text-xl leading-relaxed max-w-2xl mt-6">
               {locales.length} barberías, salones, clínicas y estudios de Chile que trabajan con
               SynapTech. Búscalos en el mapa y reserva tu hora online, a cualquier hora.

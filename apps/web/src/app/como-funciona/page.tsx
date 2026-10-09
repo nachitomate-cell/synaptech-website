@@ -1,16 +1,16 @@
-import type { Metadata } from "next";
 import Header      from "@/components/Header";
 import Footer      from "@/components/Footer";
 import Recorrido   from "@/components/Recorrido";
 import CtaFinal    from "@/components/CtaFinal";
 import { FilaCapsulas } from "@/components/Capsulas";
 import { MODULOS } from "@/content/recorrido";
+import { metaPagina } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Cómo funciona SynapTech | Agenda, asistente IA, caja, comisiones y club paso a paso",
-  description: "Recorre módulo por módulo, con capturas reales del panel, cómo funciona SynapTech: agenda, reserva online, asistente con IA por WhatsApp, caja, comisiones, club de fidelización y métricas. Incluye cápsulas en video.",
-  alternates: { canonical: "https://synaptechspa.cl/como-funciona" },
-};
+export const metadata = metaPagina({
+  title: "Cómo funciona SynapTech: agenda, IA, caja y club",
+  description: "Módulo por módulo y con capturas reales: agenda, reserva online, asistente con IA por WhatsApp, caja, comisiones, club de fidelización y métricas.",
+  path: "/como-funciona",
+});
 
 export default function ComoFunciona() {
   return (

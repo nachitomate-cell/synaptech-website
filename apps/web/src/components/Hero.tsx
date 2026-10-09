@@ -28,11 +28,12 @@ export default function Hero() {
         <div>
           <p className="eyebrow mb-5">Para barberías, salones y centros de estética</p>
           <h1 className="text-ink mb-6">
-            Todo tu local, en una sola plataforma.
+            La agenda online de tu local, con IA en WhatsApp.
           </h1>
           <p className="text-text-secondary text-lg md:text-xl leading-relaxed max-w-xl mb-8">
-            Reservas online, caja y comisiones, un asistente con IA que responde y
-            agenda por WhatsApp, y un club que hace volver a tus clientes.
+            Todo tu local en una sola plataforma: reservas online, caja y comisiones,
+            un asistente con IA que responde y agenda por WhatsApp, y un club que hace
+            volver a tus clientes.
           </p>
           <div className="flex flex-col sm:flex-row gap-3">
             <a href={`${SIGNUP_URL}?ref=home-hero`}

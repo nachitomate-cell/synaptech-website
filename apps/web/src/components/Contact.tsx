@@ -46,7 +46,7 @@ export default function Contact() {
             transition={{ duration: 0.4 }}
             className="eyebrow mb-5"
           >Contacto</motion.p>
-          <RevealHeading className="text-text-primary max-w-xl">
+          <RevealHeading as="h1" className="text-text-primary max-w-xl">
             Hablemos de{" "}
             <em className="italic text-accent font-display">tu local</em>.
           </RevealHeading>

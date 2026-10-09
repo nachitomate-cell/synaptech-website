@@ -1,10 +1,11 @@
 import Link from "next/link";
-import type { Metadata } from "next";
+import { metaPagina } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Política de Privacidad — Synaptech SpA",
-  description: "Política de privacidad y tratamiento de datos personales de Synaptech SpA, conforme a la Ley 19.628 de Chile.",
-};
+export const metadata = metaPagina({
+  title: "Política de privacidad | SynapTech",
+  description: "Cómo Synaptech SpA recoge, usa y protege los datos de los locales y de sus clientes en la plataforma SynapTech.",
+  path: "/privacidad",
+});
 
 export default function Privacidad() {
   return (

@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Header   from "@/components/Header";
 import Footer   from "@/components/Footer";
 import Pricing  from "@/components/Pricing";
@@ -6,12 +5,13 @@ import Cambiate from "@/components/Cambiate";
 import CtaFinal from "@/components/CtaFinal";
 import TablaPlanes from "@/components/TablaPlanes";
 import { ADICIONALES } from "@/content/precios";
+import { metaPagina } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Precios de SynapTech | Planes desde $29.900 + IVA por local, profesionales ilimitados",
-  description: "Qué incluye cada plan de SynapTech: Básico $29.900, Pro $49.900 con asistente IA por WhatsApp y Full $69.900 con Instagram, más IVA, por local. Profesionales ilimitados, sin comisión por cita, adicionales con precio publicado.",
-  alternates: { canonical: "https://synaptechspa.cl/precios" },
-};
+export const metadata = metaPagina({
+  title: "Precios SynapTech: desde $29.900 + IVA por local",
+  description: "Básico $29.900, Pro $49.900 con asistente IA por WhatsApp y Full $69.900, más IVA, por local. Profesionales ilimitados y sin comisión por reserva.",
+  path: "/precios",
+});
 
 const PREGUNTAS = [
   { q: "¿Cobran por profesional o por silla?", a: "No. El precio es por local y los profesionales son ilimitados en todos los planes: si mañana sumas a alguien al equipo, tu mensualidad no cambia." },
@@ -30,7 +30,7 @@ export default function PreciosPage() {
         <section className="pt-28 md:pt-36 pb-4">
           <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10">
             <p className="eyebrow mb-5">Precios</p>
-            <h1 className="text-ink max-w-4xl">Claro desde el primer día.</h1>
+            <h1 className="text-ink max-w-4xl">Planes y precios, claros desde el primer día.</h1>
             <p className="text-text-secondary text-lg md:text-xl leading-relaxed max-w-2xl mt-6">
               Un precio por local, profesionales ilimitados y sin comisión por cita. Todo
               lo que incluye cada plan, y lo que cuesta cada adicional, está escrito acá.

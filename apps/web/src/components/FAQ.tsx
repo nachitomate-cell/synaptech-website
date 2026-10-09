@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
+import { faqJsonLd } from "@/lib/seo";
 import RevealHeading from "./RevealHeading";
 
 const FAQS = [
@@ -47,6 +48,7 @@ export default function FAQ() {
 
   return (
     <section id="faq" className="py-16 bg-bg-primary">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(FAQS.map((f) => ({ q: f.q, a: f.a })))) }} />
       <div className="max-w-screen-xl mx-auto px-6 md:px-12">
         <div className="mb-8">
           <motion.p
@@ -90,22 +92,15 @@ export default function FAQ() {
                 </motion.span>
               </button>
 
-              <AnimatePresence initial={false}>
-                {open === i && (
-                  <motion.div
-                    key="answer"
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                    className="overflow-hidden"
-                  >
-                    <p className="pb-6 text-sm text-text-secondary leading-relaxed font-body">
-                      {faq.a}
-                    </p>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              {/* La respuesta va SIEMPRE en el HTML (antes solo se montaba al
+                  abrirla y Google no la veía): se pliega con CSS. */}
+              <div className={`grid transition-[grid-template-rows] duration-300 ease-out ${open === i ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}>
+                <div className="overflow-hidden">
+                  <p className="pb-6 text-sm text-text-secondary leading-relaxed font-body">
+                    {faq.a}
+                  </p>
+                </div>
+              </div>
             </motion.div>
           ))}
         </div>
