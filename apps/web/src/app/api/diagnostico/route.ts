@@ -73,7 +73,7 @@ function confirmHtml(nombre: string) {
       </div>`).join("")}
     </div>
 
-    <a href="https://crea.synaptechspa.cl" style="display:inline-block;background:#a3e635;color:#09090b;font-weight:700;font-size:13px;padding:12px 24px;border-radius:8px;text-decoration:none;">
+    <a href="https://empieza.synaptechspa.cl" style="display:inline-block;background:#a3e635;color:#09090b;font-weight:700;font-size:13px;padding:12px 24px;border-radius:8px;text-decoration:none;">
       Empieza tu prueba →
     </a>
 
