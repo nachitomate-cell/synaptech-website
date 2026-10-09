@@ -1,18 +1,17 @@
 import type { Metadata } from "next";
-import { Fraunces, DM_Sans, JetBrains_Mono } from "next/font/google";
+import { Inter_Tight, DM_Sans } from "next/font/google";
 import "./globals.css";
 import PageTransition from "@/components/PageTransition";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import WhatsAppButton from "@/components/WhatsAppButton";
-import ExitIntentPopup from "@/components/ExitIntentPopup";
-import SocialProofToast from "@/components/SocialProofToast";
 import TrackingScripts from "@/components/TrackingScripts";
 
-const fraunces = Fraunces({
+/* Titulares en una grotesca apretada, como Square; el cuerpo sigue en DM Sans. */
+const display = Inter_Tight({
   subsets: ["latin"],
-  variable: "--font-fraunces",
-  weight: ["300", "400", "600", "700", "900"],
+  variable: "--font-display",
+  weight: ["500", "600", "700", "800"],
   style: ["normal", "italic"],
   display: "swap",
 });
@@ -24,12 +23,6 @@ const dmSans = DM_Sans({
   display: "swap",
 });
 
-const jetbrains = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-jetbrains",
-  weight: ["400", "600"],
-  display: "swap",
-});
 
 /* Posicionamiento: SynapTech es un PRODUCTO SaaS por suscripción, no una
    agencia. El title/description anteriores ("software a medida") hicieron que
@@ -132,12 +125,10 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${fraunces.variable} ${dmSans.variable} ${jetbrains.variable} font-body bg-bg-primary text-text-primary antialiased`}
+        className={`${display.variable} ${dmSans.variable} font-body bg-bg-primary text-text-primary antialiased`}
       >
         <PageTransition>{children}</PageTransition>
         <WhatsAppButton />
-        <ExitIntentPopup />
-        <SocialProofToast />
         <TrackingScripts />
         <Analytics />
         <SpeedInsights />

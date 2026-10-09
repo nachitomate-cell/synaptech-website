@@ -1,250 +1,221 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { motion, useScroll } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { FAMILIAS, RUBROS, SIGNUP_URL } from "@/content/catalogo";
 
-const NAV_MAIN = [
-  { label: "Precios",     href: "#precios" },
-  { label: "Barberías",   href: "/saas-comercial", accent: true },
-  { label: "Blog",        href: "/blog" },
-  { label: "Nosotros",    href: "/nosotros" },
-  { label: "Contacto",    href: "/contacto" },
+/* Menú al estilo Square: cada familia abre un panel ancho con todo lo que
+   contiene. Los productos y rubros salen de content/catalogo.ts, el mismo
+   catálogo que pinta la home y el footer. */
+
+type Panel = "productos" | "rubros" | "recursos" | null;
+
+const RECURSOS = [
+  { label: "Blog",           desc: "Guías para hacer crecer tu local", href: "/blog" },
+  { label: "Clientes",       desc: "Lo que dicen los locales que ya lo usan", href: "/#testimonios" },
+  { label: "Integraciones",  desc: "Pagos, WhatsApp, SII, Wallet y más", href: "/#integraciones" },
+  { label: "Preguntas frecuentes", desc: "Precios, prueba, datos y contrato", href: "/#faq" },
+  { label: "Nosotros",       desc: "Quiénes somos y desde dónde trabajamos", href: "/nosotros" },
+  { label: "Contacto",       desc: "Escríbenos o llámanos", href: "/contacto" },
 ];
 
-const NAV_PRODUCTS = [
-  {
-    label: "Agenda y asistente IA",
-    href: "/saas-comercial",
-    desc: "Reservas 24/7 y atención por WhatsApp",
-  },
-  {
-    label: "Club de fidelización",
-    href: "/fidelizacion",
-    desc: "Sellos digitales, premios y Google Wallet",
-  },
+const PANEL_LABELS: { id: Exclude<Panel, null>; label: string }[] = [
+  { id: "productos", label: "Productos" },
+  { id: "rubros",    label: "Rubros" },
+  { id: "recursos",  label: "Recursos" },
 ];
+
+function Chevron({ open }: { open: boolean }) {
+  return (
+    <svg className={`w-3 h-3 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+      viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden>
+      <path d="M2 4l4 4 4-4" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
 
 export default function Header() {
-  const [scrolled, setScrolled]         = useState(false);
-  const [mobileOpen, setMobileOpen]     = useState(false);
-  const [dropOpen, setDropOpen]         = useState(false);
-  const [activeSection, setActiveSection] = useState("");
-  const dropRef = useRef<HTMLLIElement>(null);
+  const [panel, setPanel]           = useState<Panel>(null);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileSub, setMobileSub]   = useState<Panel>(null);
+  const [scrolled, setScrolled]     = useState(false);
+  const wrapRef  = useRef<HTMLElement>(null);
   const pathname = usePathname();
-  const { scrollYProgress } = useScroll();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Cerrar todo al navegar, al hacer clic afuera y con Escape.
+  useEffect(() => { setPanel(null); setMobileOpen(false); }, [pathname]);
   useEffect(() => {
-    const onClickOutside = (e: MouseEvent) => {
-      if (dropRef.current && !dropRef.current.contains(e.target as Node)) {
-        setDropOpen(false);
-      }
+    const onDown = (e: MouseEvent) => {
+      if (wrapRef.current && !wrapRef.current.contains(e.target as Node)) setPanel(null);
     };
-    document.addEventListener("mousedown", onClickOutside);
-    return () => document.removeEventListener("mousedown", onClickOutside);
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") { setPanel(null); setMobileOpen(false); } };
+    document.addEventListener("mousedown", onDown);
+    document.addEventListener("keydown", onKey);
+    return () => { document.removeEventListener("mousedown", onDown); document.removeEventListener("keydown", onKey); };
   }, []);
 
+  // Sin scroll del fondo con el menú móvil abierto.
   useEffect(() => {
-    const sections = document.querySelectorAll("section[id]");
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) setActiveSection(entry.target.id);
-        });
-      },
-      { rootMargin: "-25% 0px -65% 0px" }
-    );
-    sections.forEach((s) => observer.observe(s));
-    return () => observer.disconnect();
-  }, [pathname]);
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [mobileOpen]);
 
-  const isActive = (href: string) => {
-    if (href.startsWith("#")) return activeSection === href.slice(1);
-    return pathname === href || pathname.startsWith(href + "/");
-  };
-
-  const linkCls = (href: string, accent?: boolean) =>
-    `text-[13px] font-body tracking-wide whitespace-nowrap transition-colors ${
-      isActive(href)
-        ? "text-accent"
-        : accent
-        ? "text-accent/80 hover:text-accent font-semibold"
-        : "text-text-secondary hover:text-text-primary"
-    }`;
+  const cerrar = () => { setPanel(null); setMobileOpen(false); };
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "backdrop-blur-xl bg-black/70 border-b border-border-subtle"
-          : "bg-transparent"
-      }`}
-    >
-      {/* Scroll progress bar */}
-      <motion.div
-        style={{ scaleX: scrollYProgress }}
-        className="absolute bottom-0 left-0 right-0 h-px origin-left bg-accent opacity-70"
-      />
+    <header ref={wrapRef}
+      className={`fixed top-0 inset-x-0 z-[60] bg-white transition-shadow ${scrolled || panel ? "shadow-[0_1px_0_#E3E6DF]" : ""}`}>
+      <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10 h-16 flex items-center gap-8">
 
-      <div className="max-w-screen-xl mx-auto px-6 md:px-12 h-16 flex items-center justify-between gap-6">
-
-        {/* Wordmark */}
-        <Link href="/" className="flex items-center gap-2.5 group shrink-0">
-          <Image src="/assets/synaptech-icon.png" alt="" width={28} height={28} className="opacity-90" />
-          <span className="font-mono font-semibold text-[17px] tracking-tight text-text-primary group-hover:text-accent transition-colors">
-            synaptech
-          </span>
+        <Link href="/" className="flex items-center gap-2 shrink-0" onClick={cerrar}>
+          <Image src="/assets/synaptech-icon.png" alt="" width={30} height={30} />
+          <span className="font-display font-bold text-[19px] tracking-tight text-ink">SynapTech</span>
         </Link>
 
-        {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-6" aria-label="Navegación principal">
-          <ul className="flex items-center gap-6 m-0 p-0 list-none">
-            {NAV_MAIN.map((n) => (
-              <li key={n.href}>
-                {n.href.startsWith("/") ? (
-                  <Link href={n.href} className={linkCls(n.href, n.accent)}>{n.label}</Link>
-                ) : (
-                  <a href={n.href} className={linkCls(n.href, n.accent)}>{n.label}</a>
-                )}
-              </li>
-            ))}
-
-            {/* Products dropdown */}
-            <li ref={dropRef} className="relative">
-              <button
-                onClick={() => setDropOpen((v) => !v)}
-                className={`flex items-center gap-1 text-[13px] font-body tracking-wide transition-colors whitespace-nowrap ${
-                  dropOpen ? "text-text-primary" : "text-text-secondary hover:text-text-primary"
-                }`}
-                aria-expanded={dropOpen}
-                aria-haspopup="true"
-              >
-                Productos
-                <svg
-                  className={`w-3 h-3 transition-transform duration-200 ${dropOpen ? "rotate-180" : ""}`}
-                  viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5"
-                >
-                  <path d="M2 4l4 4 4-4" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </button>
-
-              {dropOpen && (
-                <div
-                  className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-72 rounded-xl border border-border-subtle overflow-hidden shadow-2xl"
-                  style={{ background: "rgba(10,10,10,0.96)", backdropFilter: "blur(20px)" }}
-                >
-                  <ul className="p-1.5 list-none m-0">
-                    {NAV_PRODUCTS.map((p) => (
-                      <li key={p.href}>
-                        <Link
-                          href={p.href}
-                          onClick={() => setDropOpen(false)}
-                          className="flex flex-col gap-0.5 px-4 py-3 rounded-lg hover:bg-white/5 transition-colors group"
-                        >
-                          <span className="text-[13px] font-medium text-text-primary group-hover:text-accent transition-colors">
-                            {p.label}
-                          </span>
-                          <span className="text-[11px] text-text-muted font-mono">
-                            {p.desc}
-                          </span>
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="h-px mx-4 mb-3 mt-1" style={{ background: "linear-gradient(90deg, transparent, rgba(163,230,53,0.3), transparent)" }} />
-                  <div className="px-4 pb-3">
-                    <span className="font-mono text-[10px] text-text-muted/50 uppercase tracking-widest">
-                      La plataforma SynapTech
-                    </span>
-                  </div>
-                </div>
-              )}
-            </li>
-          </ul>
+        {/* Escritorio */}
+        <nav className="hidden lg:flex items-center gap-1 flex-1" aria-label="Navegación principal">
+          {PANEL_LABELS.map((p) => (
+            <button key={p.id}
+              onClick={() => setPanel((v) => (v === p.id ? null : p.id))}
+              onMouseEnter={() => panel && setPanel(p.id)}
+              aria-expanded={panel === p.id}
+              className={`flex items-center gap-1.5 px-3 py-2 rounded-full text-[15px] font-medium transition-colors ${
+                panel === p.id ? "bg-mist text-ink" : "text-text-secondary hover:text-ink"
+              }`}>
+              {p.label}<Chevron open={panel === p.id} />
+            </button>
+          ))}
+          <Link href="/#precios" onClick={cerrar}
+            className="px-3 py-2 rounded-full text-[15px] font-medium text-text-secondary hover:text-ink transition-colors">
+            Precios
+          </Link>
         </nav>
 
-        {/* Desktop CTAs */}
-        <div className="hidden md:flex items-center gap-4 shrink-0">
-          <a
-            href="mailto:hola@synaptechspa.cl?subject=Acceso%20Clientes"
-            className="font-mono text-xs text-text-muted hover:text-accent transition-colors whitespace-nowrap"
-          >
-            Acceso Clientes
+        <div className="hidden lg:flex items-center gap-2 shrink-0">
+          <a href="https://app.synaptechspa.cl/"
+            className="px-4 py-2 rounded-full text-[15px] font-medium text-text-secondary hover:text-ink transition-colors">
+            Ingresar
           </a>
-          <a
-            href="https://empieza.synaptechspa.cl"
-            className="bg-accent text-black font-bold text-xs px-5 py-2.5 rounded-lg hover:bg-accent-dim hover:text-white hover:scale-[1.02] transition-all shadow-[0_0_18px_rgba(163,230,53,0.2)] whitespace-nowrap"
-          >
-            Pruébala gratis
+          <a href={`${SIGNUP_URL}?ref=header`}
+            className="bg-ink text-white text-[15px] font-semibold px-5 py-2.5 rounded-full hover:bg-black transition-colors">
+            Empezar gratis
           </a>
         </div>
 
-        {/* Mobile burger */}
-        <button
-          className="md:hidden flex flex-col gap-1.5 p-2 text-text-secondary shrink-0"
-          onClick={() => setMobileOpen((v) => !v)}
-          aria-label="Menú"
-        >
-          <span className={`block w-5 h-px bg-current transition-all origin-center ${mobileOpen ? "rotate-45 translate-y-[7px]" : ""}`} />
-          <span className={`block w-5 h-px bg-current transition-all ${mobileOpen ? "opacity-0" : ""}`} />
-          <span className={`block w-5 h-px bg-current transition-all origin-center ${mobileOpen ? "-rotate-45 -translate-y-[7px]" : ""}`} />
+        <button className="lg:hidden ml-auto p-2 -mr-2 text-ink" onClick={() => setMobileOpen((v) => !v)}
+          aria-label={mobileOpen ? "Cerrar menú" : "Abrir menú"} aria-expanded={mobileOpen}>
+          <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+            {mobileOpen ? <path d="M6 6l12 12M18 6L6 18" /> : <path d="M4 7h16M4 12h16M4 17h16" />}
+          </svg>
         </button>
       </div>
 
-      {/* Mobile drawer */}
-      {mobileOpen && (
-        <nav className="md:hidden bg-bg-secondary border-t border-border-subtle" aria-label="Navegación móvil">
-          <ul className="px-6 py-5 flex flex-col gap-1 list-none m-0">
-            {NAV_MAIN.map((n) => (
-              <li key={n.href}>
-                {n.href.startsWith("/") ? (
-                  <Link href={n.href} onClick={() => setMobileOpen(false)}
-                    className={`block text-sm transition-colors py-2.5 border-b border-border-subtle/50 ${isActive(n.href) ? "text-accent" : n.accent ? "text-accent/80 font-semibold hover:text-accent" : "text-text-secondary hover:text-text-primary"}`}>
-                    {n.label}
+      {/* Paneles de escritorio */}
+      {panel && (
+        <div className="hidden lg:block absolute inset-x-0 top-16 bg-white border-t border-border-subtle shadow-[0_24px_48px_-12px_rgba(15,26,43,0.18)]">
+          <div className="max-w-screen-xl mx-auto px-10 py-8">
+            {panel === "productos" && (
+              <div className="grid grid-cols-5 gap-8">
+                {FAMILIAS.map((f) => (
+                  <div key={f.id}>
+                    <Link href={`/#${f.id}`} onClick={cerrar}
+                      className="block font-display font-bold text-[15px] text-ink hover:text-accent mb-3">
+                      {f.nombre}
+                    </Link>
+                    <ul className="flex flex-col gap-3">
+                      {f.items.map((it) => (
+                        <li key={it.label}>
+                          <Link href={`/#${f.id}`} onClick={cerrar} className="group block">
+                            <span className="block text-[14px] text-text-primary group-hover:text-accent leading-snug">{it.label}</span>
+                            <span className="block text-[12.5px] text-text-muted leading-snug mt-0.5">{it.desc}</span>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {panel === "rubros" && (
+              <div className="grid grid-cols-3 gap-x-8 gap-y-6">
+                {RUBROS.map((r) => (
+                  <Link key={r.id} href={`/#rubro-${r.id}`} onClick={cerrar} className="group block">
+                    <span className="block font-display font-bold text-[15px] text-ink group-hover:text-accent">{r.nombre}</span>
+                    <span className="block text-[13px] text-text-muted leading-snug mt-1">{r.titular}</span>
                   </Link>
-                ) : (
-                  <a href={n.href} onClick={() => setMobileOpen(false)}
-                    className={`block text-sm transition-colors py-2.5 border-b border-border-subtle/50 ${isActive(n.href) ? "text-accent" : n.accent ? "text-accent/80 font-semibold hover:text-accent" : "text-text-secondary hover:text-text-primary"}`}>
-                    {n.label}
-                  </a>
+                ))}
+              </div>
+            )}
+
+            {panel === "recursos" && (
+              <div className="grid grid-cols-3 gap-x-8 gap-y-6">
+                {RECURSOS.map((r) => (
+                  <Link key={r.label} href={r.href} onClick={cerrar} className="group block">
+                    <span className="block font-display font-bold text-[15px] text-ink group-hover:text-accent">{r.label}</span>
+                    <span className="block text-[13px] text-text-muted leading-snug mt-1">{r.desc}</span>
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* Menú móvil: pantalla completa con acordeones */}
+      {mobileOpen && (
+        <nav className="lg:hidden fixed inset-x-0 top-16 bottom-0 bg-white overflow-y-auto border-t border-border-subtle"
+          aria-label="Navegación móvil">
+          <ul className="px-4 sm:px-6 py-2">
+            {PANEL_LABELS.map((p) => (
+              <li key={p.id} className="border-b border-border-subtle">
+                <button onClick={() => setMobileSub((v) => (v === p.id ? null : p.id))}
+                  aria-expanded={mobileSub === p.id}
+                  className="w-full flex items-center justify-between py-4 text-[17px] font-semibold text-ink">
+                  {p.label}<Chevron open={mobileSub === p.id} />
+                </button>
+                {mobileSub === p.id && (
+                  <div className="pb-4 flex flex-col gap-4">
+                    {p.id === "productos" && FAMILIAS.map((f) => (
+                      <Link key={f.id} href={`/#${f.id}`} onClick={cerrar}>
+                        <span className="block font-semibold text-[15px] text-ink">{f.nombre}</span>
+                        <span className="block text-[13px] text-text-muted">{f.items.map((i) => i.label).join(" · ")}</span>
+                      </Link>
+                    ))}
+                    {p.id === "rubros" && RUBROS.map((r) => (
+                      <Link key={r.id} href={`/#rubro-${r.id}`} onClick={cerrar}
+                        className="block font-medium text-[15px] text-text-primary">{r.nombre}</Link>
+                    ))}
+                    {p.id === "recursos" && RECURSOS.map((r) => (
+                      <Link key={r.label} href={r.href} onClick={cerrar}
+                        className="block font-medium text-[15px] text-text-primary">{r.label}</Link>
+                    ))}
+                  </div>
                 )}
               </li>
             ))}
-
-            {/* Products group in mobile */}
-            <li className="pt-1">
-              <p className="font-mono text-[10px] uppercase tracking-widest text-text-muted/60 pt-2 pb-3 m-0">
-                Productos
-              </p>
-              <ul className="flex flex-col list-none m-0 p-0">
-                {NAV_PRODUCTS.map((p) => (
-                  <li key={p.href}>
-                    <Link href={p.href} onClick={() => setMobileOpen(false)}
-                      className="flex flex-col gap-0.5 py-2.5 border-b border-border-subtle/50 group">
-                      <span className="text-sm text-text-secondary group-hover:text-text-primary transition-colors">
-                        {p.label}
-                      </span>
-                      <span className="font-mono text-[10px] text-text-muted/60">{p.desc}</span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </li>
-
-            <li className="mt-3">
-              <a href="https://empieza.synaptechspa.cl" onClick={() => setMobileOpen(false)}
-                className="block bg-accent text-black font-bold text-sm px-5 py-3 rounded-lg text-center">
-                Pruébala gratis
-              </a>
+            <li className="border-b border-border-subtle">
+              <Link href="/#precios" onClick={cerrar} className="block py-4 text-[17px] font-semibold text-ink">Precios</Link>
             </li>
           </ul>
+          <div className="px-4 sm:px-6 py-6 flex flex-col gap-3">
+            <a href={`${SIGNUP_URL}?ref=header-movil`}
+              className="block text-center bg-ink text-white font-semibold py-3.5 rounded-full">
+              Empezar gratis
+            </a>
+            <a href="https://app.synaptechspa.cl/"
+              className="block text-center border border-border-subtle text-ink font-semibold py-3.5 rounded-full">
+              Ingresar
+            </a>
+          </div>
         </nav>
       )}
     </header>

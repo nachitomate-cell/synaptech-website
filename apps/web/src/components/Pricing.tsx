@@ -73,8 +73,8 @@ export default function Pricing() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="mt-5 text-text-secondary text-base leading-relaxed max-w-2xl font-body"
           >
-            Suscripción mensual por local. Pruebas 14 días gratis sin tarjeta y el primer mes
-            va gratis al activar tu plan.
+            Suscripción mensual por local, sin tarjeta para partir. Si te sumas ahora,
+            los primeros 2 meses van por nuestra cuenta.
           </motion.p>
         </div>
 
@@ -94,7 +94,7 @@ export default function Pricing() {
             >
               {t.highlight && (
                 <div className="absolute -top-3 left-8">
-                  <span className="bg-accent text-black font-mono text-[10px] font-bold px-3 py-1 rounded-full">
+                  <span className="bg-ink text-white font-mono text-[10px] font-bold px-3 py-1 rounded-full">
                     Más elegido
                   </span>
                 </div>
@@ -129,7 +129,7 @@ export default function Pricing() {
                 href={SIGNUP}
                 className={`mt-2 inline-flex items-center justify-center font-bold text-sm px-6 py-3 rounded-lg transition-all ${
                   t.highlight
-                    ? "bg-accent text-black shadow-lime hover:bg-accent-dim hover:text-white"
+                    ? "bg-ink text-white hover:bg-black"
                     : "border border-border-subtle text-text-primary hover:border-accent/40"
                 }`}
               >

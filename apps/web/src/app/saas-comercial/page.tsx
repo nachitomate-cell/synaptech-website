@@ -220,7 +220,7 @@ export default function AgendaProfesionalPage() {
             <div className="flex flex-wrap gap-4 mb-20 animate-fade-up" style={{ animationDelay: "160ms" }}>
               <a
                 href="#contacto-agenda"
-                className="bg-accent text-black font-bold text-sm px-7 py-3.5 rounded-lg shadow-lime hover:bg-accent-dim hover:text-white hover:scale-[1.02] transition-all"
+                className="bg-ink text-white font-bold text-sm px-7 py-3.5 rounded-lg hover:bg-black hover:scale-[1.02] transition-all"
               >
                 Agendar Demo
               </a>
@@ -486,7 +486,7 @@ export default function AgendaProfesionalPage() {
                   </p>
 
                   <div className="flex gap-2">
-                    <button className="flex-1 bg-accent text-black font-mono text-[11px] font-semibold py-2.5 rounded-lg hover:bg-accent-dim transition-colors">
+                    <button className="flex-1 bg-ink text-white font-mono text-[11px] font-semibold py-2.5 rounded-lg hover:bg-accent-dim transition-colors">
                       Ver agenda
                     </button>
                     <button className="flex-1 border border-border-subtle text-text-secondary font-mono text-[11px] py-2.5 rounded-lg hover:border-accent/30 transition-colors">
@@ -576,7 +576,7 @@ export default function AgendaProfesionalPage() {
                 <em className="italic text-accent font-display">sin letra chica</em>
               </h2>
               <p className="text-text-secondary leading-relaxed">
-                El primer mes es gratis. Sin contratos largos. Cancela cuando quieras.
+                Los primeros 2 meses son gratis. Sin contratos largos. Cancela cuando quieras.
               </p>
             </div>
 
@@ -617,7 +617,7 @@ export default function AgendaProfesionalPage() {
               {/* Anual */}
               <div className="relative rounded-2xl border border-accent/40 bg-accent/5 p-8 flex flex-col gap-5">
                 <div className="absolute -top-3 left-8">
-                  <span className="bg-accent text-black font-mono text-[10px] font-bold px-3 py-1 rounded-full">
+                  <span className="bg-ink text-white font-mono text-[10px] font-bold px-3 py-1 rounded-full">
                     🔥 Mejor valor
                   </span>
                 </div>
@@ -681,7 +681,7 @@ export default function AgendaProfesionalPage() {
                 </p>
                 <a
                   href="/#contacto"
-                  className="inline-flex items-center gap-2 bg-accent text-black font-bold text-sm px-8 py-4 rounded-lg shadow-lime hover:bg-accent-dim hover:text-white hover:scale-[1.02] transition-all"
+                  className="inline-flex items-center gap-2 bg-ink text-white font-bold text-sm px-8 py-4 rounded-lg hover:bg-black hover:scale-[1.02] transition-all"
                 >
                   Agendar Demo
                   <svg

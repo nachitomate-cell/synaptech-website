@@ -83,7 +83,7 @@ function Fila({ ariaHidden = false }: { ariaHidden?: boolean }) {
 
 export default function Integraciones() {
   return (
-    <section className="py-16 border-t border-border-subtle overflow-hidden">
+    <section id="integraciones" className="py-16 border-t border-border-subtle overflow-hidden">
       <div className="max-w-screen-xl mx-auto px-6 md:px-12">
         <div className="text-center max-w-xl mx-auto mb-10">
           <p className="eyebrow mb-4">Integrado con lo que ya usas</p>

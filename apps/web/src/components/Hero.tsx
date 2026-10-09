@@ -1,201 +1,59 @@
-"use client";
-import { motion, useScroll, useTransform, animate, useInView } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
-import NeuralCanvas from "./NeuralCanvas";
+import Image from "next/image";
+import { SIGNUP_URL, waLink } from "@/content/catalogo";
 
-/* ── Animated counter — counts from 0 to target on viewport enter ── */
-function AnimatedCount({ value }: { value: string }) {
-  const ref   = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true });
-  // Arranca con el valor real: el HTML del servidor (y quien lea sin JS) ve la
-  // cifra, no un "0". La animación 0 → valor corre cuando entra en pantalla.
-  const [display, setDisplay] = useState(value);
-
-  useEffect(() => {
-    if (!inView) return;
-    const num    = parseInt(value.replace(/\D/g, ""), 10);
-    const prefix = value.match(/^\D*/)?.[0]  ?? "";
-    const suffix = value.match(/\D+$/)?.[0]  ?? "";
-    // Miles con punto (es-CL): 21000 → "21.000". Sin Intl para no arriesgar
-    // diferencias entre servidor y cliente.
-    const miles  = (n: number) => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-    const ctrl   = animate(0, num, {
-      duration: 1.6,
-      ease: [0.16, 1, 0.3, 1],
-      onUpdate: (v) => setDisplay(`${prefix}${miles(Math.round(v))}${suffix}`),
-      onComplete: () => setDisplay(value),
-    });
-    return ctrl.stop;
-  }, [inView, value]);
-
-  return <span ref={ref}>{display}</span>;
-}
-
-const WORDS: { text: string; delay: number; accent: boolean }[] = [
-  { text: "Agenda,",      delay: 0.05, accent: false },
-  { text: "fidelización", delay: 0.12, accent: false },
-  { text: "y",            delay: 0.19, accent: false },
-  { text: "WhatsApp",     delay: 0.26, accent: false },
-  { text: "con",          delay: 0.33, accent: false },
-  { text: "IA",           delay: 0.40, accent: true  },
-  { text: "para",         delay: 0.47, accent: false },
-  { text: "barberías",    delay: 0.54, accent: false },
-  { text: "y",            delay: 0.61, accent: false },
-  { text: "salones.",     delay: 0.68, accent: false },
+/* Cifras de la auditoría del 04-10-2026 (memoria project_cifras_reales_plataforma):
+   27 locales vigentes (22 pagando + 5 en prueba), 34.620 fichas de clientes en
+   locales vigentes y 14.643 citas agendadas en la plataforma. Se redondean
+   hacia abajo; si cambian mucho, volver a contar antes de tocar. */
+const METRICAS = [
+  { valor: "+25",     label: "locales en Chile" },
+  { valor: "+30.000", label: "clientes en sus fichas" },
+  { valor: "+14.000", label: "citas agendadas" },
 ];
-
-/* Cifras reales de la plataforma, contadas en Firestore el 08-09-2026
-   (64 locales configurados · 21.725 fichas de clientes · 8.626 citas).
-   Se redondean hacia abajo; si cambian mucho, volver a contar antes de tocar. */
-const METRICS = [
-  { value: "+60",     label: "locales en la\nplataforma"   },
-  { value: "+21.000", label: "clientes\nregistrados"       },
-  { value: "+8.000",  label: "citas\ngestionadas"          },
-];
-
-const rise = (delay = 0) => ({
-  initial:    { opacity: 0, y: 24 },
-  animate:    { opacity: 1, y: 0  },
-  transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1], delay },
-});
 
 export default function Hero() {
-  const { scrollY }    = useScroll();
-  const auroraY        = useTransform(scrollY, [0, 600], [0,  -90]);
-  const auroraOpacity  = useTransform(scrollY, [0, 450], [1, 0.1]);
-
   return (
-    <section className="relative min-h-screen flex flex-col overflow-hidden">
-
-      {/* ── Aurora background — three drifting orbs ── */}
-      <motion.div
-        aria-hidden
-        style={{ y: auroraY, opacity: auroraOpacity }}
-        className="absolute inset-0 pointer-events-none"
-      >
-        {/* Primary lime orb */}
-        <div style={{
-          position: "absolute", top: "-28%", left: "12%",
-          width: "66%", height: "66%", borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(163,230,53,0.09) 0%, transparent 70%)",
-          filter: "blur(52px)",
-          animation: "aurora-drift 16s ease-in-out infinite",
-        }} />
-        {/* Secondary cyan orb */}
-        <div style={{
-          position: "absolute", top: "18%", right: "-8%",
-          width: "44%", height: "54%", borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(34,211,238,0.04) 0%, transparent 70%)",
-          filter: "blur(60px)",
-          animation: "aurora-drift 21s ease-in-out infinite reverse",
-          animationDelay: "-8s",
-        }} />
-        {/* Bottom warmth orb */}
-        <div style={{
-          position: "absolute", bottom: "2%", left: "32%",
-          width: "42%", height: "38%", borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(163,230,53,0.04) 0%, transparent 70%)",
-          filter: "blur(64px)",
-          animation: "aurora-drift 13s ease-in-out infinite",
-          animationDelay: "-4s",
-        }} />
-      </motion.div>
-
-      {/* Grid texture */}
-      <div aria-hidden className="absolute inset-0 pointer-events-none opacity-[0.022]"
-        style={{
-          backgroundImage: "linear-gradient(#27272a 1px,transparent 1px),linear-gradient(90deg,#27272a 1px,transparent 1px)",
-          backgroundSize: "64px 64px",
-        }}
-      />
-
-      {/* ── Main content grid ── */}
-      <div className="relative z-10 flex-1 flex items-center max-w-screen-xl mx-auto w-full px-6 md:px-12 pt-28 pb-16">
-        <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-16 w-full items-center">
-
-          {/* Left: copy */}
-          <div>
-            <motion.p {...rise(0)} className="eyebrow mb-7">
-              Plataforma SaaS · Barberías y salones · Chile
-            </motion.p>
-
-            {/* Word-by-word blur reveal */}
-            {/* Titular largo (10 palabras): un escalón más chico que el h1
-                global para que el subtítulo y el CTA queden sobre el fold. */}
-            <h1 className="text-text-primary mb-8 !text-[clamp(2.6rem,5.6vw,4.9rem)]">
-              {WORDS.map((w) => (
-                <motion.span
-                  key={w.text}
-                  className={`inline-block mr-[0.22em] last:mr-0 ${
-                    w.accent ? "italic text-accent font-display" : ""
-                  }`}
-                  initial={{ opacity: 0, y: 28, filter: "blur(10px)" }}
-                  animate={{ opacity: 1, y: 0,  filter: "blur(0px)"  }}
-                  transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: w.delay }}
-                >
-                  {w.text}
-                </motion.span>
-              ))}
-            </h1>
-
-            <motion.p {...rise(0.36)}
-              className="text-text-secondary text-lg md:text-xl leading-relaxed max-w-xl mb-10 font-body">
-              SynapTech es una plataforma por suscripción: reservas online 24/7 con tu
-              propia página, club de fidelidad con sellos y premios, y un asistente con IA
-              que responde y agenda por WhatsApp, incluido en el plan Pro. Un precio por
-              local, sin comisiones por cita.
-            </motion.p>
-
-            <motion.div {...rise(0.46)} className="flex flex-wrap gap-4">
-              <a href="https://crea.synaptechspa.cl/?ref=home-hero"
-                className="inline-flex items-center gap-2 bg-accent text-black font-bold text-sm px-7 py-3.5 rounded-lg shadow-lime hover:bg-accent-dim hover:text-white hover:scale-[1.02] transition-all">
-                Prueba gratis 14 días
-              </a>
-              <a href="#precios"
-                className="inline-flex items-center gap-2 text-text-secondary border border-border-subtle px-6 py-3.5 rounded-lg text-sm font-medium hover:border-accent/40 hover:text-text-primary transition-all">
-                Ver planes y precios
-                <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
-                  <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </a>
-            </motion.div>
+    <section className="pt-28 md:pt-32 pb-14 md:pb-20">
+      <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10 grid lg:grid-cols-[1.05fr_1fr] gap-10 lg:gap-14 items-center">
+        <div>
+          <p className="eyebrow mb-5">Agenda · Cobros · IA · Fidelización</p>
+          <h1 className="text-ink mb-6">
+            Todo tu local, en una sola plataforma.
+          </h1>
+          <p className="text-text-secondary text-lg md:text-xl leading-relaxed max-w-xl mb-8">
+            Reservas online, cobros y caja, un asistente con IA que responde por
+            WhatsApp y un club que hace volver a tus clientes. Para barberías,
+            salones, estética, pilates, mascotas y agencias.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3">
+            <a href={`${SIGNUP_URL}?ref=home-hero`}
+              className="inline-flex justify-center items-center bg-ink text-white font-semibold text-base px-7 py-4 rounded-full hover:bg-black transition-colors">
+              Empezar gratis
+            </a>
+            <a href={waLink("Hola, quiero conocer SynapTech para mi local")} target="_blank" rel="noopener noreferrer"
+              className="inline-flex justify-center items-center border border-ink/15 text-ink font-semibold text-base px-7 py-4 rounded-full hover:border-ink/40 transition-colors">
+              Hablar por WhatsApp
+            </a>
           </div>
+        </div>
 
-          {/* Right: neural canvas with breathing glow */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.97 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
-            className="hidden lg:block h-[460px] rounded-2xl border border-border-subtle overflow-hidden bracket"
-            style={{
-              background: "rgba(163,230,53,0.015)",
-              animation: "canvas-glow 7s ease-in-out infinite",
-            }}
-          >
-            <NeuralCanvas />
-          </motion.div>
+        <div className="rounded-[28px] bg-[#161617] overflow-hidden">
+          <Image src="/agenda.png" alt="Agenda del día por profesional en el panel de SynapTech"
+            width={1536} height={1024} priority sizes="(min-width: 1024px) 600px, 100vw"
+            className="w-full h-auto" />
         </div>
       </div>
 
-      {/* ── Metrics bar with animated counters ── */}
-      <motion.div
-        initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 0.85 }}
-        className="relative z-10 border-t border-border-subtle"
-      >
-        <div className="max-w-screen-xl mx-auto px-6 md:px-12 grid grid-cols-3 divide-x divide-border-subtle">
-          {METRICS.map((m) => (
-            <div key={m.label} className="flex flex-col items-center py-7 px-4 gap-1.5">
-              <span className="font-mono font-semibold text-[2rem] leading-none text-accent">
-                <AnimatedCount value={m.value} />
-              </span>
-              <span className="font-mono text-[11px] text-text-muted uppercase tracking-widest text-center whitespace-pre-line">
-                {m.label}
-              </span>
+      <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10 mt-14">
+        <div className="grid grid-cols-3 border-y border-border-subtle">
+          {METRICAS.map((m, i) => (
+            <div key={m.label} className={`py-6 px-2 sm:px-6 text-center ${i ? "border-l border-border-subtle" : ""}`}>
+              <p className="font-display font-bold text-ink text-2xl sm:text-4xl tracking-tight">{m.valor}</p>
+              <p className="text-[12px] sm:text-sm text-text-muted mt-1">{m.label}</p>
             </div>
           ))}
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }
