@@ -80,7 +80,7 @@ export default function Diagnosis() {
                   <div key={label} className={`flex items-center gap-3 px-4 py-3 rounded-xl border transition-all duration-300
                     ${step > i ? "border-accent/40 bg-accent/5" : step === i ? "border-accent bg-accent/10" : "border-border-subtle"}`}>
                     <div className={`w-6 h-6 rounded-full border flex items-center justify-center font-mono text-[11px] font-semibold shrink-0
-                      ${step > i ? "border-accent bg-accent text-black" : step === i ? "border-accent text-accent" : "border-border-subtle text-text-muted"}`}>
+                      ${step > i ? "border-accent bg-ink text-white" : step === i ? "border-accent text-accent" : "border-border-subtle text-text-muted"}`}>
                       {step > i ? "✓" : i + 1}
                     </div>
                     <span className={`text-sm font-medium ${step >= i ? "text-text-primary" : "text-text-muted"}`}>{label}</span>
@@ -202,8 +202,8 @@ export default function Diagnosis() {
                     <p className="text-red-400 text-xs font-mono">{errMsg}</p>
                   )}
                   <button onClick={submit} disabled={!form.nombre || !form.email || loading}
-                    className="mt-2 bg-accent text-black font-bold text-sm px-6 py-3.5 rounded-lg
-                      hover:bg-accent-dim hover:text-white transition-all shadow-lime
+                    className="mt-2 bg-ink text-white font-bold text-sm px-6 py-3.5 rounded-lg
+                      hover:bg-black transition-all
                       disabled:opacity-40 disabled:cursor-not-allowed">
                     {loading ? "Enviando..." : "Quiero probar la plataforma"}
                   </button>

@@ -145,7 +145,7 @@ export default function BlogPostPage({ params }: Props) {
               </p>
               <a
                 href="https://empieza.synaptechspa.cl"
-                className="block text-center bg-accent text-black font-bold text-xs px-5 py-3 rounded-lg hover:bg-accent-dim hover:text-white transition-all"
+                className="block text-center bg-ink text-white font-bold text-xs px-5 py-3 rounded-lg hover:bg-black transition-all"
               >
                 Pruébala gratis
               </a>

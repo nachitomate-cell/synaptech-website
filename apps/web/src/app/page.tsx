@@ -1,39 +1,36 @@
-import Header      from "@/components/Header";
-import Hero         from "@/components/Hero";
-import SaaSBanner   from "@/components/SaaSBanner";
-import Services     from "@/components/Services";
-import TechBand     from "@/components/TechBand";
+import Header        from "@/components/Header";
+import Hero          from "@/components/Hero";
+import Familias      from "@/components/Familias";
+import PromoMeses    from "@/components/PromoMeses";
+import Rubros        from "@/components/Rubros";
+import Testimonials  from "@/components/Testimonials";
+import LogosLocales  from "@/components/LogosLocales";
 import Integraciones from "@/components/Integraciones";
-import LogosLocales from "@/components/LogosLocales";
-import Testimonials from "@/components/Testimonials";
-import Diagnosis    from "@/components/Diagnosis";
-import Pricing      from "@/components/Pricing";
-import FAQ          from "@/components/FAQ";
-import Contact      from "@/components/Contact";
-import Footer       from "@/components/Footer";
-import WhatsAppFloat from "@/components/WhatsAppFloat";
-import CustomCursor from "@/components/CustomCursor";
+import Pricing       from "@/components/Pricing";
+import FAQ           from "@/components/FAQ";
+import CtaFinal      from "@/components/CtaFinal";
+import Footer        from "@/components/Footer";
 
+/* Home al estilo Square (08-10-2026): titular → familias de producto →
+   oferta destacada → rubros → prueba social → integraciones → precios →
+   preguntas → cierre. */
 export default function Home() {
   return (
     <>
-      <CustomCursor />
       <Header />
       <main>
         <Hero />
-        <SaaSBanner />
-        <Services />
-        <TechBand />
-        <Integraciones />
-        <LogosLocales />
+        <Familias />
+        <PromoMeses />
+        <Rubros />
         <Testimonials />
-        <Diagnosis />
+        <LogosLocales />
+        <Integraciones />
         <Pricing />
         <FAQ />
-        <Contact />
+        <CtaFinal />
       </main>
       <Footer />
-      <WhatsAppFloat />
     </>
   );
 }

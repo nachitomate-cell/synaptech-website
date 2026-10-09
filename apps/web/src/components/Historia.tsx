@@ -162,7 +162,7 @@ export default function Historia() {
         <div aria-hidden className="absolute inset-0 pointer-events-none"
           style={{ background: "radial-gradient(ellipse 70% 55% at 50% 0%, rgba(163,230,53,0.06), transparent 65%)" }} />
         <div aria-hidden className="absolute inset-0 pointer-events-none opacity-[0.025]"
-          style={{ backgroundImage: "linear-gradient(#27272a 1px,transparent 1px),linear-gradient(90deg,#27272a 1px,transparent 1px)", backgroundSize: "64px 64px" }} />
+          style={{ backgroundImage: "linear-gradient(#E3E6DF 1px,transparent 1px),linear-gradient(90deg,#E3E6DF 1px,transparent 1px)", backgroundSize: "64px 64px" }} />
 
         <div className="relative z-10 max-w-screen-xl mx-auto w-full px-6 md:px-12 pt-32 pb-20">
           <motion.p {...rise(0)} className="eyebrow mb-8">
@@ -310,7 +310,7 @@ export default function Historia() {
                         style={{
                           background: item.highlight
                             ? "linear-gradient(135deg, rgba(163,230,53,0.05), rgba(163,230,53,0.02))"
-                            : "rgba(17,17,17,0.6)",
+                            : "#F4F5F1",
                         }}
                       >
                         <div className="flex items-center gap-3 mb-4">
@@ -358,7 +358,7 @@ export default function Historia() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: i * 0.07 }}
                 className="flex flex-col items-center py-10 px-6 gap-1 text-center"
-                style={{ background: "rgba(17,17,17,0.5)" }}
+                style={{ background: "#F4F5F1" }}
               >
                 <span className="font-mono font-semibold text-[2.8rem] leading-none text-accent">
                   {s.value}
@@ -387,7 +387,7 @@ export default function Historia() {
           </div>
           <motion.div {...rise(0.15)} className="flex flex-wrap gap-4 shrink-0">
             <a href="https://empieza.synaptechspa.cl"
-              className="inline-flex items-center gap-2 bg-accent text-black font-bold text-sm px-7 py-3.5 rounded-lg shadow-[0_0_24px_rgba(163,230,53,0.25)] hover:bg-accent-dim hover:text-white hover:scale-[1.02] transition-all">
+              className="inline-flex items-center gap-2 bg-ink text-white font-bold text-sm px-7 py-3.5 rounded-lg hover:bg-black hover:scale-[1.02] transition-all">
               Diagnóstico Gratis
             </a>
             <a href="/"

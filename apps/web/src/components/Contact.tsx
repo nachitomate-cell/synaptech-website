@@ -106,7 +106,7 @@ export default function Contact() {
                   <p className="text-red-400 text-xs font-mono">{errMsg}</p>
                 )}
                 <button type="submit" disabled={loading}
-                  className="bg-accent text-black font-bold text-sm px-6 py-3.5 rounded-lg hover:bg-accent-dim hover:text-white hover:scale-[1.01] transition-all shadow-lime mt-1 self-start disabled:opacity-40 disabled:cursor-not-allowed">
+                  className="bg-ink text-white font-bold text-sm px-6 py-3.5 rounded-lg hover:bg-black hover:scale-[1.01] transition-all mt-1 self-start disabled:opacity-40 disabled:cursor-not-allowed">
                   {loading ? "Enviando..." : "Enviar mensaje"}
                 </button>
               </form>

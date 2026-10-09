@@ -16,8 +16,10 @@ import Image from "next/image";
    `tenants/<tid>/configuracion/wallet.logoUrl`. Buscar por nombre de archivo en
    la raíz o en Storage da casi nada y lleva a concluir, en falso, que no hay
    logos. */
-/* `invertir` es para los logos que vienen con FONDO BLANCO: sobre el fondo
-   oscuro del sitio se ven como un parche. Invertirlos funde el blanco con el
+/* Con el sitio en tema claro (08-10-2026) cada logo va sobre una ficha
+   oscura: casi todos son claros, pensados para fondo negro, y sobre blanco
+   desaparecían. `invertir` es para los logos que vienen con FONDO BLANCO:
+   sobre la ficha oscura se ven como un parche. Invertirlos funde el blanco con el
    fondo y deja el texto legible en claro. Solo aplica a marcas monocromas —
    con un logo a color lo arruinaría, y ahí la salida es pedir la versión en
    PNG transparente. */
@@ -37,15 +39,13 @@ const LOCALES = [
 function Fila({ ariaHidden = false }: { ariaHidden?: boolean }) {
   return (
     <ul
-      className="flex items-center gap-14 shrink-0 m-0 p-0 list-none animate-marquee"
+      className="flex items-center gap-4 shrink-0 m-0 p-0 list-none animate-marquee"
       aria-hidden={ariaHidden || undefined}
     >
       {LOCALES.map((l) => (
         <li key={l.nombre} className="shrink-0">
-          <div
-            className="relative w-[120px] h-[60px] opacity-60 hover:opacity-100 transition-opacity duration-300"
-            title={l.nombre}
-          >
+          <div className="rounded-2xl bg-[#161617] px-6 py-4" title={l.nombre}>
+          <div className="relative w-[120px] h-[60px] opacity-85 hover:opacity-100 transition-opacity duration-300">
             <Image
               src={l.img}
               alt={l.nombre}
@@ -54,6 +54,7 @@ function Fila({ ariaHidden = false }: { ariaHidden?: boolean }) {
               className="object-contain"
               style={l.invertir ? { filter: "invert(1)" } : undefined}
             />
+          </div>
           </div>
         </li>
       ))}
@@ -69,7 +70,7 @@ export default function LogosLocales() {
 
         {/* Dos filas idénticas en secuencia: cuando la primera termina su
             recorrido, la segunda ya está en posición y el loop no salta. */}
-        <div className="relative flex gap-14 [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]">
+        <div className="relative flex gap-4 [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]">
           <Fila />
           <Fila ariaHidden />
         </div>

@@ -2,32 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ── Design tokens ── */
+/* ── Design tokens ── tema claro (08-10-2026). Mismos nombres que el tema
+   oscuro anterior para que las páginas que los usan cambien solas. */
 :root {
-  --bg-primary:     #0a0a0a;
-  --bg-secondary:   #111111;
-  --bg-elevated:    #1a1a1a;
-  --accent:         #a3e635;
-  --accent-dim:     #65a30d;
-  --text-primary:   #fafafa;
-  --text-secondary: #a1a1aa;
-  --text-muted:     #71717a;
-  --border:         #27272a;
+  --bg-primary:     #ffffff;
+  --bg-secondary:   #f4f5f1;
+  --bg-elevated:    #ffffff;
+  --accent:         #4f7a12;
+  --accent-dim:     #3d5f0d;
+  --lime:           #9ccc3c;
+  --ink:            #0f1a2b;
+  --text-primary:   #0f1a2b;
+  --text-secondary: #3b4452;
+  --text-muted:     #5f6b7a;
+  --border:         #e3e6df;
 }
 
 /* ── Base ── */
 *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html {
-  scroll-behavior: smooth;
-  scrollbar-width: thin;
-  scrollbar-color: var(--accent) var(--bg-secondary);
-}
-::-webkit-scrollbar { width: 5px; height: 5px; }
-::-webkit-scrollbar-track { background: var(--bg-secondary); }
-::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; }
 
-::selection { background: var(--accent); color: #000; }
+::selection { background: var(--lime); color: var(--ink); }
 
 body {
   background: var(--bg-primary);
@@ -38,34 +34,34 @@ body {
 
 /* ── Typography scale ── */
 h1 {
-  font-family: var(--font-fraunces);
-  font-size: clamp(3rem, 8vw, 7rem);
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 6.5vw, 5.6rem);
   font-weight: 700;
-  letter-spacing: -0.04em;
-  line-height: 0.95;
+  letter-spacing: -0.035em;
+  line-height: 1.0;
 }
 h2 {
-  font-family: var(--font-fraunces);
-  font-size: clamp(2.6rem, 6.8vw, 5.5rem);
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4.6vw, 3.6rem);
   font-weight: 700;
-  letter-spacing: -0.04em;
-  line-height: 1.0;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
 }
 
 /* ── Eyebrow labels ── */
 .eyebrow {
-  font-family: var(--font-jetbrains);
-  font-size: 0.75rem;
+  font-family: var(--font-dm-sans);
+  font-size: 0.8rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.12em;
   color: var(--accent);
   display: block;
 }
 
 /* ── Focus ── */
 :focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--ink);
   outline-offset: 3px;
 }
 
@@ -78,19 +74,6 @@ h2 {
     var(--bg-secondary) calc(100% - 88px),
     var(--bg-primary)   100%
   );
-}
-
-/* ── Grain / noise overlay ── */
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0.028;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 200px 200px;
 }
 
 /* ── Aurora background animation ── */
@@ -119,7 +102,7 @@ body::after {
   border-radius: inherit;
   background: radial-gradient(
     360px circle at var(--x) var(--y),
-    rgba(255,255,255,0.04),
+    rgba(15,26,43,0.03),
     transparent 60%
   );
   opacity: 0;
@@ -139,7 +122,7 @@ body::after {
   position: absolute;
   width: 18px;
   height: 18px;
-  border-color: rgba(163,230,53,0.25);
+  border-color: rgba(120,156,48,0.35);
   border-style: solid;
   pointer-events: none;
 }
@@ -155,17 +138,10 @@ body::after {
   [style*="tech-scroll"] { animation: none; }
 }
 
-/* ── CustomCursor hover state ── */
-.is-ring.is-hover {
-  width: 3rem !important;
-  height: 3rem !important;
-  border-color: rgba(163,230,53,0.8) !important;
-}
-
 /* ── Blog article typography ── */
 .prose-blog { color: var(--text-secondary); font-size: 1rem; line-height: 1.75; }
 .prose-blog h2 {
-  font-family: var(--font-fraunces);
+  font-family: var(--font-display);
   font-size: clamp(1.35rem, 2.5vw, 1.65rem);
   font-weight: 700;
   color: var(--text-primary);
@@ -193,7 +169,7 @@ body::after {
 }
 .prose-blog th {
   text-align: left;
-  font-family: var(--font-jetbrains);
+  font-family: var(--font-dm-sans);
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -212,12 +188,12 @@ body::after {
 /* ── Carrusel de logos de locales (LogosLocales.tsx) ──────────────────────
    Dos filas idénticas desplazándose media pasada cada una: al llegar a -50%
    la segunda ocupa exactamente el lugar de la primera, así que el reinicio no
-   se ve. `gap-14` está incluido en el cálculo porque el contenedor lo aplica
+   se ve. `gap-4` está incluido en el cálculo porque el contenedor lo aplica
    entre ambas filas.
    Se detiene al pasar el cursor, y se respeta a quien pide menos movimiento. */
 @keyframes marquee-logos {
   from { transform: translateX(0); }
-  to   { transform: translateX(calc(-100% - 3.5rem)); }
+  to   { transform: translateX(calc(-100% - 1rem)); }
 }
 .animate-marquee {
   animation: marquee-logos 32s linear infinite;

@@ -73,8 +73,8 @@ export default function ExitIntentPopup() {
             <a
               href="https://empieza.synaptechspa.cl"
               onClick={close}
-              className="block w-full text-center bg-accent text-black font-bold text-sm px-6 py-3.5 rounded-lg
-                hover:bg-accent-dim hover:text-white transition-all shadow-lime"
+              className="block w-full text-center bg-ink text-white font-bold text-sm px-6 py-3.5 rounded-lg
+                hover:bg-black transition-all"
             >
               Quiero mi diagnóstico gratis
             </a>

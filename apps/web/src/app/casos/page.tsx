@@ -103,7 +103,7 @@ export default function CasosPage() {
           </h2>
           <a
             href="https://empieza.synaptechspa.cl"
-            className="inline-flex items-center gap-2 bg-accent text-black font-bold text-sm px-7 py-3.5 rounded-lg shadow-lime hover:bg-accent-dim hover:text-white hover:scale-[1.02] transition-all"
+            className="inline-flex items-center gap-2 bg-ink text-white font-bold text-sm px-7 py-3.5 rounded-lg hover:bg-black hover:scale-[1.02] transition-all"
           >
             Diagnóstico Gratis
           </a>

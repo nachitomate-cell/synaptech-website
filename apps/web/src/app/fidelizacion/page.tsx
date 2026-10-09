@@ -124,7 +124,7 @@ export default function FidelizacionPage() {
             </p>
 
             <div className="flex flex-wrap gap-4 mb-20 animate-fade-up" style={{ animationDelay: "160ms" }}>
-              <a href="#contacto-fidelizacion" className="bg-accent text-black font-bold text-sm px-7 py-3.5 rounded-lg shadow-lime hover:bg-accent-dim hover:text-white hover:scale-[1.02] transition-all">
+              <a href="#contacto-fidelizacion" className="bg-ink text-white font-bold text-sm px-7 py-3.5 rounded-lg hover:bg-black hover:scale-[1.02] transition-all">
                 Solicitar Demo
               </a>
               <a href="#wallet" className="border border-border-subtle text-text-secondary font-body text-sm px-7 py-3.5 rounded-lg hover:border-accent/50 hover:text-text-primary transition-all inline-flex items-center gap-2">
@@ -420,7 +420,7 @@ export default function FidelizacionPage() {
                 <p className="text-text-secondary max-w-md mx-auto mb-10 leading-relaxed">
                   Te mostramos el sistema funcionando con los datos de tu negocio. Sin contratos largos, sin letra chica. Si no hay encaje, te lo decimos de frente.
                 </p>
-                <a href="https://empieza.synaptechspa.cl" className="inline-flex items-center gap-2 bg-accent text-black font-bold text-sm px-8 py-4 rounded-lg shadow-lime hover:bg-accent-dim hover:text-white hover:scale-[1.02] transition-all">
+                <a href="https://empieza.synaptechspa.cl" className="inline-flex items-center gap-2 bg-ink text-white font-bold text-sm px-8 py-4 rounded-lg hover:bg-black hover:scale-[1.02] transition-all">
                   Pruébala gratis
                   <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
                     <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round"/>
