@@ -6,12 +6,12 @@ import { FAMILIAS, RUBROS } from "@/content/catalogo";
    rubros salen de content/catalogo.ts, igual que el menú. */
 const LINKS: Record<string, { l: string; h: string }[]> = {
   "Productos": FAMILIAS.map((f) => ({ l: f.nombre, h: `/#${f.id}` })),
-  "Rubros":    RUBROS.map((r) => ({ l: r.nombre, h: `/#rubro-${r.id}` })),
+  "Rubros":    RUBROS.map((r) => ({ l: r.nombre, h: r.href ?? `/#rubro-${r.id}` })),
   "Recursos":  [
     { l: "Cómo funciona", h: "/como-funciona" },
     { l: "Cápsulas en video", h: "/como-funciona#capsulas" },
     { l: "Precios", h: "/#precios" },
-    { l: "Blog", h: "/blog" },
+    { l: "Comparaciones", h: "/comparar" },
     { l: "Preguntas frecuentes", h: "/#faq" },
     { l: "Nosotros", h: "/nosotros" },
     { l: "Contacto", h: "/contacto" },
@@ -19,8 +19,8 @@ const LINKS: Record<string, { l: string; h: string }[]> = {
   /* SynapTech Studio, la app del dueño: publicada y distribuida en ambas
      tiendas (Play desde 2026-09-01, App Store id 6794530086 en cl/us/mx). */
   "La app":    [
-    { l: "Google Play", h: "https://play.google.com/store/apps/details?id=cl.synaptechspa.studio" },
     { l: "App Store", h: "https://apps.apple.com/cl/app/synaptech-studio/id6794530086" },
+    { l: "Google Play", h: "https://play.google.com/store/apps/details?id=cl.synaptechspa.studio" },
   ],
   /* DIRECTORIO — el enlace que le faltaba a Google.
      Las cuatro paginas viven en app.synaptechspa.cl y hasta hoy no las
@@ -39,6 +39,7 @@ const LINKS: Record<string, { l: string; h: string }[]> = {
      next.config.mjs trae el HTML; el enlace tiene que nombrar la URL que
      queremos indexada, no la que la sirve. */
   "Directorio": [
+    { l: "Todos los locales",           h: "/locales" },
     { l: "Barberías en Viña del Mar",   h: "/barberias-vina-del-mar" },
     { l: "Peluquerías en Viña del Mar", h: "/peluquerias-vina-del-mar" },
     { l: "Barberías en la Quinta Región",   h: "/barberias-quinta-region" },
@@ -91,7 +92,16 @@ export default function Footer() {
               <ul className="flex flex-col gap-2.5">
                 {links.map((l) => (
                   <li key={l.l}>
-                    <a href={l.h} className="text-sm text-text-secondary hover:text-ink transition-colors">{l.l}</a>
+                    {heading === "La app" ? (
+                      /* Badges oficiales de cada tienda (ver Confianza.tsx), a 40 px de alto. */
+                      <a href={l.h} target="_blank" rel="noopener noreferrer" aria-label={`Descárgalo en ${l.l}`}>
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src={l.l === "App Store" ? "/marcas-terceros/app-store-badge-es.svg" : "/marcas-terceros/google-play-badge-es.png"}
+                          alt={`Descárgalo en ${l.l}`} width={l.l === "App Store" ? 120 : 135} height={40} className="h-10 w-auto" />
+                      </a>
+                    ) : (
+                      <a href={l.h} className="text-sm text-text-secondary hover:text-ink transition-colors">{l.l}</a>
+                    )}
                   </li>
                 ))}
               </ul>

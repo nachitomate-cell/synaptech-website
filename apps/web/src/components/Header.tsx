@@ -12,9 +12,10 @@ import { FAMILIAS, RUBROS, SIGNUP_URL } from "@/content/catalogo";
 type Panel = "productos" | "rubros" | "recursos" | null;
 
 const RECURSOS = [
+  { label: "Encuentra un local", desc: "Barberías y salones con reserva online", href: "/locales" },
   { label: "Cómo funciona",  desc: "Cada módulo, paso a paso, con capturas reales", href: "/como-funciona" },
   { label: "Cápsulas en video", desc: "Todo el panel en videos de menos de 2 minutos", href: "/como-funciona#capsulas" },
-  { label: "Blog",           desc: "Guías para hacer crecer tu local", href: "/blog" },
+  { label: "Comparaciones",  desc: "Preguntas reales frente a otras agendas", href: "/comparar" },
   { label: "Clientes",       desc: "Lo que dicen los locales que ya lo usan", href: "/#testimonios" },
   { label: "Integraciones",  desc: "Pagos, WhatsApp, SII, Wallet y más", href: "/#integraciones" },
   { label: "Preguntas frecuentes", desc: "Precios, prueba, datos y contrato", href: "/#faq" },
@@ -96,12 +97,17 @@ export default function Header() {
             </button>
           ))}
           <Link href="/como-funciona" onClick={cerrar}
-            className={`px-3 py-2 rounded-full text-[15px] font-medium transition-colors ${pathname === "/como-funciona" ? "text-ink" : "text-text-secondary hover:text-ink"}`}>
+            className={`whitespace-nowrap px-3 py-2 rounded-full text-[15px] font-medium transition-colors ${pathname === "/como-funciona" ? "text-ink" : "text-text-secondary hover:text-ink"}`}>
             Cómo funciona
           </Link>
-          <Link href="/#precios" onClick={cerrar}
-            className="px-3 py-2 rounded-full text-[15px] font-medium text-text-secondary hover:text-ink transition-colors">
+          <Link href="/precios" onClick={cerrar}
+            className={`px-3 py-2 rounded-full text-[15px] font-medium transition-colors ${pathname === "/precios" ? "text-ink" : "text-text-secondary hover:text-ink"}`}>
             Precios
+          </Link>
+          {/* En pantallas medianas no cabe: queda dentro de Recursos. */}
+          <Link href="/locales" onClick={cerrar}
+            className={`hidden xl:inline-flex whitespace-nowrap px-3 py-2 rounded-full text-[15px] font-medium transition-colors ${pathname === "/locales" ? "text-ink" : "text-text-secondary hover:text-ink"}`}>
+            Encuentra un local
           </Link>
         </nav>
 
@@ -154,7 +160,7 @@ export default function Header() {
             {panel === "rubros" && (
               <div className="grid grid-cols-3 gap-x-8 gap-y-6">
                 {RUBROS.map((r) => (
-                  <Link key={r.id} href={`/#rubro-${r.id}`} onClick={cerrar} className="group block">
+                  <Link key={r.id} href={r.href ?? `/#rubro-${r.id}`} onClick={cerrar} className="group block">
                     <span className="block font-display font-bold text-[15px] text-ink group-hover:text-accent">{r.nombre}</span>
                     <span className="block text-[13px] text-text-muted leading-snug mt-1">{r.titular}</span>
                   </Link>
@@ -197,7 +203,7 @@ export default function Header() {
                       </Link>
                     ))}
                     {p.id === "rubros" && RUBROS.map((r) => (
-                      <Link key={r.id} href={`/#rubro-${r.id}`} onClick={cerrar}
+                      <Link key={r.id} href={r.href ?? `/#rubro-${r.id}`} onClick={cerrar}
                         className="block font-medium text-[15px] text-text-primary">{r.nombre}</Link>
                     ))}
                     {p.id === "recursos" && RECURSOS.map((r) => (
@@ -212,7 +218,10 @@ export default function Header() {
               <Link href="/como-funciona" onClick={cerrar} className="block py-4 text-[17px] font-semibold text-ink">Cómo funciona</Link>
             </li>
             <li className="border-b border-border-subtle">
-              <Link href="/#precios" onClick={cerrar} className="block py-4 text-[17px] font-semibold text-ink">Precios</Link>
+              <Link href="/precios" onClick={cerrar} className="block py-4 text-[17px] font-semibold text-ink">Precios</Link>
+            </li>
+            <li className="border-b border-border-subtle">
+              <Link href="/locales" onClick={cerrar} className="block py-4 text-[17px] font-semibold text-ink">Encuentra un local</Link>
             </li>
           </ul>
           <div className="px-4 sm:px-6 py-6 flex flex-col gap-3">

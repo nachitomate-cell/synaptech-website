@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Header      from "@/components/Header";
 import Footer      from "@/components/Footer";
 import Recorrido   from "@/components/Recorrido";
-import OtrosRubros from "@/components/OtrosRubros";
 import CtaFinal    from "@/components/CtaFinal";
 import { FilaCapsulas } from "@/components/Capsulas";
 import { MODULOS } from "@/content/recorrido";
@@ -77,7 +76,6 @@ export default function ComoFunciona() {
           </div>
         </section>
 
-        <OtrosRubros />
         <CtaFinal />
       </main>
       <Footer />

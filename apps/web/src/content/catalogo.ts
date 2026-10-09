@@ -33,7 +33,7 @@ export const FAMILIAS: Familia[] = [
     bajada: "Tus clientes reservan solos, a cualquier hora, desde su teléfono.",
     imagen: "/panel/agenda-escritorio.webp",
     imagenAlt: "Agenda del día por profesional en el panel de SynapTech",
-    href: "/saas-comercial",
+    href: "/barberias",
     recorrido: "agenda",
     capsula: "tutorial-agenda-barbero",
     items: [
@@ -49,7 +49,7 @@ export const FAMILIAS: Familia[] = [
     bajada: "Responde y agenda por WhatsApp e Instagram en el número del local.",
     imagen: "/panel/asistente-bandeja.webp",
     imagenAlt: "Bandeja de WhatsApp con una conversación atendida por el asistente",
-    href: "/saas-comercial",
+    href: "/barberias",
     recorrido: "asistente",
     capsula: "reel-asistente-whatsapp",
     items: [
@@ -65,7 +65,7 @@ export const FAMILIAS: Familia[] = [
     bajada: "Cobra en el mesón, por link o al reservar, y cierra el día cuadrado.",
     imagen: "/panel/caja.webp",
     imagenAlt: "Caja del día con saldo esperado y transacciones",
-    href: "/saas-comercial",
+    href: "/barberias",
     recorrido: "caja",
     capsula: "capsula-1-caja",
     items: [
@@ -97,7 +97,7 @@ export const FAMILIAS: Familia[] = [
     bajada: "Equipo, productos y números del negocio en un solo panel.",
     imagen: "/panel/comisiones.webp",
     imagenAlt: "Liquidación de comisiones por profesional",
-    href: "/saas-comercial",
+    href: "/barberias",
     recorrido: "comisiones",
     capsula: "capsula-2-comisiones",
     items: [
@@ -129,7 +129,7 @@ export const RUBROS: Rubro[] = [
       "Arriendo de sillón con boleta de honorarios",
       "Club de sellos en Google Wallet",
     ],
-    href: "/saas-comercial",
+    href: "/barberias",
   },
   {
     id: "salones",
@@ -144,7 +144,7 @@ export const RUBROS: Rubro[] = [
   },
   {
     id: "estetica",
-    nombre: "Estética y clínicas",
+    nombre: "Estética y spa",
     titular: "Tratamientos ordenados y pacientes que vuelven.",
     texto: "Catálogo de tratamientos, ficha de cada cliente y recordatorios que bajan las inasistencias.",
     puntos: [
@@ -152,6 +152,19 @@ export const RUBROS: Rubro[] = [
       "Ficha e historial de cada cliente",
       "Consentimiento antes de agendar",
     ],
+    href: "/estetica",
+  },
+  {
+    id: "clinicas",
+    nombre: "Clínicas",
+    titular: "Tu clínica atendiendo, no respondiendo mensajes.",
+    texto: "Para clínicas estéticas y de kinesiología: reserva con RUT y consentimiento, ficha clínica por paciente y un asistente que agenda por WhatsApp.",
+    puntos: [
+      "Consentimiento informado antes de agendar",
+      "Ficha clínica con alergias y evolución",
+      "Abono al reservar con Mercado Pago",
+    ],
+    href: "/clinicas",
   },
   {
     id: "pilates",
@@ -183,7 +196,8 @@ export const RUBROS: Rubro[] = [
     puntos: [
       "Bandeja de WhatsApp e Instagram compartida",
       "Catálogo de paseos y servicios",
-      "Comisión por vendedor sobre lo vendido",
+      "Comisión por vendedora, sin contar tickets",
     ],
+    href: "/agencias",
   },
 ];

@@ -7,7 +7,9 @@ export type Capsula = {
   titulo: string;
   bajada: string;
   duracion: string;
-  modulo: "agenda" | "reserva" | "asistente" | "caja" | "comisiones" | "club" | "metricas" | "general";
+  modulo: "agenda" | "reserva" | "asistente" | "caja" | "comisiones" | "club" | "metricas" | "plata" | "general";
+  /** Por defecto vertical (9:16). Las lecciones del curso son horizontales. */
+  formato?: "vertical" | "horizontal";
 };
 
 export const CAPSULAS: Capsula[] = [
@@ -22,6 +24,7 @@ export const CAPSULAS: Capsula[] = [
   { id: "reel-boletas-syna",               titulo: "Boletas sin hacerlas a mano", bajada: "La boleta de honorarios sale sola al cerrar la cita.", duracion: "0:39", modulo: "caja" },
   { id: "tutorial-club-fidelizacion",      titulo: "El club, del lado del cliente", bajada: "Cómo se inscribe, junta sellos y canjea.", duracion: "1:07", modulo: "club" },
   { id: "reel-club-wallet",                titulo: "La tarjeta en el teléfono",   bajada: "Sellos en Google Wallet y Apple Wallet.", duracion: "0:32", modulo: "club" },
+  { id: "leccion1-sueldo-comision-arriendo", titulo: "¿Sueldo, comisión o arriendo de sillón?", bajada: "Lección 1 del curso de gestión: cuánto IVA paga el local en cada caso.", duracion: "2:09", modulo: "plata", formato: "horizontal" },
   { id: "reel-migracion-agendapro",        titulo: "Cámbiate sin perder a nadie", bajada: "Traemos tus clientes, servicios y equipo sin costo.", duracion: "0:33", modulo: "general" },
 ];
 

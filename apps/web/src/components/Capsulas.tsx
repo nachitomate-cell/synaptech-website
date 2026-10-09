@@ -21,7 +21,7 @@ function Visor({ c, onClose }: { c: Capsula; onClose: () => void }) {
     <div role="dialog" aria-modal="true" aria-label={c.titulo}
       className="fixed inset-0 z-[80] bg-black/85 backdrop-blur-sm flex items-center justify-center p-4"
       onClick={onClose}>
-      <div className="relative h-full max-h-[86vh] aspect-[9/16] max-w-full" onClick={(e) => e.stopPropagation()}>
+      <div className={`relative ${c.formato === "horizontal" ? "w-full max-w-5xl aspect-video" : "h-full max-h-[86vh] aspect-[9/16] max-w-full"}`} onClick={(e) => e.stopPropagation()}>
         <video ref={ref} src={`/capsulas/${c.id}.mp4`} poster={`/capsulas/${c.id}.jpg`}
           controls playsInline preload="auto" className="w-full h-full rounded-2xl bg-black object-contain" />
         <button onClick={onClose} aria-label="Cerrar"
@@ -40,13 +40,13 @@ function IconoPlay({ className = "" }: { className?: string }) {
   );
 }
 
-export function TarjetaCapsula({ c, compacta = false }: { c: Capsula; compacta?: boolean }) {
+export function TarjetaCapsula({ c, compacta = false, oscuro = false }: { c: Capsula; compacta?: boolean; oscuro?: boolean }) {
   const [abierta, setAbierta] = useState(false);
   return (
     <>
       <button onClick={() => setAbierta(true)}
-        className={`group text-left shrink-0 ${compacta ? "w-[150px]" : "w-[190px] sm:w-[210px]"}`}>
-        <span className="relative block aspect-[9/16] rounded-2xl overflow-hidden bg-[#0d1424]">
+        className={`group text-left shrink-0 ${c.formato === "horizontal" ? "w-[300px] sm:w-[400px]" : compacta ? "w-[150px]" : "w-[190px] sm:w-[210px]"}`}>
+        <span className={`relative block ${c.formato === "horizontal" ? "aspect-video" : "aspect-[9/16]"} rounded-2xl overflow-hidden bg-[#0d1424]`}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={`/capsulas/${c.id}.jpg`} alt="" loading="lazy" decoding="async"
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]" />
@@ -56,7 +56,7 @@ export function TarjetaCapsula({ c, compacta = false }: { c: Capsula; compacta?:
           </span>
           <span className="absolute right-2.5 top-2.5 text-[11px] font-semibold text-white bg-black/55 rounded-full px-2 py-0.5">{c.duracion}</span>
         </span>
-        <span className="block mt-3 font-semibold text-ink text-[15px] leading-snug">{c.titulo}</span>
+        <span className={`block mt-3 font-semibold text-[15px] leading-snug ${oscuro ? "text-white" : "text-ink"}`}>{c.titulo}</span>
         {!compacta && <span className="block text-sm text-text-muted leading-snug mt-0.5">{c.bajada}</span>}
       </button>
       {abierta && <Visor c={c} onClose={() => setAbierta(false)} />}

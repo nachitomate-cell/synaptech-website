@@ -206,6 +206,22 @@ h2 {
   .animate-marquee { animation: none; }
 }
 
+/* Cintas de locales (LogosLocales): tarjetas grandes, así que van lentas para
+   alcanzar a leer el nombre. `gap-5` = 1.25rem entre las dos copias. La
+   segunda cinta corre al revés. */
+@keyframes marquee-locales {
+  from { transform: translateX(0); }
+  to   { transform: translateX(calc(-100% - 1.25rem)); }
+}
+.animate-marquee-locales {
+  animation: marquee-locales 70s linear infinite;
+}
+.marquee-reversa { animation-direction: reverse; }
+.group\/marquee:hover .animate-marquee-locales { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee-locales { animation: none; }
+}
+
 /* Marquesina de integraciones: más lenta que la de logos porque las tarjetas
    son más anchas y hay 22, así se alcanzan a leer. `gap-4` = 1rem. */
 @keyframes marquee-integraciones {
@@ -224,7 +240,7 @@ h2 {
    Orden: la captura se acerca (0,9 s) → aparece el número → se traza la
    flecha → aparece la punta → el recuadro late. */
 @keyframes recorrido-trazo   { to { stroke-dashoffset: 0; } }
-@keyframes recorrido-aparece { from { opacity: 0; transform: translate(-50%, -50%) scale(.6); } to { opacity: 1; transform: translate(-50%, -50%) scale(1); } }
+@keyframes recorrido-aparece { from { opacity: 0; transform: translate(var(--tx, -50%), -50%) scale(.6); } to { opacity: 1; transform: translate(var(--tx, -50%), -50%) scale(1); } }
 @keyframes recorrido-fade    { from { opacity: 0; } to { opacity: 1; } }
 @keyframes recorrido-latido  { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
 .recorrido-velo   { opacity: 0; animation: recorrido-fade .45s .55s forwards; }
@@ -237,3 +253,27 @@ h2 {
   .recorrido-punta, .recorrido-anillo, .recorrido-velo { animation: none; opacity: 1; }
   .recorrido-badge { animation: none; }
 }
+
+/* ── Portada (Hero.tsx): las piezas entran escalonadas y flotan apenas ── */
+@keyframes hero-entra { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+@keyframes hero-flota { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+.hero-entra { animation: hero-entra .8s cubic-bezier(.2,.8,.2,1) both; }
+.hero-flota { animation: hero-flota 6s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .hero-entra, .hero-flota { animation: none; }
+}
+
+/* ── Mapa del directorio (MapaLocales.tsx) ─────────────────────────────── */
+.marcador-local {
+  width: 44px; height: 44px; border-radius: 9999px; border: 3px solid #fff;
+  background-size: cover; background-position: center; cursor: pointer; padding: 0;
+  box-shadow: 0 6px 16px -4px rgba(15, 26, 43, .45);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.marcador-local:hover { transform: scale(1.12); }
+.marcador-local.activo { transform: scale(1.32); box-shadow: 0 0 0 4px #9CCC3C, 0 10px 22px -6px rgba(15, 26, 43, .5); z-index: 5; }
+.maplibregl-popup-content { border-radius: 16px !important; padding: 12px 14px !important; box-shadow: 0 14px 32px -10px rgba(15, 26, 43, .35) !important; font-family: var(--font-dm-sans); }
+.maplibregl-popup-content strong { display: block; color: #0F1A2B; font-size: 14px; line-height: 1.25; }
+.maplibregl-popup-content span { display: block; color: #5F6B7A; font-size: 12.5px; margin-top: 3px; }
+.maplibregl-popup-content a { display: inline-block; margin-top: 8px; font-weight: 600; font-size: 13px; color: #0F1A2B; border-bottom: 2px solid #9CCC3C; }
+@media (prefers-reduced-motion: reduce) { .marcador-local { transition: none; } }

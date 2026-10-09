@@ -88,8 +88,15 @@ export function Pantalla({ paso, numero, activo, eager = false }: { paso: Paso; 
         )}
 
         {box && flecha && activo && (
-          <div key={`b-${paso.captura}-${paso.objetivo}`} className="recorrido-badge absolute -translate-x-1/2 -translate-y-1/2 flex items-center gap-2 pointer-events-none"
-            style={{ left: `${(flecha.ox / W) * 100}%`, top: `${(flecha.oy / H) * 100}%` }}>
+          /* El número queda justo en el origen de la flecha. Si cae en la mitad
+             derecha, la etiqueta se abre hacia la izquierda para no salirse. */
+          <div key={`b-${paso.captura}-${paso.objetivo}`}
+            className={`recorrido-badge absolute flex items-center gap-2 pointer-events-none ${flecha.ox > W * 0.5 ? "flex-row-reverse" : ""}`}
+            style={{
+              left: `${(flecha.ox / W) * 100}%`, top: `${(flecha.oy / H) * 100}%`,
+              ["--tx" as string]: flecha.ox > W * 0.5 ? "calc(-100% + 16px)" : "-16px",
+              transform: "translate(var(--tx), -50%)",
+            }}>
             <span className="w-8 h-8 rounded-full bg-lime text-ink font-bold text-sm flex items-center justify-center shadow-lg ring-4 ring-white">{numero}</span>
             {obj?.etiqueta && !celular && (
               <span className="hidden sm:inline bg-ink text-white text-[13px] font-semibold px-3 py-1.5 rounded-full shadow-lg whitespace-nowrap">{obj.etiqueta}</span>
