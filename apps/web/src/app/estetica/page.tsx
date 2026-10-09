@@ -22,7 +22,7 @@ export const metadata = metaPagina({
 
 const DOLORES: Dolor[] = [
   { dolor: "Agendar tratamientos largos por WhatsApp", solucion: "Reserva online por tratamiento", detalle: "Cada tratamiento con su duración y su profesional: la clienta ve solo las horas que de verdad caben." },
-  { dolor: "Clientas que no llegan a un tratamiento caro", solucion: "Abono al reservar y recordatorios", detalle: "Pide un abono con Mercado Pago o Flow al agendar, y envía confirmación y recordatorio antes de la cita." },
+  { dolor: "Clientas que no llegan a un tratamiento caro", solucion: "Abono al reservar y recordatorios", detalle: "Pide un abono con Mercado Pago al agendar, y envía confirmación y recordatorio antes de la cita." },
   { dolor: "Explicar las políticas una y otra vez", solucion: "Políticas aceptadas antes de agendar", detalle: "Tus reglas de atención y cancelación quedan aceptadas por la clienta en el último paso de la reserva." },
   { dolor: "Acordarse de alergias y tipo de piel", solucion: "Ficha con notas internas", detalle: "Notas que solo ve tu equipo, con el historial de tratamientos y lo que ha gastado cada clienta." },
   { dolor: "Clientas que prueban una vez y no vuelven", solucion: "Club, gift cards y planes", detalle: "Sellos por visita con premios de tu centro, gift cards para regalar y la tarjeta en el teléfono." },

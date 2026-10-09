@@ -15,7 +15,7 @@ export const metadata = metaPagina({
 
 const PREGUNTAS = [
   { q: "¿Cobran por profesional o por silla?", a: "No. El precio es por local y los profesionales son ilimitados en todos los planes: si mañana sumas a alguien al equipo, tu mensualidad no cambia." },
-  { q: "¿Cobran comisión por cita o por reserva?", a: "No. Las citas son ilimitadas y no cobramos nada por reserva. Si cobras online, la comisión es la del medio de pago (Mercado Pago, Flow o TUU), no nuestra." },
+  { q: "¿Cobran comisión por cita o por reserva?", a: "No. Las citas son ilimitadas y no cobramos nada por reserva. Si cobras online, la comisión es la del medio de pago (Mercado Pago o TUU), no nuestra." },
   { q: "¿Qué pasa si se acaban las conversaciones del asistente?", a: "Syna no se apaga en silencio: deriva la conversación a una persona de tu equipo y te avisa. Si tu local necesita más, hay tramos de 500 y 1.000 conversaciones al mes." },
   { q: "¿Tengo que pagar el año completo?", a: "No. Los planes son mensuales y sin permanencia. El plan anual es una opción para quien prefiere pagar una vez: $399.000 + IVA por todo el Pro, que equivale a 8 meses." },
   { q: "¿Cómo pago la mensualidad?", a: "Con tarjeta, en un cobro automático mensual por Mercado Pago, o por transferencia a la cuenta de Synaptech SpA." },
