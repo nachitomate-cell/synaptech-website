@@ -16,6 +16,8 @@ const RECURSOS = [
   { label: "Cómo funciona",  desc: "Cada módulo, paso a paso, con capturas reales", href: "/como-funciona" },
   { label: "Cápsulas en video", desc: "Todo el panel en videos de menos de 2 minutos", href: "/como-funciona#capsulas" },
   { label: "Comparaciones",  desc: "Preguntas reales frente a otras agendas", href: "/comparar" },
+  { label: "Guía: boletas y comisiones", desc: "Sueldo, comisión o arriendo de sillón en 2026", href: "/guias/boleta-honorarios-y-comisiones-barberos" },
+  { label: "Ficha clínica estética", desc: "Plantilla gratis en PDF, facial y corporal", href: "/recursos/ficha-clinica-estetica" },
   { label: "Clientes",       desc: "Lo que dicen los locales que ya lo usan", href: "/#testimonios" },
   { label: "Integraciones",  desc: "Pagos, WhatsApp, SII, Wallet y más", href: "/#integraciones" },
   { label: "Preguntas frecuentes", desc: "Precios, prueba, datos y contrato", href: "/#faq" },

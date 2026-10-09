@@ -90,6 +90,9 @@ export default function PlataEnOrden() {
                 cada modelo y qué riesgo toma. Dos minutos, con Syna.
               </p>
               <p className="text-xs text-white/45 mt-4">Ejemplo referencial con las tasas de 2026. Cada local es distinto: revisa tu caso con tu contador.</p>
+              <Link href="/guias/boleta-honorarios-y-comisiones-barberos" className="inline-flex mt-5 font-semibold text-lime border-b-2 border-lime/60 pb-0.5 hover:border-lime">
+                Leer la guía completa: boletas, retención 2026 y arriendo de sillón →
+              </Link>
             </div>
             <TarjetaCapsula c={leccion} compacta oscuro />
           </div>
