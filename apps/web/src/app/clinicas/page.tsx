@@ -88,6 +88,9 @@ export default function ClinicasPage() {
               La ficha clínica, la evolución por sesión y los avisos a pacientes vienen en el rubro clínica, que dejamos
               configurado al crear tu cuenta. Las capturas son de una clínica de ejemplo con datos inventados.
             </p>
+            <Link href="/recursos/ficha-clinica-estetica" className="inline-flex items-center gap-1.5 mt-4 font-semibold text-ink border-b-2 border-lime pb-0.5 hover:border-ink">
+              Descarga gratis una ficha clínica estética en PDF →
+            </Link>
           </div>
         </section>
 

@@ -28,6 +28,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/estetica`,            lastModified: now, priority: 0.9 },
     { url: `${BASE}/clinicas`,            lastModified: now, priority: 0.9 },
     { url: `${BASE}/agencias`,            lastModified: now, priority: 0.8 },
+    { url: `${BASE}/recursos/ficha-clinica-estetica`, lastModified: now, priority: 0.7 },
+    { url: `${BASE}/guias/boleta-honorarios-y-comisiones-barberos`, lastModified: now, priority: 0.7 },
     { url: `${BASE}/precios`,             lastModified: now, priority: 0.9 },
     { url: `${BASE}/locales`,             lastModified: now, priority: 0.8 },
     { url: `${BASE}/fidelizacion`,        lastModified: now, priority: 0.8 },

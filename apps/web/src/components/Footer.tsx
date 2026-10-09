@@ -12,6 +12,8 @@ const LINKS: Record<string, { l: string; h: string }[]> = {
     { l: "Cápsulas en video", h: "/como-funciona#capsulas" },
     { l: "Precios", h: "/#precios" },
     { l: "Comparaciones", h: "/comparar" },
+    { l: "Guía: boletas y comisiones", h: "/guias/boleta-honorarios-y-comisiones-barberos" },
+    { l: "Ficha clínica estética (PDF)", h: "/recursos/ficha-clinica-estetica" },
     { l: "Preguntas frecuentes", h: "/#faq" },
     { l: "Nosotros", h: "/nosotros" },
     { l: "Contacto", h: "/contacto" },
