@@ -21,9 +21,9 @@ export const metadata: Metadata = {
    project_sitio_corporativo). Hitos con fecha verificada en la memoria. */
 
 const NUMEROS = [
-  { v: "+25", l: "locales en Chile" },
-  { v: "+30.000", l: "clientes en sus fichas" },
-  { v: "+14.000", l: "citas agendadas" },
+  { v: "+35", l: "locales y sedes en Chile" },
+  { v: "+36.000", l: "clientes en sus fichas" },
+  { v: "+18.000", l: "citas y reservas agendadas" },
   { v: "2", l: "apps publicadas" },
 ];
 
@@ -38,7 +38,7 @@ const HITOS = [
   { f: "Abril 2026", t: "Nace Synaptech SpA en Viña del Mar." },
   { f: "Agosto 2026", t: "SynapTech Studio, la app para el equipo, llega a la App Store." },
   { f: "Septiembre 2026", t: "La app llega a Google Play y salen las primeras boletas de honorarios con folio real del SII, emitidas solas al cerrar la cita." },
-  { f: "Octubre 2026", t: "Partner certificado de Mercado Pago y más de 25 locales trabajando con la plataforma." },
+  { f: "Octubre 2026", t: "Partner certificado de Mercado Pago y más de 35 locales y sedes trabajando con la plataforma." },
 ];
 
 export default function NosotrosPage() {

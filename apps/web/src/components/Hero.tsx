@@ -1,14 +1,19 @@
 import Image from "next/image";
 import { SIGNUP_URL, waLink } from "@/content/catalogo";
 
-/* Cifras de la auditoría del 04-10-2026 (memoria project_cifras_reales_plataforma):
-   27 locales vigentes (22 pagando + 5 en prueba), 34.620 fichas de clientes en
-   locales vigentes y 14.643 citas agendadas en la plataforma. Se redondean
-   hacia abajo; si cambian mucho, volver a contar antes de tocar. */
+/* Cifras medidas en Firestore el 09-10-2026 (count() por local, solo lectura),
+   SOLO locales vigentes: los 26 clientes de _publico/metricas.directorio + 3 en
+   prueba (+ la base de marca de Kronnos), sin demos, propuestas ni bajas.
+     sedes 36 (29 cuentas; Punto Pilates 7 sedes, Oren 2) · fichas de clientes
+     (users) 36.961 · citas 17.271 − 1.098 importadas = 16.173 + 2.368 reservas
+     de clase = 18.541 · conversaciones WhatsApp 3.013 + Instagram 142 = 3.155.
+   Se redondean hacia abajo. Volver a medir antes de cambiarlas (script en
+   devtools/guias-panel/sitio-web/cifras/contar.cjs). */
 const METRICAS = [
-  { valor: "+25",     label: "locales en Chile" },
-  { valor: "+30.000", label: "clientes en sus fichas" },
-  { valor: "+14.000", label: "citas agendadas" },
+  { valor: "+35",     label: "locales y sedes en Chile" },
+  { valor: "+36.000", label: "clientes en sus fichas" },
+  { valor: "+18.000", label: "citas y reservas agendadas" },
+  { valor: "+3.000",  label: "conversaciones por WhatsApp e Instagram" },
 ];
 
 /* La composición de la derecha es TODA de capturas reales del panel (local
@@ -85,9 +90,9 @@ export default function Hero() {
       </div>
 
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10 mt-14">
-        <div className="grid grid-cols-3 border-y border-border-subtle">
+        <div className="grid grid-cols-2 md:grid-cols-4 border-y border-border-subtle">
           {METRICAS.map((m, i) => (
-            <div key={m.label} className={`py-6 px-2 sm:px-6 text-center ${i ? "border-l border-border-subtle" : ""}`}>
+            <div key={m.label} className={`py-6 px-2 sm:px-6 text-center ${i % 2 ? "border-l border-border-subtle" : ""} ${i === 2 ? "md:border-l" : ""} ${i > 1 ? "border-t md:border-t-0 border-border-subtle" : ""}`}>
               <p className="font-display font-bold text-ink text-2xl sm:text-4xl tracking-tight">{m.valor}</p>
               <p className="text-[12px] sm:text-sm text-text-muted mt-1">{m.label}</p>
             </div>
