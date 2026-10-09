@@ -8,6 +8,8 @@ const LINKS: Record<string, { l: string; h: string }[]> = {
   "Productos": FAMILIAS.map((f) => ({ l: f.nombre, h: `/#${f.id}` })),
   "Rubros":    RUBROS.map((r) => ({ l: r.nombre, h: `/#rubro-${r.id}` })),
   "Recursos":  [
+    { l: "Cómo funciona", h: "/como-funciona" },
+    { l: "Cápsulas en video", h: "/como-funciona#capsulas" },
     { l: "Precios", h: "/#precios" },
     { l: "Blog", h: "/blog" },
     { l: "Preguntas frecuentes", h: "/#faq" },
