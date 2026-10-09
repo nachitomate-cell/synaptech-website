@@ -8,7 +8,6 @@ import Rubros        from "@/components/Rubros";
 import Cambiate      from "@/components/Cambiate";
 import Testimonials  from "@/components/Testimonials";
 import LogosLocales  from "@/components/LogosLocales";
-import DirectorioBanda from "@/components/DirectorioBanda";
 import Integraciones from "@/components/Integraciones";
 import Pricing       from "@/components/Pricing";
 import FAQ           from "@/components/FAQ";
@@ -36,7 +35,6 @@ export default function Home() {
         <Cambiate />
         <Testimonials />
         <LogosLocales />
-        <DirectorioBanda />
         <Integraciones />
         <Pricing />
         <FAQ />

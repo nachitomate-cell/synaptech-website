@@ -206,6 +206,22 @@ h2 {
   .animate-marquee { animation: none; }
 }
 
+/* Cintas de locales (LogosLocales): tarjetas grandes, así que van lentas para
+   alcanzar a leer el nombre. `gap-5` = 1.25rem entre las dos copias. La
+   segunda cinta corre al revés. */
+@keyframes marquee-locales {
+  from { transform: translateX(0); }
+  to   { transform: translateX(calc(-100% - 1.25rem)); }
+}
+.animate-marquee-locales {
+  animation: marquee-locales 70s linear infinite;
+}
+.marquee-reversa { animation-direction: reverse; }
+.group\/marquee:hover .animate-marquee-locales { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee-locales { animation: none; }
+}
+
 /* Marquesina de integraciones: más lenta que la de logos porque las tarjetas
    son más anchas y hay 22, así se alcanzan a leer. `gap-4` = 1rem. */
 @keyframes marquee-integraciones {

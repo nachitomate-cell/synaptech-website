@@ -1,79 +1,88 @@
-"use client";
-import Image from "next/image";
+import Link from "next/link";
+import { obtenerLocales, type LocalDirectorio } from "@/lib/directorio";
 
-/* Locales reales operando sobre la plataforma. El criterio para entrar acá no es
-   "es cliente", es ACTIVIDAD MEDIDA: citas agendadas en los últimos 30 días
-   (consultado en Firestore el 16-09-2026). Si un local se apaga, sale de la
-   lista — un carrusel de logos que incluye locales muertos es prueba social
-   falsa y se nota.
+/* Locales reales que trabajan con SynapTech (09-10-2026: reemplaza a la tira de
+   logos chicos sobre fichas negras y a la grilla de DirectorioBanda, que
+   repetían lo mismo una debajo de la otra).
+   - Quién aparece lo decide la lista VIVA del directorio (lib/directorio.ts):
+     clientes vigentes, sin locales en prueba, sin agencias y sin los que
+     pidieron no salir. Un local que se va, sale solo.
+   - Cada tarjeta usa el logo ya recortado y centrado sobre el color de su
+     propia marca (public/directorio-logos, ver devtools/guias-panel/sitio-web/
+     directorio/LEEME.md), la nota real de Google y el link a su reserva.
+   - Dos filas en sentidos opuestos; se detienen al pasar el cursor y quedan
+     quietas si el visitante pidió menos movimiento. */
 
-       INFINITY 400 · AURA 400 · Oren 400 · D'Jones 372 · El 10 334
-       Sion 283 · New Glow 262 · Renacer 228 · GLOW Studio 182 · Latin Caribe 175
-
-   🔴 DÓNDE ESTÁN LOS LOGOS, que cuesta encontrarlos: cada local tiene el suyo en
-   `<tenant>/logo.png|webp` DENTRO del repo de la plataforma — en una subcarpeta
-   por tenant, no en la raíz. La ruta canónica la declara Firestore en
-   `tenants/<tid>/configuracion/wallet.logoUrl`. Buscar por nombre de archivo en
-   la raíz o en Storage da casi nada y lleva a concluir, en falso, que no hay
-   logos. */
-/* Con el sitio en tema claro (08-10-2026) cada logo va sobre una ficha
-   oscura: casi todos son claros, pensados para fondo negro, y sobre blanco
-   desaparecían. `invertir` es para los logos que vienen con FONDO BLANCO:
-   sobre la ficha oscura se ven como un parche. Invertirlos funde el blanco con el
-   fondo y deja el texto legible en claro. Solo aplica a marcas monocromas —
-   con un logo a color lo arruinaría, y ahí la salida es pedir la versión en
-   PNG transparente. */
-const LOCALES = [
-  { nombre: "INFINITY STUDIO",   img: "/locales/infinity.png"                     },
-  { nombre: "AURA Salón",        img: "/locales/aura.png",        invertir: true  },
-  { nombre: "Oren Barber",       img: "/locales/oren.webp"                        },
-  { nombre: "D'Jones Barber",    img: "/locales/djones.png"                       },
-  { nombre: "El 10 Salón",       img: "/locales/el10.png"                         },
-  { nombre: "Sion Barbería",     img: "/locales/sion.png"                         },
-  { nombre: "New Glow",          img: "/locales/newglow.png"                      },
-  { nombre: "Peluquería Renacer", img: "/locales/renacer.webp"                    },
-  { nombre: "GLOW Studio",       img: "/locales/glowstudio.png"                   },
-  { nombre: "Latin Caribe",      img: "/locales/latincaribe.png"                  },
-];
-
-function Fila({ ariaHidden = false }: { ariaHidden?: boolean }) {
+function Tarjeta({ l }: { l: LocalDirectorio }) {
   return (
-    <ul
-      className="flex items-center gap-4 shrink-0 m-0 p-0 list-none animate-marquee"
-      aria-hidden={ariaHidden || undefined}
-    >
-      {LOCALES.map((l) => (
-        <li key={l.nombre} className="shrink-0">
-          <div className="rounded-2xl bg-[#161617] px-6 py-4" title={l.nombre}>
-          <div className="relative w-[120px] h-[60px] opacity-85 hover:opacity-100 transition-opacity duration-300">
-            <Image
-              src={l.img}
-              alt={l.nombre}
-              fill
-              sizes="120px"
-              className="object-contain"
-              style={l.invertir ? { filter: "invert(1)" } : undefined}
-            />
-          </div>
-          </div>
-        </li>
-      ))}
-    </ul>
+    <li className="shrink-0 w-[200px] sm:w-[236px]">
+      <a href={l.url} target="_blank" rel="noopener" className="group block" title={`Reservar en ${l.nombre}`}>
+        <span
+          className="block relative aspect-[16/10] rounded-2xl overflow-hidden ring-1 ring-ink/10 shadow-[0_12px_32px_-14px_rgba(15,26,43,.45)] transition-transform duration-300 group-hover:-translate-y-1"
+          style={{ backgroundColor: l.fondo }}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={`/directorio-logos/${l.id}.webp`} alt={`Logo de ${l.nombre}`} loading="lazy" decoding="async"
+            className="absolute inset-0 w-full h-full object-contain transition-transform duration-500 group-hover:scale-[1.05]" />
+        </span>
+        <span className="mt-3 flex items-start justify-between gap-2">
+          <span className="min-w-0">
+            <span className="block font-semibold text-ink text-[14px] leading-snug truncate">{l.nombre}</span>
+            <span className="block text-[12px] text-text-muted truncate">{l.comuna}</span>
+          </span>
+          {l.rating && (
+            <span className="shrink-0 text-[12px] font-semibold text-ink bg-mist rounded-full px-2 py-0.5" title={`${l.opiniones ?? ""} reseñas en Google`}>
+              ★ {l.rating.toFixed(1)}
+            </span>
+          )}
+        </span>
+      </a>
+    </li>
   );
 }
 
-export default function LogosLocales() {
+function Cinta({ locales, reversa = false }: { locales: LocalDirectorio[]; reversa?: boolean }) {
+  // Dos copias seguidas: cuando la primera termina su recorrido, la segunda
+  // ocupa su lugar y el loop no salta (ver .animate-marquee en globals.css).
   return (
-    <section className="py-14 border-t border-border-subtle overflow-hidden">
-      <div className="max-w-screen-xl mx-auto px-6 md:px-12">
-        <p className="eyebrow mb-8 text-center">Locales que ya la usan</p>
+    <div className="flex gap-5 [mask-image:linear-gradient(to_right,transparent,black_6%,black_94%,transparent)]">
+      {[false, true].map((copia) => (
+        <ul key={String(copia)} aria-hidden={copia || undefined}
+          className={`flex gap-5 shrink-0 m-0 p-0 list-none animate-marquee-locales ${reversa ? "marquee-reversa" : ""}`}>
+          {locales.map((l) => <Tarjeta key={l.id} l={l} />)}
+        </ul>
+      ))}
+    </div>
+  );
+}
 
-        {/* Dos filas idénticas en secuencia: cuando la primera termina su
-            recorrido, la segunda ya está en posición y el loop no salta. */}
-        <div className="relative flex gap-4 [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]">
-          <Fila />
-          <Fila ariaHidden />
+export default async function LogosLocales() {
+  const todos = await obtenerLocales();
+  const conLogo = todos.filter((l) => l.logo);
+  const comunas = new Set(todos.map((l) => l.comuna).filter(Boolean)).size;
+  const fila1 = conLogo.filter((_, i) => i % 2 === 0);
+  const fila2 = conLogo.filter((_, i) => i % 2 === 1);
+  return (
+    <section className="py-16 md:py-24 border-t border-border-subtle overflow-hidden group/marquee">
+      <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 md:mb-12">
+          <div className="max-w-2xl">
+            <p className="eyebrow mb-4">Locales que ya la usan</p>
+            <h2 className="text-ink">Locales reales, con reserva online.</h2>
+            <p className="text-text-secondary text-lg mt-5 leading-relaxed">
+              {todos.length} barberías, salones, clínicas y estudios en {comunas} comunas de Chile
+              trabajan hoy con SynapTech. Toca cualquiera para ver su página de reservas.
+            </p>
+          </div>
+          <Link href="/locales"
+            className="self-start md:self-auto shrink-0 inline-flex items-center bg-ink text-white font-semibold px-6 py-3.5 rounded-full hover:bg-black transition-colors">
+            Ver el mapa de locales →
+          </Link>
         </div>
+      </div>
+      <div className="space-y-6">
+        <Cinta locales={fila1} />
+        <Cinta locales={fila2} reversa />
       </div>
     </section>
   );
