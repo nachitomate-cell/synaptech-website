@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FAMILIAS } from "@/content/catalogo";
+import { BotonCapsula } from "./Capsulas";
 
 /* Las cinco familias de producto, una fila cada una con su captura real del
    panel, alternando el lado. Cada fila tiene el id al que apunta el menú. */
@@ -21,9 +22,10 @@ export default function Familias() {
           {FAMILIAS.map((f, i) => (
             <article key={f.id} id={f.id}
               className="bg-white rounded-[28px] overflow-hidden grid lg:grid-cols-2 items-stretch">
-              <div className={`bg-[#161617] flex items-center ${i % 2 ? "lg:order-2" : ""}`}>
-                <Image src={f.imagen} alt={f.imagenAlt} width={1536} height={1024}
-                  sizes="(min-width: 1024px) 640px, 100vw" className="w-full h-auto" />
+              <div className={`bg-lime/15 flex items-center p-4 sm:p-8 ${i % 2 ? "lg:order-2" : ""}`}>
+                <Image src={f.imagen} alt={f.imagenAlt} width={2880} height={1800}
+                  sizes="(min-width: 1024px) 600px, 100vw"
+                  className="w-full h-auto rounded-xl border border-border-subtle shadow-card-hover" />
               </div>
               <div className="p-7 sm:p-10 lg:p-12 flex flex-col justify-center">
                 <h3 className="font-display font-bold text-ink text-[28px] sm:text-[34px] leading-tight tracking-tight">
@@ -41,13 +43,16 @@ export default function Familias() {
                     </li>
                   ))}
                 </ul>
-                <Link href={f.href}
-                  className="self-start inline-flex items-center gap-2 font-semibold text-ink border-b-2 border-lime pb-0.5 hover:border-ink transition-colors">
-                  Conocer más
-                  <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden>
-                    <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </Link>
+                <div className="flex flex-wrap items-center gap-x-7 gap-y-4">
+                  <Link href={`/como-funciona#${f.recorrido}`}
+                    className="inline-flex items-center gap-2 font-semibold text-ink border-b-2 border-lime pb-0.5 hover:border-ink transition-colors">
+                    Ver cómo funciona
+                    <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden>
+                      <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </Link>
+                  <BotonCapsula id={f.capsula} />
+                </div>
               </div>
             </article>
           ))}

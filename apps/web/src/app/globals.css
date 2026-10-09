@@ -219,3 +219,21 @@ h2 {
 @media (prefers-reduced-motion: reduce) {
   .animate-marquee-lento { animation: none; }
 }
+
+/* ── Recorrido de módulos (Recorrido.tsx) ──────────────────────────────────
+   Orden: la captura se acerca (0,9 s) → aparece el número → se traza la
+   flecha → aparece la punta → el recuadro late. */
+@keyframes recorrido-trazo   { to { stroke-dashoffset: 0; } }
+@keyframes recorrido-aparece { from { opacity: 0; transform: translate(-50%, -50%) scale(.6); } to { opacity: 1; transform: translate(-50%, -50%) scale(1); } }
+@keyframes recorrido-fade    { from { opacity: 0; } to { opacity: 1; } }
+@keyframes recorrido-latido  { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
+.recorrido-velo   { opacity: 0; animation: recorrido-fade .45s .55s forwards; }
+.recorrido-flecha { stroke-dasharray: 1; stroke-dashoffset: 1; animation: recorrido-trazo .7s .85s cubic-bezier(.4,0,.2,1) forwards; }
+.recorrido-punta  { opacity: 0; animation: recorrido-fade .2s 1.5s forwards; }
+.recorrido-badge  { animation: recorrido-aparece .45s .6s cubic-bezier(.2,.8,.2,1) both; }
+.recorrido-anillo { opacity: 0; animation: recorrido-fade .3s .8s forwards, recorrido-latido 1.8s 1.6s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .recorrido-flecha { animation: none; stroke-dashoffset: 0; }
+  .recorrido-punta, .recorrido-anillo, .recorrido-velo { animation: none; opacity: 1; }
+  .recorrido-badge { animation: none; }
+}

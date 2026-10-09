@@ -12,6 +12,8 @@ import { FAMILIAS, RUBROS, SIGNUP_URL } from "@/content/catalogo";
 type Panel = "productos" | "rubros" | "recursos" | null;
 
 const RECURSOS = [
+  { label: "Cómo funciona",  desc: "Cada módulo, paso a paso, con capturas reales", href: "/como-funciona" },
+  { label: "Cápsulas en video", desc: "Todo el panel en videos de menos de 2 minutos", href: "/como-funciona#capsulas" },
   { label: "Blog",           desc: "Guías para hacer crecer tu local", href: "/blog" },
   { label: "Clientes",       desc: "Lo que dicen los locales que ya lo usan", href: "/#testimonios" },
   { label: "Integraciones",  desc: "Pagos, WhatsApp, SII, Wallet y más", href: "/#integraciones" },
@@ -93,6 +95,10 @@ export default function Header() {
               {p.label}<Chevron open={panel === p.id} />
             </button>
           ))}
+          <Link href="/como-funciona" onClick={cerrar}
+            className={`px-3 py-2 rounded-full text-[15px] font-medium transition-colors ${pathname === "/como-funciona" ? "text-ink" : "text-text-secondary hover:text-ink"}`}>
+            Cómo funciona
+          </Link>
           <Link href="/#precios" onClick={cerrar}
             className="px-3 py-2 rounded-full text-[15px] font-medium text-text-secondary hover:text-ink transition-colors">
             Precios
@@ -157,7 +163,7 @@ export default function Header() {
             )}
 
             {panel === "recursos" && (
-              <div className="grid grid-cols-3 gap-x-8 gap-y-6">
+              <div className="grid grid-cols-4 gap-x-8 gap-y-6">
                 {RECURSOS.map((r) => (
                   <Link key={r.label} href={r.href} onClick={cerrar} className="group block">
                     <span className="block font-display font-bold text-[15px] text-ink group-hover:text-accent">{r.label}</span>
@@ -202,6 +208,9 @@ export default function Header() {
                 )}
               </li>
             ))}
+            <li className="border-b border-border-subtle">
+              <Link href="/como-funciona" onClick={cerrar} className="block py-4 text-[17px] font-semibold text-ink">Cómo funciona</Link>
+            </li>
             <li className="border-b border-border-subtle">
               <Link href="/#precios" onClick={cerrar} className="block py-4 text-[17px] font-semibold text-ink">Precios</Link>
             </li>

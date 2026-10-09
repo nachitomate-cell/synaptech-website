@@ -1,0 +1,606 @@
+[
+  {
+    "archivo": "agenda-escritorio-menu.png",
+    "ancho": 1440,
+    "alto": 900,
+    "escala": 2,
+    "objetivos": {
+      "nuevaCita": {
+        "etiqueta": "Nueva cita",
+        "x": 1304.4,
+        "y": 31,
+        "w": 65.6,
+        "h": 36
+      },
+      "cita": {
+        "etiqueta": "Cita: Felipe Castro · Corte + barba",
+        "x": 335,
+        "y": 653,
+        "w": 354.3,
+        "h": 76
+      },
+      "masAcciones": {
+        "etiqueta": "Más acciones → Bloquear horas",
+        "x": 1376,
+        "y": 31,
+        "w": 36,
+        "h": 36
+      },
+      "bloqueo": {
+        "etiqueta": "Bloqueo: colación",
+        "x": 694.3,
+        "y": 533,
+        "w": 354.3,
+        "h": 116
+      },
+      "fecha": {
+        "etiqueta": "Navegación de fecha",
+        "x": 268,
+        "y": 28,
+        "w": 190.8,
+        "h": 42
+      },
+      "bloquearHoras": {
+        "etiqueta": "Bloquear horas",
+        "x": 1195,
+        "y": 112,
+        "w": 210,
+        "h": 32
+      }
+    }
+  },
+  {
+    "archivo": "agenda-escritorio.png",
+    "ancho": 1440,
+    "alto": 900,
+    "escala": 2,
+    "objetivos": {
+      "nuevaCita": {
+        "etiqueta": "Nueva cita",
+        "x": 1304.4,
+        "y": 31,
+        "w": 65.6,
+        "h": 36
+      },
+      "cita": {
+        "etiqueta": "Cita: Felipe Castro · Corte + barba",
+        "x": 335,
+        "y": 653,
+        "w": 354.3,
+        "h": 76
+      },
+      "masAcciones": {
+        "etiqueta": "Más acciones → Bloquear horas",
+        "x": 1376,
+        "y": 31,
+        "w": 36,
+        "h": 36
+      },
+      "bloqueo": {
+        "etiqueta": "Bloqueo: colación",
+        "x": 694.3,
+        "y": 533,
+        "w": 354.3,
+        "h": 116
+      },
+      "fecha": {
+        "etiqueta": "Navegación de fecha",
+        "x": 268,
+        "y": 28,
+        "w": 190.8,
+        "h": 42
+      }
+    }
+  },
+  {
+    "archivo": "agenda-nueva-cita.png",
+    "ancho": 1440,
+    "alto": 900,
+    "escala": 2,
+    "objetivos": {
+      "servicio": {
+        "etiqueta": "Servicio",
+        "x": 310,
+        "y": 426.8,
+        "w": 385,
+        "h": 42
+      },
+      "horario": {
+        "etiqueta": "Hora",
+        "x": 510.5,
+        "y": 537.8,
+        "w": 184.5,
+        "h": 42
+      },
+      "profesional": {
+        "etiqueta": "Barbero",
+        "x": 310,
+        "y": 691.8,
+        "w": 385,
+        "h": 42
+      },
+      "guardar": {
+        "etiqueta": "Crear cita",
+        "x": 1041,
+        "y": 783.8,
+        "w": 106,
+        "h": 40
+      }
+    }
+  },
+  {
+    "archivo": "app-barbero-celular.png",
+    "ancho": 390,
+    "alto": 844,
+    "escala": 2,
+    "objetivos": {
+      "resumen": {
+        "etiqueta": "Resumen de la jornada (completadas · pendientes · ganancias)",
+        "x": 24,
+        "y": 96.2,
+        "w": 342,
+        "h": 34
+      },
+      "proximaCita": {
+        "etiqueta": "Próxima cita",
+        "x": 24,
+        "y": 198.2,
+        "w": 342,
+        "h": 77
+      },
+      "cita": {
+        "etiqueta": "Cita: Tomás Herrera · Corte fade",
+        "x": 0,
+        "y": 477.7,
+        "w": 390,
+        "h": 102
+      },
+      "nuevaCita": {
+        "etiqueta": "Nueva cita",
+        "x": 322,
+        "y": 702,
+        "w": 52,
+        "h": 52
+      }
+    }
+  },
+  {
+    "archivo": "asistente-bandeja.png",
+    "ancho": 1440,
+    "alto": 900,
+    "escala": 2,
+    "objetivos": {
+      "conversacion": {
+        "etiqueta": "Conversación en la lista",
+        "x": 256,
+        "y": 389.5,
+        "w": 348,
+        "h": 107
+      },
+      "mensajeAsistente": {
+        "etiqueta": "Syna agenda la hora",
+        "x": 897.7,
+        "y": 424.4,
+        "w": 454.3,
+        "h": 115.6
+      },
+      "citaAgendada": {
+        "etiqueta": "Cita agendada por el asistente",
+        "x": 982.2,
+        "y": 544,
+        "w": 288.5,
+        "h": 25.8
+      },
+      "tomarControl": {
+        "etiqueta": "Tomar el control",
+        "x": 1208.2,
+        "y": 47.3,
+        "w": 143.8,
+        "h": 36
+      }
+    }
+  },
+  {
+    "archivo": "asistente-orden.png",
+    "ancho": 1440,
+    "alto": 1040,
+    "escala": 2,
+    "objetivos": {
+      "pasos": {
+        "etiqueta": "Orden de las preguntas",
+        "x": 477,
+        "y": 219,
+        "w": 722,
+        "h": 430
+      },
+      "interruptor": {
+        "etiqueta": "Interruptor: ¿Es tu primera vez?",
+        "x": 1142,
+        "y": 546.3,
+        "w": 44,
+        "h": 24
+      },
+      "subirBajar": {
+        "etiqueta": "Subir / bajar un paso",
+        "x": 1088,
+        "y": 426.3,
+        "w": 98,
+        "h": 30
+      },
+      "guardar": {
+        "etiqueta": "Guardar orden",
+        "x": 477,
+        "y": 959.1,
+        "w": 122.6,
+        "h": 31.5
+      }
+    }
+  },
+  {
+    "archivo": "caja.png",
+    "ancho": 1440,
+    "alto": 900,
+    "escala": 2,
+    "objetivos": {
+      "saldoEsperado": {
+        "etiqueta": "Saldo esperado",
+        "x": 284,
+        "y": 152,
+        "w": 175.3,
+        "h": 144
+      },
+      "vender": {
+        "etiqueta": "Vender",
+        "x": 917.7,
+        "y": 52,
+        "w": 92.3,
+        "h": 34
+      },
+      "ingreso": {
+        "etiqueta": "Ingreso",
+        "x": 1017.9,
+        "y": 52,
+        "w": 90.3,
+        "h": 34
+      },
+      "egreso": {
+        "etiqueta": "Egreso",
+        "x": 1116.2,
+        "y": 52,
+        "w": 86.7,
+        "h": 34
+      },
+      "cerrarCaja": {
+        "etiqueta": "Cerrar caja",
+        "x": 602.9,
+        "y": 94,
+        "w": 112.5,
+        "h": 34
+      },
+      "transacciones": {
+        "etiqueta": "Una transacción del día",
+        "x": 305,
+        "y": 761,
+        "w": 1062,
+        "h": 58.5
+      }
+    }
+  },
+  {
+    "archivo": "club-clientes-lista.png",
+    "ancho": 1440,
+    "alto": 900,
+    "escala": 2,
+    "objetivos": {
+      "cliente": {
+        "etiqueta": "Cliente: Vicente Araya",
+        "x": 393,
+        "y": 419,
+        "w": 894,
+        "h": 64
+      },
+      "sellos": {
+        "etiqueta": "14 sellos",
+        "x": 1129.1,
+        "y": 441.5,
+        "w": 59.9,
+        "h": 19
+      },
+      "rangos": {
+        "etiqueta": "Filtros por rango (Silver / Gold / Platinum)",
+        "x": 743.5,
+        "y": 343,
+        "w": 273.6,
+        "h": 40
+      }
+    }
+  },
+  {
+    "archivo": "club-clientes.png",
+    "ancho": 1440,
+    "alto": 900,
+    "escala": 2,
+    "objetivos": {
+      "cliente": {
+        "etiqueta": "Cliente: Vicente Araya",
+        "x": 293,
+        "y": 512.5,
+        "w": 1094,
+        "h": 55
+      },
+      "progreso": {
+        "etiqueta": "14 sellos disponibles / 22 históricos",
+        "x": 641.7,
+        "y": 530,
+        "w": 66.2,
+        "h": 20
+      },
+      "premio": {
+        "etiqueta": "Premio que ya puede canjear",
+        "x": 724,
+        "y": 528.8,
+        "w": 219.8,
+        "h": 22.5
+      },
+      "miembros": {
+        "etiqueta": "Miembros del club",
+        "x": 292,
+        "y": 248,
+        "w": 262,
+        "h": 144.5
+      }
+    }
+  },
+  {
+    "archivo": "club-premios.png",
+    "ancho": 1440,
+    "alto": 900,
+    "escala": 2,
+    "objetivos": {
+      "premio": {
+        "etiqueta": "Premio: Corte clásico gratis",
+        "x": 329,
+        "y": 393,
+        "w": 672.7,
+        "h": 69
+      },
+      "sellosRequeridos": {
+        "etiqueta": "10 sellos requeridos",
+        "x": 397,
+        "y": 430,
+        "w": 104.7,
+        "h": 15
+      },
+      "escalera": {
+        "etiqueta": "Escalera de premios",
+        "x": 328,
+        "y": 209.5,
+        "w": 674.7,
+        "h": 322.5
+      },
+      "nuevoPremio": {
+        "etiqueta": "Nuevo premio",
+        "x": 328,
+        "y": 556,
+        "w": 674.7,
+        "h": 46
+      }
+    }
+  },
+  {
+    "archivo": "comisiones-detalle.png",
+    "ancho": 1440,
+    "alto": 900,
+    "escala": 2,
+    "objetivos": {
+      "total": {
+        "etiqueta": "Total a pagar · Matías Fuentes",
+        "x": 714,
+        "y": 117,
+        "w": 144.1,
+        "h": 62
+      },
+      "mediosPago": {
+        "etiqueta": "Cobrado por medio de pago",
+        "x": 714,
+        "y": 343.3,
+        "w": 685,
+        "h": 114
+      },
+      "citas": {
+        "etiqueta": "Detalle de citas (sigue al hacer scroll)",
+        "x": 698,
+        "y": 698.9,
+        "w": 717,
+        "h": 124.9
+      },
+      "exportarCsv": {
+        "etiqueta": "Exportar CSV",
+        "x": 697,
+        "y": 841.8,
+        "w": 139.3,
+        "h": 38
+      },
+      "descargarPdf": {
+        "etiqueta": "Descargar PDF",
+        "x": 844.3,
+        "y": 841.8,
+        "w": 148.9,
+        "h": 38
+      }
+    }
+  },
+  {
+    "archivo": "comisiones.png",
+    "ancho": 1440,
+    "alto": 900,
+    "escala": 2,
+    "objetivos": {
+      "periodo": {
+        "etiqueta": "Selector de período",
+        "x": 409,
+        "y": 51.8,
+        "w": 862,
+        "h": 62
+      },
+      "totalProfesional": {
+        "etiqueta": "Falta por pagar · Joaquín Reyes",
+        "x": 841,
+        "y": 429.3,
+        "w": 144.1,
+        "h": 62
+      },
+      "detalle": {
+        "etiqueta": "Ver desglose",
+        "x": 841,
+        "y": 612.3,
+        "w": 85.4,
+        "h": 16.5
+      },
+      "registrarPago": {
+        "etiqueta": "Registrar pago",
+        "x": 677.8,
+        "y": 644.8,
+        "w": 226.6,
+        "h": 38
+      }
+    }
+  },
+  {
+    "archivo": "metricas.png",
+    "ancho": 1440,
+    "alto": 900,
+    "escala": 2,
+    "objetivos": {
+      "rango": {
+        "etiqueta": "Rango de fechas (desde / hasta)",
+        "x": 302,
+        "y": 120.3,
+        "w": 296,
+        "h": 28
+      },
+      "atajos": {
+        "etiqueta": "Atajos: Hoy / Semana / Mes / Mes pasado",
+        "x": 1058.8,
+        "y": 119,
+        "w": 340.2,
+        "h": 30.5
+      },
+      "ingresosTotales": {
+        "etiqueta": "Ingresos totales del período",
+        "x": 293,
+        "y": 238.5,
+        "w": 1094,
+        "h": 88.5
+      },
+      "serviciosVsProductos": {
+        "etiqueta": "Servicios vs productos",
+        "x": 268,
+        "y": 376,
+        "w": 564,
+        "h": 102
+      },
+      "csv": {
+        "etiqueta": "Exportar CSV",
+        "x": 1131.5,
+        "y": 36,
+        "w": 69.4,
+        "h": 34
+      }
+    }
+  },
+  {
+    "archivo": "reserva-1-servicio.png",
+    "ancho": 390,
+    "alto": 844,
+    "escala": 2,
+    "objetivos": {
+      "servicio": {
+        "etiqueta": "Servicio elegido: Corte fade",
+        "x": 24,
+        "y": 534.3,
+        "w": 342,
+        "h": 95.7
+      },
+      "otroServicio": {
+        "etiqueta": "Otro servicio",
+        "x": 24,
+        "y": 417.1,
+        "w": 342,
+        "h": 120.2
+      },
+      "continuar": {
+        "etiqueta": "Continuar",
+        "x": 20,
+        "y": 766.4,
+        "w": 350,
+        "h": 60
+      }
+    }
+  },
+  {
+    "archivo": "reserva-2-horario.png",
+    "ancho": 390,
+    "alto": 844,
+    "escala": 2,
+    "objetivos": {
+      "horario": {
+        "etiqueta": "Horario libre: 16:30",
+        "x": 257.3,
+        "y": 658.5,
+        "w": 108.7,
+        "h": 42
+      },
+      "dia": {
+        "etiqueta": "Día: viernes 9",
+        "x": 24,
+        "y": 236.5,
+        "w": 64,
+        "h": 88
+      },
+      "horasLibres": {
+        "etiqueta": "Horas disponibles",
+        "x": 24,
+        "y": 540.5,
+        "w": 342,
+        "h": 28
+      },
+      "reservar": {
+        "etiqueta": "Reservar las 16:30",
+        "x": 20,
+        "y": 766.4,
+        "w": 350,
+        "h": 60
+      }
+    }
+  },
+  {
+    "archivo": "reserva-3-confirmar.png",
+    "ancho": 390,
+    "alto": 844,
+    "escala": 2,
+    "objetivos": {
+      "datos": {
+        "etiqueta": "Tus datos",
+        "x": 24,
+        "y": 94,
+        "w": 342,
+        "h": 58
+      },
+      "resumen": {
+        "etiqueta": "Resumen de la reserva",
+        "x": 24,
+        "y": 567.5,
+        "w": 342,
+        "h": 152.5
+      },
+      "confirmar": {
+        "etiqueta": "Confirmar reserva",
+        "x": 20,
+        "y": 766.4,
+        "w": 350,
+        "h": 60
+      }
+    }
+  }
+]

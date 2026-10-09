@@ -20,6 +20,9 @@ export type Familia = {
   imagen: string;
   imagenAlt: string;
   href: string;
+  /** Ancla del módulo en /como-funciona y cápsula en video que lo muestra. */
+  recorrido: string;
+  capsula: string;
   items: Item[];
 };
 
@@ -28,9 +31,11 @@ export const FAMILIAS: Familia[] = [
     id: "agenda",
     nombre: "Agenda",
     bajada: "Tus clientes reservan solos, a cualquier hora, desde su teléfono.",
-    imagen: "/agenda.png",
+    imagen: "/panel/agenda-escritorio.webp",
     imagenAlt: "Agenda del día por profesional en el panel de SynapTech",
     href: "/saas-comercial",
+    recorrido: "agenda",
+    capsula: "tutorial-agenda-barbero",
     items: [
       { label: "Reservas online 24/7", desc: "Tu propia página de reservas, sin llamadas" },
       { label: "Agenda por profesional", desc: "Cada uno ve su día, el local ve todo" },
@@ -42,9 +47,11 @@ export const FAMILIAS: Familia[] = [
     id: "asistente",
     nombre: "Asistente con IA",
     bajada: "Responde y agenda por WhatsApp e Instagram en el número del local.",
-    imagen: "/chat.png",
-    imagenAlt: "Bandeja de mensajes con clientes en el panel de SynapTech",
+    imagen: "/panel/asistente-bandeja.webp",
+    imagenAlt: "Bandeja de WhatsApp con una conversación atendida por el asistente",
     href: "/saas-comercial",
+    recorrido: "asistente",
+    capsula: "reel-asistente-whatsapp",
     items: [
       { label: "Asistente en WhatsApp", desc: "Contesta precios, horarios y agenda la hora" },
       { label: "Asistente en Instagram", desc: "Atiende los mensajes directos (plan Full)" },
@@ -56,9 +63,11 @@ export const FAMILIAS: Familia[] = [
     id: "cobros",
     nombre: "Cobros y caja",
     bajada: "Cobra en el mesón, por link o al reservar, y cierra el día cuadrado.",
-    imagen: "/metricas.png",
-    imagenAlt: "Métricas de ventas y cierre del día en el panel de SynapTech",
+    imagen: "/panel/caja.webp",
+    imagenAlt: "Caja del día con saldo esperado y transacciones",
     href: "/saas-comercial",
+    recorrido: "caja",
+    capsula: "capsula-1-caja",
     items: [
       { label: "Pago online al reservar", desc: "Mercado Pago y Flow para abonos y reservas" },
       { label: "Máquina POS TUU", desc: "El cobro del mesón queda dentro de la cita" },
@@ -70,9 +79,11 @@ export const FAMILIAS: Familia[] = [
     id: "fidelizacion",
     nombre: "Fidelización",
     bajada: "Que el cliente vuelva: sellos, premios y su tarjeta en el teléfono.",
-    imagen: "/premios.png",
+    imagen: "/panel/club-premios.webp",
     imagenAlt: "Premios del club de fidelidad en el panel de SynapTech",
     href: "/fidelizacion",
+    recorrido: "club",
+    capsula: "reel-club-wallet",
     items: [
       { label: "Club de sellos y premios", desc: "Rangos y premios por visita" },
       { label: "Google Wallet y Apple Wallet", desc: "La tarjeta del club en el teléfono del cliente" },
@@ -84,9 +95,11 @@ export const FAMILIAS: Familia[] = [
     id: "gestion",
     nombre: "Gestión del local",
     bajada: "Equipo, productos y números del negocio en un solo panel.",
-    imagen: "/equipo.png",
-    imagenAlt: "Equipo de profesionales en el panel de SynapTech",
+    imagen: "/panel/comisiones.webp",
+    imagenAlt: "Liquidación de comisiones por profesional",
     href: "/saas-comercial",
+    recorrido: "comisiones",
+    capsula: "capsula-2-comisiones",
     items: [
       { label: "Equipo y roles", desc: "Dueño, recepción y profesionales con su acceso" },
       { label: "Productos e inventario", desc: "Vende productos y controla el stock" },

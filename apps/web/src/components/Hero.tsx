@@ -37,10 +37,10 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="rounded-[28px] bg-[#161617] overflow-hidden">
-          <Image src="/agenda.png" alt="Agenda del día por profesional en el panel de SynapTech"
-            width={1536} height={1024} priority sizes="(min-width: 1024px) 600px, 100vw"
-            className="w-full h-auto" />
+        <div className="rounded-[28px] bg-lime/15 p-3 sm:p-5">
+          <Image src="/panel/agenda-escritorio.webp" alt="Agenda del día con tres profesionales en el panel de SynapTech"
+            width={2880} height={1800} priority sizes="(min-width: 1024px) 600px, 100vw"
+            className="w-full h-auto rounded-xl border border-border-subtle shadow-card-hover" />
         </div>
       </div>
 

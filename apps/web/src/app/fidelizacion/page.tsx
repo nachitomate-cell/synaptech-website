@@ -351,11 +351,11 @@ export default function FidelizacionPage() {
                   Centro comercial en Valparaíso con 46 locales participantes. Implementamos una PWA instalable con sellos digitales, Google Wallet, canje de premios, directorio de emprendedores con mapa y notificaciones con IA.
                 </p>
                 <p className="text-text-secondary leading-relaxed mb-8 italic text-sm border-l-2 border-accent/40 pl-4">
-                  "Club Patio Curauma cuenta con más de 215 socios activos, 46 locales participantes y ha entregado más de 328 sellos de fidelización — con una satisfacción promedio de 8.6 / 10 según sus propios usuarios."
+                  "Club Patio Curauma cuenta con más de 1.200 socios, 46 locales participantes y ha entregado más de 328 sellos de fidelización — con una satisfacción promedio de 8.6 / 10 según sus propios usuarios."
                 </p>
                 <div className="grid grid-cols-2 gap-4">
                   {[
-                    { val: "+215",    label: "Socios registrados" },
+                    { val: "+1.200",  label: "Socios registrados" },
                     { val: "46",      label: "Locales participantes" },
                     { val: "+328",    label: "Sellos entregados" },
                     { val: "8.6/10", label: "Satisfacción NPS" },
