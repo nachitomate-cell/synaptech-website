@@ -15,7 +15,7 @@ export function HeroRubro({ eyebrow, titulo, bajada, origen, escritorio, celular
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10 grid lg:grid-cols-[1fr_1.08fr] gap-12 items-center">
         <div>
           <p className="eyebrow mb-5">{eyebrow}</p>
-          <h1 className="text-ink mb-6">{titulo}</h1>
+          <h1 className="text-ink mb-6 !text-[clamp(2.4rem,5vw,4.5rem)]">{titulo}</h1>
           <p className="text-text-secondary text-lg md:text-xl leading-relaxed max-w-xl mb-8">{bajada}</p>
           <div className="flex flex-col sm:flex-row gap-3">
             <a href={`${SIGNUP_URL}?ref=${origen}`}

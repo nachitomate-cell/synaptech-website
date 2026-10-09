@@ -37,6 +37,15 @@ const ALT: Record<string, string> = {
   "estetica-ficha-gasto": "Ficha de una clienta: gasto total, visitas y profesional preferida",
   "estetica-club-premios": "Premios del club de un centro de estética",
   "estetica-giftcards": "Gift cards emitidas con su saldo",
+  "agencia-bandeja": "Bandeja con conversaciones de WhatsApp e Instagram atendidas por vendedoras y el asistente",
+  "agencia-reparto": "Vista de una vendedora con solo sus conversaciones",
+  "agencia-embudo": "Embudo de ventas con clientes por etapa",
+  "agencia-ficha": "Ficha de un cliente en el embudo",
+  "agencia-cerrar-venta": "Cierre de una venta desde la conversación",
+  "agencia-comisiones": "Comisiones del equipo de ventas del mes",
+  "agencia-comisiones-vendedora": "Comisiones de una vendedora",
+  "agencia-catalogo": "Catálogo de paseos con precios",
+  "agencia-catalogo-paseo": "Ficha de un paseo con precio, precio residente, tickets y temporada",
 };
 
 export const CAPTURAS: Record<string, Captura> = Object.fromEntries(
@@ -197,5 +206,79 @@ export const MODULOS_ESTETICA: Modulo[] = [
       p("estetica-giftcards", "saldoCirculacion", "Y sabes cuánto hay por canjear", "Emitidas, activas, usadas y el saldo que queda en circulación."),
     ],
     capsulas: ["tutorial-club-fidelizacion", "reel-club-wallet"],
+  },
+];
+
+/* Recorrido de la página /agencias, sobre capturas de una agencia ficticia
+   ("Andes Rutas", emulador, 09-10-2026). Fuente e inventario verificado:
+   devtools/guias-panel/sitio-web/agencia/ (INVENTARIO.md).
+   🔴 Ojo: hoy una venta de agencia NO crea una reserva en la agenda; nada acá
+   lo promete. La comisión se calcula sobre lo pagado menos los tickets. */
+export const MODULOS_AGENCIA: Modulo[] = [
+  {
+    id: "omnicanal",
+    nombre: "Bandeja omnicanal",
+    titular: "WhatsApp e Instagram, en una sola bandeja.",
+    bajada: "Todas las conversaciones del equipo en un lugar, con Syna respondiendo y cotizando mientras tus vendedoras atienden.",
+    pasos: [
+      p("agencia-bandeja", "mensajeCliente", "Todos los mensajes, juntos", "Lo que llega por WhatsApp y por Instagram entra a la misma bandeja, con su historial."),
+      p("agencia-bandeja", "mensajeSyna", "Syna cotiza con tu catálogo", "Responde precios, horarios y qué incluye cada paseo, arma el pedido y se lo pasa a tu equipo."),
+      p("agencia-bandeja", "atiende", "Cada conversación tiene su vendedora", "Se ve quién atiende a cada cliente, y el dueño la puede cambiar."),
+      p("agencia-bandeja", "quienResponde", "Tú decides quién responde", "Syna responde, respondes tú, o Syna nunca le responde a ese cliente."),
+      p("agencia-bandeja", "respuestasRapidas", "Respuestas rápidas", "Los textos que se repiten, a un toque: datos para el abono, punto de encuentro, qué llevar."),
+      p("agencia-bandeja", "cerrarVenta", "Y la venta se cierra desde el chat", "Sin cambiar de pantalla ni copiar datos a una planilla."),
+    ],
+    capsulas: ["reel-asistente-whatsapp"],
+  },
+  {
+    id: "vendedoras",
+    nombre: "Equipo de ventas",
+    titular: "Cada vendedora con sus clientes, sin pisarse.",
+    bajada: "Las conversaciones se reparten solas y cada vendedora entra a su propio panel.",
+    pasos: [
+      p("agencia-reparto", "asignada", "Reparto automático", "Cada conversación nueva se asigna a una vendedora, por turnos."),
+      p("agencia-reparto", "soloSuyas", "Cada una ve solo lo suyo", "Sus chats, su embudo y sus comisiones. El dueño ve todo."),
+      p("agencia-reparto", "esperando", "Nada queda sin responder", "La bandeja marca hace cuánto espera cada cliente."),
+    ],
+    capsulas: [],
+  },
+  {
+    id: "embudo",
+    nombre: "Embudo de ventas",
+    titular: "Sabes en qué quedó cada cliente.",
+    bajada: "Nuevos, cotizados, reservados, cerrados y perdidos: cada conversación en su etapa, por vendedora y por período.",
+    pasos: [
+      p("agencia-embudo", "etapa", "Etapas de la venta", "Cada cliente está en una columna, y lo mueves arrastrándolo."),
+      p("agencia-embudo", "totales", "Los números del período", "Cuántos conversaron, cuántos quedaron sin trabajar y cuántos cerraron."),
+      p("agencia-embudo", "filtroVendedora", "El embudo de cada vendedora", "Para ver quién está cerrando y a quién se le están enfriando los clientes."),
+      p("agencia-ficha", "hacerSeguimiento", "Seguimiento con un toque", "Al cliente que dejó de responder, el asistente le escribe para retomar la conversación."),
+    ],
+    capsulas: [],
+  },
+  {
+    id: "cierre",
+    nombre: "Cierre y comisiones",
+    titular: "La venta cerrada, la comisión calculada.",
+    bajada: "Al cerrar la venta se anota el paseo, las personas y lo pagado, y la comisión de la vendedora sale sola.",
+    pasos: [
+      p("agencia-cerrar-venta", "paseo", "El paseo, como lo dejó Syna", "La venta toma el paseo que el asistente ya conversó con el cliente."),
+      p("agencia-cerrar-venta", "tickets", "Tickets y entradas aparte", "Lo que se paga a terceros se descuenta antes de calcular la comisión."),
+      p("agencia-comisiones", "vendedora", "Comisión por vendedora", "Cuánto vendió cada una en el mes y cuánto le corresponde."),
+      p("agencia-comisiones", "cierre", "Cada cierre, explicado", "Lo pagado, menos los tickets, igual la base; y sobre la base, la comisión."),
+      p("agencia-comisiones", "planilla", "Planilla para pagar", "Todo el mes en Excel, listo para transferir."),
+    ],
+    capsulas: [],
+  },
+  {
+    id: "catalogo",
+    nombre: "Catálogo",
+    titular: "Tu catálogo, el que usa Syna para cotizar.",
+    bajada: "Cada paseo con su precio, su descripción y sus condiciones; el asistente responde con lo que tú cargas.",
+    pasos: [
+      p("agencia-catalogo", "importarLista", "Lo cargas de una vez", "Pegas tu lista de paseos y la IA arma el catálogo."),
+      p("agencia-catalogo-paseo", "residente", "Precio residente y turista", "Un precio general y otro para quien vive en Chile."),
+      p("agencia-catalogo-paseo", "temporada", "Temporadas", "Fuera de las fechas, el paseo deja de ofrecerse solo."),
+    ],
+    capsulas: [],
   },
 ];

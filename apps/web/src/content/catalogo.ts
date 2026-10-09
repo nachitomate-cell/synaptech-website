@@ -184,7 +184,8 @@ export const RUBROS: Rubro[] = [
     puntos: [
       "Bandeja de WhatsApp e Instagram compartida",
       "Catálogo de paseos y servicios",
-      "Comisión por vendedor sobre lo vendido",
+      "Comisión por vendedora, sin contar tickets",
     ],
+    href: "/agencias",
   },
 ];
