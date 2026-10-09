@@ -8,6 +8,7 @@ import Rubros        from "@/components/Rubros";
 import Cambiate      from "@/components/Cambiate";
 import Testimonials  from "@/components/Testimonials";
 import LogosLocales  from "@/components/LogosLocales";
+import DirectorioBanda from "@/components/DirectorioBanda";
 import Integraciones from "@/components/Integraciones";
 import Pricing       from "@/components/Pricing";
 import FAQ           from "@/components/FAQ";
@@ -18,6 +19,9 @@ import Footer        from "@/components/Footer";
    composición de capturas reales → confianza → familias de producto → oferta
    → la plata del local (IVA, 50 %, arriendo) → rubros → mudanza y comparación
    de precio → prueba social → integraciones → precios → preguntas → cierre. */
+/* La franja del directorio lee la lista viva una vez al día. */
+export const revalidate = 86400;
+
 export default function Home() {
   return (
     <>
@@ -32,6 +36,7 @@ export default function Home() {
         <Cambiate />
         <Testimonials />
         <LogosLocales />
+        <DirectorioBanda />
         <Integraciones />
         <Pricing />
         <FAQ />

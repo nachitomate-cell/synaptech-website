@@ -12,6 +12,7 @@ import { FAMILIAS, RUBROS, SIGNUP_URL } from "@/content/catalogo";
 type Panel = "productos" | "rubros" | "recursos" | null;
 
 const RECURSOS = [
+  { label: "Encuentra un local", desc: "Barberías y salones con reserva online", href: "/locales" },
   { label: "Cómo funciona",  desc: "Cada módulo, paso a paso, con capturas reales", href: "/como-funciona" },
   { label: "Cápsulas en video", desc: "Todo el panel en videos de menos de 2 minutos", href: "/como-funciona#capsulas" },
   { label: "Blog",           desc: "Guías para hacer crecer tu local", href: "/blog" },
@@ -96,12 +97,17 @@ export default function Header() {
             </button>
           ))}
           <Link href="/como-funciona" onClick={cerrar}
-            className={`px-3 py-2 rounded-full text-[15px] font-medium transition-colors ${pathname === "/como-funciona" ? "text-ink" : "text-text-secondary hover:text-ink"}`}>
+            className={`whitespace-nowrap px-3 py-2 rounded-full text-[15px] font-medium transition-colors ${pathname === "/como-funciona" ? "text-ink" : "text-text-secondary hover:text-ink"}`}>
             Cómo funciona
           </Link>
-          <Link href="/#precios" onClick={cerrar}
-            className="px-3 py-2 rounded-full text-[15px] font-medium text-text-secondary hover:text-ink transition-colors">
+          <Link href="/precios" onClick={cerrar}
+            className={`px-3 py-2 rounded-full text-[15px] font-medium transition-colors ${pathname === "/precios" ? "text-ink" : "text-text-secondary hover:text-ink"}`}>
             Precios
+          </Link>
+          {/* En pantallas medianas no cabe: queda dentro de Recursos. */}
+          <Link href="/locales" onClick={cerrar}
+            className={`hidden xl:inline-flex whitespace-nowrap px-3 py-2 rounded-full text-[15px] font-medium transition-colors ${pathname === "/locales" ? "text-ink" : "text-text-secondary hover:text-ink"}`}>
+            Encuentra un local
           </Link>
         </nav>
 
@@ -212,7 +218,10 @@ export default function Header() {
               <Link href="/como-funciona" onClick={cerrar} className="block py-4 text-[17px] font-semibold text-ink">Cómo funciona</Link>
             </li>
             <li className="border-b border-border-subtle">
-              <Link href="/#precios" onClick={cerrar} className="block py-4 text-[17px] font-semibold text-ink">Precios</Link>
+              <Link href="/precios" onClick={cerrar} className="block py-4 text-[17px] font-semibold text-ink">Precios</Link>
+            </li>
+            <li className="border-b border-border-subtle">
+              <Link href="/locales" onClick={cerrar} className="block py-4 text-[17px] font-semibold text-ink">Encuentra un local</Link>
             </li>
           </ul>
           <div className="px-4 sm:px-6 py-6 flex flex-col gap-3">

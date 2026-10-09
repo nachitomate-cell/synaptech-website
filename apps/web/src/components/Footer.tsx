@@ -39,6 +39,7 @@ const LINKS: Record<string, { l: string; h: string }[]> = {
      next.config.mjs trae el HTML; el enlace tiene que nombrar la URL que
      queremos indexada, no la que la sirve. */
   "Directorio": [
+    { l: "Todos los locales",           h: "/locales" },
     { l: "Barberías en Viña del Mar",   h: "/barberias-vina-del-mar" },
     { l: "Peluquerías en Viña del Mar", h: "/peluquerias-vina-del-mar" },
     { l: "Barberías en la Quinta Región",   h: "/barberias-quinta-region" },
