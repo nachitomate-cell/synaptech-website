@@ -1,282 +1,188 @@
-"use client";
-import { motion } from "framer-motion";
-import RevealHeading from "./RevealHeading";
+import { LOCALES_BASE } from "@/content/directorio-locales";
+import { obtenerLocales } from "@/lib/directorio";
 
-/* ── Testimonial data ──
-   Textuales de clientes. Los marcados `destacado` abren la sección en grande;
-   el resto va en una grilla secundaria más compacta. Cada cita es literal: no
-   se pulen ni se completan frases, porque el valor de un testimonio real está
-   justamente en que suena a persona y no a copy. */
-const TESTIMONIALS = [
+/* Lo que dicen los locales, TEXTUAL (rehecho el 09-10-2026).
+   Cada cita es copia exacta de un mensaje de WhatsApp: mismas faltas, mismos
+   emojis, mismas tildes que puso quien la escribió. Varias burbujas seguidas
+   van en `burbujas`; un "…" marca un tramo omitido, nunca una palabra cambiada.
+   Fuente, chat, id de cada burbuja y fecha: devtools/guias-panel/sitio-web/
+   testimonios/testimonios-2026-10-09.json.
+   Reglas que salieron de la auditoría de ese día:
+   - Solo clientes que pagan hoy (los de prueba no, hasta pedirles permiso).
+   - La versión anterior tenía citas que el cliente no dijo (Ferraza, y
+     Chameleon con "los precios son accesibles"): no volver a "pulir" nada.
+   - Las 5 estrellas decorativas salieron: parecían una calificación del
+     cliente. La nota que se muestra es la real de Google del local, y solo si
+     tiene 5 reseñas o más. */
+
+type Testimonio = {
+  local: string;         // id en content/directorio-locales.ts (logo, link de reserva, nota de Google)
+  autor: string;
+  rol: string;
+  fecha: string;
+  burbujas: string[];
+  instagram?: string;
+  destacado?: boolean;
+  contexto?: string;     // qué estaba pasando, escrito por nosotros (va fuera de las comillas)
+};
+
+const TESTIMONIOS: Testimonio[] = [
   {
-    initials: "YS",
-    client: "Yūgen Studio",
-    quote:
-      "Solo pasaba por aquí para decirte que el sistema es muy bueno, me tiene muy conforme.",
-    role: "Estudio de Barbería",
-    rating: 5,
-    destacado: true,
+    local: "el10salonmasculino", autor: "Danilo", rol: "Socio a cargo de la contabilidad", fecha: "30 sep 2026",
+    instagram: "el10salonmasculino_", destacado: true,
+    contexto: "Venían de AgendaPro. Hoy cada boleta de honorarios sale sola al cerrar la cita.",
+    burbujas: [
+      "acá te dejo otra diferencia con agendapro, me pasaba q todos los meses agendapro por temas de sistema quedaban algunas boletas emitidas al siguiente día pero con fecha anterior y eso me descuadrada",
+      "En el caso d tu aplicación las boletas se emiten todas al momento y quedan regustradas esa es una gran diferencia",
+    ],
   },
   {
-    initials: "CS",
-    client: "Chameleon Barber Studio",
-    quote:
-      "Tenemos muy buenas expectativas con el software; el producto es sumamente completo, los precios son accesibles y el soporte técnico que brindan es de excelente nivel.",
-    role: "Estudio de Barbería y Estética",
-    rating: 5,
-    destacado: true,
+    local: "oren", autor: "Max", rol: "Administrador", fecha: "4 ago 2026",
+    instagram: "orenbarbercl", destacado: true,
+    contexto: "Dos sedes, en Mall Plaza Reñaca y Villa Alemana.",
+    burbujas: [
+      "Oye primero que todo, GRACIAS en mayúsculas .. has sido increíble con nosotros!",
+      "2!! Te hemos pedido infinitas cosas y nos has ido dando tremendo soporte y cobertura!!",
+      "… nos has hecho la vida infinitamente más fácil, cómoda y práctica? (Los cabros aman el servicio)",
+    ],
   },
   {
-    initials: "BF",
-    client: "Barbería Ferraza",
-    quote:
-      "Valoro y admiro profundamente el trabajo de digitalización que realizan. Es un sistema robusto que aporta un valor real a nuestro negocio diario.",
-    role: "Barbería y Gestión Comercial",
-    rating: 5,
-    destacado: true,
+    local: "clinicalglow", autor: "Tamara Bugueño", rol: "Dueña", fecha: "5 oct 2026",
+    instagram: "clinical___glow", destacado: true,
+    contexto: "Clínica estética en Viña del Mar.",
+    burbujas: ["Jamás te cambiaré y te recomendaré por siempre"],
   },
   {
-    initials: "JR",
-    client: "Jorge Rosales",
-    quote: "Sigo atento a cualquier cosa, pero igual estoy súper conforme.",
-    role: "El 10 Salón Masculino",
-    rating: 5,
+    local: "latincaribe", autor: "Gabriel", rol: "Administrador y barbero", fecha: "3 sep 2026",
+    burbujas: ["Dale mi Hermano, yo le comenté y le dije que era una excelente aplicación y que me cambió la vida"],
   },
   {
-    initials: "JR",
-    client: "Jorge Rosales",
-    quote: "Genial, gran trabajo. Nos acercamos a tener a Ámbar como nos identificamos.",
-    role: "El 10 Salón Masculino",
-    rating: 5,
+    local: "viggomhc", autor: "Mikael Buitrago", rol: "Dueño", fecha: "12 sep 2026",
+    burbujas: ["De resto todo funcionando muy bien 👍", "Me gusta mucho la IA en wsp", "Está muy pro"],
   },
   {
-    initials: "CB",
-    client: "Claudio Burgos",
-    quote: "Estoy contento por trabajar contigo.",
-    role: "Viking Barber",
-    rating: 5,
+    local: "chameleon", autor: "Chameleon Barber Studio", rol: "Equipo del local", fecha: "20 may 2026",
+    instagram: "chameleon.barberstudio",
+    burbujas: ["De verdad que tenemos muy buenas espectativas con tu proyecto, te felicito porque está súper completo y das un excelente soporte"],
   },
   {
-    initials: "MM",
-    client: "Matías Mella",
-    quote: "Agradecido de tus servicios. Ya estamos funcionando.",
-    role: "Barbería",
-    rating: 5,
+    local: "el10salonmasculino", autor: "Jorge A. Rosales", rol: "Dueño", fecha: "7 sep 2026",
+    instagram: "el10salonmasculino_",
+    burbujas: ["Crack Ignacio te seguiremos recomendando", "Eres una máquina amigo"],
   },
   {
-    initials: "DX",
-    client: "Dexter",
-    quote: "Gracias Ignacio, te pasaste.",
-    role: "Barbería y Salón",
-    rating: 5,
+    local: "estudioluxury", autor: "Matías", rol: "Dueño", fecha: "3 sep 2026",
+    instagram: "estudio.luxury_",
+    burbujas: ["Gracias a ti hno, siempre esta full la pagina"],
   },
   {
-    initials: "JB",
-    client: "Jhoseth",
-    quote: "Está increíble.",
-    role: "Barbero",
-    rating: 5,
+    local: "yugen", autor: "Yūgen Studio", rol: "Dueño", fecha: "2 sep 2026",
+    instagram: "yugenstudio.cl",
+    burbujas: ["Solo pasaba por aqui para decirte que el sistema es muy bueno, me tiene muy conforme"],
+  },
+  {
+    local: "glowstudio", autor: "Nattier Fernández", rol: "Administradora", fecha: "22 sep 2026",
+    instagram: "glow.salon_vina",
+    burbujas: ["Pero después a tu siguiente cliente le cobras un millón porque será un programa increíble y completo 😉"],
+  },
+  {
+    local: "kronnos_penablanca", autor: "Claudio Burgos", rol: "Dueño de Kronnos Studio (3 sedes)", fecha: "18 sep 2026",
+    instagram: "kronnos.pb",
+    burbujas: ["Gracias mi bro, feliz de verte crecer como empresa 💪🏻💪🏻"],
+  },
+  {
+    local: "sionbarberia", autor: "Matías Mella", rol: "Dueño", fecha: "23 jul 2026",
+    instagram: "studio.dieciseis_",
+    burbujas: ["Bacan rey agradecido de tus servicios"],
   },
 ];
 
-const DESTACADOS = TESTIMONIALS.filter((t) => t.destacado);
-const SECUNDARIOS = TESTIMONIALS.filter((t) => !t.destacado);
+const BASE = new Map(LOCALES_BASE.map((l) => [l.id, l]));
 
-/* ── Inline SVG icons ── */
-function StarIcon() {
+function IconoIG() {
   return (
-    <svg
-      width="14"
-      height="14"
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      aria-hidden="true"
-    >
-      <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" />
+    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
+      <rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
     </svg>
   );
 }
 
-function VerifiedIcon() {
+function Tarjeta({ t, nota }: { t: Testimonio; nota?: { rating: number; opiniones: number } }) {
+  const l = BASE.get(t.local);
+  if (!l) return null;
+  const grande = !!t.destacado;
   return (
-    <svg
-      width="14"
-      height="14"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-      <polyline points="22 4 12 14.01 9 11.01" />
-    </svg>
+    <article className={`break-inside-avoid mb-5 rounded-[28px] overflow-hidden flex flex-col ${grande ? "bg-ink text-white" : "bg-white border border-border-subtle"}`}>
+      <header className="flex items-center gap-3.5 p-5 sm:p-6 pb-0 sm:pb-0">
+        <span className="w-12 h-12 shrink-0 rounded-full overflow-hidden ring-1 ring-black/10" style={{ backgroundColor: l.fondo }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={`/directorio-logos/${l.id}-pin.webp`} alt={`Logo de ${l.nombre}`} width={48} height={48} loading="lazy" className="w-full h-full object-contain" />
+        </span>
+        <span className="min-w-0">
+          <span className={`block font-semibold leading-snug truncate ${grande ? "text-white" : "text-ink"}`}>{l.nombre}</span>
+          <span className={`block text-[13px] ${grande ? "text-white/60" : "text-text-muted"}`}>
+            {l.comuna}
+            {nota && <> · <span className={grande ? "text-lime" : "text-ink font-semibold"}>★ {nota.rating.toFixed(1)}</span> en Google ({nota.opiniones})</>}
+          </span>
+        </span>
+      </header>
+
+      <blockquote className={`px-5 sm:px-6 pt-5 flex flex-col gap-2 ${grande ? "text-[17px] sm:text-[19px]" : "text-[15px]"}`}>
+        {t.burbujas.map((b, i) => (
+          <p key={i} className={`self-start max-w-full rounded-2xl rounded-tl-md px-4 py-2.5 leading-relaxed ${grande ? "bg-white/[0.08] text-white" : "bg-mist text-ink"}`}>
+            {b}
+          </p>
+        ))}
+      </blockquote>
+
+      <div className="px-5 sm:px-6 pt-4">
+        <p className={`text-[14px] ${grande ? "text-white" : "text-ink"}`}>
+          <span className="font-semibold">{t.autor}</span>
+          <span className={grande ? "text-white/60" : "text-text-muted"}> · {t.rol}</span>
+        </p>
+        <p className={`text-[12px] mt-0.5 ${grande ? "text-white/45" : "text-text-muted"}`}>Por WhatsApp, {t.fecha}</p>
+        {t.contexto && <p className={`text-[14px] mt-3 leading-relaxed ${grande ? "text-white/70" : "text-text-secondary"}`}>{t.contexto}</p>}
+      </div>
+
+      <footer className="mt-auto flex flex-wrap gap-2 p-5 sm:p-6">
+        {l.reserva && (
+          <a href={l.url} target="_blank" rel="noopener"
+            className={`inline-flex items-center gap-1.5 text-[13px] font-semibold px-3.5 py-2 rounded-full transition-colors ${grande ? "bg-lime text-ink hover:bg-white" : "bg-ink text-white hover:bg-black"}`}>
+            Reservar en {l.nombre.split(" · ")[0]} →
+          </a>
+        )}
+        {t.instagram && (
+          <a href={`https://www.instagram.com/${t.instagram}/`} target="_blank" rel="noopener nofollow"
+            className={`inline-flex items-center gap-1.5 text-[13px] font-semibold px-3.5 py-2 rounded-full border transition-colors ${grande ? "border-white/20 text-white hover:border-white" : "border-ink/15 text-ink hover:border-ink"}`}>
+            <IconoIG /> @{t.instagram}
+          </a>
+        )}
+      </footer>
+    </article>
   );
 }
 
-/* ── Quote mark background decoration ── */
-function QuoteMark() {
+export default async function Testimonials() {
+  const vivos = await obtenerLocales();
+  const notas = new Map(vivos.filter((l) => l.rating && (l.opiniones ?? 0) >= 5).map((l) => [l.id, { rating: l.rating!, opiniones: l.opiniones! }]));
+  const destacados = TESTIMONIOS.filter((t) => t.destacado);
+  const resto = TESTIMONIOS.filter((t) => !t.destacado);
   return (
-    <span
-      aria-hidden="true"
-      className="absolute top-4 right-6 font-display text-[7rem] leading-none
-        text-white/[0.03] select-none pointer-events-none"
-    >
-      &ldquo;
-    </span>
-  );
-}
-
-/* ── Component ── */
-export default function Testimonials() {
-  return (
-    <section id="testimonios" className="py-16 relative overflow-hidden">
-      {/* Subtle radial glow behind the section */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse 70% 40% at 50% 50%, rgba(163,230,53,0.04), transparent 70%)",
-        }}
-      />
-
-      <div className="relative max-w-screen-xl mx-auto px-6 md:px-12">
-        {/* Heading */}
-        <div className="mb-8">
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4 }}
-            className="eyebrow mb-5"
-          >
-            Prueba Social
-          </motion.p>
-          <RevealHeading className="text-text-primary max-w-2xl">
-            La opinión de quienes{" "}
-            <em className="italic text-accent font-display">confían</em> en
-            nosotros.
-          </RevealHeading>
+    <section id="testimonios" className="py-16 md:py-24 scroll-mt-20">
+      <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10">
+        <div className="max-w-3xl mb-10 md:mb-12">
+          <p className="eyebrow mb-4">Lo que dicen los locales</p>
+          <h2 className="text-ink">Palabra por palabra, como nos lo escribieron.</h2>
+          <p className="text-text-secondary text-lg mt-5 leading-relaxed">
+            Mensajes reales de dueños y administradores, copiados tal cual de WhatsApp. Cada
+            tarjeta lleva al Instagram del local y a su página de reservas.
+          </p>
         </div>
-
-        {/* Destacados: los que hablan del producto, no solo agradecen */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {DESTACADOS.map((t, i) => (
-            <motion.figure
-              key={i}
-              initial={{ opacity: 0, y: 28 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{
-                duration: 0.6,
-                ease: [0.16, 1, 0.3, 1],
-                delay: i * 0.12,
-              }}
-              whileHover={{ y: -4, transition: { duration: 0.25 } }}
-              className="card-spotlight group relative bg-syn-surface/75 backdrop-blur-xl
-                border border-white/[0.06] rounded-2xl p-8 md:p-10
-                hover:border-accent/20 transition-colors overflow-hidden"
-              onMouseMove={(e) => {
-                const r = e.currentTarget.getBoundingClientRect();
-                (e.currentTarget as HTMLElement).style.setProperty(
-                  "--x",
-                  `${e.clientX - r.left}px`
-                );
-                (e.currentTarget as HTMLElement).style.setProperty(
-                  "--y",
-                  `${e.clientY - r.top}px`
-                );
-              }}
-            >
-              <QuoteMark />
-
-              {/* Stars */}
-              <div
-                className="flex gap-0.5 text-accent mb-5"
-                aria-label={`Calificación ${t.rating} de 5 estrellas`}
-              >
-                {[...Array(t.rating)].map((_, idx) => (
-                  <StarIcon key={idx} />
-                ))}
-              </div>
-
-              {/* Quote */}
-              <blockquote className="relative z-10">
-                <p className="text-[15px] md:text-base leading-relaxed text-text-primary/90 font-body">
-                  &ldquo;{t.quote}&rdquo;
-                </p>
-              </blockquote>
-
-              {/* Caption */}
-              <figcaption className="relative z-10 flex items-center gap-3.5 mt-7 pt-6 border-t border-white/[0.06]">
-                {/* Avatar */}
-                <div
-                  className="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center
-                    bg-accent/10 border border-accent/20 text-accent
-                    font-mono text-xs font-semibold tracking-wider"
-                >
-                  {t.initials}
-                </div>
-
-                {/* Meta */}
-                <div className="flex flex-col gap-0.5">
-                  <div className="flex items-center gap-1.5">
-                    <span className="font-body text-sm font-semibold text-text-primary">
-                      {t.client}
-                    </span>
-                    <span className="text-accent" title="Cliente verificado">
-                      <VerifiedIcon />
-                    </span>
-                  </div>
-                  <span className="font-mono text-[11px] text-text-muted tracking-wide">
-                    {t.role}
-                  </span>
-                </div>
-              </figcaption>
-            </motion.figure>
-          ))}
+        <div className="grid lg:grid-cols-3 gap-5 mb-5 items-start">
+          {destacados.map((t) => <Tarjeta key={t.local + t.fecha} t={t} nota={notas.get(t.local)} />)}
         </div>
-
-        {/* Secundarios: citas cortas, en tarjetas compactas. Son igual de
-            reales, pero pesan menos y no deben competir con las de arriba. */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
-          {SECUNDARIOS.map((t, i) => (
-            <motion.figure
-              key={`s${i}`}
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: i * 0.07 }}
-              className="bg-syn-surface/50 border border-white/[0.05] rounded-xl p-5
-                hover:border-accent/15 transition-colors"
-            >
-              <div className="flex gap-0.5 text-accent mb-3" aria-label={`Calificación ${t.rating} de 5`}>
-                {[...Array(t.rating)].map((_, idx) => (
-                  <StarIcon key={idx} />
-                ))}
-              </div>
-              <blockquote>
-                <p className="text-sm leading-relaxed text-text-primary/85 font-body">
-                  &ldquo;{t.quote}&rdquo;
-                </p>
-              </blockquote>
-              <figcaption className="flex items-center gap-2.5 mt-4 pt-3 border-t border-white/[0.05]">
-                <div
-                  className="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center
-                    bg-accent/10 border border-accent/20 text-accent font-mono text-[10px] font-semibold"
-                >
-                  {t.initials}
-                </div>
-                <div className="flex flex-col leading-tight">
-                  <span className="font-body text-xs font-semibold text-text-primary">{t.client}</span>
-                  <span className="font-mono text-[10px] text-text-muted">{t.role}</span>
-                </div>
-              </figcaption>
-            </motion.figure>
-          ))}
+        <div className="columns-1 sm:columns-2 lg:columns-3 gap-5">
+          {resto.map((t) => <Tarjeta key={t.local + t.fecha} t={t} nota={notas.get(t.local)} />)}
         </div>
       </div>
     </section>
