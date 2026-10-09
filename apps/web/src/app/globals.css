@@ -246,3 +246,18 @@ h2 {
 @media (prefers-reduced-motion: reduce) {
   .hero-entra, .hero-flota { animation: none; }
 }
+
+/* ── Mapa del directorio (MapaLocales.tsx) ─────────────────────────────── */
+.marcador-local {
+  width: 44px; height: 44px; border-radius: 9999px; border: 3px solid #fff;
+  background-size: cover; background-position: center; cursor: pointer; padding: 0;
+  box-shadow: 0 6px 16px -4px rgba(15, 26, 43, .45);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.marcador-local:hover { transform: scale(1.12); }
+.marcador-local.activo { transform: scale(1.32); box-shadow: 0 0 0 4px #9CCC3C, 0 10px 22px -6px rgba(15, 26, 43, .5); z-index: 5; }
+.maplibregl-popup-content { border-radius: 16px !important; padding: 12px 14px !important; box-shadow: 0 14px 32px -10px rgba(15, 26, 43, .35) !important; font-family: var(--font-dm-sans); }
+.maplibregl-popup-content strong { display: block; color: #0F1A2B; font-size: 14px; line-height: 1.25; }
+.maplibregl-popup-content span { display: block; color: #5F6B7A; font-size: 12.5px; margin-top: 3px; }
+.maplibregl-popup-content a { display: inline-block; margin-top: 8px; font-weight: 600; font-size: 13px; color: #0F1A2B; border-bottom: 2px solid #9CCC3C; }
+@media (prefers-reduced-motion: reduce) { .marcador-local { transition: none; } }

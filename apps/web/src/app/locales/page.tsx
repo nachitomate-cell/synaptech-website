@@ -11,7 +11,7 @@ export const revalidate = 86400;
 
 export const metadata: Metadata = {
   title: "Encuentra tu barbería o salón | Reserva online en la Red Synaptech",
-  description: "Barberías, peluquerías y centros de estética de la Región de Valparaíso que trabajan con SynapTech. Mira sus opiniones y reserva tu hora online, las 24 horas.",
+  description: "Mapa de barberías, peluquerías, clínicas estéticas y estudios de Chile que trabajan con SynapTech: Viña del Mar, Santiago, Rancagua, Quillota y más. Mira sus opiniones y reserva tu hora online, las 24 horas.",
   alternates: { canonical: "https://synaptechspa.cl/locales" },
 };
 
@@ -26,8 +26,8 @@ export default async function LocalesPage() {
             <p className="eyebrow mb-5">Red Synaptech · Directorio de locales</p>
             <h1 className="text-ink max-w-4xl">Encuentra tu local y reserva tu hora.</h1>
             <p className="text-text-secondary text-lg md:text-xl leading-relaxed max-w-2xl mt-6">
-              Barberías, peluquerías y centros de estética de la Región de Valparaíso que
-              trabajan con SynapTech. Todos con reserva online, a cualquier hora.
+              {locales.length} barberías, salones, clínicas y estudios de Chile que trabajan con
+              SynapTech. Búscalos en el mapa y reserva tu hora online, a cualquier hora.
             </p>
           </div>
         </section>
@@ -36,7 +36,7 @@ export default async function LocalesPage() {
           <section className="pb-16 md:pb-24">
             <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10">
               <ListaLocales locales={locales} />
-              <p className="text-xs text-text-muted mt-6">Notas y cantidad de opiniones según Google.</p>
+              <p className="text-xs text-text-muted mt-6">Notas y cantidad de opiniones según Google. Mapa © OpenStreetMap y OpenFreeMap.</p>
             </div>
           </section>
         )}
@@ -45,7 +45,7 @@ export default async function LocalesPage() {
           <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10">
             <div className="max-w-3xl mb-8">
               <p className="eyebrow mb-3">Por zona</p>
-              <h2 className="text-ink">Los mejores evaluados de cada zona.</h2>
+              <h2 className="text-ink">Los mejores evaluados de la Región de Valparaíso.</h2>
             </div>
             <div className="grid sm:grid-cols-2 gap-4">
               {PAGINAS.map((p) => (
