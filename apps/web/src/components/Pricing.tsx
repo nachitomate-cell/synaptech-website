@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { PLANES, ANUAL, SIGNUP, fmt } from "@/content/precios";
+import { waLink } from "@/content/catalogo";
 
 /* Planes en tarjetas. Los datos salen de content/precios.ts, espejo de la
    lista oficial de la plataforma (admin-panel/src/lib/precios.js). El detalle
@@ -63,6 +64,27 @@ export default function Pricing({ conEnlace = true }: { conEnlace?: boolean }) {
               Ver todo lo que incluye cada plan →
             </Link>
           )}
+        </div>
+        {/* Plan Gratis (09-10-2026): Ignacio lo está terminando. Lo que lista es
+            lo que ya define functions/lib/plan-gratis.js en la plataforma (calcado
+            de Setmore Free): agenda, reserva, fichas, confirmación y un
+            recordatorio por correo, hasta 4 profesionales. Cuando se lance, sale
+            el "En desarrollo" y el botón pasa al alta. */}
+        <div className="mt-4 rounded-[28px] border-2 border-dashed border-ink/15 p-6 sm:px-8 flex flex-col md:flex-row md:items-center gap-4 justify-between">
+          <div>
+            <p className="flex flex-wrap items-center gap-2.5">
+              <span className="font-display font-bold text-ink text-xl tracking-tight">Plan Gratis</span>
+              <span className="text-[11px] font-bold uppercase tracking-[0.12em] bg-lime/40 text-ink rounded-full px-2.5 py-1">En desarrollo</span>
+            </p>
+            <p className="text-text-secondary mt-1.5 leading-relaxed">
+              Gratis para siempre, para locales de hasta 4 profesionales: agenda, reserva online,
+              fichas de clientes y confirmación de cada cita por correo.
+            </p>
+          </div>
+          <a href={waLink("Hola, quiero que me avisen cuando esté listo el plan Gratis de SynapTech")} target="_blank" rel="noopener noreferrer"
+            className="shrink-0 inline-flex justify-center items-center border border-ink/20 text-ink font-semibold px-6 py-3 rounded-full hover:border-ink transition-colors">
+            Avísame cuando esté
+          </a>
         </div>
         <p className="text-sm text-text-muted mt-4">
           Precios netos en pesos chilenos; se suma IVA. Dos o más locales: te cotizamos un precio por volumen.
