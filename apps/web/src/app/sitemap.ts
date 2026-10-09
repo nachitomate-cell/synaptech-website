@@ -11,9 +11,8 @@ const BASE = "https://synaptechspa.cl";
  * foco del dominio fue el motivo textual del rechazo de Google for Startups el
  * 15-09-2026 ("evaluated as an IT/Business Consulting firm").
  *
- * Las rutas de agencia NO se borran (romperían URLs indexadas): salen del
- * sitemap y van con `robots: { index: false }` en su propia metadata, que es lo
- * que efectivamente las saca del índice sin devolver 404.
+ * Desde el 09-10-2026 esas rutas ya no existen: redirigen (308) a la página
+ * del producto que las reemplaza (ver next.config.mjs).
  */
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -29,7 +28,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/fidelizacion`,        lastModified: now, priority: 0.8 },
     { url: `${BASE}/nosotros`,            lastModified: now, priority: 0.6 },
     { url: `${BASE}/contacto`,            lastModified: now, priority: 0.6 },
-    { url: `${BASE}/blog`,                lastModified: now, priority: 0.5 },
+    { url: `${BASE}/comparar`,            lastModified: now, priority: 0.7 },
     /* El directorio de locales. Lo sirve app.synaptechspa.cl por un rewrite
        (ver next.config.mjs), pero su URL publica es esta, y un sitemap solo
        vale para URLs del MISMO host: por eso van aca y no en el sitemap de

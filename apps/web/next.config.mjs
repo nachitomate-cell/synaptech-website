@@ -45,10 +45,19 @@ const nextConfig = {
   },
   /* /saas-comercial era la página de barberías del sitio viejo (precios de
      $30.000/$50.000 y cuadros sin imagen). Desde el 09-10-2026 es /barberias;
-     el 308 conserva lo que Google ya tenía indexado. */
+     el 308 conserva lo que Google ya tenía indexado.
+     Las otras cuatro son de la etapa en que el sitio vendía desarrollo a
+     medida (casos de proyectos, portales clínicos, artículos "software a
+     medida"). Hasta el 09-10-2026 seguían respondiendo 200 con noindex; ahora
+     no existen y cada una lleva a la página del producto que la reemplaza. */
   async redirects() {
     return [
       { source: "/saas-comercial", destination: "/barberias", permanent: true },
+      { source: "/casos", destination: "/locales", permanent: true },
+      { source: "/casos/:slug*", destination: "/locales", permanent: true },
+      { source: "/portales-clinicos", destination: "/clinicas", permanent: true },
+      { source: "/blog", destination: "/comparar", permanent: true },
+      { source: "/blog/:slug*", destination: "/comparar", permanent: true },
     ];
   },
   async rewrites() {

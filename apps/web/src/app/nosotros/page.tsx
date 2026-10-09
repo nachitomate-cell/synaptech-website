@@ -6,39 +6,53 @@ import { waLink } from "@/content/catalogo";
 
 export const metadata: Metadata = {
   title: "Nosotros | SynapTech, empresa chilena de software para locales de servicio",
-  description: "Synaptech SpA (RUT 78.402.009-6) es una empresa chilena de Viña del Mar que construye y opera una plataforma de agenda, cobros, asistente con IA y fidelización para barberías, salones y centros de estética.",
+  description: "SynapTech nació en abril de 2026 como la página de reservas de una barbería. Hoy es una plataforma de agenda, cobros, asistente con IA y club de fidelización que usan más de 35 locales en Chile. Synaptech SpA, RUT 78.402.009-6.",
   alternates: { canonical: "https://synaptechspa.cl/nosotros" },
   openGraph: {
     title: "Nosotros | SynapTech",
-    description: "Una empresa chilena de producto: una sola plataforma para que los locales de servicio funcionen mejor.",
+    description: "Empezó con la agenda de una barbería. Hoy la usan más de 35 locales.",
     url: "https://synaptechspa.cl/nosotros",
   },
 };
 
-/* Reescrita el 09-10-2026: la versión anterior contaba la historia como
-   agencia ("5 proyectos en producción", "Diagnóstico gratis", "cuatro
-   industrias"). SynapTech es UN producto por suscripción (memoria
-   project_sitio_corporativo). Hitos con fecha verificada en la memoria. */
+/* Reescrita dos veces el 09-10-2026. La primera sacó la historia de agencia
+   ("5 proyectos en producción", "Diagnóstico gratis", "cuatro industrias"); la
+   segunda, a pedido de Ignacio, la dejó en lo que pasó de verdad: sin la
+   anécdota del padre ni la pregunta sobre "herramientas que no fueron hechas
+   para ellos" (eso es discurso de software a medida). Cada fecha sale del
+   historial del repo de la plataforma o de la memoria del proyecto:
+     08-04 primer commit (reservas de una barbería) · 13-04 club de sellos ·
+     15-04 constitución de la SpA · 21-04 / 08-05 varios locales en la misma
+     plataforma · 16-07 asistente IA en el WhatsApp del local · 15-08 App Store
+     · 01-09 Google Play · 05-09 primeras BHE con folio real (El 10) · 07-10
+     partner certificado de Mercado Pago.
+   "+1.300 cambios": 1.320 PRs mergeados en la plataforma al 09-10-2026.
+   "31 %": reservas online antes de las 10, después de las 20 o en domingo,
+   auditoría del 04-10-2026 (la misma cifra de la postulación al Banco de Chile). */
 
 const NUMEROS = [
   { v: "+35", l: "locales y sedes en Chile" },
   { v: "+36.000", l: "clientes en sus fichas" },
   { v: "+18.000", l: "citas y reservas agendadas" },
-  { v: "2", l: "apps publicadas" },
+  { v: "+1.300", l: "cambios publicados desde abril" },
 ];
 
 const PRINCIPIOS = [
-  { t: "Un solo producto", d: "No hacemos proyectos a medida. Construimos y operamos una plataforma, y cada mejora le llega a todos los locales." },
-  { t: "Lo construimos con los locales", d: "La mayoría de lo que hace hoy la plataforma lo pidió alguien que la usa todos los días. La mejoramos cada semana." },
-  { t: "Personas al otro lado", d: "El soporte es directo por WhatsApp, con alguien que conoce tu local, no con un formulario." },
+  { t: "Un solo producto", d: "Todos los locales usan la misma plataforma, por suscripción. Cuando sale una mejora, le llega a todos." },
+  { t: "Lo piden los locales", d: "Casi todo lo que hace hoy SynapTech lo pidió alguien que la usa todos los días, y lo que se puede hacer en días, sale en días." },
+  { t: "Hablas con quien la hace", d: "El soporte es por WhatsApp, directo con quien construye la plataforma. Sin formularios ni tickets." },
   { t: "Tus datos son tuyos", d: "Sin permanencia: si te vas, te entregamos tu información exportada." },
 ];
 
 const HITOS = [
-  { f: "Abril 2026", t: "Nace Synaptech SpA en Viña del Mar." },
-  { f: "Agosto 2026", t: "SynapTech Studio, la app para el equipo, llega a la App Store." },
-  { f: "Septiembre 2026", t: "La app llega a Google Play y salen las primeras boletas de honorarios con folio real del SII, emitidas solas al cerrar la cita." },
-  { f: "Octubre 2026", t: "Partner certificado de Mercado Pago y más de 35 locales y sedes trabajando con la plataforma." },
+  { f: "8 de abril de 2026", t: "Primera versión: la página de reservas de una barbería." },
+  { f: "13 de abril", t: "Le sumamos un club de sellos para que los clientes volvieran." },
+  { f: "15 de abril", t: "Se constituye Synaptech SpA." },
+  { f: "Mayo", t: "La misma plataforma empieza a atender a varios locales, cada uno con su marca y su página de reservas." },
+  { f: "16 de julio", t: "El asistente con IA empieza a responder y agendar en el WhatsApp de los propios locales." },
+  { f: "15 de agosto", t: "SynapTech Studio, la app para el equipo, llega a la App Store. El 1 de septiembre, a Google Play." },
+  { f: "5 de septiembre", t: "Salen las primeras boletas de honorarios con folio real del SII, emitidas solas al cerrar la cita." },
+  { f: "7 de octubre", t: "Partner certificado de Mercado Pago. Ya son más de 35 locales y sedes." },
 ];
 
 export default function NosotrosPage() {
@@ -49,11 +63,11 @@ export default function NosotrosPage() {
         <section className="pt-28 md:pt-36 pb-14">
           <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10">
             <p className="eyebrow mb-5">Nosotros</p>
-            <h1 className="text-ink max-w-5xl">Hacemos el software con el que funcionan los locales de servicio.</h1>
+            <h1 className="text-ink max-w-5xl">Empezó con la agenda de una barbería. Hoy la usan más de 35 locales.</h1>
             <p className="text-text-secondary text-lg md:text-xl leading-relaxed max-w-2xl mt-6">
-              Somos una empresa chilena de producto, en Viña del Mar. Construimos y operamos
-              una sola plataforma —agenda, cobros, asistente con IA y fidelización— para
-              barberías, salones y centros de estética.
+              SynapTech es una empresa chilena, de Viña del Mar. Hacemos una sola
+              plataforma —agenda, cobros, asistente con IA y club de fidelización— y la
+              arrendamos por mes a barberías, salones, centros de estética y clínicas.
             </p>
           </div>
           <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10 mt-12">
@@ -71,27 +85,31 @@ export default function NosotrosPage() {
         <section className="py-16 md:py-24 bg-mist">
           <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10 grid lg:grid-cols-[1fr_1.1fr] gap-10 lg:gap-16">
             <div>
-              <p className="eyebrow mb-4">El fundador</p>
+              <p className="eyebrow mb-4">Cómo empezó</p>
               <h2 className="text-ink">Ignacio Mateluna</h2>
-              <p className="text-text-muted mt-2">Fundador y desarrollador de SynapTech</p>
+              <p className="text-text-muted mt-2">Fundador. Programa la plataforma, la vende y atiende a los locales.</p>
             </div>
             <div className="space-y-5 text-text-secondary text-lg leading-relaxed">
               <p>
-                Enfermero universitario de formación y desarrollador de software por
-                convicción. De la clínica trajo una forma de trabajar: atención al detalle,
-                cero tolerancia al error y claridad bajo presión.
+                Estudió Enfermería en la UNAB y trabajó como enfermero. En abril de 2026
+                hizo la página de reservas de una barbería; a los pocos días le sumó un club
+                de sellos, y en mayo la misma plataforma ya atendía a varios locales, cada
+                uno con su marca.
               </p>
               <p>
-                Todo partió con una herramienta que le hizo a su padre para ordenar sus
-                finanzas, y con una pregunta que no se fue:
+                En esos locales se repetía lo mismo: quien corta el pelo es también quien
+                contesta el WhatsApp, entre una atención y otra, de noche y los domingos.
+                Por eso en julio sumamos el asistente con IA, que responde y agenda en el
+                WhatsApp del propio local.
               </p>
               <p className="border-l-4 border-lime pl-5 text-ink font-semibold text-xl">
-                ¿Cuántos negocios están operando con herramientas que no fueron hechas para ellos?
+                El 31 % de las reservas online en SynapTech se hacen antes de las 10, después
+                de las 20 o en domingo, cuando nadie en el local puede contestar.
               </p>
               <p>
-                SynapTech es la respuesta para los locales de servicio: una plataforma
-                pensada para cómo trabaja de verdad una barbería, un salón o un centro de
-                estética en Chile.
+                SynapTech no tiene inversionistas: crece con lo que pagan los locales. Hoy
+                Ignacio está dedicado por completo a la empresa, y casi todo lo que hace la
+                plataforma lo pidió alguien que la usa todos los días.
               </p>
             </div>
           </div>
@@ -118,7 +136,7 @@ export default function NosotrosPage() {
           <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10 grid lg:grid-cols-[0.8fr_1.2fr] gap-10">
             <div>
               <p className="eyebrow !text-lime mb-4">Hitos</p>
-              <h2 className="text-white">De Viña del Mar a todo Chile.</h2>
+              <h2 className="text-white">De una barbería a más de 35 locales.</h2>
             </div>
             <ol className="relative border-l border-white/15 ml-2">
               {HITOS.map((h) => (
@@ -139,7 +157,8 @@ export default function NosotrosPage() {
               <dl className="grid grid-cols-[auto_1fr] gap-x-6 gap-y-3 text-[15px]">
                 <dt className="text-text-muted">Razón social</dt><dd className="text-ink font-semibold">Synaptech SpA</dd>
                 <dt className="text-text-muted">RUT</dt><dd className="text-ink font-semibold">78.402.009-6</dd>
-                <dt className="text-text-muted">Domicilio</dt><dd className="text-ink font-semibold">Viña del Mar, Región de Valparaíso</dd>
+                <dt className="text-text-muted">Constituida</dt><dd className="text-ink font-semibold">15 de abril de 2026</dd>
+                <dt className="text-text-muted">Región</dt><dd className="text-ink font-semibold">Valparaíso, Chile</dd>
                 <dt className="text-text-muted">Correo</dt><dd><a href="mailto:hola@synaptechspa.cl" className="text-ink font-semibold hover:text-accent">hola@synaptechspa.cl</a></dd>
                 <dt className="text-text-muted">Instagram</dt><dd><a href="https://instagram.com/synaptechspa" target="_blank" rel="noopener noreferrer" className="text-ink font-semibold hover:text-accent">@synaptechspa</a></dd>
               </dl>

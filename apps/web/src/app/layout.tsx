@@ -82,7 +82,7 @@ export default function RootLayout({
         name: "SynapTech",
         url: "https://synaptechspa.cl",
         logo: "https://synaptechspa.cl/assets/synaptech-icon.png",
-        description: "Empresa chilena de software. Desarrolla SynapTech, la plataforma SaaS de agenda online, fidelización y asistente con IA para barberías y salones.",
+        description: "Empresa chilena de Viña del Mar que construye y opera SynapTech, plataforma por suscripción de agenda online, cobros, fidelización y asistente con IA para barberías, salones y centros de estética.",
         address: {
           "@type": "PostalAddress",
           addressLocality: "Viña del Mar",

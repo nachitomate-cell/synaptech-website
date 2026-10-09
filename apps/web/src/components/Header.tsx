@@ -15,7 +15,7 @@ const RECURSOS = [
   { label: "Encuentra un local", desc: "Barberías y salones con reserva online", href: "/locales" },
   { label: "Cómo funciona",  desc: "Cada módulo, paso a paso, con capturas reales", href: "/como-funciona" },
   { label: "Cápsulas en video", desc: "Todo el panel en videos de menos de 2 minutos", href: "/como-funciona#capsulas" },
-  { label: "Blog",           desc: "Guías para hacer crecer tu local", href: "/blog" },
+  { label: "Comparaciones",  desc: "Preguntas reales frente a otras agendas", href: "/comparar" },
   { label: "Clientes",       desc: "Lo que dicen los locales que ya lo usan", href: "/#testimonios" },
   { label: "Integraciones",  desc: "Pagos, WhatsApp, SII, Wallet y más", href: "/#integraciones" },
   { label: "Preguntas frecuentes", desc: "Precios, prueba, datos y contrato", href: "/#faq" },

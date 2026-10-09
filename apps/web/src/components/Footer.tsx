@@ -11,7 +11,7 @@ const LINKS: Record<string, { l: string; h: string }[]> = {
     { l: "Cómo funciona", h: "/como-funciona" },
     { l: "Cápsulas en video", h: "/como-funciona#capsulas" },
     { l: "Precios", h: "/#precios" },
-    { l: "Blog", h: "/blog" },
+    { l: "Comparaciones", h: "/comparar" },
     { l: "Preguntas frecuentes", h: "/#faq" },
     { l: "Nosotros", h: "/nosotros" },
     { l: "Contacto", h: "/contacto" },
