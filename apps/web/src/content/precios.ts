@@ -10,7 +10,11 @@
    - Bolsas de avisos por WhatsApp: catálogo vivo en _system/whatsapp_notif
      (50/$3.990 · 150/$9.990 · 400/$19.990, visto el 23-09-2026). */
 
-export const SIGNUP = "https://crea.synaptechspa.cl/";
+/* 09-10-2026: crea.synaptechspa.cl ahora redirige a bioo.cl/agenda (el alta
+   gratis con marca bioo, PR #1360 de la plataforma). Mientras el plan Gratis
+   está en desarrollo, los botones de este sitio van a la página de alta de
+   SynapTech, que deja al local en el pipeline (synaptechCrearLead). */
+export const SIGNUP = "https://empieza.synaptechspa.cl/";
 
 export const fmt = (n: number) => "$" + n.toLocaleString("es-CL");
 

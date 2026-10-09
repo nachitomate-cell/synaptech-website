@@ -5,7 +5,11 @@
    Regla: cada línea tiene que existir y funcionar HOY en la plataforma. Si
    algo no está en producción, no entra acá (ver memoria feedback_copy_verificable). */
 
-export const SIGNUP_URL = "https://crea.synaptechspa.cl/";
+/* 09-10-2026: crea.synaptechspa.cl ahora redirige a bioo.cl/agenda (el alta
+   gratis con marca bioo, PR #1360 de la plataforma). Mientras el plan Gratis
+   está en desarrollo, los botones de este sitio van a la página de alta de
+   SynapTech, que deja al local en el pipeline (synaptechCrearLead). */
+export const SIGNUP_URL = "https://empieza.synaptechspa.cl/";
 export const WA_NUMERO = "56983568212";
 
 export const waLink = (texto: string) =>

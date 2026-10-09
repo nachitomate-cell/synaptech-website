@@ -108,9 +108,9 @@ export default function RootLayout({
         // Lista pública oficial (netos + IVA, por local). Misma fuente que la
         // sección de precios de la home: cambiar allá y acá juntos.
         offers: [
-          { "@type": "Offer", name: "Básico", price: "29900", priceCurrency: "CLP", url: "https://crea.synaptechspa.cl/" },
-          { "@type": "Offer", name: "Pro",    price: "49900", priceCurrency: "CLP", url: "https://crea.synaptechspa.cl/" },
-          { "@type": "Offer", name: "Full",   price: "69900", priceCurrency: "CLP", url: "https://crea.synaptechspa.cl/" },
+          { "@type": "Offer", name: "Básico", price: "29900", priceCurrency: "CLP", url: "https://empieza.synaptechspa.cl/" },
+          { "@type": "Offer", name: "Pro",    price: "49900", priceCurrency: "CLP", url: "https://empieza.synaptechspa.cl/" },
+          { "@type": "Offer", name: "Full",   price: "69900", priceCurrency: "CLP", url: "https://empieza.synaptechspa.cl/" },
         ],
       },
     ],
