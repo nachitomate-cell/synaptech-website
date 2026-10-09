@@ -154,7 +154,7 @@ export default function Header() {
             {panel === "rubros" && (
               <div className="grid grid-cols-3 gap-x-8 gap-y-6">
                 {RUBROS.map((r) => (
-                  <Link key={r.id} href={`/#rubro-${r.id}`} onClick={cerrar} className="group block">
+                  <Link key={r.id} href={r.href ?? `/#rubro-${r.id}`} onClick={cerrar} className="group block">
                     <span className="block font-display font-bold text-[15px] text-ink group-hover:text-accent">{r.nombre}</span>
                     <span className="block text-[13px] text-text-muted leading-snug mt-1">{r.titular}</span>
                   </Link>
@@ -197,7 +197,7 @@ export default function Header() {
                       </Link>
                     ))}
                     {p.id === "rubros" && RUBROS.map((r) => (
-                      <Link key={r.id} href={`/#rubro-${r.id}`} onClick={cerrar}
+                      <Link key={r.id} href={r.href ?? `/#rubro-${r.id}`} onClick={cerrar}
                         className="block font-medium text-[15px] text-text-primary">{r.nombre}</Link>
                     ))}
                     {p.id === "recursos" && RECURSOS.map((r) => (

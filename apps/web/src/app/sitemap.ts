@@ -20,7 +20,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: BASE,                          lastModified: now, priority: 1.0 },
     { url: `${BASE}/como-funciona`,       lastModified: now, priority: 0.9 },
-    { url: `${BASE}/saas-comercial`,      lastModified: now, priority: 0.9 },
+    { url: `${BASE}/barberias`,           lastModified: now, priority: 0.9 },
+    { url: `${BASE}/estetica`,            lastModified: now, priority: 0.9 },
+    { url: `${BASE}/precios`,             lastModified: now, priority: 0.9 },
     { url: `${BASE}/fidelizacion`,        lastModified: now, priority: 0.8 },
     { url: `${BASE}/nosotros`,            lastModified: now, priority: 0.6 },
     { url: `${BASE}/contacto`,            lastModified: now, priority: 0.6 },

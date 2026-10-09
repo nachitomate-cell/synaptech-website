@@ -30,6 +30,13 @@ const ALT: Record<string, string> = {
   "club-clientes": "Resumen del club con los clientes que más sellos tienen",
   "club-clientes-lista": "Lista de clientes con sus sellos y rangos",
   "metricas": "Métricas del período: ingresos, servicios y productos",
+  "estetica-agenda-escritorio": "Agenda del día de un centro de estética con tres profesionales",
+  "estetica-reserva-1-servicio": "Página de reservas: catálogo de tratamientos por categoría",
+  "estetica-reserva-3-confirmar": "Página de reservas: aceptación obligatoria de las políticas de atención",
+  "estetica-ficha-clienta": "Historial y notas internas de una clienta",
+  "estetica-ficha-gasto": "Ficha de una clienta: gasto total, visitas y profesional preferida",
+  "estetica-club-premios": "Premios del club de un centro de estética",
+  "estetica-giftcards": "Gift cards emitidas con su saldo",
 };
 
 export const CAPTURAS: Record<string, Captura> = Object.fromEntries(
@@ -145,5 +152,50 @@ export const MODULOS: Modulo[] = [
       p("metricas", "csv", "Y lo bajas a Excel", "Un CSV con todo el detalle, listo para tu contador."),
     ],
     capsulas: ["capsula-3-gastos", "capsula-4-flujo-caja"],
+  },
+];
+
+/* Recorrido de la página /estetica, sobre capturas de un centro de estética
+   ficticio ("Aurora Estética & Spa", emulador, 09-10-2026). Fuente:
+   devtools/guias-panel/sitio-web/estetica/. */
+export const MODULOS_ESTETICA: Modulo[] = [
+  {
+    id: "reserva-estetica",
+    nombre: "Reserva online",
+    titular: "Tu catálogo de tratamientos, reservable a cualquier hora.",
+    bajada: "Tus clientas eligen el tratamiento, la profesional y la hora desde el teléfono, y aceptan tus políticas antes de agendar.",
+    pasos: [
+      p("estetica-reserva-1-servicio", "categorias", "Tratamientos por categoría", "Facial, corporal, depilación, pestañas: tu catálogo ordenado, con buscador."),
+      p("estetica-reserva-1-servicio", "tratamiento", "Con precio, duración y sellos", "Cada tratamiento muestra cuánto cuesta, cuánto dura y el sello del club que suma."),
+      p("estetica-reserva-3-confirmar", "consentimiento", "Tus políticas, aceptadas antes de agendar", "Puedes exigir que la clienta acepte tus políticas de atención y cancelación para confirmar su hora."),
+      p("estetica-reserva-3-confirmar", "confirmar", "Y la hora queda en tu agenda", "Con su tratamiento, su profesional y sus datos de contacto."),
+    ],
+    capsulas: ["presentacion-synaptech-2"],
+  },
+  {
+    id: "ficha",
+    nombre: "Ficha de la clienta",
+    titular: "Cada clienta, con su historia.",
+    bajada: "Notas que solo ve tu equipo, sus visitas, lo que más se hace y cuánto ha gastado.",
+    pasos: [
+      p("estetica-ficha-clienta", "nota", "Notas internas para tu equipo", "Tipo de piel, alergias o preferencias: lo anota una y lo ve todo el equipo antes de atenderla."),
+      p("estetica-ficha-clienta", "historial", "Todas sus visitas", "Cada tratamiento con fecha, profesional, precio y estado."),
+      p("estetica-ficha-gasto", "gasto", "Cuánto ha gastado", "Citas totales, completadas, sellos del club y gasto total de la clienta."),
+      p("estetica-ficha-gasto", "preferida", "Y con quién prefiere atenderse", "Sus profesionales preferidas, sus tratamientos más pedidos y cada cuántos días vuelve."),
+    ],
+    capsulas: [],
+  },
+  {
+    id: "fidelizar",
+    nombre: "Club y gift cards",
+    titular: "Que vuelvan, y que te regalen.",
+    bajada: "Un club de sellos con premios de tu centro y gift cards para las fechas que más venden.",
+    pasos: [
+      p("estetica-club-premios", "escalera", "Tu escalera de premios", "Un perfilado de cejas a los 3 sellos, una limpieza facial gratis a los 8: tú decides."),
+      p("estetica-club-premios", "otroPremio", "Premios en servicios o descuentos", "Por ejemplo, 20 % en masajes para quien junta 5 sellos."),
+      p("estetica-giftcards", "giftcard", "Gift cards para regalar", "Cada una con su código, su monto y su vencimiento, y se canjean en la agenda."),
+      p("estetica-giftcards", "saldoCirculacion", "Y sabes cuánto hay por canjear", "Emitidas, activas, usadas y el saldo que queda en circulación."),
+    ],
+    capsulas: ["tutorial-club-fidelizacion", "reel-club-wallet"],
   },
 ];

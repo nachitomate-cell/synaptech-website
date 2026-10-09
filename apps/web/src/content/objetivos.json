@@ -602,5 +602,243 @@
         "h": 60
       }
     }
+  },
+  {
+    "archivo": "estetica-agenda-escritorio.png",
+    "ancho": 1440,
+    "alto": 900,
+    "escala": 2,
+    "objetivos": {
+      "cita": {
+        "etiqueta": "Cita: Isidora Contreras · Radiofrecuencia facial",
+        "x": 335,
+        "y": 693,
+        "w": 354.3,
+        "h": 56
+      },
+      "nuevaCita": {
+        "etiqueta": "Nueva cita (+ Cita)",
+        "x": 1304.4,
+        "y": 31,
+        "w": 65.6,
+        "h": 36
+      },
+      "columna": {
+        "etiqueta": "Columna de Constanza Ríos (Esteticista)",
+        "x": 692.3,
+        "y": 148.5,
+        "w": 359.3,
+        "h": 731.5
+      }
+    }
+  },
+  {
+    "archivo": "estetica-club-premios.png",
+    "ancho": 1440,
+    "alto": 900,
+    "escala": 2,
+    "objetivos": {
+      "premio": {
+        "etiqueta": "Premio: Limpieza facial gratis",
+        "x": 329,
+        "y": 393,
+        "w": 672.7,
+        "h": 69
+      },
+      "sellosRequeridos": {
+        "etiqueta": "8 sellos requeridos",
+        "x": 397,
+        "y": 430,
+        "w": 99.7,
+        "h": 15
+      },
+      "otroPremio": {
+        "etiqueta": "Premio: 20% en masajes (5 sellos)",
+        "x": 329,
+        "y": 324,
+        "w": 672.7,
+        "h": 69
+      },
+      "escalera": {
+        "etiqueta": "Escalera de premios (3 · 5 · 8 · 10 sellos)",
+        "x": 328,
+        "y": 209.5,
+        "w": 674.7,
+        "h": 322.5
+      },
+      "nuevoPremio": {
+        "etiqueta": "Nuevo premio",
+        "x": 328,
+        "y": 556,
+        "w": 674.7,
+        "h": 46
+      }
+    }
+  },
+  {
+    "archivo": "estetica-ficha-clienta.png",
+    "ancho": 1440,
+    "alto": 900,
+    "escala": 2,
+    "objetivos": {
+      "visitas": {
+        "etiqueta": "10 visitas · 8 hechas",
+        "x": 828.9,
+        "y": 183,
+        "w": 126.1,
+        "h": 39.5
+      },
+      "nota": {
+        "etiqueta": "Nota interna de la clienta (privada del equipo)",
+        "x": 485,
+        "y": 239,
+        "w": 470,
+        "h": 212
+      },
+      "historial": {
+        "etiqueta": "Historial de tratamientos (últimas visitas)",
+        "x": 485,
+        "y": 467,
+        "w": 470,
+        "h": 311
+      },
+      "visita": {
+        "etiqueta": "Una visita: Laminado de cejas · Constanza Ríos · $22.000",
+        "x": 485,
+        "y": 556.5,
+        "w": 468,
+        "h": 60.5
+      }
+    }
+  },
+  {
+    "archivo": "estetica-ficha-gasto.png",
+    "ancho": 1440,
+    "alto": 900,
+    "escala": 2,
+    "objetivos": {
+      "gasto": {
+        "etiqueta": "Gasto total: $255.000",
+        "x": 1245.3,
+        "y": 107,
+        "w": 170.8,
+        "h": 88
+      },
+      "visitas": {
+        "etiqueta": "Citas totales y completadas",
+        "x": 697,
+        "y": 107,
+        "w": 353.6,
+        "h": 88
+      },
+      "preferida": {
+        "etiqueta": "Profesional preferida: Javiera Lagos (63 %)",
+        "x": 697,
+        "y": 243,
+        "w": 719,
+        "h": 69
+      }
+    }
+  },
+  {
+    "archivo": "estetica-giftcards.png",
+    "ancho": 1440,
+    "alto": 900,
+    "escala": 2,
+    "objetivos": {
+      "giftcard": {
+        "etiqueta": "Gift card AURORA-7K2M · Para Trinidad Silva",
+        "x": 456,
+        "y": 317,
+        "w": 768,
+        "h": 72
+      },
+      "precio": {
+        "etiqueta": "Valor y saldo: $50.000 de $50.000",
+        "x": 817.8,
+        "y": 335,
+        "w": 80,
+        "h": 36
+      },
+      "saldoCirculacion": {
+        "etiqueta": "Saldo en circulación",
+        "x": 846,
+        "y": 104,
+        "w": 183,
+        "h": 127
+      },
+      "nueva": {
+        "etiqueta": "Nueva gift card",
+        "x": 1068.4,
+        "y": 28,
+        "w": 155.6,
+        "h": 38
+      }
+    }
+  },
+  {
+    "archivo": "estetica-reserva-1-servicio.png",
+    "ancho": 390,
+    "alto": 844,
+    "escala": 2,
+    "objetivos": {
+      "tratamiento": {
+        "etiqueta": "Tratamiento elegido: Limpieza facial profunda",
+        "x": 24,
+        "y": 488.7,
+        "w": 342,
+        "h": 95.7
+      },
+      "categorias": {
+        "etiqueta": "Categorías: Todos · Facial · Corporal · Depilación · Pestañas y cejas · Manos y pies",
+        "x": 24,
+        "y": 373.7,
+        "w": 366,
+        "h": 42
+      },
+      "tituloCategoria": {
+        "etiqueta": "Categoría Facial",
+        "x": 24,
+        "y": 447.7,
+        "w": 342,
+        "h": 28
+      },
+      "continuar": {
+        "etiqueta": "Continuar: Limpieza facial profunda · $35.000",
+        "x": 20,
+        "y": 766.4,
+        "w": 350,
+        "h": 60
+      }
+    }
+  },
+  {
+    "archivo": "estetica-reserva-3-confirmar.png",
+    "ancho": 390,
+    "alto": 844,
+    "escala": 2,
+    "objetivos": {
+      "consentimiento": {
+        "etiqueta": "Consentimiento obligatorio: acepto las políticas de atención",
+        "x": 24,
+        "y": 208,
+        "w": 342,
+        "h": 231.3
+      },
+      "casilla": {
+        "etiqueta": "Casilla del consentimiento",
+        "x": 41,
+        "y": 227,
+        "w": 13,
+        "h": 13
+      },
+      "confirmar": {
+        "etiqueta": "Confirmar reserva",
+        "x": 20,
+        "y": 766.4,
+        "w": 350,
+        "h": 60
+      }
+    }
   }
 ]

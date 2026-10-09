@@ -237,3 +237,12 @@ h2 {
   .recorrido-punta, .recorrido-anillo, .recorrido-velo { animation: none; opacity: 1; }
   .recorrido-badge { animation: none; }
 }
+
+/* ── Portada (Hero.tsx): las piezas entran escalonadas y flotan apenas ── */
+@keyframes hero-entra { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+@keyframes hero-flota { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+.hero-entra { animation: hero-entra .8s cubic-bezier(.2,.8,.2,1) both; }
+.hero-flota { animation: hero-flota 6s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .hero-entra, .hero-flota { animation: none; }
+}

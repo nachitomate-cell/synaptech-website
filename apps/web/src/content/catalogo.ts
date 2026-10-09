@@ -33,7 +33,7 @@ export const FAMILIAS: Familia[] = [
     bajada: "Tus clientes reservan solos, a cualquier hora, desde su teléfono.",
     imagen: "/panel/agenda-escritorio.webp",
     imagenAlt: "Agenda del día por profesional en el panel de SynapTech",
-    href: "/saas-comercial",
+    href: "/barberias",
     recorrido: "agenda",
     capsula: "tutorial-agenda-barbero",
     items: [
@@ -49,7 +49,7 @@ export const FAMILIAS: Familia[] = [
     bajada: "Responde y agenda por WhatsApp e Instagram en el número del local.",
     imagen: "/panel/asistente-bandeja.webp",
     imagenAlt: "Bandeja de WhatsApp con una conversación atendida por el asistente",
-    href: "/saas-comercial",
+    href: "/barberias",
     recorrido: "asistente",
     capsula: "reel-asistente-whatsapp",
     items: [
@@ -65,7 +65,7 @@ export const FAMILIAS: Familia[] = [
     bajada: "Cobra en el mesón, por link o al reservar, y cierra el día cuadrado.",
     imagen: "/panel/caja.webp",
     imagenAlt: "Caja del día con saldo esperado y transacciones",
-    href: "/saas-comercial",
+    href: "/barberias",
     recorrido: "caja",
     capsula: "capsula-1-caja",
     items: [
@@ -97,7 +97,7 @@ export const FAMILIAS: Familia[] = [
     bajada: "Equipo, productos y números del negocio en un solo panel.",
     imagen: "/panel/comisiones.webp",
     imagenAlt: "Liquidación de comisiones por profesional",
-    href: "/saas-comercial",
+    href: "/barberias",
     recorrido: "comisiones",
     capsula: "capsula-2-comisiones",
     items: [
@@ -129,7 +129,7 @@ export const RUBROS: Rubro[] = [
       "Arriendo de sillón con boleta de honorarios",
       "Club de sellos en Google Wallet",
     ],
-    href: "/saas-comercial",
+    href: "/barberias",
   },
   {
     id: "salones",
@@ -152,6 +152,7 @@ export const RUBROS: Rubro[] = [
       "Ficha e historial de cada cliente",
       "Consentimiento antes de agendar",
     ],
+    href: "/estetica",
   },
   {
     id: "pilates",

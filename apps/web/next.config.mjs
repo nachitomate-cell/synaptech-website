@@ -43,6 +43,14 @@ const nextConfig = {
   images: {
     formats: ['image/avif', 'image/webp'],
   },
+  /* /saas-comercial era la página de barberías del sitio viejo (precios de
+     $30.000/$50.000 y cuadros sin imagen). Desde el 09-10-2026 es /barberias;
+     el 308 conserva lo que Google ya tenía indexado. */
+  async redirects() {
+    return [
+      { source: "/saas-comercial", destination: "/barberias", permanent: true },
+    ];
+  },
   async rewrites() {
     return [
       ...DIRECTORIO.map((slug) => ({

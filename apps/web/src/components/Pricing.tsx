@@ -1,147 +1,71 @@
-"use client";
-import { motion } from "framer-motion";
-import RevealHeading from "./RevealHeading";
+import Link from "next/link";
+import { PLANES, ANUAL, SIGNUP, fmt } from "@/content/precios";
 
-/* Lista pública OFICIAL de la plataforma (netos en CLP + IVA, por local).
-   Es la misma tabla que cobra el panel (admin-panel/src/lib/precios.js del
-   repo Barberia-Elegance) y la que declara el JSON-LD de layout.tsx: si cambia
-   una, cambian las tres. Lo que NO viene en ningún plan y se contrata aparte:
-   avisos automáticos por WhatsApp (confirmaciones y recordatorios). */
-const SIGNUP = "https://crea.synaptechspa.cl/?ref=home-precios";
-
-const PLANS = [
-  {
-    name: "Básico",
-    subtitle: "Agenda y club",
-    price: "$29.900",
-    description: "Tu local con reservas online las 24 horas y un club de fidelidad que hace volver a los clientes.",
-    bullets: [
-      "Agenda online 24/7 con tu propia página de reservas",
-      "Club de fidelidad: sellos, premios y rangos",
-      "Profesionales ilimitados",
-      "Caja, comisiones y métricas del local",
-    ],
-    highlight: false,
-  },
-  {
-    name: "Pro",
-    subtitle: "Con asistente IA",
-    price: "$49.900",
-    description: "Todo el Básico más un asistente con IA que responde y agenda solo por WhatsApp.",
-    bullets: [
-      "Todo lo del plan Básico",
-      "Asistente IA por WhatsApp, conversaciones ilimitadas",
-      "Tarjeta de fidelidad en Google Wallet",
-      "Plan anual: $399.000 + IVA (equivale a 8 meses)",
-    ],
-    highlight: true,
-  },
-  {
-    name: "Full",
-    subtitle: "WhatsApp e Instagram",
-    price: "$69.900",
-    description: "Todo el Pro, y el asistente con IA también atiende los mensajes directos de Instagram.",
-    bullets: [
-      "Todo lo del plan Pro",
-      "Asistente IA en Instagram (DM)",
-      "Un solo asistente para los dos canales",
-    ],
-    highlight: false,
-  },
-];
-
-export default function Pricing() {
+/* Planes en tarjetas. Los datos salen de content/precios.ts, espejo de la
+   lista oficial de la plataforma (admin-panel/src/lib/precios.js). El detalle
+   completo, con adicionales y la tabla por plan, vive en /precios. */
+export default function Pricing({ conEnlace = true }: { conEnlace?: boolean }) {
   return (
-    <section id="precios" className="py-16 section-blend">
-      <div className="max-w-screen-xl mx-auto px-6 md:px-12">
-        <div className="mb-8">
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4 }}
-            className="eyebrow mb-5"
-          >Planes y precios</motion.p>
-          <RevealHeading className="text-text-primary max-w-xl">
-            Un precio por local.{" "}
-            <em className="italic text-accent font-display">Sin comisiones por cita</em>.
-          </RevealHeading>
-          <motion.p
-            initial={{ opacity: 0, y: 8 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="mt-5 text-text-secondary text-base leading-relaxed max-w-2xl font-body"
-          >
-            Suscripción mensual por local, sin tarjeta para partir. Si te sumas ahora,
-            los primeros 2 meses van por nuestra cuenta.
-          </motion.p>
+    <section id="precios" className="py-16 md:py-24 bg-mist scroll-mt-20">
+      <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10">
+        <div className="max-w-3xl mb-10">
+          <p className="eyebrow mb-4">Planes y precios</p>
+          <h2 className="text-ink">Un precio por local, no por silla.</h2>
+          <p className="text-text-secondary text-lg mt-5 leading-relaxed">
+            Profesionales ilimitados en todos los planes y sin comisión por cita.
+            Sin tarjeta para partir y, si te sumas ahora, los primeros 2 meses van
+            por nuestra cuenta.
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-          {PLANS.map((t, i) => (
-            <motion.div
-              key={t.name}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.55, delay: i * 0.1 }}
-              className={`relative rounded-2xl p-8 flex flex-col gap-5 border transition-all ${
-                t.highlight
-                  ? "bg-accent/5 border-accent/40"
-                  : "bg-bg-primary border-border-subtle"
-              }`}
-            >
-              {t.highlight && (
-                <div className="absolute -top-3 left-8">
-                  <span className="bg-ink text-white font-mono text-[10px] font-bold px-3 py-1 rounded-full">
-                    Más elegido
-                  </span>
-                </div>
+        <div className="grid md:grid-cols-3 gap-5">
+          {PLANES.map((p) => (
+            <article key={p.id}
+              className={`relative rounded-[28px] p-7 sm:p-8 flex flex-col ${p.popular ? "bg-ink text-white" : "bg-white"}`}>
+              {p.popular && (
+                <span className="absolute -top-3 left-7 bg-lime text-ink text-xs font-bold px-3 py-1 rounded-full">Más elegido</span>
               )}
-
-              <div>
-                <p className="font-mono text-[10px] text-text-muted uppercase tracking-widest mb-1">{t.subtitle}</p>
-                <h3 className="font-display text-2xl font-bold text-text-primary">{t.name}</h3>
-              </div>
-
-              <div>
-                <p className="font-mono text-3xl font-semibold text-accent">
-                  {t.price}<span className="text-base font-normal text-text-muted"> + IVA / mes</span>
-                </p>
-                <p className="font-mono text-[11px] text-text-muted mt-0.5">por local</p>
-              </div>
-
-              <p className="text-sm text-text-secondary leading-relaxed font-body">{t.description}</p>
-
-              <ul className="flex flex-col gap-2.5 flex-1">
-                {t.bullets.map((b) => (
-                  <li key={b} className="flex items-start gap-2.5">
-                    <svg className="w-4 h-4 text-accent shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
-                      <path d="M13 4 6 11l-3-3" strokeLinecap="round" strokeLinejoin="round"/>
+              <p className={`text-xs font-semibold uppercase tracking-[0.12em] ${p.popular ? "text-lime" : "text-accent"}`}>{p.sub}</p>
+              <h3 className="font-display font-bold text-3xl tracking-tight mt-1">{p.nombre}</h3>
+              <p className="mt-5">
+                <span className="font-display font-bold text-[40px] tracking-tight leading-none">{fmt(p.mes)}</span>
+                <span className={`text-sm ml-1 ${p.popular ? "text-white/60" : "text-text-muted"}`}>+ IVA / mes</span>
+              </p>
+              <p className={`text-sm mt-1 ${p.popular ? "text-white/60" : "text-text-muted"}`}>por local</p>
+              <p className={`mt-5 leading-relaxed ${p.popular ? "text-white/80" : "text-text-secondary"}`}>{p.descripcion}</p>
+              <ul className="mt-6 flex flex-col gap-3 flex-1">
+                {p.destacados.map((d) => (
+                  <li key={d} className="flex gap-3 text-[15px]">
+                    <svg className={`w-5 h-5 shrink-0 mt-0.5 ${p.popular ? "text-lime" : "text-accent"}`} viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
+                      <path d="M3 8.5l3 3 7-7" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
-                    <span className="text-sm text-text-secondary font-body">{b}</span>
+                    {d}
                   </li>
                 ))}
               </ul>
-
-              <a
-                href={SIGNUP}
-                className={`mt-2 inline-flex items-center justify-center font-bold text-sm px-6 py-3 rounded-lg transition-all ${
-                  t.highlight
-                    ? "bg-ink text-white hover:bg-black"
-                    : "border border-border-subtle text-text-primary hover:border-accent/40"
-                }`}
-              >
+              <a href={`${SIGNUP}?ref=precios-${p.id}`}
+                className={`mt-8 inline-flex justify-center items-center font-semibold px-6 py-3.5 rounded-full transition-colors ${
+                  p.popular ? "bg-lime text-ink hover:bg-white" : "bg-ink text-white hover:bg-black"
+                }`}>
                 Empezar gratis
               </a>
-            </motion.div>
+            </article>
           ))}
         </div>
 
-        <p className="font-mono text-[11px] text-text-muted text-center max-w-3xl mx-auto leading-relaxed">
-          Precios netos en CLP, se suma IVA. Confirmaciones y recordatorios automáticos por WhatsApp
-          se contratan aparte. Dos o más locales: consulta el precio por volumen.
+        <div className="mt-6 rounded-[28px] bg-white p-6 sm:px-8 flex flex-col md:flex-row md:items-center gap-4 justify-between">
+          <p className="text-text-secondary">
+            <span className="font-semibold text-ink">Plan anual: {fmt(ANUAL.anio)} + IVA.</span>{" "}
+            Todo el {ANUAL.base} pagando una vez al año: equivale a {ANUAL.equivaleMeses} meses.
+          </p>
+          {conEnlace && (
+            <Link href="/precios" className="shrink-0 inline-flex items-center gap-2 font-semibold text-ink border-b-2 border-lime pb-0.5 hover:border-ink transition-colors">
+              Ver todo lo que incluye cada plan →
+            </Link>
+          )}
+        </div>
+        <p className="text-sm text-text-muted mt-4">
+          Precios netos en pesos chilenos; se suma IVA. Dos o más locales: te cotizamos un precio por volumen.
         </p>
       </div>
     </section>

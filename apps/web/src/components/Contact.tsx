@@ -47,8 +47,8 @@ export default function Contact() {
             className="eyebrow mb-5"
           >Contacto</motion.p>
           <RevealHeading className="text-text-primary max-w-xl">
-            Hablemos de tu{" "}
-            <em className="italic text-accent font-display">próximo proyecto</em>.
+            Hablemos de{" "}
+            <em className="italic text-accent font-display">tu local</em>.
           </RevealHeading>
         </div>
 
@@ -82,7 +82,7 @@ export default function Contact() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {(["nombre","empresa"] as const).map(k => (
                     <input key={k} type="text"
-                      placeholder={{ nombre: "Nombre completo", empresa: "Empresa" }[k]}
+                      placeholder={{ nombre: "Nombre completo", empresa: "Nombre de tu local" }[k]}
                       value={form[k]} onChange={upd(k)} required
                       className="bg-bg-primary border border-border-subtle rounded-lg px-4 py-3 text-sm font-body text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent transition-colors"
                     />
@@ -98,7 +98,7 @@ export default function Contact() {
                     className="bg-bg-primary border border-border-subtle rounded-lg px-4 py-3 text-sm font-body text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent transition-colors"
                   />
                 </div>
-                <textarea rows={5} placeholder="Cuéntanos sobre tu proyecto..."
+                <textarea rows={5} placeholder="Cuéntanos de tu local: rubro, cuántos profesionales son y qué agenda usan hoy"
                   value={form.msg} onChange={upd("msg")} required
                   className="bg-bg-primary border border-border-subtle rounded-lg px-4 py-3 text-sm font-body text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent transition-colors resize-none"
                 />

@@ -6,7 +6,7 @@ import { FAMILIAS, RUBROS } from "@/content/catalogo";
    rubros salen de content/catalogo.ts, igual que el menú. */
 const LINKS: Record<string, { l: string; h: string }[]> = {
   "Productos": FAMILIAS.map((f) => ({ l: f.nombre, h: `/#${f.id}` })),
-  "Rubros":    RUBROS.map((r) => ({ l: r.nombre, h: `/#rubro-${r.id}` })),
+  "Rubros":    RUBROS.map((r) => ({ l: r.nombre, h: r.href ?? `/#rubro-${r.id}` })),
   "Recursos":  [
     { l: "Cómo funciona", h: "/como-funciona" },
     { l: "Cápsulas en video", h: "/como-funciona#capsulas" },
