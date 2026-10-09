@@ -1,6 +1,9 @@
 import Script from "next/script";
 
-const META_PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID;
+// "SynapTech Studio — Pixel" (cuenta de anuncios act_2625197834231867). La variable
+// nunca se cargó en Vercel y el sitio salía sin Pixel: sin audiencias de quienes
+// visitan la web ni forma de medir qué páginas llevan a WhatsApp. El id es público.
+const META_PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID || "1486229456859656";
 const LINKEDIN_PARTNER_ID = process.env.NEXT_PUBLIC_LINKEDIN_PARTNER_ID;
 
 export default function TrackingScripts() {
@@ -14,6 +17,8 @@ export default function TrackingScripts() {
           t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
           (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
           fbq('init','${META_PIXEL_ID}');fbq('track','PageView');
+          document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&e.target.closest('a[href*="wa.me"],a[href*="api.whatsapp.com"]');
+            if(a&&window.fbq)fbq('track','Contact',{content_name:location.pathname});},true);
         `}</Script>
       )}
 
