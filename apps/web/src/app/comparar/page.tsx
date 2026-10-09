@@ -5,6 +5,9 @@ import Hilo     from "@/components/Hilo";
 import CtaFinal from "@/components/CtaFinal";
 import { HILOS } from "@/content/comparar";
 import { waLink } from "@/content/catalogo";
+import Link from "next/link";
+import { COMPETIDORES } from "@/content/competidores";
+import { MarcaCompetidor } from "@/components/MarcaCompetidor";
 
 export const metadata: Metadata = {
   title: "SynapTech frente a AgendaPro, WhatsApp Business y otras agendas | Comparaciones con fuente y fecha",
@@ -34,6 +37,25 @@ export default function CompararPage() {
                 <span key={e} className="px-3 py-1.5 rounded-full bg-mist text-[13px] font-semibold text-text-secondary">{e}</span>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* Una página por agenda (content/competidores.ts) */}
+        <section className="pb-12">
+          <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10">
+            <p className="font-semibold text-ink mb-4">Compara con la agenda que usas hoy</p>
+            <ul className="grid grid-cols-2 sm:grid-cols-4 gap-3 m-0 p-0 list-none">
+              {COMPETIDORES.map((c) => (
+                <li key={c.id}>
+                  <Link href={`/comparar/${c.id}`} className="group flex flex-col justify-between h-full rounded-[20px] border border-border-subtle bg-white p-4 hover:shadow-card-hover hover:-translate-y-0.5 transition-all">
+                    <span className="h-10 flex items-center">
+                      <MarcaCompetidor c={c} chico />
+                    </span>
+                    <span className="mt-3 text-[14px] font-semibold text-ink">{c.nombre} vs SynapTech <span className="text-accent group-hover:ml-1 transition-all">→</span></span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
         </section>
 

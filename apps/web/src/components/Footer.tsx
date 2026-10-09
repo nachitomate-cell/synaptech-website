@@ -18,6 +18,13 @@ const LINKS: Record<string, { l: string; h: string }[]> = {
   ],
   /* SynapTech Studio, la app del dueño: publicada y distribuida en ambas
      tiendas (Play desde 2026-09-01, App Store id 6794530086 en cl/us/mx). */
+  "Comparar":  [
+    { l: "AgendaPro vs SynapTech", h: "/comparar/agendapro" },
+    { l: "WeiBook vs SynapTech", h: "/comparar/weibook" },
+    { l: "AgendaYA vs SynapTech", h: "/comparar/agendaya" },
+    { l: "Fresha vs SynapTech", h: "/comparar/fresha" },
+    { l: "Todas las comparaciones", h: "/comparar" },
+  ],
   "La app":    [
     { l: "App Store", h: "https://apps.apple.com/cl/app/synaptech-studio/id6794530086" },
     { l: "Google Play", h: "https://play.google.com/store/apps/details?id=cl.synaptechspa.studio" },
@@ -53,7 +60,7 @@ export default function Footer() {
   return (
     <footer className="bg-white border-t border-border-subtle">
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10 pt-16 pb-8">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-[1.4fr_repeat(5,1fr)] gap-x-8 gap-y-10 mb-14">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-[1.3fr_repeat(6,1fr)] gap-x-8 gap-y-10 mb-14">
           <div className="col-span-2 md:col-span-3 lg:col-span-1 flex flex-col gap-4">
             <Link href="/" className="flex items-center gap-2">
               <Image src="/assets/synaptech-icon.png" alt="" width={30} height={30} />
