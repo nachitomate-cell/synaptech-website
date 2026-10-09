@@ -53,7 +53,7 @@ export const FAMILIAS: Familia[] = [
     bajada: "Responde y agenda por WhatsApp e Instagram en el número del local.",
     imagen: "/panel/asistente-bandeja.webp",
     imagenAlt: "Bandeja de WhatsApp con una conversación atendida por el asistente",
-    href: "/barberias",
+    href: "/asistente-ia-whatsapp",
     recorrido: "asistente",
     capsula: "reel-asistente-whatsapp",
     items: [
@@ -137,7 +137,7 @@ export const RUBROS: Rubro[] = [
   },
   {
     id: "salones",
-    nombre: "Salones de belleza",
+    nombre: "Peluquerías y salones",
     titular: "Cada profesional con su agenda, el salón con todo a la vista.",
     texto: "Servicios con duración por profesional, venta de productos y gift cards para las fechas que más venden.",
     puntos: [
@@ -145,6 +145,7 @@ export const RUBROS: Rubro[] = [
       "Gift cards y venta de productos",
       "Metas y comisiones del equipo",
     ],
+    href: "/peluquerias",
   },
   {
     id: "estetica",

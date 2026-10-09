@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Header       from "@/components/Header";
 import Footer       from "@/components/Footer";
 import Recorrido    from "@/components/Recorrido";
@@ -6,12 +5,13 @@ import Pricing      from "@/components/Pricing";
 import CtaFinal     from "@/components/CtaFinal";
 import { HeroRubro, Dolores, type Dolor } from "@/components/Rubro";
 import { MODULOS_AGENCIA } from "@/content/recorrido";
+import { metaPagina } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Software para agencias de viajes y equipos de venta | WhatsApp e Instagram en una bandeja | SynapTech",
-  description: "Bandeja omnicanal de WhatsApp e Instagram con asistente IA que cotiza con tu catálogo, reparto automático entre vendedoras, embudo de ventas y comisiones calculadas solas. Para agencias de viajes, paseos y equipos que venden por mensaje.",
-  alternates: { canonical: "https://synaptechspa.cl/agencias" },
-};
+export const metadata = metaPagina({
+  title: "Software para agencias de viajes con WhatsApp | SynapTech",
+  description: "WhatsApp e Instagram en una sola bandeja, asistente con IA que cotiza con tu catálogo, reparto entre vendedoras, embudo de ventas y comisiones.",
+  path: "/agencias",
+});
 
 /* Página de agencias (09-10-2026). Todo lo que dice está verificado en el
    código: ver devtools/guias-panel/sitio-web/agencia/INVENTARIO.md.
@@ -32,7 +32,7 @@ export default function AgenciasPage() {
       <main>
         <HeroRubro
           eyebrow="Para agencias de viajes y equipos de venta"
-          titulo="Todo tu equipo, en una sola bandeja."
+          titulo="Software para agencias: WhatsApp e Instagram en una bandeja."
           bajada="WhatsApp e Instagram en un solo lugar, Syna cotizando con tu catálogo, las conversaciones repartidas entre tus vendedoras y las comisiones calculadas solas."
           origen="agencias-hero"
           mensajeWa="Hola, tengo una agencia y quiero conocer la bandeja de SynapTech"

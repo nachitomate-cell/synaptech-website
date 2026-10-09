@@ -13,10 +13,10 @@ import { obtenerLocales, type LocalDirectorio } from "@/lib/directorio";
    - Dos filas en sentidos opuestos; se detienen al pasar el cursor y quedan
      quietas si el visitante pidió menos movimiento. */
 
-function Tarjeta({ l }: { l: LocalDirectorio }) {
+function Tarjeta({ l, oculta = false }: { l: LocalDirectorio; oculta?: boolean }) {
   return (
     <li className="shrink-0 w-[200px] sm:w-[236px]">
-      <a href={l.url} target="_blank" rel="noopener" className="group block" title={`Reservar en ${l.nombre}`}>
+      <a href={l.url} target="_blank" rel="noopener" className="group block" title={`Reservar en ${l.nombre}`} tabIndex={oculta ? -1 : undefined}>
         <span
           className="block relative aspect-[16/10] rounded-2xl overflow-hidden ring-1 ring-ink/10 shadow-[0_12px_32px_-14px_rgba(15,26,43,.45)] transition-transform duration-300 group-hover:-translate-y-1"
           style={{ backgroundColor: l.fondo }}
@@ -49,7 +49,7 @@ function Cinta({ locales, reversa = false }: { locales: LocalDirectorio[]; rever
       {[false, true].map((copia) => (
         <ul key={String(copia)} aria-hidden={copia || undefined}
           className={`flex gap-5 shrink-0 m-0 p-0 list-none animate-marquee-locales ${reversa ? "marquee-reversa" : ""}`}>
-          {locales.map((l) => <Tarjeta key={l.id} l={l} />)}
+          {locales.map((l) => <Tarjeta key={l.id} l={l} oculta={copia} />)}
         </ul>
       ))}
     </div>

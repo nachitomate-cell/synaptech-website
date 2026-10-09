@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { PAISES, PLANES_LATAM, type CodigoPais } from "@/content/paises";
 import { waLink } from "@/content/catalogo";
+import { metaPagina } from "@/lib/seo";
 
 /* Landing por país (ver content/paises.ts). Lleva su propio encabezado y pie:
    el menú del sitio chileno enlaza precios en pesos chilenos, SII y locales de
@@ -11,13 +12,13 @@ import { waLink } from "@/content/catalogo";
 
 export function metadataPais(codigo: CodigoPais): Metadata {
   const p = PAISES[codigo];
-  return {
-    title: `SynapTech en ${p.nombre} | Agenda online, asistente IA por WhatsApp y club de fidelidad para barberías`,
-    description: `Reservas online en ${p.moneda} y en ${p.hora}, un asistente con IA que responde y agenda por WhatsApp y un club que hace volver a tus clientes. Desde US$15 al mes, con 2 meses gratis.`,
-    alternates: { canonical: `https://synaptechspa.cl/${codigo}` },
-    // Idea de expansión: fuera del índice hasta que el país se lance.
-    robots: { index: false, follow: false },
-  };
+  // Idea de expansión: fuera del índice hasta que el país se lance.
+  return metaPagina({
+    title: `SynapTech en ${p.nombre}: agenda online y WhatsApp con IA`,
+    description: `Reservas online en ${p.moneda} y en ${p.hora}, asistente con IA que agenda por WhatsApp y club de fidelidad. Desde US$15 al mes.`,
+    path: `/${codigo}`,
+    noindex: true,
+  });
 }
 
 function Check({ claro = false }: { claro?: boolean }) {

@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Header    from "@/components/Header";
 import Footer    from "@/components/Footer";
 import Recorrido from "@/components/Recorrido";
@@ -7,12 +6,13 @@ import CtaFinal  from "@/components/CtaFinal";
 import { FilaCapsulas } from "@/components/Capsulas";
 import { HeroRubro, Dolores, type Dolor } from "@/components/Rubro";
 import { MODULOS, MODULOS_ESTETICA } from "@/content/recorrido";
+import { metaPagina } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Club de fidelización para barberías y salones | Sellos, premios y tarjeta en Google Wallet y Apple Wallet | SynapTech",
-  description: "Un club de sellos con premios y rangos, la tarjeta del cliente en Google Wallet y Apple Wallet, y gift cards que se canjean en la agenda. Incluido en todos los planes de SynapTech, desde $29.900 + IVA al mes.",
-  alternates: { canonical: "https://synaptechspa.cl/fidelizacion" },
-};
+export const metadata = metaPagina({
+  title: "Tarjeta de sellos digital y club de clientes | SynapTech",
+  description: "Sellos por visita, premios y rangos, con la tarjeta del cliente en Google Wallet y Apple Wallet, y gift cards. Incluido en todos los planes.",
+  path: "/fidelizacion",
+});
 
 /* Reescrita el 09-10-2026. La versión anterior era de la etapa en que el sitio
    vendía desarrollo a medida: "Sistemas de Fidelización Digital" para "retail y
@@ -37,8 +37,8 @@ export default function FidelizacionPage() {
       <main>
         <HeroRubro
           eyebrow="Club de fidelización"
-          titulo="Que tus clientes vuelvan, y lo vean en su teléfono."
-          bajada="Sellos por visita, premios y rangos, con la tarjeta del cliente en Google Wallet y Apple Wallet. Viene en todos los planes."
+          titulo="Tarjeta de sellos digital y club de fidelización."
+          bajada="Que tus clientes vuelvan, y lo vean en su teléfono: sellos por visita, premios y rangos, con la tarjeta en Google Wallet y Apple Wallet. Viene en todos los planes."
           origen="fidelizacion-hero"
           mensajeWa="Hola, quiero ver el club de fidelización de SynapTech"
           escritorio={{ src: "/panel/club-premios.webp", alt: "Escalera de premios del club de fidelidad en el panel de SynapTech", w: 2880, h: 1800 }}

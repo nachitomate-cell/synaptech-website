@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import Header       from "@/components/Header";
 import Footer       from "@/components/Footer";
@@ -12,12 +11,15 @@ import CtaFinal     from "@/components/CtaFinal";
 import { HeroRubro, Dolores, type Dolor } from "@/components/Rubro";
 import { FilaCapsulas } from "@/components/Capsulas";
 import { MODULOS } from "@/content/recorrido";
+import { metaPagina } from "@/lib/seo";
+import FaqSeo from "@/components/FaqSeo";
+import { FAQ_BARBERIAS } from "@/content/faq-rubros";
 
-export const metadata: Metadata = {
-  title: "Software para barberías en Chile | Agenda online, comisiones, arriendo de sillón y asistente IA | SynapTech",
-  description: "La plataforma para barberías: reservas online 24/7, asistente con IA que agenda por WhatsApp, caja y comisiones del 50 % calculadas solas, boletas de honorarios para arriendo de sillón y club de fidelidad en Google Wallet. Desde $29.900 + IVA por local, barberos ilimitados.",
-  alternates: { canonical: "https://synaptechspa.cl/barberias" },
-};
+export const metadata = metaPagina({
+  title: "Software y agenda online para barberías en Chile | SynapTech",
+  description: "Agenda online por barbero, asistente con IA que agenda por WhatsApp, comisiones, arriendo de sillón con boleta y club de sellos. Desde $29.900 + IVA.",
+  path: "/barberias",
+});
 
 const DOLORES: Dolor[] = [
   { dolor: "Te escriben a toda hora para pedir hora", solucion: "Syna agenda por WhatsApp", detalle: "El asistente con IA responde precios y horarios y deja la cita agendada en el chat, en el número de tu barbería, aunque estés cortando." },
@@ -36,8 +38,8 @@ export default function BarberiasPage() {
       <main>
         <HeroRubro
           eyebrow="Para barberías"
-          titulo="La barbería llena, sin vivir pegado al teléfono."
-          bajada="Agenda por barbero, Syna respondiendo tu WhatsApp, la caja y el 50 % cuadrados solos, y un club que hace volver al cliente."
+          titulo="Software y agenda online para barberías."
+          bajada="La barbería llena, sin vivir pegado al teléfono: agenda por barbero, Syna respondiendo tu WhatsApp, la caja y el 50 % cuadrados solos, y un club que hace volver al cliente."
           origen="barberias-hero"
           mensajeWa="Hola, tengo una barbería y quiero conocer SynapTech"
           escritorio={{ src: "/panel/agenda-escritorio.webp", alt: "Agenda del día con tres barberos", w: 2880, h: 1800 }}
@@ -79,6 +81,7 @@ export default function BarberiasPage() {
 
         <Testimonials />
         <LogosLocales />
+        <FaqSeo titulo="Software para barberías: lo que más nos preguntan." preguntas={FAQ_BARBERIAS} />
         <Pricing />
         <CtaFinal />
       </main>

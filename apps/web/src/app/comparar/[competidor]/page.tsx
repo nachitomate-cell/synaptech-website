@@ -7,6 +7,7 @@ import Footer   from "@/components/Footer";
 import CtaFinal from "@/components/CtaFinal";
 import { COMPETIDORES, competidor, SYNAPTECH, FECHA_VERIFICACION } from "@/content/competidores";
 import { SIGNUP_URL, waLink } from "@/content/catalogo";
+import { metaPagina } from "@/lib/seo";
 import { MarcaCompetidor, NombreConPunto } from "@/components/MarcaCompetidor";
 
 /* "SynapTech vs <agenda>" (09-10-2026). Una página por competidor, indexable,
@@ -21,14 +22,11 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: { params: { competidor: string } }): Metadata {
   const c = competidor(params.competidor);
   if (!c) return {};
-  const url = `https://synaptechspa.cl/comparar/${c.id}`;
-  const title = `${c.nombre} vs SynapTech: precios 2026 y alternativa a ${c.nombre} en Chile`;
-  const description = `${c.nombre} o SynapTech: cuánto cuesta cada uno con 1, 3, 6 y 9 profesionales, WhatsApp, asistente con IA, boletas y club de fidelidad. Datos de ${c.sitio} revisados el ${FECHA_VERIFICACION}, con fuentes.`;
-  return {
-    title, description,
-    alternates: { canonical: url },
-    openGraph: { title, description, url, type: "article" },
-  };
+  return metaPagina({
+    title: `${c.nombre} vs SynapTech: precios y diferencias (2026)`,
+    description: `${c.nombre} o SynapTech: cuánto cuesta con 1, 3, 6 y 9 profesionales, WhatsApp, asistente con IA y boletas. Datos de ${c.sitio} con fuente y fecha.`,
+    path: `/comparar/${c.id}`,
+  });
 }
 
 function Celda({ v }: { v: string | null }) {
@@ -48,9 +46,9 @@ export default function CompararCompetidor({ params }: { params: { competidor: s
       {
         "@type": "BreadcrumbList",
         itemListElement: [
-          { "@type": "ListItem", position: 1, name: "SynapTech", item: "https://synaptechspa.cl" },
-          { "@type": "ListItem", position: 2, name: "Comparaciones", item: "https://synaptechspa.cl/comparar" },
-          { "@type": "ListItem", position: 3, name: `${c.nombre} vs SynapTech`, item: `https://synaptechspa.cl/comparar/${c.id}` },
+          { "@type": "ListItem", position: 1, name: "SynapTech", item: "https://www.synaptechspa.cl" },
+          { "@type": "ListItem", position: 2, name: "Comparaciones", item: "https://www.synaptechspa.cl/comparar" },
+          { "@type": "ListItem", position: 3, name: `${c.nombre} vs SynapTech`, item: `https://www.synaptechspa.cl/comparar/${c.id}` },
         ],
       },
       {
@@ -159,7 +157,7 @@ export default function CompararCompetidor({ params }: { params: { competidor: s
                 <tbody>
                   {c.filas.map((f) => (
                     <tr key={f.tema}>
-                      <td className="px-5 py-4 align-top border-t border-border-subtle font-semibold text-ink">{f.tema}</td>
+                      <th scope="row" className="text-left px-5 py-4 align-top border-t border-border-subtle font-semibold text-ink">{f.tema}</th>
                       <td className="px-5 py-4 align-top border-t border-border-subtle text-text-secondary"><Celda v={f.ellos} /></td>
                       <td className="px-5 py-4 align-top border-t border-border-subtle text-ink bg-lime/10">{f.nosotros}</td>
                     </tr>

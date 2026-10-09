@@ -10,7 +10,7 @@ export default function TrackingScripts() {
   return (
     <>
       {META_PIXEL_ID && (
-        <Script id="meta-pixel" strategy="afterInteractive">{`
+        <Script id="meta-pixel" strategy="lazyOnload">{`
           !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
           n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
           n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
@@ -23,7 +23,7 @@ export default function TrackingScripts() {
       )}
 
       {LINKEDIN_PARTNER_ID && (
-        <Script id="linkedin-insight" strategy="afterInteractive">{`
+        <Script id="linkedin-insight" strategy="lazyOnload">{`
           _linkedin_partner_id="${LINKEDIN_PARTNER_ID}";
           window._linkedin_data_partner_ids=window._linkedin_data_partner_ids||[];
           window._linkedin_data_partner_ids.push(_linkedin_partner_id);

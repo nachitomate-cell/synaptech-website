@@ -1,19 +1,14 @@
-import type { Metadata } from "next";
 import Header   from "@/components/Header";
 import Footer   from "@/components/Footer";
 import CtaFinal from "@/components/CtaFinal";
 import { waLink } from "@/content/catalogo";
+import { metaPagina } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Nosotros | SynapTech, empresa chilena de software para locales de servicio",
-  description: "SynapTech nació en abril de 2026 como la página de reservas de una barbería. Hoy es una plataforma de agenda, cobros, asistente con IA y club de fidelización que usan más de 35 locales en Chile. Synaptech SpA, RUT 78.402.009-6.",
-  alternates: { canonical: "https://synaptechspa.cl/nosotros" },
-  openGraph: {
-    title: "Nosotros | SynapTech",
-    description: "Empezó con la agenda de una barbería. Hoy la usan más de 35 locales.",
-    url: "https://synaptechspa.cl/nosotros",
-  },
-};
+export const metadata = metaPagina({
+  title: "Nosotros: SynapTech, software chileno para locales",
+  description: "SynapTech nació en abril de 2026 como la página de reservas de una barbería. Hoy la usan más de 35 locales y sedes en Chile. Synaptech SpA, Viña del Mar.",
+  path: "/nosotros",
+});
 
 /* Reescrita dos veces el 09-10-2026. La primera sacó la historia de agencia
    ("5 proyectos en producción", "Diagnóstico gratis", "cuatro industrias"); la

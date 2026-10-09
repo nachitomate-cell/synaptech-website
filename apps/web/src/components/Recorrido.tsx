@@ -65,7 +65,7 @@ export function Pantalla({ paso, numero, activo, eager = false }: { paso: Paso; 
               cargan al toque cuando el paso cambia de pantalla. La key fuerza
               a cambiar de imagen (si no, queda la anterior mientras carga). */}
           <Image key={paso.captura} src={`/panel/${paso.captura}`} alt={cap.alt} width={W * 2} height={H * 2}
-            unoptimized priority={eager} className="w-full h-auto select-none" draggable={false} />
+            unoptimized loading={eager ? "eager" : "lazy"} className="w-full h-auto select-none" draggable={false} />
         </div>
 
         {box && flecha && (
@@ -148,7 +148,7 @@ export default function Recorrido({ modulo }: { modulo: Modulo }) {
             <div className={`flex gap-4 transition-opacity duration-300 ${i === activo ? "lg:opacity-100" : "lg:opacity-35"}`}>
               <span className={`shrink-0 w-9 h-9 rounded-full font-bold flex items-center justify-center transition-colors ${i === activo ? "bg-lime text-ink" : "bg-mist text-text-muted"}`}>{i + 1}</span>
               <div>
-                <h4 className="font-display font-bold text-ink text-xl sm:text-2xl leading-tight tracking-tight">{p.titulo}</h4>
+                <h3 className="font-display font-bold text-ink text-xl sm:text-2xl leading-tight tracking-tight">{p.titulo}</h3>
                 <p className="text-text-secondary text-base sm:text-lg leading-relaxed mt-2">{p.texto}</p>
               </div>
             </div>

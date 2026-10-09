@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Header   from "@/components/Header";
 import Footer   from "@/components/Footer";
 import Hilo     from "@/components/Hilo";
@@ -8,12 +7,13 @@ import { waLink } from "@/content/catalogo";
 import Link from "next/link";
 import { COMPETIDORES } from "@/content/competidores";
 import { MarcaCompetidor } from "@/components/MarcaCompetidor";
+import { metaPagina } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "SynapTech frente a AgendaPro, WhatsApp Business y otras agendas | Comparaciones con fuente y fecha",
-  description: "Las preguntas que hacen los dueños de barberías, salones y centros de estética antes de cambiarse de agenda, respondidas con datos: precios, número de WhatsApp, mudanza de clientes y asistente con IA. Cada dato con su fuente y la fecha en que lo revisamos.",
-  alternates: { canonical: "https://synaptechspa.cl/comparar" },
-};
+export const metadata = metaPagina({
+  title: "Comparar agendas: AgendaPro, Fresha, WeiBook y más",
+  description: "SynapTech frente a AgendaPro, WeiBook, AgendaYA, Fresha, Reservo y otras agendas: precios según tu equipo, WhatsApp, IA y boletas, con fuente y fecha.",
+  path: "/comparar",
+});
 
 /* Comparaciones "tipo foro" (09-10-2026). Las preguntas y sus reglas están en
    content/comparar.ts: nada de usuarios inventados y cada dato de otra empresa
@@ -27,7 +27,7 @@ export default function CompararPage() {
         <section className="pt-28 md:pt-36 pb-10">
           <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10">
             <p className="eyebrow mb-5">Comparaciones</p>
-            <h1 className="text-ink max-w-4xl">Lo que nos preguntan antes de cambiarse, con datos.</h1>
+            <h1 className="text-ink max-w-4xl">Comparar agendas online: lo que nos preguntan antes de cambiarse.</h1>
             <p className="text-text-secondary text-lg md:text-xl leading-relaxed max-w-2xl mt-6">
               SynapTech frente a otras agendas y frente a WhatsApp, el cuaderno y la planilla.
               Cada dato dice de dónde sale y en qué fecha lo revisamos.

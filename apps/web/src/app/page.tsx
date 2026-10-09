@@ -13,6 +13,13 @@ import Pricing       from "@/components/Pricing";
 import FAQ           from "@/components/FAQ";
 import CtaFinal      from "@/components/CtaFinal";
 import Footer        from "@/components/Footer";
+import { metaPagina } from "@/lib/seo";
+
+export const metadata = metaPagina({
+  title: "SynapTech: agenda online, cobros y WhatsApp con IA",
+  description: "Agenda online 24/7, asistente con IA que agenda por WhatsApp, caja, comisiones y club de fidelización para barberías, salones y estética en Chile.",
+  path: "/",
+});
 
 /* Home al estilo Square (08-10-2026), ampliada el 09-10: titular con la
    composición de capturas reales → confianza → familias de producto → oferta

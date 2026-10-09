@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import Header       from "@/components/Header";
 import Footer       from "@/components/Footer";
@@ -11,12 +10,15 @@ import CtaFinal     from "@/components/CtaFinal";
 import { HeroRubro, Dolores, type Dolor } from "@/components/Rubro";
 import { FilaCapsulas } from "@/components/Capsulas";
 import { MODULOS, MODULOS_ESTETICA } from "@/content/recorrido";
+import { metaPagina } from "@/lib/seo";
+import FaqSeo from "@/components/FaqSeo";
+import { FAQ_ESTETICA } from "@/content/faq-rubros";
 
-export const metadata: Metadata = {
-  title: "Software para centros de estética y spa en Chile | Agenda online, ficha de clientas y gift cards | SynapTech",
-  description: "La plataforma para centros de estética, spa y clínicas estéticas: reservas online de tratamientos, aceptación de políticas antes de agendar, ficha con notas e historial de cada clienta, abono online, club de fidelidad, gift cards y asistente con IA por WhatsApp. Desde $29.900 + IVA por local.",
-  alternates: { canonical: "https://synaptechspa.cl/estetica" },
-};
+export const metadata = metaPagina({
+  title: "Software para centros de estética y spa en Chile | SynapTech",
+  description: "Agenda online de tratamientos 24/7, ficha de cada clienta, abonos online, gift cards y un asistente con IA en WhatsApp. Desde $29.900 + IVA por local.",
+  path: "/estetica",
+});
 
 const DOLORES: Dolor[] = [
   { dolor: "Agendar tratamientos largos por WhatsApp", solucion: "Reserva online por tratamiento", detalle: "Cada tratamiento con su duración y su profesional: la clienta ve solo las horas que de verdad caben." },
@@ -36,7 +38,7 @@ export default function EsteticaPage() {
       <main>
         <HeroRubro
           eyebrow="Para centros de estética, spa y clínicas estéticas"
-          titulo="Tu centro de estética, ordenado de punta a punta."
+          titulo="Software y agenda online para centros de estética y spa."
           bajada="Tratamientos reservables las 24 horas, la ficha de cada clienta con sus notas, cobros y abonos online, y un club que las hace volver."
           origen="estetica-hero"
           mensajeWa="Hola, tengo un centro de estética y quiero conocer SynapTech"
@@ -78,6 +80,7 @@ export default function EsteticaPage() {
 
         <Testimonials />
         <LogosLocales />
+        <FaqSeo titulo="Software para centros de estética: lo que más nos preguntan." preguntas={FAQ_ESTETICA} />
         <Pricing />
         <CtaFinal />
       </main>

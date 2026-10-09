@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter_Tight, DM_Sans } from "next/font/google";
 import "./globals.css";
-import PageTransition from "@/components/PageTransition";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -32,11 +31,17 @@ const SITE_TITLE =
 const SITE_DESC =
   "Plataforma SaaS por suscripción para barberías y salones en Chile: reservas online 24/7, club de fidelidad con sellos y premios, y un asistente con IA que responde y agenda por WhatsApp. Desde $29.900 + IVA al mes, sin comisiones por cita.";
 
+/* Dominio canónico = www (09-10-2026). El sitio se sirve en www y el apex
+   synaptechspa.cl redirige ahí; antes todas las canonical, el sitemap y el
+   robots apuntaban al apex, o sea a una URL que redirige, y Google recibía
+   dos señales distintas para cada página. Toda URL absoluta del sitio usa www. */
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.synaptechspa.cl"),
   title: SITE_TITLE,
   description: SITE_DESC,
   keywords: ["agenda online barbería", "software para barberías Chile", "reservas online peluquería", "club de fidelidad barbería", "asistente IA WhatsApp reservas", "SaaS barberías", "agenda para salones de belleza", "fidelización Google Wallet"],
-  alternates: { canonical: "https://synaptechspa.cl" },
+  // Sin canonical global: cada página declara la suya (lib/seo.ts). Una canonical
+  // acá la heredaban /privacidad y /terminos, que quedaban apuntando a la home.
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
@@ -50,17 +55,17 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "es_CL",
-    url: "https://synaptechspa.cl",
+    url: "https://www.synaptechspa.cl",
     siteName: "SynapTech",
     title: SITE_TITLE,
     description: SITE_DESC,
-    images: [{ url: "https://synaptechspa.cl/og-image.png", width: 1200, height: 630, alt: "SynapTech — plataforma SaaS para barberías y salones" }],
+    images: [{ url: "https://www.synaptechspa.cl/og-image.png", width: 1200, height: 630, alt: "SynapTech — plataforma SaaS para barberías y salones" }],
   },
   twitter: {
     card: "summary_large_image",
     title: SITE_TITLE,
     description: SITE_DESC,
-    images: ["https://synaptechspa.cl/og-image.png"],
+    images: ["https://www.synaptechspa.cl/og-image.png"],
   },
   other: {
     "geo.region": "CL-VS",
@@ -78,10 +83,10 @@ export default function RootLayout({
     "@graph": [
       {
         "@type": "Organization",
-        "@id": "https://synaptechspa.cl/#org",
+        "@id": "https://www.synaptechspa.cl/#org",
         name: "SynapTech",
-        url: "https://synaptechspa.cl",
-        logo: "https://synaptechspa.cl/assets/synaptech-icon.png",
+        url: "https://www.synaptechspa.cl",
+        logo: "https://www.synaptechspa.cl/assets/synaptech-icon.png",
         description: "Empresa chilena de Viña del Mar que construye y opera SynapTech, plataforma por suscripción de agenda online, cobros, fidelización y asistente con IA para barberías, salones y centros de estética.",
         address: {
           "@type": "PostalAddress",
@@ -97,13 +102,13 @@ export default function RootLayout({
       },
       {
         "@type": "SoftwareApplication",
-        "@id": "https://synaptechspa.cl/#app",
+        "@id": "https://www.synaptechspa.cl/#app",
         name: "SynapTech",
-        url: "https://synaptechspa.cl",
+        url: "https://www.synaptechspa.cl",
         applicationCategory: "BusinessApplication",
         operatingSystem: "Web",
         description: SITE_DESC,
-        publisher: { "@id": "https://synaptechspa.cl/#org" },
+        publisher: { "@id": "https://www.synaptechspa.cl/#org" },
         areaServed: "CL",
         // Lista pública oficial (netos + IVA, por local). Misma fuente que la
         // sección de precios de la home: cambiar allá y acá juntos.
@@ -117,7 +122,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="es">
+    <html lang="es-CL">
       <head>
         <script
           type="application/ld+json"
@@ -127,7 +132,7 @@ export default function RootLayout({
       <body
         className={`${display.variable} ${dmSans.variable} font-body bg-bg-primary text-text-primary antialiased`}
       >
-        <PageTransition>{children}</PageTransition>
+        {children}
         <WhatsAppButton />
         <TrackingScripts />
         <Analytics />

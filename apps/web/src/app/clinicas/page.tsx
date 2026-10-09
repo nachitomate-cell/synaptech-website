@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import Header       from "@/components/Header";
 import Footer       from "@/components/Footer";
@@ -8,12 +7,15 @@ import Pricing      from "@/components/Pricing";
 import CtaFinal     from "@/components/CtaFinal";
 import { HeroRubro, Dolores, type Dolor } from "@/components/Rubro";
 import { MODULOS_CLINICA } from "@/content/recorrido";
+import { metaPagina } from "@/lib/seo";
+import FaqSeo from "@/components/FaqSeo";
+import { FAQ_CLINICAS } from "@/content/faq-rubros";
 
-export const metadata: Metadata = {
-  title: "Software para clínicas estéticas y de kinesiología en Chile | Ficha clínica, consentimiento y agenda online | SynapTech",
-  description: "Agenda online para clínicas: reserva con RUT y consentimiento informado, abono con Mercado Pago, ficha clínica con alergias, notas y evolución por sesión, y un asistente con IA que responde y agenda por WhatsApp. Desde $29.900 + IVA por local.",
-  alternates: { canonical: "https://synaptechspa.cl/clinicas" },
-};
+export const metadata = metaPagina({
+  title: "Software para clínicas estéticas en Chile | SynapTech",
+  description: "Agenda online con RUT y consentimiento informado, abono con Mercado Pago, ficha clínica con evolución por sesión y asistente con IA por WhatsApp.",
+  path: "/clinicas",
+});
 
 /* Página de clínicas (09-10-2026). Todo lo que dice está verificado en el
    código: devtools/guias-panel/sitio-web/clinica/INVENTARIO.md.
@@ -40,7 +42,7 @@ export default function ClinicasPage() {
       <main>
         <HeroRubro
           eyebrow="Para clínicas estéticas, kinesiología y salud"
-          titulo="Tu clínica atendiendo, no respondiendo mensajes."
+          titulo="Software para clínicas estéticas: agenda, ficha y consentimiento."
           bajada="Reserva online con RUT y consentimiento informado, abono con Mercado Pago, ficha clínica por paciente y un asistente con IA que agenda por WhatsApp."
           origen="clinicas-hero"
           mensajeWa="Hola, tengo una clínica y quiero conocer SynapTech"
@@ -90,6 +92,7 @@ export default function ClinicasPage() {
         </section>
 
         <Cambiate />
+        <FaqSeo titulo="Software para clínicas estéticas: lo que más nos preguntan." preguntas={FAQ_CLINICAS} />
         <Pricing />
         <CtaFinal />
       </main>

@@ -1,5 +1,5 @@
 "use client";
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import type { LocalDirectorio, Rubro } from "@/lib/directorio";
 
@@ -26,6 +26,19 @@ export default function ListaLocales({ locales }: { locales: LocalDirectorio[] }
   const [activo, setActivo] = useState<string | null>(null);
   const [enfoque, setEnfoque] = useState<{ id: string; n: number } | null>(null);
   const tarjetas = useRef(new Map<string, HTMLElement>());
+  // MapLibre pesa ~3 s de JS en un celular: se carga con la primera
+  // interacción (scroll, toque, mouse o teclado) o a los 5 s, no durante la
+  // carga de la página (auditoría SEO 09-10-2026). El contenedor ya tiene su
+  // alto, así que el mapa no mueve nada al aparecer.
+  const [mapaListo, setMapaListo] = useState(false);
+  useEffect(() => {
+    const eventos = ["scroll", "pointermove", "touchstart", "keydown"] as const;
+    const listo = () => { setMapaListo(true); limpiar(); };
+    const t = setTimeout(listo, 5000);
+    const limpiar = () => { clearTimeout(t); eventos.forEach((e) => window.removeEventListener(e, listo)); };
+    eventos.forEach((e) => window.addEventListener(e, listo, { once: true, passive: true }));
+    return limpiar;
+  }, []);
 
   const regiones = useMemo(() => {
     const c = new Map<string, number>();
@@ -93,7 +106,7 @@ export default function ListaLocales({ locales }: { locales: LocalDirectorio[] }
               </div>
               <div className="p-4 sm:p-5 flex flex-col flex-1">
                 <div className="flex items-start justify-between gap-3">
-                  <h3 className="font-display font-bold text-ink text-[17px] leading-snug">{l.nombre}</h3>
+                  <h2 className="font-display font-bold text-ink text-[17px] leading-snug">{l.nombre}</h2>
                   {l.rating && (
                     <p className="shrink-0 text-sm font-semibold text-ink flex items-center gap-1" title={l.opiniones ? `${l.opiniones} opiniones en Google` : undefined}>
                       <svg className="w-4 h-4 text-[#F5A623]" viewBox="0 0 24 24" fill="currentColor" aria-hidden><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
@@ -123,7 +136,9 @@ export default function ListaLocales({ locales }: { locales: LocalDirectorio[] }
         </div>
 
         <div className="order-1 lg:order-2 h-[340px] sm:h-[420px] lg:h-[calc(100vh-120px)] lg:sticky lg:top-[96px]">
-          <MapaLocales locales={lista} activo={activo} onSeleccion={desdeMapa} enfoque={enfoque} />
+          {mapaListo
+            ? <MapaLocales locales={lista} activo={activo} onSeleccion={desdeMapa} enfoque={enfoque} />
+            : <div className="h-full w-full rounded-[24px] bg-[#eef0ec]" aria-hidden />}
         </div>
       </div>
     </>

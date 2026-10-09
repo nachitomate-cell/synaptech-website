@@ -1,10 +1,11 @@
 import Link from "next/link";
-import type { Metadata } from "next";
+import { metaPagina } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Términos de Servicio — Synaptech SpA",
-  description: "Términos y condiciones de uso del sitio web y servicios de Synaptech SpA.",
-};
+export const metadata = metaPagina({
+  title: "Términos y condiciones | SynapTech",
+  description: "Términos y condiciones de uso de la plataforma SynapTech, de Synaptech SpA (RUT 78.402.009-6).",
+  path: "/terminos",
+});
 
 export default function Terminos() {
   return (

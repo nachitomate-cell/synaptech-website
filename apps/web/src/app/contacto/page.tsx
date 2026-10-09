@@ -1,13 +1,13 @@
-import type { Metadata } from "next";
 import Header  from "@/components/Header";
 import Footer  from "@/components/Footer";
 import Contact from "@/components/Contact";
+import { metaPagina } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = metaPagina({
   title: "Contacto | SynapTech",
-  description: "Escríbenos para conocer SynapTech con los datos de tu local: agenda online, cobros, asistente con IA y club de fidelidad.",
-  alternates: { canonical: "https://synaptechspa.cl/contacto" },
-};
+  description: "Escríbenos para ver SynapTech con los datos de tu local: agenda online, cobros, asistente con IA por WhatsApp y club de fidelidad.",
+  path: "/contacto",
+});
 
 export default function ContactoPage() {
   return (
