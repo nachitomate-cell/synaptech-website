@@ -1290,5 +1290,514 @@
         "h": 21
       }
     }
+  },
+  {
+    "archivo": "clinica-abono-panel.png",
+    "ancho": 1440,
+    "alto": 900,
+    "escala": 2,
+    "objetivos": {
+      "tarjeta": {
+        "etiqueta": "Abono al reservar — Mercado Pago (activo)",
+        "x": 352,
+        "y": 109,
+        "w": 976,
+        "h": 615
+      },
+      "montoActual": {
+        "etiqueta": "Abono actual: $10.000",
+        "x": 386,
+        "y": 266,
+        "w": 343.6,
+        "h": 20
+      },
+      "tipo": {
+        "etiqueta": "Monto fijo (o porcentaje del precio)",
+        "x": 844,
+        "y": 329.5,
+        "w": 463,
+        "h": 58.5
+      },
+      "obligatorio": {
+        "etiqueta": "Obligatorio u opcional",
+        "x": 373,
+        "y": 487,
+        "w": 463,
+        "h": 58.5
+      },
+      "servicios": {
+        "etiqueta": "En todos los tratamientos o solo en algunos",
+        "x": 373,
+        "y": 598.5,
+        "w": 463,
+        "h": 58.5
+      }
+    }
+  },
+  {
+    "archivo": "clinica-abono-paso.png",
+    "ancho": 390,
+    "alto": 844,
+    "escala": 2,
+    "objetivos": {
+      "aviso": {
+        "etiqueta": "Al reservar pagas $10.000 por Mercado Pago (texto del local)",
+        "x": 24,
+        "y": 32.9,
+        "w": 342,
+        "h": 117
+      },
+      "resumen": {
+        "etiqueta": "Resumen de la reserva: tratamiento, profesional, día y hora",
+        "x": 24,
+        "y": 247.5,
+        "w": 342,
+        "h": 152.5
+      },
+      "confirmar": {
+        "etiqueta": "Confirmar reserva → pago del abono",
+        "x": 20,
+        "y": 766.4,
+        "w": 350,
+        "h": 60
+      }
+    }
+  },
+  {
+    "archivo": "clinica-abono.png",
+    "ancho": 390,
+    "alto": 844,
+    "escala": 2,
+    "objetivos": {
+      "hoja": {
+        "etiqueta": "Antes de pagar: vas a pagar $10.000",
+        "x": 16,
+        "y": 516,
+        "w": 358,
+        "h": 304
+      },
+      "monto": {
+        "etiqueta": "Vas a pagar $10.000",
+        "x": 35,
+        "y": 558,
+        "w": 320,
+        "h": 30
+      },
+      "irAPagar": {
+        "etiqueta": "Entiendo, ir a pagar (Mercado Pago)",
+        "x": 35,
+        "y": 709,
+        "w": 320,
+        "h": 50.5
+      }
+    }
+  },
+  {
+    "archivo": "clinica-agenda.png",
+    "ancho": 1440,
+    "alto": 900,
+    "escala": 2,
+    "objetivos": {
+      "cita": {
+        "etiqueta": "Cita: Javiera Paredes Muñoz · Kinesiología musculoesquelética",
+        "x": 335,
+        "y": 600,
+        "w": 354.3,
+        "h": 56
+      },
+      "enAtencion": {
+        "etiqueta": "En atención: Pedro Vidal Contreras · Evaluación kinésica",
+        "x": 335,
+        "y": 420,
+        "w": 354.3,
+        "h": 76
+      },
+      "nuevaCita": {
+        "etiqueta": "Nueva cita (+ Cita)",
+        "x": 1304.4,
+        "y": 32,
+        "w": 65.6,
+        "h": 36
+      },
+      "kinesiologa": {
+        "etiqueta": "Columna de Catalina Vergara (Kinesióloga)",
+        "x": 333,
+        "y": 16,
+        "w": 359.3,
+        "h": 864
+      },
+      "cosmetologa": {
+        "etiqueta": "Columna de Daniela Fuentealba (Cosmetóloga)",
+        "x": 692.3,
+        "y": 16,
+        "w": 359.3,
+        "h": 864
+      },
+      "medico": {
+        "etiqueta": "Columna de Andrés Lagos (Médico estético)",
+        "x": 1051.7,
+        "y": 16,
+        "w": 359.3,
+        "h": 864
+      },
+      "fichaClinica": {
+        "etiqueta": "Ficha clínica (acceso desde la agenda)",
+        "x": 586.9,
+        "y": 28,
+        "w": 157.3,
+        "h": 44
+      }
+    }
+  },
+  {
+    "archivo": "clinica-asistente-temas.png",
+    "ancho": 1440,
+    "alto": 900,
+    "escala": 2,
+    "objetivos": {
+      "tema": {
+        "etiqueta": "Tema: Drenaje post operatorio (texto que manda tal cual)",
+        "x": 473,
+        "y": 264.9,
+        "w": 730,
+        "h": 102.5
+      },
+      "disparadores": {
+        "etiqueta": "Se dispara con: post operatorio, me operaron, lipo…",
+        "x": 486,
+        "y": 298.6,
+        "w": 650,
+        "h": 15.8
+      },
+      "escalar": {
+        "etiqueta": "Tema que no contesta el bot: te avisa y deja el chat para el equipo",
+        "x": 473,
+        "y": 485.9,
+        "w": 730,
+        "h": 86
+      },
+      "agregar": {
+        "etiqueta": "Agregar un tema",
+        "x": 473,
+        "y": 583.9,
+        "w": 103.1,
+        "h": 17.3
+      }
+    }
+  },
+  {
+    "archivo": "clinica-asistente-tratamiento.png",
+    "ancho": 1440,
+    "alto": 900,
+    "escala": 2,
+    "objetivos": {
+      "pregunta": {
+        "etiqueta": "Pregunta de la paciente por un tratamiento",
+        "x": 653,
+        "y": 329.5,
+        "w": 454.3,
+        "h": 72.3
+      },
+      "respuesta": {
+        "etiqueta": "Responde con precio, duración e indicaciones del tratamiento",
+        "x": 897.7,
+        "y": 407.8,
+        "w": 454.3,
+        "h": 157.9
+      },
+      "horas": {
+        "etiqueta": "Ofrece horas reales de la agenda",
+        "x": 897.7,
+        "y": 646.5,
+        "w": 454.3,
+        "h": 114.8
+      },
+      "ficha": {
+        "etiqueta": "Ficha de la paciente: visitas y próxima cita",
+        "x": 637,
+        "y": 132.5,
+        "w": 731,
+        "h": 104.3
+      }
+    }
+  },
+  {
+    "archivo": "clinica-asistente.png",
+    "ancho": 1440,
+    "alto": 900,
+    "escala": 2,
+    "objetivos": {
+      "conversacion": {
+        "etiqueta": "Conversación en la lista (WhatsApp)",
+        "x": 256,
+        "y": 438.3,
+        "w": 348,
+        "h": 107
+      },
+      "instagram": {
+        "etiqueta": "Conversación de Instagram atendida por el asistente",
+        "x": 256,
+        "y": 557.3,
+        "w": 348,
+        "h": 89.3
+      },
+      "pideRut": {
+        "etiqueta": "Pide nombre completo y RUT antes de agendar",
+        "x": 897.7,
+        "y": 285.3,
+        "w": 454.3,
+        "h": 94.5
+      },
+      "mensajeAsistente": {
+        "etiqueta": "Syna agenda la hora",
+        "x": 897.7,
+        "y": 460.6,
+        "w": 454.3,
+        "h": 136.8
+      },
+      "citaAgendada": {
+        "etiqueta": "Cita agendada por el asistente",
+        "x": 950,
+        "y": 606.4,
+        "w": 294.8,
+        "h": 15.8
+      },
+      "tomarControl": {
+        "etiqueta": "Tomar el control (derivar a una persona)",
+        "x": 1208.2,
+        "y": 47.3,
+        "w": 143.8,
+        "h": 36
+      }
+    }
+  },
+  {
+    "archivo": "clinica-ficha-paciente.png",
+    "ancho": 1440,
+    "alto": 900,
+    "escala": 2,
+    "objetivos": {
+      "resumen": {
+        "etiqueta": "Resumen del paciente: 35 años · RUT · 8 sesiones · próxima 09/10",
+        "x": 328,
+        "y": 32,
+        "w": 1024,
+        "h": 88.5
+      },
+      "consentimiento": {
+        "etiqueta": "Consentimiento firmado",
+        "x": 799.6,
+        "y": 50,
+        "w": 142.7,
+        "h": 16.5
+      },
+      "sesiones": {
+        "etiqueta": "8 sesiones · última y próxima",
+        "x": 504.5,
+        "y": 50,
+        "w": 275.1,
+        "h": 16.5
+      },
+      "edadRut": {
+        "etiqueta": "Edad (35 años) y RUT",
+        "x": 341,
+        "y": 48.3,
+        "w": 143.6,
+        "h": 20
+      },
+      "alerta": {
+        "etiqueta": "Alerta: alergias (revisar antes de atender)",
+        "x": 359,
+        "y": 88.5,
+        "w": 65.9,
+        "h": 19
+      },
+      "notas": {
+        "etiqueta": "Notas: lesión de hombro derecho, piel sensible",
+        "x": 328,
+        "y": 171,
+        "w": 1024,
+        "h": 82
+      },
+      "evolucion": {
+        "etiqueta": "Evolución de la sesión 7 (cerrada)",
+        "x": 328,
+        "y": 307.5,
+        "w": 1024,
+        "h": 183.5
+      },
+      "imprimir": {
+        "etiqueta": "Imprimir / guardar PDF",
+        "x": 1254.7,
+        "y": 45,
+        "w": 84.3,
+        "h": 26.5
+      }
+    }
+  },
+  {
+    "archivo": "clinica-historial-notas.png",
+    "ancho": 1440,
+    "alto": 900,
+    "escala": 2,
+    "objetivos": {
+      "visitas": {
+        "etiqueta": "10 visitas · 8 hechas",
+        "x": 828.9,
+        "y": 183,
+        "w": 126.1,
+        "h": 39.5
+      },
+      "nota": {
+        "etiqueta": "Nota interna del paciente (privada del equipo)",
+        "x": 485,
+        "y": 239,
+        "w": 470,
+        "h": 212
+      },
+      "historial": {
+        "etiqueta": "Historial de sesiones (últimas visitas)",
+        "x": 485,
+        "y": 467,
+        "w": 470,
+        "h": 311
+      }
+    }
+  },
+  {
+    "archivo": "clinica-reserva-consentimiento.png",
+    "ancho": 390,
+    "alto": 844,
+    "escala": 2,
+    "objetivos": {
+      "aviso": {
+        "etiqueta": "Aviso: leer y aceptar el consentimiento informado",
+        "x": 24,
+        "y": 149.5,
+        "w": 342,
+        "h": 105.9
+      },
+      "documento": {
+        "etiqueta": "Leer el consentimiento informado (documento del local)",
+        "x": 63.4,
+        "y": 204.5,
+        "w": 248.7,
+        "h": 34.2
+      },
+      "aceptacion": {
+        "etiqueta": "Consentimiento informado: Sí, lo leí y lo acepto (obligatorio)",
+        "x": 24,
+        "y": 377.4,
+        "w": 342,
+        "h": 80
+      },
+      "rut": {
+        "etiqueta": "RUT (exigido)",
+        "x": 24,
+        "y": 473.4,
+        "w": 342,
+        "h": 107.9
+      },
+      "confirmar": {
+        "etiqueta": "Confirmar reserva",
+        "x": 20,
+        "y": 766.4,
+        "w": 350,
+        "h": 60
+      }
+    }
+  },
+  {
+    "archivo": "clinica-reserva-datos.png",
+    "ancho": 390,
+    "alto": 844,
+    "escala": 2,
+    "objetivos": {
+      "nombre": {
+        "etiqueta": "Nombre",
+        "x": 24,
+        "y": 87.5,
+        "w": 342,
+        "h": 82
+      },
+      "apellido": {
+        "etiqueta": "Apellido (nombre y apellidos por separado)",
+        "x": 24,
+        "y": 185.5,
+        "w": 342,
+        "h": 82
+      },
+      "edad": {
+        "etiqueta": "Edad (obligatoria)",
+        "x": 24,
+        "y": 479.5,
+        "w": 342,
+        "h": 82
+      },
+      "rut": {
+        "etiqueta": "RUT (exigido, valida el dígito verificador)",
+        "x": 24,
+        "y": 577.5,
+        "w": 342,
+        "h": 107.9
+      },
+      "confirmar": {
+        "etiqueta": "Confirmar reserva",
+        "x": 20,
+        "y": 766.4,
+        "w": 350,
+        "h": 60
+      }
+    }
+  },
+  {
+    "archivo": "clinica-reserva-tema.png",
+    "ancho": 390,
+    "alto": 844,
+    "escala": 2,
+    "objetivos": {
+      "tratamiento": {
+        "etiqueta": "Tratamiento elegido: Evaluación kinésica",
+        "x": 24,
+        "y": 322.5,
+        "w": 342,
+        "h": 94.5
+      },
+      "categorias": {
+        "etiqueta": "Categorías: Todos · Kinesiología · Facial · Corporal · Depilación láser · Medicina estética",
+        "x": 24,
+        "y": 207.5,
+        "w": 366,
+        "h": 42
+      },
+      "tituloCategoria": {
+        "etiqueta": "Categoría Kinesiología",
+        "x": 24,
+        "y": 281.5,
+        "w": 342,
+        "h": 28
+      },
+      "buscador": {
+        "etiqueta": "Buscar tratamiento",
+        "x": 28,
+        "y": 145.5,
+        "w": 334,
+        "h": 46
+      },
+      "pasos": {
+        "etiqueta": "Paso 1 de 3: Tratamientos (sin paso de profesional)",
+        "x": 76,
+        "y": 7.5,
+        "w": 202.3,
+        "h": 16
+      },
+      "continuar": {
+        "etiqueta": "Continuar: Evaluación kinésica · $25.000",
+        "x": 20,
+        "y": 766.4,
+        "w": 350,
+        "h": 60
+      }
+    }
   }
 ]

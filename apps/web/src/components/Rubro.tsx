@@ -36,7 +36,7 @@ export function HeroRubro({ eyebrow, titulo, bajada, origen, escritorio, celular
           {celular && (
             <div className="hero-entra absolute left-0 bottom-0 w-[30%]" style={{ animationDelay: "400ms" }}>
               <div className="hero-flota rounded-[22px] border-[5px] border-ink bg-white overflow-hidden shadow-[0_18px_40px_-12px_rgba(15,26,43,.45)]">
-                <Image src={celular.src} alt={celular.alt} width={celular.w} height={celular.h}
+                <Image src={celular.src} alt={celular.alt} width={celular.w} height={celular.h} priority
                   sizes="(min-width: 1024px) 190px, 28vw" className="w-full h-auto" />
               </div>
             </div>

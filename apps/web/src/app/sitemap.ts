@@ -22,6 +22,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/como-funciona`,       lastModified: now, priority: 0.9 },
     { url: `${BASE}/barberias`,           lastModified: now, priority: 0.9 },
     { url: `${BASE}/estetica`,            lastModified: now, priority: 0.9 },
+    { url: `${BASE}/clinicas`,            lastModified: now, priority: 0.9 },
     { url: `${BASE}/agencias`,            lastModified: now, priority: 0.8 },
     { url: `${BASE}/precios`,             lastModified: now, priority: 0.9 },
     { url: `${BASE}/locales`,             lastModified: now, priority: 0.8 },

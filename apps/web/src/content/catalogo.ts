@@ -144,7 +144,7 @@ export const RUBROS: Rubro[] = [
   },
   {
     id: "estetica",
-    nombre: "Estética y clínicas",
+    nombre: "Estética y spa",
     titular: "Tratamientos ordenados y pacientes que vuelven.",
     texto: "Catálogo de tratamientos, ficha de cada cliente y recordatorios que bajan las inasistencias.",
     puntos: [
@@ -153,6 +153,18 @@ export const RUBROS: Rubro[] = [
       "Consentimiento antes de agendar",
     ],
     href: "/estetica",
+  },
+  {
+    id: "clinicas",
+    nombre: "Clínicas",
+    titular: "Tu clínica atendiendo, no respondiendo mensajes.",
+    texto: "Para clínicas estéticas y de kinesiología: reserva con RUT y consentimiento, ficha clínica por paciente y un asistente que agenda por WhatsApp.",
+    puntos: [
+      "Consentimiento informado antes de agendar",
+      "Ficha clínica con alergias y evolución",
+      "Abono al reservar con Mercado Pago",
+    ],
+    href: "/clinicas",
   },
   {
     id: "pilates",

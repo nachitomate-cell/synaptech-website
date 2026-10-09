@@ -46,6 +46,18 @@ const ALT: Record<string, string> = {
   "agencia-comisiones-vendedora": "Comisiones de una vendedora",
   "agencia-catalogo": "Catálogo de paseos con precios",
   "agencia-catalogo-paseo": "Ficha de un paseo con precio, precio residente, tickets y temporada",
+  "clinica-reserva-tema": "Página de reservas de una clínica: tratamientos por especialidad",
+  "clinica-reserva-datos": "Página de reservas: nombre, apellidos, edad y RUT del paciente",
+  "clinica-reserva-consentimiento": "Página de reservas: consentimiento informado obligatorio",
+  "clinica-abono-panel": "Configuración del abono al reservar con Mercado Pago",
+  "clinica-abono-paso": "Página de reservas: aviso del abono antes de confirmar",
+  "clinica-abono": "Pago del abono con Mercado Pago",
+  "clinica-agenda": "Agenda del día de una clínica con kinesióloga, cosmetóloga y médico estético",
+  "clinica-ficha-paciente": "Ficha clínica del paciente con alergias, notas, consentimiento y evolución",
+  "clinica-historial-notas": "Historial de sesiones y notas internas de un paciente",
+  "clinica-asistente": "Bandeja con el asistente pidiendo RUT y agendando a una paciente",
+  "clinica-asistente-tratamiento": "El asistente responde por un tratamiento y ofrece horas reales",
+  "clinica-asistente-temas": "Respuestas fijas por tema del asistente",
 };
 
 export const CAPTURAS: Record<string, Captura> = Object.fromEntries(
@@ -280,5 +292,80 @@ export const MODULOS_AGENCIA: Modulo[] = [
       p("agencia-catalogo-paseo", "temporada", "Temporadas", "Fuera de las fechas, el paseo deja de ofrecerse solo."),
     ],
     capsulas: [],
+  },
+];
+
+/* Recorrido de la página /clinicas, sobre capturas de una clínica ficticia
+   ("Clínica Vértice", emulador, 09-10-2026). Inventario verificado:
+   devtools/guias-panel/sitio-web/clinica/INVENTARIO.md. La ficha clínica, la
+   evolución por sesión y los avisos a pacientes son del rubro clínica
+   (tenants/{tid}.tipo = 'clinica', lo deja configurado SynapTech). */
+export const MODULOS_CLINICA: Modulo[] = [
+  {
+    id: "reserva-clinica",
+    nombre: "Reserva de pacientes",
+    titular: "Tus pacientes reservan con todos sus datos, y aceptan antes de llegar.",
+    bajada: "Tratamientos por especialidad, datos del paciente con RUT validado y el consentimiento informado aceptado en la misma reserva.",
+    pasos: [
+      p("clinica-reserva-tema", "categorias", "Tratamientos por especialidad", "Kinesiología, facial, corporal: cada uno con su precio y su duración, y un buscador."),
+      p("clinica-reserva-tema", "pasos", "Tres pasos, sin enredos", "Tratamiento, día y hora, y datos. El paciente reserva en menos de un minuto."),
+      p("clinica-reserva-datos", "rut", "RUT validado", "Nombre y apellidos por separado, edad y RUT con dígito verificador. Llegan completos a la ficha."),
+      p("clinica-reserva-consentimiento", "aceptacion", "Consentimiento informado antes de agendar", "El paciente lee tu documento y confirma que lo acepta. Sin eso, no se agenda."),
+    ],
+    capsulas: [],
+  },
+  {
+    id: "abono",
+    nombre: "Abono al reservar",
+    titular: "Un abono que asegura la hora.",
+    bajada: "Cobra una parte al reservar con el Mercado Pago de tu clínica, y se descuenta del valor el día de la atención.",
+    pasos: [
+      p("clinica-abono-panel", "tipo", "Monto fijo o porcentaje", "Decides cuánto: un monto fijo o un porcentaje del tratamiento."),
+      p("clinica-abono-panel", "servicios", "En todos o en algunos tratamientos", "Por ejemplo, solo en los tratamientos largos o de mayor valor."),
+      p("clinica-abono-paso", "aviso", "El paciente sabe cuánto paga", "Lo ve antes de confirmar, junto al resumen de su reserva."),
+      p("clinica-abono", "irAPagar", "Y paga con Mercado Pago", "La plata llega directo a la cuenta de tu clínica."),
+    ],
+    capsulas: [],
+  },
+  {
+    id: "agenda-clinica",
+    nombre: "Agenda",
+    titular: "Cada profesional con su agenda, la clínica con todo a la vista.",
+    bajada: "Kinesiología, cosmetología y medicina estética en la misma pantalla, con la ficha del paciente a un toque.",
+    pasos: [
+      p("clinica-agenda", "kinesiologa", "Cada profesional, su columna", "Las sesiones del día de cada profesional, con su estado y su valor."),
+      p("clinica-agenda", "enAtencion", "Quién está en atención", "El color de cada cita dice si está por llegar, en atención o completada."),
+      p("clinica-agenda", "fichaClinica", "La ficha clínica desde la agenda", "Abres la ficha del paciente sin salir del día."),
+    ],
+    capsulas: ["tutorial-agenda-barbero"],
+  },
+  {
+    id: "ficha",
+    nombre: "Ficha clínica",
+    titular: "La historia de cada paciente, ordenada y segura.",
+    bajada: "Alergias, notas, consentimiento firmado y la evolución de cada sesión, en una sola ficha.",
+    pasos: [
+      p("clinica-ficha-paciente", "alerta", "Alergias a la vista", "Lo que hay que revisar antes de atender, destacado arriba."),
+      p("clinica-ficha-paciente", "consentimiento", "Consentimiento firmado, guardado", "El paciente firma en pantalla y la ficha guarda una copia que no se puede modificar."),
+      p("clinica-ficha-paciente", "evolucion", "Evolución de cada sesión", "Se abre sola al completar la cita, para registrar lo que se hizo."),
+      p("clinica-ficha-paciente", "imprimir", "Imprimir o guardar en PDF", "Para entregarle al paciente o a otro profesional."),
+      p("clinica-historial-notas", "nota", "Notas internas del equipo", "Lo que todos deben saber del paciente, visible solo para la clínica."),
+    ],
+    capsulas: [],
+  },
+  {
+    id: "asistente-clinica",
+    nombre: "Asistente IA",
+    titular: "Deja de responder mensajes y dedícate a atender.",
+    bajada: "Syna responde por cada tratamiento, pide los datos que necesitas y agenda en el WhatsApp de tu clínica.",
+    pasos: [
+      p("clinica-asistente-tratamiento", "respuesta", "Responde por cada tratamiento", "Precio, duración e indicaciones, con lo que tú cargas en el catálogo."),
+      p("clinica-asistente-tratamiento", "horas", "Ofrece horas reales", "Ofrece solo las horas libres de la agenda de cada profesional."),
+      p("clinica-asistente", "pideRut", "Pide nombre completo y RUT", "Antes de agendar, para que el paciente llegue con su ficha lista."),
+      p("clinica-asistente", "citaAgendada", "Y deja la hora agendada", "La cita aparece en tu agenda y el chat lo muestra."),
+      p("clinica-asistente-temas", "tema", "Respuestas fijas por tema", "Tus indicaciones de siempre, como un drenaje post operatorio, dichas tal como las escribes tú."),
+      p("clinica-asistente-temas", "escalar", "Lo delicado, a una persona", "Los temas que eliges los deriva a tu equipo y te avisa."),
+    ],
+    capsulas: ["reel-asistente-whatsapp"],
   },
 ];
