@@ -43,6 +43,7 @@ export default function Hilo({ h }: { h: HiloT }) {
             {h.parrafos.map((p, i) => <p key={i}>{p}</p>)}
           </div>
 
+          {h.tabla && <p className="sm:hidden mt-5 -mb-3 text-[12px] font-semibold text-accent">Desliza la tabla para verla completa →</p>}
           {h.tabla && (
             <div className="mt-5 overflow-x-auto -mx-5 px-5 sm:mx-0 sm:px-0">
               <table className="w-full min-w-[560px] text-[14px] border-separate border-spacing-0 rounded-xl overflow-hidden border border-border-subtle bg-white">
@@ -55,9 +56,9 @@ export default function Hilo({ h }: { h: HiloT }) {
                 </thead>
                 <tbody>
                   {h.tabla.filas.map((f, r) => (
-                    <tr key={r}>
+                    <tr key={r} className={r === h.tabla!.destacarFila ? "bg-lime/15" : ""}>
                       {f.map((v, i) => (
-                        <td key={i} className={`px-3 py-2.5 align-top border-b border-border-subtle ${i === 0 ? "font-medium text-ink" : "text-text-secondary"} ${i === h.tabla!.destacar ? "bg-lime/15" : ""}`}>
+                        <td key={i} className={`px-3 py-2.5 align-top border-b border-border-subtle ${i === 0 ? "font-medium text-ink" : r === h.tabla!.destacarFila ? "text-ink font-medium" : "text-text-secondary"} ${i === h.tabla!.destacar ? "bg-lime/15" : ""}`}>
                           <Celda v={v} />
                         </td>
                       ))}
@@ -65,6 +66,7 @@ export default function Hilo({ h }: { h: HiloT }) {
                   ))}
                 </tbody>
               </table>
+              {h.tabla.nota && <p className="mt-2 text-[12px] text-text-muted leading-relaxed">{h.tabla.nota}</p>}
             </div>
           )}
 
