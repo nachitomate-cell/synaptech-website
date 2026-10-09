@@ -4,6 +4,7 @@ import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import SynaChat from "@/components/SynaChat";
 import TrackingScripts from "@/components/TrackingScripts";
 
 /* Titulares en una grotesca apretada, como Square; el cuerpo sigue en DM Sans. */
@@ -134,6 +135,7 @@ export default function RootLayout({
       >
         {children}
         <WhatsAppButton />
+        <SynaChat />
         <TrackingScripts />
         <Analytics />
         <SpeedInsights />

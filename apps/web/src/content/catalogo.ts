@@ -73,7 +73,7 @@ export const FAMILIAS: Familia[] = [
     recorrido: "caja",
     capsula: "capsula-1-caja",
     items: [
-      { label: "Pago online al reservar", desc: "Mercado Pago y Flow para abonos y reservas" },
+      { label: "Pago online al reservar", desc: "Mercado Pago para abonos y reservas" },
       { label: "Máquina POS TUU", desc: "El cobro del mesón queda dentro de la cita" },
       { label: "Caja y comisiones", desc: "Cierre diario y liquidación de cada profesional" },
       { label: "Boletas ante el SII", desc: "Boleta de honorarios por profesional, automática" },

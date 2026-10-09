@@ -25,7 +25,7 @@ const DOLORES: Dolor[] = [
   { dolor: "Te escriben a toda hora para pedir hora", solucion: "Syna agenda por WhatsApp", detalle: "El asistente con IA responde precios y horarios y deja la cita agendada en el chat, en el número de tu barbería, aunque estés cortando." },
   { dolor: "Cuadrar la caja y el 50 % a mano", solucion: "Caja y comisiones automáticas", detalle: "Cada cobro queda con su medio de pago y la liquidación de cada barbero sale calculada, con propinas y adelantos." },
   { dolor: "El arriendo de sillón y sus boletas", solucion: "Boletas que salen solas", detalle: "Cada atención emite la boleta de honorarios del barbero, con su RUT, y la del local por el arriendo y los productos." },
-  { dolor: "Horas perdidas por gente que no llega", solucion: "Recordatorios y abono online", detalle: "Confirmación y recordatorio antes de cada cita, y si quieres, un abono al reservar con Mercado Pago o Flow." },
+  { dolor: "Horas perdidas por gente que no llega", solucion: "Recordatorios y abono online", detalle: "Confirmación y recordatorio antes de cada cita, y si quieres, un abono al reservar con Mercado Pago." },
   { dolor: "Clientes que se van con otro barbero", solucion: "Un club que los hace volver", detalle: "Sellos por visita, premios y rangos, con la tarjeta guardada en el teléfono del cliente." },
   { dolor: "Las ceras y pomadas que no rotan", solucion: "Tus productos a la venta", detalle: "Stock, venta en el mesón y en tu tienda online, y la comisión por producto de cada barbero." },
 ];

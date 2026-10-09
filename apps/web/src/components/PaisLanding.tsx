@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { PAISES, PLANES_LATAM, type CodigoPais } from "@/content/paises";
+import { PAISES, PLANES_LATAM, SEDE_ADICIONAL_LATAM, type CodigoPais } from "@/content/paises";
 import { waLink } from "@/content/catalogo";
 import { metaPagina } from "@/lib/seo";
 
@@ -49,7 +49,9 @@ export default function PaisLanding({ codigo }: { codigo: CodigoPais }) {
 
   const FAQ = [
     { q: `¿Necesito una empresa en Chile para usarlo?`, a: `No. Tu local se crea con su país, ${p.nombre}, y todo funciona con tu moneda, tu hora y tus números.` },
-    { q: "¿Cómo pago la mensualidad?", a: "En dólares estadounidenses. Los dos primeros meses van por nuestra cuenta, y el medio de pago lo coordinamos contigo antes de que terminen." },
+    { q: "¿Cómo pago la mensualidad?", a: "En dólares, con tarjeta. Los 2 primeros meses son gratis: la tarjeta se pide recién al final del período gratis, y te avisamos a los 45 días." },
+    { q: "¿Hay plan anual?", a: "Sí: pagas 10 meses y usas 12. Son US$150 al año el plan Agenda y US$200 al año el plan Agenda + IA." },
+    { q: "Tengo varias sedes, ¿cuánto pago?", a: `La primera sede paga su plan y cada sede adicional suma US$${SEDE_ADICIONAL_LATAM.mes} al mes. Por ejemplo, 4 sedes con el plan Agenda son US$15 + 3 × US$10 = US$45 al mes.` },
     { q: `¿Emite boletas o facturas en ${p.nombre}?`, a: `Todavía no. La emisión de documentos tributarios solo existe en Chile; en ${p.nombre} la agenda, la caja, el club y el asistente funcionan completos.` },
     { q: `Uso ${p.competencia}, ¿cómo me cambio?`, a: "Te mudamos gratis: traemos tus servicios con precios y duraciones, tu equipo con sus horarios y tu lista de clientes. Todo se hace por videollamada." },
     { q: "¿Hay permanencia?", a: "No. Te vas cuando quieras, y tus datos son tuyos: te los entregamos exportados." },
@@ -140,8 +142,8 @@ export default function PaisLanding({ codigo }: { codigo: CodigoPais }) {
               <p className="eyebrow mb-4">Precio de lanzamiento</p>
               <h2 className="text-ink">Un precio por local, no por silla.</h2>
               <p className="text-text-secondary text-lg mt-5 leading-relaxed">
-                Profesionales ilimitados y sin comisión por reserva. Los 2 primeros meses
-                van por nuestra cuenta.
+                Sin cobro por barbero ni comisión por reserva. Los 2 primeros meses son gratis
+                y la tarjeta se pide recién al final.
               </p>
             </div>
             <div className="grid md:grid-cols-2 gap-5 max-w-4xl">
@@ -153,6 +155,7 @@ export default function PaisLanding({ codigo }: { codigo: CodigoPais }) {
                     <span className="font-display font-bold text-[44px] tracking-tight leading-none">US${pl.precio}</span>
                     <span className={`text-sm ml-1 ${pl.popular ? "text-white/60" : "text-text-muted"}`}>/ mes por local</span>
                   </p>
+                  <p className={`text-sm mt-2 ${pl.popular ? "text-white/70" : "text-text-secondary"}`}>o US${pl.anual} al año: 10 meses pagados por 12</p>
                   <p className={`mt-4 leading-relaxed ${pl.popular ? "text-white/80" : "text-text-secondary"}`}>{pl.descripcion}</p>
                   <ul className="mt-6 flex flex-col gap-3 flex-1">
                     {pl.incluye.map((d) => (
@@ -167,9 +170,12 @@ export default function PaisLanding({ codigo }: { codigo: CodigoPais }) {
                 </article>
               ))}
             </div>
-            <p className="text-sm text-text-muted mt-5 max-w-4xl">
-              Precios en dólares estadounidenses, por local y por mes. Es el precio de lanzamiento para
-              los primeros locales de {p.nombre}.
+            <div className="mt-5 max-w-4xl rounded-[24px] border border-border-subtle p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center gap-3 justify-between">
+              <p className="text-ink"><span className="font-semibold">¿Varias sedes?</span> La primera paga su plan y cada sede adicional suma US${SEDE_ADICIONAL_LATAM.mes} al mes (US${SEDE_ADICIONAL_LATAM.anual} al año).</p>
+              <p className="text-sm text-text-muted shrink-0">4 sedes con Agenda: US$15 + 3 × US$10 = US$45 al mes</p>
+            </div>
+            <p className="text-sm text-text-muted mt-4 max-w-4xl">
+              Precios en dólares estadounidenses. Se paga con tarjeta; la pides recién al final de los 2 meses gratis y te avisamos a los 45 días.
             </p>
           </div>
         </section>

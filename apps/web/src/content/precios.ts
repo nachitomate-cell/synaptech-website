@@ -92,7 +92,7 @@ export const COMPARATIVA: Grupo[] = [
     filas: [
       { label: "Caja diaria con cierre y cuadratura", basico: true, pro: true, full: true },
       { label: "Comisiones y liquidación por profesional", ayuda: "PDF, Excel y archivo de nómina para el banco", basico: true, pro: true, full: true },
-      { label: "Pago online al reservar (Mercado Pago, Flow)", ayuda: "La comisión del medio de pago la cobra el proveedor", basico: true, pro: true, full: true },
+      { label: "Pago online al reservar (Mercado Pago)", ayuda: "La comisión del medio de pago la cobra el proveedor", basico: true, pro: true, full: true },
       { label: "Máquina POS TUU integrada a la cita", basico: true, pro: true, full: true },
       { label: "Métricas del negocio y exportar a Excel", basico: true, pro: true, full: true },
       { label: "Boletas automáticas ante el SII (arriendo de sillón)", basico: "Adicional", pro: "Adicional", full: "Adicional" },

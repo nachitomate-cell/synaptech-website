@@ -57,22 +57,25 @@ export const PAISES: Record<CodigoPais, Pais> = {
   },
 };
 
+/* Precios para Latinoamérica, decididos por Ignacio el 09-10-2026 (reemplazan
+   los de validación del 08-10). Cobro en dólares con tarjeta; 2 meses gratis y
+   la tarjeta se pide al final del período gratis, con aviso a los 45 días.
+   Anual = 10 meses pagados por 12. Sin cobro por profesional. */
 export const PLANES_LATAM = [
   {
-    id: "agenda", nombre: "Agenda", precio: 15,
+    id: "agenda", nombre: "Agenda", precio: 15, anual: 150,
     descripcion: "Para ordenar el local y que los clientes vuelvan.",
     incluye: [
-      "Reserva online 24/7 con tu marca",
-      "Agenda de cada profesional, ilimitados",
-      "Fichas de clientes con su historial",
-      "Confirmaciones y recordatorios automáticos",
-      "Club de fidelidad con sellos y premios",
-      "Caja y comisiones del equipo",
+      "Página de reservas con tu marca",
+      "Panel completo: agenda, caja, clientes, comisiones e informes",
+      "Club de sellos con Apple Wallet y Google Wallet",
+      "Recordatorios por WhatsApp",
+      "Profesionales ilimitados",
     ],
   },
   {
-    id: "asistente", nombre: "Agenda + Asistente IA", precio: 20, popular: true,
-    descripcion: "Todo lo anterior, y un asistente que responde y agenda por WhatsApp.",
+    id: "asistente", nombre: "Agenda + IA", precio: 20, anual: 200, popular: true,
+    descripcion: "Todo el plan Agenda, más el asistente con IA que responde el WhatsApp y agenda solo.",
     incluye: [
       "Todo el plan Agenda",
       "Syna, el asistente con IA, en el WhatsApp de tu local",
@@ -81,3 +84,6 @@ export const PLANES_LATAM = [
     ],
   },
 ];
+
+/* Cada sede adicional: la primera paga su plan y cada sede extra suma esto. */
+export const SEDE_ADICIONAL_LATAM = { mes: 10, anual: 100 };
