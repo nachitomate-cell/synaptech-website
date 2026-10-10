@@ -21,7 +21,7 @@ export default function VienesDe() {
               <Link href="/comparar" className="font-semibold text-ink border-b-2 border-lime pb-0.5 hover:border-ink">Todas las comparaciones →</Link>
             </div>
           </div>
-          <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-3 m-0 p-0 list-none">
+          <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 m-0 p-0 list-none">
             {COMPETIDORES.map((c) => (
               <li key={c.id}>
                 <Link href={`/comparar/${c.id}`} title={`Alternativa a ${c.nombre}`}

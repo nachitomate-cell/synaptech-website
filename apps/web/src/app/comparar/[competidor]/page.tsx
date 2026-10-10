@@ -25,7 +25,11 @@ export function generateMetadata({ params }: { params: { competidor: string } })
   if (!c) return {};
   return metaPagina({
     title: `Alternativa a ${c.nombre}: precios 2026 vs SynapTech`,
-    description: `¿Buscas una alternativa a ${c.nombre}? Precios con 1, 3, 6 y 9 profesionales, WhatsApp, IA y boletas frente a SynapTech. Datos de ${c.sitio} con fecha.`,
+    // Google corta cerca de 155: con nombres largos se cae el dominio de la fuente.
+    description: [
+      `¿Buscas una alternativa a ${c.nombre}? Precios con 1, 3, 6 y 9 profesionales, WhatsApp, IA y boletas frente a SynapTech. Datos de ${c.sitio} con fecha.`,
+      `¿Buscas una alternativa a ${c.nombre}? Precios con 1, 3, 6 y 9 profesionales, WhatsApp, IA y boletas frente a SynapTech, con fuente y fecha.`,
+    ].find((d) => d.length <= 155) ?? `Alternativa a ${c.nombre}: precios con 1, 3, 6 y 9 profesionales frente a SynapTech, con fuente y fecha.`,
     path: `/comparar/${c.id}`,
   });
 }

@@ -47,7 +47,7 @@ export default function CompararPage() {
         <section className="pb-12">
           <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10">
             <p className="font-semibold text-ink mb-4">Compara con la agenda que usas hoy</p>
-            <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 m-0 p-0 list-none">
+            <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 m-0 p-0 list-none">
               {COMPETIDORES.map((c) => (
                 <li key={c.id}>
                   <Link href={`/comparar/${c.id}`} className="group flex flex-col justify-between h-full rounded-[20px] border border-border-subtle bg-white p-4 hover:shadow-card-hover hover:-translate-y-0.5 transition-all">
