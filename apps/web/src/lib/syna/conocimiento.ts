@@ -1,4 +1,4 @@
-import { PLANES, ANUAL, ADICIONALES, COMPARATIVA, fmt } from "@/content/precios";
+import { PLANES, ANUAL, ADICIONALES, COMPARATIVA, fmt, bolsasWaTexto } from "@/content/precios";
 import { FAMILIAS, RUBROS, WA_NUMERO } from "@/content/catalogo";
 import { HILOS } from "@/content/comparar";
 import { COMPETIDORES, fechaDe } from "@/content/competidores";
@@ -110,6 +110,7 @@ ${seccionGuias()}
 - La mudanza desde otra agenda (AgendaPro, WeiBook, AgendaYA, Fresha, una planilla) es gratis: servicios con precios y duraciones, equipo con horarios y lista de clientes. Al 4 de octubre de 2026 se habían importado 28.978 fichas de clientes.
 - El asistente con IA de los locales (también se llama Syna) funciona con Claude, de Anthropic.
 - La app SynapTech Studio está en App Store y Google Play, para el dueño y su equipo.
+- Confirmaciones y recordatorios de cita por WhatsApp: hay dos vías y el local elige. (1) La vía oficial de WhatsApp, desde el número verificado de SynapTech con el nombre del local en el mensaje: es la recomendada porque no arriesga bloqueos del número del local; en Chile se paga por bolsas (${bolsasWaTexto()}). (2) Desde el WhatsApp del propio local, vinculado por QR. Si preguntan el precio de la segunda vía, ofrece revisarlo por WhatsApp; no inventes un precio. El asistente Syna de los locales siempre responde desde el número del local.
 - La boleta de honorarios de cada profesional puede salir sola al cerrar la cita, con folio real del SII (adicional "Facturación automática").
 - Integraciones en uso: WhatsApp, Instagram, Mercado Pago, TUU, Webpay (para pagar la mensualidad), SII, Google Wallet, Apple Wallet, Google Calendar, Google Maps, Meta (Pixel), Google Cloud.
 - Fuera de Chile (Perú con locales piloto; Colombia, México y Argentina más adelante) los precios son en dólares, con tarjeta: ${PLANES_LATAM.map((p) => `${p.nombre} US$${p.precio} al mes o US$${p.anual} al año (${p.incluye.join("; ")})`).join(". ")}. Mensajes de WhatsApp para confirmaciones y recordatorios: cada local trae un cupo al mes según el país (${cuposWhatsApp()}); pasado el cupo se suman más al costo. Nunca digas que son ilimitados ni "incluidos". Cada sede adicional US$${SEDE_ADICIONAL_LATAM.mes} al mes (US$${SEDE_ADICIONAL_LATAM.anual} al año): por ejemplo, 4 sedes con Agenda son US$45 al mes. Sin cobro por profesional. Los 2 primeros meses son gratis y la tarjeta se pide al final del período gratis, con aviso a los 45 días. La mudanza desde Fresha o Weibook la hacemos nosotros, sin costo. Fuera de Chile no se emiten boletas ni facturas. Para partir: WhatsApp.
