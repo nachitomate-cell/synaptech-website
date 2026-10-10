@@ -1,7 +1,7 @@
 import { PLANES, ANUAL, ADICIONALES, COMPARATIVA, fmt } from "@/content/precios";
 import { FAMILIAS, RUBROS, WA_NUMERO } from "@/content/catalogo";
 import { HILOS } from "@/content/comparar";
-import { COMPETIDORES, FECHA_VERIFICACION } from "@/content/competidores";
+import { COMPETIDORES, fechaDe } from "@/content/competidores";
 import { FAQ_BARBERIAS, FAQ_PELUQUERIAS, FAQ_ESTETICA, FAQ_CLINICAS, FAQ_ASISTENTE } from "@/content/faq-rubros";
 import { BHE_MODELOS, BHE_RETENCION, BHE_FAQ, FICHA_FAQ } from "@/content/guias";
 import { PLANES_LATAM, SEDE_ADICIONAL_LATAM } from "@/content/paises";
@@ -57,10 +57,10 @@ function seccionComparaciones() {
   const comp = COMPETIDORES.map((c) => {
     const precios = ["1", "3", "6", "9"].map((n, i) => `${n} prof.: ${c.precios[i].valor}`).join(", ");
     const filas = c.filas.map((f) => `${f.tema}: ellos ${f.ellos ?? "no publicado"}; SynapTech ${f.nosotros}`).join(". ");
-    return `- ${c.nombre} (${c.sitio}). ${c.modelo} Precios mensuales: ${precios}. ${c.resumen} ${filas}. Página: /comparar/${c.id}`;
+    return `- ${c.nombre} (${c.sitio}, datos del ${fechaDe(c)}). ${c.modelo} Precios mensuales: ${precios}. ${c.notaPrecios} ${c.resumen} ${filas}. Página: /comparar/${c.id}`;
   }).join("\n");
   const hilos = HILOS.map((h) => `- ${h.pregunta} → ${h.parrafos.join(" ")}${h.cierre ? " " + h.cierre : ""}`).join("\n");
-  return `## Comparaciones con otras agendas (datos revisados el ${FECHA_VERIFICACION}, cada uno con fuente en su página)
+  return `## Comparaciones con otras agendas (cada una con la fecha de sus datos y fuente en su página)
 ${comp}
 
 ## Preguntas típicas antes de cambiarse (página /comparar)

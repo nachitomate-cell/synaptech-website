@@ -10,6 +10,7 @@ import { MODULOS_CLINICA } from "@/content/recorrido";
 import { metaPagina } from "@/lib/seo";
 import FaqSeo from "@/components/FaqSeo";
 import { FAQ_CLINICAS } from "@/content/faq-rubros";
+import VienesDe from "@/components/VienesDe";
 
 export const metadata = metaPagina({
   title: "Software para clínicas estéticas en Chile | SynapTech",
@@ -95,6 +96,7 @@ export default function ClinicasPage() {
         </section>
 
         <Cambiate />
+        <VienesDe />
         <FaqSeo titulo="Software para clínicas estéticas: lo que más nos preguntan." preguntas={FAQ_CLINICAS} />
         <Pricing />
         <CtaFinal />

@@ -1,8 +1,9 @@
 /* Páginas "SynapTech vs <agenda>" (/comparar/<id>), hechas para aparecer cuando
    alguien busca a la competencia en Google ("agendapro precios", "alternativa a
    weibook"...).
-   TODO dato de otra empresa sale de lo verificado el 09-10-2026 en sus páginas
-   públicas: devtools/guias-panel/sitio-web/comparar/competencia-2026-10-09.json
+   TODO dato de otra empresa sale de lo verificado en sus páginas públicas:
+   devtools/guias-panel/sitio-web/comparar/competencia-2026-10-09.json y, para
+   Novai, AgendaLibre, TuTurno, Booksy y Setmore, competencia-2026-10-10.json
    (+ capturas). Si un precio cambia, se vuelve a medir antes de tocar esto.
    Reglas:
    - Honestidad primero: si con pocos profesionales la otra es más barata, se
@@ -11,6 +12,8 @@
    - Logos: los oficiales de cada marca (public/competencia/, fuente en
      devtools/.../comparar/logos/logos.json). Marcas ajenas, uso solo para
      identificarlas en la comparación. */
+
+import { PLANES_LATAM } from "./paises";
 
 export type Precio = { valor: string; nota?: string };
 export type Fila = { tema: string; ellos: string | null; nosotros: string };
@@ -36,6 +39,13 @@ export type Competidor = {
   testimonio?: { cita: string[]; autor: string; rol: string; local: string; fecha: string };
   faq: { q: string; a: string }[];
   fuentes: { texto: string; url: string }[];
+  /** Fecha en que se verificaron SUS datos (si no, FECHA_VERIFICACION). */
+  verificado?: string;
+  /** "¿Qué es X?" en una o dos frases neutras; si falta, se arma con origen y modelo. */
+  queEs?: string;
+  /** Cobra en dólares (TuTurno, Booksy, Setmore): nuestra columna muestra el
+      precio fuera de Chile, con el de Chile en la nota. Lo lee gente de los dos lados. */
+  enDolares?: boolean;
 };
 
 export const FECHA_VERIFICACION = "9 de octubre de 2026";
@@ -46,6 +56,16 @@ export const SYNAPTECH = {
   precios: [NOSOTROS_PRECIO, NOSOTROS_PRECIO, NOSOTROS_PRECIO, NOSOTROS_PRECIO] as [Precio, Precio, Precio, Precio],
   pro: "$49.900 + IVA",
 };
+
+const [AGENDA_LATAM, IA_LATAM] = PLANES_LATAM;
+const NOSOTROS_USD: Precio = { valor: `US$${AGENDA_LATAM.precio}`, nota: `Fuera de Chile, profesionales ilimitados. En Chile, ${NOSOTROS_PRECIO.valor}` };
+
+export const SYNAPTECH_USD = {
+  precios: [NOSOTROS_USD, NOSOTROS_USD, NOSOTROS_USD, NOSOTROS_USD] as [Precio, Precio, Precio, Precio],
+  pro: `US$${IA_LATAM.precio} fuera de Chile (${SYNAPTECH.pro} en Chile)`,
+};
+
+export const nosotrosDe = (c: Competidor) => (c.enDolares ? SYNAPTECH_USD : SYNAPTECH);
 
 export const COMPETIDORES: Competidor[] = [
   {
@@ -102,6 +122,7 @@ export const COMPETIDORES: Competidor[] = [
     id: "weibook", nombre: "WeiBook", logo: "/competencia/weibook.svg", logoTipo: "wordmark", color: "#246BFE", sitio: "weibook.co",
     origen: "Startup latinoamericana con sede en Delaware, EE. UU. (dicho por ellos); soporte en hora de Colombia",
     modelo: "Cobra en dólares por tramos de profesionales, y cada función extra es un complemento de US$15 al mes.",
+    queEs: "WeiBook (weibook.co) es una agenda online para salones y barberías de una startup latinoamericana que, según su sitio, tiene sede en Delaware, EE. UU., con soporte en hora de Colombia. Cobra en dólares por tramos de profesionales, y cada función extra es un complemento de US$15 al mes.",
     precios: [
       { valor: "US$15", nota: "HomeStudio" },
       { valor: "US$39", nota: "Ultra, solo con plan anual" },
@@ -342,6 +363,222 @@ export const COMPETIDORES: Competidor[] = [
     ],
     fuentes: [{ texto: "Te Reservo: precios y calculadora", url: "https://tereservo.cl/" }],
   },
+  /* Desde acá, verificados el 10-10-2026: comparar/competencia-2026-10-10.json (+ capturas). */
+  {
+    id: "novai", nombre: "Novai", logo: "/competencia/novai.png", logoTipo: "icono", color: "#161414", sitio: "novaiapp.com",
+    verificado: "10 de octubre de 2026",
+    origen: "Chile",
+    modelo: "Cobra $9.990 al mes por cuenta, y cada cuenta es una persona: si son varios, cada uno crea la suya.",
+    queEs: "Novai (novaiapp.com) es una agenda chilena para profesionales que atienden solos: se maneja conversando con un asistente por WhatsApp, incluso con notas de voz. Cuesta $9.990 al mes por cuenta, y cada cuenta es una persona.",
+    precios: [
+      { valor: "$9.990", nota: "Plan Novai" },
+      { valor: "3 × $9.990", nota: "Una cuenta por persona, agendas separadas" },
+      { valor: "6 × $9.990", nota: "Una cuenta por persona, agendas separadas" },
+      { valor: "9 × $9.990", nota: "Una cuenta por persona, agendas separadas" },
+    ],
+    notaPrecios: "Leído en su página; no dice si incluye IVA. Novai no tiene plan de equipo: según su página, si son varios, cada uno crea su propia cuenta.",
+    resumen: "Si atiendes solo, Novai es más barato. Con equipo no tiene plan: cada profesional paga su cuenta y lleva su agenda aparte, y su asistente conversa con el dueño, no con los clientes.",
+    filas: [
+      { tema: "Cómo cobra", ellos: "$9.990 al mes por cuenta; cada cuenta es una persona", nosotros: "Por local, con profesionales ilimitados" },
+      { tema: "Asistente por WhatsApp", ellos: "Conversa solo con el dueño: agenda, bloquea horas y entiende notas de voz. A los clientes no les contesta", nosotros: "Syna conversa con tus clientes en el WhatsApp del local y agenda sola (plan Pro)" },
+      { tema: "Mensajes a los clientes", ellos: "Te deja el mensaje listo para que lo envíes tú", nosotros: "Confirmación y recordatorio automáticos por WhatsApp, bolsas desde $3.990 + IVA" },
+      { tema: "Equipo", ellos: "Cada profesional con su cuenta y su link", nosotros: "Un panel con la agenda de todo el equipo, caja y comisiones" },
+      { tema: "Boletas ante el SII", ellos: "No: según sus términos, las boletas corren por tu cuenta", nosotros: "Boletas de honorarios automáticas, como adicional" },
+      { tema: "Tarjeta del club en Google Wallet y Apple Wallet", ellos: null, nosotros: "Incluida en todos los planes" },
+    ],
+    cuandoEllos: "Atiendes solo y quieres llevar tu agenda conversando por WhatsApp, al menor precio.",
+    cuandoNosotros: [
+      "Tienes equipo y quieres una sola agenda para el local.",
+      "Quieres que el asistente les conteste y les agende a tus clientes, no solo a ti.",
+      "Necesitas caja, comisiones y club de fidelidad en el mismo sistema.",
+    ],
+    migracion: "Te ayudamos a mudarte gratis: cargamos tus servicios, tu equipo y tu lista de clientes.",
+    faq: [
+      { q: "¿Cuánto cuesta Novai?", a: "Según su página al 10 de octubre de 2026: $9.990 al mes, en pesos chilenos, con 14 días de prueba sin tarjeta. Cada cuenta es una persona; si son varios, cada uno crea la suya. No dice si el precio incluye IVA." },
+      { q: "¿Novai les contesta a mis clientes por WhatsApp?", a: "No. Su página lo dice así: \"Novai conversa solo contigo\". El dueño le escribe para agendar o bloquear horas, y los mensajes para los clientes los deja listos para que los envíes tú. En SynapTech, Syna conversa con tus clientes en el WhatsApp del local y agenda sola (plan Pro, $49.900 + IVA)." },
+    ],
+    fuentes: [
+      { texto: "Novai: inicio y precio", url: "https://novaiapp.com/#precio" },
+      { texto: "Novai: términos", url: "https://novaiapp.com/terminos" },
+    ],
+  },
+  {
+    id: "agendalibre", nombre: "AgendaLibre", logo: "/competencia/agendalibre.svg", logoTipo: "icono", color: "#0F766E", sitio: "agendalibre.cl",
+    verificado: "10 de octubre de 2026",
+    origen: "Chile (Sova SpA)",
+    dichoPorEllos: "Más de 200 negocios en Chile, según su página",
+    modelo: "Cobra una base por plan más un monto por cada profesional adicional, y tiene un plan gratis hasta 2 profesionales, sin WhatsApp.",
+    precios: [
+      { valor: "$0", nota: "Gratis: sin WhatsApp, 80 citas al mes" },
+      { valor: "$13.470 + IVA", nota: "Starter" },
+      { valor: "$22.440 + IVA", nota: "Starter" },
+      { valor: "$44.910 + IVA", nota: "Pro (Starter llega hasta 8)" },
+    ],
+    notaPrecios: "Leído en la calculadora de su página de precios. Con boleta SII y Mercado Pago (plan Pro) son $20.970 + IVA con 3 profesionales y $32.940 + IVA con 6.",
+    resumen: "Hasta 8 profesionales AgendaLibre es más barato, y su plan Pro trae boleta SII. Con 9 o más, SynapTech cuesta menos, y suma un asistente con IA que conversa y agenda por WhatsApp y el club con tarjeta en Wallet.",
+    filas: [
+      { tema: "Cómo cobra", ellos: "Base + $2.990 a $4.990 + IVA por profesional adicional, según el plan", nosotros: "Por local, con profesionales ilimitados" },
+      { tema: "Recordatorios por WhatsApp", ellos: "Uno por cita: 15 a 25 al mes por profesional según el plan; bolsas desde $3.000 por 50", nosotros: "Confirmación y recordatorio por la vía oficial de WhatsApp, bolsas desde $3.990 + IVA por 50" },
+      { tema: "Asistente con IA que agenda", ellos: null, nosotros: "Syna, incluida en el plan Pro ($49.900 + IVA)" },
+      { tema: "Boletas ante el SII", ellos: "En el plan Pro, con FacturaLibre: un RUT emisor, para citas pagadas online; +$8.990 + IVA por RUT adicional", nosotros: "Adicional de $29.900 + IVA al mes: la boleta de honorarios de cada profesional y la del local salen solas al cerrar la cita" },
+      { tema: "Tarjeta del club en Google Wallet y Apple Wallet", ellos: null, nosotros: "Incluida en todos los planes" },
+      { tema: "Plan gratis", ellos: "Hasta 2 profesionales y 80 citas al mes, sin WhatsApp", nosotros: "En desarrollo; hoy, 14 días de prueba sin tarjeta" },
+    ],
+    cuandoEllos: "Tu equipo es de hasta 8 profesionales y buscas el precio más bajo con recordatorios por WhatsApp, o atiendes solo y te sirve un plan gratis.",
+    cuandoNosotros: [
+      "Tu equipo es de 9 o más, o va a crecer: el precio no sube por profesional.",
+      "Quieres un asistente con IA que converse con tus clientes y agende en el WhatsApp del local.",
+      "Quieres el club de fidelidad con la tarjeta en Google Wallet y Apple Wallet.",
+    ],
+    migracion: "Te mudamos gratis desde AgendaLibre: servicios con precios y duraciones, tu equipo y tu lista de clientes.",
+    faq: [
+      { q: "¿Cuánto cuesta AgendaLibre?", a: "Según su página de precios al 10 de octubre de 2026: plan Gratis hasta 2 profesionales (sin WhatsApp, 80 citas al mes); Starter $7.490 + IVA con un profesional y $2.990 + IVA por cada adicional, hasta 8; Pro $12.990 + IVA y $3.990 + IVA por adicional, hasta 20; Business $35.990 + IVA con 3 incluidos y $4.990 + IVA por adicional." },
+      { q: "¿AgendaLibre emite boletas ante el SII?", a: "Sí, en su plan Pro: boleta SII o de honorarios al completar la cita, en alianza con FacturaLibre, con un RUT emisor y para citas pagadas online. Cada RUT adicional cuesta $8.990 + IVA al mes. En SynapTech, la facturación automática es un adicional de $29.900 + IVA al mes por local: la boleta de honorarios de cada profesional y la del local salen solas al cerrar la cita." },
+    ],
+    fuentes: [
+      { texto: "AgendaLibre: precios", url: "https://agendalibre.cl/precios" },
+      { texto: "AgendaLibre: inicio", url: "https://agendalibre.cl/" },
+    ],
+  },
+  {
+    id: "tuturno", nombre: "TuTurno", logo: "/competencia/tuturno.svg", logoTipo: "icono", color: "#5D5FEF", sitio: "tuturno.io",
+    verificado: "10 de octubre de 2026", enDolares: true,
+    origen: "Argentina (Tuturno.io SRL)",
+    dichoPorEllos: "600+ empresas, según su página",
+    modelo: "Cobra en dólares por profesional, con descuento por cantidad, y los recordatorios automáticos por WhatsApp se pagan aparte.",
+    precios: [
+      { valor: "US$8,50", nota: "Básico" },
+      { valor: "US$17,85", nota: "Básico" },
+      { valor: "US$22,95", nota: "Básico" },
+      { valor: "US$28,05", nota: "Básico" },
+    ],
+    notaPrecios: "Plan Básico tal como lo muestra su página a un visitante en Chile: con el 15% de su código de referidos ya aplicado y sin los recordatorios automáticos por WhatsApp, que se cobran aparte. No dice si incluye impuestos. Su página avisa que reajusta precios en enero, abril, julio y octubre.",
+    resumen: "Fuera de Chile, con 1 a 3 profesionales TuTurno es más barato; desde 6, SynapTech cuesta menos (US$15 al mes por local). En Chile, nuestro plan es $29.900 + IVA y TuTurno cuesta menos con cualquier equipo. La diferencia está en WhatsApp: allá los recordatorios automáticos se pagan aparte y no publica un asistente con IA.",
+    filas: [
+      { tema: "Cómo cobra", ellos: "Por profesional, en dólares, con descuento por cantidad", nosotros: "Por local, con profesionales ilimitados" },
+      { tema: "Recordatorios por WhatsApp", ellos: "En el plan Básico se envían a mano, con un clic; los automáticos se cobran aparte", nosotros: "Automáticos e incluidos en el plan fuera de Chile; en Chile, bolsas desde $3.990 + IVA" },
+      { tema: "Asistente con IA que agenda", ellos: null, nosotros: "Syna, en el plan Agenda + IA (US$20 fuera de Chile; plan Pro de $49.900 + IVA en Chile)" },
+      { tema: "Facturación", ellos: "Facturas de AFIP con un clic (Argentina)", nosotros: "Boletas de honorarios ante el SII, solo en Chile" },
+      { tema: "Tarjeta del club en Google Wallet y Apple Wallet", ellos: null, nosotros: "Incluida en todos los planes" },
+      { tema: "Prueba gratis", ellos: "14 días, sin medios de pago", nosotros: "2 meses fuera de Chile; 14 días sin tarjeta en Chile" },
+    ],
+    cuandoEllos: "Estás en Argentina y necesitas facturar con AFIP, o tu equipo es chico y buscas el precio más bajo.",
+    cuandoNosotros: [
+      "Fuera de Chile y con 6 profesionales o más: pagas US$15 al mes por local, no por persona.",
+      "Quieres un asistente con IA que converse con tus clientes y agende en el WhatsApp del local.",
+      "Quieres el club de fidelidad con la tarjeta en el teléfono del cliente.",
+    ],
+    migracion: "Te mudamos gratis desde TuTurno: servicios, equipo y lista de clientes.",
+    faq: [
+      { q: "¿Cuánto cuesta TuTurno?", a: "Según su página al 10 de octubre de 2026, el precio de lista por profesional al mes es US$10 (Básico), US$16 (Profesional) y US$21 (Empresa). La página aplica de entrada un 15% por código de referidos y descuentos por cantidad: con el plan Básico, 3 profesionales pagan US$17,85 y 9 pagan US$28,05 al mes. Los recordatorios automáticos por WhatsApp se cobran aparte." },
+      { q: "¿Cuánto cuesta SynapTech fuera de Chile?", a: "US$15 al mes por local con el plan Agenda, o US$20 con el asistente con IA, sin cobro por profesional. Cada sede adicional son US$10 al mes y los primeros dos meses son gratis." },
+    ],
+    fuentes: [
+      { texto: "TuTurno: planes", url: "https://www.tuturno.io/suscripciones/planes" },
+      { texto: "TuTurno: preguntas frecuentes", url: "https://www.tuturno.io/ayuda/pf" },
+    ],
+  },
+  {
+    id: "booksy", nombre: "Booksy", logo: "/competencia/booksy.png", logoTipo: "icono", color: "#218CAC", sitio: "booksy.com",
+    verificado: "10 de octubre de 2026", enDolares: true,
+    origen: "Opera en EE. UU., Europa y Brasil",
+    dichoPorEllos: "38+ millones de usuarios, según su sitio",
+    modelo: "Cobra una suscripción base más un monto por cada agenda adicional, y una tarifa por cada cliente nuevo que llega por Boost, su promoción en el marketplace.",
+    queEs: "Booksy (booksy.com) es una plataforma de reservas para barberías y salones con marketplace y app para clientes. Opera en Estados Unidos, Europa y Brasil, y no publica precios para Chile ni para Latinoamérica de habla hispana. Cobra una suscripción base más un monto por cada agenda adicional.",
+    precios: [
+      { valor: "US$29,99", nota: "EE. UU., + impuestos" },
+      { valor: "US$69,99", nota: "EE. UU., + impuestos" },
+      { valor: "US$129,99", nota: "EE. UU., + impuestos" },
+      { valor: "US$189,99", nota: "EE. UU., + impuestos" },
+    ],
+    notaPrecios: "Booksy no publica precios para Chile: estos son los de su página para EE. UU. en español. En España: 34,99 € + IVA con 1 agenda y 8 € + IVA por empleado adicional; en Brasil: R$ 99,99 y R$ 20 por agenda adicional.",
+    resumen: "Booksy no tiene precios para Chile. Con sus tarifas de EE. UU., un equipo de 6 paga US$129,99 al mes, y Boost cobra el 30% de la primera visita de cada cliente nuevo. SynapTech cobra un precio fijo por local y suma un asistente con IA que agenda por WhatsApp.",
+    filas: [
+      { tema: "Precios para Chile", ellos: "No publicados; opera en EE. UU., Europa y Brasil", nosotros: "$29.900 + IVA al mes por local" },
+      { tema: "Cómo cobra", ellos: "Base + US$20 por usuario adicional (EE. UU.)", nosotros: "Por local, con profesionales ilimitados" },
+      { tema: "Cliente nuevo desde su marketplace", ellos: "Boost: 30% de la primera visita, con tope de US$100 (EE. UU.)", nosotros: "Directorio de locales sin comisión por reserva" },
+      { tema: "WhatsApp", ellos: null, nosotros: "Desde el WhatsApp de tu local" },
+      { tema: "Asistente con IA que agenda", ellos: null, nosotros: "Syna, incluida en el plan Pro ($49.900 + IVA)" },
+      { tema: "Tarjeta de sellos", ellos: "Dentro de la app de Booksy, incluida", nosotros: "En Google Wallet y Apple Wallet, sin descargar una app" },
+    ],
+    cuandoEllos: "Atiendes en EE. UU., Europa o Brasil y quieres aparecer en un marketplace con millones de usuarios.",
+    cuandoNosotros: [
+      "Estás en Chile: precio en pesos, soporte en Chile y boletas ante el SII.",
+      "No quieres pagar por cada cliente nuevo que llega por el marketplace.",
+      "Quieres que tus clientes guarden la tarjeta de sellos en Wallet, sin descargar una app.",
+    ],
+    migracion: "Te mudamos gratis desde Booksy: servicios, equipo y lista de clientes.",
+    faq: [
+      { q: "¿Booksy funciona en Chile?", a: "Booksy no publica precios ni una versión para Chile. En su selector de países aparecen EE. UU., Reino Unido, Irlanda, Francia, Polonia, España, Brasil, Alemania y Sudáfrica (revisado el 10 de octubre de 2026)." },
+      { q: "¿Cuánto cuesta Booksy?", a: "Según su página de precios al 10 de octubre de 2026: en EE. UU., US$29,99 al mes más impuestos y US$20 por usuario adicional; en España, 34,99 € + IVA y 8 € + IVA por empleado adicional; en Brasil, R$ 99,99 y R$ 20 por agenda adicional. Con Boost cobra el 30% de la primera visita de cada cliente nuevo (tope de US$100 en EE. UU. y 50 € + IVA en España; exento en Brasil)." },
+    ],
+    fuentes: [
+      { texto: "Booksy: precios EE. UU. (español)", url: "https://biz.booksy.com/es-us/precios" },
+      { texto: "Booksy: precios España", url: "https://biz.booksy.com/es-es/precios" },
+      { texto: "Booksy: preços Brasil", url: "https://biz.booksy.com/pt-br/precos" },
+      { texto: "Booksy: tarjetas de fidelidad", url: "https://biz.booksy.com/es-es/funcionalidades/tarjetas-de-fidelidad-digitales" },
+    ],
+  },
+  {
+    id: "setmore", nombre: "Setmore", logo: "/competencia/setmore.svg", logoTipo: "wordmark", color: "#1B3D32", sitio: "setmore.com",
+    verificado: "10 de octubre de 2026", enDolares: true,
+    origen: "Origen no informado; teléfono de contacto de EE. UU.",
+    modelo: "Cobra en dólares por usuario: gratis hasta 4, y US$12 por usuario al mes en el plan Pro (US$5 con pago anual).",
+    queEs: "Setmore (setmore.com) es una agenda online con un plan gratis hasta 4 usuarios y un plan Pro que cobra en dólares por usuario. Su página de precios no dice de qué país es; su teléfono de contacto es de EE. UU.",
+    precios: [
+      { valor: "US$0", nota: "Free" },
+      { valor: "US$0", nota: "Free, hasta 4 usuarios" },
+      { valor: "US$72", nota: "Pro, pago mensual" },
+      { valor: "US$108", nota: "Pro, pago mensual" },
+    ],
+    notaPrecios: "Precios en dólares de su página; no dice si incluyen impuestos. Con el Pro pagado anual, que es lo que muestra por defecto, son US$30 (6 usuarios) y US$45 (9) al mes. El plan Free no trae SMS ni sincronización bidireccional del calendario.",
+    resumen: "Setmore es gratis hasta 4 usuarios, y con pago anual su plan Pro es barato. No publica WhatsApp ni un asistente con IA que agende: su recepcionista es una persona, por US$99 al mes y solo en EE. UU.",
+    filas: [
+      { tema: "Cómo cobra", ellos: "Por usuario: gratis hasta 4; Pro US$12 al mes (US$5 con pago anual)", nosotros: "Por local, con profesionales ilimitados" },
+      { tema: "Recordatorios", ellos: "Por correo en el plan Free; SMS en el Pro (500 al mes por miembro)", nosotros: "Confirmación y recordatorio por WhatsApp" },
+      { tema: "WhatsApp", ellos: null, nosotros: "Desde el WhatsApp de tu local" },
+      { tema: "Quién contesta", ellos: "Live Receptionist: una persona que contesta llamadas, US$99 al mes, solo EE. UU.", nosotros: "Syna, IA que responde y agenda por WhatsApp (US$20 fuera de Chile; plan Pro en Chile)" },
+      { tema: "Tarjeta del club en Google Wallet y Apple Wallet", ellos: null, nosotros: "Incluida en todos los planes" },
+      { tema: "Boletas ante el SII", ellos: null, nosotros: "Boletas de honorarios automáticas, como adicional" },
+    ],
+    cuandoEllos: "Son hasta 4 personas, te bastan las reservas con recordatorios por correo y no te complica que todo sea en dólares.",
+    cuandoNosotros: [
+      "Tus clientes te escriben por WhatsApp y quieres que se les responda y agende ahí.",
+      "Quieres caja, comisiones y club de fidelidad en el mismo sistema.",
+      "Necesitas soporte en Chile y en español.",
+    ],
+    migracion: "Te mudamos gratis desde Setmore: servicios, equipo y lista de clientes.",
+    faq: [
+      { q: "¿Setmore es gratis?", a: "Sí, hasta 4 usuarios, según su página al 10 de octubre de 2026: citas ilimitadas, página de reservas y recordatorios por correo. El plan Pro cuesta US$12 por usuario al mes, o US$5 con pago anual, y suma SMS y sincronización bidireccional del calendario." },
+    ],
+    fuentes: [
+      { texto: "Setmore: precios", url: "https://www.setmore.com/pricing" },
+      { texto: "Setmore: precios (español)", url: "https://www.setmore.com/es/pricing" },
+    ],
+  },
 ];
 
 export const competidor = (id: string) => COMPETIDORES.find((c) => c.id === id);
+
+export const fechaDe = (c: Competidor) => c.verificado ?? FECHA_VERIFICACION;
+
+/* Las búsquedas por marca son de tres tipos: qué es, cuánto cuesta y cuál es la
+   alternativa ("weibook que es", "agendapro precios", "alternativa a fresha").
+   Cada página responde las tres: lo propio de la ficha + estas dos si faltan. */
+const minuscula = (t: string) => t.charAt(0).toLowerCase() + t.slice(1);
+export function queEsDe(c: Competidor) {
+  return c.queEs ?? `${c.nombre} (${c.sitio}) es una plataforma de agenda online con origen en ${c.origen}. ${c.modelo}${c.dichoPorEllos ? ` Según su sitio, ${minuscula(c.dichoPorEllos.replace(/, según su (página|sitio)( de planes)?$/, ""))}.` : ""}`;
+}
+export function faqDe(c: Competidor) {
+  const lista = [{ q: `¿Qué es ${c.nombre}?`, a: queEsDe(c) }, ...c.faq];
+  if (!c.faq.some((f) => /alternativa/i.test(f.q))) {
+    lista.push(c.enDolares ? {
+      q: `¿Cuál es una buena alternativa a ${c.nombre} en Chile y Latinoamérica?`,
+      a: `Depende de tu local. SynapTech cobra un precio fijo por local con profesionales ilimitados: fuera de Chile, US$${AGENDA_LATAM.precio} al mes, o US$${IA_LATAM.precio} con un asistente con IA que responde y agenda en el WhatsApp de tu local; en Chile, desde $29.900 + IVA. Incluye club de fidelización con Google Wallet y Apple Wallet, y la mudanza desde ${c.nombre} es gratis.`,
+    } : {
+      q: `¿Cuál es una buena alternativa a ${c.nombre} en Chile?`,
+      a: `Depende de tu local. SynapTech cobra un precio fijo por local con profesionales ilimitados (desde $29.900 + IVA), incluye club de fidelización con Google Wallet y Apple Wallet, y en el plan Pro ($49.900 + IVA) un asistente con IA que responde y agenda en el WhatsApp de tu local. La mudanza desde ${c.nombre} es gratis.`,
+    });
+  }
+  return lista;
+}

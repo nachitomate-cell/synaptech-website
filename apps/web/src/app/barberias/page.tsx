@@ -14,6 +14,7 @@ import { MODULOS } from "@/content/recorrido";
 import { metaPagina } from "@/lib/seo";
 import FaqSeo from "@/components/FaqSeo";
 import { FAQ_BARBERIAS } from "@/content/faq-rubros";
+import VienesDe from "@/components/VienesDe";
 
 export const metadata = metaPagina({
   title: "Software y agenda online para barberías en Chile | SynapTech",
@@ -63,6 +64,7 @@ export default function BarberiasPage() {
 
         <PlataEnOrden />
         <Cambiate />
+        <VienesDe />
 
         <section className="py-16 md:py-20 bg-mist">
           <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10">

@@ -7,17 +7,17 @@ export function MarcaCompetidor({ c, chico = false }: { c: Competidor; chico?: b
   if (!c.logo) return <span className="font-display font-bold text-ink text-xl tracking-tight">{c.nombre}</span>;
   if (c.logoTipo === "icono") {
     return (
-      <span className="inline-flex items-center gap-2">
+      <span className={`inline-flex items-center ${chico ? "gap-1.5" : "gap-2"}`}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={c.logo} alt="" className={chico ? "h-7 w-7 object-contain" : "h-8 w-8 sm:h-11 sm:w-11 object-contain"} />
-        <span className={`font-display font-bold text-ink tracking-tight whitespace-nowrap ${chico ? "text-lg" : "text-lg sm:text-2xl"}`}>{c.nombre}</span>
+        <img src={c.logo} alt="" className={chico ? "h-5 w-5 object-contain" : "h-8 w-8 sm:h-11 sm:w-11 object-contain"} />
+        <span className={`font-display font-bold text-ink tracking-tight whitespace-nowrap ${chico ? "text-[15px]" : "text-lg sm:text-2xl"}`}>{c.nombre}</span>
       </span>
     );
   }
   return (
     // eslint-disable-next-line @next/next/no-img-element
     <img src={c.logo} alt={`Logo de ${c.nombre}`}
-      className={chico ? "max-h-7 max-w-[140px] w-auto object-contain" : "max-h-8 sm:max-h-12 max-w-full sm:max-w-[200px] w-auto object-contain"} />
+      className={chico ? "h-6 w-auto max-w-full object-contain object-left" :"max-h-8 sm:max-h-12 max-w-full sm:max-w-[200px] w-auto object-contain"} />
   );
 }
 
