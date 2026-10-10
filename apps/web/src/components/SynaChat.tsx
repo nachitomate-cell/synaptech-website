@@ -107,12 +107,18 @@ export default function SynaChat() {
   if (!activa) return null;
   return (
     <>
+      {/* Botón fijo y compacto, del mismo tamaño que el de WhatsApp y en la misma
+          fila, a su izquierda (10-10-2026: la píldora "Pregúntale a Syna" encima
+          del botón de WhatsApp tapaba contenido, sobre todo en el celular). El
+          nombre aparece solo al pasar el mouse. */}
       {!abierto && (
         <button type="button" onClick={() => setAbierto(true)}
-          className={`fixed bottom-24 right-6 z-50 flex items-center gap-2 rounded-full bg-ink text-white pl-2 pr-4 py-2 shadow-lg hover:bg-black transition-all duration-300 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"}`}
+          className={`group fixed bottom-6 right-[88px] z-50 w-14 h-14 rounded-full bg-ink shadow-lg hover:scale-105 flex items-center justify-center transition-all duration-300 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"}`}
           aria-label="Abrir el chat con Syna, el asistente con IA">
-          <span className="w-8 h-8 rounded-full bg-white flex items-center justify-center"><Image src="/assets/synaptech-icon.png" alt="" width={22} height={22} /></span>
-          <span className="text-sm font-semibold">Pregúntale a Syna</span>
+          <span className="w-10 h-10 rounded-full bg-white flex items-center justify-center"><Image src="/assets/synaptech-icon.png" alt="" width={26} height={26} /></span>
+          <span className="pointer-events-none absolute right-full mr-3 whitespace-nowrap rounded-full bg-ink text-white text-[13px] font-semibold px-3 py-1.5 shadow-lg opacity-0 translate-x-1 transition-all duration-200 hidden sm:block group-hover:opacity-100 group-hover:translate-x-0">
+            Pregúntale a Syna
+          </span>
         </button>
       )}
 
