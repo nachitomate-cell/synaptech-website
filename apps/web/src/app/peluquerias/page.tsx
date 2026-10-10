@@ -13,6 +13,7 @@ import { FilaCapsulas } from "@/components/Capsulas";
 import { MODULOS, MODULOS_ESTETICA } from "@/content/recorrido";
 import { FAQ_PELUQUERIAS } from "@/content/faq-rubros";
 import { metaPagina } from "@/lib/seo";
+import VienesDe from "@/components/VienesDe";
 
 /* Página de peluquerías y salones de belleza (09-10-2026). La pidió el mapa de
    keywords: "sistema de reservas peluquería", "software peluquería" y "agenda
@@ -67,6 +68,7 @@ export default function PeluqueriasPage() {
         ))}
 
         <Cambiate />
+        <VienesDe />
 
         <section className="py-16 md:py-20 bg-mist">
           <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10">

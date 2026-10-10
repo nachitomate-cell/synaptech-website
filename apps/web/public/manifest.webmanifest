@@ -4,8 +4,8 @@
   "description": "Agenda online, cobros, club de fidelización y asistente con IA para barberías, salones y centros de estética",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0A0A0A",
-  "theme_color": "#A4E137",
+  "background_color": "#ffffff",
+  "theme_color": "#0A1220",
   "orientation": "portrait",
   "icons": [
     {

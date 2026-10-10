@@ -43,10 +43,16 @@ export const metadata: Metadata = {
   keywords: ["agenda online barbería", "software para barberías Chile", "reservas online peluquería", "club de fidelidad barbería", "asistente IA WhatsApp reservas", "SaaS barberías", "agenda para salones de belleza", "fidelización Google Wallet"],
   // Sin canonical global: cada página declara la suya (lib/seo.ts). Una canonical
   // acá la heredaban /privacidad y /terminos, que quedaban apuntando a la home.
+  /* Favicon = la insignia de la marca (círculo navy con la "S"), la misma de
+     @synaptechspa (10-10-2026). Antes se declaraba un icon.svg con un isotipo
+     viejo que los navegadores preferían sobre el .ico. Google pide un favicon
+     cuadrado y múltiplo de 48 px: de ahí los PNG de 48 y 96. */
   icons: {
     icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/icon.svg", type: "image/svg+xml" }
+      { url: "/favicon.ico", sizes: "48x48" },
+      { url: "/favicon-48x48.png", sizes: "48x48", type: "image/png" },
+      { url: "/favicon-96x96.png", sizes: "96x96", type: "image/png" },
+      { url: "/icon-192x192.png", sizes: "192x192", type: "image/png" },
     ],
     apple: [
       { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }
@@ -87,7 +93,7 @@ export default function RootLayout({
         "@id": "https://www.synaptechspa.cl/#org",
         name: "SynapTech",
         url: "https://www.synaptechspa.cl",
-        logo: "https://www.synaptechspa.cl/assets/synaptech-icon.png",
+        logo: "https://www.synaptechspa.cl/icon-512x512.png",
         description: "Empresa chilena de Viña del Mar que construye y opera SynapTech, plataforma por suscripción de agenda online, cobros, fidelización y asistente con IA para barberías, salones y centros de estética.",
         address: {
           "@type": "PostalAddress",

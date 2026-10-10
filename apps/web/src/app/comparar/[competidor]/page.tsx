@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import Header   from "@/components/Header";
 import Footer   from "@/components/Footer";
 import CtaFinal from "@/components/CtaFinal";
-import { COMPETIDORES, competidor, SYNAPTECH, FECHA_VERIFICACION } from "@/content/competidores";
+import { COMPETIDORES, competidor, nosotrosDe, fechaDe, faqDe, queEsDe } from "@/content/competidores";
 import { SIGNUP_URL, waLink } from "@/content/catalogo";
 import { metaPagina } from "@/lib/seo";
 import { MarcaCompetidor, NombreConPunto } from "@/components/MarcaCompetidor";
@@ -23,8 +23,8 @@ export function generateMetadata({ params }: { params: { competidor: string } })
   const c = competidor(params.competidor);
   if (!c) return {};
   return metaPagina({
-    title: `${c.nombre} vs SynapTech: precios y diferencias (2026)`,
-    description: `${c.nombre} o SynapTech: cuánto cuesta con 1, 3, 6 y 9 profesionales, WhatsApp, asistente con IA y boletas. Datos de ${c.sitio} con fuente y fecha.`,
+    title: `Alternativa a ${c.nombre}: precios 2026 vs SynapTech`,
+    description: `¿Buscas una alternativa a ${c.nombre}? Precios con 1, 3, 6 y 9 profesionales, WhatsApp, IA y boletas frente a SynapTech. Datos de ${c.sitio} con fecha.`,
     path: `/comparar/${c.id}`,
   });
 }
@@ -39,6 +39,9 @@ export default function CompararCompetidor({ params }: { params: { competidor: s
   const c = competidor(params.competidor);
   if (!c) notFound();
   const otros = COMPETIDORES.filter((x) => x.id !== c.id);
+  const fecha = fechaDe(c);
+  const faq = faqDe(c);
+  const nosotros = nosotrosDe(c);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -52,8 +55,17 @@ export default function CompararCompetidor({ params }: { params: { competidor: s
         ],
       },
       {
+        "@type": "Article",
+        headline: `Alternativa a ${c.nombre}: precios y diferencias con SynapTech`,
+        dateModified: "2026-10-10",
+        author: { "@type": "Organization", name: "SynapTech" },
+        publisher: { "@type": "Organization", name: "Synaptech SpA", logo: { "@type": "ImageObject", url: "https://www.synaptechspa.cl/icon-512x512.png" } },
+        about: [{ "@type": "SoftwareApplication", name: c.nombre, url: `https://${c.sitio}` }, { "@type": "SoftwareApplication", name: "SynapTech", url: "https://www.synaptechspa.cl" }],
+        mainEntityOfPage: `https://www.synaptechspa.cl/comparar/${c.id}`,
+      },
+      {
         "@type": "FAQPage",
-        mainEntity: c.faq.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+        mainEntity: faq.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
       },
     ],
   };
@@ -72,8 +84,8 @@ export default function CompararCompetidor({ params }: { params: { competidor: s
             </nav>
             <div className="grid lg:grid-cols-[1.15fr_1fr] gap-10 lg:gap-14 items-center">
               <div>
-                <p className="eyebrow mb-5">Comparación con fuentes · {FECHA_VERIFICACION}</p>
-                <h1 className="text-ink !text-[clamp(2.3rem,4.6vw,4rem)]">{c.nombre} vs SynapTech: precios y diferencias.</h1>
+                <p className="eyebrow mb-5">{c.nombre} vs SynapTech · datos del {fecha}</p>
+                <h1 className="text-ink !text-[clamp(2.3rem,4.6vw,4rem)]">Alternativa a {c.nombre}: precios y diferencias con SynapTech.</h1>
                 <p className="text-text-secondary text-lg md:text-xl leading-relaxed mt-6 max-w-xl">{c.resumen}</p>
                 <div className="flex flex-col sm:flex-row gap-3 mt-8">
                   <a href={`${SIGNUP_URL}?ref=comparar-${c.id}`}
@@ -105,6 +117,16 @@ export default function CompararCompetidor({ params }: { params: { competidor: s
           </div>
         </section>
 
+        {/* Qué es (la búsqueda "<marca> qué es") */}
+        <section className="pb-12">
+          <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10">
+            <div className="max-w-3xl rounded-[24px] border border-border-subtle p-6 sm:p-8">
+              <h2 className="!text-2xl sm:!text-3xl text-ink">¿Qué es {c.nombre}?</h2>
+              <p className="text-text-secondary text-lg mt-3 leading-relaxed">{queEsDe(c)}</p>
+            </div>
+          </div>
+        </section>
+
         {/* Precio según el tamaño del equipo */}
         <section className="py-16 md:py-20 bg-mist">
           <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10">
@@ -125,15 +147,15 @@ export default function CompararCompetidor({ params }: { params: { competidor: s
                     </div>
                     <div className="rounded-xl bg-lime/20 px-3 py-2">
                       <p className="text-[12px] font-bold uppercase tracking-[0.1em] text-accent">SynapTech</p>
-                      <p className="font-display font-bold text-ink text-xl sm:text-2xl tracking-tight">{SYNAPTECH.precios[i].valor}</p>
-                      <p className="text-[12px] text-text-muted">{SYNAPTECH.precios[i].nota}</p>
+                      <p className="font-display font-bold text-ink text-xl sm:text-2xl tracking-tight">{nosotros.precios[i].valor}</p>
+                      <p className="text-[12px] text-text-muted">{nosotros.precios[i].nota}</p>
                     </div>
                   </div>
                 </article>
               ))}
             </div>
             <p className="text-sm text-text-muted mt-5 max-w-3xl">
-              {c.notaPrecios} SynapTech Pro, con el asistente con IA, cuesta {SYNAPTECH.pro} al mes, también con profesionales ilimitados.
+              {c.notaPrecios} {c.enDolares ? "SynapTech con el asistente con IA" : "SynapTech Pro, con el asistente con IA,"} cuesta {nosotros.pro} al mes, también con profesionales ilimitados.
             </p>
           </div>
         </section>
@@ -223,7 +245,7 @@ export default function CompararCompetidor({ params }: { params: { competidor: s
             <p className="eyebrow mb-4">Preguntas frecuentes</p>
             <h2 className="text-ink mb-8">Sobre {c.nombre} y SynapTech.</h2>
             <div className="divide-y divide-border-subtle border-y border-border-subtle">
-              {c.faq.map((f) => (
+              {faq.map((f) => (
                 <details key={f.q} className="group py-5">
                   <summary className="cursor-pointer list-none flex items-center justify-between gap-6 font-semibold text-ink text-lg">
                     {f.q}
@@ -251,7 +273,7 @@ export default function CompararCompetidor({ params }: { params: { competidor: s
               <li><Link href="/comparar" className="inline-flex px-4 py-2 rounded-full border border-ink/15 text-[14px] font-semibold text-ink hover:border-ink">Todas las preguntas →</Link></li>
             </ul>
             <div className="mt-10 text-[13px] text-text-muted max-w-4xl">
-              <p className="font-semibold text-text-secondary">Fuentes, revisadas el {FECHA_VERIFICACION}</p>
+              <p className="font-semibold text-text-secondary">Fuentes, revisadas el {fecha}</p>
               <ul className="mt-2 space-y-1 list-disc pl-5">
                 {c.fuentes.map((f) => (
                   <li key={f.url}><a href={f.url} target="_blank" rel="noopener nofollow" className="underline underline-offset-2 hover:text-ink">{f.texto}</a></li>
