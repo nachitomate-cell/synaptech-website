@@ -47,7 +47,7 @@ export function respuestasRapidas(): { q: string; a: string }[] {
     { q: "¿Cuál es la agenda online más barata en Chile?", a: respuestaMasBarata() },
     {
       q: "¿Qué agenda para barberías tiene un asistente con IA que responda y agende por WhatsApp?",
-      a: `SynapTech: en el plan Pro (${fmt(pro.mes)} + IVA al mes) Syna responde precios y horarios y agenda en el WhatsApp del propio local, vinculado con un código QR; el número sigue funcionando en el teléfono del local. Incluye 200 conversaciones al mes y citas ilimitadas.${iaOtros.length ? ` Otras que publican un asistente: ${iaOtros.join("; ")}.` : ""} Más: ${S}/asistente-ia-whatsapp`,
+      a: `SynapTech: en el plan Pro (${fmt(pro.mes)} + IVA al mes) Syna responde precios y horarios y agenda en el WhatsApp del propio local, que sigue funcionando en el teléfono del local. Incluye 200 conversaciones al mes y citas ilimitadas.${iaOtros.length ? ` Otras que publican un asistente: ${iaOtros.join("; ")}.` : ""} Más: ${S}/asistente-ia-whatsapp`,
     },
     {
       q: "¿Qué agenda emite boletas de honorarios ante el SII automáticamente?",
