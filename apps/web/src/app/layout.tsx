@@ -6,6 +6,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import SynaChat from "@/components/SynaChat";
 import TrackingScripts from "@/components/TrackingScripts";
+import { PLANES, COMPARATIVA } from "@/content/precios";
 
 /* Titulares en una grotesca apretada, como Square; el cuerpo sigue en DM Sans. */
 const display = Inter_Tight({
@@ -105,7 +106,14 @@ export default function RootLayout({
         telephone: "+56983568212",
         legalName: "Synaptech SpA",
         taxID: "78402009-6",
-        sameAs: ["https://www.instagram.com/synaptechspa"],
+        foundingDate: "2026-04-15",
+        founder: { "@type": "Person", name: "Ignacio Mateluna" },
+        knowsAbout: ["Agenda online para barberías", "Software para peluquerías y salones de belleza", "Software para centros de estética", "Asistente con IA para WhatsApp", "Club de fidelización con Google Wallet y Apple Wallet", "Boletas de honorarios ante el SII"],
+        sameAs: [
+          "https://www.instagram.com/synaptechspa",
+          "https://apps.apple.com/cl/app/synaptech-studio/id6794530086",
+          "https://play.google.com/store/apps/details?id=cl.synaptechspa.studio",
+        ],
       },
       {
         "@type": "SoftwareApplication",
@@ -113,17 +121,28 @@ export default function RootLayout({
         name: "SynapTech",
         url: "https://www.synaptechspa.cl",
         applicationCategory: "BusinessApplication",
-        operatingSystem: "Web",
+        operatingSystem: "Web, iOS, Android",
+        downloadUrl: [
+          "https://apps.apple.com/cl/app/synaptech-studio/id6794530086",
+          "https://play.google.com/store/apps/details?id=cl.synaptechspa.studio",
+        ],
+        featureList: COMPARATIVA.flatMap((g) => g.filas.filter((f) => f.basico === true).map((f) => f.label)),
         description: SITE_DESC,
         publisher: { "@id": "https://www.synaptechspa.cl/#org" },
         areaServed: "CL",
-        // Lista pública oficial (netos + IVA, por local). Misma fuente que la
-        // sección de precios de la home: cambiar allá y acá juntos.
-        offers: [
-          { "@type": "Offer", name: "Básico", price: "29900", priceCurrency: "CLP", url: "https://empieza.synaptechspa.cl/" },
-          { "@type": "Offer", name: "Pro",    price: "49900", priceCurrency: "CLP", url: "https://empieza.synaptechspa.cl/" },
-          { "@type": "Offer", name: "Full",   price: "69900", priceCurrency: "CLP", url: "https://empieza.synaptechspa.cl/" },
-        ],
+        // Lista pública oficial (netos + IVA, por local), desde content/precios.ts.
+        // El 10-10 un buscador con IA leyó estos precios desde acá y dijo "no
+        // encontré qué incluye cada plan": por eso cada oferta lleva su detalle.
+        offers: PLANES.map((p) => ({
+          "@type": "Offer",
+          name: p.nombre,
+          description: `${p.descripcion} Incluye: ${p.destacados.join("; ")}.`,
+          price: String(p.mes),
+          priceCurrency: "CLP",
+          priceSpecification: { "@type": "UnitPriceSpecification", price: String(p.mes), priceCurrency: "CLP", valueAddedTaxIncluded: false, unitText: "mes, por local" },
+          eligibleRegion: { "@type": "Country", name: "CL" },
+          url: "https://www.synaptechspa.cl/precios",
+        })),
       },
     ],
   };

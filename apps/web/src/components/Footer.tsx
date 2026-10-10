@@ -25,6 +25,7 @@ const LINKS: Record<string, { l: string; h: string }[]> = {
     { l: "WeiBook vs SynapTech", h: "/comparar/weibook" },
     { l: "AgendaYA vs SynapTech", h: "/comparar/agendaya" },
     { l: "Fresha vs SynapTech", h: "/comparar/fresha" },
+    { l: "Precios de agendas online", h: "/comparar/precios" },
     { l: "Todas las comparaciones", h: "/comparar" },
   ],
   "La app":    [

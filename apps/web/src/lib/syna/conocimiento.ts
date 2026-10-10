@@ -16,7 +16,7 @@ import { PLANES_LATAM, SEDE_ADICIONAL_LATAM } from "@/content/paises";
 
 const valor = (v: boolean | string) => (v === true ? "sí" : v === false ? "no" : v);
 
-function seccionPlanes() {
+export function seccionPlanes() {
   const planes = PLANES.map((p) => `- ${p.nombre} (${p.sub}): ${fmt(p.mes)} + IVA al mes por local. ${p.descripcion} Incluye: ${p.destacados.join("; ")}.`).join("\n");
   const tabla = COMPARATIVA.map((g) => `${g.titulo}:\n` + g.filas.map((f) => `  - ${f.label}${f.ayuda ? ` (${f.ayuda})` : ""}: Básico ${valor(f.basico)} · Pro ${valor(f.pro)} · Full ${valor(f.full)}`).join("\n")).join("\n");
   const adicionales = ADICIONALES.map((a) => `- ${a.nombre}: ${a.precio} + IVA${a.nota ? ` (${a.nota})` : ""}. ${a.desc}`).join("\n");
@@ -35,7 +35,7 @@ ${tabla}
 ${adicionales}`;
 }
 
-function seccionProducto() {
+export function seccionProducto() {
   const familias = FAMILIAS.map((f) => `- ${f.nombre}: ${f.bajada} ` + f.items.map((i) => `${i.label} (${i.desc})`).join("; ") + ".").join("\n");
   const rubros = RUBROS.map((r) => `- ${r.nombre}: ${r.texto} ${r.puntos.join("; ")}.${r.href ? ` Página: ${r.href}` : ""}`).join("\n");
   return `## El producto
@@ -45,7 +45,7 @@ ${familias}
 ${rubros}`;
 }
 
-function seccionPreguntas() {
+export function seccionPreguntas() {
   const bloques: [string, { q: string; a: string }[]][] = [
     ["Barberías", FAQ_BARBERIAS], ["Peluquerías y salones", FAQ_PELUQUERIAS], ["Centros de estética", FAQ_ESTETICA],
     ["Clínicas estéticas", FAQ_CLINICAS], ["Asistente de WhatsApp", FAQ_ASISTENTE],
@@ -53,7 +53,7 @@ function seccionPreguntas() {
   return "## Preguntas frecuentes (respuestas oficiales)\n" + bloques.map(([t, l]) => `### ${t}\n` + l.map((f) => `- P: ${f.q}\n  R: ${f.a}`).join("\n")).join("\n");
 }
 
-function seccionComparaciones() {
+export function seccionComparaciones() {
   const comp = COMPETIDORES.map((c) => {
     const precios = ["1", "3", "6", "9"].map((n, i) => `${n} prof.: ${c.precios[i].valor}`).join(", ");
     const filas = c.filas.map((f) => `${f.tema}: ellos ${f.ellos ?? "no publicado"}; SynapTech ${f.nosotros}`).join(". ");
@@ -62,12 +62,13 @@ function seccionComparaciones() {
   const hilos = HILOS.map((h) => `- ${h.pregunta} → ${h.parrafos.join(" ")}${h.cierre ? " " + h.cierre : ""}`).join("\n");
   return `## Comparaciones con otras agendas (cada una con la fecha de sus datos y fuente en su página)
 ${comp}
+Tabla con el precio de todas según el tamaño del equipo, con fuente y fecha: /comparar/precios
 
 ## Preguntas típicas antes de cambiarse (página /comparar)
 ${hilos}`;
 }
 
-function seccionGuias() {
+export function seccionGuias() {
   const modelos = BHE_MODELOS.map((m) => `- ${m.titulo} (${m.bajada}): ` + m.filas.map(([k, v]) => `${k}: ${v}`).join(" ")).join("\n");
   const faq = [...BHE_FAQ, ...FICHA_FAQ].map((f) => `- P: ${f.q}\n  R: ${f.a}`).join("\n");
   return `## Guías (información general, no asesoría tributaria ni legal)

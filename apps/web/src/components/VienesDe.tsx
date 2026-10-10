@@ -16,7 +16,10 @@ export default function VienesDe() {
               <h2 className="!text-2xl sm:!text-3xl text-ink">¿Vienes de otra agenda?</h2>
               <p className="text-text-secondary mt-2">Compara precios, WhatsApp y boletas con la que usas hoy. Te mudamos gratis desde cualquiera.</p>
             </div>
-            <Link href="/comparar" className="shrink-0 font-semibold text-ink border-b-2 border-lime pb-0.5 hover:border-ink self-start md:self-auto">Todas las comparaciones →</Link>
+            <div className="shrink-0 flex flex-wrap gap-x-6 gap-y-2 self-start md:self-auto">
+              <Link href="/comparar/precios" className="font-semibold text-ink border-b-2 border-lime pb-0.5 hover:border-ink">Tabla de precios →</Link>
+              <Link href="/comparar" className="font-semibold text-ink border-b-2 border-lime pb-0.5 hover:border-ink">Todas las comparaciones →</Link>
+            </div>
           </div>
           <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-3 m-0 p-0 list-none">
             {COMPETIDORES.map((c) => (

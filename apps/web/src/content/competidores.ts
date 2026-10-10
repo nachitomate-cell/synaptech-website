@@ -63,6 +63,7 @@ const NOSOTROS_USD: Precio = { valor: `US$${AGENDA_LATAM.precio}`, nota: `Fuera 
 export const SYNAPTECH_USD = {
   precios: [NOSOTROS_USD, NOSOTROS_USD, NOSOTROS_USD, NOSOTROS_USD] as [Precio, Precio, Precio, Precio],
   pro: `US$${IA_LATAM.precio} fuera de Chile (${SYNAPTECH.pro} en Chile)`,
+  ia: `US$${IA_LATAM.precio}`,
 };
 
 export const nosotrosDe = (c: Competidor) => (c.enDolares ? SYNAPTECH_USD : SYNAPTECH);
@@ -412,7 +413,7 @@ export const COMPETIDORES: Competidor[] = [
       { valor: "$0", nota: "Gratis: sin WhatsApp, 80 citas al mes" },
       { valor: "$13.470 + IVA", nota: "Starter" },
       { valor: "$22.440 + IVA", nota: "Starter" },
-      { valor: "$44.910 + IVA", nota: "Pro (Starter llega hasta 8)" },
+      { valor: "$44.910 + IVA", nota: "Pro; el Starter llega hasta 8" },
     ],
     notaPrecios: "Leído en la calculadora de su página de precios. Con boleta SII y Mercado Pago (plan Pro) son $20.970 + IVA con 3 profesionales y $32.940 + IVA con 6.",
     resumen: "Hasta 8 profesionales AgendaLibre es más barato, y su plan Pro trae boleta SII. Con 9 o más, SynapTech cuesta menos, y suma un asistente con IA que conversa y agenda por WhatsApp y el club con tarjeta en Wallet.",

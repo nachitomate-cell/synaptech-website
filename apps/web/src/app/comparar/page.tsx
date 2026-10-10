@@ -32,6 +32,9 @@ export default function CompararPage() {
               SynapTech frente a otras agendas y frente a WhatsApp, el cuaderno y la planilla.
               Cada dato dice de dónde sale y en qué fecha lo revisamos.
             </p>
+            <Link href="/comparar/precios" className="inline-flex items-center gap-2 mt-6 bg-ink text-white font-semibold px-6 py-3.5 rounded-full hover:bg-black transition-colors">
+              Ver los precios de todas, en una tabla →
+            </Link>
             <div className="flex flex-wrap gap-2 mt-7">
               {etiquetas.map((e) => (
                 <span key={e} className="px-3 py-1.5 rounded-full bg-mist text-[13px] font-semibold text-text-secondary">{e}</span>

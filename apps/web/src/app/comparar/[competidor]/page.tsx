@@ -8,6 +8,7 @@ import CtaFinal from "@/components/CtaFinal";
 import { COMPETIDORES, competidor, nosotrosDe, fechaDe, faqDe, queEsDe } from "@/content/competidores";
 import { SIGNUP_URL, waLink } from "@/content/catalogo";
 import { metaPagina } from "@/lib/seo";
+import { isoDe } from "@/lib/mercado";
 import { MarcaCompetidor, NombreConPunto } from "@/components/MarcaCompetidor";
 
 /* "SynapTech vs <agenda>" (09-10-2026). Una página por competidor, indexable,
@@ -57,7 +58,7 @@ export default function CompararCompetidor({ params }: { params: { competidor: s
       {
         "@type": "Article",
         headline: `Alternativa a ${c.nombre}: precios y diferencias con SynapTech`,
-        dateModified: "2026-10-10",
+        dateModified: isoDe(fecha),
         author: { "@type": "Organization", name: "SynapTech" },
         publisher: { "@type": "Organization", name: "Synaptech SpA", logo: { "@type": "ImageObject", url: "https://www.synaptechspa.cl/icon-512x512.png" } },
         about: [{ "@type": "SoftwareApplication", name: c.nombre, url: `https://${c.sitio}` }, { "@type": "SoftwareApplication", name: "SynapTech", url: "https://www.synaptechspa.cl" }],
@@ -157,6 +158,9 @@ export default function CompararCompetidor({ params }: { params: { competidor: s
             <p className="text-sm text-text-muted mt-5 max-w-3xl">
               {c.notaPrecios} {c.enDolares ? "SynapTech con el asistente con IA" : "SynapTech Pro, con el asistente con IA,"} cuesta {nosotros.pro} al mes, también con profesionales ilimitados.
             </p>
+            <Link href="/comparar/precios" className="inline-block mt-4 font-semibold text-ink border-b-2 border-lime pb-0.5 hover:border-ink">
+              Ver los precios de las {COMPETIDORES.length + 1} agendas en una tabla →
+            </Link>
           </div>
         </section>
 
