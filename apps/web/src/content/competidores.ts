@@ -84,7 +84,7 @@ export const COMPETIDORES: Competidor[] = [
     resumen: "Con un solo profesional, AgendaPro es más barato. Desde dos, SynapTech cuesta menos, y con 9 profesionales la diferencia es de $40.000 al mes: $480.000 al año.",
     filas: [
       { tema: "Cómo cobra", ellos: "Por profesional (+$5.000 + IVA sobre los 2 primeros)", nosotros: "Por local, con profesionales ilimitados" },
-      { tema: "Confirmaciones por WhatsApp", ellos: "50 al mes en el Básico. En una reserva de prueba llegaron desde un número de AgendaPro", nosotros: "Desde el WhatsApp de tu local, que sigue funcionando en tu teléfono" },
+      { tema: "Confirmaciones por WhatsApp", ellos: "50 al mes en el Básico. En una reserva de prueba llegaron desde un número de AgendaPro", nosotros: "Tú eliges: por la vía oficial de WhatsApp (bolsas desde $1.990 + IVA por 100 avisos) o desde el WhatsApp de tu local, vinculado por QR. El número de tu local sigue funcionando en tu teléfono" },
       { tema: "Recordatorios por WhatsApp", ellos: "Desde $5.000 + IVA por 50 al mes", nosotros: "Bolsas desde $1.990 + IVA por 100" },
       { tema: "Asistente con IA que agenda", ellos: "Sofía; precio no publicado", nosotros: "Syna, incluida en el plan Pro ($49.900 + IVA)" },
       { tema: "Boletas de honorarios ante el SII", ellos: "Desde 1 UF + IVA al mes por cada RUT", nosotros: "$29.900 + IVA al mes por local; salen solas al cerrar la cita" },
@@ -94,7 +94,7 @@ export const COMPETIDORES: Competidor[] = [
     cuandoEllos: "Trabajas solo y buscas el plan más barato, o quieres un ecosistema grande con marketplace propio y varias integraciones.",
     cuandoNosotros: [
       "Tienes equipo: el precio no sube por cada profesional.",
-      "Quieres que el asistente y los avisos salgan del WhatsApp de tu local.",
+      "Quieres que el asistente responda desde el WhatsApp de tu local y elegir por dónde salen los avisos.",
       "Tus profesionales boletean: la boleta de honorarios sale sola al cerrar la cita.",
     ],
     migracion: "La mayoría de los locales que se cambiaron a SynapTech venían de AgendaPro. Traemos tus servicios con precios y duraciones, tu equipo con sus horarios y tu lista de clientes, sin costo.",
@@ -110,7 +110,7 @@ export const COMPETIDORES: Competidor[] = [
       { q: "¿Cuánto cuesta AgendaPro en 2026?", a: "Según su página de planes al 9 de octubre de 2026: Individual $15.900 + IVA al mes (1 profesional) y Básico $34.900 + IVA con 2 profesionales, más $5.000 + IVA por cada profesional adicional. Con 9 profesionales son $69.900 + IVA." },
       { q: "¿Cuál es la mejor alternativa a AgendaPro para una barbería con equipo?", a: "Una que no cobre por profesional. SynapTech cobra $29.900 + IVA por local con profesionales ilimitados, y el plan Pro ($49.900 + IVA) suma un asistente con IA que responde y agenda en el WhatsApp del local." },
       { q: "¿Pierdo mis clientes si me cambio de AgendaPro?", a: "No. Te mudamos gratis: servicios, precios, equipo y tu lista de clientes. El local sigue atendiendo mientras tanto." },
-      { q: "¿Desde qué número le llegan los mensajes a mis clientes?", a: "En SynapTech, desde el WhatsApp de tu local, vinculado con un código QR. En una reserva de prueba en AgendaPro, la confirmación llegó desde un número de AgendaPro." },
+      { q: "¿Desde qué número le llegan los mensajes a mis clientes?", a: "En SynapTech eliges: por la vía oficial de WhatsApp, desde el número verificado de SynapTech con el nombre de tu local en el mensaje, o desde el WhatsApp de tu local, vinculado con un código QR. La vía oficial no arriesga bloqueos de tu número. Syna, el asistente, siempre responde desde el número de tu local. En una reserva de prueba en AgendaPro, la confirmación llegó desde un número de AgendaPro." },
     ],
     fuentes: [
       { texto: "AgendaPro: planes", url: "https://agendapro.com/cl/planes" },
@@ -213,7 +213,7 @@ export const COMPETIDORES: Competidor[] = [
     filas: [
       { tema: "Cómo cobra", ellos: "$3.900 por miembro del equipo al mes (plan Equipo)", nosotros: "Por local, con profesionales ilimitados" },
       { tema: "Cliente nuevo desde su marketplace", ellos: "Tarifa por cada cliente nuevo (monto no publicado en su página de precios)", nosotros: "Sin comisión por reserva" },
-      { tema: "WhatsApp y SMS", ellos: "20 gratis al mes por miembro; después, de $65 a $315 cada WhatsApp", nosotros: "Por la vía oficial de WhatsApp, bolsas desde $1.990 + IVA por 100 avisos" },
+      { tema: "WhatsApp y SMS", ellos: "20 gratis al mes por miembro; después, de $65 a $315 cada WhatsApp", nosotros: "Por la vía oficial de WhatsApp (bolsas desde $1.990 + IVA por 100 avisos) o desde el WhatsApp de tu local, vinculado por QR" },
       { tema: "Programa de fidelidad", ellos: "Adicional de $19.050 al mes por centro", nosotros: "Incluido, con tarjeta en Google Wallet y Apple Wallet" },
       { tema: "Asistente con IA que agenda", ellos: null, nosotros: "Syna, incluida en el plan Pro ($49.900 + IVA)" },
       { tema: "Boletas ante el SII", ellos: null, nosotros: "Boletas de honorarios automáticas" },
@@ -246,7 +246,7 @@ export const COMPETIDORES: Competidor[] = [
     resumen: "Reservo está pensado para centros de salud y cobra por capacidad de atención. Para una barbería o un salón con equipo, SynapTech cuesta menos y suma un asistente con IA.",
     filas: [
       { tema: "Cómo cobra", ellos: "Por capacidad de atención (+$10.000 + IVA cada una), con cotización", nosotros: "Precio público por local, con profesionales ilimitados" },
-      { tema: "WhatsApp", ellos: "Desde el número del centro, de 100 a 750 mensajes según el plan", nosotros: "Desde el WhatsApp de tu local, con asistente que responde y agenda" },
+      { tema: "WhatsApp", ellos: "Desde el número del centro, de 100 a 750 mensajes según el plan", nosotros: "Avisos por la vía oficial o desde el WhatsApp de tu local, y un asistente que responde y agenda desde tu número" },
       { tema: "Asistente con IA que agenda", ellos: null, nosotros: "Syna, incluida en el plan Pro ($49.900 + IVA)" },
       { tema: "Webpay para cobrar reservas", ellos: "$60.000 + IVA al mes", nosotros: "Mercado Pago incluido, sin cargo de SynapTech" },
       { tema: "Boletas", ellos: "Boleta de honorarios (Individual) y boleta electrónica (planes mayores)", nosotros: "Boletas de honorarios automáticas, $29.900 + IVA por local" },
@@ -319,7 +319,7 @@ export const COMPETIDORES: Competidor[] = [
       { tema: "Cómo cobra", ellos: "Por profesional, en tramos", nosotros: "Por local, con profesionales ilimitados" },
       { tema: "Caja y fidelización", ellos: "Solo en el plan Pro", nosotros: "En todos los planes" },
       { tema: "Asistente con IA", ellos: "Informes semanales con IA; asistente que agende no publicado", nosotros: "Syna responde y agenda en el WhatsApp del local (plan Pro)" },
-      { tema: "Confirmaciones por WhatsApp", ellos: "De 100 a 500 al mes según el plan", nosotros: "Desde el WhatsApp de tu local" },
+      { tema: "Confirmaciones por WhatsApp", ellos: "De 100 a 500 al mes según el plan", nosotros: "Por la vía oficial de WhatsApp o desde el WhatsApp de tu local" },
       { tema: "Boletas ante el SII", ellos: null, nosotros: "Boletas de honorarios automáticas" },
     ],
     cuandoEllos: "Trabajas solo y quieres el plan más barato.",
@@ -382,7 +382,7 @@ export const COMPETIDORES: Competidor[] = [
     filas: [
       { tema: "Cómo cobra", ellos: "$9.990 al mes por cuenta; cada cuenta es una persona", nosotros: "Por local, con profesionales ilimitados" },
       { tema: "Asistente por WhatsApp", ellos: "Conversa solo con el dueño: agenda, bloquea horas y entiende notas de voz. A los clientes no les contesta", nosotros: "Syna conversa con tus clientes en el WhatsApp del local y agenda sola (plan Pro)" },
-      { tema: "Mensajes a los clientes", ellos: "Te deja el mensaje listo para que lo envíes tú", nosotros: "Confirmación y recordatorio automáticos por WhatsApp, bolsas desde $1.990 + IVA por 100" },
+      { tema: "Mensajes a los clientes", ellos: "Te deja el mensaje listo para que lo envíes tú", nosotros: "Confirmación y recordatorio automáticos, por la vía oficial de WhatsApp (bolsas desde $1.990 + IVA por 100 avisos) o desde el WhatsApp de tu local, vinculado por QR" },
       { tema: "Equipo", ellos: "Cada profesional con su cuenta y su link", nosotros: "Un panel con la agenda de todo el equipo, caja y comisiones" },
       { tema: "Boletas ante el SII", ellos: "No: según sus términos, las boletas corren por tu cuenta", nosotros: "Boletas de honorarios automáticas, como adicional" },
       { tema: "Tarjeta del club en Google Wallet y Apple Wallet", ellos: null, nosotros: "Incluida en todos los planes" },
@@ -419,7 +419,7 @@ export const COMPETIDORES: Competidor[] = [
     resumen: "Hasta 8 profesionales AgendaLibre es más barato, y su plan Pro trae boleta SII. Con 9 o más, SynapTech cuesta menos, y suma un asistente con IA que conversa y agenda por WhatsApp y el club con tarjeta en Wallet.",
     filas: [
       { tema: "Cómo cobra", ellos: "Base + $2.990 a $4.990 + IVA por profesional adicional, según el plan", nosotros: "Por local, con profesionales ilimitados" },
-      { tema: "Recordatorios por WhatsApp", ellos: "Uno por cita: 15 a 25 al mes por profesional según el plan; bolsas desde $3.000 por 50", nosotros: "Confirmación y recordatorio por la vía oficial de WhatsApp, bolsas desde $1.990 + IVA por 100" },
+      { tema: "Recordatorios por WhatsApp", ellos: "Uno por cita: 15 a 25 al mes por profesional según el plan; bolsas desde $3.000 por 50", nosotros: "Confirmación y recordatorio por la vía oficial de WhatsApp (bolsas desde $1.990 + IVA por 100 avisos) o desde el WhatsApp de tu local, vinculado por QR" },
       { tema: "Asistente con IA que agenda", ellos: null, nosotros: "Syna, incluida en el plan Pro ($49.900 + IVA)" },
       { tema: "Boletas ante el SII", ellos: "En el plan Pro, con FacturaLibre: un RUT emisor, para citas pagadas online; +$8.990 + IVA por RUT adicional", nosotros: "Adicional de $29.900 + IVA al mes: la boleta de honorarios de cada profesional y la del local salen solas al cerrar la cita" },
       { tema: "Tarjeta del club en Google Wallet y Apple Wallet", ellos: null, nosotros: "Incluida en todos los planes" },
@@ -498,7 +498,7 @@ export const COMPETIDORES: Competidor[] = [
       { tema: "Precios para Chile", ellos: "No publicados; opera en EE. UU., Europa y Brasil", nosotros: "$29.900 + IVA al mes por local" },
       { tema: "Cómo cobra", ellos: "Base + US$20 por usuario adicional (EE. UU.)", nosotros: "Por local, con profesionales ilimitados" },
       { tema: "Cliente nuevo desde su marketplace", ellos: "Boost: 30% de la primera visita, con tope de US$100 (EE. UU.)", nosotros: "Directorio de locales sin comisión por reserva" },
-      { tema: "WhatsApp", ellos: null, nosotros: "Desde el WhatsApp de tu local" },
+      { tema: "WhatsApp", ellos: null, nosotros: "Avisos por la vía oficial o desde el WhatsApp de tu local" },
       { tema: "Asistente con IA que agenda", ellos: null, nosotros: "Syna, incluida en el plan Pro ($49.900 + IVA)" },
       { tema: "Tarjeta de sellos", ellos: "Dentro de la app de Booksy, incluida", nosotros: "En Google Wallet y Apple Wallet, sin descargar una app" },
     ],
@@ -537,7 +537,7 @@ export const COMPETIDORES: Competidor[] = [
     filas: [
       { tema: "Cómo cobra", ellos: "Por usuario: gratis hasta 4; Pro US$12 al mes (US$5 con pago anual)", nosotros: "Por local, con profesionales ilimitados" },
       { tema: "Recordatorios", ellos: "Por correo en el plan Free; SMS en el Pro (500 al mes por miembro)", nosotros: "Confirmación y recordatorio por WhatsApp" },
-      { tema: "WhatsApp", ellos: null, nosotros: "Desde el WhatsApp de tu local" },
+      { tema: "WhatsApp", ellos: null, nosotros: "Avisos por la vía oficial o desde el WhatsApp de tu local" },
       { tema: "Quién contesta", ellos: "Live Receptionist: una persona que contesta llamadas, US$99 al mes, solo EE. UU.", nosotros: "Syna, IA que responde y agenda por WhatsApp (US$20 fuera de Chile; plan Pro en Chile)" },
       { tema: "Tarjeta del club en Google Wallet y Apple Wallet", ellos: null, nosotros: "Incluida en todos los planes" },
       { tema: "Boletas ante el SII", ellos: null, nosotros: "Boletas de honorarios automáticas, como adicional" },
@@ -576,7 +576,7 @@ export const COMPETIDORES: Competidor[] = [
     filas: [
       { tema: "Cómo cobra", ellos: "Por cuenta: Básico 1 barbero, PRO hasta 5; módulos aparte", nosotros: "Por local, con profesionales ilimitados" },
       { tema: "Equipos de más de 5", ellos: "Sin plan publicado", nosotros: "Profesionales ilimitados en todos los planes" },
-      { tema: "Recordatorios", ellos: "Automáticos por correo; por WhatsApp, manuales desde el panel. Con el módulo WhatsApp del local ($2.000 al mes) salen desde tu número", nosotros: "Confirmación y recordatorio automáticos por WhatsApp, bolsas desde $1.990 + IVA por 100" },
+      { tema: "Recordatorios", ellos: "Automáticos por correo; por WhatsApp, manuales desde el panel. Con el módulo WhatsApp del local ($2.000 al mes) salen desde tu número", nosotros: "Confirmación y recordatorio automáticos, por la vía oficial de WhatsApp (bolsas desde $1.990 + IVA por 100 avisos) o desde el WhatsApp de tu local, vinculado por QR" },
       { tema: "Asistente con IA", ellos: "AI Studio ($2.000 al mes) prueba cortes en una foto; no conversa ni agenda", nosotros: "Syna conversa con tus clientes y agenda en el WhatsApp del local (plan Pro)" },
       { tema: "Tarjeta del club en Google Wallet y Apple Wallet", ellos: null, nosotros: "Incluida en todos los planes" },
       { tema: "Boletas ante el SII", ellos: null, nosotros: "Boletas de honorarios automáticas, como adicional" },
@@ -611,7 +611,7 @@ export const COMPETIDORES: Competidor[] = [
     filas: [
       { tema: "Cómo cobra", ellos: "Planes con tope de 1, 2, 6 o ilimitados profesionales; IVA incluido", nosotros: "Por local, con profesionales ilimitados; más IVA" },
       { tema: "Asistente con IA", ellos: "Según su centro de ayuda, prepara respuestas o, en piloto automático, responde y agenda solo; 20 a 500 acciones al mes según el plan", nosotros: "Syna responde y agenda en el WhatsApp del local; 200 conversaciones al mes en el Pro" },
-      { tema: "Desde qué número salen los mensajes", ellos: "Desde el número verificado de Zitoria, con tu negocio identificado", nosotros: "Desde el WhatsApp de tu local, vinculado por QR" },
+      { tema: "Desde qué número salen los mensajes", ellos: "Desde el número verificado de Zitoria, con tu negocio identificado", nosotros: "Tú eliges: la vía oficial, desde el número verificado de SynapTech, o el WhatsApp de tu local vinculado por QR. Syna responde desde el número de tu local" },
       { tema: "Recordatorios por WhatsApp", ellos: "Incluidos con cuota: 50 a 1.000 al mes según el plan", nosotros: "Bolsas desde $1.990 + IVA por 100" },
       { tema: "Boletas ante el SII", ellos: "Boleta o factura de cada venta con SimpleFactura (tu cuenta, certificado y folios); costo no publicado", nosotros: "Adicional de $29.900 + IVA al mes: la boleta de honorarios de cada profesional y la del local salen solas al cerrar la cita" },
       { tema: "Tarjeta de sellos", ellos: "En la ficha del cliente, con cupón al completarla", nosotros: "En Google Wallet y Apple Wallet, en el teléfono del cliente" },
@@ -619,7 +619,7 @@ export const COMPETIDORES: Competidor[] = [
     cuandoEllos: "Atiendes solo o son hasta 2, prefieres el precio con IVA incluido y emitir boletas de venta con SimpleFactura.",
     cuandoNosotros: [
       "Son 3 o más: el precio no salta por pasar un tope de profesionales.",
-      "Quieres que el asistente y los avisos salgan del WhatsApp de tu local, no de un número de la plataforma.",
+      "Quieres que el asistente responda desde el WhatsApp de tu local, y elegir desde qué número salen los avisos.",
       "Tus profesionales boletean: la boleta de honorarios de cada uno sale sola.",
     ],
     migracion: "Te mudamos gratis desde Zitoria: servicios, equipo y lista de clientes.",
@@ -648,7 +648,7 @@ export const COMPETIDORES: Competidor[] = [
     resumen: "Hasta 7 profesionales Turnify es más barato; desde 8, SynapTech cuesta menos (con 9, $29.900 frente a $33.990 + IVA). Turnify no publica asistente con IA, cobro de reservas integrado, club de fidelidad ni boletas ante el SII.",
     filas: [
       { tema: "Cómo cobra", ellos: "Por tramos; desde 6 profesionales, $3.000 + IVA por cada uno extra", nosotros: "Por local, con profesionales ilimitados" },
-      { tema: "Recordatorios por WhatsApp", ellos: "En su portada, automáticos (15 a 100 conversaciones al mes según el plan); en sus preguntas frecuentes, manuales y enviados desde tu propia cuenta", nosotros: "Confirmación y recordatorio automáticos por la vía oficial de WhatsApp, bolsas desde $1.990 + IVA por 100" },
+      { tema: "Recordatorios por WhatsApp", ellos: "En su portada, automáticos (15 a 100 conversaciones al mes según el plan); en sus preguntas frecuentes, manuales y enviados desde tu propia cuenta", nosotros: "Confirmación y recordatorio automáticos, por la vía oficial de WhatsApp (bolsas desde $1.990 + IVA por 100 avisos) o desde el WhatsApp de tu local, vinculado por QR" },
       { tema: "Cobro de la reserva", ellos: "Sin pasarela integrada: se pega un link de pago externo", nosotros: "Pago online al reservar con Mercado Pago" },
       { tema: "Asistente con IA que agenda", ellos: null, nosotros: "Syna, incluida en el plan Pro ($49.900 + IVA)" },
       { tema: "Tarjeta del club en Google Wallet y Apple Wallet", ellos: null, nosotros: "Incluida en todos los planes" },
@@ -687,7 +687,7 @@ export const COMPETIDORES: Competidor[] = [
     filas: [
       { tema: "Cómo cobra", ellos: "Por tramos, en dólares; agendas ilimitadas desde US$18", nosotros: "Por local, en pesos, con profesionales ilimitados" },
       { tema: "Comisión", ellos: "5%, 3,5%, 1% o 0% sobre lo cobrado online, según el plan", nosotros: "Sin comisión por reserva" },
-      { tema: "Recordatorios por WhatsApp", ellos: "Automáticos desde el plan Plus, con cupo de 30, 100 o 250 al mes por cuenta", nosotros: "En Chile, bolsas desde $1.990 + IVA por 100; fuera de Chile, el plan trae un cupo mensual de mensajes según el país" },
+      { tema: "Recordatorios por WhatsApp", ellos: "Automáticos desde el plan Plus, con cupo de 30, 100 o 250 al mes por cuenta", nosotros: "Por la vía oficial o desde el WhatsApp de tu local. En Chile, bolsas oficiales desde $1.990 + IVA por 100; fuera de Chile, el plan trae un cupo mensual de mensajes según el país" },
       { tema: "Asistente con IA que agenda", ellos: null, nosotros: "Syna conversa y agenda en el WhatsApp del local (plan Pro)" },
       { tema: "Boletas ante el SII", ellos: null, nosotros: "Boletas de honorarios automáticas, como adicional" },
       { tema: "Tarjeta del club en Google Wallet y Apple Wallet", ellos: null, nosotros: "Incluida en todos los planes" },

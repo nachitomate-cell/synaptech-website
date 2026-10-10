@@ -19,6 +19,11 @@ export const SIGNUP = "https://empieza.synaptechspa.cl/";
 
 export const fmt = (n: number) => "$" + n.toLocaleString("es-CL");
 
+/** Bolsas de avisos por la vía OFICIAL de WhatsApp, netas (espejo de
+    _system/whatsapp_notif.bolsas, 10-10-2026). */
+export const BOLSAS_WA = [{ avisos: 100, precio: 1990 }, { avisos: 300, precio: 5990 }, { avisos: 1000, precio: 19990 }];
+export const bolsasWaTexto = () => BOLSAS_WA.map((b) => `${b.avisos.toLocaleString("es-CL")} por ${fmt(b.precio)}`).join(", ").replace(/, ([^,]*)$/, " o $1") + " + IVA";
+
 export type Plan = {
   id: "basico" | "pro" | "full";
   nombre: string;
@@ -135,7 +140,7 @@ export const ADICIONALES: Adicional[] = [
   { nombre: "Asistente en Instagram", desc: "El asistente también responde y agenda por mensaje directo.", precio: "$19.900 / mes" },
   { nombre: "El asistente vende", desc: "Responde por tus productos con precio y stock, y se los aparta al cliente para su cita.", precio: "$9.900 / mes" },
   { nombre: "Reactivación IA", desc: "Recupera a los clientes que dejaron de venir con un mensaje a tiempo.", precio: "$9.900 / mes" },
-  { nombre: "Avisos automáticos por WhatsApp", desc: "Confirmación y recordatorio de cada cita por la vía oficial de WhatsApp.", precio: "desde $1.990", nota: "Bolsas de 100, 300 o 1.000 avisos" },
+  { nombre: "Avisos automáticos por WhatsApp", desc: "Confirmación y recordatorio de cada cita, por la vía oficial de WhatsApp (no arriesga bloqueos de tu número) o desde el WhatsApp de tu local.", precio: "desde $1.990", nota: "Bolsas oficiales de 100, 300 o 1.000 avisos" },
 ];
 
 /* Comparación con AgendaPro. Precios NETOS mensuales publicados en
