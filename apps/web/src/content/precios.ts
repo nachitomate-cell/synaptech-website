@@ -140,7 +140,7 @@ export const ADICIONALES: Adicional[] = [
   { nombre: "Asistente en Instagram", desc: "El asistente también responde y agenda por mensaje directo.", precio: "$19.900 / mes" },
   { nombre: "El asistente vende", desc: "Responde por tus productos con precio y stock, y se los aparta al cliente para su cita.", precio: "$9.900 / mes" },
   { nombre: "Reactivación IA", desc: "Recupera a los clientes que dejaron de venir con un mensaje a tiempo.", precio: "$9.900 / mes" },
-  { nombre: "Avisos automáticos por WhatsApp", desc: "Confirmación y recordatorio de cada cita, por la vía oficial de WhatsApp (no arriesga bloqueos de tu número) o desde el WhatsApp de tu local.", precio: "desde $1.990", nota: "Bolsas oficiales de 100, 300 o 1.000 avisos" },
+  { nombre: "Avisos automáticos por WhatsApp", desc: "Confirmación y recordatorio de cada cita por la vía oficial de WhatsApp, con el nombre de tu local.", precio: "desde $1.990", nota: "Bolsas de 100, 300 o 1.000 avisos" },
 ];
 
 /* Comparación con AgendaPro. Precios NETOS mensuales publicados en

@@ -87,7 +87,7 @@ export const HILOS_BASE: Hilo[] = [
     fecha: HOY,
     parrafos: [
       "Hoy varias agendas dicen que su asistente escribe desde el número del local, así que la pregunta útil es otra: ¿puedes seguir usando ese WhatsApp en tu teléfono?",
-      "En SynapTech sí. Vinculas el WhatsApp de tu local con un código QR, como WhatsApp Web, y sigues usándolo en tu celular como siempre. Syna responde y agenda desde ese número, y cuando quieres, tomas tú la conversación.",
+      "En SynapTech sí. Sigues usando el WhatsApp de tu local en tu celular como siempre, Syna responde y agenda desde ese número, y cuando quieres, tomas tú la conversación.",
       "Esto es lo que publica cada una:",
     ],
     tabla: {
@@ -98,10 +98,10 @@ export const HILOS_BASE: Hilo[] = [
         ["WeiBook", "Del número del local, con un complemento de US$15 al mes", "Sí (Wanda)", "US$50 al mes"],
         ["Agendapia", "Parte con un número de Agendapia. Puedes conectar el tuyo, pero deja de funcionar en la app de WhatsApp del celular", "Sí (Pía), por créditos", "Incluida, con 400 créditos al mes"],
         ["Reservo", "Del número del centro, de 100 a 750 mensajes según el plan", "No publicado", "—"],
-        ["SynapTech", "Del número de tu local, que sigue funcionando en tu teléfono", "Sí (Syna)", "Incluida en el plan Pro ($49.900 + IVA), o $19.900 + IVA sobre el Básico"],
+        ["SynapTech", "Syna, del número de tu local, que sigue funcionando en tu teléfono", "Sí (Syna)", "Incluida en el plan Pro ($49.900 + IVA), o $19.900 + IVA sobre el Básico"],
       ],
     },
-    cierre: "Si prefieres no vincular tu número, los avisos de cita también pueden salir por la vía oficial de WhatsApp, desde el número de SynapTech.",
+    cierre: "Las confirmaciones y recordatorios de cita salen por la vía oficial de WhatsApp, con el nombre de tu local.",
     enlace: { texto: "Ver al asistente en el WhatsApp del local", href: "/como-funciona#asistente" },
     fuentes: [
       { texto: "AgendaPro: reserva de prueba en una cuenta propia (la confirmación llegó desde +56 9 4499 7909)", fecha: "14 de agosto de 2026" },

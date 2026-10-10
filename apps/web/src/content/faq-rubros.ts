@@ -42,7 +42,7 @@ export const FAQ_CLINICAS: Pregunta[] = [
 
 export const FAQ_ASISTENTE: Pregunta[] = [
   { q: "¿Qué es un chatbot para agendar citas por WhatsApp?", a: "Un asistente que contesta los mensajes de tus clientes, les ofrece las horas que de verdad están libres y deja la cita agendada en tu agenda, sin que tengas que soltar lo que estás haciendo." },
-  { q: "¿Escribe desde el número de mi local?", a: "Sí. Vinculas el WhatsApp de tu local con un código QR, como WhatsApp Web, y sigues usándolo en tu teléfono. Cuando quieres, tomas tú la conversación." },
+  { q: "¿Escribe desde el número de mi local?", a: "Sí. Syna responde desde el número de tu local, y tú sigues usando ese WhatsApp en tu teléfono. Cuando quieres, tomas tú la conversación." },
   { q: "¿Qué inteligencia artificial usa?", a: "Syna funciona con Claude, de Anthropic. Responde con tu catálogo y tu agenda real, así que no inventa precios ni horarios." },
   { q: "¿En qué se diferencia de WhatsApp Business o de Meta AI?", a: "WhatsApp Business te deja mensajes automáticos fijos; Meta AI es un asistente general. Syna conoce tus servicios, tus precios y la agenda de cada profesional, y agenda, cambia o cancela horas en tu sistema." },
   { q: "¿Cuánto cuesta?", a: "Viene incluido en el plan Pro, $49.900 + IVA al mes por local, con hasta 200 conversaciones al mes. Sobre el plan Básico se agrega desde $19.900 + IVA al mes." },

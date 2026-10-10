@@ -18,7 +18,7 @@ type Integracion = {
 };
 
 const INTEGRACIONES: Integracion[] = [
-  { nombre: "WhatsApp", cat: "Mensajería", tipo: "wordmark", logo: "/integraciones/whatsapp.svg", desc: "El asistente atiende y agenda desde el número del local, y los avisos de cada cita salen por la vía oficial o desde ese mismo número." },
+  { nombre: "WhatsApp", cat: "Mensajería", tipo: "wordmark", logo: "/integraciones/whatsapp.svg", desc: "El asistente atiende y agenda desde el número del local, y los avisos de cada cita salen por la vía oficial de WhatsApp." },
   { nombre: "Instagram", cat: "Mensajería", tipo: "icono", logo: "/integraciones/instagram.png", desc: "Responde los mensajes directos y trae tus fotos a la página de reservas." },
   { nombre: "Mercado Pago", cat: "Pagos", tipo: "wordmark", logo: "/marcas-terceros/mercado-pago.png", desc: "Abonos de reservas, planes y tienda, directo a la cuenta del local." },
   { nombre: "TUU", cat: "Pagos", tipo: "wordmark", logo: "/integraciones/tuu.png", desc: "El cobro de la cita llega a la maquinita del local y cada pago queda conciliado." },
