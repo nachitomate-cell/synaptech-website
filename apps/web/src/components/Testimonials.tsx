@@ -24,6 +24,9 @@ type Testimonio = {
   instagram?: string;
   destacado?: boolean;
   contexto?: string;     // qué estaba pasando, escrito por nosotros (va fuera de las comillas)
+  via?: string;          // canal del mensaje, si no fue texto de WhatsApp
+  /** Local que todavía no está en el directorio (por ejemplo, en prueba). */
+  info?: { id: string; nombre: string; comuna: string; url: string; fondo: string; reserva: boolean };
 };
 
 const TESTIMONIOS: Testimonio[] = [
@@ -52,6 +55,25 @@ const TESTIMONIOS: Testimonio[] = [
     instagram: "clinical___glow", destacado: true,
     contexto: "Clínica estética en Viña del Mar.",
     burbujas: ["Jamás te cambiaré y te recomendaré por siempre"],
+  },
+  {
+    local: "brz", autor: "Sofía Barraza", rol: "Dueña y visagista", fecha: "9 oct 2026", via: "Por audio de WhatsApp",
+    instagram: "barberia_brz",
+    info: { id: "brz", nombre: "Barbería BRZ", comuna: "La Serena", url: "https://brz.synaptechspa.cl", fondo: "#000000", reserva: true },
+    burbujas: [
+      "te quería agradecer por tu atención y estar superpendiente.",
+      "Bueno, tu sistema de trabajo es increíble, no tengo duda que en algún momento, eh, tu empresa va a ser una empresa gigantesca de millones de dólares porque tiene un gran, gran, gran potencial.",
+      "… eres como mi paracetamol, me acabas de quitar un gran dolor de cabeza.",
+    ],
+  },
+  {
+    local: "stivenbarber", autor: "Stiven Solano", rol: "Dueño", fecha: "9 oct 2026", via: "Por audio de WhatsApp",
+    instagram: "stiven_barberia.cl",
+    info: { id: "stivenbarber", nombre: "Stiven Barber", comuna: "San Bernardo", url: "https://stivenbarber.synaptechspa.cl", fondo: "#ffffff", reserva: true },
+    burbujas: [
+      "Me impresiona la disciplina. A veces, no sé, me has hablado a las 12 de la noche full pegado con esto y después me vuelves y me hablas a las 7 de la mañana, y un domingo te conectas conmigo como si nada…",
+      "… con la primera vez que te vi en la videollamada, me inspiraste mucha confianza.",
+    ],
   },
   {
     local: "latincaribe", autor: "Gabriel", rol: "Administrador y barbero", fecha: "3 sep 2026",
@@ -109,7 +131,7 @@ function IconoIG() {
 }
 
 function Tarjeta({ t, nota }: { t: Testimonio; nota?: { rating: number; opiniones: number } }) {
-  const l = BASE.get(t.local);
+  const l = BASE.get(t.local) ?? t.info;
   if (!l) return null;
   const grande = !!t.destacado;
   return (
@@ -141,7 +163,7 @@ function Tarjeta({ t, nota }: { t: Testimonio; nota?: { rating: number; opinione
           <span className="font-semibold">{t.autor}</span>
           <span className={grande ? "text-white/60" : "text-text-muted"}> · {t.rol}</span>
         </p>
-        <p className={`text-[12px] mt-0.5 ${grande ? "text-white/45" : "text-text-muted"}`}>Por WhatsApp, {t.fecha}</p>
+        <p className={`text-[12px] mt-0.5 ${grande ? "text-white/45" : "text-text-muted"}`}>{t.via ?? "Por WhatsApp"}, {t.fecha}</p>
         {t.contexto && <p className={`text-[14px] mt-3 leading-relaxed ${grande ? "text-white/70" : "text-text-secondary"}`}>{t.contexto}</p>}
       </div>
 
