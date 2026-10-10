@@ -72,5 +72,5 @@ export function respuestaMasBarata() {
   });
   const fuera = (re: RegExp) => COMPETIDORES.filter((c) => c.precios.every((p) => re.test(p.valor))).map((c) => c.nombre);
   const dolares = fuera(/US\$/), desde = fuera(/desde/i);
-  return `Depende del tamaño del equipo. Entre las que publican precio en pesos, las más baratas al mes son, ${partes.join("; ")}.${dolares.length ? ` No se cuentan las que cobran en dólares (${dolares.join(", ")})` : ""}${desde.length ? `${dolares.length ? " ni" : " No se cuentan"} las que publican solo precios "desde" (${desde.join(", ")})` : ""}. Cada precio está tal como lo publica su página, con su fecha, en www.synaptechspa.cl/comparar/precios.`;
+  return `Depende del tamaño del equipo. Entre las que publican precio en pesos, comparando los valores tal como cada una los publica (con o sin IVA), las más baratas al mes son, ${partes.join("; ")}.${dolares.length ? ` No se cuentan las que cobran en dólares (${dolares.join(", ")})` : ""}${desde.length ? `${dolares.length ? " ni" : " No se cuentan"} las que publican solo precios "desde" (${desde.join(", ")})` : ""}. Cada precio está tal como lo publica su página, con su fecha, en www.synaptechspa.cl/comparar/precios.`;
 }

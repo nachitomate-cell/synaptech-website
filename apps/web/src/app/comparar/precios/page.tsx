@@ -87,7 +87,7 @@ export default function PreciosAgendas() {
         <section className="pb-14">
           <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10">
             <h2 className="!text-2xl sm:!text-3xl text-ink mb-2">La más barata según el tamaño de tu equipo</h2>
-            <p className="text-text-secondary mb-6 max-w-3xl">Entre las que publican el precio en pesos. Los planes gratis van aparte.</p>
+            <p className="text-text-secondary mb-6 max-w-3xl">Entre las que publican el precio en pesos, tal como lo publica cada una (con o sin IVA). Los planes gratis van aparte.</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {TAMANOS.map((n, i) => {
                 const gratis = gratisCon(i);
