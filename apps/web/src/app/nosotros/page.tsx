@@ -127,6 +127,26 @@ export default function NosotrosPage() {
           </div>
         </section>
 
+        {/* Lo que dicen de cómo trabajamos: textual, de un audio de WhatsApp de
+            Stiven Solano (Stiven Barber), 09-10-2026. Fragmentos exactos. */}
+        <section className="pb-16 md:pb-24">
+          <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10">
+            <figure className="rounded-[28px] bg-mist p-7 sm:p-10 grid lg:grid-cols-[auto_1fr] gap-6 lg:gap-10 items-start">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/directorio-logos/stivenbarber-pin.webp" alt="Logo de Stiven Barber" width={72} height={72} className="w-16 h-16 sm:w-[72px] sm:h-[72px] rounded-full ring-1 ring-black/10" />
+              <div>
+                <blockquote className="font-display text-ink text-xl sm:text-2xl leading-snug tracking-tight space-y-3">
+                  <p>“Me impresiona la disciplina. A veces, no sé, me has hablado a las 12 de la noche full pegado con esto y después me vuelves y me hablas a las 7 de la mañana, y un domingo te conectas conmigo como si nada…”</p>
+                  <p>“… con la primera vez que te vi en la videollamada, me inspiraste mucha confianza.”</p>
+                </blockquote>
+                <figcaption className="mt-5 text-[14px] text-text-muted">
+                  <span className="font-semibold text-ink">Stiven Solano</span> · Stiven Barber, San Bernardo · por audio de WhatsApp, 9 oct 2026
+                </figcaption>
+              </div>
+            </figure>
+          </div>
+        </section>
+
         <section className="py-16 md:py-24 bg-ink text-white">
           <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10 grid lg:grid-cols-[0.8fr_1.2fr] gap-10">
             <div>
