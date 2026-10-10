@@ -1,6 +1,6 @@
 /* Precios públicos del sitio. ESPEJO de la lista oficial de la plataforma:
    admin-panel/src/lib/precios.js del repo Barberia-Elegance (leída el
-   09-10-2026). Si cambia allá, cambia acá, y también el JSON-LD de layout.tsx.
+   09-10-2026). Si cambia allá, cambia acá (el JSON-LD de layout.tsx sale de acá).
 
    Todo es NETO en CLP; el IVA se suma encima.
    - Profesionales ilimitados, caja/comisiones/métricas y la tarjeta Wallet van
