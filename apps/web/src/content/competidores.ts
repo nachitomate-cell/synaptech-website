@@ -79,10 +79,11 @@ export const COMPETIDORES: Competidor[] = [
     migracion: "La mayoría de los locales que se cambiaron a SynapTech venían de AgendaPro. Traemos tus servicios con precios y duraciones, tu equipo con sus horarios y tu lista de clientes, sin costo.",
     testimonio: {
       cita: [
-        "acá te dejo otra diferencia con agendapro, me pasaba q todos los meses agendapro por temas de sistema quedaban algunas boletas emitidas al siguiente día pero con fecha anterior y eso me descuadrada",
-        "En el caso d tu aplicación las boletas se emiten todas al momento y quedan regustradas esa es una gran diferencia",
+        "Solo comentarte q va todo cuadrado servicios y ventas de productos,  las boletas de honorarios ok y boletas de ventas de productos igual",
+        "Sabes q con agendapro no logramos eso, ya q ellos tenían un desface y siempre me generaba descuadre al cierre del mes",
+        "Vamos super bien 👍",
       ],
-      autor: "Danilo", rol: "Socio a cargo de la contabilidad", local: "El 10 Salón Masculino, Parral", fecha: "30 sep 2026",
+      autor: "Danilo", rol: "Socio a cargo de la contabilidad", local: "El 10 Salón Masculino, Parral", fecha: "9 oct 2026",
     },
     faq: [
       { q: "¿Cuánto cuesta AgendaPro en 2026?", a: "Según su página de planes al 9 de octubre de 2026: Individual $15.900 + IVA al mes (1 profesional) y Básico $34.900 + IVA con 2 profesionales, más $5.000 + IVA por cada profesional adicional. Con 9 profesionales son $69.900 + IVA." },
