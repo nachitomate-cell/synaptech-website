@@ -51,5 +51,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/peluquerias-quinta-region`,  lastModified: now, priority: 0.8 },
     { url: `${BASE}/privacidad`,          lastModified: now, priority: 0.3 },
     { url: `${BASE}/terminos`,            lastModified: now, priority: 0.3 },
+    { url: `${BASE}/reembolsos`,          lastModified: now, priority: 0.3 },
   ];
 }

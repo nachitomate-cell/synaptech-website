@@ -124,6 +124,8 @@ export default function Footer() {
           <div className="flex items-center gap-5">
             <a href="/privacidad" className="hover:text-ink">Privacidad</a>
             <a href="/terminos" className="hover:text-ink">Términos</a>
+            <a href="https://app.synaptechspa.cl/terminos-saas.html" className="hover:text-ink">Contrato SaaS</a>
+            <a href="/reembolsos" className="hover:text-ink">Reembolsos</a>
           </div>
         </div>
       </div>
