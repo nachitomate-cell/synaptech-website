@@ -28,12 +28,13 @@ type Testimonio = {
 
 const TESTIMONIOS: Testimonio[] = [
   {
-    local: "el10salonmasculino", autor: "Danilo", rol: "Socio a cargo de la contabilidad", fecha: "30 sep 2026",
+    local: "el10salonmasculino", autor: "Danilo", rol: "Socio a cargo de la contabilidad", fecha: "9 oct 2026",
     instagram: "el10salonmasculino_", destacado: true,
     contexto: "Venían de AgendaPro. Hoy cada boleta de honorarios sale sola al cerrar la cita.",
     burbujas: [
-      "acá te dejo otra diferencia con agendapro, me pasaba q todos los meses agendapro por temas de sistema quedaban algunas boletas emitidas al siguiente día pero con fecha anterior y eso me descuadrada",
-      "En el caso d tu aplicación las boletas se emiten todas al momento y quedan regustradas esa es una gran diferencia",
+      "Solo comentarte q va todo cuadrado servicios y ventas de productos,  las boletas de honorarios ok y boletas de ventas de productos igual",
+      "Sabes q con agendapro no logramos eso, ya q ellos tenían un desface y siempre me generaba descuadre al cierre del mes",
+      "Vamos super bien 👍",
     ],
   },
   {
