@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { PAISES, PLANES_LATAM, SEDE_ADICIONAL_LATAM, type CodigoPais } from "@/content/paises";
+import { PAISES, PLANES_LATAM, SEDE_ADICIONAL_LATAM, incluyeEnPais, type CodigoPais } from "@/content/paises";
 import { waLink } from "@/content/catalogo";
 import { metaPagina } from "@/lib/seo";
 
@@ -159,7 +159,7 @@ export default function PaisLanding({ codigo }: { codigo: CodigoPais }) {
                   <p className={`mt-4 leading-relaxed ${pl.popular ? "text-white/80" : "text-text-secondary"}`}>{pl.descripcion}</p>
                   <ul className="mt-6 flex flex-col gap-3 flex-1">
                     {pl.incluye.map((d) => (
-                      <li key={d} className="flex gap-3 text-[15px]"><Check claro={pl.popular} />{d}</li>
+                      <li key={d} className="flex gap-3 text-[15px]"><Check claro={pl.popular} />{incluyeEnPais(d, p)}</li>
                     ))}
                   </ul>
                   <a href={wa(`Hola, me interesa el plan ${pl.nombre} de SynapTech`)} target="_blank" rel="noopener noreferrer"

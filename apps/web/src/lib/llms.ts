@@ -1,6 +1,6 @@
 import { PLANES, ANUAL, ADICIONALES, fmt } from "@/content/precios";
 import { COMPETIDORES, SYNAPTECH, SYNAPTECH_USD, competidor, fechaDe, faqDe, queEsDe, type Competidor } from "@/content/competidores";
-import { PLANES_LATAM, SEDE_ADICIONAL_LATAM } from "@/content/paises";
+import { PLANES_LATAM, SEDE_ADICIONAL_LATAM, cuposWhatsApp } from "@/content/paises";
 import { TAMANOS, precioFaqDe, respuestaMasBarata, ultimaVerificacionTexto } from "@/lib/mercado";
 
 /* Piezas de /llms.txt y /llms-full.txt (10-10-2026). Un buscador con IA arma su
@@ -64,7 +64,7 @@ export function lineasPrecios() {
   return [nos, ...otras].join("\n");
 }
 
-export const LATAM = `${PLANES_LATAM.map((p) => `${p.nombre} US$${p.precio}/mes o US$${p.anual}/año`).join("; ")}. Cada sede adicional US$${SEDE_ADICIONAL_LATAM.mes}/mes. Sin cobro por profesional; 2 meses gratis.`;
+export const LATAM = `${PLANES_LATAM.map((p) => `${p.nombre} US$${p.precio}/mes o US$${p.anual}/año`).join("; ")}. Cada sede adicional US$${SEDE_ADICIONAL_LATAM.mes}/mes. Sin cobro por profesional; 2 meses gratis. Mensajes de WhatsApp para confirmaciones y recordatorios: un cupo al mes por local según el país (${cuposWhatsApp()}); pasado el cupo, más mensajes al costo.`;
 
 export const PAGINAS = `- [Precios de ${COMPETIDORES.length + 1} agendas online en Chile, con fuente y fecha](${S}/comparar/precios)
 - [Todas las comparaciones y preguntas frecuentes](${S}/comparar)

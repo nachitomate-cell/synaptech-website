@@ -4,7 +4,7 @@ import { HILOS } from "@/content/comparar";
 import { COMPETIDORES, fechaDe } from "@/content/competidores";
 import { FAQ_BARBERIAS, FAQ_PELUQUERIAS, FAQ_ESTETICA, FAQ_CLINICAS, FAQ_ASISTENTE } from "@/content/faq-rubros";
 import { BHE_MODELOS, BHE_RETENCION, BHE_FAQ, FICHA_FAQ } from "@/content/guias";
-import { PLANES_LATAM, SEDE_ADICIONAL_LATAM } from "@/content/paises";
+import { PLANES_LATAM, SEDE_ADICIONAL_LATAM, cuposWhatsApp } from "@/content/paises";
 
 /* Prompt de sistema de Syna en el sitio (09-10-2026).
    Se arma SOLO desde el contenido que ya publica el sitio (content/*), así lo
@@ -112,6 +112,6 @@ ${seccionGuias()}
 - La app SynapTech Studio está en App Store y Google Play, para el dueño y su equipo.
 - La boleta de honorarios de cada profesional puede salir sola al cerrar la cita, con folio real del SII (adicional "Facturación automática").
 - Integraciones en uso: WhatsApp, Instagram, Mercado Pago, TUU, Webpay (para pagar la mensualidad), SII, Google Wallet, Apple Wallet, Google Calendar, Google Maps, Meta (Pixel), Google Cloud.
-- Fuera de Chile (Perú con locales piloto; Colombia, México y Argentina más adelante) los precios son en dólares, con tarjeta: ${PLANES_LATAM.map((p) => `${p.nombre} US$${p.precio} al mes o US$${p.anual} al año (${p.incluye.join("; ")})`).join(". ")}. Cada sede adicional US$${SEDE_ADICIONAL_LATAM.mes} al mes (US$${SEDE_ADICIONAL_LATAM.anual} al año): por ejemplo, 4 sedes con Agenda son US$45 al mes. Sin cobro por profesional. Los 2 primeros meses son gratis y la tarjeta se pide al final del período gratis, con aviso a los 45 días. La mudanza desde Fresha o Weibook la hacemos nosotros, sin costo. Fuera de Chile no se emiten boletas ni facturas. Para partir: WhatsApp.
+- Fuera de Chile (Perú con locales piloto; Colombia, México y Argentina más adelante) los precios son en dólares, con tarjeta: ${PLANES_LATAM.map((p) => `${p.nombre} US$${p.precio} al mes o US$${p.anual} al año (${p.incluye.join("; ")})`).join(". ")}. Mensajes de WhatsApp para confirmaciones y recordatorios: cada local trae un cupo al mes según el país (${cuposWhatsApp()}); pasado el cupo se suman más al costo. Nunca digas que son ilimitados ni "incluidos". Cada sede adicional US$${SEDE_ADICIONAL_LATAM.mes} al mes (US$${SEDE_ADICIONAL_LATAM.anual} al año): por ejemplo, 4 sedes con Agenda son US$45 al mes. Sin cobro por profesional. Los 2 primeros meses son gratis y la tarjeta se pide al final del período gratis, con aviso a los 45 días. La mudanza desde Fresha o Weibook la hacemos nosotros, sin costo. Fuera de Chile no se emiten boletas ni facturas. Para partir: WhatsApp.
 - Directorio de locales que usan SynapTech: /locales. Cómo funciona módulo por módulo: /como-funciona. Nosotros: /nosotros.
 `;

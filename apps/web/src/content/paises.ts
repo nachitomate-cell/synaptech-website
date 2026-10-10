@@ -31,6 +31,10 @@ export type Pais = {
   competencia: string;
   documento?: string;
   leyDatos?: string;
+  /** Mensajes de WhatsApp al mes por local para confirmaciones y recordatorios (vía
+      oficial; Meta cobra según el país del cliente). Decisión del 10-10-2026: un cupo,
+      nunca "incluidos" ni "ilimitados"; pasado el cupo, más mensajes al costo. */
+  cupoWhatsApp: number;
 };
 
 export const PAISES: Record<CodigoPais, Pais> = {
@@ -38,22 +42,22 @@ export const PAISES: Record<CodigoPais, Pais> = {
     codigo: "pe", nombre: "Perú", bandera: "🇵🇪", estado: "piloto", dominioFuturo: "synaptech.pe",
     moneda: "soles (S/)", hora: "hora de Lima", prefijo: "+51", ciudades: "Lima",
     competencia: "Fresha", documento: "DNI",
-    leyDatos: "Ley N.° 29733, de Protección de Datos Personales",
+    leyDatos: "Ley N.° 29733, de Protección de Datos Personales", cupoWhatsApp: 70,
   },
   co: {
     codigo: "co", nombre: "Colombia", bandera: "🇨🇴", estado: "pronto", dominioFuturo: "synaptech.com.co",
     moneda: "pesos colombianos", hora: "hora de Bogotá", prefijo: "+57", ciudades: "Bogotá y Medellín",
-    competencia: "Fresha o Weibook",
+    competencia: "Fresha o Weibook", cupoWhatsApp: 1000,
   },
   mx: {
     codigo: "mx", nombre: "México", bandera: "🇲🇽", estado: "pronto", dominioFuturo: "synaptech.mx",
     moneda: "pesos mexicanos", hora: "hora del centro de México", prefijo: "+52", ciudades: "Ciudad de México y Querétaro",
-    competencia: "Fresha",
+    competencia: "Fresha", cupoWhatsApp: 200,
   },
   ar: {
     codigo: "ar", nombre: "Argentina", bandera: "🇦🇷", estado: "pronto", dominioFuturo: "synaptech.com.ar",
     moneda: "pesos argentinos", hora: "hora de Buenos Aires", prefijo: "+54", ciudades: "Buenos Aires, Córdoba y Rosario",
-    competencia: "AgendaPro o Fresha",
+    competencia: "AgendaPro o Fresha", cupoWhatsApp: 80,
   },
 };
 
@@ -61,6 +65,13 @@ export const PAISES: Record<CodigoPais, Pais> = {
    los de validación del 08-10). Cobro en dólares con tarjeta; 2 meses gratis y
    la tarjeta se pide al final del período gratis, con aviso a los 45 días.
    Anual = 10 meses pagados por 12. Sin cobro por profesional. */
+/** Línea genérica del plan; en la página de cada país se reemplaza por su cupo. */
+export const WA_CUPO = "Confirmaciones y recordatorios por WhatsApp, con un cupo mensual según el país";
+export const incluyeEnPais = (d: string, p: Pais) =>
+  d === WA_CUPO ? `${p.cupoWhatsApp.toLocaleString("es-CL")} mensajes de WhatsApp al mes para confirmaciones y recordatorios` : d;
+/** "Perú 70, Colombia 1.000, …" */
+export const cuposWhatsApp = () => Object.values(PAISES).map((p) => `${p.nombre} ${p.cupoWhatsApp.toLocaleString("es-CL")}`).join(", ");
+
 export const PLANES_LATAM = [
   {
     id: "agenda", nombre: "Agenda", precio: 15, anual: 150,
@@ -69,7 +80,7 @@ export const PLANES_LATAM = [
       "Página de reservas con tu marca",
       "Panel completo: agenda, caja, clientes, comisiones e informes",
       "Club de sellos con Apple Wallet y Google Wallet",
-      "Recordatorios por WhatsApp",
+      WA_CUPO,
       "Profesionales ilimitados",
     ],
   },

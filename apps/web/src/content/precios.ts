@@ -8,7 +8,8 @@
    - Los planes con asistente traen 200 conversaciones al mes
      (CONV_INCLUIDAS_PLAN); el Full, 400. Las citas agendadas son ilimitadas.
    - Bolsas de avisos por WhatsApp: catálogo vivo en _system/whatsapp_notif
-     (50/$3.990 · 150/$9.990 · 400/$19.990, visto el 23-09-2026). */
+     (100/$1.990 · 300/$5.990 · 1.000/$19.990 + IVA desde el 10-10-2026, al costo
+     de Meta; antes 50/$3.990 · 150/$9.990 · 400/$19.990). */
 
 /* 09-10-2026: crea.synaptechspa.cl ahora redirige a bioo.cl/agenda (el alta
    gratis con marca bioo, PR #1360 de la plataforma). Mientras el plan Gratis
@@ -134,7 +135,7 @@ export const ADICIONALES: Adicional[] = [
   { nombre: "Asistente en Instagram", desc: "El asistente también responde y agenda por mensaje directo.", precio: "$19.900 / mes" },
   { nombre: "El asistente vende", desc: "Responde por tus productos con precio y stock, y se los aparta al cliente para su cita.", precio: "$9.900 / mes" },
   { nombre: "Reactivación IA", desc: "Recupera a los clientes que dejaron de venir con un mensaje a tiempo.", precio: "$9.900 / mes" },
-  { nombre: "Avisos automáticos por WhatsApp", desc: "Confirmación y recordatorio de cada cita por la vía oficial de WhatsApp.", precio: "desde $3.990", nota: "Bolsas de 50, 150 o 400 avisos" },
+  { nombre: "Avisos automáticos por WhatsApp", desc: "Confirmación y recordatorio de cada cita por la vía oficial de WhatsApp.", precio: "desde $1.990", nota: "Bolsas de 100, 300 o 1.000 avisos" },
 ];
 
 /* Comparación con AgendaPro. Precios NETOS mensuales publicados en
