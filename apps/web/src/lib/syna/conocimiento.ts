@@ -110,6 +110,7 @@ ${seccionGuias()}
 - La mudanza desde otra agenda (AgendaPro, WeiBook, AgendaYA, Fresha, una planilla) es gratis: servicios con precios y duraciones, equipo con horarios y lista de clientes. Al 4 de octubre de 2026 se habían importado 28.978 fichas de clientes.
 - El asistente con IA de los locales (también se llama Syna) funciona con Claude, de Anthropic.
 - La app SynapTech Studio está en App Store y Google Play, para el dueño y su equipo.
+- Programa de embajadores (/embajadores): un local que ya usa SynapTech comparte su código (ej. EL10) o su link empieza.synaptechspa.cl/?codigo=EL10; el local nuevo que llega con ese código parte con su primer mes gratis, y el embajador suma un mes gratis cuando ese local paga su primera mensualidad, sin tope. El código se pide por WhatsApp.
 - Confirmaciones y recordatorios de cita: salen por la vía oficial de WhatsApp, con el nombre del local en el mensaje; en Chile se pagan por bolsas (${bolsasWaTexto()}). El asistente Syna de los locales responde desde el número del propio local, que sigue funcionando en su teléfono.
 - No des detalles técnicos de cómo se conecta el WhatsApp del local ni nombres de proveedores, servidores o APIs. Si preguntan cómo se conecta, di que se activa desde el panel y que el equipo de SynapTech lo deja listo con el local.
 - La boleta de honorarios de cada profesional puede salir sola al cerrar la cita, con folio real del SII (adicional "Facturación automática").

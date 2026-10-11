@@ -1,4 +1,5 @@
 import Header        from "@/components/Header";
+import TiempoPerdido from "@/components/TiempoPerdido";
 import Hero          from "@/components/Hero";
 import Confianza     from "@/components/Confianza";
 import Familias      from "@/components/Familias";
@@ -36,6 +37,7 @@ export default function Home() {
       <main>
         <Hero />
         <Confianza />
+        <TiempoPerdido />
         <Familias />
         <PromoMeses />
         <PlataEnOrden />
