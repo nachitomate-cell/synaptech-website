@@ -44,9 +44,9 @@ export default function Familias() {
                   ))}
                 </ul>
                 <div className="flex flex-wrap items-center gap-x-7 gap-y-4">
-                  <Link href={`/como-funciona#${f.recorrido}`}
+                  <Link href={f.pagina ? f.pagina.href : `/como-funciona#${f.recorrido}`}
                     className="inline-flex items-center gap-2 font-semibold text-ink border-b-2 border-lime pb-0.5 hover:border-ink transition-colors">
-                    Ver cómo funciona
+                    {f.pagina ? f.pagina.texto : "Ver cómo funciona"}
                     <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden>
                       <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>

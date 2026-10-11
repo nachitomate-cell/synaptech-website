@@ -137,7 +137,7 @@ export default function Header() {
         <div className="hidden lg:block absolute inset-x-0 top-16 bg-white border-t border-border-subtle shadow-[0_24px_48px_-12px_rgba(15,26,43,0.18)]">
           <div className="max-w-screen-xl mx-auto px-10 py-8">
             {panel === "productos" && (
-              <div className="grid grid-cols-5 gap-8">
+              <div className="grid grid-cols-6 gap-6">
                 {FAMILIAS.map((f) => (
                   <div key={f.id}>
                     <Link href={`/#${f.id}`} onClick={cerrar}

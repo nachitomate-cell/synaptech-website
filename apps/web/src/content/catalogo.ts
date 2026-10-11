@@ -28,6 +28,8 @@ export type Familia = {
   recorrido: string;
   capsula: string;
   items: Item[];
+  /** Página propia del producto: si existe, la tarjeta enlaza ahí en vez de a /como-funciona. */
+  pagina?: { href: string; texto: string };
 };
 
 export const FAMILIAS: Familia[] = [
@@ -42,8 +44,10 @@ export const FAMILIAS: Familia[] = [
     capsula: "tutorial-agenda-barbero",
     items: [
       { label: "Reservas online 24/7", desc: "Tu propia página de reservas, sin llamadas" },
+      // 11-10-2026: dos detalles de la reserva que ya existían y no se contaban.
+      { label: "Horas recomendadas", desc: "Las próximas horas libres del día, para reservar de un toque" },
+      { label: "Recordatorios y calendario", desc: "Confirmación, recordatorio y la cita en el calendario del cliente" },
       { label: "Agenda por profesional", desc: "Cada uno ve su día, el local ve todo" },
-      { label: "Recordatorios y confirmaciones", desc: "Menos horas perdidas por inasistencia" },
       { label: "Varias sucursales", desc: "Cada sede con su agenda, su equipo y su caja" },
     ],
   },
@@ -77,6 +81,27 @@ export const FAMILIAS: Familia[] = [
       { label: "Máquina POS TUU", desc: "El cobro del mesón queda dentro de la cita" },
       { label: "Caja y comisiones", desc: "Cierre diario y liquidación de cada profesional" },
       { label: "Boletas ante el SII", desc: "Boleta de honorarios por profesional, automática" },
+    ],
+  },
+  /* Tienda online (11-10-2026, Ignacio: "hay que promocionarla al 100%").
+     Es la tienda que ya usan 18 locales: catálogo con su marca, carrito y pago
+     con su Mercado Pago, "apártalo para tu cita" y productos dentro de la
+     reserva. Capturas reales del local de práctica. */
+  {
+    id: "tienda",
+    nombre: "Tienda online",
+    bajada: "Vende tus productos por internet, con tu marca, y que tus clientes los retiren en su cita.",
+    imagen: "/panel/tienda-compuesta.webp",
+    imagenAlt: "Tienda online de una barbería: portada, categorías y ficha de producto",
+    href: "/tienda-online",
+    recorrido: "productos",
+    capsula: "",
+    pagina: { href: "/tienda-online", texto: "Ver la tienda online" },
+    items: [
+      { label: "Tu tienda con tu marca", desc: "Fotos, precios y categorías en tu propia dirección" },
+      { label: "Pago con tarjeta", desc: "Con tu cuenta de Mercado Pago" },
+      { label: "Apártalo para tu cita", desc: "El cliente lo reserva y lo paga en el local" },
+      { label: "Productos en la reserva", desc: "Los agrega a su hora mientras agenda" },
     ],
   },
   {
