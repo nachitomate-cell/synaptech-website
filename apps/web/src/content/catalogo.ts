@@ -5,11 +5,15 @@
    Regla: cada línea tiene que existir y funcionar HOY en la plataforma. Si
    algo no está en producción, no entra acá (ver memoria feedback_copy_verificable). */
 
-/* 09-10-2026: crea.synaptechspa.cl ahora redirige a bioo.cl/agenda (el alta
-   gratis con marca bioo, PR #1360 de la plataforma). Mientras el plan Gratis
-   está en desarrollo, los botones de este sitio van a la página de alta de
-   SynapTech, que deja al local en el pipeline (synaptechCrearLead). */
+/* Dos puertas de entrada (11-10-2026):
+   · SIGNUP_URL: la prueba de 14 días de los planes pagados, que deja al local
+     en el pipeline (synaptechCrearLead).
+   · agendaGratis(): el plan Gratis, que vive en bioo (nuestra marca de agenda
+     gratis): bioo.cl/agenda crea el local en {slug}.bioo.cl al tiro. El medio
+     dice desde qué parte del sitio llegó (utm_medium). */
 export const SIGNUP_URL = "https://empieza.synaptechspa.cl/";
+export const agendaGratis = (medio: string) =>
+  `https://bioo.cl/agenda?utm_source=synaptechspa&utm_medium=${encodeURIComponent(medio)}`;
 export const WA_NUMERO = "56983568212";
 
 export const waLink = (texto: string) =>

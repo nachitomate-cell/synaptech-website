@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { PLANES, ANUAL, SIGNUP, fmt } from "@/content/precios";
-import { waLink } from "@/content/catalogo";
+import { agendaGratis } from "@/content/catalogo";
 
 /* Planes en tarjetas. Los datos salen de content/precios.ts, espejo de la
    lista oficial de la plataforma (admin-panel/src/lib/precios.js). El detalle
@@ -65,25 +65,29 @@ export default function Pricing({ conEnlace = true }: { conEnlace?: boolean }) {
             </Link>
           )}
         </div>
-        {/* Plan Gratis (09-10-2026): Ignacio lo está terminando. Lo que lista es
-            lo que ya define functions/lib/plan-gratis.js en la plataforma (calcado
-            de Setmore Free): agenda, reserva, fichas, confirmación y un
-            recordatorio por correo, hasta 4 profesionales. Cuando se lance, sale
-            el "En desarrollo" y el botón pasa al alta. */}
-        <div className="mt-4 rounded-[28px] border-2 border-dashed border-ink/15 p-6 sm:px-8 flex flex-col md:flex-row md:items-center gap-4 justify-between">
-          <div>
+        {/* Plan Gratis (en vivo desde el 11-10-2026). Vive en bioo, nuestra marca
+            de agenda gratis: el alta en bioo.cl/agenda crea el local al tiro en
+            {slug}.bioo.cl. Lo que lista es lo que da functions/lib/plan-gratis.js
+            en la plataforma (copy verificable): agenda, reserva, fichas,
+            confirmación y un recordatorio por correo, hasta 4 profesionales; los
+            primeros 14 días con todo lo del Pro. Sus avisos por WhatsApp no se nombran
+            acá (salen por un canal que no se expone en público). */}
+        <div className="mt-4 rounded-[28px] bg-white ring-2 ring-lime p-6 sm:p-8 flex flex-col md:flex-row md:items-center gap-5 justify-between">
+          <div className="max-w-2xl">
             <p className="flex flex-wrap items-center gap-2.5">
-              <span className="font-display font-bold text-ink text-xl tracking-tight">Plan Gratis</span>
-              <span className="text-[11px] font-bold uppercase tracking-[0.12em] bg-lime/40 text-ink rounded-full px-2.5 py-1">En desarrollo</span>
+              <span className="font-display font-bold text-ink text-2xl tracking-tight">Plan Gratis</span>
+              <span className="text-[11px] font-bold uppercase tracking-[0.12em] bg-lime text-ink rounded-full px-2.5 py-1">Nuevo</span>
             </p>
-            <p className="text-text-secondary mt-1.5 leading-relaxed">
-              Gratis para siempre, para locales de hasta 4 profesionales: agenda, reserva online,
-              fichas de clientes y confirmación de cada cita por correo.
+            <p className="text-text-secondary mt-2 leading-relaxed">
+              <span className="font-semibold text-ink">$0, para siempre, hasta 4 profesionales.</span>{" "}
+              Agenda, reserva online 24/7 con tu propio link, fichas de clientes y
+              confirmación y recordatorio de cada cita por correo. Los primeros 14 días
+              tienes todo lo del plan Pro. Lo armas en 5 minutos en bioo, nuestra agenda gratis.
             </p>
           </div>
-          <a href={waLink("Hola, quiero que me avisen cuando esté listo el plan Gratis de SynapTech")} target="_blank" rel="noopener noreferrer"
-            className="shrink-0 inline-flex justify-center items-center border border-ink/20 text-ink font-semibold px-6 py-3 rounded-full hover:border-ink transition-colors">
-            Avísame cuando esté
+          <a href={agendaGratis("precios")}
+            className="shrink-0 inline-flex justify-center items-center bg-lime text-ink font-semibold px-6 py-3.5 rounded-full hover:bg-ink hover:text-white transition-colors">
+            Crear mi agenda gratis
           </a>
         </div>
         <p className="text-sm text-text-muted mt-4">

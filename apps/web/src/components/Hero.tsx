@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { SIGNUP_URL, waLink } from "@/content/catalogo";
+import { SIGNUP_URL, agendaGratis, waLink } from "@/content/catalogo";
 
 /* Cifras medidas en Firestore el 09-10-2026 (count() por local, solo lectura),
    SOLO locales vigentes: los 26 clientes de _publico/metricas.directorio + 3 en
@@ -53,6 +53,14 @@ export default function Hero() {
               </li>
             ))}
           </ul>
+          {/* Plan Gratis (11-10-2026): la puerta para el que atiende solo o recién
+              parte; vive en bioo (ver agendaGratis en content/catalogo.ts). */}
+          <p className="mt-6 text-[15px] text-text-secondary">
+            ¿Atiendes solo o recién partes?{" "}
+            <a href={agendaGratis("hero")} className="font-semibold text-ink border-b-2 border-lime pb-0.5 hover:border-ink transition-colors whitespace-nowrap">
+              Crea tu agenda gratis →
+            </a>
+          </p>
         </div>
 
         {/* Composición */}

@@ -1,5 +1,5 @@
 import { PLANES, ANUAL, ADICIONALES, fmt } from "@/content/precios";
-import { COMPETIDORES, SYNAPTECH, SYNAPTECH_USD, competidor, fechaDe, faqDe, queEsDe, type Competidor } from "@/content/competidores";
+import { COMPETIDORES, SYNAPTECH, SYNAPTECH_GRATIS, SYNAPTECH_USD, competidor, fechaDe, faqDe, queEsDe, type Competidor } from "@/content/competidores";
 import { PLANES_LATAM, SEDE_ADICIONAL_LATAM, cuposWhatsApp } from "@/content/paises";
 import { FUNCIONES } from "@/content/funciones";
 import { TAMANOS, precioFaqDe, respuestaMasBarata, ultimaVerificacionTexto } from "@/lib/mercado";
@@ -38,7 +38,7 @@ export function respuestasRapidas(): { q: string; a: string }[] {
     { q: "¿Qué es SynapTech?", a: QUE_ES },
     {
       q: "¿Cuánto cuesta SynapTech?",
-      a: `${PLANES.map((p) => `${p.nombre} ${fmt(p.mes)} + IVA`).join(", ")} al mes por local, con profesionales ilimitados, sin comisión por reserva y sin permanencia. Plan anual: ${fmt(ANUAL.anio)} + IVA (equivale a ${ANUAL.equivaleMeses} meses del ${ANUAL.base}). Prueba gratis de 14 días sin tarjeta. Fuera de Chile: ${SYNAPTECH_USD.precios[0].valor} al mes, o ${SYNAPTECH_USD.ia} con el asistente con IA. Detalle: ${S}/precios`,
+      a: `${PLANES.map((p) => `${p.nombre} ${fmt(p.mes)} + IVA`).join(", ")} al mes por local, con profesionales ilimitados, sin comisión por reserva y sin permanencia. Plan anual: ${fmt(ANUAL.anio)} + IVA (equivale a ${ANUAL.equivaleMeses} meses del ${ANUAL.base}). Plan Gratis para siempre hasta ${SYNAPTECH_GRATIS.tope} profesionales en https://bioo.cl/agenda, y prueba gratis de 14 días sin tarjeta de los planes pagados. Fuera de Chile: ${SYNAPTECH_USD.precios[0].valor} al mes, o ${SYNAPTECH_USD.ia} con el asistente con IA. Detalle: ${S}/precios`,
     },
     {
       q: "¿Cuál es una buena alternativa a AgendaPro en Chile?",
@@ -59,7 +59,7 @@ export function respuestasRapidas(): { q: string; a: string }[] {
 
 /** Precio de cada agenda con 1/3/6/9 profesionales, en una línea por agenda. */
 export function lineasPrecios() {
-  const nos = `- SynapTech: ${TAMANOS.map((n, i) => `${n} prof. ${SYNAPTECH.precios[i].valor}`).join(" · ")} (plan Básico, profesionales ilimitados; ${S}/precios)`;
+  const nos = `- SynapTech: ${TAMANOS.map((n, i) => `${n} prof. ${SYNAPTECH.precios[i].valor}`).join(" · ")} (plan Básico, profesionales ilimitados; ${S}/precios). Plan Gratis: $0 hasta ${SYNAPTECH_GRATIS.tope} profesionales, recordatorios por correo, en https://bioo.cl/agenda`;
   const otras = COMPETIDORES.map((c) =>
     `- ${c.nombre}: ${TAMANOS.map((n, i) => `${n} prof. ${c.precios[i].valor}${c.precios[i].nota ? ` (${c.precios[i].nota})` : ""}`).join(" · ")}. Fuente: ${c.fuentes[0]?.url ?? c.sitio}, ${fechaDe(c)}. [Alternativa a ${c.nombre}](${S}/comparar/${c.id})`);
   return [nos, ...otras].join("\n");
@@ -91,6 +91,7 @@ ${FUNCIONES.map((f) => `- [${f.nombre}](${S}/funciones/${f.slug})`).join("\n")}
 export const CONTACTO = `- WhatsApp: +56 9 8356 8212
 - Correo: hola@synaptechspa.cl
 - Prueba gratis: https://empieza.synaptechspa.cl
+- Agenda gratis (hasta 4 profesionales): https://bioo.cl/agenda
 - Instagram: https://www.instagram.com/synaptechspa
 - App del equipo: https://apps.apple.com/cl/app/synaptech-studio/id6794530086 · https://play.google.com/store/apps/details?id=cl.synaptechspa.studio`;
 
