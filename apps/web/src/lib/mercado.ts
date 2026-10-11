@@ -1,4 +1,4 @@
-import { COMPETIDORES, SYNAPTECH, fechaDe, type Competidor, type Precio } from "@/content/competidores";
+import { COMPETIDORES, SYNAPTECH, SYNAPTECH_GRATIS, fechaDe, type Competidor, type Precio } from "@/content/competidores";
 
 /* Precios del mercado en un solo lugar (10-10-2026), para /comparar/precios,
    /llms.txt y /llms-full.txt. Todo sale de content/competidores.ts: si un
@@ -53,8 +53,15 @@ export function masBaratas(i: number, k = 3) {
     .map((x) => x.f);
 }
 
-/** Gratis con i (0..3) profesionales, en cualquier moneda. */
-export const gratisCon = (i: number) => filasMercado().filter((f) => /^(US)?\$0\b/.test(f.precios[i].valor));
+/** Gratis con i (0..3) profesionales, en cualquier moneda. El plan Gratis de
+    SynapTech no está en la fila de SynapTech (esa es el Básico): entra acá si
+    el equipo cabe en su tope. */
+export function gratisCon(i: number): FilaMercado[] {
+  const otras = filasMercado().filter((f) => /^(US)?\$0\b/.test(f.precios[i].valor));
+  if (TAMANOS[i] > SYNAPTECH_GRATIS.tope) return otras;
+  const g = SYNAPTECH_GRATIS.precio;
+  return [{ id: "synaptech-gratis", nombre: "SynapTech", precios: [g, g, g, g], fecha: null, fuente: null }, ...otras];
+}
 
 /** La pregunta de precio de cada agenda ("¿Cuánto cuesta X?" o "¿X es gratis?"). */
 export function precioFaqDe(c: Competidor) {

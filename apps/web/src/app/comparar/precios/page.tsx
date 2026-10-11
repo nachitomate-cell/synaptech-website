@@ -3,7 +3,7 @@ import Header   from "@/components/Header";
 import Footer   from "@/components/Footer";
 import CtaFinal from "@/components/CtaFinal";
 import FaqSeo   from "@/components/FaqSeo";
-import { COMPETIDORES, SYNAPTECH, SYNAPTECH_USD } from "@/content/competidores";
+import { COMPETIDORES, SYNAPTECH, SYNAPTECH_GRATIS, SYNAPTECH_USD } from "@/content/competidores";
 import { metaPagina } from "@/lib/seo";
 import { MarcaCompetidor } from "@/components/MarcaCompetidor";
 import { TAMANOS, filasMercado, masBaratas, gratisCon, precioFaqDe, respuestaMasBarata, ultimaVerificacion, ultimaVerificacionTexto } from "@/lib/mercado";
@@ -33,7 +33,7 @@ export default function PreciosAgendas() {
   const preguntasMarca = COMPETIDORES.map((c) => ({ c, f: precioFaqDe(c) })).filter((x) => x.f);
   const faqGeneral = [
     { q: "¿Cuál es la agenda online más barata en Chile?", a: respuestaMasBarata() },
-    { q: "¿Cuánto cuesta SynapTech?", a: `El plan Básico cuesta ${SYNAPTECH.precios[0].valor} al mes por local, con profesionales ilimitados: el precio es el mismo con 1 o con 20 profesionales. El plan Pro, con el asistente con IA que responde y agenda en el WhatsApp del local, cuesta ${SYNAPTECH.pro}. Fuera de Chile: ${SYNAPTECH_USD.precios[0].valor} al mes, o ${SYNAPTECH_USD.ia} con el asistente.` },
+    { q: "¿Cuánto cuesta SynapTech?", a: `El plan Básico cuesta ${SYNAPTECH.precios[0].valor} al mes por local, con profesionales ilimitados: el precio es el mismo con 1 o con 20 profesionales. Con hasta ${SYNAPTECH_GRATIS.tope} profesionales también hay un plan Gratis para siempre (agenda, reserva online y recordatorios por correo, sin WhatsApp) en bioo.cl/agenda. El plan Pro, con el asistente con IA que responde y agenda en el WhatsApp del local, cuesta ${SYNAPTECH.pro}. Fuera de Chile: ${SYNAPTECH_USD.precios[0].valor} al mes, o ${SYNAPTECH_USD.ia} con el asistente.` },
     { q: "¿Los precios incluyen IVA?", a: "Depende de cada empresa, y en la tabla va tal como lo publica cada una: \"+ IVA\" cuando lo dice, \"+ imp.\" si dice impuestos, y sin nada cuando su página no lo aclara. Los precios de SynapTech son netos: se suma IVA." },
     { q: "¿Por qué el precio cambia tanto según el número de profesionales?", a: "Porque la mayoría de las agendas cobra por profesional, por usuario o por cuenta. Con un equipo chico la diferencia es poca; con 6 o 9 profesionales puede duplicar la mensualidad. SynapTech cobra por local, con profesionales ilimitados." },
   ];

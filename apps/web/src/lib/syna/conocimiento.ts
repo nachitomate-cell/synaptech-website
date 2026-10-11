@@ -26,7 +26,7 @@ ${planes}
 - Profesionales ilimitados en todos los planes. Sin comisión por reserva. Sin permanencia.
 - Prueba gratis de 14 días sin tarjeta en https://empieza.synaptechspa.cl. A quien se suma ahora, los primeros 2 meses van por nuestra cuenta (eso se coordina por WhatsApp).
 - Dos o más locales: precio por volumen, se cotiza por WhatsApp.
-- Plan Gratis: EN DESARROLLO, todavía no está disponible. Será gratis para siempre para locales de hasta 4 profesionales (agenda, reserva online, fichas de clientes y confirmación por correo).
+- Plan Gratis: YA DISPONIBLE, gratis para siempre para locales de hasta 4 profesionales, sin tope de citas: agenda, reserva online con link propio, fichas de clientes, y confirmación y un recordatorio de cada cita por correo. No incluye WhatsApp, caja, comisiones ni club (eso es de los planes pagados). Vive en bioo, nuestra marca de agenda gratis: se crea en 5 minutos en https://bioo.cl/agenda y los primeros 14 días tiene todo lo del plan Pro. Ofrécelo a quien atiende solo o recién parte, o a quien dice que no le alcanza para un plan pagado.
 
 ## Qué incluye cada plan
 ${tabla}

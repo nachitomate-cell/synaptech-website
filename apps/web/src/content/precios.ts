@@ -11,10 +11,8 @@
      (100/$1.990 · 300/$5.990 · 1.000/$19.990 + IVA desde el 10-10-2026, al costo
      de Meta; antes 50/$3.990 · 150/$9.990 · 400/$19.990). */
 
-/* 09-10-2026: crea.synaptechspa.cl ahora redirige a bioo.cl/agenda (el alta
-   gratis con marca bioo, PR #1360 de la plataforma). Mientras el plan Gratis
-   está en desarrollo, los botones de este sitio van a la página de alta de
-   SynapTech, que deja al local en el pipeline (synaptechCrearLead). */
+/* La prueba de 14 días de los planes pagados. El plan Gratis tiene su propia
+   puerta (agendaGratis() en catalogo.ts → bioo.cl/agenda). */
 export const SIGNUP = "https://empieza.synaptechspa.cl/";
 
 export const fmt = (n: number) => "$" + n.toLocaleString("es-CL");
