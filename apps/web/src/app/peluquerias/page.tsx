@@ -14,6 +14,7 @@ import { MODULOS, MODULOS_ESTETICA } from "@/content/recorrido";
 import { FAQ_PELUQUERIAS } from "@/content/faq-rubros";
 import { metaPagina } from "@/lib/seo";
 import VienesDe from "@/components/VienesDe";
+import TiempoPerdido from "@/components/TiempoPerdido";
 
 /* Página de peluquerías y salones de belleza (09-10-2026). La pidió el mapa de
    keywords: "sistema de reservas peluquería", "software peluquería" y "agenda
@@ -53,6 +54,7 @@ export default function PeluqueriasPage() {
         />
 
         <Dolores titulo="Lo que más se repite en una peluquería, resuelto." items={DOLORES} />
+        <TiempoPerdido origen="peluquerias" />
 
         {modulos.map((m, i) => (
           <section key={m.id} className={`py-16 md:py-24 ${i % 2 ? "bg-mist" : ""}`}>

@@ -15,6 +15,7 @@ import { metaPagina } from "@/lib/seo";
 import FaqSeo from "@/components/FaqSeo";
 import { FAQ_BARBERIAS } from "@/content/faq-rubros";
 import VienesDe from "@/components/VienesDe";
+import TiempoPerdido from "@/components/TiempoPerdido";
 
 export const metadata = metaPagina({
   title: "Software y agenda online para barberías en Chile | SynapTech",
@@ -48,6 +49,7 @@ export default function BarberiasPage() {
         />
 
         <Dolores titulo="Lo que más se repite en una barbería, resuelto." items={DOLORES} />
+        <TiempoPerdido origen="barberias" />
 
         {modulos.map((m) => (
           <section key={m.id} className="py-16 md:py-24 border-b border-border-subtle">
