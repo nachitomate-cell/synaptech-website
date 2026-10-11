@@ -70,8 +70,8 @@ export default function Pricing({ conEnlace = true }: { conEnlace?: boolean }) {
             {slug}.bioo.cl. Lo que lista es lo que da functions/lib/plan-gratis.js
             en la plataforma (copy verificable): agenda, reserva, fichas,
             confirmación y un recordatorio por correo, hasta 4 profesionales; los
-            primeros 14 días con todo lo del Pro. Nada de WhatsApp acá: Gratis no
-            lo incluye. */}
+            primeros 14 días con todo lo del Pro. Sus avisos por WhatsApp no se nombran
+            acá (salen por un canal que no se expone en público). */}
         <div className="mt-4 rounded-[28px] bg-white ring-2 ring-lime p-6 sm:p-8 flex flex-col md:flex-row md:items-center gap-5 justify-between">
           <div className="max-w-2xl">
             <p className="flex flex-wrap items-center gap-2.5">
