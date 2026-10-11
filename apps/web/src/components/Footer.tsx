@@ -9,6 +9,9 @@ const LINKS: Record<string, { l: string; h: string }[]> = {
   "Rubros":    RUBROS.map((r) => ({ l: r.nombre, h: r.href ?? `/#rubro-${r.id}` })),
   "Recursos":  [
     { l: "Cómo funciona", h: "/como-funciona" },
+    { l: "Todas las funciones", h: "/funciones" },
+    { l: "Calculadora de comisiones", h: "/funciones/comisiones" },
+    { l: "Cuadratura de caja", h: "/funciones/control-de-caja" },
     { l: "Cápsulas en video", h: "/como-funciona#capsulas" },
     { l: "Precios", h: "/#precios" },
     { l: "Comparaciones", h: "/comparar" },

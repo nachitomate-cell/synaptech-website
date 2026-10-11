@@ -1,6 +1,7 @@
 import { PLANES, ANUAL, ADICIONALES, fmt } from "@/content/precios";
 import { COMPETIDORES, SYNAPTECH, SYNAPTECH_USD, competidor, fechaDe, faqDe, queEsDe, type Competidor } from "@/content/competidores";
 import { PLANES_LATAM, SEDE_ADICIONAL_LATAM, cuposWhatsApp } from "@/content/paises";
+import { FUNCIONES } from "@/content/funciones";
 import { TAMANOS, precioFaqDe, respuestaMasBarata, ultimaVerificacionTexto } from "@/lib/mercado";
 
 /* Piezas de /llms.txt y /llms-full.txt (10-10-2026). Un buscador con IA arma su
@@ -75,6 +76,11 @@ export const PAGINAS = `- [Precios de ${COMPETIDORES.length + 1} agendas online 
 - [Asistente con IA que agenda por WhatsApp](${S}/asistente-ia-whatsapp)
 - [Club de fidelización y tarjeta de sellos digital](${S}/fidelizacion)
 - [Tienda online para barberías y salones](${S}/tienda-online)
+- [Todas las funciones](${S}/funciones)
+${FUNCIONES.map((f) => `- [${f.nombre}](${S}/funciones/${f.slug})`).join("\n")}
+- [Agenda para manicurista y salón de uñas](${S}/unas)
+- [Agenda para estudios de pilates](${S}/pilates)
+- [Agenda para peluquería canina](${S}/mascotas)
 - [Precios de SynapTech](${S}/precios)
 - [Cómo funciona, módulo por módulo](${S}/como-funciona)
 - [Guía: boleta de honorarios, comisiones y arriendo de sillón](${S}/guias/boleta-honorarios-y-comisiones-barberos)

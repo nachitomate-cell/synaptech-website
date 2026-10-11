@@ -14,6 +14,8 @@ type Panel = "productos" | "rubros" | "recursos" | null;
 const RECURSOS = [
   { label: "Encuentra un local", desc: "Barberías y salones con reserva online", href: "/locales" },
   { label: "Cómo funciona",  desc: "Cada módulo, paso a paso, con capturas reales", href: "/como-funciona" },
+  { label: "Todas las funciones", desc: "Recordatorios, comisiones, caja, ficha clínica y más", href: "/funciones" },
+  { label: "Calculadora de comisiones", desc: "Gratis: cuánto le corresponde a cada profesional", href: "/funciones/comisiones" },
   { label: "Cápsulas en video", desc: "Todo el panel en videos de menos de 2 minutos", href: "/como-funciona#capsulas" },
   { label: "Comparaciones",  desc: "Preguntas reales frente a otras agendas", href: "/comparar" },
   { label: "Guía: boletas y comisiones", desc: "Sueldo, comisión o arriendo de sillón en 2026", href: "/guias/boleta-honorarios-y-comisiones-barberos" },
