@@ -74,6 +74,7 @@ export const PAGINAS = `- [Precios de ${COMPETIDORES.length + 1} agendas online 
 - [Software para clínicas estéticas](${S}/clinicas)
 - [Asistente con IA que agenda por WhatsApp](${S}/asistente-ia-whatsapp)
 - [Club de fidelización y tarjeta de sellos digital](${S}/fidelizacion)
+- [Tienda online para barberías y salones](${S}/tienda-online)
 - [Precios de SynapTech](${S}/precios)
 - [Cómo funciona, módulo por módulo](${S}/como-funciona)
 - [Guía: boleta de honorarios, comisiones y arriendo de sillón](${S}/guias/boleta-honorarios-y-comisiones-barberos)
