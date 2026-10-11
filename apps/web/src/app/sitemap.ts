@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { COMPETIDORES } from "@/content/competidores";
+import { FUNCIONES } from "@/content/funciones";
 
 const BASE = "https://www.synaptechspa.cl";
 
@@ -39,6 +40,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/comparar/precios`,    lastModified: now, priority: 0.9 },
     { url: `${BASE}/embajadores`,         lastModified: now, priority: 0.6 },
     { url: `${BASE}/tienda-online`,       lastModified: now, priority: 0.8 },
+    { url: `${BASE}/funciones`,           lastModified: now, priority: 0.8 },
+    ...FUNCIONES.map((f) => ({ url: `${BASE}/funciones/${f.slug}`, lastModified: now, priority: 0.8 })),
+    { url: `${BASE}/unas`,                lastModified: now, priority: 0.8 },
+    { url: `${BASE}/pilates`,             lastModified: now, priority: 0.8 },
+    { url: `${BASE}/mascotas`,            lastModified: now, priority: 0.8 },
     /* "<agenda> vs SynapTech": las páginas que compiten por las búsquedas de
        la competencia (content/competidores.ts). */
     ...COMPETIDORES.map((c) => ({ url: `${BASE}/comparar/${c.id}`, lastModified: now, priority: 0.8 })),

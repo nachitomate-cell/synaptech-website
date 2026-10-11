@@ -185,6 +185,18 @@ export const RUBROS: Rubro[] = [
     href: "/estetica",
   },
   {
+    id: "unas",
+    nombre: "Uñas y manicure",
+    titular: "Tus clientas reservan su set, solas.",
+    texto: "Reserva online con la duración real de cada servicio, recordatorios antes de la hora y un club que las hace volver.",
+    puntos: [
+      "Duración por servicio y por manicurista",
+      "Abono al reservar los sets largos",
+      "Club de sellos en Google Wallet",
+    ],
+    href: "/unas",
+  },
+  {
     id: "clinicas",
     nombre: "Clínicas",
     titular: "Tu clínica atendiendo, no respondiendo mensajes.",
@@ -206,6 +218,7 @@ export const RUBROS: Rubro[] = [
       "Precios distintos por sede",
       "Horarios de clase por sede",
     ],
+    href: "/pilates",
   },
   {
     id: "mascotas",
@@ -217,6 +230,7 @@ export const RUBROS: Rubro[] = [
       "Reserva con dirección para ir a domicilio",
       "Asistente que pregunta por la mascota",
     ],
+    href: "/mascotas",
   },
   {
     id: "agencias",
