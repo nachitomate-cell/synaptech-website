@@ -17,6 +17,7 @@ const LINKS: Record<string, { l: string; h: string }[]> = {
     { l: "Comparaciones", h: "/comparar" },
     { l: "Guía: boletas y comisiones", h: "/guias/boleta-honorarios-y-comisiones-barberos" },
     { l: "Ficha clínica estética (PDF)", h: "/recursos/ficha-clinica-estetica" },
+    { l: "Consentimiento informado (PDF y Word)", h: "/recursos/consentimiento-informado-estetica" },
     { l: "Preguntas frecuentes", h: "/#faq" },
     { l: "Nosotros", h: "/nosotros" },
     { l: "Contacto", h: "/contacto" },

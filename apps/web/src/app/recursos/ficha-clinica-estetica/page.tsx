@@ -108,6 +108,10 @@ export default function FichaClinicaEstetica() {
                 <span key={f.url}>{i > 0 && " · "}<a href={f.url} target="_blank" rel="noopener nofollow" className="underline underline-offset-2 hover:text-ink">{f.texto}</a></span>
               ))}
             </p>
+            <p className="text-text-secondary mt-6">
+              ¿Necesitas el documento que firma la paciente? Descarga gratis el{" "}
+              <Link href="/recursos/consentimiento-informado-estetica" className="text-ink font-semibold underline underline-offset-2">consentimiento informado para estética en PDF y Word</Link>, con anexos por tratamiento.
+            </p>
           </div>
         </section>
 
