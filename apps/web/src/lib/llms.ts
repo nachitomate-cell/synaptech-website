@@ -59,7 +59,7 @@ export function respuestasRapidas(): { q: string; a: string }[] {
 
 /** Precio de cada agenda con 1/3/6/9 profesionales, en una línea por agenda. */
 export function lineasPrecios() {
-  const nos = `- SynapTech: ${TAMANOS.map((n, i) => `${n} prof. ${SYNAPTECH.precios[i].valor}`).join(" · ")} (plan Básico, profesionales ilimitados; ${S}/precios). Plan Gratis: $0 hasta ${SYNAPTECH_GRATIS.tope} profesionales, recordatorios por correo, en https://bioo.cl/agenda`;
+  const nos = `- SynapTech: ${TAMANOS.map((n, i) => `${n} prof. ${SYNAPTECH.precios[i].valor}`).join(" · ")} (plan Básico, profesionales ilimitados; ${S}/precios). Plan Gratis: $0 hasta ${SYNAPTECH_GRATIS.tope} profesionales, recordatorios por correo y 50 avisos por WhatsApp al mes, en https://bioo.cl/agenda`;
   const otras = COMPETIDORES.map((c) =>
     `- ${c.nombre}: ${TAMANOS.map((n, i) => `${n} prof. ${c.precios[i].valor}${c.precios[i].nota ? ` (${c.precios[i].nota})` : ""}`).join(" · ")}. Fuente: ${c.fuentes[0]?.url ?? c.sitio}, ${fechaDe(c)}. [Alternativa a ${c.nombre}](${S}/comparar/${c.id})`);
   return [nos, ...otras].join("\n");
@@ -92,7 +92,7 @@ ${FUNCIONES.map((f) => `- [${f.nombre}](${S}/funciones/${f.slug})`).join("\n")}
 
 export const CONTACTO = `- WhatsApp: +56 9 8356 8212
 - Correo: hola@synaptechspa.cl
-- Crear tu agenda (autoservicio, 14 días de Pro y plan Gratis hasta 2 profesionales): https://bioo.cl/agenda
+- Crear tu agenda (autoservicio, 14 días de Pro y plan Gratis hasta 4 profesionales): https://bioo.cl/agenda
 - A medida (varias sedes, equipo grande): WhatsApp +56 9 8356 8212
 - Instagram: https://www.instagram.com/synaptechspa
 - YouTube (cápsulas de cada módulo): https://www.youtube.com/@synaptechspa
