@@ -196,7 +196,7 @@ export const HILOS_BASE: Hilo[] = [
         ["Reservo", "Boleta de honorarios y boleta electrónica", "Según el plan", "Incluida en algunos planes, desde $30.000 + IVA"],
         ["Agendapia", "Boleta afecta, exenta o de honorarios", "Contratando aparte tu cuenta en Lioren o SimpleFactura", "$9.900 + IVA por RUT extra, más el costo de esa cuenta"],
         ["AgendaYA, re-booking, Te Reservo, Fresha", null, null, null],
-        ["SynapTech", "Boleta de honorarios de cada profesional", "Sale sola al cerrar la cita, directo ante el SII", "$29.900 + IVA al mes por local, más $39.000 de instalación"],
+        ["SynapTech", "Boleta de honorarios de cada profesional", "Sale sola al cerrar la cita, directo ante el SII", "$24.900 + IVA al mes por local, más $39.000 de instalación"],
       ],
     },
     enlace: { texto: "Ver el módulo de boletas en video", href: "/como-funciona#caja" },

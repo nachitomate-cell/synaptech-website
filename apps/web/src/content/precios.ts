@@ -133,7 +133,7 @@ export const COMPARATIVA: Grupo[] = [
 export type Adicional = { nombre: string; desc: string; precio: string; nota?: string };
 
 export const ADICIONALES: Adicional[] = [
-  { nombre: "Facturación automática", desc: "Para arriendo de sillón: la boleta de honorarios de cada profesional y la boleta del local salen solas al cerrar la cita.", precio: "$29.900 / mes", nota: "Instalación $39.000, una vez" },
+  { nombre: "Facturación automática", desc: "Para arriendo de sillón: la boleta de honorarios de cada profesional y la boleta del local salen solas al cerrar la cita.", precio: "$24.900 / mes", nota: "Instalación $39.000, una vez" },
   { nombre: "Asistente IA por WhatsApp", desc: "Para el plan Básico: Syna responde y agenda en el número de tu local.", precio: "desde $19.900 / mes", nota: "200 conversaciones al mes" },
   { nombre: "Asistente en Instagram", desc: "El asistente también responde y agenda por mensaje directo.", precio: "$19.900 / mes" },
   { nombre: "El asistente vende", desc: "Responde por tus productos con precio y stock, y se los aparta al cliente para su cita.", precio: "$9.900 / mes" },
