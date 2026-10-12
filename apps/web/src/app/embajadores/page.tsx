@@ -25,7 +25,7 @@ const FAQ = [
   { q: "¿Quién puede ser embajador?", a: "Cualquier local que use SynapTech y esté al día. Si eres barbero o estilista con comunidad y todavía no usas la plataforma, escríbenos igual." },
   { q: "¿Cuándo se suma mi mes gratis?", a: "Cuando el local que llegó con tu código paga su primera mensualidad. Ese mes se descuenta de tu próximo cobro." },
   { q: "¿Hay un máximo de recomendaciones?", a: "No. Cada local que llega con tu código y paga su primera mensualidad suma un mes gratis para ti." },
-  { q: "¿Qué tiene que hacer el local que recomiendo?", a: "Registrarse en empieza.synaptechspa.cl con tu link, o escribir tu código en el campo \"Código de embajador\". Si ya está registrado, que nos escriba por WhatsApp diciendo que viene de tu parte." },
+  { q: "¿Qué tiene que hacer el local que recomiendo?", a: "Crear su agenda en bioo.cl/agenda con tu link, o escribir tu código en el campo \"Código de embajador\". Si ya está registrado, que nos escriba por WhatsApp diciendo que viene de tu parte." },
   { q: "¿Sirve para un local que ya usa SynapTech?", a: "No: el código es para locales nuevos." },
 ];
 

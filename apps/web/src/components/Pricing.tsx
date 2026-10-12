@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { PLANES, ANUAL, SIGNUP, fmt } from "@/content/precios";
-import { agendaGratis } from "@/content/catalogo";
+import { PLANES, ANUAL, fmt } from "@/content/precios";
+import { alta, agendaGratis, A_MEDIDA_WA } from "@/content/catalogo";
 
 /* Planes en tarjetas. Los datos salen de content/precios.ts, espejo de la
    lista oficial de la plataforma (admin-panel/src/lib/precios.js). El detalle
@@ -16,6 +16,15 @@ export default function Pricing({ conEnlace = true }: { conEnlace?: boolean }) {
             Profesionales ilimitados en todos los planes y sin comisión por cita.
             Sin tarjeta para partir y, si te sumas ahora, los primeros 2 meses van
             por nuestra cuenta.
+          </p>
+          {/* Cómo se parte (12-10-2026): todos crean su agenda solos en bioo
+              con 14 días de Pro y eligen plan desde su panel; lo a medida es
+              la excepción, para quien de verdad lo necesita. */}
+          <p className="text-text-secondary mt-4 leading-relaxed">
+            Todos parten igual: creas tu agenda en <b className="text-ink">bioo.cl/agenda</b>, nuestra agenda de
+            autoservicio, con 14 días de todo el plan Pro, y al terminar eliges tu plan desde el panel.
+            ¿Varias sedes o un diseño propio?{" "}
+            <a href={A_MEDIDA_WA} target="_blank" rel="noopener noreferrer" className="font-semibold text-ink border-b-2 border-lime pb-0.5 hover:border-ink transition-colors">Te la armamos a medida</a>.
           </p>
         </div>
 
@@ -44,7 +53,7 @@ export default function Pricing({ conEnlace = true }: { conEnlace?: boolean }) {
                   </li>
                 ))}
               </ul>
-              <a href={`${SIGNUP}?ref=precios-${p.id}`}
+              <a href={alta(`precios-${p.id}`)}
                 className={`mt-8 inline-flex justify-center items-center font-semibold px-6 py-3.5 rounded-full transition-colors ${
                   p.popular ? "bg-lime text-ink hover:bg-white" : "bg-ink text-white hover:bg-black"
                 }`}>

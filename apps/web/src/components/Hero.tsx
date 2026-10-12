@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { SIGNUP_URL, agendaGratis, waLink } from "@/content/catalogo";
+import { alta, waLink, A_MEDIDA_WA } from "@/content/catalogo";
 
 /* Cifras medidas en Firestore el 09-10-2026 (count() por local, solo lectura),
    SOLO locales vigentes: los 26 clientes de _publico/metricas.directorio + 3 en
@@ -36,7 +36,7 @@ export default function Hero() {
             volver a tus clientes.
           </p>
           <div className="flex flex-col sm:flex-row gap-3">
-            <a href={`${SIGNUP_URL}?ref=home-hero`}
+            <a href={alta(`home-hero`)}
               className="inline-flex justify-center items-center bg-ink text-white font-semibold text-base px-7 py-4 rounded-full hover:bg-black transition-colors">
               Empezar gratis
             </a>
@@ -53,12 +53,14 @@ export default function Hero() {
               </li>
             ))}
           </ul>
-          {/* Plan Gratis (11-10-2026): la puerta para el que atiende solo o recién
-              parte; vive en bioo (ver agendaGratis en content/catalogo.ts). */}
-          <p className="mt-6 text-[15px] text-text-secondary">
-            ¿Atiendes solo o recién partes?{" "}
-            <a href={agendaGratis("hero")} className="font-semibold text-ink border-b-2 border-lime pb-0.5 hover:border-ink transition-colors whitespace-nowrap">
-              Crea tu agenda gratis →
+          {/* Autoservicio = bioo (12-10-2026): "Empezar gratis" lleva a
+              bioo.cl/agenda. Se dice acá, antes del clic, para que nadie crea
+              que se equivocó de página; y lo a medida queda como camino aparte. */}
+          <p className="mt-6 text-[15px] text-text-secondary leading-relaxed max-w-xl">
+            Tu agenda se crea en minutos en <b className="text-ink">bioo</b>, nuestra agenda de autoservicio.
+            ¿Varias sedes o un equipo grande?{" "}
+            <a href={A_MEDIDA_WA} target="_blank" rel="noopener noreferrer" className="font-semibold text-ink border-b-2 border-lime pb-0.5 hover:border-ink transition-colors whitespace-nowrap">
+              Te la armamos a medida →
             </a>
           </p>
         </div>
