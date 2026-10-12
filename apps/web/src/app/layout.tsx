@@ -111,6 +111,7 @@ export default function RootLayout({
         knowsAbout: ["Agenda online para barberías", "Software para peluquerías y salones de belleza", "Software para centros de estética", "Asistente con IA para WhatsApp", "Club de fidelización con Google Wallet y Apple Wallet", "Boletas de honorarios ante el SII"],
         sameAs: [
           "https://www.instagram.com/synaptechspa",
+          "https://www.youtube.com/@synaptechspa",
           "https://apps.apple.com/cl/app/synaptech-studio/id6794530086",
           "https://play.google.com/store/apps/details?id=cl.synaptechspa.studio",
         ],

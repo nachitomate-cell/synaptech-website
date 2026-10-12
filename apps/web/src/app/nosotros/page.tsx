@@ -176,6 +176,7 @@ export default function NosotrosPage() {
                 <dt className="text-text-muted">Región</dt><dd className="text-ink font-semibold">Valparaíso, Chile</dd>
                 <dt className="text-text-muted">Correo</dt><dd><a href="mailto:hola@synaptechspa.cl" className="text-ink font-semibold hover:text-accent">hola@synaptechspa.cl</a></dd>
                 <dt className="text-text-muted">Instagram</dt><dd><a href="https://instagram.com/synaptechspa" target="_blank" rel="noopener noreferrer" className="text-ink font-semibold hover:text-accent">@synaptechspa</a></dd>
+                <dt className="text-text-muted">YouTube</dt><dd><a href="https://www.youtube.com/@synaptechspa" target="_blank" rel="noopener noreferrer" className="text-ink font-semibold hover:text-accent">@synaptechspa</a></dd>
               </dl>
             </div>
             <div className="rounded-[28px] bg-lime/20 p-7 sm:p-10 flex flex-col justify-between gap-6">
