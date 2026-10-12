@@ -92,7 +92,7 @@ ${FUNCIONES.map((f) => `- [${f.nombre}](${S}/funciones/${f.slug})`).join("\n")}
 
 export const CONTACTO = `- WhatsApp: +56 9 8356 8212
 - Correo: hola@synaptechspa.cl
-- Crear tu agenda (autoservicio, 14 días de Pro y plan Gratis hasta 2 profesionales): https://bioo.cl/agenda
+- Crear tu agenda (autoservicio, 14 días de Pro y plan Gratis hasta 4 profesionales): https://bioo.cl/agenda
 - A medida (varias sedes, equipo grande): WhatsApp +56 9 8356 8212
 - Instagram: https://www.instagram.com/synaptechspa
 - YouTube (cápsulas de cada módulo): https://www.youtube.com/@synaptechspa

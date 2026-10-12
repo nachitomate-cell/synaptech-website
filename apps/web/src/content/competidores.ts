@@ -57,11 +57,11 @@ export const SYNAPTECH = {
   pro: "$49.900 + IVA",
 };
 
-/* Plan Gratis (11-10-2026; tope 2 desde el 12-10-2026): hasta 2 profesionales, para siempre, en bioo
+/* Plan Gratis (11-10-2026): hasta 4 profesionales, para siempre, en bioo
    (functions/lib/plan-gratis.js en la plataforma). Va APARTE de SYNAPTECH.precios:
    las comparaciones lado a lado siguen con el Básico, que es lo que trae
    WhatsApp, caja y club; el Gratis se nombra junto a los otros planes gratis. */
-export const SYNAPTECH_GRATIS = { tope: 2, precio: { valor: "$0", nota: "Gratis: hasta 2 profesionales, recordatorios por correo, en bioo.cl/agenda" } as Precio };
+export const SYNAPTECH_GRATIS = { tope: 4, precio: { valor: "$0", nota: "Gratis: hasta 4 profesionales, recordatorios por correo, en bioo.cl/agenda" } as Precio };
 
 const [AGENDA_LATAM, IA_LATAM] = PLANES_LATAM;
 const NOSOTROS_USD: Precio = { valor: `US$${AGENDA_LATAM.precio}`, nota: `Fuera de Chile, profesionales ilimitados. En Chile, ${NOSOTROS_PRECIO.valor}` };
@@ -429,7 +429,7 @@ export const COMPETIDORES: Competidor[] = [
       { tema: "Asistente con IA que agenda", ellos: null, nosotros: "Syna, incluida en el plan Pro ($49.900 + IVA)" },
       { tema: "Boletas ante el SII", ellos: "En el plan Pro, con FacturaLibre: un RUT emisor, para citas pagadas online; +$8.990 + IVA por RUT adicional", nosotros: "Adicional de $29.900 + IVA al mes: la boleta de honorarios de cada profesional y la del local salen solas al cerrar la cita" },
       { tema: "Tarjeta del club en Google Wallet y Apple Wallet", ellos: null, nosotros: "Incluida en todos los planes" },
-      { tema: "Plan gratis", ellos: "Hasta 2 profesionales y 80 citas al mes, sin WhatsApp", nosotros: "Hasta 2 profesionales, para siempre, con citas ilimitadas; recordatorios por correo (en bioo.cl/agenda)" },
+      { tema: "Plan gratis", ellos: "Hasta 2 profesionales y 80 citas al mes, sin WhatsApp", nosotros: "Hasta 4 profesionales, para siempre, con citas ilimitadas; recordatorios por correo (en bioo.cl/agenda)" },
     ],
     cuandoEllos: "Tu equipo es de hasta 8 profesionales y buscas el precio más bajo con recordatorios por WhatsApp.",
     cuandoNosotros: [
