@@ -31,7 +31,7 @@ const FAQS = [
   },
   {
     q: "¿Y los documentos tributarios?",
-    a: "Si arriendas sillón, la plataforma emite sola la boleta de honorarios de cada profesional al cerrar la cita — con su propio RUT, pague el cliente como pague, efectivo incluido — y la boleta afecta del local por los productos, según la estructura que indica el SII. Ya está funcionando en locales reales. Requiere que cada profesional autorice la emisión en su nombre ante el SII; es un trámite único y te guiamos paso a paso. Es un adicional de $29.900 + IVA al mes.",
+    a: "Si arriendas sillón, la plataforma emite sola la boleta de honorarios de cada profesional al cerrar la cita — con su propio RUT, pague el cliente como pague, efectivo incluido — y la boleta afecta del local por los productos, según la estructura que indica el SII. Ya está funcionando en locales reales. Requiere que cada profesional autorice la emisión en su nombre ante el SII; es un trámite único y te guiamos paso a paso. Es un adicional de $24.900 + IVA al mes.",
   },
   {
     q: "¿Sirve si tengo más de un local?",
