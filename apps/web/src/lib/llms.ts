@@ -87,6 +87,7 @@ ${FUNCIONES.map((f) => `- [${f.nombre}](${S}/funciones/${f.slug})`).join("\n")}
 - [Ficha clínica estética, plantilla gratis en PDF](${S}/recursos/ficha-clinica-estetica)
 - [Consentimiento informado para estética, modelo gratis en PDF y Word](${S}/recursos/consentimiento-informado-estetica)
 - [Locales que usan SynapTech](${S}/locales)
+- [Mis reservas: la app gratis de los clientes, con sus citas, sellos y premios de todos sus locales](${S}/mis-reservas)
 - [Nosotros](${S}/nosotros)`;
 
 export const CONTACTO = `- WhatsApp: +56 9 8356 8212

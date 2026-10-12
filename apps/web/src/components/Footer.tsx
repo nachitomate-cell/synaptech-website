@@ -52,8 +52,13 @@ const LINKS: Record<string, { l: string; h: string }[]> = {
      ninguna" para synaptechspa.cl/barberias-vina-del-mar, porque el unico
      enlace que existia apuntaba a la otra direccion. El rewrite de
      next.config.mjs trae el HTML; el enlace tiene que nombrar la URL que
-     queremos indexada, no la que la sirve. */
-  "Directorio": [
+     queremos indexada, no la que la sirve.
+     12-10-2026: la columna pasó a llamarse "Para clientes" y abre con Mis
+     reservas (mi.synaptechspa.cl), la app de los clientes de los locales.
+     Una columna nueva no cabía en la grilla de 7. */
+  "Para clientes": [
+    { l: "Mis reservas",                h: "https://mi.synaptechspa.cl" },
+    { l: "Qué es Mis reservas",         h: "/mis-reservas" },
     { l: "Todos los locales",           h: "/locales" },
     { l: "Barberías en Viña del Mar",   h: "/barberias-vina-del-mar" },
     { l: "Peluquerías en Viña del Mar", h: "/peluquerias-vina-del-mar" },

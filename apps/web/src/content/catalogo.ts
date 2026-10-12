@@ -12,6 +12,8 @@
      gratis): bioo.cl/agenda crea el local en {slug}.bioo.cl al tiro. El medio
      dice desde qué parte del sitio llegó (utm_medium). */
 export const SIGNUP_URL = "https://empieza.synaptechspa.cl/";
+/** Mis reservas: la app de la persona que reserva (citas, sellos y premios de todos sus locales). */
+export const APP_CLIENTES = "https://mi.synaptechspa.cl";
 export const agendaGratis = (medio: string) =>
   `https://bioo.cl/agenda?utm_source=synaptechspa&utm_medium=${encodeURIComponent(medio)}`;
 export const WA_NUMERO = "56983568212";
