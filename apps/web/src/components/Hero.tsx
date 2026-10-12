@@ -1,18 +1,20 @@
 import Image from "next/image";
 import { alta, waLink, A_MEDIDA_WA } from "@/content/catalogo";
 
-/* Cifras medidas en Firestore el 09-10-2026 (count() por local, solo lectura),
-   SOLO locales vigentes: los 26 clientes de _publico/metricas.directorio + 3 en
-   prueba (+ la base de marca de Kronnos), sin demos, propuestas ni bajas.
-     sedes 36 (29 cuentas; Punto Pilates 7 sedes, Oren 2) · fichas de clientes
-     (users) 36.961 · citas 17.271 − 1.098 importadas = 16.173 + 2.368 reservas
-     de clase = 18.541 · conversaciones WhatsApp 3.013 + Instagram 142 = 3.155.
-   Se redondean hacia abajo. Volver a medir antes de cambiarlas (script en
-   devtools/guias-panel/sitio-web/cifras/contar.cjs). */
+/* Cifras medidas en Firestore el 12-10-2026 (count() por local, solo lectura),
+   SOLO locales vigentes: los 26 clientes de _publico/metricas.directorio + 5 en
+   prueba reales (+ la base de marca de Kronnos), sin demos, propuestas ni bajas.
+     sedes 38 (31 cuentas) · fichas de clientes (users) 37.272 − 2.006
+     fusionadas (`fusionadoCon`, duplicados absorbidos) = 35.266 · citas
+     17.870 − 1.097 migradas = 16.773 (las reservas de clase YA están en citas:
+     cada cronograma_reservas trae su citaId; el 09-10 se sumaron dos veces) ·
+     conversaciones WhatsApp 3.218 + Instagram 171 = 3.389.
+   Se redondean hacia abajo. Volver a medir antes de cambiarlas: la planilla
+   "Crecimiento SynapTech (se actualiza solo)" de Drive usa el mismo criterio. */
 const METRICAS = [
   { valor: "+35",     label: "locales y sedes en Chile" },
-  { valor: "+36.000", label: "clientes en sus fichas" },
-  { valor: "+18.000", label: "citas y reservas agendadas" },
+  { valor: "+35.000", label: "clientes en sus fichas" },
+  { valor: "+16.000", label: "citas y reservas agendadas" },
   { valor: "+3.000",  label: "conversaciones por WhatsApp e Instagram" },
 ];
 
