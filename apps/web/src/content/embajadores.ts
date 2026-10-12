@@ -5,7 +5,7 @@
    Reglas = las que Ignacio ya acordó con El 10 y BRZ (videos de referido del
    10-10): el local que llega con el código parte con su primer mes gratis, y
    el embajador suma un mes gratis cuando ese local paga su primera
-   mensualidad. El código se escribe en empieza.synaptechspa.cl (campo
+   mensualidad. El código se escribe en bioo.cl/agenda (la alta de autoservicio) (campo
    "Código de embajador", o llega prellenado con ?codigo=) y le llega a
    Ignacio en el correo del lead; el mes lo aplica él a mano.
 
@@ -25,4 +25,4 @@ export type Embajador = {
 
 export const EMBAJADORES: Embajador[] = [];
 
-export const LINK_EMBAJADOR = (codigo: string) => `https://empieza.synaptechspa.cl/?codigo=${encodeURIComponent(codigo)}`;
+export const LINK_EMBAJADOR = (codigo: string) => `https://bioo.cl/agenda?codigo=${encodeURIComponent(codigo)}`;

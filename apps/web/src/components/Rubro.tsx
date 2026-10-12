@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { SIGNUP_URL, waLink } from "@/content/catalogo";
+import { alta, waLink } from "@/content/catalogo";
 
 /* Piezas de las páginas por rubro (/barberias, /estetica). Las imágenes son
    capturas reales del panel con un local ficticio (ver content/recorrido.ts). */
@@ -18,7 +18,7 @@ export function HeroRubro({ eyebrow, titulo, bajada, origen, escritorio, celular
           <h1 className="text-ink mb-6 !text-[clamp(2.4rem,5vw,4.5rem)]">{titulo}</h1>
           <p className="text-text-secondary text-lg md:text-xl leading-relaxed max-w-xl mb-8">{bajada}</p>
           <div className="flex flex-col sm:flex-row gap-3">
-            <a href={`${SIGNUP_URL}?ref=${origen}`}
+            <a href={alta(`${origen}`)}
               className="inline-flex justify-center items-center bg-ink text-white font-semibold px-7 py-4 rounded-full hover:bg-black transition-colors">
               Empezar gratis
             </a>

@@ -6,7 +6,7 @@ import Header   from "@/components/Header";
 import Footer   from "@/components/Footer";
 import CtaFinal from "@/components/CtaFinal";
 import { COMPETIDORES, competidor, nosotrosDe, fechaDe, faqDe, queEsDe } from "@/content/competidores";
-import { SIGNUP_URL, waLink } from "@/content/catalogo";
+import { alta, waLink } from "@/content/catalogo";
 import { metaPagina } from "@/lib/seo";
 import { isoDe } from "@/lib/mercado";
 import { MarcaCompetidor, NombreConPunto } from "@/components/MarcaCompetidor";
@@ -93,7 +93,7 @@ export default function CompararCompetidor({ params }: { params: { competidor: s
                 <h1 className="text-ink !text-[clamp(2.3rem,4.6vw,4rem)]">Alternativa a {c.nombre}: precios y diferencias con SynapTech.</h1>
                 <p className="text-text-secondary text-lg md:text-xl leading-relaxed mt-6 max-w-xl">{c.resumen}</p>
                 <div className="flex flex-col sm:flex-row gap-3 mt-8">
-                  <a href={`${SIGNUP_URL}?ref=comparar-${c.id}`}
+                  <a href={alta(`comparar-${c.id}`)}
                     className="inline-flex justify-center items-center bg-ink text-white font-semibold px-7 py-4 rounded-full hover:bg-black transition-colors">
                     Probar 14 días gratis
                   </a>

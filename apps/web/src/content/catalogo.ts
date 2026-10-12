@@ -5,21 +5,29 @@
    Regla: cada línea tiene que existir y funcionar HOY en la plataforma. Si
    algo no está en producción, no entra acá (ver memoria feedback_copy_verificable). */
 
-/* Dos puertas de entrada (11-10-2026):
-   · SIGNUP_URL: la prueba de 14 días de los planes pagados, que deja al local
-     en el pipeline (synaptechCrearLead).
-   · agendaGratis(): el plan Gratis, que vive en bioo (nuestra marca de agenda
-     gratis): bioo.cl/agenda crea el local en {slug}.bioo.cl al tiro. El medio
-     dice desde qué parte del sitio llegó (utm_medium). */
-export const SIGNUP_URL = "https://empieza.synaptechspa.cl/";
+/* AUTOSERVICIO = bioo (12-10-2026, decisión de Ignacio). Todo local que se
+   crea solo nace en bioo, nuestra marca de agenda de autoservicio: la única
+   alta es bioo.cl/agenda (empieza.synaptechspa.cl y crea. redirigen ahí). Lo
+   que arma el equipo de SynapTech a mano (varias sedes, equipo grande, diseño
+   propio) va por WhatsApp: A_MEDIDA_WA.
+   · alta(medio): el link de alta etiquetado con utm. NO usar ?ref= desde el
+     sitio: `ref` es de vendedores y locales embajadores, y uno desconocido le
+     llega a Ignacio como alerta ("Ref DESCONOCIDO").
+   · SIGNUP_URL: la dirección a secas, para textos. */
+export const SIGNUP_URL = "https://bioo.cl/agenda";
 /** Mis reservas: la app de la persona que reserva (citas, sellos y premios de todos sus locales). */
 export const APP_CLIENTES = "https://mi.synaptechspa.cl";
-export const agendaGratis = (medio: string) =>
-  `https://bioo.cl/agenda?utm_source=synaptechspa&utm_medium=${encodeURIComponent(medio)}`;
+export const alta = (medio: string) =>
+  `${SIGNUP_URL}?utm_source=synaptechspa&utm_medium=${encodeURIComponent(medio)}`;
+/** El plan Gratis se crea en la misma alta. */
+export const agendaGratis = alta;
 export const WA_NUMERO = "56983568212";
 
 export const waLink = (texto: string) =>
   `https://wa.me/${WA_NUMERO}?text=${encodeURIComponent(texto)}`;
+
+/** Lo a medida: varias sedes, equipo grande o diseño propio. Lo arma el equipo. */
+export const A_MEDIDA_WA = waLink("Hola, quiero que me armen la agenda de mi local a medida");
 
 export type Item = { label: string; desc: string };
 

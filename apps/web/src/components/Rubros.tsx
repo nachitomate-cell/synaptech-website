@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { RUBROS, SIGNUP_URL } from "@/content/catalogo";
+import { alta, RUBROS } from "@/content/catalogo";
 
 /* Pestañas por rubro. El menú enlaza a /#rubro-<id>: al llegar con ese hash
    se abre la pestaña que corresponde. */
@@ -55,7 +55,7 @@ export default function Rubros() {
             </h3>
             <p className="text-text-secondary text-lg mt-5 leading-relaxed max-w-xl">{r.texto}</p>
             <div className="flex flex-wrap gap-3 mt-8">
-              <a href={`${SIGNUP_URL}?ref=home-rubro-${r.id}`}
+              <a href={alta(`home-rubro-${r.id}`)}
                 className="inline-flex items-center bg-ink text-white font-semibold px-6 py-3.5 rounded-full hover:bg-black transition-colors">
                 Empezar gratis
               </a>

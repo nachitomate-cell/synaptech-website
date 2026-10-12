@@ -1,4 +1,4 @@
-import { SIGNUP_URL, waLink } from "@/content/catalogo";
+import { alta, waLink } from "@/content/catalogo";
 
 /* Bloque destacado, el equivalente al "Square Terminal −40%" de su home.
    La oferta la decidió Ignacio el 08-10-2026: 2 meses gratis.
@@ -36,7 +36,7 @@ export default function PromoMeses() {
                   className="inline-flex justify-center items-center bg-lime text-ink font-semibold px-7 py-4 rounded-full hover:bg-white transition-colors">
                   Quiero mis 2 meses gratis
                 </a>
-                <a href={`${SIGNUP_URL}?ref=home-oferta`}
+                <a href={alta(`home-oferta`)}
                   className="inline-flex justify-center items-center border border-white/25 text-white font-semibold px-7 py-4 rounded-full hover:border-white/60 transition-colors">
                   Crear mi local ahora
                 </a>

@@ -2,7 +2,7 @@ import Header   from "@/components/Header";
 import Footer   from "@/components/Footer";
 import ListaLocales from "@/components/ListaLocales";
 import { obtenerLocales, PAGINAS } from "@/lib/directorio";
-import { SIGNUP_URL, waLink } from "@/content/catalogo";
+import { alta, waLink } from "@/content/catalogo";
 import { metaPagina } from "@/lib/seo";
 
 /* Portada del directorio de locales (Red Synaptech). Se regenera una vez al
@@ -75,7 +75,7 @@ export default async function LocalesPage() {
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row lg:flex-col gap-3">
-                <a href={`${SIGNUP_URL}?ref=locales`}
+                <a href={alta(`locales`)}
                   className="inline-flex justify-center items-center bg-lime text-ink font-semibold px-7 py-4 rounded-full hover:bg-white transition-colors">
                   Empezar gratis
                 </a>

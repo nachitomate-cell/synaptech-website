@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { SIGNUP_URL } from "@/content/catalogo";
+import { alta } from "@/content/catalogo";
 
 /* "Cuánto tiempo se te va agendando" (11-10-2026). La idea viene del análisis
    de Yeasy ("una cita por teléfono = 4 minutos perdidos"), con palabras y
@@ -50,7 +50,7 @@ export default function TiempoPerdido({ origen = "home" }: { origen?: string }) 
             <p className="text-white/70 mt-6 leading-relaxed">
               Con la reserva online tus clientes eligen hora solos, y con Syna el WhatsApp se responde y agenda mientras atiendes.
             </p>
-            <a href={`${SIGNUP_URL}?ref=tiempo-${origen}`}
+            <a href={alta(`tiempo-${origen}`)}
               className="mt-7 inline-flex justify-center items-center bg-lime text-ink font-semibold px-7 py-4 rounded-full hover:bg-white transition-colors">
               Pruébalo 14 días gratis
             </a>

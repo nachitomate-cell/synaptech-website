@@ -2,7 +2,7 @@ import Link from "next/link";
 import Header   from "@/components/Header";
 import Footer   from "@/components/Footer";
 import FaqSeo   from "@/components/FaqSeo";
-import { SIGNUP_URL, APP_CLIENTES } from "@/content/catalogo";
+import { alta, APP_CLIENTES } from "@/content/catalogo";
 import { metaPagina } from "@/lib/seo";
 
 /* Mis reservas (12-10-2026): la app de la persona que reserva, en
@@ -163,7 +163,7 @@ export default function MisReservas() {
                 </p>
               </div>
               <div className="relative flex flex-col sm:flex-row lg:flex-col gap-3 lg:items-end">
-                <a href={`${SIGNUP_URL}?ref=mis-reservas`} className="inline-flex justify-center items-center bg-[#C6F94E] text-[#0F1A2B] font-semibold px-7 py-4 rounded-full hover:bg-white transition-colors">
+                <a href={alta(`mis-reservas`)} className="inline-flex justify-center items-center bg-[#C6F94E] text-[#0F1A2B] font-semibold px-7 py-4 rounded-full hover:bg-white transition-colors">
                   Pruébalo 14 días gratis
                 </a>
                 <Link href="/funciones" className="inline-flex justify-center items-center border border-white/25 text-white font-semibold px-7 py-4 rounded-full hover:border-white/60 transition-colors">
