@@ -79,8 +79,9 @@ export default function Pricing({ conEnlace = true }: { conEnlace?: boolean }) {
             {slug}.bioo.cl. Lo que lista es lo que da functions/lib/plan-gratis.js
             en la plataforma (copy verificable): agenda, reserva, fichas,
             confirmación y un recordatorio por correo, hasta 4 profesionales; los
-            primeros 14 días con todo lo del Pro. Sus avisos por WhatsApp no se nombran
-            acá (salen por un canal que no se expone en público). */}
+            primeros 14 días con todo lo del Pro. Desde el 12-10-2026 sus 50 avisos
+            al mes salen por la vía OFICIAL de WhatsApp (recordatorios-bioo.js), así
+            que se dicen: es lo que Setmore Free y AgendaLibre gratis no traen. */}
         <div className="mt-4 rounded-[28px] bg-white ring-2 ring-lime p-6 sm:p-8 flex flex-col md:flex-row md:items-center gap-5 justify-between">
           <div className="max-w-2xl">
             <p className="flex flex-wrap items-center gap-2.5">
@@ -90,7 +91,7 @@ export default function Pricing({ conEnlace = true }: { conEnlace?: boolean }) {
             <p className="text-text-secondary mt-2 leading-relaxed">
               <span className="font-semibold text-ink">$0, para siempre, hasta 4 profesionales.</span>{" "}
               Agenda, reserva online 24/7 con tu propio link, fichas de clientes y
-              confirmación y recordatorio de cada cita por correo. Los primeros 14 días
+              confirmación y recordatorio de cada cita por correo, y 50 avisos al mes por la vía oficial de WhatsApp. Los primeros 14 días
               tienes todo lo del plan Pro. Lo armas en 5 minutos en bioo, nuestra agenda gratis.
             </p>
           </div>

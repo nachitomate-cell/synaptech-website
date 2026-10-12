@@ -61,7 +61,7 @@ export const SYNAPTECH = {
    (functions/lib/plan-gratis.js en la plataforma). Va APARTE de SYNAPTECH.precios:
    las comparaciones lado a lado siguen con el Básico, que es lo que trae
    WhatsApp, caja y club; el Gratis se nombra junto a los otros planes gratis. */
-export const SYNAPTECH_GRATIS = { tope: 4, precio: { valor: "$0", nota: "Gratis: hasta 4 profesionales, recordatorios por correo, en bioo.cl/agenda" } as Precio };
+export const SYNAPTECH_GRATIS = { tope: 4, precio: { valor: "$0", nota: "Gratis: hasta 4 profesionales, recordatorios por correo y 50 avisos por WhatsApp al mes, en bioo.cl/agenda" } as Precio };
 
 const [AGENDA_LATAM, IA_LATAM] = PLANES_LATAM;
 const NOSOTROS_USD: Precio = { valor: `US$${AGENDA_LATAM.precio}`, nota: `Fuera de Chile, profesionales ilimitados. En Chile, ${NOSOTROS_PRECIO.valor}` };
@@ -429,7 +429,7 @@ export const COMPETIDORES: Competidor[] = [
       { tema: "Asistente con IA que agenda", ellos: null, nosotros: "Syna, incluida en el plan Pro ($49.900 + IVA)" },
       { tema: "Boletas ante el SII", ellos: "En el plan Pro, con FacturaLibre: un RUT emisor, para citas pagadas online; +$8.990 + IVA por RUT adicional", nosotros: "Adicional de $29.900 + IVA al mes: la boleta de honorarios de cada profesional y la del local salen solas al cerrar la cita" },
       { tema: "Tarjeta del club en Google Wallet y Apple Wallet", ellos: null, nosotros: "Incluida en todos los planes" },
-      { tema: "Plan gratis", ellos: "Hasta 2 profesionales y 80 citas al mes, sin WhatsApp", nosotros: "Hasta 4 profesionales, para siempre, con citas ilimitadas; recordatorios por correo (en bioo.cl/agenda)" },
+      { tema: "Plan gratis", ellos: "Hasta 2 profesionales y 80 citas al mes, sin WhatsApp", nosotros: "Hasta 4 profesionales, para siempre, con citas ilimitadas; recordatorios por correo y 50 avisos al mes por la vía oficial de WhatsApp (en bioo.cl/agenda)" },
     ],
     cuandoEllos: "Tu equipo es de hasta 8 profesionales y buscas el precio más bajo con recordatorios por WhatsApp.",
     cuandoNosotros: [
@@ -541,6 +541,7 @@ export const COMPETIDORES: Competidor[] = [
     notaPrecios: "Precios en dólares de su página; no dice si incluyen impuestos. Con el Pro pagado anual, que es lo que muestra por defecto, son US$30 (6 usuarios) y US$45 (9) al mes. El plan Free no trae SMS ni sincronización bidireccional del calendario.",
     resumen: "Setmore es gratis hasta 4 usuarios, y con pago anual su plan Pro es barato. No publica WhatsApp ni un asistente con IA que agende: su recepcionista es una persona, por US$99 al mes y solo en EE. UU.",
     filas: [
+      { tema: "Plan gratis", ellos: "Hasta 4 usuarios: reservas y recordatorios por correo, sin SMS", nosotros: "Hasta 4 profesionales, para siempre: reservas, recordatorios por correo y 50 avisos al mes por la vía oficial de WhatsApp (en bioo.cl/agenda)" },
       { tema: "Cómo cobra", ellos: "Por usuario: gratis hasta 4; Pro US$12 al mes (US$5 con pago anual)", nosotros: "Por local, con profesionales ilimitados" },
       { tema: "Recordatorios", ellos: "Por correo en el plan Free; SMS en el Pro (500 al mes por miembro)", nosotros: "Confirmación y recordatorio por WhatsApp" },
       { tema: "WhatsApp", ellos: null, nosotros: "Avisos por la vía oficial de WhatsApp, y Syna responde desde el número de tu local (plan Pro)" },
@@ -548,7 +549,7 @@ export const COMPETIDORES: Competidor[] = [
       { tema: "Tarjeta del club en Google Wallet y Apple Wallet", ellos: null, nosotros: "Incluida en todos los planes" },
       { tema: "Boletas ante el SII", ellos: null, nosotros: "Boletas de honorarios automáticas, como adicional" },
     ],
-    cuandoEllos: "Son hasta 4 personas, te bastan las reservas con recordatorios por correo y no te complica que todo sea en dólares.",
+    cuandoEllos: "Necesitas sincronización bidireccional con tu calendario o su recepcionista telefónica en EE. UU., y no te complica que todo sea en inglés y en dólares.",
     cuandoNosotros: [
       "Tus clientes te escriben por WhatsApp y quieres que se les responda y agende ahí.",
       "Quieres caja, comisiones y club de fidelidad en el mismo sistema.",
