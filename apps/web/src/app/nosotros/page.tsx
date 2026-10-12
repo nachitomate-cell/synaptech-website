@@ -27,8 +27,8 @@ export const metadata = metaPagina({
 
 const NUMEROS = [
   { v: "+35", l: "locales y sedes en Chile" },
-  { v: "+36.000", l: "clientes en sus fichas" },
-  { v: "+18.000", l: "citas y reservas agendadas" },
+  { v: "+35.000", l: "clientes en sus fichas" },
+  { v: "+16.000", l: "citas y reservas agendadas" },
   { v: "+1.300", l: "cambios publicados desde abril" },
 ];
 
