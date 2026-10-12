@@ -48,7 +48,7 @@ function Seccion({ n, titulo, children }: { n: number; titulo: string; children:
 export default function PlantillaFicha() {
   return (
     <main className="bg-white text-[#111] mx-auto max-w-[794px] px-10 py-10 print:p-0 text-[11px] leading-snug">
-      <style>{`@page { size: A4; margin: 14mm; } @media print { header, footer, .no-imprimir, [aria-label="WhatsApp"] { display: none !important; } }`}</style>
+      <style dangerouslySetInnerHTML={{ __html: `@page { size: A4; margin: 14mm; } @media print { header, footer, .no-imprimir, [aria-label*="WhatsApp"], nextjs-portal { display: none !important; } }` }} />
       <div className="flex items-end justify-between border-b-2 border-[#0F1A2B] pb-2">
         <div>
           <h1 className="!text-[20px] !leading-tight !tracking-tight font-bold">Ficha clínica estética</h1>

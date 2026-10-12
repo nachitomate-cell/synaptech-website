@@ -112,3 +112,54 @@ export const FICHA_FAQ: Pregunta[] = [
   { q: "¿Los datos de la ficha son datos sensibles?", a: "Sí. Los datos de salud son datos sensibles por la Ley 19.628, y desde el 1 de diciembre de 2026 la Ley 21.719 exige consentimiento expreso para tratarlos." },
   { q: "¿Puedo llevar la ficha clínica estética en digital?", a: "Sí. En SynapTech cada paciente tiene su ficha con alergias destacadas, notas y la evolución de cada sesión, el consentimiento se acepta al reservar y la ficha se imprime en PDF cuando la necesitas." },
 ];
+
+/* ── Guía: consentimiento informado para estética (11-10-2026) ───────────────
+   Keyword: "consentimiento informado estética" (+ facial, corporal, pdf, word,
+   ejemplo) y por tratamiento: limpieza facial, peeling, depilación láser,
+   micropigmentación, lifting de pestañas, corporal (autocompletado de Google
+   Chile del 11-10, seo/sugerencias-consentimiento-2026-10-11.json).
+   Lo legal reutiliza la verificación del 09-10 (filas 2a, 3 y 4c). Los efectos
+   y cuidados por tratamiento son PRÁCTICA HABITUAL, no norma: la página los
+   presenta como ejemplos que la profesional adapta a su técnica y equipo. */
+
+export const CONSENTIMIENTO_PARTES = [
+  { t: "Identificación", d: "Nombre, RUT, fecha de nacimiento y contacto de la paciente, y quién la atiende. Si es menor de edad, también su madre, padre o tutor." },
+  { t: "El tratamiento", d: "Qué se hará, en qué zona, cuántas sesiones y cada cuánto. Escrito en palabras simples, no en términos técnicos." },
+  { t: "Lo que puede pasar", d: "Los efectos esperables y los posibles, aunque sean poco frecuentes: enrojecimiento, sensibilidad, manchas, alergia a un producto." },
+  { t: "Alternativas", d: "Qué otras opciones tiene, incluida la de no hacerse el tratamiento." },
+  { t: "Antecedentes declarados", d: "Embarazo, alergias, medicamentos, enfermedades y tratamientos recientes. Ella declara que lo que informó es verdad." },
+  { t: "Cuidados antes y después", d: "Lo que tiene que hacer o evitar: sol, maquillaje, ejercicio, otros tratamientos. Si no los sigue, el resultado puede cambiar." },
+  { t: "Fotografías", d: "Una autorización aparte: solo para la ficha, también para difusión, o ninguna." },
+  { t: "Firmas", d: "Fecha y firma de la paciente y de la profesional, después de que pudo hacer todas sus preguntas." },
+];
+
+export type TratamientoConsentimiento = { id: string; nombre: string; efectos: string; cuidados: string; ojo?: string };
+
+export const CONSENTIMIENTO_TRATAMIENTOS: TratamientoConsentimiento[] = [
+  { id: "limpieza-facial", nombre: "Limpieza facial", efectos: "Enrojecimiento y sensibilidad por algunas horas, y a veces granitos los días siguientes mientras la piel se limpia.", cuidados: "Protector solar, no manipular la piel y evitar exfoliantes por unos días." },
+  { id: "peeling", nombre: "Peeling químico", efectos: "Enrojecimiento, ardor durante la aplicación y descamación los días siguientes. Con sol, riesgo de manchas.", cuidados: "Protector solar estricto, no arrancar la piel que se descama, sin exfoliantes ni ácidos en casa hasta que se indique.", ojo: "Pregunta por embarazo, herpes activo y uso reciente de isotretinoína." },
+  { id: "depilacion-laser", nombre: "Depilación láser", efectos: "Enrojecimiento e hinchazón alrededor de cada folículo por algunas horas. Con poca frecuencia, quemaduras o cambios de color de la piel.", cuidados: "Sin sol ni autobronceante antes y después, no usar cera ni pinzas entre sesiones (sí rasuradora).", ojo: "Registra el fototipo: define los parámetros del equipo." },
+  { id: "micropigmentacion", nombre: "Micropigmentación de cejas o labios", efectos: "Inflamación y costras los primeros días. El color cambia mientras cicatriza y puede requerir un retoque.", cuidados: "No mojar ni rascar la zona, no exponerla al sol y no ir a piscina hasta que cicatrice.", ojo: "Atraviesa la piel: es un procedimiento invasivo, y el consentimiento tiene que constar por escrito." },
+  { id: "lifting-pestanas", nombre: "Lifting de pestañas", efectos: "Irritación o ardor si el producto toca el ojo, y con poca frecuencia alergia al producto.", cuidados: "No mojar las pestañas ni usar máscara por 24 horas.", ojo: "Pregunta por alergias y por lentes de contacto; ante la duda, haz una prueba previa del producto." },
+  { id: "corporal", nombre: "Tratamientos corporales", efectos: "Enrojecimiento, calor o sensibilidad en la zona tratada, según el equipo (radiofrecuencia, cavitación, masajes).", cuidados: "Hidratación y las indicaciones de cada equipo; los resultados dependen también de la alimentación y la actividad física.", ojo: "Pregunta por embarazo, marcapasos e implantes metálicos antes de usar aparatología." },
+];
+
+export const CONSENTIMIENTO_LEY = {
+  fecha: FECHA,
+  parrafos: [
+    "La Ley 20.584 dice que toda persona tiene derecho a aceptar o rechazar un tratamiento después de recibir información suficiente. Ese consentimiento es verbal por regla general, pero debe constar por escrito en cirugías, procedimientos invasivos y los que tienen un riesgo relevante y conocido.",
+    "Los procedimientos invasivos o que penetran la piel, como la micropigmentación, requieren autorización sanitaria y un director técnico que sea profesional de la salud. Un instituto de belleza solo puede atender a personas sanas con fines estéticos.",
+    "Aunque tu tratamiento no exija el consentimiento por escrito, dejarlo firmado es la mejor práctica: deja constancia de qué se explicó y qué declaró la paciente.",
+    "Las fotos de antes y después son datos personales. Desde el 1 de diciembre de 2026 la Ley 21.719 exige consentimiento expreso para tratar datos de salud, así que conviene pedir la autorización de las fotos aparte y por escrito.",
+  ],
+  fuentes: FICHA_LEY.fuentes,
+};
+
+export const CONSENTIMIENTO_FAQ: Pregunta[] = [
+  { q: "¿Qué es el consentimiento informado en estética?", a: "Es el documento en que la paciente declara que se le explicó el tratamiento, sus efectos posibles, las alternativas y los cuidados, que pudo preguntar y que acepta hacérselo. Se firma antes de la primera sesión." },
+  { q: "¿Es obligatorio el consentimiento informado por escrito?", a: "La Ley 20.584 lo exige por escrito en cirugías, procedimientos invasivos y los que tienen un riesgo relevante. En el resto es verbal por regla general, pero dejarlo firmado es la mejor práctica." },
+  { q: "¿Necesito un consentimiento distinto para cada tratamiento?", a: "Conviene: los efectos y cuidados de una limpieza facial no son los de un peeling o un láser. La plantilla trae un documento general y anexos por tratamiento que completas según tu técnica." },
+  { q: "¿Sirve para una menor de edad?", a: "La plantilla tiene un espacio para la firma de la madre, el padre o el tutor, que debe acompañarla." },
+  { q: "¿Lo puedo editar en Word?", a: "Sí: está en PDF para imprimir y en Word para agregar tu logo, tus tratamientos y tus textos." },
+  { q: "¿Se puede firmar en digital?", a: "Sí. En SynapTech el consentimiento se acepta al reservar, el local puede exigirlo para agendar y queda guardado en la ficha de cada paciente." },
+];

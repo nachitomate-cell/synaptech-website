@@ -91,6 +91,9 @@ export default function ClinicasPage() {
             </p>
             <Link href="/recursos/ficha-clinica-estetica" className="inline-flex items-center gap-1.5 mt-4 font-semibold text-ink border-b-2 border-lime pb-0.5 hover:border-ink">
               Descarga gratis una ficha clínica estética en PDF →
+            </Link>{" "}
+            <Link href="/recursos/consentimiento-informado-estetica" className="inline-flex items-center gap-1.5 mt-4 sm:ml-6 font-semibold text-ink border-b-2 border-lime pb-0.5 hover:border-ink">
+              Y el consentimiento informado, en PDF y Word →
             </Link>
           </div>
         </section>

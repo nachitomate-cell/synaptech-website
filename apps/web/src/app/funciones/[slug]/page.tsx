@@ -31,6 +31,7 @@ const NOMBRES_RUTAS: Record<string, string> = {
   "/precios": "Precios",
   "/clinicas": "Software para clínicas estéticas",
   "/recursos/ficha-clinica-estetica": "Ficha clínica estética (PDF gratis)",
+  "/recursos/consentimiento-informado-estetica": "Consentimiento informado (PDF y Word)",
   "/fidelizacion": "Club de fidelización",
   "/tienda-online": "Tienda online",
   "/barberias": "Software para barberías",

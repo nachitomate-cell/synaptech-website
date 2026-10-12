@@ -135,7 +135,7 @@ export const FUNCIONES: Funcion[] = [
       { q: "¿Puedo tener la ficha clínica digital gratis?", a: "La plantilla en PDF es gratis. La ficha digital dentro de la agenda viene en todos los planes de SynapTech, que tiene 14 días de prueba sin tarjeta." },
       { q: "¿Quién puede ver la ficha?", a: "Tu equipo, según su rol. Las notas internas no las ve el paciente." },
     ],
-    relacionadas: ["abono-al-reservar", "recordatorios-whatsapp", "/clinicas", "/recursos/ficha-clinica-estetica"],
+    relacionadas: ["abono-al-reservar", "recordatorios-whatsapp", "/clinicas", "/recursos/ficha-clinica-estetica", "/recursos/consentimiento-informado-estetica"],
   },
   {
     slug: "abono-al-reservar",

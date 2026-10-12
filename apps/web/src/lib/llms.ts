@@ -85,6 +85,7 @@ ${FUNCIONES.map((f) => `- [${f.nombre}](${S}/funciones/${f.slug})`).join("\n")}
 - [Cómo funciona, módulo por módulo](${S}/como-funciona)
 - [Guía: boleta de honorarios, comisiones y arriendo de sillón](${S}/guias/boleta-honorarios-y-comisiones-barberos)
 - [Ficha clínica estética, plantilla gratis en PDF](${S}/recursos/ficha-clinica-estetica)
+- [Consentimiento informado para estética, modelo gratis en PDF y Word](${S}/recursos/consentimiento-informado-estetica)
 - [Locales que usan SynapTech](${S}/locales)
 - [Nosotros](${S}/nosotros)`;
 
