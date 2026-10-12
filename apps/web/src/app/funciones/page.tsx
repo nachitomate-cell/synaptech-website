@@ -17,6 +17,7 @@ const OTRAS = [
   { href: "/asistente-ia-whatsapp", nombre: "Asistente con IA en WhatsApp", d: "Responde y agenda en el número de tu local." },
   { href: "/fidelizacion", nombre: "Club de fidelización", d: "Sellos, premios y la tarjeta en Google Wallet y Apple Wallet." },
   { href: "/tienda-online", nombre: "Tienda online", d: "Vende tus productos por internet con tu marca." },
+  { href: "/mis-reservas", nombre: "App para tus clientes", d: "Sus citas, sellos y premios en Mis reservas, incluida." },
   { href: "/guias/boleta-honorarios-y-comisiones-barberos", nombre: "Boletas de honorarios", d: "Arriendo de sillón con la boleta de cada profesional." },
 ];
 

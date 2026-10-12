@@ -75,7 +75,7 @@ export function seccionGuias() {
 Boletas, comisiones y arriendo de sillón (página /guias/boleta-honorarios-y-comisiones-barberos):
 ${modelos}
 ${BHE_RETENCION.parrafos.join(" ")}
-Ficha clínica estética: plantilla gratis en PDF en /recursos/ficha-clinica-estetica. Consentimiento informado para estética (general y por tratamiento): modelo gratis en PDF y Word en /recursos/consentimiento-informado-estetica.
+Ficha clínica estética: plantilla gratis en PDF en /recursos/ficha-clinica-estetica. Consentimiento informado para estética (general y por tratamiento): modelo gratis en PDF y Word en /recursos/consentimiento-informado-estetica. Mis reservas (mi.synaptechspa.cl, explicada en /mis-reservas): la app gratis de los clientes de los locales; entran con su correo y un código y ven sus citas, sellos y premios de todos sus locales SynapTech. Todo local la tiene incluida.
 ${faq}`;
 }
 

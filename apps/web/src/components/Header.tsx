@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { FAMILIAS, RUBROS, SIGNUP_URL } from "@/content/catalogo";
+import { FAMILIAS, RUBROS, SIGNUP_URL, APP_CLIENTES } from "@/content/catalogo";
 
 /* Menú al estilo Square: cada familia abre un panel ancho con todo lo que
    contiene. Los productos y rubros salen de content/catalogo.ts, el mismo
@@ -21,6 +21,7 @@ const RECURSOS = [
   { label: "Guía: boletas y comisiones", desc: "Sueldo, comisión o arriendo de sillón en 2026", href: "/guias/boleta-honorarios-y-comisiones-barberos" },
   { label: "Ficha clínica estética", desc: "Plantilla gratis en PDF, facial y corporal", href: "/recursos/ficha-clinica-estetica" },
   { label: "Consentimiento informado", desc: "Modelo gratis en PDF y Word, por tratamiento", href: "/recursos/consentimiento-informado-estetica" },
+  { label: "Mis reservas", desc: "Para clientes: tus citas y sellos de todos tus locales", href: "/mis-reservas" },
   { label: "Clientes",       desc: "Lo que dicen los locales que ya lo usan", href: "/#testimonios" },
   { label: "Integraciones",  desc: "Pagos, WhatsApp, SII, Wallet y más", href: "/#integraciones" },
   { label: "Preguntas frecuentes", desc: "Precios, prueba, datos y contrato", href: "/#faq" },
@@ -117,6 +118,14 @@ export default function Header() {
         </nav>
 
         <div className="hidden lg:flex items-center gap-2 shrink-0">
+          {/* Mis reservas (12-10-2026): el acceso de los CLIENTES de los locales
+              (mi.synaptechspa.cl). "Ingresar" es el de los dueños. En lg no
+              cabe: queda en Recursos y en el menú del celular. */}
+          <a href={APP_CLIENTES}
+            className="hidden xl:inline-flex items-center gap-1.5 whitespace-nowrap px-4 py-2 rounded-full text-[15px] font-medium text-text-secondary hover:text-ink transition-colors">
+            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+            Mis reservas
+          </a>
           <a href="https://app.synaptechspa.cl/"
             className="px-4 py-2 rounded-full text-[15px] font-medium text-text-secondary hover:text-ink transition-colors">
             Ingresar
@@ -230,6 +239,14 @@ export default function Header() {
             </li>
           </ul>
           <div className="px-4 sm:px-6 py-6 flex flex-col gap-3">
+            <a href={APP_CLIENTES}
+              className="flex items-center justify-between gap-3 rounded-2xl bg-ink text-white px-5 py-4">
+              <span>
+                <span className="block text-[12px] font-semibold uppercase tracking-[.08em] text-[#C6F94E]">¿Reservaste en un local?</span>
+                <span className="block font-semibold text-[17px] mt-0.5">Mis reservas</span>
+              </span>
+              <span aria-hidden className="text-[#C6F94E] text-xl">→</span>
+            </a>
             <a href={`${SIGNUP_URL}?ref=header-movil`}
               className="block text-center bg-ink text-white font-semibold py-3.5 rounded-full">
               Empezar gratis
