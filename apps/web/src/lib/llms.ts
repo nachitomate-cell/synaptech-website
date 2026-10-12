@@ -93,6 +93,7 @@ export const CONTACTO = `- WhatsApp: +56 9 8356 8212
 - Prueba gratis: https://empieza.synaptechspa.cl
 - Agenda gratis (hasta 4 profesionales): https://bioo.cl/agenda
 - Instagram: https://www.instagram.com/synaptechspa
+- YouTube (cápsulas de cada módulo): https://www.youtube.com/@synaptechspa
 - App del equipo: https://apps.apple.com/cl/app/synaptech-studio/id6794530086 · https://play.google.com/store/apps/details?id=cl.synaptechspa.studio`;
 
 /** Ficha completa de una agenda de la competencia (para /llms-full.txt). */
