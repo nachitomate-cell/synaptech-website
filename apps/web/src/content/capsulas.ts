@@ -13,6 +13,7 @@ export type Capsula = {
 };
 
 export const CAPSULAS: Capsula[] = [
+  { id: "syna-8bit",                       titulo: "SynapTech en 8-bit",          bajada: "Syna recorre los 9 niveles con el panel real, en PC y celular.", duracion: "2:25", modulo: "general", formato: "horizontal" },
   { id: "presentacion-synaptech-2",        titulo: "Así funciona SynapTech",      bajada: "Reserva, agenda, club, equipo, comisiones y caja en un minuto y medio.", duracion: "1:27", modulo: "general" },
   { id: "reel-asistente-whatsapp",         titulo: "Tu WhatsApp en piloto automático", bajada: "Syna responde y agenda la hora dentro del chat.", duracion: "0:35", modulo: "asistente" },
   { id: "tutorial-agenda-barbero",         titulo: "La agenda del profesional",   bajada: "Su día, agendar, marcar que llegó y cobrar, desde el celular.", duracion: "1:06", modulo: "agenda" },
