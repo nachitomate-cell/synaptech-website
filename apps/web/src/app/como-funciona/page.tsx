@@ -1,3 +1,4 @@
+import Link        from "next/link";
 import Header      from "@/components/Header";
 import Footer      from "@/components/Footer";
 import Recorrido   from "@/components/Recorrido";
@@ -27,6 +28,11 @@ export default function ComoFunciona() {
             </p>
             <p className="text-sm text-text-muted mt-4">
               Capturas del panel con un local de ejemplo y datos inventados.
+            </p>
+            <p className="text-sm mt-2">
+              <Link href="/niveles" className="text-text-secondary underline underline-offset-4 decoration-border-subtle hover:text-ink hover:decoration-ink transition-colors">
+                ¿Prefieres verlo en video? El recorrido en 8-bit, nivel por nivel →
+              </Link>
             </p>
           </div>
         </section>
