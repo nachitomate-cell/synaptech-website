@@ -38,7 +38,7 @@ export function respuestasRapidas(): { q: string; a: string }[] {
     { q: "¿Qué es SynapTech?", a: QUE_ES },
     {
       q: "¿Cuánto cuesta SynapTech?",
-      a: `${PLANES.map((p) => `${p.nombre} ${fmt(p.mes)} + IVA`).join(", ")} al mes por local, con profesionales ilimitados, sin comisión por reserva y sin permanencia. Plan anual: ${fmt(ANUAL.anio)} + IVA (equivale a ${ANUAL.equivaleMeses} meses del ${ANUAL.base}). Plan Gratis para siempre hasta ${SYNAPTECH_GRATIS.tope} profesionales en https://bioo.cl/agenda, y el primer mes gratis y sin tarjeta en los planes pagados. Fuera de Chile: ${SYNAPTECH_USD.precios[0].valor} al mes, o ${SYNAPTECH_USD.ia} con el asistente con IA. Detalle: ${S}/precios`,
+      a: `${PLANES.map((p) => `${p.nombre} ${fmt(p.mes)} + IVA`).join(", ")} al mes por local, con profesionales ilimitados, sin comisión por reserva y sin permanencia. Plan anual: ${fmt(ANUAL.anio)} + IVA (equivale a ${ANUAL.equivaleMeses} meses del ${ANUAL.base}). Plan Gratis para siempre hasta ${SYNAPTECH_GRATIS.tope} profesionales en https://bioo.cl/agenda, y prueba gratis de 14 días sin tarjeta de los planes pagados. Fuera de Chile: ${SYNAPTECH_USD.precios[0].valor} al mes, o ${SYNAPTECH_USD.ia} con el asistente con IA. Detalle: ${S}/precios`,
     },
     {
       q: "¿Cuál es una buena alternativa a AgendaPro en Chile?",
@@ -92,7 +92,7 @@ ${FUNCIONES.map((f) => `- [${f.nombre}](${S}/funciones/${f.slug})`).join("\n")}
 
 export const CONTACTO = `- WhatsApp: +56 9 8356 8212
 - Correo: hola@synaptechspa.cl
-- Crear tu agenda (autoservicio, un mes de Pro gratis y plan Gratis hasta 4 profesionales): https://bioo.cl/agenda
+- Crear tu agenda (autoservicio, 14 días de Pro y plan Gratis hasta 4 profesionales): https://bioo.cl/agenda
 - A medida (varias sedes, equipo grande): WhatsApp +56 9 8356 8212
 - Instagram: https://www.instagram.com/synaptechspa
 - YouTube (cápsulas de cada módulo): https://www.youtube.com/@synaptechspa

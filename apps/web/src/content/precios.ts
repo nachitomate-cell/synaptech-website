@@ -12,7 +12,7 @@
      de Meta; antes 50/$3.990 · 150/$9.990 · 400/$19.990). */
 
 /* La alta de autoservicio (bioo.cl/agenda): todos los planes parten ahí con
-   un mes de Pro. Para links usar alta() de catalogo.ts (utm, no ?ref=). */
+   14 días de Pro. Para links usar alta() de catalogo.ts (utm, no ?ref=). */
 export const SIGNUP = "https://bioo.cl/agenda";
 
 export const fmt = (n: number) => "$" + n.toLocaleString("es-CL");

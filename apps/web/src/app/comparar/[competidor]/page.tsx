@@ -95,7 +95,7 @@ export default function CompararCompetidor({ params }: { params: { competidor: s
                 <div className="flex flex-col sm:flex-row gap-3 mt-8">
                   <a href={alta(`comparar-${c.id}`)}
                     className="inline-flex justify-center items-center bg-ink text-white font-semibold px-7 py-4 rounded-full hover:bg-black transition-colors">
-                    Probar 1 mes gratis
+                    Probar 14 días gratis
                   </a>
                   <a href={waLink(`Hola, hoy uso ${c.nombre} y quiero ver cómo sería cambiarme a SynapTech`)} target="_blank" rel="noopener noreferrer"
                     className="inline-flex justify-center items-center border border-ink/15 text-ink font-semibold px-7 py-4 rounded-full hover:border-ink/40 transition-colors">

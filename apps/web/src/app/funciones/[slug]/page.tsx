@@ -76,7 +76,7 @@ export default function PaginaFuncion({ params }: { params: { slug: string } }) 
               <p className="text-text-secondary text-lg md:text-xl leading-relaxed mt-6 max-w-xl">{f.bajada}</p>
               <div className="flex flex-col sm:flex-row gap-3 mt-8">
                 <a href={alta(`funcion-${f.slug}`)} className="inline-flex justify-center items-center bg-ink text-white font-semibold px-7 py-4 rounded-full hover:bg-black transition-colors">
-                  Pruébalo 1 mes gratis
+                  Pruébalo 14 días gratis
                 </a>
                 <a href={waLink(`Hola, quiero saber más de ${f.nombre.toLowerCase()} en SynapTech`)} target="_blank" rel="noopener noreferrer"
                   className="inline-flex justify-center items-center border border-ink/15 text-ink font-semibold px-7 py-4 rounded-full hover:border-ink/40 transition-colors">
