@@ -101,7 +101,7 @@ export default function PaisLanding({ codigo }: { codigo: CodigoPais }) {
                 </a>
               </div>
               <p className="text-sm text-text-muted mt-6">
-                Más de 35 locales y sedes ya trabajan con SynapTech en Chile.
+                Más de 45 locales y sedes ya trabajan con SynapTech en Chile.
               </p>
             </div>
             <div className="relative">
