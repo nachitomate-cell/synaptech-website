@@ -1,10 +1,12 @@
 import { alta, waLink } from "@/content/catalogo";
 
 /* Bloque destacado, el equivalente al "Square Terminal −40%" de su home.
-   La oferta la decidió Ignacio el 08-10-2026: 2 meses gratis.
-   OJO: la prueba automática (bioo.cl/agenda) es de UN mes desde el 15-10-2026;
-   los 2 meses los activa Ignacio a mano, por eso el botón principal va a
-   WhatsApp y no al alta automática. */
+   La oferta la decidió Ignacio el 08-10-2026 (2 meses) y la bajó a 1 mes el
+   15-10-2026: "el mes gratis es solo para los que nosotros elegimos" (los 2
+   meses quedan solo fuera de Chile, ver paises.ts). Quien se registra solo en
+   bioo.cl/agenda tiene 14 días; el mes lo da el link del vendedor
+   (?utm_source=vendedor, 30 días). Por eso el botón principal va a WhatsApp
+   y el secundario dice que solo son 14 días. */
 const PUNTOS = [
   { t: "Sin tarjeta", d: "No pides nada por adelantado para partir." },
   { t: "Te dejamos andando", d: "Cargamos tus servicios, tu equipo y tus clientes." },
@@ -25,20 +27,20 @@ export default function PromoMeses() {
                 Oferta para locales nuevos
               </span>
               <h2 className="text-white">
-                Tus primeros <span className="text-lime">2 meses gratis.</span>
+                Tu primer <span className="text-lime">mes gratis.</span>
               </h2>
               <p className="text-white/75 text-lg mt-5 leading-relaxed max-w-xl">
-                Súmate a SynapTech y no pagas la mensualidad de los dos primeros
-                meses, en cualquier plan. Si no te sirve, te vas sin costo.
+                Escríbenos por WhatsApp y tu primer mes va por nuestra cuenta, con
+                todo el plan Pro y sin tarjeta. Si no te sirve, te vas sin costo.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 mt-8">
-                <a href={waLink("Hola, quiero mis 2 meses gratis en SynapTech")} target="_blank" rel="noopener noreferrer"
+                <a href={waLink("Hola, quiero mi mes gratis en SynapTech")} target="_blank" rel="noopener noreferrer"
                   className="inline-flex justify-center items-center bg-lime text-ink font-semibold px-7 py-4 rounded-full hover:bg-white transition-colors">
-                  Quiero mis 2 meses gratis
+                  Quiero mi mes gratis
                 </a>
                 <a href={alta(`home-oferta`)}
                   className="inline-flex justify-center items-center border border-white/25 text-white font-semibold px-7 py-4 rounded-full hover:border-white/60 transition-colors">
-                  Crear mi local ahora
+                  Partir solo (14 días)
                 </a>
               </div>
             </div>
