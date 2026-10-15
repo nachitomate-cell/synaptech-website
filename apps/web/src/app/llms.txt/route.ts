@@ -18,7 +18,7 @@ export function GET() {
 
 > ${QUE_ES}
 
-Cobra un precio fijo por local con profesionales ilimitados y sin comisión por reserva. Plan Gratis para siempre hasta 4 profesionales (https://bioo.cl/agenda), prueba de 14 días sin tarjeta de los planes pagados y mudanza gratis desde otra agenda. Datos al ${fechaDatos()}. Versión completa (planes, comparaciones, preguntas frecuentes y guías): ${S}/llms-full.txt
+Cobra un precio fijo por local con profesionales ilimitados y sin comisión por reserva. Plan Gratis para siempre hasta 4 profesionales (https://bioo.cl/agenda), el primer mes gratis y sin tarjeta en los planes pagados y mudanza gratis desde otra agenda. Datos al ${fechaDatos()}. Versión completa (planes, comparaciones, preguntas frecuentes y guías): ${S}/llms-full.txt
 
 ## Respuestas rápidas
 

@@ -52,7 +52,7 @@ export default function TiempoPerdido({ origen = "home" }: { origen?: string }) 
             </p>
             <a href={alta(`tiempo-${origen}`)}
               className="mt-7 inline-flex justify-center items-center bg-lime text-ink font-semibold px-7 py-4 rounded-full hover:bg-white transition-colors">
-              Pruébalo 14 días gratis
+              Pruébalo 1 mes gratis
             </a>
           </div>
         </div>

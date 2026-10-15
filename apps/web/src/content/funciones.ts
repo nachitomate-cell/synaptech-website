@@ -132,7 +132,7 @@ export const FUNCIONES: Funcion[] = [
     ],
     faq: [
       { q: "¿Qué debe tener una ficha clínica estética?", a: "Datos del paciente, antecedentes y alergias, el tratamiento y la evolución de cada sesión, y el consentimiento informado. Tenemos una plantilla gratis en PDF en www.synaptechspa.cl/recursos/ficha-clinica-estetica." },
-      { q: "¿Puedo tener la ficha clínica digital gratis?", a: "La plantilla en PDF es gratis. La ficha digital dentro de la agenda viene en todos los planes de SynapTech, que tiene 14 días de prueba sin tarjeta." },
+      { q: "¿Puedo tener la ficha clínica digital gratis?", a: "La plantilla en PDF es gratis. La ficha digital dentro de la agenda viene en todos los planes de SynapTech, que tiene el primer mes gratis, sin tarjeta." },
       { q: "¿Quién puede ver la ficha?", a: "Tu equipo, según su rol. Las notas internas no las ve el paciente." },
     ],
     relacionadas: ["abono-al-reservar", "recordatorios-whatsapp", "/clinicas", "/recursos/ficha-clinica-estetica", "/recursos/consentimiento-informado-estetica"],

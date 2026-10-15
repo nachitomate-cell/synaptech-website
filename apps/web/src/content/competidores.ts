@@ -185,7 +185,7 @@ export const COMPETIDORES: Competidor[] = [
       { tema: "Asistente con IA", ellos: "Lo que llaman IA son recordatorios, confirmaciones y cancelaciones automáticas", nosotros: "Syna conversa, responde precios y horarios y agenda en el WhatsApp del local" },
       { tema: "Fidelización", ellos: "Puntos de recompensa y gift cards", nosotros: "Club de sellos con tarjeta en Google Wallet y Apple Wallet, y gift cards" },
       { tema: "Boletas ante el SII", ellos: null, nosotros: "Boletas de honorarios automáticas" },
-      { tema: "Prueba gratis", ellos: "14 días, registrando una tarjeta", nosotros: "14 días, sin tarjeta" },
+      { tema: "Prueba gratis", ellos: "14 días, registrando una tarjeta", nosotros: "1 mes, sin tarjeta" },
     ],
     cuandoEllos: "Tu equipo es de hasta cinco profesionales y solo necesitas agenda con recordatorios.",
     cuandoNosotros: [
@@ -467,7 +467,7 @@ export const COMPETIDORES: Competidor[] = [
       { tema: "Asistente con IA que agenda", ellos: null, nosotros: "Syna, en el plan Agenda + IA (US$20 fuera de Chile; plan Pro de $49.900 + IVA en Chile)" },
       { tema: "Facturación", ellos: "Facturas de AFIP con un clic (Argentina)", nosotros: "Boletas de honorarios ante el SII, solo en Chile" },
       { tema: "Tarjeta del club en Google Wallet y Apple Wallet", ellos: null, nosotros: "Incluida en todos los planes" },
-      { tema: "Prueba gratis", ellos: "14 días, sin medios de pago", nosotros: "2 meses fuera de Chile; 14 días sin tarjeta en Chile" },
+      { tema: "Prueba gratis", ellos: "14 días, sin medios de pago", nosotros: "2 meses fuera de Chile; 1 mes sin tarjeta en Chile" },
     ],
     cuandoEllos: "Estás en Argentina y necesitas facturar con AFIP, o tu equipo es chico y buscas el precio más bajo.",
     cuandoNosotros: [
@@ -659,7 +659,7 @@ export const COMPETIDORES: Competidor[] = [
       { tema: "Cobro de la reserva", ellos: "Sin pasarela integrada: se pega un link de pago externo", nosotros: "Pago online al reservar con Mercado Pago" },
       { tema: "Asistente con IA que agenda", ellos: null, nosotros: "Syna, incluida en el plan Pro ($49.900 + IVA)" },
       { tema: "Tarjeta del club en Google Wallet y Apple Wallet", ellos: null, nosotros: "Incluida en todos los planes" },
-      { tema: "Prueba gratis", ellos: "15 días, sin tarjeta", nosotros: "14 días, sin tarjeta" },
+      { tema: "Prueba gratis", ellos: "15 días, sin tarjeta", nosotros: "1 mes, sin tarjeta" },
     ],
     cuandoEllos: "Tu equipo es de hasta 7 profesionales y buscas el precio más bajo en pesos, con una página de reservas con varios estilos.",
     cuandoNosotros: [
