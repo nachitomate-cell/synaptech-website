@@ -9,10 +9,15 @@ import { alta, waLink, A_MEDIDA_WA } from "@/content/catalogo";
      17.870 − 1.097 migradas = 16.773 (las reservas de clase YA están en citas:
      cada cronograma_reservas trae su citaId; el 09-10 se sumaron dos veces) ·
      conversaciones WhatsApp 3.218 + Instagram 171 = 3.389.
+   LOCALES re-medidos el 14-10-2026 recorriendo TODA la colección tenants (el
+   directorio no lista a todos los clientes: faltaban Shapes, Alfa Men, Salón
+   Amanda, etc.): 45 locales que trabajan con SynapTech (sin bajas, sin
+   propuestas sin cerrar, sin agendas gratis sin uso), 43 en Chile + 7 sedes
+   extra (Punto Pilates 7, Oren 2) = 50 → "+45", hacia abajo.
    Se redondean hacia abajo. Volver a medir antes de cambiarlas: la planilla
    "Crecimiento SynapTech (se actualiza solo)" de Drive usa el mismo criterio. */
 const METRICAS = [
-  { valor: "+35",     label: "locales y sedes en Chile" },
+  { valor: "+45",     label: "locales y sedes en Chile" },
   { valor: "+35.000", label: "clientes en sus fichas" },
   { valor: "+16.000", label: "citas y reservas agendadas" },
   { valor: "+3.000",  label: "conversaciones por WhatsApp e Instagram" },

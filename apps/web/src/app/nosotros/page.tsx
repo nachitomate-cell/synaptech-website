@@ -1,12 +1,13 @@
 import Header   from "@/components/Header";
 import Footer   from "@/components/Footer";
 import CtaFinal from "@/components/CtaFinal";
+import VelocidadVideo from "@/components/VelocidadVideo";
 import { waLink } from "@/content/catalogo";
 import { metaPagina } from "@/lib/seo";
 
 export const metadata = metaPagina({
   title: "Nosotros: SynapTech, software chileno para locales",
-  description: "SynapTech nació en abril de 2026 como la página de reservas de una barbería. Hoy la usan más de 35 locales y sedes en Chile. Synaptech SpA, Viña del Mar.",
+  description: "SynapTech nació en abril de 2026 como la página de reservas de una barbería. Hoy la usan más de 45 locales y sedes en Chile. Synaptech SpA, Viña del Mar.",
   path: "/nosotros",
 });
 
@@ -20,13 +21,14 @@ export const metadata = metaPagina({
      15-04 constitución de la SpA · 21-04 / 08-05 varios locales en la misma
      plataforma · 16-07 asistente IA en el WhatsApp del local · 15-08 App Store
      · 01-09 Google Play · 05-09 primeras BHE con folio real (El 10) · 07-10
-     partner certificado de Mercado Pago.
+     partner certificado de Mercado Pago · 14-10 45 locales que trabajan con
+     SynapTech (Chile, Perú y Argentina; medición del video "La velocidad de SynapTech").
    "+1.300 cambios": 1.320 PRs mergeados en la plataforma al 09-10-2026.
    "31 %": reservas online antes de las 10, después de las 20 o en domingo,
    auditoría del 04-10-2026 (la misma cifra de la postulación al Banco de Chile). */
 
 const NUMEROS = [
-  { v: "+35", l: "locales y sedes en Chile" },
+  { v: "+45", l: "locales y sedes en Chile" },
   { v: "+35.000", l: "clientes en sus fichas" },
   { v: "+16.000", l: "citas y reservas agendadas" },
   { v: "+1.300", l: "cambios publicados desde abril" },
@@ -48,6 +50,7 @@ const HITOS = [
   { f: "15 de agosto", t: "SynapTech Studio, la app para el equipo, llega a la App Store. El 1 de septiembre, a Google Play." },
   { f: "5 de septiembre", t: "Salen las primeras boletas de honorarios con folio real del SII, emitidas solas al cerrar la cita." },
   { f: "7 de octubre", t: "Partner certificado de Mercado Pago. Ya son más de 35 locales y sedes." },
+  { f: "14 de octubre", t: "45 locales trabajan con SynapTech, en Chile, Perú y Argentina." },
 ];
 
 export default function NosotrosPage() {
@@ -58,7 +61,7 @@ export default function NosotrosPage() {
         <section className="pt-28 md:pt-36 pb-14">
           <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10">
             <p className="eyebrow mb-5">Nosotros</p>
-            <h1 className="text-ink max-w-5xl">Empezó con la agenda de una barbería. Hoy la usan más de 35 locales.</h1>
+            <h1 className="text-ink max-w-5xl">Empezó con la agenda de una barbería. Hoy la usan más de 45 locales.</h1>
             <p className="text-text-secondary text-lg md:text-xl leading-relaxed max-w-2xl mt-6">
               SynapTech es una empresa chilena, de Viña del Mar. Hacemos una sola
               plataforma —agenda, cobros, asistente con IA y club de fidelización— y la
@@ -151,7 +154,7 @@ export default function NosotrosPage() {
           <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10 grid lg:grid-cols-[0.8fr_1.2fr] gap-10">
             <div>
               <p className="eyebrow !text-lime mb-4">Hitos</p>
-              <h2 className="text-white">De una barbería a más de 35 locales.</h2>
+              <h2 className="text-white">De una barbería a más de 45 locales.</h2>
             </div>
             <ol className="relative border-l border-white/15 ml-2">
               {HITOS.map((h) => (
@@ -164,6 +167,8 @@ export default function NosotrosPage() {
             </ol>
           </div>
         </section>
+
+        <VelocidadVideo oscuro={false} />
 
         <section className="py-16 md:py-24">
           <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10 grid md:grid-cols-2 gap-6">

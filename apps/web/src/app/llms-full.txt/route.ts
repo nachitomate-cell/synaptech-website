@@ -19,7 +19,7 @@ Sitio: ${S} · Datos al ${fechaDatos()} · Versión corta: ${S}/llms.txt
 ## Empresa
 - Razón social: Synaptech SpA · RUT 78.402.009-6 · constituida el 15 de abril de 2026 · Viña del Mar, Región de Valparaíso, Chile.
 - Fundador: Ignacio Mateluna. La plataforma nació en abril de 2026 como la página de reservas de una barbería; el asistente con IA llegó en julio de 2026, la app del equipo a App Store en agosto y a Google Play en septiembre de 2026.
-- Más de 35 locales y sedes en Chile la usan. Lista pública: ${S}/locales
+- Más de 45 locales y sedes en Chile la usan. Lista pública: ${S}/locales
 
 ## Respuestas rápidas
 ${respuestasRapidas().map((r) => `### ${r.q}\n${r.a}`).join("\n\n")}

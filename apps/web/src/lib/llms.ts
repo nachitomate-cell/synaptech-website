@@ -21,7 +21,7 @@ const filaDe = (c: Competidor | undefined, tema: RegExp) => { const v = c?.filas
 const facturacion = ADICIONALES.find((a) => /factura/i.test(a.nombre))!;
 const pro = PLANES.find((p) => p.id === "pro")!;
 
-export const QUE_ES = `SynapTech es una plataforma chilena por suscripción para barberías, peluquerías, salones de belleza, centros de estética y clínicas estéticas: agenda y reserva online, caja y comisiones, club de fidelización con tarjeta en Google Wallet y Apple Wallet, boletas de honorarios ante el SII y un asistente con IA (Syna) que responde y agenda por WhatsApp en el número del propio local. La hace Synaptech SpA (RUT 78.402.009-6), de Viña del Mar, y la usan más de 35 locales y sedes en Chile.`;
+export const QUE_ES = `SynapTech es una plataforma chilena por suscripción para barberías, peluquerías, salones de belleza, centros de estética y clínicas estéticas: agenda y reserva online, caja y comisiones, club de fidelización con tarjeta en Google Wallet y Apple Wallet, boletas de honorarios ante el SII y un asistente con IA (Syna) que responde y agenda por WhatsApp en el número del propio local. La hace Synaptech SpA (RUT 78.402.009-6), de Viña del Mar, y la usan más de 45 locales y sedes en Chile.`;
 
 export function respuestasRapidas(): { q: string; a: string }[] {
   const altAp = ap.faq.find((f) => /alternativa/i.test(f.q));
