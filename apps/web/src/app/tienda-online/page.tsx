@@ -65,7 +65,7 @@ export default function TiendaOnline() {
               </p>
               <div className="flex flex-col sm:flex-row gap-3 mt-8">
                 <a href={alta(`tienda-online`)} className="inline-flex justify-center items-center bg-ink text-white font-semibold px-7 py-4 rounded-full hover:bg-black transition-colors">
-                  Pruébalo 14 días gratis
+                  Pruébalo 1 mes gratis
                 </a>
                 <a href={waLink("Hola, quiero ver cómo funciona la tienda online de SynapTech")} target="_blank" rel="noopener noreferrer"
                   className="inline-flex justify-center items-center border border-ink/15 text-ink font-semibold px-7 py-4 rounded-full hover:border-ink/40 transition-colors">

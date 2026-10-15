@@ -164,7 +164,7 @@ export default function MisReservas() {
               </div>
               <div className="relative flex flex-col sm:flex-row lg:flex-col gap-3 lg:items-end">
                 <a href={alta(`mis-reservas`)} className="inline-flex justify-center items-center bg-[#C6F94E] text-[#0F1A2B] font-semibold px-7 py-4 rounded-full hover:bg-white transition-colors">
-                  Pruébalo 14 días gratis
+                  Pruébalo 1 mes gratis
                 </a>
                 <Link href="/funciones" className="inline-flex justify-center items-center border border-white/25 text-white font-semibold px-7 py-4 rounded-full hover:border-white/60 transition-colors">
                   Ver todas las funciones

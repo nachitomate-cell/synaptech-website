@@ -2,7 +2,7 @@ import { alta, waLink } from "@/content/catalogo";
 
 /* Bloque destacado, el equivalente al "Square Terminal −40%" de su home.
    La oferta la decidió Ignacio el 08-10-2026: 2 meses gratis.
-   OJO: la prueba automática de crea.synaptechspa.cl sigue siendo de 14 días;
+   OJO: la prueba automática (bioo.cl/agenda) es de UN mes desde el 15-10-2026;
    los 2 meses los activa Ignacio a mano, por eso el botón principal va a
    WhatsApp y no al alta automática. */
 const PUNTOS = [
