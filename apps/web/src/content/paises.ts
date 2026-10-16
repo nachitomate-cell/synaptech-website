@@ -1,6 +1,7 @@
-/* Versiones del sitio por país (09-10-2026). Por ahora son una IDEA DE
-   EXPANSIÓN: viven en synaptechspa.cl/<código>, sin enlace desde el menú, fuera
-   del sitemap y con noindex. Cuando un país tenga su dominio (synaptech.pe,
+/* Versiones del sitio por país (09-10-2026). Viven en synaptechspa.cl/<código>,
+   sin enlace desde el menú, fuera del sitemap y con noindex: son el link que se
+   manda por WhatsApp a las barberías de cada país (desde el 16-10-2026 las cuatro
+   están abiertas, con su precio en dólares y la conversión a su moneda). Cuando un país tenga su dominio (synaptech.pe,
    etc.), se apunta ese dominio a la misma página y se cambia `canonical`.
 
    Todo lo que dicen sale de lo que la plataforma ya hace fuera de Chile
@@ -20,7 +21,7 @@ export type Pais = {
   codigo: CodigoPais;
   nombre: string;
   bandera: string;
-  /** "piloto" = ya hay conversaciones con locales; "pronto" = solo idea. */
+  /** "piloto" = abierto, ya se les escribe a barberías del país; "pronto" = solo idea. */
   estado: "piloto" | "pronto";
   dominioFuturo: string;
   moneda: string;
@@ -33,8 +34,10 @@ export type Pais = {
   leyDatos?: string;
   /** Mensajes de WhatsApp al mes por local para confirmaciones y recordatorios (vía
       oficial; Meta cobra según el país del cliente). Decisión del 10-10-2026: un cupo,
-      nunca "incluidos" ni "ilimitados"; pasado el cupo, más mensajes al costo. */
-  cupoWhatsApp: number;
+      nunca "incluidos" ni "ilimitados"; pasado el cupo, más mensajes al costo.
+      16-10-2026: en Perú y Argentina no se publica cifra (solo "confirmaciones y
+      recordatorios por WhatsApp"). */
+  cupoWhatsApp?: number;
 };
 
 export const PAISES: Record<CodigoPais, Pais> = {
@@ -42,22 +45,22 @@ export const PAISES: Record<CodigoPais, Pais> = {
     codigo: "pe", nombre: "Perú", bandera: "🇵🇪", estado: "piloto", dominioFuturo: "synaptech.pe",
     moneda: "soles (S/)", hora: "hora de Lima", prefijo: "+51", ciudades: "Lima",
     competencia: "Fresha", documento: "DNI",
-    leyDatos: "Ley N.° 29733, de Protección de Datos Personales", cupoWhatsApp: 70,
+    leyDatos: "Ley N.° 29733, de Protección de Datos Personales",
   },
   co: {
-    codigo: "co", nombre: "Colombia", bandera: "🇨🇴", estado: "pronto", dominioFuturo: "synaptech.com.co",
+    codigo: "co", nombre: "Colombia", bandera: "🇨🇴", estado: "piloto", dominioFuturo: "synaptech.com.co",
     moneda: "pesos colombianos", hora: "hora de Bogotá", prefijo: "+57", ciudades: "Bogotá y Medellín",
     competencia: "Fresha o Weibook", cupoWhatsApp: 1000,
   },
   mx: {
-    codigo: "mx", nombre: "México", bandera: "🇲🇽", estado: "pronto", dominioFuturo: "synaptech.mx",
+    codigo: "mx", nombre: "México", bandera: "🇲🇽", estado: "piloto", dominioFuturo: "synaptech.mx",
     moneda: "pesos mexicanos", hora: "hora del centro de México", prefijo: "+52", ciudades: "Ciudad de México y Querétaro",
     competencia: "Fresha", cupoWhatsApp: 200,
   },
   ar: {
-    codigo: "ar", nombre: "Argentina", bandera: "🇦🇷", estado: "pronto", dominioFuturo: "synaptech.com.ar",
+    codigo: "ar", nombre: "Argentina", bandera: "🇦🇷", estado: "piloto", dominioFuturo: "synaptech.com.ar",
     moneda: "pesos argentinos", hora: "hora de Buenos Aires", prefijo: "+54", ciudades: "Buenos Aires, Córdoba y Rosario",
-    competencia: "AgendaPro o Fresha", cupoWhatsApp: 80,
+    competencia: "AgendaPro o Fresha",
   },
 };
 
@@ -65,12 +68,18 @@ export const PAISES: Record<CodigoPais, Pais> = {
    los de validación del 08-10). Cobro en dólares con tarjeta; 2 meses gratis y
    la tarjeta se pide al final del período gratis, con aviso a los 45 días.
    Anual = 10 meses pagados por 12. Sin cobro por profesional. */
-/** Línea genérica del plan; en la página de cada país se reemplaza por su cupo. */
-export const WA_CUPO = "Confirmaciones y recordatorios por WhatsApp, con un cupo mensual según el país";
+/** Línea genérica del plan; en la página de cada país se reemplaza por la suya. */
+export const WA_CUPO = "Confirmaciones y recordatorios por WhatsApp";
+const miles = (n: number) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 export const incluyeEnPais = (d: string, p: Pais) =>
-  d === WA_CUPO ? `${p.cupoWhatsApp.toLocaleString("es-CL")} mensajes de WhatsApp al mes para confirmaciones y recordatorios` : d;
-/** "Perú 70, Colombia 1.000, …" */
-export const cuposWhatsApp = () => Object.values(PAISES).map((p) => `${p.nombre} ${p.cupoWhatsApp.toLocaleString("es-CL")}`).join(", ");
+  d === WA_CUPO && p.cupoWhatsApp ? `Trae ${miles(p.cupoWhatsApp)} mensajes de WhatsApp al mes para confirmaciones y recordatorios` : d;
+/** "Colombia 1.000, México 200; en Perú y Argentina, sin cifra publicada" */
+export const cuposWhatsApp = () => {
+  const ps = Object.values(PAISES);
+  const con = ps.filter((p) => p.cupoWhatsApp).map((p) => `${p.nombre} ${miles(p.cupoWhatsApp!)}`).join(", ");
+  const sin = ps.filter((p) => !p.cupoWhatsApp).map((p) => p.nombre).join(" y ");
+  return sin ? `${con}; en ${sin}, sin cifra publicada` : con;
+};
 
 export const PLANES_LATAM = [
   {
@@ -79,9 +88,9 @@ export const PLANES_LATAM = [
     incluye: [
       "Página de reservas con tu marca",
       "Panel completo: agenda, caja, clientes, comisiones e informes",
-      "Club de sellos con Apple Wallet y Google Wallet",
+      "Tarjeta de sellos en Apple Wallet y Google Wallet",
       WA_CUPO,
-      "Profesionales ilimitados",
+      "Sin cobro por barbero: suma a todo tu equipo",
     ],
   },
   {
@@ -91,6 +100,7 @@ export const PLANES_LATAM = [
       "Todo el plan Agenda",
       "Syna, el asistente con IA, en el WhatsApp de tu local",
       "Responde precios y horarios, y agenda solo",
+      "Hasta 300 conversaciones al mes (una conversación = un cliente durante 24 h)",
       "Te pasa la conversación cuando hace falta",
     ],
   },
