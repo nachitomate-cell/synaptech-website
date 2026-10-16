@@ -64,4 +64,8 @@ export const AJUSTES: Record<string, AjusteLocal> = {
   "salonamanda": {"rubro": "salon", "etiqueta": "Salón de belleza", "logo": true, "fondo": "#0f1a2b", "oscuro": true},
   "shapessalon": {"rubro": "salon", "etiqueta": "Peluquería y salón", "logo": true, "fondo": "#d8d6d2", "oscuro": false},
   "stivenbarber": {"rubro": "barberia", "logo": true, "fondo": "#010101", "oscuro": true},
+  // 16-10-2026: locales de otros países (precios en su moneda).
+  "eledenbarbershop": {"rubro": "barberia", "logo": true, "fondo": "#0d0b09", "oscuro": true},
+  "enbarvadosbarberia": {"rubro": "barberia", "direccion": "Elías Aguirre 221", "logo": true, "fondo": "#0d0c0b", "oscuro": true},
+  "thebritobarbershop": {"rubro": "barberia", "logo": true, "fondo": "#e7e7e5", "oscuro": false},
 };

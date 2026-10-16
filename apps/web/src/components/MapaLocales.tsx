@@ -13,23 +13,33 @@ import type { LocalDirectorio } from "@/lib/directorio";
 const ESTILO = "https://tiles.openfreemap.org/styles/positron";
 
 export const ZONAS: { id: string; label: string; centro: [number, number]; zoom: number }[] = [
+  { id: "paises", label: "Todos los países", centro: [-68.5, -16], zoom: 2.7 },
   { id: "todo", label: "Todo Chile", centro: [-71.2, -33.4], zoom: 5.3 },
   { id: "valpo", label: "Gran Valparaíso", centro: [-71.42, -33.0], zoom: 9.6 },
   { id: "vina", label: "Viña del Mar", centro: [-71.553, -33.02], zoom: 13.4 },
   { id: "stgo", label: "Santiago", centro: [-70.75, -33.5], zoom: 9.3 },
 ];
 
-export default function MapaLocales({ locales, activo, onSeleccion, enfoque }: {
+export type Limites = { swLat: number; swLng: number; neLat: number; neLng: number };
+
+export default function MapaLocales({ locales, activo, onSeleccion, enfoque, onMover, ubicacion }: {
   locales: LocalDirectorio[];
   activo: string | null;
   onSeleccion: (id: string) => void;
   enfoque: { id: string; n: number } | null;
+  /** Límites visibles tras cada movimiento ("buscar mientras muevo el mapa"). */
+  onMover?: (b: Limites) => void;
+  /** Ubicación del visitante ("cerca de mí"): se marca y el mapa va ahí. */
+  ubicacion?: { lat: number; lng: number } | null;
 }) {
+  const onMoverRef = useRef(onMover);
+  onMoverRef.current = onMover;
+  const yo = useRef<Marker | null>(null);
   const caja = useRef<HTMLDivElement>(null);
   const mapa = useRef<MapaML | null>(null);
   const marcadores = useRef(new Map<string, Marker>());
   const [listo, setListo] = useState(false);
-  const [zona, setZona] = useState("todo");
+  const [zona, setZona] = useState("paises");
 
   // Carga perezosa: la librería (~250 KB) baja solo cuando el mapa se ve.
   useEffect(() => {
@@ -55,6 +65,12 @@ export default function MapaLocales({ locales, activo, onSeleccion, enfoque }: {
           m.fitBounds(b, { padding: 60, duration: 0, maxZoom: 12 });
         }
         setListo(true);
+      });
+      // Los límites del mapa, para filtrar la lista. Nunca tocan la URL: la
+      // canónica de /locales queda limpia y Google no ve variantes con coordenadas.
+      m.on("moveend", () => {
+        const b = m.getBounds();
+        onMoverRef.current?.({ swLat: b.getSouth(), swLng: b.getWest(), neLat: b.getNorth(), neLng: b.getEast() });
       });
       for (const l of conPunto) {
         const nodo = document.createElement("button");
@@ -99,6 +115,26 @@ export default function MapaLocales({ locales, activo, onSeleccion, enfoque }: {
     mk.togglePopup();
     setZona("");
   }, [enfoque]);
+
+  // "Cerca de mí": un punto azul y el mapa centrado en el visitante.
+  useEffect(() => {
+    if (!ubicacion || !mapa.current) return;
+    (async () => {
+      const ml = await import("maplibre-gl");
+      if (!mapa.current) return;
+      if (!yo.current) {
+        const punto = document.createElement("div");
+        punto.className = "marcador-yo";
+        punto.setAttribute("aria-label", "Tu ubicación");
+        punto.style.cssText = "width:16px;height:16px;border-radius:50%;background:#2563eb;border:3px solid #fff;box-shadow:0 0 0 4px rgba(37,99,235,.25)";
+        yo.current = new ml.Marker({ element: punto }).setLngLat([ubicacion.lng, ubicacion.lat]).addTo(mapa.current);
+      } else {
+        yo.current.setLngLat([ubicacion.lng, ubicacion.lat]);
+      }
+      mapa.current.flyTo({ center: [ubicacion.lng, ubicacion.lat], zoom: 12, speed: 1.6, essential: true });
+      setZona("");
+    })();
+  }, [ubicacion, listo]);
 
   const irA = (z: (typeof ZONAS)[number]) => {
     setZona(z.id);
