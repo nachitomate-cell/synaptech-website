@@ -12,7 +12,7 @@
    (Perú: DNI y Ley N.° 29733).
 
    Precio de validación fuera de Chile, decidido por Ignacio el 08-10-2026:
-   US$15 (agenda + club + recordatorios) y US$20 (+ asistente IA por WhatsApp),
+   US$15 (agenda + club + recordatorios) y US$20 (+ asistente IA por WhatsApp; US$39 desde el 16-10),
    con 2 meses gratis. No es el precio de régimen. */
 
 export type CodigoPais = "pe" | "co" | "mx" | "ar";
@@ -81,9 +81,16 @@ export const cuposWhatsApp = () => {
   return sin ? `${con}; en ${sin}, sin cifra publicada` : con;
 };
 
-export const PLANES_LATAM = [
+/* 16-10-2026 (Ignacio): el asistente con IA corre en nuestro servidor de WhatsApp
+   (una sesión por local) y fuera de Chile no era rentable a US$20. Sube a US$39 y
+   se abre a pocos locales: la plataforma frena la vinculación pasado el cupo
+   (functions/lib/cupo-ia-extranjero.js). Quien ya tenía otro precio lo conserva. */
+export const PLANES_LATAM: {
+  id: string; nombre: string; precio: number; anual: number; popular?: boolean; cupos?: boolean;
+  descripcion: string; incluye: string[];
+}[] = [
   {
-    id: "agenda", nombre: "Agenda", precio: 15, anual: 150,
+    id: "agenda", nombre: "Agenda", precio: 15, anual: 150, popular: true,
     descripcion: "Para ordenar el local y que los clientes vuelvan.",
     incluye: [
       "Página de reservas con tu marca",
@@ -94,8 +101,8 @@ export const PLANES_LATAM = [
     ],
   },
   {
-    id: "asistente", nombre: "Agenda + IA", precio: 20, anual: 200, popular: true,
-    descripcion: "Todo el plan Agenda, más el asistente con IA que responde el WhatsApp y agenda solo.",
+    id: "asistente", nombre: "Agenda + IA", precio: 39, anual: 390, cupos: true,
+    descripcion: "Todo el plan Agenda, más el asistente con IA que responde el WhatsApp y agenda solo. Cupos limitados por país.",
     incluye: [
       "Todo el plan Agenda",
       "Syna, el asistente con IA, en el WhatsApp de tu local",
