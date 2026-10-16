@@ -38,6 +38,11 @@ export type Pais = {
       16-10-2026: en Perú y Argentina no se publica cifra (solo "confirmaciones y
       recordatorios por WhatsApp"). */
   cupoWhatsApp?: number;
+  /** Local REAL y operando del país, para mostrar como ejemplo (nunca una demo de
+      prospecto). Sale del directorio /locales (16-10-2026). Sin cliente, no va. */
+  localEjemplo?: { nombre: string; lugar: string; url: string; logo: string };
+  /** Ancla de la región del país en /locales (id que arma app/locales/page.tsx). */
+  anclaLocales?: string;
 };
 
 export const PAISES: Record<CodigoPais, Pais> = {
@@ -46,11 +51,15 @@ export const PAISES: Record<CodigoPais, Pais> = {
     moneda: "soles (S/)", hora: "hora de Lima", prefijo: "+51", ciudades: "Lima",
     competencia: "Fresha", documento: "DNI",
     leyDatos: "Ley N.° 29733, de Protección de Datos Personales",
+    localEjemplo: { nombre: "Enbarvados Barbería", lugar: "Miraflores, Lima", url: "https://enbarvadosbarberia.synaptechspa.cl", logo: "/directorio-logos/enbarvadosbarberia.webp" },
+    anclaLocales: "region-lima-peru",
   },
   co: {
     codigo: "co", nombre: "Colombia", bandera: "🇨🇴", estado: "piloto", dominioFuturo: "synaptech.com.co",
     moneda: "pesos colombianos", hora: "hora de Bogotá", prefijo: "+57", ciudades: "Bogotá y Medellín",
     competencia: "Fresha o Weibook", cupoWhatsApp: 1000,
+    localEjemplo: { nombre: "El Edén BarberShop", lugar: "Neiva, Huila", url: "https://eledenbarbershop.synaptechspa.cl", logo: "/directorio-logos/eledenbarbershop.webp" },
+    anclaLocales: "region-huila-colombia",
   },
   mx: {
     codigo: "mx", nombre: "México", bandera: "🇲🇽", estado: "piloto", dominioFuturo: "synaptech.mx",
@@ -61,8 +70,15 @@ export const PAISES: Record<CodigoPais, Pais> = {
     codigo: "ar", nombre: "Argentina", bandera: "🇦🇷", estado: "piloto", dominioFuturo: "synaptech.com.ar",
     moneda: "pesos argentinos", hora: "hora de Buenos Aires", prefijo: "+54", ciudades: "Buenos Aires, Córdoba y Rosario",
     competencia: "AgendaPro o Fresha",
+    localEjemplo: { nombre: "The Brito Barbershop", lugar: "Anisacate, Córdoba", url: "https://thebritobarbershop.synaptechspa.cl", logo: "/directorio-logos/thebritobarbershop.webp" },
+    anclaLocales: "region-cordoba-argentina",
   },
 };
+
+/** ¿La ruta es una página por país (/pe, /co, /mx, /ar)? Ahí no va nada con el
+    precio chileno: ni el JSON-LD global ni el chat de Syna. */
+export const esRutaPais = (pathname: string | null | undefined) =>
+  !!pathname && /^\/(pe|co|mx|ar)(\/|$)/.test(pathname);
 
 /* Precios para Latinoamérica, decididos por Ignacio el 09-10-2026 (reemplazan
    los de validación del 08-10). Cobro en dólares con tarjeta; 2 meses gratis y

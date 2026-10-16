@@ -1,6 +1,8 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
+import { esRutaPais } from "@/content/paises";
 
 /* Chat de Syna en el sitio (09-10-2026). Habla con /api/syna (Claude Haiku
    5.5) y muestra la respuesta a medida que llega. La conversación vive en
@@ -58,6 +60,10 @@ export default function SynaChat() {
   const [visible, setVisible] = useState(false);
   const [activa, setActiva] = useState(false);
   const fin = useRef<HTMLDivElement>(null);
+  /* Fuera de las páginas por país (16-10-2026): Syna responde con los precios
+     chilenos ($29.900 + IVA) y esas páginas van en dólares. Ahí la salida es el
+     WhatsApp del equipo, que ya está en toda la página. */
+  const enPaginaPais = esRutaPais(usePathname());
 
   useEffect(() => {
     const t = setTimeout(() => setVisible(true), 1200);
@@ -104,7 +110,7 @@ export default function SynaChat() {
     }
   }
 
-  if (!activa) return null;
+  if (!activa || enPaginaPais) return null;
   return (
     <>
       {/* Botón fijo y compacto, del mismo tamaño que el de WhatsApp y en la misma
