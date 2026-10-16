@@ -55,4 +55,13 @@ export const AJUSTES: Record<string, AjusteLocal> = {
   "viggomhc": {"nombre": "Viggo Men's Hair Club", "rubro": "barberia", "direccion": "Av. Cristóbal Colón 6555, Local 8", "logo": true, "fondo": "#000000", "oscuro": true},
   "villarrealstudio": {"nombre": "Villarreal Studio", "rubro": "salon", "direccion": "Av. Irarrázaval 4896", "reserva": false, "logo": true, "fondo": "#0f1a2b", "oscuro": true},
   "yugen": {"nombre": "Yūgen Studio", "rubro": "barberia", "direccion": "La Concepción 164", "logo": true, "fondo": "#000000", "oscuro": true},
+  // 16-10-2026, "todos los reales": entran los que operan aunque su plan no esté al día.
+  "carolalucero": {"rubro": "estetica", "etiqueta": "Estudio de pestañas y estética", "logo": true, "fondo": "#fddfdf", "oscuro": false},
+  "diego": {"rubro": "barberia", "logo": true, "fondo": "#000000", "oscuro": true},
+  "fadedistrict": {"rubro": "barberia", "logo": true, "fondo": "#0a0a0a", "oscuro": true},
+  "ferraza": {"rubro": "barberia", "logo": true, "fondo": "#000000", "oscuro": true},
+  "iwasawa": {"rubro": "barberia", "logo": true, "fondo": "#0b0b0b", "oscuro": true},
+  "salonamanda": {"rubro": "salon", "etiqueta": "Salón de belleza", "logo": true, "fondo": "#0f1a2b", "oscuro": true},
+  "shapessalon": {"rubro": "salon", "etiqueta": "Peluquería y salón", "logo": true, "fondo": "#d8d6d2", "oscuro": false},
+  "stivenbarber": {"rubro": "barberia", "logo": true, "fondo": "#010101", "oscuro": true},
 };
