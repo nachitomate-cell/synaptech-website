@@ -70,6 +70,7 @@ export default async function PaisLanding({ codigo }: { codigo: CodigoPais }) {
     { q: "¿Cómo pago la mensualidad?", a: `En dólares, con tarjeta. US$${agenda.precio} son unos ${local(agenda.precio)} y US$${ia.precio} unos ${local(ia.precio)} al cambio de hoy; el monto exacto en tu moneda lo pone tu banco.` },
     { q: "¿Y si no me sirve?", a: "No pagas nada. Los 2 primeros meses son gratis y la tarjeta se pide recién al final del período gratis (te avisamos a los 45 días)." },
     { q: "¿Qué es una conversación del asistente?", a: "Un cliente durante 24 horas: si alguien te escribe diez mensajes en el día, cuenta como una. El plan Agenda + IA trae hasta 300 conversaciones al mes." },
+    { q: "¿Por qué el asistente con IA tiene cupos?", a: `Porque cada asistente corre en nuestro servidor de WhatsApp con su propia sesión y lo acompañamos de cerca mientras aprende tu local. Lo abrimos a pocas barberías en ${p.nombre}: si te interesa, escríbenos y te decimos si queda cupo. El plan Agenda no tiene cupo.` },
     { q: "¿Hay plan anual?", a: `Sí: pagas 10 meses y usas 12. Son US$${agenda.anual} al año el plan Agenda (≈ ${local(agenda.anual)}) y US$${ia.anual} al año el plan Agenda + IA (≈ ${local(ia.anual)}).` },
     { q: "Tengo varias sedes, ¿cuánto pago?", a: `La primera sede paga su plan y cada sede adicional suma US$${SEDE_ADICIONAL_LATAM.mes} al mes (≈ ${local(SEDE_ADICIONAL_LATAM.mes)}). Por ejemplo, 4 sedes con el plan Agenda son US$${agenda.precio} + 3 × US$${SEDE_ADICIONAL_LATAM.mes} = US$${sedes4} al mes.` },
     { q: `¿Emite boletas o facturas en ${p.nombre}?`, a: `Todavía no. La emisión de documentos tributarios solo existe en Chile; en ${p.nombre} la agenda, la caja, el club y el asistente funcionan completos.` },
@@ -156,6 +157,7 @@ export default async function PaisLanding({ codigo }: { codigo: CodigoPais }) {
               {PLANES_LATAM.map((pl) => (
                 <article key={pl.id} className={`relative rounded-[28px] p-7 sm:p-8 flex flex-col ${pl.popular ? "bg-ink text-white" : "bg-white"}`}>
                   {pl.popular && <span className="absolute -top-3 left-7 bg-lime text-ink text-xs font-bold px-3 py-1 rounded-full">Recomendado</span>}
+                  {pl.cupos && <span className="absolute -top-3 left-7 bg-accent text-white text-xs font-bold px-3 py-1 rounded-full">Cupos limitados</span>}
                   <h3 className="font-display font-bold text-2xl tracking-tight">{pl.nombre}</h3>
                   <p className="mt-4">
                     <span className="font-display font-bold text-[44px] tracking-tight leading-none">US${pl.precio}</span>

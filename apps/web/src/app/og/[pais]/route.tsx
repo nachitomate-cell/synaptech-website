@@ -39,16 +39,16 @@ export async function GET(_req: Request, { params }: { params: { pais: string } 
   const [agenda, ia] = PLANES_LATAM;
   const local = (usd: number) => enMonedaLocal(usd, codigo, cambio);
 
-  const tarjeta = (nombre: string, usd: number, oscura: boolean) => (
+  const tarjeta = (nombre: string, usd: number, oscura: boolean, etiqueta?: string) => (
     <div style={{
       display: "flex", flexDirection: "column", borderRadius: 28, padding: "26px 30px",
       backgroundColor: oscura ? INK : MIST, color: oscura ? "#FFFFFF" : INK,
     }}>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         <span style={{ fontFamily: "Inter Tight", fontWeight: 600, fontSize: 26 }}>{nombre}</span>
-        {oscura && (
-          <span style={{ display: "flex", backgroundColor: LIME, color: INK, fontSize: 17, fontWeight: 600, borderRadius: 999, padding: "4px 12px" }}>
-            Recomendado
+        {etiqueta && (
+          <span style={{ display: "flex", backgroundColor: oscura ? LIME : ACCENT, color: oscura ? INK : "#FFFFFF", fontSize: 17, fontWeight: 600, borderRadius: 999, padding: "4px 12px" }}>
+            {etiqueta}
           </span>
         )}
       </div>
@@ -95,9 +95,9 @@ export async function GET(_req: Request, { params }: { params: { pais: string } 
 
         {/* Derecha: los dos precios y la oferta */}
         <div style={{ display: "flex", flexDirection: "column", flexGrow: 1, justifyContent: "center" }}>
-          {tarjeta(agenda.nombre, agenda.precio, false)}
+          {tarjeta(agenda.nombre, agenda.precio, true, "Recomendado")}
           <div style={{ display: "flex", height: 16 }} />
-          {tarjeta(ia.nombre, ia.precio, true)}
+          {tarjeta(ia.nombre, ia.precio, false, "Cupos limitados")}
           <div style={{
             display: "flex", justifyContent: "center", marginTop: 18, borderRadius: 999,
             backgroundColor: LIME, color: INK, padding: "14px 20px",

@@ -464,7 +464,7 @@ export const COMPETIDORES: Competidor[] = [
     filas: [
       { tema: "Cómo cobra", ellos: "Por profesional, en dólares, con descuento por cantidad", nosotros: "Por local, con profesionales ilimitados" },
       { tema: "Recordatorios por WhatsApp", ellos: "En el plan Básico se envían a mano, con un clic; los automáticos se cobran aparte", nosotros: "Fuera de Chile, el plan trae un cupo mensual de mensajes para confirmaciones y recordatorios, según el país; en Chile, bolsas desde $1.990 + IVA por 100" },
-      { tema: "Asistente con IA que agenda", ellos: null, nosotros: "Syna, en el plan Agenda + IA (US$20 fuera de Chile; plan Pro de $49.900 + IVA en Chile)" },
+      { tema: "Asistente con IA que agenda", ellos: null, nosotros: "Syna, en el plan Agenda + IA (US$39 fuera de Chile, con cupos limitados; plan Pro de $49.900 + IVA en Chile)" },
       { tema: "Facturación", ellos: "Facturas de AFIP con un clic (Argentina)", nosotros: "Boletas de honorarios ante el SII, solo en Chile" },
       { tema: "Tarjeta del club en Google Wallet y Apple Wallet", ellos: null, nosotros: "Incluida en todos los planes" },
       { tema: "Prueba gratis", ellos: "14 días, sin medios de pago", nosotros: "2 meses fuera de Chile; 14 días sin tarjeta en Chile" },
@@ -478,7 +478,7 @@ export const COMPETIDORES: Competidor[] = [
     migracion: "Te mudamos gratis desde TuTurno: servicios, equipo y lista de clientes.",
     faq: [
       { q: "¿Cuánto cuesta TuTurno?", a: "Según su página al 10 de octubre de 2026, el precio de lista por profesional al mes es US$10 (Básico), US$16 (Profesional) y US$21 (Empresa). La página aplica de entrada un 15% por código de referidos y descuentos por cantidad: con el plan Básico, 3 profesionales pagan US$17,85 y 9 pagan US$28,05 al mes. Los recordatorios automáticos por WhatsApp se cobran aparte." },
-      { q: "¿Cuánto cuesta SynapTech fuera de Chile?", a: "US$15 al mes por local con el plan Agenda, o US$20 con el asistente con IA, sin cobro por profesional. Cada sede adicional son US$10 al mes y los primeros dos meses son gratis." },
+      { q: "¿Cuánto cuesta SynapTech fuera de Chile?", a: "US$15 al mes por local con el plan Agenda, o US$39 con el asistente con IA (cupos limitados), sin cobro por profesional. Cada sede adicional son US$10 al mes y los primeros dos meses son gratis." },
     ],
     fuentes: [
       { texto: "TuTurno: planes", url: "https://www.tuturno.io/suscripciones/planes" },
@@ -545,7 +545,7 @@ export const COMPETIDORES: Competidor[] = [
       { tema: "Cómo cobra", ellos: "Por usuario: gratis hasta 4; Pro US$12 al mes (US$5 con pago anual)", nosotros: "Por local, con profesionales ilimitados" },
       { tema: "Recordatorios", ellos: "Por correo en el plan Free; SMS en el Pro (500 al mes por miembro)", nosotros: "Confirmación y recordatorio por WhatsApp" },
       { tema: "WhatsApp", ellos: null, nosotros: "Avisos por la vía oficial de WhatsApp, y Syna responde desde el número de tu local (plan Pro)" },
-      { tema: "Quién contesta", ellos: "Live Receptionist: una persona que contesta llamadas, US$99 al mes, solo EE. UU.", nosotros: "Syna, IA que responde y agenda por WhatsApp (US$20 fuera de Chile; plan Pro en Chile)" },
+      { tema: "Quién contesta", ellos: "Live Receptionist: una persona que contesta llamadas, US$99 al mes, solo EE. UU.", nosotros: "Syna, IA que responde y agenda por WhatsApp (US$39 fuera de Chile, con cupos limitados; plan Pro en Chile)" },
       { tema: "Tarjeta del club en Google Wallet y Apple Wallet", ellos: null, nosotros: "Incluida en todos los planes" },
       { tema: "Boletas ante el SII", ellos: null, nosotros: "Boletas de honorarios automáticas, como adicional" },
     ],
