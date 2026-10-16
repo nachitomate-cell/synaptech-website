@@ -1,50 +1,58 @@
-/* Locales del directorio (Red Synaptech): datos que cambian poco, juntados el 09-10-2026
-   (16-10: + BRZ, Claudia León Spa, FS Barber Studios, Garage Barbershop y Paola Leiva).
-   - Quién aparece lo decide la lista VIVA `_publico/metricas.directorio` (lib/directorio.ts):
-     un local que deja de ser cliente o pide no aparecer sale solo, aunque siga acá.
-   - Dirección: la que el local edita en su panel (`settings/general.direccion`), o la de
-     `TENANT_META.local` en middleware.js de la plataforma.
-   - Coordenadas: Google Places (placeId de `settings/googleReviews` o búsqueda por dirección).
-   - Logo: el mejor archivo del local (repo de la plataforma, ícono PWA o tarjeta Wallet),
-     recortado y centrado en public/directorio-logos/{id}.webp y {id}-pin.webp. Fuente y
-     script para regenerarlos: devtools/guias-panel/sitio-web/directorio/.
-   - `reserva: false` = el local no tiene reserva pública (TENANTS_SIN_RESERVA_PUBLICA). */
+/* Ajustes a mano del directorio (Red Synaptech). OPCIONALES desde el 16-10-2026.
+
+   Quién aparece y casi todos sus datos salen SOLOS de la plataforma (lib/directorio.ts):
+   `_publico/metricas.directorio` dice quién es cliente, y `_publico/directorio_seo`
+   (functions/metricas-publicas.js, a diario a las 04:10) trae comuna, región,
+   coordenadas, URL de reserva, logo, servicios, precios y nota de Google. Un cliente
+   nuevo aparece completo sin tocar este archivo.
+
+   Acá va solo lo que la plataforma no sabe decir bien. Cada campo es opcional y,
+   si está, manda sobre el automático:
+   - nombre: como se escribe la marca ("AURA SALÓN" → "Aura Salón & Male Grooming").
+   - rubro: el filtro del directorio, cuando `tipo` no alcanza (mixto, estudio, otro).
+   - etiqueta: el "{etiqueta} en {comuna}" visible, cuando el rubro genérico no lo dice.
+   - direccion: la versión limpia (la del panel la escribe el dueño, a veces con
+     indicaciones como "frente a Sherwin Williams"). Sin comuna: va aparte.
+   - logo + fondo + oscuro: hay logo recortado y centrado en
+     public/directorio-logos/{id}.webp y {id}-pin.webp, sobre ese color (script en
+     devtools/guias-panel/sitio-web/directorio/). Sin esto se usa el logo del panel.
+   - reserva: false = sin reserva pública (TENANTS_SIN_RESERVA_PUBLICA). */
 
 export type Rubro = "barberia" | "salon" | "estetica" | "pilates";
-export type LocalBase = {
-  id: string; nombre: string; rubro: Rubro; direccion: string; comuna: string; region: string;
-  lat: number; lng: number; url: string; reserva: boolean; fondo: string; oscuro: boolean;
+export type AjusteLocal = {
+  nombre?: string; rubro?: Rubro; etiqueta?: string; direccion?: string;
+  reserva?: boolean; logo?: boolean; fondo?: string; oscuro?: boolean;
 };
 
-export const LOCALES_BASE: LocalBase[] = [
-  {"id": "aura", "nombre": "Aura Salón & Male Grooming", "rubro": "barberia", "direccion": "2 Oriente 124, Local 3", "comuna": "Viña del Mar", "region": "Valparaíso", "lat": -33.021511, "lng": -71.548534, "url": "https://aurasalon.synaptechspa.cl", "reserva": true, "fondo": "#fefefe", "oscuro": false},
-  {"id": "brz", "nombre": "Barbería BRZ", "rubro": "barberia", "direccion": "Los Arándanos 5101", "comuna": "La Serena", "region": "Coquimbo", "lat": -29.919965, "lng": -71.207559, "url": "https://barberiabrz.synaptechspa.cl", "reserva": true, "fondo": "#000000", "oscuro": true},
-  {"id": "elegance", "nombre": "Elegance Barbershop", "rubro": "barberia", "direccion": "Ecuador 243", "comuna": "Viña del Mar", "region": "Valparaíso", "lat": -33.024414, "lng": -71.559849, "url": "https://barberiaelegance.synaptechspa.cl", "reserva": true, "fondo": "#000201", "oscuro": true},
-  {"id": "chameleon", "nombre": "Chameleon Barber Studio", "rubro": "barberia", "direccion": "Av. Libertad 868", "comuna": "Viña del Mar", "region": "Valparaíso", "lat": -33.013664, "lng": -71.549411, "url": "https://chameleonbarber.synaptechspa.cl", "reserva": true, "fondo": "#000000", "oscuro": true},
-  {"id": "claudialeonspa", "nombre": "Claudia León Spa & Wellness", "rubro": "estetica", "direccion": "España 512, Local 204", "comuna": "San Fernando", "region": "O'Higgins", "lat": -34.585594, "lng": -70.990291, "url": "https://claudialeonspa.synaptechspa.cl", "reserva": true, "fondo": "#313732", "oscuro": true},
-  {"id": "clinicalglow", "nombre": "Clinical Glow · Clínica Estética", "rubro": "estetica", "direccion": "2 Oriente 124, oficina 312", "comuna": "Viña del Mar", "region": "Valparaíso", "lat": -33.021511, "lng": -71.548534, "url": "https://clinicalglow.synaptechspa.cl", "reserva": true, "fondo": "#ffffff", "oscuro": false},
-  {"id": "lumen", "nombre": "D'Jones Barber", "rubro": "barberia", "direccion": "Viana 405, Local 3", "comuna": "Viña del Mar", "region": "Valparaíso", "lat": -33.025347, "lng": -71.557023, "url": "https://barberiadjones.synaptechspa.cl", "reserva": true, "fondo": "#030712", "oscuro": true},
-  {"id": "el10salonmasculino", "nombre": "El 10 Salón Masculino", "rubro": "barberia", "direccion": "1 Sur esquina Victoria, Local 1", "comuna": "Parral", "region": "Maule", "lat": -36.146018, "lng": -71.830739, "url": "https://el10salonmasculino.synaptechspa.cl", "reserva": true, "fondo": "#010101", "oscuro": true},
-  {"id": "elbarberomoderno", "nombre": "El Barbero Moderno", "rubro": "barberia", "direccion": "San Diego 333", "comuna": "Santiago", "region": "Metropolitana", "lat": -33.449779, "lng": -70.650841, "url": "https://elbarberomoderno.synaptechspa.cl", "reserva": true, "fondo": "#0d0c0f", "oscuro": true},
-  {"id": "estudioluxury", "nombre": "Estudio Luxury", "rubro": "barberia", "direccion": "Los Clarines 1764", "comuna": "Talagante", "region": "Metropolitana", "lat": -33.670057, "lng": -70.933293, "url": "https://estudioluxury.synaptechspa.cl", "reserva": true, "fondo": "#0a0404", "oscuro": true},
-  {"id": "fsbarberstudios", "nombre": "FS Barber Studios", "rubro": "barberia", "direccion": "Av. Quilín 3143", "comuna": "Macul", "region": "Metropolitana", "lat": -33.48544, "lng": -70.600092, "url": "https://fsbarberstudios.synaptechspa.cl", "reserva": true, "fondo": "#0d0d0e", "oscuro": true},
-  {"id": "garagebarbershop", "nombre": "Garage Barbershop", "rubro": "barberia", "direccion": "Grajales 1994", "comuna": "Santiago", "region": "Metropolitana", "lat": -33.451308, "lng": -70.663081, "url": "https://garagebarbershop.synaptechspa.cl", "reserva": true, "fondo": "#1a1a1a", "oscuro": true},
-  {"id": "glowstudio", "nombre": "Glow Studio", "rubro": "salon", "direccion": "1 Norte 649, Local 2", "comuna": "Viña del Mar", "region": "Valparaíso", "lat": -33.022059, "lng": -71.552059, "url": "https://glowstudio.synaptechspa.cl", "reserva": false, "fondo": "#0f1a2b", "oscuro": true},
-  {"id": "goldensheep", "nombre": "Golden Sheep Barbershop Studio", "rubro": "barberia", "direccion": "Aires del Monte 92", "comuna": "El Monte", "region": "Metropolitana", "lat": -33.685553, "lng": -71.017378, "url": "https://goldensheep.synaptechspa.cl", "reserva": true, "fondo": "#ffffff", "oscuro": false},
-  {"id": "infinity", "nombre": "Infinity Studio", "rubro": "barberia", "direccion": "Traslaviña 114", "comuna": "Viña del Mar", "region": "Valparaíso", "lat": -33.023257, "lng": -71.558337, "url": "https://infinity.synaptechspa.cl", "reserva": true, "fondo": "#121214", "oscuro": true},
-  {"id": "kronnos_limache", "nombre": "Kronnos Studio Limache", "rubro": "barberia", "direccion": "Paseo Las Araucarias 405, Local 5", "comuna": "Limache", "region": "Valparaíso", "lat": -33.00186, "lng": -71.267874, "url": "https://kronnoslimache.synaptechspa.cl", "reserva": true, "fondo": "#000000", "oscuro": true},
-  {"id": "kronnos_penablanca", "nombre": "Kronnos Studio Peñablanca", "rubro": "barberia", "direccion": "Av. Bernardo Leighton 20, Local 13", "comuna": "Villa Alemana", "region": "Valparaíso", "lat": -33.04686, "lng": -71.354013, "url": "https://kronnospenablanca.synaptechspa.cl", "reserva": true, "fondo": "#000000", "oscuro": true},
-  {"id": "kronnos_woman", "nombre": "Kronnos Woman", "rubro": "salon", "direccion": "Palmira Romano Sur 405, Local 3", "comuna": "Limache", "region": "Valparaíso", "lat": -33.001739, "lng": -71.267876, "url": "https://kronnoswoman.synaptechspa.cl", "reserva": true, "fondo": "#010101", "oscuro": true},
-  {"id": "newglow", "nombre": "New Glow Salón", "rubro": "salon", "direccion": "3 Poniente 482", "comuna": "Viña del Mar", "region": "Valparaíso", "lat": -33.01717, "lng": -71.554144, "url": "https://newglowsalon.synaptechspa.cl", "reserva": true, "fondo": "#ffffff", "oscuro": false},
-  {"id": "oren", "nombre": "Oren Barber", "rubro": "barberia", "direccion": "Av. Borgoño 14580, Local 21, Mall Plaza Reñaca", "comuna": "Viña del Mar", "region": "Valparaíso", "lat": -32.970935, "lng": -71.543268, "url": "https://orenbarber.synaptechspa.cl", "reserva": true, "fondo": "#000000", "oscuro": true},
-  {"id": "paolaleiva", "nombre": "Paola Leiva · Estilista", "rubro": "salon", "direccion": "San José 6087", "comuna": "San Miguel", "region": "Metropolitana", "lat": -33.51191, "lng": -70.652601, "url": "https://paolaleiva.synaptechspa.cl", "reserva": true, "fondo": "#000000", "oscuro": true},
-  {"id": "renacer", "nombre": "Peluquería y Barbería Renacer", "rubro": "salon", "direccion": "Ecuador 266", "comuna": "Viña del Mar", "region": "Valparaíso", "lat": -33.024241, "lng": -71.560032, "url": "https://renacer.synaptechspa.cl", "reserva": true, "fondo": "#1c1c1c", "oscuro": true},
-  {"id": "puntopilates", "nombre": "Punto Pilates", "rubro": "pilates", "direccion": "Caletera Gral. San Martín 8521, Chicureo", "comuna": "Colina", "region": "Metropolitana", "lat": -33.261289, "lng": -70.698448, "url": "https://puntopilates.synaptechspa.cl", "reserva": true, "fondo": "#ffffff", "oscuro": false},
-  {"id": "sion", "nombre": "Sion Barbería", "rubro": "barberia", "direccion": "1 Oriente 985", "comuna": "Viña del Mar", "region": "Valparaíso", "lat": -33.012677, "lng": -71.548341, "url": "https://sion.synaptechspa.cl", "reserva": true, "fondo": "#2c3941", "oscuro": true},
-  {"id": "sionbarberia", "nombre": "Studio Dieciséis", "rubro": "barberia", "direccion": "Simón Bolívar 515", "comuna": "Valparaíso", "region": "Valparaíso", "lat": -33.048783, "lng": -71.60961, "url": "https://studiodieciseis.synaptechspa.cl", "reserva": true, "fondo": "#000000", "oscuro": true},
-  {"id": "latincaribe", "nombre": "The Latin Caribe", "rubro": "barberia", "direccion": "Manuel Rodríguez 299", "comuna": "Copiapó", "region": "Atacama", "lat": -27.361472, "lng": -70.335353, "url": "https://latincaribe.synaptechspa.cl", "reserva": true, "fondo": "#0a0a0a", "oscuro": true},
-  {"id": "tinkay", "nombre": "Tinkay Estética y Salud", "rubro": "estetica", "direccion": "Alcázar 464", "comuna": "Rancagua", "region": "O'Higgins", "lat": -34.171336, "lng": -70.739235, "url": "https://tinkay.synaptechspa.cl", "reserva": true, "fondo": "#fefefe", "oscuro": false},
-  {"id": "viggomhc", "nombre": "Viggo Men's Hair Club", "rubro": "barberia", "direccion": "Av. Cristóbal Colón 6555, Local 8", "comuna": "Las Condes", "region": "Metropolitana", "lat": -33.41719, "lng": -70.560958, "url": "https://viggomhc.synaptechspa.cl", "reserva": true, "fondo": "#000000", "oscuro": true},
-  {"id": "villarrealstudio", "nombre": "Villarreal Studio", "rubro": "salon", "direccion": "Av. Irarrázaval 4896", "comuna": "Ñuñoa", "region": "Metropolitana", "lat": -33.454304, "lng": -70.57927, "url": "https://villarrealstudio.synaptechspa.cl", "reserva": false, "fondo": "#0f1a2b", "oscuro": true},
-  {"id": "yugen", "nombre": "Yūgen Studio", "rubro": "barberia", "direccion": "La Concepción 164", "comuna": "Quillota", "region": "Valparaíso", "lat": -32.880563, "lng": -71.244857, "url": "https://yugenstudio.synaptechspa.cl", "reserva": true, "fondo": "#000000", "oscuro": true},
-];
+export const AJUSTES: Record<string, AjusteLocal> = {
+  "aura": {"nombre": "Aura Salón & Male Grooming", "rubro": "barberia", "direccion": "2 Oriente 124, Local 3", "logo": true, "fondo": "#fefefe", "oscuro": false},
+  "brz": {"nombre": "Barbería BRZ", "rubro": "barberia", "direccion": "Los Arándanos 5101", "logo": true, "fondo": "#000000", "oscuro": true},
+  "chameleon": {"nombre": "Chameleon Barber Studio", "rubro": "barberia", "direccion": "Av. Libertad 868", "logo": true, "fondo": "#000000", "oscuro": true},
+  "claudialeonspa": {"nombre": "Claudia León Spa & Wellness", "rubro": "estetica", "etiqueta": "Spa y bienestar", "direccion": "España 512, Local 204", "logo": true, "fondo": "#313732", "oscuro": true},
+  "clinicalglow": {"nombre": "Clinical Glow · Clínica Estética", "rubro": "estetica", "etiqueta": "Clínica estética", "direccion": "2 Oriente 124, oficina 312", "logo": true, "fondo": "#ffffff", "oscuro": false},
+  "el10salonmasculino": {"nombre": "El 10 Salón Masculino", "rubro": "barberia", "direccion": "1 Sur esquina Victoria, Local 1", "logo": true, "fondo": "#010101", "oscuro": true},
+  "elbarberomoderno": {"nombre": "El Barbero Moderno", "rubro": "barberia", "direccion": "San Diego 333", "logo": true, "fondo": "#0d0c0f", "oscuro": true},
+  "elegance": {"nombre": "Elegance Barbershop", "rubro": "barberia", "direccion": "Ecuador 243", "logo": true, "fondo": "#000201", "oscuro": true},
+  "estudioluxury": {"nombre": "Estudio Luxury", "rubro": "barberia", "direccion": "Los Clarines 1764", "logo": true, "fondo": "#0a0404", "oscuro": true},
+  "fsbarberstudios": {"nombre": "FS Barber Studios", "rubro": "barberia", "direccion": "Av. Quilín 3143", "logo": true, "fondo": "#0d0d0e", "oscuro": true},
+  "garagebarbershop": {"nombre": "Garage Barbershop", "rubro": "barberia", "direccion": "Grajales 1994", "logo": true, "fondo": "#1a1a1a", "oscuro": true},
+  "glowstudio": {"nombre": "Glow Studio", "rubro": "salon", "direccion": "1 Norte 649, Local 2", "reserva": false, "logo": true, "fondo": "#0f1a2b", "oscuro": true},
+  "goldensheep": {"nombre": "Golden Sheep Barbershop Studio", "rubro": "barberia", "direccion": "Aires del Monte 92", "logo": true, "fondo": "#ffffff", "oscuro": false},
+  "infinity": {"nombre": "Infinity Studio", "rubro": "barberia", "direccion": "Traslaviña 114", "logo": true, "fondo": "#121214", "oscuro": true},
+  "kronnos_limache": {"nombre": "Kronnos Studio Limache", "rubro": "barberia", "direccion": "Paseo Las Araucarias 405, Local 5", "logo": true, "fondo": "#000000", "oscuro": true},
+  "kronnos_penablanca": {"nombre": "Kronnos Studio Peñablanca", "rubro": "barberia", "direccion": "Av. Bernardo Leighton 20, Local 13", "logo": true, "fondo": "#000000", "oscuro": true},
+  "kronnos_woman": {"nombre": "Kronnos Woman", "rubro": "salon", "direccion": "Palmira Romano Sur 405, Local 3", "logo": true, "fondo": "#010101", "oscuro": true},
+  "latincaribe": {"nombre": "The Latin Caribe", "rubro": "barberia", "direccion": "Manuel Rodríguez 299", "logo": true, "fondo": "#0a0a0a", "oscuro": true},
+  "lumen": {"nombre": "D'Jones Barber", "rubro": "barberia", "direccion": "Viana 405, Local 3", "logo": true, "fondo": "#030712", "oscuro": true},
+  "newglow": {"nombre": "New Glow Salón", "rubro": "salon", "etiqueta": "Salón de belleza", "direccion": "3 Poniente 482", "logo": true, "fondo": "#ffffff", "oscuro": false},
+  "oren": {"nombre": "Oren Barber", "rubro": "barberia", "direccion": "Av. Borgoño 14580, Local 21, Mall Plaza Reñaca", "logo": true, "fondo": "#000000", "oscuro": true},
+  "paolaleiva": {"nombre": "Paola Leiva · Estilista", "rubro": "salon", "etiqueta": "Estilista y peluquería", "direccion": "San José 6087", "logo": true, "fondo": "#000000", "oscuro": true},
+  "puntopilates": {"nombre": "Punto Pilates", "rubro": "pilates", "direccion": "Caletera Gral. San Martín 8521, Chicureo", "logo": true, "fondo": "#ffffff", "oscuro": false},
+  "renacer": {"nombre": "Peluquería y Barbería Renacer", "rubro": "salon", "direccion": "Ecuador 266", "logo": true, "fondo": "#1c1c1c", "oscuro": true},
+  "sion": {"nombre": "Sion Barbería", "rubro": "barberia", "direccion": "1 Oriente 985", "logo": true, "fondo": "#2c3941", "oscuro": true},
+  "sionbarberia": {"nombre": "Studio Dieciséis", "rubro": "barberia", "direccion": "Simón Bolívar 515", "logo": true, "fondo": "#000000", "oscuro": true},
+  "tinkay": {"nombre": "Tinkay Estética y Salud", "rubro": "estetica", "direccion": "Alcázar 464", "logo": true, "fondo": "#fefefe", "oscuro": false},
+  "viggomhc": {"nombre": "Viggo Men's Hair Club", "rubro": "barberia", "direccion": "Av. Cristóbal Colón 6555, Local 8", "logo": true, "fondo": "#000000", "oscuro": true},
+  "villarrealstudio": {"nombre": "Villarreal Studio", "rubro": "salon", "direccion": "Av. Irarrázaval 4896", "reserva": false, "logo": true, "fondo": "#0f1a2b", "oscuro": true},
+  "yugen": {"nombre": "Yūgen Studio", "rubro": "barberia", "direccion": "La Concepción 164", "logo": true, "fondo": "#000000", "oscuro": true},
+};

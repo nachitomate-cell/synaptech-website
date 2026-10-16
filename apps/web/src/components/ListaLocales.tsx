@@ -2,6 +2,9 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import type { LocalDirectorio, Rubro } from "@/lib/directorio";
+import { nombreRegion } from "@/lib/regiones";
+
+const pesos = (n: number) => `$${n.toLocaleString("es-CL")}`;
 
 /* Directorio: filtros por rubro y región, tarjetas con el logo de cada local
    centrado sobre su propio color, y el mapa sincronizado (en escritorio queda
@@ -74,7 +77,7 @@ export default function ListaLocales({ locales }: { locales: LocalDirectorio[] }
               className={`shrink-0 px-4 py-1.5 rounded-full text-[13.5px] font-medium border transition-colors ${
                 region === r ? "border-ink text-ink bg-white" : "border-border-subtle text-text-muted hover:text-ink"
               }`}>
-              {r === "todas" ? "Todas las regiones" : r === "Metropolitana" ? "Región Metropolitana" : `Región de ${r}`}
+              {r === "todas" ? "Todas las regiones" : nombreRegion(r)}
             </button>
           ))}
         </div>
@@ -83,15 +86,15 @@ export default function ListaLocales({ locales }: { locales: LocalDirectorio[] }
       <div className="grid lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] gap-6 lg:gap-8 items-start">
         <div className="order-2 lg:order-1 grid sm:grid-cols-2 gap-4">
           {lista.map((l) => (
-            <article key={l.id} ref={(el) => { if (el) tarjetas.current.set(l.id, el); }}
+            <article key={l.id} id={`local-${l.id}`} ref={(el) => { if (el) tarjetas.current.set(l.id, el); }}
               onMouseEnter={() => setActivo(l.id)}
               className={`rounded-[22px] bg-white border overflow-hidden flex flex-col transition-shadow ${
                 activo === l.id ? "border-lime shadow-card-hover ring-2 ring-lime/60" : "border-border-subtle hover:shadow-card-hover"
               }`}>
               <div className="relative aspect-[16/10]" style={{ backgroundColor: l.fondo }}>
-                {l.logo ? (
+                {l.logoSrc ? (
                   // eslint-disable-next-line @next/next/no-img-element
-                  <img src={`/directorio-logos/${l.id}.webp`} alt={`Logo de ${l.nombre}`} loading="lazy" decoding="async"
+                  <img src={l.logoSrc} alt={`Logo de ${l.nombre}`} loading="lazy" decoding="async"
                     className="absolute inset-0 w-full h-full object-contain" />
                 ) : (
                   <span className="absolute inset-0 flex items-center justify-center font-display font-bold text-4xl text-white/90">
@@ -115,11 +118,27 @@ export default function ListaLocales({ locales }: { locales: LocalDirectorio[] }
                     </p>
                   )}
                 </div>
-                {l.direccion && <p className="text-sm text-text-muted mt-1">{l.direccion}</p>}
+                {/* "Barbería en La Serena": la frase que la gente busca, en texto visible. */}
+                <p className="text-sm font-semibold text-ink/80 mt-1">{l.comuna ? `${l.etiqueta} en ${l.comuna}` : l.etiqueta}</p>
+                {(l.direccion || l.comuna) && (
+                  <address className="not-italic text-sm text-text-muted mt-0.5">
+                    {[l.direccion, l.comuna, nombreRegion(l.region)].filter(Boolean).join(", ")}
+                  </address>
+                )}
+                {l.servicios.length > 0 && (
+                  <ul className="mt-3 space-y-1 text-[13.5px] text-text-secondary" aria-label={`Servicios destacados de ${l.nombre}`}>
+                    {l.servicios.map((sv) => (
+                      <li key={sv.nombre} className="flex justify-between gap-3">
+                        <span className="min-w-0 truncate">{sv.nombre}</span>
+                        {sv.precio != null && <span className="shrink-0 text-text-muted">{pesos(sv.precio)}</span>}
+                      </li>
+                    ))}
+                  </ul>
+                )}
                 <div className="mt-auto pt-4 flex items-center gap-2">
                   <a href={l.url} target="_blank" rel="noopener"
                     className="flex-1 inline-flex justify-center items-center bg-ink text-white font-semibold px-4 py-2.5 rounded-full hover:bg-black transition-colors text-[15px]">
-                    {l.reserva ? "Reservar hora" : "Ver local"}
+                    {l.reserva ? "Reservar hora" : "Ver local"}<span className="sr-only"> en {l.nombre}</span>
                   </a>
                   {l.lat != null && (
                     <button type="button" onClick={() => { setActivo(l.id); setEnfoque((e) => ({ id: l.id, n: (e?.n ?? 0) + 1 })); }}

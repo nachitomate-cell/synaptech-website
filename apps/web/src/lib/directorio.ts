@@ -5,13 +5,16 @@
    que pidieron no aparecer (`_system/{id}.directorioPublico === false`). Es el mismo criterio
    que usa scripts/gen-directorio-vina.mjs para las cuatro páginas por zona.
 
-   LOS DATOS de cada local (nombre, rubro, dirección, coordenadas, logo) viven en
-   content/directorio-locales.ts. Si la plataforma suma un cliente que todavía no está ahí,
-   aparece igual en la lista con su nombre, sin logo ni punto en el mapa, hasta que se agregue.
+   LOS DATOS de cada local también salen de la plataforma (16-10-2026): `_publico/directorio_seo`
+   trae comuna, región, coordenadas, URL de reserva (con UTM), logo, servicios, precios y nota
+   de Google, y se refresca a diario a las 04:10. content/directorio-locales.ts quedó como
+   ajuste OPCIONAL de lo cosmético (nombre de marca, dirección limpia, logo recortado): un
+   cliente nuevo aparece completo, con logo y punto en el mapa, sin tocar nada.
 
    Se lee por REST con la clave web pública de Firebase (la misma que sirve cualquier página
    de reserva; las reglas solo dejan leer lo público) y se revalida una vez al día. */
-import { LOCALES_BASE, type LocalBase, type Rubro } from "@/content/directorio-locales";
+import { AJUSTES, type Rubro } from "@/content/directorio-locales";
+import { SITIO } from "@/lib/seo";
 
 const FB_API_KEY = "AIzaSyDqVkAhkXALm3hLcrmzjiaS3flUezPFe2Q";
 const RAIZ = "projects/barberia-elegance/databases/(default)/documents";
@@ -19,8 +22,22 @@ const API = `https://firestore.googleapis.com/v1/${RAIZ}`;
 const DIA = { next: { revalidate: 86400 } } as const;
 
 export type { Rubro };
-export type LocalDirectorio = Omit<LocalBase, "lat" | "lng"> & {
-  lat: number | null; lng: number | null; logo: boolean;
+export type Servicio = { nombre: string; precio: number | null };
+export type LocalDirectorio = {
+  id: string; nombre: string; rubro: Rubro;
+  /** Lo que es, en palabras de búsqueda: "Barbería", "Spa y bienestar"… Va antes de "en {comuna}". */
+  etiqueta: string;
+  /** Tipo schema.org (HairSalon, BeautySalon, DaySpa…). */
+  schemaType: string;
+  direccion: string; comuna: string; region: string;
+  lat: number | null; lng: number | null;
+  /** Home del host canónico del local: la misma entidad que su JSON-LD (`{url}/#negocio`). */
+  web: string;
+  /** Reserva con las UTM del directorio. */
+  url: string;
+  reserva: boolean;
+  logo: boolean; logoSrc: string | null; pinSrc: string | null; fondo: string; oscuro: boolean;
+  servicios: Servicio[]; precioMin: number | null; precioMax: number | null;
   rating: number | null; opiniones: number | null;
 };
 
@@ -61,48 +78,111 @@ async function batchGet(rutas: string[], campos: string[]) {
   return salida;
 }
 
-// "AURA SALÓN" → "Aura Salón": solo para clientes nuevos que todavía no están en la lista curada.
+async function leerDoc(ruta: string): Promise<Record<string, unknown> | null> {
+  try {
+    const res = await fetch(`${API}/${ruta}?key=${FB_API_KEY}`, DIA);
+    if (!res.ok) return null;
+    const j = (await res.json()) as { fields?: Record<string, Valor> };
+    return Object.fromEntries(Object.entries(j.fields ?? {}).map(([k, v]) => [k, plano(v)]));
+  } catch { return null; }
+}
+
+// "AURA SALÓN" → "Aura Salón": solo para clientes que no tienen su nombre en AJUSTES.
 function titulo(s: string) {
   const letras = (s.match(/\p{L}/gu) || []).length, mays = (s.match(/\p{Lu}/gu) || []).length;
   if (!letras || mays / letras < 0.6) return s;
   return s.toLowerCase().replace(/(^|\s)(\p{L})/gu, (_, a, b) => a + b.toUpperCase());
 }
 
+/* `tipo` del doc del local → filtro del directorio. Lo que no calza (estudio, otro, sin
+   tipo) cae a barbería, que es lo más común; AJUSTES.rubro lo corrige. */
+const RUBRO_POR_TIPO: Record<string, Rubro> = {
+  barberia: "barberia", peluqueria: "salon", mixto: "salon", nails: "salon",
+  estetica: "estetica", spa: "estetica", clinica: "estetica", pilates: "pilates",
+};
+const ETIQUETA_POR_RUBRO: Record<Rubro, string> = {
+  barberia: "Barbería", salon: "Peluquería", estetica: "Centro de estética", pilates: "Estudio de pilates",
+};
+const SCHEMA_POR_RUBRO: Record<Rubro, string> = {
+  barberia: "HairSalon", salon: "HairSalon", estetica: "BeautySalon", pilates: "ExerciseGym",
+};
+// Los rubros de la plataforma que ya dicen algo útil por sí solos ("Peluquería y barbería", "Spa").
+const TIPOS_CON_ETIQUETA = new Set(["barberia", "peluqueria", "mixto", "nails", "estetica", "spa", "pilates"]);
+
+export { nombreRegion } from "@/lib/regiones";
+
+/** Quita la comuna del final de una dirección escrita a mano ("Grajales 1994, Santiago"): va aparte. */
+function sinComuna(dir: string, comuna: string) {
+  const d = String(dir || "").trim().replace(/\.$/, "");
+  if (!comuna) return d;
+  const re = new RegExp(`,\\s*${comuna.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\s*$`, "i");
+  return d.replace(re, "").trim();
+}
+
+type FilaSeo = {
+  id: string; nombre?: string; tipo?: string | null; rubro?: string | null; schemaType?: string | null;
+  comuna?: string | null; region?: string | null; host?: string; urlReserva?: string;
+  logoUrl?: string | null; direccion?: string | null; geo?: { lat: number; lng: number } | null;
+  servicios?: Servicio[]; precioMin?: number | null; precioMax?: number | null;
+  rating?: number | null; totalReviews?: number | null;
+};
+
 export async function obtenerLocales(): Promise<LocalDirectorio[]> {
-  const base = new Map(LOCALES_BASE.map((l) => [l.id, l]));
   let ids: { id: string; nombre: string; tipo: string | null }[] = [];
-  try {
-    const res = await fetch(`${API}/_publico/metricas?key=${FB_API_KEY}&mask.fieldPaths=directorio&mask.fieldPaths=directorioPrueba`, DIA);
-    if (!res.ok) throw new Error(String(res.status));
-    const j = await res.json();
-    const enPrueba = new Set(((plano(j.fields?.directorioPrueba) as { id: string }[] | null) ?? []).map((x) => x.id));
-    ids = ((plano(j.fields?.directorio) as { id: string; nombre: string; tipo: string | null }[] | null) ?? [])
+  const [met, seoDoc] = await Promise.all([
+    leerDoc("_publico/metricas"),
+    leerDoc("_publico/directorio_seo"),
+  ]);
+  if (met) {
+    const enPrueba = new Set(((met.directorioPrueba as { id: string }[] | null) ?? []).map((x) => x.id));
+    ids = ((met.directorio as { id: string; nombre: string; tipo: string | null }[] | null) ?? [])
       .filter((x) => x?.id && !enPrueba.has(x.id));
-  } catch {
-    // Sin la lista viva se muestra la curada: mejor un directorio de ayer que uno vacío.
-    ids = LOCALES_BASE.map((l) => ({ id: l.id, nombre: l.nombre, tipo: null }));
+  } else {
+    // Sin la lista viva se muestran los que tienen ajuste: mejor un directorio de ayer que uno vacío.
+    ids = Object.entries(AJUSTES).map(([id, a]) => ({ id, nombre: a.nombre ?? id, tipo: null }));
   }
   // Las agencias atienden por mensaje y no tienen reserva de hora: no van en este directorio.
   ids = ids.filter((x) => x.tipo !== "agencia");
+  const seo = new Map(((seoDoc?.locales as FilaSeo[] | null) ?? []).map((f) => [f.id, f]));
 
-  const [sistema, notas] = await Promise.all([
-    batchGet(ids.map((x) => `_system/${x.id}`), ["directorioPublico"]),
-    batchGet(ids.map((x) => `tenants/${x.id}/settings/googleReviews`), ["rating", "totalReviews"]),
-  ]);
+  const sistema = await batchGet(ids.map((x) => `_system/${x.id}`), ["directorioPublico"]);
 
   return ids
     .filter((x) => sistema.get(`_system/${x.id}`)?.directorioPublico !== false)
-    .map((x) => {
-      const b = base.get(x.id);
-      const n = notas.get(`tenants/${x.id}/settings/googleReviews`);
-      const rating = typeof n?.rating === "number" && n.rating > 0 ? n.rating : null;
-      const opiniones = typeof n?.totalReviews === "number" && n.totalReviews > 0 ? n.totalReviews : null;
-      if (b) return { ...b, logo: true, rating, opiniones };
+    .map((x): LocalDirectorio => {
+      const a = AJUSTES[x.id] ?? {};
+      const s: FilaSeo = seo.get(x.id) ?? { id: x.id };
+      const rubro: Rubro = a.rubro ?? RUBRO_POR_TIPO[s.tipo ?? ""] ?? "barberia";
+      const comuna = s.comuna ?? "";
+      const host = s.host ?? `${x.id}.synaptechspa.cl`;
+      const logo = a.logo === true;
+      const logoSrc = logo ? `/directorio-logos/${x.id}.webp` : (s.logoUrl ?? null);
       return {
-        id: x.id, nombre: titulo(x.nombre), rubro: "barberia" as Rubro, direccion: "", comuna: "", region: "",
-        lat: null, lng: null, url: `https://${x.id}.synaptechspa.cl`, reserva: true, fondo: "#0f1a2b", oscuro: true,
-        logo: false, rating, opiniones,
+        id: x.id,
+        nombre: a.nombre ?? titulo(s.nombre ?? x.nombre),
+        rubro,
+        etiqueta: a.etiqueta ?? (s.tipo && TIPOS_CON_ETIQUETA.has(s.tipo) && s.rubro ? s.rubro : ETIQUETA_POR_RUBRO[rubro]),
+        schemaType: s.schemaType && s.schemaType !== "LocalBusiness" ? s.schemaType : SCHEMA_POR_RUBRO[rubro],
+        direccion: a.direccion ?? sinComuna(s.direccion ?? "", comuna),
+        comuna,
+        region: s.region ?? "",
+        lat: s.geo?.lat ?? null, lng: s.geo?.lng ?? null,
+        web: `https://${host}`,
+        url: s.urlReserva ?? `https://${host}/`,
+        reserva: a.reserva ?? true,
+        logo: !!logoSrc, logoSrc,
+        pinSrc: logo ? `/directorio-logos/${x.id}-pin.webp` : logoSrc,
+        fondo: a.fondo ?? "#0f1a2b", oscuro: a.oscuro ?? true,
+        servicios: s.servicios ?? [], precioMin: s.precioMin ?? null, precioMax: s.precioMax ?? null,
+        rating: typeof s.rating === "number" && s.rating > 0 ? s.rating : null,
+        opiniones: typeof s.totalReviews === "number" && s.totalReviews > 0 ? s.totalReviews : null,
       };
     })
     .sort((a, b) => (b.opiniones ?? 0) - (a.opiniones ?? 0) || a.nombre.localeCompare(b.nombre, "es"));
+}
+
+/** URL absoluta del logo (para JSON-LD y llms.txt). */
+export function logoAbsoluto(l: LocalDirectorio) {
+  if (!l.logoSrc) return null;
+  return l.logoSrc.startsWith("http") ? l.logoSrc : `${SITIO}${l.logoSrc}`;
 }

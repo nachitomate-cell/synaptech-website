@@ -61,7 +61,7 @@ export default function MapaLocales({ locales, activo, onSeleccion, enfoque }: {
         nodo.type = "button";
         nodo.className = "marcador-local";
         nodo.setAttribute("aria-label", l.nombre);
-        nodo.style.backgroundImage = `url(/directorio-logos/${l.id}-pin.webp)`;
+        if (l.pinSrc) nodo.style.backgroundImage = `url(${l.pinSrc})`;
         nodo.style.backgroundColor = l.fondo;
         nodo.addEventListener("click", () => onSeleccion(l.id));
         const popup = new ml.Popup({ offset: 26, closeButton: false, maxWidth: "260px" }).setHTML(

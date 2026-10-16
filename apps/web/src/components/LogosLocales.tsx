@@ -22,7 +22,7 @@ function Tarjeta({ l, oculta = false }: { l: LocalDirectorio; oculta?: boolean }
           style={{ backgroundColor: l.fondo }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={`/directorio-logos/${l.id}.webp`} alt={`Logo de ${l.nombre}`} loading="lazy" decoding="async"
+          <img src={l.logoSrc ?? ""} alt={`Logo de ${l.nombre}`} loading="lazy" decoding="async"
             className="absolute inset-0 w-full h-full object-contain transition-transform duration-500 group-hover:scale-[1.05]" />
         </span>
         <span className="mt-3 flex items-start justify-between gap-2">
