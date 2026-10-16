@@ -17,6 +17,7 @@ import Footer        from "@/components/Footer";
 import { metaPagina } from "@/lib/seo";
 import VienesDe from "@/components/VienesDe";
 import VelocidadVideo from "@/components/VelocidadVideo";
+import AvisoPais from "@/components/AvisoPais";
 
 export const metadata = metaPagina({
   title: "SynapTech: agenda online, cobros y WhatsApp con IA",
@@ -35,6 +36,7 @@ export default function Home() {
   return (
     <>
       <Header />
+      <AvisoPais />
       <main>
         <Hero />
         <Confianza />

@@ -4,21 +4,35 @@ import type { Metadata } from "next";
 import { PAISES, PLANES_LATAM, SEDE_ADICIONAL_LATAM, incluyeEnPais, type CodigoPais } from "@/content/paises";
 import { waLink } from "@/content/catalogo";
 import { metaPagina } from "@/lib/seo";
+import { enMonedaLocal, tiposDeCambio, NOTA_CAMBIO } from "@/lib/cambio";
+import Bandera from "@/components/Bandera";
 
 /* Landing por país (ver content/paises.ts). Lleva su propio encabezado y pie:
    el menú del sitio chileno enlaza precios en pesos chilenos, SII y locales de
    Chile, que acá no aplican. Cuando el país tenga dominio propio, esta misma
-   página es su portada. */
+   página es su portada.
 
-export function metadataPais(codigo: CodigoPais): Metadata {
+   16-10-2026: es el link que se manda por WhatsApp a las barberías de cada país.
+   La vista previa (título, descripción e imagen /og/<código>) va en dólares y en
+   su moneda, nunca con el precio chileno: un prospecto de Perú leyó "$29.900"
+   de la vista previa de la home como US$29. Cada página se regenera una vez al
+   día con el tipo de cambio del día (lib/cambio.ts). */
+
+const LOCALE_OG: Record<CodigoPais, string> = { pe: "es_PE", co: "es_CO", mx: "es_MX", ar: "es_AR" };
+
+export async function metadataPais(codigo: CodigoPais): Promise<Metadata> {
   const p = PAISES[codigo];
-  // Idea de expansión: fuera del índice hasta que el país se lance.
-  return metaPagina({
-    title: `SynapTech en ${p.nombre}: agenda online y WhatsApp con IA`,
-    description: `Reservas online en ${p.moneda} y en ${p.hora}, asistente con IA que agenda por WhatsApp y club de fidelidad. Desde US$15 al mes.`,
+  const cambio = await tiposDeCambio();
+  const [agenda] = PLANES_LATAM;
+  // Fuera del índice (noindex) como antes: es la página que se manda por WhatsApp.
+  const m = metaPagina({
+    title: `SynapTech para barberías en ${p.nombre} · Desde US$${agenda.precio}/mes · 2 meses gratis`,
+    description: `Agenda online, recordatorios por WhatsApp y asistente con IA para tu barbería. US$${agenda.precio} al mes por local (≈ ${enMonedaLocal(agenda.precio, codigo, cambio)}), sin cobro por barbero. Los 2 primeros meses, gratis.`,
     path: `/${codigo}`,
     noindex: true,
+    imagen: `/og/${codigo}`,
   });
+  return { ...m, openGraph: { ...m.openGraph, locale: LOCALE_OG[codigo] } };
 }
 
 function Check({ claro = false }: { claro?: boolean }) {
@@ -29,10 +43,14 @@ function Check({ claro = false }: { claro?: boolean }) {
   );
 }
 
-export default function PaisLanding({ codigo }: { codigo: CodigoPais }) {
+export default async function PaisLanding({ codigo }: { codigo: CodigoPais }) {
   const p = PAISES[codigo];
   const piloto = p.estado === "piloto";
   const wa = (t: string) => waLink(`${t} (${p.nombre})`);
+  const cambio = await tiposDeCambio();
+  const local = (usd: number) => enMonedaLocal(usd, codigo, cambio);
+  const [agenda, ia] = PLANES_LATAM;
+  const sedes4 = agenda.precio + 3 * SEDE_ADICIONAL_LATAM.mes;
 
   const ADAPTADO = [
     { t: `Precios en ${p.moneda}`, d: "Tu catálogo, la caja y los mensajes del asistente muestran tu moneda." },
@@ -49,11 +67,13 @@ export default function PaisLanding({ codigo }: { codigo: CodigoPais }) {
 
   const FAQ = [
     { q: `¿Necesito una empresa en Chile para usarlo?`, a: `No. Tu local se crea con su país, ${p.nombre}, y todo funciona con tu moneda, tu hora y tus números.` },
-    { q: "¿Cómo pago la mensualidad?", a: "En dólares, con tarjeta. Los 2 primeros meses son gratis: la tarjeta se pide recién al final del período gratis, y te avisamos a los 45 días." },
-    { q: "¿Hay plan anual?", a: "Sí: pagas 10 meses y usas 12. Son US$150 al año el plan Agenda y US$200 al año el plan Agenda + IA." },
-    { q: "Tengo varias sedes, ¿cuánto pago?", a: `La primera sede paga su plan y cada sede adicional suma US$${SEDE_ADICIONAL_LATAM.mes} al mes. Por ejemplo, 4 sedes con el plan Agenda son US$15 + 3 × US$10 = US$45 al mes.` },
+    { q: "¿Cómo pago la mensualidad?", a: `En dólares, con tarjeta. US$${agenda.precio} son unos ${local(agenda.precio)} y US$${ia.precio} unos ${local(ia.precio)} al cambio de hoy; el monto exacto en tu moneda lo pone tu banco.` },
+    { q: "¿Y si no me sirve?", a: "No pagas nada. Los 2 primeros meses son gratis y la tarjeta se pide recién al final del período gratis (te avisamos a los 45 días)." },
+    { q: "¿Qué es una conversación del asistente?", a: "Un cliente durante 24 horas: si alguien te escribe diez mensajes en el día, cuenta como una. El plan Agenda + IA trae hasta 300 conversaciones al mes." },
+    { q: "¿Hay plan anual?", a: `Sí: pagas 10 meses y usas 12. Son US$${agenda.anual} al año el plan Agenda (≈ ${local(agenda.anual)}) y US$${ia.anual} al año el plan Agenda + IA (≈ ${local(ia.anual)}).` },
+    { q: "Tengo varias sedes, ¿cuánto pago?", a: `La primera sede paga su plan y cada sede adicional suma US$${SEDE_ADICIONAL_LATAM.mes} al mes (≈ ${local(SEDE_ADICIONAL_LATAM.mes)}). Por ejemplo, 4 sedes con el plan Agenda son US$${agenda.precio} + 3 × US$${SEDE_ADICIONAL_LATAM.mes} = US$${sedes4} al mes.` },
     { q: `¿Emite boletas o facturas en ${p.nombre}?`, a: `Todavía no. La emisión de documentos tributarios solo existe en Chile; en ${p.nombre} la agenda, la caja, el club y el asistente funcionan completos.` },
-    { q: `Uso ${p.competencia}, ¿cómo me cambio?`, a: "Te mudamos gratis: traemos tus servicios con precios y duraciones, tu equipo con sus horarios y tu lista de clientes. Todo se hace por videollamada." },
+    { q: `Uso ${p.competencia}, ¿cómo me cambio?`, a: "El cambio lo hacemos nosotros, gratis, desde Fresha, AgendaPro, Booksy o el sistema que uses: traemos tus servicios con precios y duraciones, tu equipo con sus horarios y tu lista de clientes. Todo se hace por videollamada." },
     { q: "¿Hay permanencia?", a: "No. Te vas cuando quieras, y tus datos son tuyos: te los entregamos exportados." },
   ];
 
@@ -68,7 +88,7 @@ export default function PaisLanding({ codigo }: { codigo: CodigoPais }) {
           </Link>
           <a href={wa("Hola, quiero conocer SynapTech para mi local")} target="_blank" rel="noopener noreferrer"
             className="inline-flex items-center bg-ink text-white font-semibold text-sm px-4 sm:px-5 py-2.5 rounded-full hover:bg-black transition-colors">
-            Hablar por WhatsApp
+            <span className="hidden sm:inline">Hablar por&nbsp;</span>WhatsApp
           </a>
         </div>
       </header>
@@ -78,26 +98,33 @@ export default function PaisLanding({ codigo }: { codigo: CodigoPais }) {
         <section className="pt-28 md:pt-36 pb-14 md:pb-20 overflow-hidden">
           <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10 grid lg:grid-cols-[1fr_1.05fr] gap-12 items-center">
             <div>
-              <p className="eyebrow mb-5">
-                {piloto ? `Piloto en ${p.ciudades} · cupos limitados` : `Próximamente en ${p.nombre}`}
+              <p className="eyebrow mb-5 !flex items-center gap-2.5">
+                <Bandera codigo={codigo} ancho={21} />
+                {piloto ? `Para barberías en ${p.nombre}` : `Próximamente en ${p.nombre}`}
               </p>
               <h1 className="text-ink mb-6 !text-[clamp(2.4rem,5vw,4.5rem)]">
-                Todo tu local en una sola plataforma, ahora en {p.nombre}.
+                Toda tu barbería en una sola plataforma, ahora en {p.nombre}.
               </h1>
-              <p className="text-text-secondary text-lg md:text-xl leading-relaxed max-w-xl mb-8">
-                Reservas online en {p.moneda}, un asistente con IA que responde y agenda por
-                WhatsApp, y un club que hace volver a tus clientes. Desde US$15 al mes, con
-                los 2 primeros meses gratis.
+              <p className="text-text-secondary text-lg md:text-xl leading-relaxed max-w-xl mb-6">
+                Reservas online con tu marca, recordatorios por WhatsApp y un asistente con IA
+                que responde y agenda solo. Sin cobro por barbero.
               </p>
+              <a href="#planes" className="inline-flex flex-wrap items-baseline gap-x-2 gap-y-1 rounded-2xl bg-mist px-5 py-3.5 mb-8">
+                <span className="text-text-secondary text-sm">Desde</span>
+                <span className="font-display font-bold text-ink text-2xl tracking-tight">US${agenda.precio}</span>
+                <span className="text-text-secondary text-sm">al mes por local</span>
+                <span className="text-text-muted text-sm whitespace-nowrap">(≈ {local(agenda.precio)})</span>
+                <span className="w-full sm:w-auto text-accent font-semibold text-sm"><span className="hidden sm:inline">· </span>2 meses gratis</span>
+              </a>
               <div className="flex flex-col sm:flex-row gap-3">
-                <a href={wa(piloto ? "Hola, quiero ser uno de los locales piloto de SynapTech" : "Hola, quiero que me avisen cuando SynapTech llegue")}
+                <a href={wa(piloto ? "Hola, quiero probar SynapTech 2 meses gratis en mi barbería" : "Hola, quiero que me avisen cuando SynapTech llegue")}
                   target="_blank" rel="noopener noreferrer"
                   className="inline-flex justify-center items-center bg-ink text-white font-semibold px-7 py-4 rounded-full hover:bg-black transition-colors">
-                  {piloto ? "Quiero ser local piloto" : "Avísame cuando llegue"}
+                  {piloto ? "Probar 2 meses gratis" : "Avísame cuando llegue"}
                 </a>
                 <a href="#planes"
                   className="inline-flex justify-center items-center border border-ink/15 text-ink font-semibold px-7 py-4 rounded-full hover:border-ink/40 transition-colors">
-                  Ver planes en dólares
+                  Ver precios
                 </a>
               </div>
               <p className="text-sm text-text-muted mt-6">
@@ -114,8 +141,62 @@ export default function PaisLanding({ codigo }: { codigo: CodigoPais }) {
           </div>
         </section>
 
+        {/* Planes: van primero, es lo que viene a ver quien abre el link de WhatsApp */}
+        <section id="planes" className="py-16 md:py-24 scroll-mt-20 bg-mist">
+          <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10">
+            <div className="max-w-3xl mb-10">
+              <p className="eyebrow mb-4">Precios en dólares</p>
+              <h2 className="text-ink">Un precio por local, no por barbero.</h2>
+              <p className="text-text-secondary text-lg mt-5 leading-relaxed">
+                Sin cobro por barbero ni comisión por reserva. Los 2 primeros meses son gratis
+                y la tarjeta se pide recién al final: si no te sirve, no pagas nada.
+              </p>
+            </div>
+            <div className="grid md:grid-cols-2 gap-5 max-w-4xl">
+              {PLANES_LATAM.map((pl) => (
+                <article key={pl.id} className={`relative rounded-[28px] p-7 sm:p-8 flex flex-col ${pl.popular ? "bg-ink text-white" : "bg-white"}`}>
+                  {pl.popular && <span className="absolute -top-3 left-7 bg-lime text-ink text-xs font-bold px-3 py-1 rounded-full">Recomendado</span>}
+                  <h3 className="font-display font-bold text-2xl tracking-tight">{pl.nombre}</h3>
+                  <p className="mt-4">
+                    <span className="font-display font-bold text-[44px] tracking-tight leading-none">US${pl.precio}</span>
+                    <span className={`text-sm ml-1 ${pl.popular ? "text-white/60" : "text-text-muted"}`}>/ mes por local</span>
+                  </p>
+                  <p className={`mt-2 font-semibold ${pl.popular ? "text-lime" : "text-accent"}`}>
+                    ≈ {local(pl.precio)} al mes <span className={`text-xs font-normal ${pl.popular ? "text-white/55" : "text-text-muted"}`}>aprox.</span>
+                  </p>
+                  <p className={`text-sm mt-2 ${pl.popular ? "text-white/70" : "text-text-secondary"}`}>
+                    o US${pl.anual} al año <span className="whitespace-nowrap">(≈ {local(pl.anual)})</span>: 10 meses pagados por 12
+                  </p>
+                  <p className={`mt-4 leading-relaxed ${pl.popular ? "text-white/80" : "text-text-secondary"}`}>{pl.descripcion}</p>
+                  <ul className="mt-6 flex flex-col gap-3 flex-1">
+                    {pl.incluye.map((d) => (
+                      <li key={d} className="flex gap-3 text-[15px]"><Check claro={pl.popular} />{incluyeEnPais(d, p)}</li>
+                    ))}
+                  </ul>
+                  <a href={wa(`Hola, me interesa el plan ${pl.nombre} de SynapTech`)} target="_blank" rel="noopener noreferrer"
+                    className={`mt-8 inline-flex justify-center items-center font-semibold px-6 py-3.5 rounded-full transition-colors ${
+                      pl.popular ? "bg-lime text-ink hover:bg-white" : "bg-ink text-white hover:bg-black"}`}>
+                    {piloto ? "Probar 2 meses gratis" : "Avísame cuando llegue"}
+                  </a>
+                </article>
+              ))}
+            </div>
+            <div className="mt-5 max-w-4xl rounded-[24px] bg-white p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center gap-3 justify-between">
+              <p className="text-ink">
+                <span className="font-semibold">¿Varias sedes?</span> La primera paga su plan y cada sede adicional suma
+                US${SEDE_ADICIONAL_LATAM.mes} al mes <span className="whitespace-nowrap">(≈ {local(SEDE_ADICIONAL_LATAM.mes)})</span>.
+              </p>
+              <p className="text-sm text-text-muted shrink-0">4 sedes con Agenda: US${agenda.precio} + 3 × US${SEDE_ADICIONAL_LATAM.mes} = US${sedes4} al mes</p>
+            </div>
+            <p className="text-sm text-text-muted mt-4 max-w-4xl">
+              Precios en dólares estadounidenses, cobrados con tarjeta. Montos en {p.moneda}: {NOTA_CAMBIO}.
+              La tarjeta se pide recién al final de los 2 meses gratis y te avisamos a los 45 días.
+            </p>
+          </div>
+        </section>
+
         {/* Hecho para el país */}
-        <section className="py-16 md:py-24 bg-mist">
+        <section className="py-16 md:py-24">
           <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10">
             <div className="max-w-3xl mb-10">
               <p className="eyebrow mb-4">Hecho para {p.nombre}</p>
@@ -126,7 +207,7 @@ export default function PaisLanding({ codigo }: { codigo: CodigoPais }) {
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {ADAPTADO.map((x) => (
-                <article key={x.t} className="rounded-[24px] bg-white p-6 sm:p-7">
+                <article key={x.t} className="rounded-[24px] bg-mist p-6 sm:p-7">
                   <h3 className="font-display font-bold text-ink text-xl tracking-tight">{x.t}</h3>
                   <p className="text-text-secondary mt-2 leading-relaxed">{x.d}</p>
                 </article>
@@ -135,66 +216,21 @@ export default function PaisLanding({ codigo }: { codigo: CodigoPais }) {
           </div>
         </section>
 
-        {/* Planes */}
-        <section id="planes" className="py-16 md:py-24 scroll-mt-20">
-          <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10">
-            <div className="max-w-3xl mb-10">
-              <p className="eyebrow mb-4">Precio de lanzamiento</p>
-              <h2 className="text-ink">Un precio por local, no por silla.</h2>
-              <p className="text-text-secondary text-lg mt-5 leading-relaxed">
-                Sin cobro por barbero ni comisión por reserva. Los 2 primeros meses son gratis
-                y la tarjeta se pide recién al final.
-              </p>
-            </div>
-            <div className="grid md:grid-cols-2 gap-5 max-w-4xl">
-              {PLANES_LATAM.map((pl) => (
-                <article key={pl.id} className={`relative rounded-[28px] p-7 sm:p-8 flex flex-col ${pl.popular ? "bg-ink text-white" : "bg-mist"}`}>
-                  {pl.popular && <span className="absolute -top-3 left-7 bg-lime text-ink text-xs font-bold px-3 py-1 rounded-full">Recomendado</span>}
-                  <h3 className="font-display font-bold text-2xl tracking-tight">{pl.nombre}</h3>
-                  <p className="mt-4">
-                    <span className="font-display font-bold text-[44px] tracking-tight leading-none">US${pl.precio}</span>
-                    <span className={`text-sm ml-1 ${pl.popular ? "text-white/60" : "text-text-muted"}`}>/ mes por local</span>
-                  </p>
-                  <p className={`text-sm mt-2 ${pl.popular ? "text-white/70" : "text-text-secondary"}`}>o US${pl.anual} al año: 10 meses pagados por 12</p>
-                  <p className={`mt-4 leading-relaxed ${pl.popular ? "text-white/80" : "text-text-secondary"}`}>{pl.descripcion}</p>
-                  <ul className="mt-6 flex flex-col gap-3 flex-1">
-                    {pl.incluye.map((d) => (
-                      <li key={d} className="flex gap-3 text-[15px]"><Check claro={pl.popular} />{incluyeEnPais(d, p)}</li>
-                    ))}
-                  </ul>
-                  <a href={wa(`Hola, me interesa el plan ${pl.nombre} de SynapTech`)} target="_blank" rel="noopener noreferrer"
-                    className={`mt-8 inline-flex justify-center items-center font-semibold px-6 py-3.5 rounded-full transition-colors ${
-                      pl.popular ? "bg-lime text-ink hover:bg-white" : "bg-ink text-white hover:bg-black"}`}>
-                    {piloto ? "Quiero ser local piloto" : "Avísame cuando llegue"}
-                  </a>
-                </article>
-              ))}
-            </div>
-            <div className="mt-5 max-w-4xl rounded-[24px] border border-border-subtle p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center gap-3 justify-between">
-              <p className="text-ink"><span className="font-semibold">¿Varias sedes?</span> La primera paga su plan y cada sede adicional suma US${SEDE_ADICIONAL_LATAM.mes} al mes (US${SEDE_ADICIONAL_LATAM.anual} al año).</p>
-              <p className="text-sm text-text-muted shrink-0">4 sedes con Agenda: US$15 + 3 × US$10 = US$45 al mes</p>
-            </div>
-            <p className="text-sm text-text-muted mt-4 max-w-4xl">
-              Precios en dólares estadounidenses. Se paga con tarjeta; la pides recién al final de los 2 meses gratis y te avisamos a los 45 días.
-            </p>
-          </div>
-        </section>
-
         {/* Mudanza */}
         <section className="py-16 md:py-24 bg-ink text-white">
           <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10 grid lg:grid-cols-2 gap-10 items-center">
             <div>
               <p className="eyebrow !text-lime mb-4">Cámbiate sin perder a nadie</p>
-              <h2 className="text-white">¿Hoy usas {p.competencia}? Te mudamos gratis.</h2>
+              <h2 className="text-white">¿Hoy usas {p.competencia}? El cambio lo hacemos nosotros.</h2>
               <p className="text-white/75 text-lg mt-5 leading-relaxed">
-                Traemos tus servicios con precios y duraciones, tu equipo con sus horarios y tu
-                lista de clientes. La demo, la mudanza y el soporte se hacen por videollamada y
-                WhatsApp.
+                Desde Fresha, AgendaPro, Booksy o el sistema que uses: traemos tus servicios con
+                precios y duraciones, tu equipo con sus horarios y tu lista de clientes, sin costo.
+                La demo, el cambio y el soporte se hacen por videollamada y WhatsApp.
               </p>
             </div>
             <ul className="grid sm:grid-cols-2 gap-4">
               {[
-                ["Precio fijo por local", "No pagas más por sumar profesionales."],
+                ["Precio fijo por local", "No pagas más por sumar barberos."],
                 ["Sin comisión por reserva", "Tampoco por cada cliente nuevo que llega."],
                 ["Tu WhatsApp, tu cliente", "El asistente responde desde el número de tu local."],
                 ["Sin permanencia", "Te vas cuando quieras, con tus datos."],
@@ -231,10 +267,11 @@ export default function PaisLanding({ codigo }: { codigo: CodigoPais }) {
         <section className="py-16 md:py-24 bg-mist">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
             <h2 className="text-ink">
-              {piloto ? `Sé uno de los primeros locales en ${p.nombre}.` : `Te avisamos cuando lleguemos a ${p.nombre}.`}
+              {piloto ? "Prueba SynapTech 2 meses gratis en tu barbería." : `Te avisamos cuando lleguemos a ${p.nombre}.`}
             </h2>
             <p className="text-text-secondary text-lg mt-5 leading-relaxed">
-              Te mostramos la plataforma con los datos de tu local, por videollamada.
+              Te mostramos la plataforma con los datos de tu local, por videollamada. Si no te
+              sirve, no pagas nada.
             </p>
             <a href={wa("Hola, quiero ver SynapTech con los datos de mi local")} target="_blank" rel="noopener noreferrer"
               className="mt-8 inline-flex justify-center items-center bg-ink text-white font-semibold px-7 py-4 rounded-full hover:bg-black transition-colors">
