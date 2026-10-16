@@ -59,7 +59,9 @@ function jsonLd(locales: LocalDirectorio[], descripcion: string) {
             item: {
               "@type": l.schemaType,
               // El mismo @id que declara la página del local: Google une las dos entidades.
-              "@id": `${l.web}/#negocio`,
+              // Una sede es su propia ubicación y cuelga del negocio (parentOrganization).
+              "@id": l.sede ? `${l.web}/#sede-${l.sede}` : `${l.web}/#negocio`,
+              ...(l.sede ? { parentOrganization: { "@id": `${l.web}/#negocio` } } : {}),
               name: l.nombre, url: l.web,
               ...(imagen ? { image: imagen } : {}),
               address: {

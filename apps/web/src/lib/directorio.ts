@@ -20,11 +20,21 @@ const FB_API_KEY = "AIzaSyDqVkAhkXALm3hLcrmzjiaS3flUezPFe2Q";
 const RAIZ = "projects/barberia-elegance/databases/(default)/documents";
 const API = `https://firestore.googleapis.com/v1/${RAIZ}`;
 const DIA = { next: { revalidate: 86400 } } as const;
+/* Los dos docs que dicen QUIÉN sale y con qué datos se piden cada hora: la caché de
+   datos de Vercel sobrevive a los deploys, y con 24 h un cambio en la plataforma
+   podía tardar hasta dos días en verse (16-10-2026). Son 2 lecturas por hora. */
+const HORA = { next: { revalidate: 3600 } } as const;
 
 export type { Rubro };
 export type Servicio = { nombre: string; precio: number | null };
 export type LocalDirectorio = {
-  id: string; nombre: string; rubro: Rubro;
+  /** Único por tarjeta: `{tid}` o `{tid}--{sede}` si el local tiene varias sedes. */
+  id: string;
+  /** El local en la plataforma (logo, ajustes, testimonios). */
+  tid: string;
+  /** Id de la sede, o null si el local tiene una sola. */
+  sede: string | null;
+  nombre: string; rubro: Rubro;
   /** Lo que es, en palabras de búsqueda: "Barbería", "Spa y bienestar"… Va antes de "en {comuna}". */
   etiqueta: string;
   /** Tipo schema.org (HairSalon, BeautySalon, DaySpa…). */
@@ -78,9 +88,11 @@ async function batchGet(rutas: string[], campos: string[]) {
   return salida;
 }
 
-async function leerDoc(ruta: string): Promise<Record<string, unknown> | null> {
+async function leerDoc(ruta: string, campos: string[]): Promise<Record<string, unknown> | null> {
   try {
-    const res = await fetch(`${API}/${ruta}?key=${FB_API_KEY}`, DIA);
+    // La máscara trae solo lo que se usa (y es parte de la clave de la caché de datos).
+    const mask = campos.map((c) => `&mask.fieldPaths=${c}`).join("");
+    const res = await fetch(`${API}/${ruta}?key=${FB_API_KEY}${mask}`, HORA);
     if (!res.ok) return null;
     const j = (await res.json()) as { fields?: Record<string, Valor> };
     return Object.fromEntries(Object.entries(j.fields ?? {}).map(([k, v]) => [k, plano(v)]));
@@ -99,6 +111,11 @@ function titulo(s: string) {
 const RUBRO_POR_TIPO: Record<string, Rubro> = {
   barberia: "barberia", peluqueria: "salon", mixto: "salon", nails: "salon",
   estetica: "estetica", spa: "estetica", clinica: "estetica", pilates: "pilates",
+};
+// Los locales curados no tienen `tipo`: su schemaType (TENANT_META) dice qué son.
+const RUBRO_POR_SCHEMA: Record<string, Rubro> = {
+  HairSalon: "barberia", BeautySalon: "salon", NailSalon: "salon", DaySpa: "estetica",
+  MedicalClinic: "estetica", HealthClub: "pilates", ExerciseGym: "pilates",
 };
 const ETIQUETA_POR_RUBRO: Record<Rubro, string> = {
   barberia: "Barbería", salon: "Peluquería", estetica: "Centro de estética", pilates: "Estudio de pilates",
@@ -125,41 +142,51 @@ type FilaSeo = {
   logoUrl?: string | null; direccion?: string | null; geo?: { lat: number; lng: number } | null;
   servicios?: Servicio[]; precioMin?: number | null; precioMax?: number | null;
   rating?: number | null; totalReviews?: number | null;
+  publicable?: boolean; motivo?: string | null;
+  sedes?: { id: string; nombre: string | null; direccion: string; comuna: string | null; region: string | null; geo: { lat: number; lng: number } | null }[];
 };
 
 export async function obtenerLocales(): Promise<LocalDirectorio[]> {
-  let ids: { id: string; nombre: string; tipo: string | null }[] = [];
   const [met, seoDoc] = await Promise.all([
-    leerDoc("_publico/metricas"),
-    leerDoc("_publico/directorio_seo"),
+    leerDoc("_publico/metricas", ["directorio", "directorioPrueba"]),
+    leerDoc("_publico/directorio_seo", ["locales"]),
   ]);
-  if (met) {
+  const filas = (seoDoc?.locales as FilaSeo[] | null) ?? [];
+  const seo = new Map(filas.map((f) => [f.id, f]));
+
+  /* QUIÉN sale (16-10-2026, "todos los reales, bioo incluido"): las filas
+     `publicable` de directorio_seo — pagando, en prueba y los que operan, sin
+     demos, sin locales fuera de Chile, sin rubros sin hora y sin los que pidieron
+     no aparecer (functions/metricas-publicas.js decide y deja el `motivo`). Si el
+     doc todavía no trae el campo, se usa el criterio anterior: los que pagan. */
+  let ids: { id: string; nombre: string }[];
+  if (filas.some((f) => f.publicable !== undefined)) {
+    ids = filas.filter((f) => f.publicable === true).map((f) => ({ id: f.id, nombre: f.nombre ?? f.id }));
+  } else if (met) {
     const enPrueba = new Set(((met.directorioPrueba as { id: string }[] | null) ?? []).map((x) => x.id));
     ids = ((met.directorio as { id: string; nombre: string; tipo: string | null }[] | null) ?? [])
-      .filter((x) => x?.id && !enPrueba.has(x.id));
+      .filter((x) => x?.id && !enPrueba.has(x.id) && x.tipo !== "agencia");
   } else {
-    // Sin la lista viva se muestran los que tienen ajuste: mejor un directorio de ayer que uno vacío.
-    ids = Object.entries(AJUSTES).map(([id, a]) => ({ id, nombre: a.nombre ?? id, tipo: null }));
+    // Sin datos vivos se muestran los que tienen ajuste: mejor un directorio de ayer que uno vacío.
+    ids = Object.entries(AJUSTES).map(([id, a]) => ({ id, nombre: a.nombre ?? id }));
   }
-  // Las agencias atienden por mensaje y no tienen reserva de hora: no van en este directorio.
-  ids = ids.filter((x) => x.tipo !== "agencia");
-  const seo = new Map(((seoDoc?.locales as FilaSeo[] | null) ?? []).map((f) => [f.id, f]));
 
   const sistema = await batchGet(ids.map((x) => `_system/${x.id}`), ["directorioPublico"]);
 
   return ids
     .filter((x) => sistema.get(`_system/${x.id}`)?.directorioPublico !== false)
-    .map((x): LocalDirectorio => {
+    .flatMap((x): LocalDirectorio[] => {
       const a = AJUSTES[x.id] ?? {};
       const s: FilaSeo = seo.get(x.id) ?? { id: x.id };
-      const rubro: Rubro = a.rubro ?? RUBRO_POR_TIPO[s.tipo ?? ""] ?? "barberia";
+      const rubro: Rubro = a.rubro ?? RUBRO_POR_TIPO[s.tipo ?? ""] ?? RUBRO_POR_SCHEMA[s.schemaType ?? ""] ?? "barberia";
       const comuna = s.comuna ?? "";
       const host = s.host ?? `${x.id}.synaptechspa.cl`;
       const logo = a.logo === true;
       const logoSrc = logo ? `/directorio-logos/${x.id}.webp` : (s.logoUrl ?? null);
-      return {
-        id: x.id,
-        nombre: a.nombre ?? titulo(s.nombre ?? x.nombre),
+      const nombre = a.nombre ?? titulo(s.nombre ?? x.nombre);
+      const base: LocalDirectorio = {
+        id: x.id, tid: x.id, sede: null,
+        nombre,
         rubro,
         etiqueta: a.etiqueta ?? (s.tipo && TIPOS_CON_ETIQUETA.has(s.tipo) && s.rubro ? s.rubro : ETIQUETA_POR_RUBRO[rubro]),
         schemaType: s.schemaType && s.schemaType !== "LocalBusiness" ? s.schemaType : SCHEMA_POR_RUBRO[rubro],
@@ -177,8 +204,31 @@ export async function obtenerLocales(): Promise<LocalDirectorio[]> {
         rating: typeof s.rating === "number" && s.rating > 0 ? s.rating : null,
         opiniones: typeof s.totalReviews === "number" && s.totalReviews > 0 ? s.totalReviews : null,
       };
+      /* Un local con dos o más sedes sale una vez por sede: cada una en su comuna y
+         su punto del mapa (Oren en Reñaca y Villa Alemana; Punto Pilates en siete
+         comunas), y el botón abre la reserva con esa sede elegida (`?sede=`). */
+      const sedes = (s.sedes ?? []).filter((sd) => sd && sd.id && sd.direccion);
+      if (sedes.length < 2) return [base];
+      return sedes.map((sd) => {
+        const c = sd.comuna ?? comuna;
+        return {
+          ...base,
+          id: `${x.id}--${sd.id}`, sede: sd.id,
+          nombre: sd.nombre ?? `${nombre} · ${c}`,
+          direccion: sinComuna(sd.direccion, c),
+          comuna: c, region: sd.region ?? base.region,
+          lat: sd.geo?.lat ?? null, lng: sd.geo?.lng ?? null,
+          url: `${base.url}${base.url.includes("?") ? "&" : "?"}sede=${encodeURIComponent(sd.id)}`,
+        };
+      });
     })
     .sort((a, b) => (b.opiniones ?? 0) - (a.opiniones ?? 0) || a.nombre.localeCompare(b.nombre, "es"));
+}
+
+/** Un local por negocio (la primera sede): para la cinta de logos y las cuentas de "N locales". */
+export function unoPorNegocio(locales: LocalDirectorio[]) {
+  const vistos = new Set<string>();
+  return locales.filter((l) => (vistos.has(l.tid) ? false : (vistos.add(l.tid), true)));
 }
 
 /** URL absoluta del logo (para JSON-LD y llms.txt). */

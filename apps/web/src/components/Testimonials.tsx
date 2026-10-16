@@ -1,4 +1,4 @@
-import { obtenerLocales, type LocalDirectorio } from "@/lib/directorio";
+import { obtenerLocales, unoPorNegocio, type LocalDirectorio } from "@/lib/directorio";
 
 /* Lo que dicen los locales, TEXTUAL (rehecho el 09-10-2026).
    Cada cita es copia exacta de un mensaje de WhatsApp: mismas faltas, mismos
@@ -185,9 +185,9 @@ function Tarjeta({ t, vivo, nota }: { t: Testimonio; vivo?: LocalDirectorio; not
 }
 
 export default async function Testimonials() {
-  const vivos = await obtenerLocales();
-  const porId = new Map(vivos.map((l) => [l.id, l]));
-  const notas = new Map(vivos.filter((l) => l.rating && (l.opiniones ?? 0) >= 5).map((l) => [l.id, { rating: l.rating!, opiniones: l.opiniones! }]));
+  const vivos = unoPorNegocio(await obtenerLocales());
+  const porId = new Map(vivos.map((l) => [l.tid, l]));
+  const notas = new Map(vivos.filter((l) => l.rating && (l.opiniones ?? 0) >= 5).map((l) => [l.tid, { rating: l.rating!, opiniones: l.opiniones! }]));
   const destacados = TESTIMONIOS.filter((t) => t.destacado);
   const resto = TESTIMONIOS.filter((t) => !t.destacado);
   return (

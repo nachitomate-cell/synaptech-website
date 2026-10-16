@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { obtenerLocales, type LocalDirectorio } from "@/lib/directorio";
+import { obtenerLocales, unoPorNegocio, type LocalDirectorio } from "@/lib/directorio";
 
 /* Locales reales que trabajan con SynapTech (09-10-2026: reemplaza a la tira de
    logos chicos sobre fichas negras y a la grilla de DirectorioBanda, que
@@ -57,7 +57,8 @@ function Cinta({ locales, reversa = false }: { locales: LocalDirectorio[]; rever
 }
 
 export default async function LogosLocales() {
-  const todos = await obtenerLocales();
+  // Un logo por negocio: Punto Pilates tiene siete sedes y no debe ocupar siete tarjetas.
+  const todos = unoPorNegocio(await obtenerLocales());
   const conLogo = todos.filter((l) => l.logo);
   const comunas = new Set(todos.map((l) => l.comuna).filter(Boolean)).size;
   const fila1 = conLogo.filter((_, i) => i % 2 === 0);
