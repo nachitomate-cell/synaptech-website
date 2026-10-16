@@ -1,3 +1,5 @@
+import { obtenerLocales } from "@/lib/directorio";
+import { seccionLlms } from "@/lib/directorio-faq";
 import { PLANES, ANUAL, ADICIONALES, fmt } from "@/content/precios";
 import { S, QUE_ES, respuestasRapidas, lineasPrecios, LATAM, PAGINAS, CONTACTO, fechaDatos } from "@/lib/llms";
 
@@ -7,9 +9,11 @@ import { S, QUE_ES, respuestasRapidas, lineasPrecios, LATAM, PAGINAS, CONTACTO, 
    desde content/* (lib/llms.ts), igual que Syna: nunca dice otra cosa que el
    sitio. La versión con todo el detalle es /llms-full.txt. */
 
-export const dynamic = "force-static";
+/* Se regenera una vez al día: la lista de locales sale viva de la plataforma (lib/directorio.ts). */
+export const revalidate = 86400;
 
-export function GET() {
+export async function GET() {
+  const locales = await obtenerLocales();
   const planes = PLANES.map((p) => `- ${p.nombre}: ${fmt(p.mes)} + IVA al mes por local. ${p.descripcion}`).join("\n");
   const adicionales = ADICIONALES.map((a) => `- ${a.nombre}: ${a.precio} + IVA. ${a.desc}`).join("\n");
   const rapidas = respuestasRapidas().map((r) => `### ${r.q}\n${r.a}`).join("\n\n");
@@ -36,6 +40,11 @@ ${LATAM}
 
 ## Precio de otras agendas con 1, 3, 6 y 9 profesionales (con fuente y fecha)
 ${lineasPrecios()}
+
+## Locales con reserva online (Red SynapTech, ${locales.length} locales, datos al día)
+Barberías, peluquerías, spas y centros de estética de Chile que agendan con SynapTech. Directorio con mapa: ${S}/locales
+
+${seccionLlms(locales)}
 
 ## Páginas
 ${PAGINAS}

@@ -1,3 +1,5 @@
+import { obtenerLocales } from "@/lib/directorio";
+import { seccionLlms } from "@/lib/directorio-faq";
 import { COMPETIDORES } from "@/content/competidores";
 import { seccionPlanes, seccionProducto, seccionPreguntas, seccionGuias } from "@/lib/syna/conocimiento";
 import { S, QUE_ES, respuestasRapidas, lineasPrecios, competidorCompleto, LATAM, PAGINAS, CONTACTO, fechaDatos } from "@/lib/llms";
@@ -7,9 +9,11 @@ import { S, QUE_ES, respuestasRapidas, lineasPrecios, competidorCompleto, LATAM,
    solo archivo de texto. Mismas secciones que el conocimiento de Syna
    (lib/syna/conocimiento.ts) más la ficha completa de cada competidor. */
 
-export const dynamic = "force-static";
+/* Se regenera una vez al día: la lista de locales sale viva de la plataforma (lib/directorio.ts). */
+export const revalidate = 86400;
 
-export function GET() {
+export async function GET() {
+  const locales = await obtenerLocales();
   const txt = `# SynapTech — ficha completa
 
 > ${QUE_ES}
@@ -41,6 +45,11 @@ ${COMPETIDORES.map(competidorCompleto).join("\n\n")}
 ${seccionPreguntas()}
 
 ${seccionGuias()}
+
+## Locales con reserva online (Red SynapTech, ${locales.length} locales, datos al día)
+Barberías, peluquerías, spas y centros de estética de Chile que agendan con SynapTech. Directorio con mapa: ${S}/locales
+
+${seccionLlms(locales)}
 
 ## Páginas
 ${PAGINAS}

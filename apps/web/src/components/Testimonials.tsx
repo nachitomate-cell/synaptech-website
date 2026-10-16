@@ -1,5 +1,4 @@
-import { LOCALES_BASE } from "@/content/directorio-locales";
-import { obtenerLocales } from "@/lib/directorio";
+import { obtenerLocales, type LocalDirectorio } from "@/lib/directorio";
 
 /* Lo que dicen los locales, TEXTUAL (rehecho el 09-10-2026).
    Cada cita es copia exacta de un mensaje de WhatsApp: mismas faltas, mismos
@@ -16,7 +15,7 @@ import { obtenerLocales } from "@/lib/directorio";
      tiene 5 reseñas o más. */
 
 type Testimonio = {
-  local: string;         // id en content/directorio-locales.ts (logo, link de reserva, nota de Google)
+  local: string;         // id del local en el directorio vivo (logo, link de reserva, nota de Google)
   autor: string;
   rol: string;
   fecha: string;
@@ -120,8 +119,6 @@ const TESTIMONIOS: Testimonio[] = [
   },
 ];
 
-const BASE = new Map(LOCALES_BASE.map((l) => [l.id, l]));
-
 function IconoIG() {
   return (
     <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
@@ -130,8 +127,10 @@ function IconoIG() {
   );
 }
 
-function Tarjeta({ t, nota }: { t: Testimonio; nota?: { rating: number; opiniones: number } }) {
-  const l = BASE.get(t.local) ?? t.info;
+type Ficha = { id: string; nombre: string; comuna: string; url: string; fondo: string; reserva: boolean; pinSrc: string | null };
+
+function Tarjeta({ t, vivo, nota }: { t: Testimonio; vivo?: LocalDirectorio; nota?: { rating: number; opiniones: number } }) {
+  const l: Ficha | undefined = vivo ?? (t.info && { ...t.info, pinSrc: `/directorio-logos/${t.info.id}-pin.webp` });
   if (!l) return null;
   const grande = !!t.destacado;
   return (
@@ -139,7 +138,7 @@ function Tarjeta({ t, nota }: { t: Testimonio; nota?: { rating: number; opinione
       <header className="flex items-center gap-3.5 p-5 sm:p-6 pb-0 sm:pb-0">
         <span className="w-12 h-12 shrink-0 rounded-full overflow-hidden ring-1 ring-black/10" style={{ backgroundColor: l.fondo }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={`/directorio-logos/${l.id}-pin.webp`} alt={`Logo de ${l.nombre}`} width={48} height={48} loading="lazy" className="w-full h-full object-contain" />
+          <img src={l.pinSrc ?? ""} alt={`Logo de ${l.nombre}`} width={48} height={48} loading="lazy" className="w-full h-full object-contain" />
         </span>
         <span className="min-w-0">
           <span className={`block font-semibold leading-snug truncate ${grande ? "text-white" : "text-ink"}`}>{l.nombre}</span>
@@ -187,6 +186,7 @@ function Tarjeta({ t, nota }: { t: Testimonio; nota?: { rating: number; opinione
 
 export default async function Testimonials() {
   const vivos = await obtenerLocales();
+  const porId = new Map(vivos.map((l) => [l.id, l]));
   const notas = new Map(vivos.filter((l) => l.rating && (l.opiniones ?? 0) >= 5).map((l) => [l.id, { rating: l.rating!, opiniones: l.opiniones! }]));
   const destacados = TESTIMONIOS.filter((t) => t.destacado);
   const resto = TESTIMONIOS.filter((t) => !t.destacado);
@@ -202,10 +202,10 @@ export default async function Testimonials() {
           </p>
         </div>
         <div className="grid lg:grid-cols-3 gap-5 mb-5 items-start">
-          {destacados.map((t) => <Tarjeta key={t.local + t.fecha} t={t} nota={notas.get(t.local)} />)}
+          {destacados.map((t) => <Tarjeta key={t.local + t.fecha} t={t} vivo={porId.get(t.local)} nota={notas.get(t.local)} />)}
         </div>
         <div className="columns-1 sm:columns-2 lg:columns-3 gap-5">
-          {resto.map((t) => <Tarjeta key={t.local + t.fecha} t={t} nota={notas.get(t.local)} />)}
+          {resto.map((t) => <Tarjeta key={t.local + t.fecha} t={t} vivo={porId.get(t.local)} nota={notas.get(t.local)} />)}
         </div>
       </div>
     </section>
