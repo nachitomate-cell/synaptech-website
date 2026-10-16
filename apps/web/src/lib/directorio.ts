@@ -23,13 +23,30 @@ const DIA = { next: { revalidate: 86400 } } as const;
 /* Los dos docs que dicen QUIÉN sale y con qué datos se piden cada hora: la caché de
    datos de Vercel sobrevive a los deploys, y con 24 h un cambio en la plataforma
    podía tardar hasta dos días en verse (16-10-2026). Son 2 lecturas por hora. */
-const HORA = { next: { revalidate: 3600 } } as const;
+const HORA: { next: { revalidate: number; tags: string[] } } = { next: { revalidate: 3600, tags: ["directorio"] } };
+/* Países (16-10-2026): también salen los locales de Perú, Colombia y Argentina.
+   Sus precios van en SU moneda y no entran a las tablas en pesos chilenos. */
+export const PAISES: Record<string, { nombre: string; moneda: string }> = {
+  CL: { nombre: "Chile", moneda: "CLP" }, PE: { nombre: "Perú", moneda: "PEN" }, CO: { nombre: "Colombia", moneda: "COP" },
+  AR: { nombre: "Argentina", moneda: "ARS" }, MX: { nombre: "México", moneda: "MXN" },
+};
+/** "$14.000" en Chile; "S/ 45", "$35.000 COP", "$12.000 ARS" afuera. */
+export function precioEn(pais: string, n: number) {
+  const v = Math.round(n).toLocaleString("es-CL");
+  if (pais === "PE") return `S/ ${v}`;
+  if (!pais || pais === "CL") return `$${v}`;
+  return `$${v} ${PAISES[pais]?.moneda ?? ""}`.trim();
+}
 
 export type { Rubro };
-export type Servicio = { nombre: string; precio: number | null };
+export type Servicio = { id?: string; nombre: string; precio: number | null; duracion?: number | null };
+/** Módulos públicos que el local usa (metricas-publicas): para insignias y el sitemap. */
+export type Modulos = { productos: number; giftcards: boolean; evento: boolean; lookbook: number };
 export type LocalDirectorio = {
   /** Único por tarjeta: `{tid}` o `{tid}--{sede}` si el local tiene varias sedes. */
   id: string;
+  /** País (ISO): CL, PE, CO, AR… */
+  pais: string;
   /** El local en la plataforma (logo, ajustes, testimonios). */
   tid: string;
   /** Id de la sede, o null si el local tiene una sola. */
@@ -48,6 +65,9 @@ export type LocalDirectorio = {
   reserva: boolean;
   logo: boolean; logoSrc: string | null; pinSrc: string | null; fondo: string; oscuro: boolean;
   servicios: Servicio[]; precioMin: number | null; precioMax: number | null;
+  /** El precio más bajo de cada tipo de servicio (corte, barba, facial…), para las tablas por comuna. */
+  preciosTipo: Record<string, number>;
+  modulos: Modulos;
   rating: number | null; opiniones: number | null;
 };
 
@@ -75,7 +95,8 @@ const plano = (v?: Valor): unknown => {
 async function batchGet(rutas: string[], campos: string[]) {
   if (!rutas.length) return new Map<string, Record<string, unknown>>();
   const res = await fetch(`${API}:batchGet?key=${FB_API_KEY}`, {
-    method: "POST", headers: { "Content-Type": "application/json" }, ...DIA,
+    // Cada hora y con la etiqueta del directorio: el opt-out del superadmin se ve al tiro (api/revalidar-directorio).
+    method: "POST", headers: { "Content-Type": "application/json" }, ...HORA,
     body: JSON.stringify({ documents: rutas.map((r) => `${RAIZ}/${r}`), mask: { fieldPaths: campos } }),
   });
   const salida = new Map<string, Record<string, unknown>>();
@@ -142,7 +163,8 @@ type FilaSeo = {
   logoUrl?: string | null; direccion?: string | null; geo?: { lat: number; lng: number } | null;
   servicios?: Servicio[]; precioMin?: number | null; precioMax?: number | null;
   rating?: number | null; totalReviews?: number | null;
-  publicable?: boolean; motivo?: string | null;
+  preciosTipo?: Record<string, number>; modulos?: Partial<Modulos>;
+  publicable?: boolean; motivo?: string | null; pais?: string;
   sedes?: { id: string; nombre: string | null; direccion: string; comuna: string | null; region: string | null; geo: { lat: number; lng: number } | null }[];
 };
 
@@ -180,19 +202,22 @@ export async function obtenerLocales(): Promise<LocalDirectorio[]> {
       const s: FilaSeo = seo.get(x.id) ?? { id: x.id };
       const rubro: Rubro = a.rubro ?? RUBRO_POR_TIPO[s.tipo ?? ""] ?? RUBRO_POR_SCHEMA[s.schemaType ?? ""] ?? "barberia";
       const comuna = s.comuna ?? "";
+      const pais = s.pais || "CL";
+      // Afuera no hay "Región de …": "Lima, Perú", "Huila, Colombia".
+      const region = pais === "CL" ? (s.region ?? "") : [s.region || comuna, PAISES[pais]?.nombre ?? pais].filter(Boolean).join(", ");
       const host = s.host ?? `${x.id}.synaptechspa.cl`;
       const logo = a.logo === true;
       const logoSrc = logo ? `/directorio-logos/${x.id}.webp` : (s.logoUrl ?? null);
       const nombre = a.nombre ?? titulo(s.nombre ?? x.nombre);
       const base: LocalDirectorio = {
-        id: x.id, tid: x.id, sede: null,
+        id: x.id, tid: x.id, sede: null, pais,
         nombre,
         rubro,
         etiqueta: a.etiqueta ?? (s.tipo && TIPOS_CON_ETIQUETA.has(s.tipo) && s.rubro ? s.rubro : ETIQUETA_POR_RUBRO[rubro]),
         schemaType: s.schemaType && s.schemaType !== "LocalBusiness" ? s.schemaType : SCHEMA_POR_RUBRO[rubro],
         direccion: a.direccion ?? sinComuna(s.direccion ?? "", comuna),
         comuna,
-        region: s.region ?? "",
+        region,
         lat: s.geo?.lat ?? null, lng: s.geo?.lng ?? null,
         web: `https://${host}`,
         url: s.urlReserva ?? `https://${host}/`,
@@ -201,6 +226,8 @@ export async function obtenerLocales(): Promise<LocalDirectorio[]> {
         pinSrc: logo ? `/directorio-logos/${x.id}-pin.webp` : logoSrc,
         fondo: a.fondo ?? "#0f1a2b", oscuro: a.oscuro ?? true,
         servicios: s.servicios ?? [], precioMin: s.precioMin ?? null, precioMax: s.precioMax ?? null,
+        preciosTipo: s.preciosTipo ?? {},
+        modulos: { productos: Number(s.modulos?.productos) || 0, giftcards: s.modulos?.giftcards === true, evento: s.modulos?.evento === true, lookbook: Number(s.modulos?.lookbook) || 0 },
         rating: typeof s.rating === "number" && s.rating > 0 ? s.rating : null,
         opiniones: typeof s.totalReviews === "number" && s.totalReviews > 0 ? s.totalReviews : null,
       };
@@ -216,7 +243,7 @@ export async function obtenerLocales(): Promise<LocalDirectorio[]> {
           id: `${x.id}--${sd.id}`, sede: sd.id,
           nombre: sd.nombre ?? `${nombre} · ${c}`,
           direccion: sinComuna(sd.direccion, c),
-          comuna: c, region: sd.region ?? base.region,
+          comuna: c, region: pais === "CL" ? (sd.region ?? base.region) : base.region,
           lat: sd.geo?.lat ?? null, lng: sd.geo?.lng ?? null,
           url: `${base.url}${base.url.includes("?") ? "&" : "?"}sede=${encodeURIComponent(sd.id)}`,
         };

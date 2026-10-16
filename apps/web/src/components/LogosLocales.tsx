@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { obtenerLocales, unoPorNegocio, type LocalDirectorio } from "@/lib/directorio";
+import { paisesDe } from "@/lib/directorio-faq";
 
 /* Locales reales que trabajan con SynapTech (09-10-2026: reemplaza a la tira de
    logos chicos sobre fichas negras y a la grilla de DirectorioBanda, que
@@ -71,7 +72,7 @@ export default async function LogosLocales() {
             <p className="eyebrow mb-4">Locales que ya la usan</p>
             <h2 className="text-ink">Locales reales, con reserva online.</h2>
             <p className="text-text-secondary text-lg mt-5 leading-relaxed">
-              {todos.length} barberías, salones, clínicas y estudios en {comunas} comunas de Chile
+              {todos.length} barberías, salones, clínicas y estudios en {comunas} comunas y ciudades de {paisesDe(todos)}
               trabajan hoy con SynapTech. Toca cualquiera para ver su página de reservas.
             </p>
           </div>

@@ -1,6 +1,8 @@
 import type { MetadataRoute } from "next";
 import { COMPETIDORES } from "@/content/competidores";
 import { FUNCIONES } from "@/content/funciones";
+import { obtenerLocales } from "@/lib/directorio";
+import { zonasDirectorio } from "@/lib/precios";
 
 const BASE = "https://www.synaptechspa.cl";
 
@@ -16,7 +18,10 @@ const BASE = "https://www.synaptechspa.cl";
  * Desde el 09-10-2026 esas rutas ya no existen: redirigen (308) a la página
  * del producto que las reemplaza (ver next.config.mjs).
  */
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  /* Landings del directorio por región y comuna (/locales/{zona}): salen de los
+     datos vivos, así que una zona nueva entra sola al sitemap (16-10-2026). */
+  const zonas = zonasDirectorio(await obtenerLocales().catch(() => []));
   // Fecha fija de la última revisión de contenido (auditoría SEO 09-10-2026):
   // con new Date() cada pedido traía una fecha nueva y Google deja de creerle.
   const now = new Date("2026-10-09");
@@ -36,6 +41,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/guias/boleta-honorarios-y-comisiones-barberos`, lastModified: now, priority: 0.7 },
     { url: `${BASE}/precios`,             lastModified: now, priority: 0.9 },
     { url: `${BASE}/locales`,             lastModified: new Date("2026-10-16"), priority: 0.8 },
+    ...zonas.map((z) => ({ url: `${BASE}/locales/${z.slug}`, lastModified: new Date("2026-10-16"), priority: 0.7 })),
     { url: `${BASE}/fidelizacion`,        lastModified: now, priority: 0.8 },
     { url: `${BASE}/nosotros`,            lastModified: now, priority: 0.6 },
     { url: `${BASE}/contacto`,            lastModified: now, priority: 0.6 },
