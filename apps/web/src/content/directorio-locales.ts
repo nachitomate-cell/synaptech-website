@@ -39,7 +39,7 @@ export const AJUSTES: Record<string, AjusteLocal> = {
   "glowstudio": {"nombre": "Glow Studio", "rubro": "salon", "direccion": "1 Norte 649, Local 2", "reserva": false, "logo": true, "fondo": "#0f1a2b", "oscuro": true},
   "goldensheep": {"nombre": "Golden Sheep Barbershop Studio", "rubro": "barberia", "direccion": "Aires del Monte 92", "logo": true, "fondo": "#ffffff", "oscuro": false},
   "infinity": {"nombre": "Infinity Studio", "rubro": "barberia", "direccion": "Traslaviña 114", "logo": true, "fondo": "#121214", "oscuro": true},
-  "kronnos_limache": {"nombre": "Kronnos Studio Limache", "rubro": "barberia", "direccion": "Paseo Las Araucarias 405, Local 5", "logo": true, "fondo": "#000000", "oscuro": true},
+  "kronnos_limache": {"nombre": "Kronnos Studio Limache", "rubro": "barberia", "direccion": "Av. Palmira Romano Sur 405, Local 5", "logo": true, "fondo": "#000000", "oscuro": true},
   "kronnos_penablanca": {"nombre": "Kronnos Studio Peñablanca", "rubro": "barberia", "direccion": "Av. Bernardo Leighton 20, Local 13", "logo": true, "fondo": "#000000", "oscuro": true},
   "kronnos_woman": {"nombre": "Kronnos Woman", "rubro": "salon", "direccion": "Palmira Romano Sur 405, Local 3", "logo": true, "fondo": "#010101", "oscuro": true},
   "latincaribe": {"nombre": "The Latin Caribe", "rubro": "barberia", "direccion": "Manuel Rodríguez 299", "logo": true, "fondo": "#0a0a0a", "oscuro": true},
