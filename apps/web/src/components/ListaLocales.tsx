@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useMemo, useRef, useState } from "react";
 import dynamic from "next/dynamic";
-import { precioEn, type LocalDirectorio, type Rubro } from "@/lib/directorio";
+import { corteDesde, precioEn, type LocalDirectorio, type Rubro } from "@/lib/directorio";
 import type { Limites } from "./MapaLocales";
 import { nombreRegion } from "@/lib/regiones";
 
@@ -36,12 +36,24 @@ function direccionCompleta(l: LocalDirectorio) {
   return tramos.filter((t) => { const k = t.toLowerCase(); return t && !vistos.has(k) && vistos.add(k); }).join(", ");
 }
 
-const UTM_SERVICIO = "utm_source=synaptech&utm_medium=directorio&utm_campaign=locales-servicio";
-
-/** La reserva del local con ESE servicio ya elegido (index.html acepta ?servicioId=, también con sedes). */
+/** La reserva del local con ESE servicio ya elegido (index.html acepta ?servicioId=, también con sedes).
+    Sin UTM (18-10-2026): la cita se atribuye por el referer (ver REFERER). */
 function urlServicio(l: LocalDirectorio, id: string) {
-  return `${l.web}/?${UTM_SERVICIO}${l.sede ? `&sede=${encodeURIComponent(l.sede)}` : ""}&servicioId=${encodeURIComponent(id)}`;
+  return `${l.web}/?${l.sede ? `sede=${encodeURIComponent(l.sede)}&` : ""}servicioId=${encodeURIComponent(id)}`;
 }
+
+/* Los enlaces a los locales van limpios, sin UTM: toda la autoridad a la URL
+   canónica. Para seguir sabiendo qué reservas nacen del directorio, el enlace
+   manda la página completa como referer (por defecto el navegador manda solo
+   el dominio): firebaseUtils.js la guarda como `atribucion.directorio`. */
+const REFERER = "no-referrer-when-downgrade" as const;
+
+type Orden = "relevancia" | "nota" | "opiniones" | "nombre";
+const ORDENES: { id: Orden; label: string }[] = [
+  { id: "relevancia", label: "Más opiniones primero" },
+  { id: "nota", label: "Mejor calificadas" },
+  { id: "nombre", label: "Nombre A-Z" },
+];
 
 function kmEntre(a: { lat: number; lng: number }, b: { lat: number; lng: number }) {
   const R = 6371, dLat = (b.lat - a.lat) * Math.PI / 180, dLng = (b.lng - a.lng) * Math.PI / 180;
@@ -50,9 +62,13 @@ function kmEntre(a: { lat: number; lng: number }, b: { lat: number; lng: number 
 }
 const km = (d: number) => (d < 1 ? `a ${Math.round(d * 1000)} m` : `a ${d.toFixed(d < 10 ? 1 : 0).replace(".", ",")} km`);
 
-export default function ListaLocales({ locales }: { locales: LocalDirectorio[] }) {
+/* `filtro="comuna"` (páginas de un rubro y una zona: /barberias-quinta-region…):
+   sin pestañas de rubro, con chips por comuna y su conteo, y orden elegible. */
+export default function ListaLocales({ locales, filtro = "region" }: { locales: LocalDirectorio[]; filtro?: "region" | "comuna" }) {
   const [rubro, setRubro] = useState<"todos" | Rubro>("todos");
   const [region, setRegion] = useState("todas");
+  const [comuna, setComuna] = useState("todas");
+  const [orden, setOrden] = useState<Orden>("relevancia");
   const [activo, setActivo] = useState<string | null>(null);
   const [enfoque, setEnfoque] = useState<{ id: string; n: number } | null>(null);
   const [ubicacion, setUbicacion] = useState<{ lat: number; lng: number } | null>(null);
@@ -85,7 +101,16 @@ export default function ListaLocales({ locales }: { locales: LocalDirectorio[] }
     && l.lat >= limites.swLat && l.lat <= limites.neLat && l.lng >= limites.swLng && l.lng <= limites.neLng);
   const distancia = (l: LocalDirectorio) => (ubicacion && l.lat != null && l.lng != null ? kmEntre(ubicacion, { lat: l.lat, lng: l.lng }) : null);
 
-  let lista = locales.filter((l) => (rubro === "todos" || l.rubro === rubro) && (region === "todas" || l.region === region) && enLimites(l));
+  const comunas = useMemo(() => {
+    const c = new Map<string, number>();
+    locales.forEach((l) => l.comuna && c.set(l.comuna, (c.get(l.comuna) ?? 0) + 1));
+    return [...c.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], "es"));
+  }, [locales]);
+
+  let lista = locales.filter((l) => (rubro === "todos" || l.rubro === rubro) && (region === "todas" || l.region === region)
+    && (comuna === "todas" || l.comuna === comuna) && enLimites(l));
+  if (orden === "nota") lista = [...lista].sort((a, b) => (b.rating ?? 0) - (a.rating ?? 0) || (b.opiniones ?? 0) - (a.opiniones ?? 0));
+  else if (orden === "nombre") lista = [...lista].sort((a, b) => a.nombre.localeCompare(b.nombre, "es"));
   if (ubicacion) lista = [...lista].sort((a, b) => (distancia(a) ?? 1e9) - (distancia(b) ?? 1e9));
   const cuenta = (r: "todos" | Rubro) => locales.filter((l) => (r === "todos" || l.rubro === r) && (region === "todas" || l.region === region) && enLimites(l)).length;
 
@@ -110,6 +135,28 @@ export default function ListaLocales({ locales }: { locales: LocalDirectorio[] }
   return (
     <>
       <div className="flex flex-col gap-3 mb-8">
+        {filtro === "comuna" && (
+          <>
+            <div className="flex gap-2 overflow-x-auto pb-1 -mx-4 px-4 sm:mx-0 sm:px-0 [scrollbar-width:none]" aria-label="Comuna">
+              {[["todas", locales.length] as [string, number], ...comunas].map(([c, n]) => (
+                <button key={c} type="button" onClick={() => setComuna(c)} aria-pressed={comuna === c}
+                  className={`shrink-0 px-4 py-2 rounded-full text-[14px] font-semibold transition-colors ${
+                    comuna === c ? "bg-ink text-white" : "bg-mist text-text-secondary hover:text-ink"
+                  }`}>
+                  {c === "todas" ? "Todas" : c} <span className={comuna === c ? "text-white/60" : "text-text-muted"}>{n}</span>
+                </button>
+              ))}
+            </div>
+            <label className="inline-flex items-center gap-2 text-[14px] text-text-secondary">
+              Ordenar:
+              <select value={orden} onChange={(e) => setOrden(e.target.value as Orden)}
+                className="rounded-full border border-border-subtle bg-white px-3 py-1.5 text-[14px] text-ink">
+                {ORDENES.map((o) => <option key={o.id} value={o.id}>{o.label}</option>)}
+              </select>
+            </label>
+          </>
+        )}
+        {filtro === "region" && <>
         <div role="tablist" aria-label="Rubro" className="flex gap-2 overflow-x-auto pb-1 -mx-4 px-4 sm:mx-0 sm:px-0 [scrollbar-width:none]">
           {RUBROS.map((r) => (
             <button key={r.id} role="tab" aria-selected={rubro === r.id} onClick={() => setRubro(r.id)}
@@ -130,6 +177,7 @@ export default function ListaLocales({ locales }: { locales: LocalDirectorio[] }
             </button>
           ))}
         </div>
+        </>}
         <div className="flex flex-wrap items-center gap-3">
           <button type="button" onClick={cercaDeMi} disabled={buscandoUbicacion}
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-lime text-ink text-[14px] font-semibold hover:brightness-95 disabled:opacity-60">
@@ -159,11 +207,27 @@ export default function ListaLocales({ locales }: { locales: LocalDirectorio[] }
                 className={`rounded-[22px] bg-white border overflow-hidden flex flex-col transition-shadow ${
                   activo === l.id ? "border-lime shadow-card-hover ring-2 ring-lime/60" : "border-border-subtle hover:shadow-card-hover"
                 }`}>
-                <div className="relative aspect-[16/10]" style={{ backgroundColor: l.fondo }}>
-                  {l.logoSrc ? (
+                {/* Con portada: la foto de fondo y el logo en una insignia limpia. Sin
+                    portada: el logo entero, con aire alrededor sobre su color (antes
+                    ocupaba todo el recuadro y logos anchos como Infinity o Sion se
+                    veían gigantes o cortados). */}
+                <div className="relative aspect-[16/10] overflow-hidden" style={{ backgroundColor: l.fondo }}>
+                  {l.bannerSrc ? (
+                    <>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={l.bannerSrc} alt={`${l.nombre}`} loading="lazy" decoding="async"
+                        className="absolute inset-0 w-full h-full object-cover" />
+                      <span className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" aria-hidden />
+                      {l.logoSrc && (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img src={l.logoSrc} alt={`Logo de ${l.nombre}`} loading="lazy" decoding="async"
+                          className="absolute left-3 bottom-3 w-14 h-14 rounded-2xl bg-white object-contain p-1.5 shadow-md" />
+                      )}
+                    </>
+                  ) : l.logoSrc ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img src={l.logoSrc} alt={`Logo de ${l.nombre}`} loading="lazy" decoding="async"
-                      className="absolute inset-0 w-full h-full object-contain" />
+                      className="absolute inset-0 w-full h-full object-contain p-[12%]" />
                   ) : (
                     <span className="absolute inset-0 flex items-center justify-center font-display font-bold text-4xl text-white/90">
                       {l.nombre.split(/\s+/).slice(0, 2).map((p) => p[0]).join("")}
@@ -191,6 +255,7 @@ export default function ListaLocales({ locales }: { locales: LocalDirectorio[] }
                   </div>
                   {/* "Barbería en La Serena": la frase que la gente busca, en texto visible. */}
                   <p className="text-sm font-semibold text-ink/80 mt-1">{l.comuna ? `${l.etiqueta} en ${l.comuna}` : l.etiqueta}</p>
+                  {corteDesde(l) && <p className="text-sm text-ink mt-1">Corte desde <strong>{corteDesde(l)}</strong></p>}
                   {(l.direccion || l.comuna) && (
                     <address className="not-italic text-sm text-text-muted mt-0.5">
                       {direccionCompleta(l)}
@@ -214,7 +279,7 @@ export default function ListaLocales({ locales }: { locales: LocalDirectorio[] }
                         return (
                           <li key={sv.nombre}>
                             {sv.id && l.reserva ? (
-                              <a href={urlServicio(l, sv.id)} target="_blank" rel="noopener" className="flex justify-between gap-3 hover:text-ink"
+                              <a href={urlServicio(l, sv.id)} target="_blank" rel="noopener" referrerPolicy={REFERER} className="flex justify-between gap-3 hover:text-ink"
                                 title={`Reservar ${sv.nombre} en ${l.nombre}`}>{fila}</a>
                             ) : <span className="flex justify-between gap-3">{fila}</span>}
                           </li>
@@ -223,7 +288,7 @@ export default function ListaLocales({ locales }: { locales: LocalDirectorio[] }
                     </ul>
                   )}
                   <div className="mt-auto pt-4 flex items-center gap-2">
-                    <a href={l.url} target="_blank" rel="noopener"
+                    <a href={l.url} target="_blank" rel="noopener" referrerPolicy={REFERER}
                       className="flex-1 inline-flex justify-center items-center bg-ink text-white font-semibold px-4 py-2.5 rounded-full hover:bg-black transition-colors text-[15px]">
                       {l.reserva ? "Reservar hora" : "Ver local"}<span className="sr-only"> en {l.nombre}</span>
                     </a>

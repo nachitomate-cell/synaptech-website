@@ -68,9 +68,11 @@ const LINKS: Record<string, { l: string; h: string }[]> = {
   ],
 };
 
+import EnlacesZonas from "@/components/EnlacesZonas";
+
 const YEAR = new Date().getFullYear();
 
-export default function Footer() {
+export default async function Footer() {
   return (
     <footer className="bg-white border-t border-border-subtle">
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10 pt-16 pb-8">
@@ -134,6 +136,13 @@ export default function Footer() {
               </ul>
             </nav>
           ))}
+        </div>
+
+        {/* Todas las zonas del directorio en cada página (18-10-2026): sin esto
+            /locales/la-serena no tenía "página de referencia" en Search Console. */}
+        <div className="border-t border-border-subtle pt-6 pb-6">
+          <p className="text-xs font-semibold uppercase tracking-wider text-text-muted mb-3">Locales por zona</p>
+          <EnlacesZonas compacto />
         </div>
 
         <div className="border-t border-border-subtle pt-6 flex flex-col md:flex-row items-center justify-between gap-3 text-[13px] text-text-muted">
