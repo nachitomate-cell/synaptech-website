@@ -60,8 +60,14 @@ export type LocalDirectorio = {
   lat: number | null; lng: number | null;
   /** Home del host canónico del local: la misma entidad que su JSON-LD (`{url}/#negocio`). */
   web: string;
-  /** Reserva con las UTM del directorio. */
+  /** Reserva: la URL limpia del local (+ ?sede=). Sin UTM desde el 18-10-2026: el
+      enlace pasa toda su autoridad a la canónica, y la atribución sale del referer
+      (firebaseUtils.js → canal 'marketplace' + la página del directorio). */
   url: string;
+  /** `tipo` del local en la plataforma (barberia, mixto, peluqueria…), o null. */
+  tipo: string | null;
+  /** Foto de portada del local (si tiene), para el fondo de la tarjeta. */
+  bannerSrc: string | null;
   reserva: boolean;
   logo: boolean; logoSrc: string | null; pinSrc: string | null; fondo: string; oscuro: boolean;
   servicios: Servicio[]; precioMin: number | null; precioMax: number | null;
@@ -79,7 +85,7 @@ export const PAGINAS: PaginaDirectorio[] = [
   { slug: "peluquerias-quinta-region", titulo: "Peluquerías y salones en la Región de Valparaíso", bajada: "Toda la región, con reserva online." },
 ];
 
-type Valor = { stringValue?: string; integerValue?: string; doubleValue?: number; booleanValue?: boolean;
+type Valor = { stringValue?: string; integerValue?: string; doubleValue?: number; booleanValue?: boolean; timestampValue?: string;
   arrayValue?: { values?: Valor[] }; mapValue?: { fields?: Record<string, Valor> } };
 const plano = (v?: Valor): unknown => {
   if (!v) return null;
@@ -87,6 +93,7 @@ const plano = (v?: Valor): unknown => {
   if (v.integerValue !== undefined) return Number(v.integerValue);
   if (v.doubleValue !== undefined) return v.doubleValue;
   if (v.booleanValue !== undefined) return v.booleanValue;
+  if (v.timestampValue !== undefined) return v.timestampValue;
   if (v.arrayValue) return (v.arrayValue.values ?? []).map(plano);
   if (v.mapValue) return Object.fromEntries(Object.entries(v.mapValue.fields ?? {}).map(([k, x]) => [k, plano(x)]));
   return null;
@@ -162,7 +169,7 @@ type FilaSeo = {
   comuna?: string | null; region?: string | null; host?: string; urlReserva?: string;
   logoUrl?: string | null; direccion?: string | null; geo?: { lat: number; lng: number } | null;
   servicios?: Servicio[]; precioMin?: number | null; precioMax?: number | null;
-  rating?: number | null; totalReviews?: number | null;
+  rating?: number | null; totalReviews?: number | null; bannerUrl?: string | null;
   preciosTipo?: Record<string, number>; modulos?: Partial<Modulos>;
   publicable?: boolean; motivo?: string | null; pais?: string;
   sedes?: { id: string; nombre: string | null; direccion: string; comuna: string | null; region: string | null; geo: { lat: number; lng: number } | null }[];
@@ -220,7 +227,9 @@ export async function obtenerLocales(): Promise<LocalDirectorio[]> {
         region,
         lat: s.geo?.lat ?? null, lng: s.geo?.lng ?? null,
         web: `https://${host}`,
-        url: s.urlReserva ?? `https://${host}/`,
+        url: `https://${host}/`,
+        tipo: s.tipo ?? null,
+        bannerSrc: s.bannerUrl ?? null,
         reserva: a.reserva ?? true,
         logo: !!logoSrc, logoSrc,
         pinSrc: logo ? `/directorio-logos/${x.id}-pin.webp` : logoSrc,
@@ -245,11 +254,28 @@ export async function obtenerLocales(): Promise<LocalDirectorio[]> {
           direccion: sinComuna(sd.direccion, c),
           comuna: c, region: pais === "CL" ? (sd.region ?? base.region) : base.region,
           lat: sd.geo?.lat ?? null, lng: sd.geo?.lng ?? null,
-          url: `${base.url}${base.url.includes("?") ? "&" : "?"}sede=${encodeURIComponent(sd.id)}`,
+          url: `${base.url}?sede=${encodeURIComponent(sd.id)}`,
         };
       });
     })
     .sort((a, b) => (b.opiniones ?? 0) - (a.opiniones ?? 0) || a.nombre.localeCompare(b.nombre, "es"));
+}
+
+/** Cuándo cambió de verdad lo que muestra el directorio: `contenidoActualizado`
+    solo se mueve si cambia la lista o algún dato de un local (metricas-publicas.js
+    lo compara con una firma); `actualizadoEn` se reescribe a diario y por eso no
+    sirve de <lastmod>. Sin el campo nuevo, la fecha de la última revisión. */
+export async function fechaDirectorio(): Promise<Date> {
+  const d = await leerDoc("_publico/directorio_seo", ["contenidoActualizado"]);
+  const f = d?.contenidoActualizado as string | undefined;
+  const t = f ? new Date(f) : null;
+  return t && !Number.isNaN(t.getTime()) ? t : new Date("2026-10-18");
+}
+
+/** "Corte desde $15.000": el precio más bajo de un corte en ese local, si lo publica. */
+export function corteDesde(l: LocalDirectorio) {
+  const n = Number(l.preciosTipo?.corte);
+  return n > 0 ? precioEn(l.pais, n) : null;
 }
 
 /** Un local por negocio (la primera sede): para la cinta de logos y las cuentas de "N locales". */

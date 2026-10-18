@@ -6,6 +6,7 @@ import AdminDirectorio from "@/components/AdminDirectorio";
 import FaqSeo, { type Pregunta } from "@/components/FaqSeo";
 import TablaPrecios from "@/components/TablaPrecios";
 import CtaDuenos from "@/components/CtaDuenos";
+import EnlacesZonas from "@/components/EnlacesZonas";
 import { obtenerLocales, unoPorNegocio } from "@/lib/directorio";
 import { tablaPrecios, zonasDirectorio, clp, CON_ARTICULO, enZona, type Zona } from "@/lib/precios";
 import { jsonLdDirectorio } from "@/lib/ld-directorio";
@@ -130,6 +131,13 @@ export default async function ZonaPage({ params }: { params: { zona: string } })
             </div>
           </section>
         )}
+
+        <section className="pb-12">
+          <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10">
+            <h2 className="text-ink text-2xl mb-4">Más locales por zona</h2>
+            <EnlacesZonas actual={`/locales/${zona.slug}`} />
+          </div>
+        </section>
 
         <FaqSeo titulo={`Preguntas frecuentes sobre ${enZona(zona.nombre)}`} preguntas={preguntas} />
 

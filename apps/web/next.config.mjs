@@ -29,13 +29,10 @@
  * Las imágenes van aparte porque las páginas las piden con ruta absoluta
  * (`/directorio/img/…`): sin su propio rewrite quedarían en 404 acá.
  */
-const DIRECTORIO = [
-  "barberias-vina-del-mar",
-  "peluquerias-vina-del-mar",
-  "barberias-quinta-region",
-  "peluquerias-quinta-region",
-];
-
+/* 18-10-2026: las cuatro páginas pasaron a ser rutas de este sitio, con datos
+   vivos (src/app/barberias-vina-del-mar… y lib/paginas-directorio.ts). Ya no se
+   traen de app por rewrite; queda solo el de las imágenes viejas, por si algún
+   enlace o caché todavía las pide. */
 const APP = "https://app.synaptechspa.cl";
 
 const nextConfig = {
@@ -62,10 +59,6 @@ const nextConfig = {
   },
   async rewrites() {
     return [
-      ...DIRECTORIO.map((slug) => ({
-        source: `/${slug}`,
-        destination: `${APP}/${slug}`,
-      })),
       { source: "/directorio/img/:path*", destination: `${APP}/directorio/img/:path*` },
     ];
   },

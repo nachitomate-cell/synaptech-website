@@ -1,7 +1,8 @@
 import type { MetadataRoute } from "next";
 import { COMPETIDORES } from "@/content/competidores";
 import { FUNCIONES } from "@/content/funciones";
-import { obtenerLocales } from "@/lib/directorio";
+import { fechaDirectorio, obtenerLocales } from "@/lib/directorio";
+import { PAGINAS_RUBRO } from "@/lib/paginas-directorio";
 import { zonasDirectorio } from "@/lib/precios";
 
 const BASE = "https://www.synaptechspa.cl";
@@ -22,6 +23,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   /* Landings del directorio por región y comuna (/locales/{zona}): salen de los
      datos vivos, así que una zona nueva entra sola al sitemap (16-10-2026). */
   const zonas = zonasDirectorio(await obtenerLocales().catch(() => []));
+  /* <lastmod> de todo el directorio (/locales, zonas y páginas por rubro): la
+     última vez que cambió de verdad un local o la lista (contenidoActualizado,
+     18-10-2026). Antes eran fechas escritas a mano que no decían nada. */
+  const dir = await fechaDirectorio().catch(() => new Date("2026-10-18"));
   // Fecha fija de la última revisión de contenido (auditoría SEO 09-10-2026):
   // con new Date() cada pedido traía una fecha nueva y Google deja de creerle.
   const now = new Date("2026-10-09");
@@ -40,8 +45,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE}/mis-reservas`, lastModified: now, priority: 0.6 },
     { url: `${BASE}/guias/boleta-honorarios-y-comisiones-barberos`, lastModified: now, priority: 0.7 },
     { url: `${BASE}/precios`,             lastModified: now, priority: 0.9 },
-    { url: `${BASE}/locales`,             lastModified: new Date("2026-10-16"), priority: 0.8 },
-    ...zonas.map((z) => ({ url: `${BASE}/locales/${z.slug}`, lastModified: new Date("2026-10-16"), priority: 0.7 })),
+    { url: `${BASE}/locales`,             lastModified: dir, priority: 0.8 },
+    ...zonas.map((z) => ({ url: `${BASE}/locales/${z.slug}`, lastModified: dir, priority: 0.7 })),
     { url: `${BASE}/fidelizacion`,        lastModified: now, priority: 0.8 },
     { url: `${BASE}/nosotros`,            lastModified: now, priority: 0.6 },
     { url: `${BASE}/contacto`,            lastModified: now, priority: 0.6 },
@@ -57,15 +62,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     /* "<agenda> vs SynapTech": las páginas que compiten por las búsquedas de
        la competencia (content/competidores.ts). */
     ...COMPETIDORES.map((c) => ({ url: `${BASE}/comparar/${c.id}`, lastModified: now, priority: 0.8 })),
-    /* El directorio de locales. Lo sirve app.synaptechspa.cl por un rewrite
-       (ver next.config.mjs), pero su URL publica es esta, y un sitemap solo
-       vale para URLs del MISMO host: por eso van aca y no en el sitemap de
-       app. Prioridad alta porque son las paginas que compiten con las de
-       AgendaPro por "barberia en <comuna>". */
-    { url: `${BASE}/barberias-vina-del-mar`,     lastModified: new Date("2026-10-16"), priority: 0.8 },
-    { url: `${BASE}/peluquerias-vina-del-mar`,   lastModified: new Date("2026-10-16"), priority: 0.8 },
-    { url: `${BASE}/barberias-quinta-region`,    lastModified: new Date("2026-10-16"), priority: 0.8 },
-    { url: `${BASE}/peluquerias-quinta-region`,  lastModified: new Date("2026-10-16"), priority: 0.8 },
+    /* Las páginas por rubro y zona (rutas de este sitio desde el 18-10-2026).
+       Prioridad alta: compiten con las de AgendaPro por "barberia en <comuna>". */
+    ...PAGINAS_RUBRO.map((p) => ({ url: `${BASE}/${p.slug}`, lastModified: dir, priority: 0.8 })),
     { url: `${BASE}/privacidad`,          lastModified: now, priority: 0.3 },
     { url: `${BASE}/terminos`,            lastModified: now, priority: 0.3 },
     { url: `${BASE}/reembolsos`,          lastModified: now, priority: 0.3 },
