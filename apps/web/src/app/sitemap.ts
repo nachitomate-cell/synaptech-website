@@ -4,6 +4,7 @@ import { FUNCIONES } from "@/content/funciones";
 import { fechaDirectorio, obtenerLocales } from "@/lib/directorio";
 import { PAGINAS_RUBRO } from "@/lib/paginas-directorio";
 import { zonasDirectorio } from "@/lib/precios";
+import { RUBROS_IA, CIUDADES } from "@/content/alta-ia";
 
 const BASE = "https://www.synaptechspa.cl";
 
@@ -30,6 +31,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Fecha fija de la última revisión de contenido (auditoría SEO 09-10-2026):
   // con new Date() cada pedido traía una fecha nueva y Google deja de creerle.
   const now = new Date("2026-10-09");
+  const ia = new Date("2026-10-21");
   return [
     { url: BASE,                          lastModified: now, priority: 1.0 },
     { url: `${BASE}/como-funciona`,       lastModified: now, priority: 0.9 },
@@ -37,6 +39,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE}/barberias`,           lastModified: now, priority: 0.9 },
     { url: `${BASE}/peluquerias`,         lastModified: now, priority: 0.9 },
     { url: `${BASE}/asistente-ia-whatsapp`, lastModified: now, priority: 0.9 },
+    /* Alta con asistente IA (21-10-2026): la landing, 8 rubros y 8 × 15 ciudades. */
+    { url: `${BASE}/agenda-con-asistente-ia`, lastModified: ia, priority: 0.9 },
+    ...RUBROS_IA.map((r) => ({ url: `${BASE}/agenda-con-ia/${r.slug}`, lastModified: ia, priority: 0.8 })),
+    ...RUBROS_IA.flatMap((r) => CIUDADES.map((c) => ({ url: `${BASE}/agenda-con-ia/${r.slug}/${c.slug}`, lastModified: ia, priority: 0.7 }))),
     { url: `${BASE}/estetica`,            lastModified: now, priority: 0.9 },
     { url: `${BASE}/clinicas`,            lastModified: now, priority: 0.9 },
     { url: `${BASE}/agencias`,            lastModified: now, priority: 0.8 },

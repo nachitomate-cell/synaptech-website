@@ -1,14 +1,16 @@
 import Image from "next/image";
-import { alta, waLink } from "@/content/catalogo";
+import { altaIA, agendaGratis, rubroDeOrigen, CTA_IA, CTA_GRATIS, waLink, type RubroAlta } from "@/content/catalogo";
 
 /* Piezas de las páginas por rubro (/barberias, /estetica). Las imágenes son
    capturas reales del panel con un local ficticio (ver content/recorrido.ts). */
 
 type Img = { src: string; alt: string; w: number; h: number };
 
-export function HeroRubro({ eyebrow, titulo, bajada, origen, escritorio, celular, mensajeWa }: {
+export function HeroRubro({ eyebrow, titulo, bajada, origen, escritorio, celular, mensajeWa, rubro }: {
   eyebrow: string; titulo: string; bajada: string; origen: string;
   escritorio: Img; celular?: Img; mensajeWa: string;
+  /** Rubro del alta con IA; si falta, sale del `origen` (barberias-hero → barberia). */
+  rubro?: RubroAlta;
 }) {
   return (
     <section className="pt-28 md:pt-36 pb-14 md:pb-20 overflow-hidden">
@@ -18,15 +20,19 @@ export function HeroRubro({ eyebrow, titulo, bajada, origen, escritorio, celular
           <h1 className="text-ink mb-6 !text-[clamp(2.4rem,5vw,4.5rem)]">{titulo}</h1>
           <p className="text-text-secondary text-lg md:text-xl leading-relaxed max-w-xl mb-8">{bajada}</p>
           <div className="flex flex-col sm:flex-row gap-3">
-            <a href={alta(`${origen}`)}
+            <a href={altaIA(origen, rubro ?? rubroDeOrigen(origen))}
               className="inline-flex justify-center items-center bg-ink text-white font-semibold px-7 py-4 rounded-full hover:bg-black transition-colors">
-              Empezar gratis
+              {CTA_IA}
             </a>
             <a href={waLink(mensajeWa)} target="_blank" rel="noopener noreferrer"
               className="inline-flex justify-center items-center border border-ink/15 text-ink font-semibold px-7 py-4 rounded-full hover:border-ink/40 transition-colors">
               Hablar por WhatsApp
             </a>
           </div>
+          <p className="mt-4 text-sm text-text-muted">
+            No pedimos tarjeta para la prueba.{" "}
+            <a href={agendaGratis(`${origen}-gratis`)} className="font-semibold text-ink underline decoration-lime decoration-2 underline-offset-4 hover:decoration-ink">{CTA_GRATIS}</a>
+          </p>
         </div>
         <div className={`relative ${celular ? "pb-[10%] pl-[10%]" : ""}`}>
           <div className="hero-entra rounded-[28px] bg-lime/20 p-2.5 sm:p-4">

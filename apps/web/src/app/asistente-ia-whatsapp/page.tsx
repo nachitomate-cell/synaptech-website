@@ -71,6 +71,9 @@ export default function AsistentePage() {
               <Link href="/comparar#numero-propio" className="inline-flex items-center gap-1.5 mt-6 font-semibold text-ink border-b-2 border-lime pb-0.5 hover:border-ink">
                 Ver de qué número escribe cada agenda →
               </Link>
+              <Link href="/agenda-con-asistente-ia" className="inline-flex items-center gap-1.5 mt-4 sm:mt-6 sm:ml-6 font-semibold text-ink border-b-2 border-lime pb-0.5 hover:border-ink">
+                Crear mi agenda con asistente IA →
+              </Link>
             </div>
             <FilaCapsulas ids={["reel-asistente-whatsapp"]} />
           </div>

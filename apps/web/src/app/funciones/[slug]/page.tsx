@@ -7,7 +7,7 @@ import CtaFinal from "@/components/CtaFinal";
 import FaqSeo   from "@/components/FaqSeo";
 import { CalculadoraComisiones, CuadraturaCaja } from "@/components/Herramientas";
 import { FUNCIONES, funcion } from "@/content/funciones";
-import { alta, waLink } from "@/content/catalogo";
+import { altaIA, CTA_IA, waLink } from "@/content/catalogo";
 import { metaPagina } from "@/lib/seo";
 
 /* Una página por función (content/funciones.ts). Plantilla única: título con
@@ -75,8 +75,8 @@ export default function PaginaFuncion({ params }: { params: { slug: string } }) 
               <h1 className="text-ink !text-[clamp(2.3rem,4.8vw,4rem)]">{f.h1}</h1>
               <p className="text-text-secondary text-lg md:text-xl leading-relaxed mt-6 max-w-xl">{f.bajada}</p>
               <div className="flex flex-col sm:flex-row gap-3 mt-8">
-                <a href={alta(`funcion-${f.slug}`)} className="inline-flex justify-center items-center bg-ink text-white font-semibold px-7 py-4 rounded-full hover:bg-black transition-colors">
-                  Pruébalo 14 días gratis
+                <a href={altaIA(`funcion-${f.slug}`)} className="inline-flex justify-center items-center bg-ink text-white font-semibold px-7 py-4 rounded-full hover:bg-black transition-colors">
+                  {CTA_IA}
                 </a>
                 <a href={waLink(`Hola, quiero saber más de ${f.nombre.toLowerCase()} en SynapTech`)} target="_blank" rel="noopener noreferrer"
                   className="inline-flex justify-center items-center border border-ink/15 text-ink font-semibold px-7 py-4 rounded-full hover:border-ink/40 transition-colors">

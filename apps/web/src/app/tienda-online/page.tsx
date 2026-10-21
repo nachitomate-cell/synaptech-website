@@ -3,7 +3,7 @@ import Header   from "@/components/Header";
 import Footer   from "@/components/Footer";
 import CtaFinal from "@/components/CtaFinal";
 import FaqSeo   from "@/components/FaqSeo";
-import { alta, waLink } from "@/content/catalogo";
+import { altaIA, CTA_IA, waLink } from "@/content/catalogo";
 import { ADICIONALES } from "@/content/precios";
 import { metaPagina } from "@/lib/seo";
 
@@ -64,8 +64,8 @@ export default function TiendaOnline() {
                 retiran en el local o los apartan para su próxima cita.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 mt-8">
-                <a href={alta(`tienda-online`)} className="inline-flex justify-center items-center bg-ink text-white font-semibold px-7 py-4 rounded-full hover:bg-black transition-colors">
-                  Pruébalo 14 días gratis
+                <a href={altaIA(`tienda-online`)} className="inline-flex justify-center items-center bg-ink text-white font-semibold px-7 py-4 rounded-full hover:bg-black transition-colors">
+                  {CTA_IA}
                 </a>
                 <a href={waLink("Hola, quiero ver cómo funciona la tienda online de SynapTech")} target="_blank" rel="noopener noreferrer"
                   className="inline-flex justify-center items-center border border-ink/15 text-ink font-semibold px-7 py-4 rounded-full hover:border-ink/40 transition-colors">
