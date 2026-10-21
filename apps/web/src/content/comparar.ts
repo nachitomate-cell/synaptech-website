@@ -194,7 +194,7 @@ export const HILOS_BASE: Hilo[] = [
       filas: [
         ["AgendaPro", "Boleta de honorarios y factura electrónica", "Adicional, por cada RUT", "Desde 1 UF + IVA al mes por RUT (boleta de honorarios)"],
         ["Reservo", "Boleta de honorarios y boleta electrónica", "Según el plan", "Incluida en algunos planes, desde $30.000 + IVA"],
-        ["Agendapia", "Boleta afecta, exenta o de honorarios", "Contratando aparte tu cuenta en Lioren o SimpleFactura", "$9.900 + IVA por RUT extra, más el costo de esa cuenta"],
+        ["Agendapia", "Boleta afecta, exenta o de honorarios", "Adicional, por cada RUT (incluye la cuenta de OpenFactura)", "$9.900 + IVA al mes por cada RUT"],
         ["AgendaYA, re-booking, Te Reservo, Fresha", null, null, null],
         ["SynapTech", "Boleta de honorarios de cada profesional", "Sale sola al cerrar la cita, directo ante el SII", "$24.900 + IVA al mes por local, más $39.000 de instalación"],
       ],
@@ -203,7 +203,7 @@ export const HILOS_BASE: Hilo[] = [
     fuentes: [
       { texto: "AgendaPro: boleta de honorarios", url: "https://agendapro.com/cl/boleta-honorarios", fecha: HOY },
       { texto: "Reservo: planes para centros de salud", url: "https://reservo.cl/landing/cl/salud-agenda/", fecha: HOY },
-      { texto: "Agendapia: boletas automáticas", url: "https://agendapia.com/tutoriales/membresias-y-facturacion/boletas-automaticas", fecha: HOY },
+      { texto: "Agendapia: boletas automáticas", url: "https://agendapia.com/tutoriales/membresias-y-facturacion/boletas-automaticas", fecha: "20 de octubre de 2026" },
       { texto: "AgendaYA, re-booking, Te Reservo y Fresha: sus páginas de precios no mencionan emisión ante el SII", fecha: HOY },
     ],
   },
