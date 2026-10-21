@@ -720,6 +720,50 @@ export const COMPETIDORES: Competidor[] = [
       { texto: "Turnito: funcionalidades", url: "https://turnito.app/funcionalidades/" },
     ],
   },
+  /* Verificado el 20-10-2026: comparar/competencia-2026-10-20-reservaclase.json.
+     No cobra por profesional (profesores ilimitados) sino por alumno activo: con
+     1, 3, 6 o 9 profesionales el precio es el mismo y depende de las alumnas. */
+  {
+    id: "reservaclase", nombre: "Reserva Clase", logo: "/competencia/reservaclase.png", logoTipo: "wordmark", color: "#1E3A8A", sitio: "reservaclase.com",
+    verificado: "20 de octubre de 2026", enDolares: true,
+    origen: "Argentina (nació en 2015 en un estudio de pilates)",
+    queEs: "Reserva Clase (reservaclase.com) es un sistema argentino de reservas y pagos para estudios de pilates, yoga, pole dance y otras clases grupales: las alumnas reservan desde su app o la web y compran packs de clases con Mercado Pago o transferencia. Cobra en dólares por alumno activo.",
+    modelo: "Cobra en dólares por alumno activo: US$0,50 por alumno los primeros 50 y cada bloque de 50 un 15% más barato, con un mínimo de US$20 al mes. Profesores y sedes, sin límite.",
+    precios: [
+      { valor: "desde US$20", nota: "40 alumnos activos o menos" },
+      { valor: "desde US$20", nota: "40 alumnos activos o menos" },
+      { valor: "desde US$20", nota: "40 alumnos activos o menos" },
+      { valor: "desde US$20", nota: "40 alumnos activos o menos" },
+    ],
+    notaPrecios: "Plan Básico según la calculadora de su página: no cambia con la cantidad de profesores, sino con los alumnos activos. Con 100 alumnos activos son US$46 al mes y con 150, US$64. El plan Premium, con tu marca y colores, cuesta 25% más. No dice si incluye impuestos.",
+    resumen: "Con pocas alumnas, Reserva Clase es más barata. A medida que el estudio crece, su mensualidad sube con cada alumna activa y la de SynapTech no: es un precio fijo por local. Además, Reserva Clase no publica recordatorios por WhatsApp ni un asistente con IA.",
+    filas: [
+      { tema: "Cómo cobra", ellos: "Por alumno activo, en dólares, con descuento por volumen; mínimo US$20 al mes", nosotros: "Por local: el mismo precio con 40 o con 400 alumnas" },
+      { tema: "Recordatorios por WhatsApp", ellos: null, nosotros: "Fuera de Chile, el plan trae un cupo mensual de mensajes para confirmaciones y recordatorios, según el país; en Chile, bolsas desde $1.990 + IVA por 100" },
+      { tema: "Asistente con IA que agenda", ellos: null, nosotros: "Syna, en el plan Agenda + IA (US$39 fuera de Chile, con cupos limitados; plan Pro de $49.900 + IVA en Chile)" },
+      { tema: "Pagos online", ellos: "Mercado Pago sin comisión extra, y transferencia con comprobante", nosotros: "Mercado Pago sin cargo de SynapTech, o transferencia en el último paso de la reserva" },
+      { tema: "App para las alumnas", ellos: "App para Android e iOS, además de la web", nosotros: "Reserva desde el link de tu estudio, en el navegador del teléfono" },
+      { tema: "Boletas ante el SII", ellos: null, nosotros: "Boletas de honorarios ante el SII, solo en Chile" },
+      { tema: "Tarjeta del club en Google Wallet y Apple Wallet", ellos: null, nosotros: "Incluida en todos los planes" },
+      { tema: "Prueba gratis", ellos: "1 mes", nosotros: "2 meses fuera de Chile; 14 días sin tarjeta en Chile" },
+    ],
+    cuandoEllos: "Tu estudio tiene pocas alumnas activas y buscas el precio más bajo, o quieres que reserven desde una app de las tiendas.",
+    cuandoNosotros: [
+      "Tu estudio tiene muchas alumnas: pagas por local, no por alumna.",
+      "Quieres confirmaciones y recordatorios por WhatsApp, y un asistente con IA que agende en el WhatsApp del estudio.",
+      "Estás en Chile y quieres pagar en pesos, con boletas ante el SII.",
+      "Quieres el club de fidelidad con la tarjeta en el teléfono de cada alumna.",
+    ],
+    migracion: "Te mudamos gratis desde Reserva Clase: alumnas, packs con su saldo, clases y reservas futuras. Ya lo hicimos con un estudio de pilates de tres sedes.",
+    faq: [
+      { q: "¿Cuánto cuesta Reserva Clase?", a: "Según la calculadora de su página al 20 de octubre de 2026: US$0,50 por alumno activo al mes los primeros 50, y cada bloque de 50 alumnos un 15% más barato (nunca menos de US$0,25 por alumno), con un mínimo de US$20 al mes. Con 100 alumnos activos son US$46 y con 150, US$64. El plan Premium cuesta 25% más. Profesores y sedes no tienen costo extra." },
+      { q: "¿Reserva Clase manda recordatorios por WhatsApp?", a: "Su página no lo publica: los avisos que describe, como el de un pago aprobado, van por correo. Su WhatsApp es el de soporte para los estudios." },
+    ],
+    fuentes: [
+      { texto: "Reserva Clase: precios (calculadora por alumno activo)", url: "https://reservaclase.com/index.php?codigoPais=CL&limite_alumnos_aumentado=no#precios" },
+      { texto: "Reserva Clase: inicio", url: "https://reservaclase.com/" },
+    ],
+  },
 ];
 
 export const competidor = (id: string) => COMPETIDORES.find((c) => c.id === id);
