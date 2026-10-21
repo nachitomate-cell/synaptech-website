@@ -19,8 +19,30 @@ export const SIGNUP_URL = "https://bioo.cl/agenda";
 export const APP_CLIENTES = "https://mi.synaptechspa.cl";
 export const alta = (medio: string) =>
   `${SIGNUP_URL}?utm_source=synaptechspa&utm_medium=${encodeURIComponent(medio)}`;
-/** El plan Gratis se crea en la misma alta. */
+/** El plan Gratis se crea en la misma alta (bioo, sin asistente). */
 export const agendaGratis = alta;
+
+/* ALTA CON ASISTENTE IA (21-10-2026). El botón principal del sitio lleva a
+   crear.synaptechspa.cl: crea la agenda con Syna encendido desde el primer día
+   y 30 días gratis del plan Pro. Si no paga, la agenda sigue en el plan Gratis
+   (hasta 4 profesionales), sin el asistente. bioo (agendaGratis) queda como
+   enlace secundario: "Solo quiero la agenda gratis". Los links de embajadores
+   (?codigo=) y las páginas LATAM (PaisLanding) NO usan esto: tienen su oferta.
+   · rubro: barberia | salon | estetica | unas | clinica | pilates | mascotas | spa */
+export const ALTA_IA_URL = "https://crear.synaptechspa.cl/";
+export type RubroAlta = "barberia" | "salon" | "estetica" | "unas" | "clinica" | "pilates" | "mascotas" | "spa";
+export const altaIA = (medio: string, rubro?: RubroAlta) =>
+  `${ALTA_IA_URL}?utm_source=synaptechspa&utm_medium=${encodeURIComponent(medio)}${rubro ? `&rubro=${rubro}` : ""}`;
+/** Textos de los botones del alta. */
+export const CTA_IA = "Prueba 30 días con asistente IA";
+export const CTA_GRATIS = "Solo quiero la agenda gratis";
+/** El rubro del alta según el `origen` de un botón ("barberias-hero" → "barberia", "tiempo-unas" → "unas"). */
+const RUBRO_POR_ORIGEN: [string, RubroAlta][] = [
+  ["barberias", "barberia"], ["peluquerias", "salon"], ["salones", "salon"], ["estetica", "estetica"],
+  ["unas", "unas"], ["clinicas", "clinica"], ["pilates", "pilates"], ["mascotas", "mascotas"],
+];
+export const rubroDeOrigen = (origen: string): RubroAlta | undefined =>
+  RUBRO_POR_ORIGEN.find(([o]) => origen === o || origen.startsWith(`${o}-`) || origen.endsWith(`-${o}`))?.[1];
 export const WA_NUMERO = "56983568212";
 
 export const waLink = (texto: string) =>

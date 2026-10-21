@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { alta, waLink, A_MEDIDA_WA } from "@/content/catalogo";
+import { altaIA, agendaGratis, CTA_IA, CTA_GRATIS, waLink, A_MEDIDA_WA } from "@/content/catalogo";
 
 /* Cifras medidas en Firestore el 12-10-2026 (count() por local, solo lectura),
    SOLO locales vigentes: los 26 clientes de _publico/metricas.directorio + 5 en
@@ -43,17 +43,20 @@ export default function Hero() {
             volver a tus clientes.
           </p>
           <div className="flex flex-col sm:flex-row gap-3">
-            <a href={alta(`home-hero`)}
+            <a href={altaIA(`home-hero`)}
               className="inline-flex justify-center items-center bg-ink text-white font-semibold text-base px-7 py-4 rounded-full hover:bg-black transition-colors">
-              Empezar gratis
+              {CTA_IA}
             </a>
             <a href={waLink("Hola, quiero conocer SynapTech para mi local")} target="_blank" rel="noopener noreferrer"
               className="inline-flex justify-center items-center border border-ink/15 text-ink font-semibold text-base px-7 py-4 rounded-full hover:border-ink/40 transition-colors">
               Hablar por WhatsApp
             </a>
           </div>
+          <p className="mt-4 text-sm text-text-muted">
+            <a href={agendaGratis("home-hero-gratis")} className="font-semibold text-ink underline decoration-lime decoration-2 underline-offset-4 hover:decoration-ink">{CTA_GRATIS}</a>
+          </p>
           <ul className="flex flex-wrap gap-x-5 gap-y-2 mt-6 text-sm text-text-muted">
-            {["Sin tarjeta para partir", "Profesionales ilimitados", "Te mudamos gratis"].map((t) => (
+            {["No pedimos tarjeta para la prueba", "Profesionales ilimitados", "Te mudamos gratis"].map((t) => (
               <li key={t} className="flex items-center gap-1.5">
                 <svg className="w-4 h-4 text-accent" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden><path d="M3 8.5l3 3 7-7" strokeLinecap="round" strokeLinejoin="round" /></svg>
                 {t}

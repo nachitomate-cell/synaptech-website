@@ -9,7 +9,7 @@ import { obtenerLocales, unoPorNegocio, PAGINAS, type LocalDirectorio } from "@/
 import { porRegion, preguntasDirectorio, paisesDe } from "@/lib/directorio-faq";
 import { preciosPorComuna, tablaPrecios, zonasDirectorio, slugZona, clp, enZona } from "@/lib/precios";
 import { jsonLdDirectorio } from "@/lib/ld-directorio";
-import { alta, waLink } from "@/content/catalogo";
+import { altaIA, CTA_IA, waLink } from "@/content/catalogo";
 import { metaPagina, SITIO } from "@/lib/seo";
 
 /* Portada del directorio de locales (Red Synaptech). Se regenera cada hora con
@@ -263,9 +263,9 @@ export default async function LocalesPage() {
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row lg:flex-col gap-3">
-                <a href={alta(`locales`)}
+                <a href={altaIA(`locales`)}
                   className="inline-flex justify-center items-center bg-lime text-ink font-semibold px-7 py-4 rounded-full hover:bg-white transition-colors">
-                  Empezar gratis
+                  {CTA_IA}
                 </a>
                 <a href={waLink("Hola, tengo un local y quiero aparecer en la Red Synaptech")} target="_blank" rel="noopener noreferrer"
                   className="inline-flex justify-center items-center border border-white/25 text-white font-semibold px-7 py-4 rounded-full hover:border-white/60 transition-colors">

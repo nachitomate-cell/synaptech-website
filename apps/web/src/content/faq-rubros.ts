@@ -5,7 +5,7 @@ import type { Pregunta } from "@/components/FaqSeo";
    Cada respuesta afirma solo lo que existe en la plataforma; los precios son los
    de content/precios.ts. Si cambia un precio, cambia acá también. */
 
-const GRATIS = "Sí. El plan Gratis es para siempre, para locales de hasta 4 profesionales: agenda, reserva online con tu propio link, fichas de clientes, confirmación y recordatorio de cada cita por correo y 50 avisos al mes por la vía oficial de WhatsApp. Se crea en 5 minutos en bioo.cl/agenda, nuestra agenda gratis, y los primeros 14 días tienes todo lo del plan Pro.";
+const GRATIS = "Sí. El plan Gratis es para siempre, para locales de hasta 4 profesionales: agenda, reserva online con tu propio link, fichas de clientes, confirmación y recordatorio de cada cita por correo y 50 avisos al mes por la vía oficial de WhatsApp. Se crea en 5 minutos en bioo.cl/agenda, nuestra agenda gratis, sin el asistente con IA. Si quieres el asistente desde el primer día, crea tu agenda en crear.synaptechspa.cl: 30 días gratis del plan Pro y, si no pagas, sigues en el plan Gratis.";
 
 export const FAQ_BARBERIAS: Pregunta[] = [
   { q: "¿Cuánto cuesta un software para barberías?", a: "En SynapTech, el plan Básico cuesta $29.900 + IVA al mes por local, con barberos ilimitados: agenda online, caja, comisiones y club de fidelización. El plan Pro, $49.900 + IVA, suma a Syna, el asistente con IA que responde y agenda por WhatsApp." },

@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { alta, FAMILIAS, RUBROS, APP_CLIENTES } from "@/content/catalogo";
+import { altaIA, FAMILIAS, RUBROS, APP_CLIENTES } from "@/content/catalogo";
 
 /* Menú al estilo Square: cada familia abre un panel ancho con todo lo que
    contiene. Los productos y rubros salen de content/catalogo.ts, el mismo
@@ -130,7 +130,7 @@ export default function Header() {
             className="px-4 py-2 rounded-full text-[15px] font-medium text-text-secondary hover:text-ink transition-colors">
             Ingresar
           </a>
-          <a href={alta(`header`)}
+          <a href={altaIA(`header`)}
             className="bg-ink text-white text-[15px] font-semibold px-5 py-2.5 rounded-full hover:bg-black transition-colors">
             Empezar gratis
           </a>
@@ -247,7 +247,7 @@ export default function Header() {
               </span>
               <span aria-hidden className="text-[#C6F94E] text-xl">→</span>
             </a>
-            <a href={alta(`header-movil`)}
+            <a href={altaIA(`header-movil`)}
               className="block text-center bg-ink text-white font-semibold py-3.5 rounded-full">
               Empezar gratis
             </a>

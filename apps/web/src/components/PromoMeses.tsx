@@ -1,4 +1,4 @@
-import { alta, waLink } from "@/content/catalogo";
+import { altaIA, CTA_IA, waLink } from "@/content/catalogo";
 
 /* Bloque destacado, el equivalente al "Square Terminal −40%" de su home.
    La oferta la decidió Ignacio el 08-10-2026 (2 meses) y la bajó a 1 mes el
@@ -6,7 +6,9 @@ import { alta, waLink } from "@/content/catalogo";
    meses quedan solo fuera de Chile, ver paises.ts). Quien se registra solo en
    bioo.cl/agenda tiene 14 días; el mes lo da el link del vendedor
    (?utm_source=vendedor, 30 días). Por eso el botón principal va a WhatsApp
-   y el secundario dice que solo son 14 días. */
+   y el secundario dice que solo son 14 días.
+   21-10-2026: el secundario ahora va al alta con asistente IA
+   (crear.synaptechspa.cl, 30 días del Pro), ver altaIA en catalogo.ts. */
 const PUNTOS = [
   { t: "Sin tarjeta", d: "No pides nada por adelantado para partir." },
   { t: "Te dejamos andando", d: "Cargamos tus servicios, tu equipo y tus clientes." },
@@ -38,9 +40,9 @@ export default function PromoMeses() {
                   className="inline-flex justify-center items-center bg-lime text-ink font-semibold px-7 py-4 rounded-full hover:bg-white transition-colors">
                   Quiero mi mes gratis
                 </a>
-                <a href={alta(`home-oferta`)}
+                <a href={altaIA(`home-oferta`)}
                   className="inline-flex justify-center items-center border border-white/25 text-white font-semibold px-7 py-4 rounded-full hover:border-white/60 transition-colors">
-                  Partir solo (14 días)
+                  {CTA_IA}
                 </a>
               </div>
             </div>

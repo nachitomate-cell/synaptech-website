@@ -11,8 +11,9 @@
      (100/$1.990 · 300/$5.990 · 1.000/$19.990 + IVA desde el 10-10-2026, al costo
      de Meta; antes 50/$3.990 · 150/$9.990 · 400/$19.990). */
 
-/* La alta de autoservicio (bioo.cl/agenda): todos los planes parten ahí con
-   14 días de Pro. Para links usar alta() de catalogo.ts (utm, no ?ref=). */
+/* La agenda gratis de autoservicio (bioo.cl/agenda). Desde el 21-10-2026 el
+   alta principal es crear.synaptechspa.cl (30 días del Pro con el asistente):
+   para links usar altaIA() o alta() de catalogo.ts (utm, no ?ref=). */
 export const SIGNUP = "https://bioo.cl/agenda";
 
 export const fmt = (n: number) => "$" + n.toLocaleString("es-CL");

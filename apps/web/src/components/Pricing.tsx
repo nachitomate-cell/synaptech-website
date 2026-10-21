@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { PLANES, ANUAL, fmt } from "@/content/precios";
-import { alta, agendaGratis, A_MEDIDA_WA } from "@/content/catalogo";
+import { altaIA, agendaGratis, A_MEDIDA_WA, CTA_IA, CTA_GRATIS } from "@/content/catalogo";
 
 /* Planes en tarjetas. Los datos salen de content/precios.ts, espejo de la
    lista oficial de la plataforma (admin-panel/src/lib/precios.js). El detalle
@@ -14,16 +14,17 @@ export default function Pricing({ conEnlace = true }: { conEnlace?: boolean }) {
           <h2 className="text-ink">Un precio por local, no por silla.</h2>
           <p className="text-text-secondary text-lg mt-5 leading-relaxed">
             Profesionales ilimitados en todos los planes y sin comisión por cita.
-            Sin tarjeta para partir y, si nos escribes por WhatsApp, el primer mes va
-            por nuestra cuenta.
+            No pedimos tarjeta para la prueba.
           </p>
-          {/* Cómo se parte (12-10-2026): todos crean su agenda solos en bioo
-              con 14 días de Pro y eligen plan desde su panel; lo a medida es
-              la excepción, para quien de verdad lo necesita. */}
+          {/* Cómo se parte (21-10-2026): el alta principal es crear.synaptechspa.cl,
+              con Syna encendido y 30 días del plan Pro; si no paga, sigue en el
+              plan Gratis sin el asistente. La agenda gratis sin IA, en bioo.
+              Lo a medida es la excepción, para quien de verdad lo necesita. */}
           <p className="text-text-secondary mt-4 leading-relaxed">
-            Todos parten igual: creas tu agenda en <b className="text-ink">bioo.cl/agenda</b>, nuestra agenda de
-            autoservicio, con 14 días de todo el plan Pro, y al terminar eliges tu plan desde el panel.
-            ¿Varias sedes o un diseño propio?{" "}
+            Creas tu agenda en <b className="text-ink">crear.synaptechspa.cl</b> con 30 días gratis del plan Pro,
+            con el asistente respondiendo tu WhatsApp desde el primer día. Al terminar pagas el plan que
+            elijas o sigues gratis con la agenda, sin el asistente. ¿Solo quieres la agenda gratis, sin IA?
+            Está en <b className="text-ink">bioo.cl/agenda</b>. ¿Varias sedes o un diseño propio?{" "}
             <a href={A_MEDIDA_WA} target="_blank" rel="noopener noreferrer" className="font-semibold text-ink border-b-2 border-lime pb-0.5 hover:border-ink transition-colors">Te la armamos a medida</a>.
           </p>
         </div>
@@ -53,15 +54,20 @@ export default function Pricing({ conEnlace = true }: { conEnlace?: boolean }) {
                   </li>
                 ))}
               </ul>
-              <a href={alta(`precios-${p.id}`)}
-                className={`mt-8 inline-flex justify-center items-center font-semibold px-6 py-3.5 rounded-full transition-colors ${
+              <a href={altaIA(`precios-${p.id}`)}
+                className={`mt-8 inline-flex justify-center items-center text-center font-semibold px-6 py-3.5 rounded-full transition-colors ${
                   p.popular ? "bg-lime text-ink hover:bg-white" : "bg-ink text-white hover:bg-black"
                 }`}>
-                Empezar gratis
+                {CTA_IA}
               </a>
             </article>
           ))}
         </div>
+
+        <p className="mt-5 text-sm text-text-muted">
+          La prueba es de 30 días del plan Pro, con el asistente. No pedimos tarjeta para la prueba.{" "}
+          <a href={agendaGratis("precios-gratis")} className="font-semibold text-ink underline decoration-lime decoration-2 underline-offset-4 hover:decoration-ink">{CTA_GRATIS}</a>
+        </p>
 
         <div className="mt-6 rounded-[28px] bg-white p-6 sm:px-8 flex flex-col md:flex-row md:items-center gap-4 justify-between">
           <p className="text-text-secondary">
@@ -91,8 +97,8 @@ export default function Pricing({ conEnlace = true }: { conEnlace?: boolean }) {
             <p className="text-text-secondary mt-2 leading-relaxed">
               <span className="font-semibold text-ink">$0, para siempre, hasta 4 profesionales.</span>{" "}
               Agenda, reserva online 24/7 con tu propio link, fichas de clientes y
-              confirmación y recordatorio de cada cita por correo, y 50 avisos al mes por la vía oficial de WhatsApp. Los primeros 14 días
-              tienes todo lo del plan Pro. Lo armas en 5 minutos en bioo, nuestra agenda gratis.
+              confirmación y recordatorio de cada cita por correo, y 50 avisos al mes por la vía oficial de WhatsApp. Sin el asistente con IA.
+              Lo armas en 5 minutos en bioo, nuestra agenda gratis.
             </p>
           </div>
           <a href={agendaGratis("precios")}
