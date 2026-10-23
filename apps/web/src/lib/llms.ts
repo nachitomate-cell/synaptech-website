@@ -81,6 +81,7 @@ export const PAGINAS = `- [Precios de ${COMPETIDORES.length + 1} agendas online 
 ${FUNCIONES.map((f) => `- [${f.nombre}](${S}/funciones/${f.slug})`).join("\n")}
 - [Agenda para manicurista y salón de uñas](${S}/unas)
 - [Agenda para estudios de pilates](${S}/pilates)
+- [Integración con Wellhub (antes Gympass): cupos de convenio por clase, check-in automático y visitas validadas solas, para estudios y gimnasios](${S}/wellhub)
 - [Agenda para peluquería canina](${S}/mascotas)
 - [Precios de SynapTech](${S}/precios)
 - [Cómo funciona, módulo por módulo](${S}/como-funciona)

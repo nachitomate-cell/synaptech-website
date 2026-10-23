@@ -64,6 +64,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...FUNCIONES.map((f) => ({ url: `${BASE}/funciones/${f.slug}`, lastModified: now, priority: 0.8 })),
     { url: `${BASE}/unas`,                lastModified: now, priority: 0.8 },
     { url: `${BASE}/pilates`,             lastModified: now, priority: 0.8 },
+    /* Integración con Wellhub (23-10-2026). */
+    { url: `${BASE}/wellhub`,             lastModified: now, priority: 0.8 },
     { url: `${BASE}/mascotas`,            lastModified: now, priority: 0.8 },
     /* "<agenda> vs SynapTech": las páginas que compiten por las búsquedas de
        la competencia (content/competidores.ts). */
