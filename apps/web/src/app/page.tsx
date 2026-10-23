@@ -1,6 +1,7 @@
 import Header        from "@/components/Header";
 import TiempoPerdido from "@/components/TiempoPerdido";
-import Hero          from "@/components/Hero";
+import HeroOscuro    from "@/components/HeroOscuro";
+import Cifras        from "@/components/Cifras";
 import Confianza     from "@/components/Confianza";
 import Familias      from "@/components/Familias";
 import PromoMeses    from "@/components/PromoMeses";
@@ -29,6 +30,8 @@ export const metadata = metaPagina({
    composición de capturas reales → confianza → familias de producto → oferta
    → la plata del local (IVA, 50 %, arriendo) → rubros → mudanza y comparación
    de precio → prueba social → integraciones → precios → preguntas → cierre. */
+/* 23-10-2026: portada y cierre oscuros al estilo de /beneficios/fibra, con
+   las cifras re-medidas a la vista (Cifras.tsx) justo después de la portada. */
 /* La franja del directorio lee la lista viva una vez al día. */
 export const revalidate = 86400;
 
@@ -38,7 +41,8 @@ export default function Home() {
       <Header />
       <AvisoPais />
       <main>
-        <Hero />
+        <HeroOscuro />
+        <Cifras />
         <Confianza />
         <TiempoPerdido />
         <Familias />
@@ -53,7 +57,7 @@ export default function Home() {
         <Integraciones />
         <Pricing />
         <FAQ />
-        <CtaFinal />
+        <CtaFinal oscuro />
       </main>
       <Footer />
     </>
