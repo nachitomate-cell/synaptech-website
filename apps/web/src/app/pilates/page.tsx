@@ -7,18 +7,19 @@ import CtaFinal      from "@/components/CtaFinal";
 import FaqSeo        from "@/components/FaqSeo";
 import TiempoPerdido from "@/components/TiempoPerdido";
 import { HeroRubro, Dolores, type Dolor } from "@/components/Rubro";
+import Link from "next/link";
 import { metaPagina } from "@/lib/seo";
 
 /* Estudios de pilates (11-10-2026): 'agenda para pilates', 'agenda online para pilates' y 'agenda para estudio de pilates' en el autocompletado de Google Chile. Lo que se afirma es lo que ya decía el rubro en content/catalogo.ts (Punto Pilates usa la plataforma). */
 export const metadata = metaPagina({
   title: "Agenda online para estudios de pilates | SynapTech",
-  description: "Agenda online para estudios de pilates: tus alumnas reservan su clase, cada sede con sus precios y horarios, recordatorios por WhatsApp y pago al reservar.",
+  description: "Agenda online para estudios de pilates: tus alumnas reservan su clase, cada sede con sus precios y horarios, recordatorios por WhatsApp e integración con Wellhub.",
   path: "/pilates",
 });
 
-const DOLORES: Dolor[] = [{"dolor": "Coordinar las clases por WhatsApp", "solucion": "Reserva de clases", "detalle": "Tus alumnas eligen su clase y su hora desde el teléfono, a cualquier hora."}, {"dolor": "Varias sedes, precios distintos", "solucion": "Precios y horarios por sede", "detalle": "Cada sede con sus propios precios y su horario de clases."}, {"dolor": "Alumnas que no avisan", "solucion": "Recordatorios", "detalle": "Confirmación y recordatorio antes de la clase, por WhatsApp y por correo."}, {"dolor": "Cobrar la clase de prueba", "solucion": "Pago al reservar", "detalle": "Con Mercado Pago o pidiendo transferencia en el último paso de la reserva."}, {"dolor": "Alumnas que dejan de venir", "solucion": "Club y campañas", "detalle": "Sellos por clase, premios y mensajes para las que dejaron de venir."}, {"dolor": "Números de cada sede", "solucion": "Caja y métricas", "detalle": "Lo que entra y sale de cada sede, sin planillas."}];
+const DOLORES: Dolor[] = [{"dolor": "Coordinar las clases por WhatsApp", "solucion": "Reserva de clases", "detalle": "Tus alumnas eligen su clase y su hora desde el teléfono, a cualquier hora."}, {"dolor": "Varias sedes, precios distintos", "solucion": "Precios y horarios por sede", "detalle": "Cada sede con sus propios precios y su horario de clases."}, {"dolor": "Alumnas que no avisan", "solucion": "Recordatorios", "detalle": "Confirmación y recordatorio antes de la clase, por WhatsApp y por correo."}, {"dolor": "Cobrar la clase de prueba", "solucion": "Pago al reservar", "detalle": "Con Mercado Pago o pidiendo transferencia en el último paso de la reserva."}, {"dolor": "Alumnas que dejan de venir", "solucion": "Club y campañas", "detalle": "Sellos por clase, premios y mensajes para las que dejaron de venir."}, {"dolor": "Números de cada sede", "solucion": "Caja y métricas", "detalle": "Lo que entra y sale de cada sede, sin planillas."}, {"dolor": "Validar a mano las visitas de Wellhub", "solucion": "Integración con Wellhub", "detalle": "Cupos de Wellhub en cada clase, y el check-in de la alumna llega solo y valida la visita."}];
 
-const FAQ = [{"q": "¿Mis alumnas pueden reservar su clase solas?", "a": "Sí, desde el link de tu estudio, a cualquier hora, y les llega la confirmación y el recordatorio."}, {"q": "¿Sirve para un estudio con varias sedes?", "a": "Sí: cada sede con sus precios y horarios, y tú ves todo desde el mismo panel."}, {"q": "¿Cuánto cuesta?", "a": "Desde $29.900 + IVA al mes por local, con profesionales ilimitados. Cada sede adicional se cotiza por WhatsApp."}];
+const FAQ = [{"q": "¿Mis alumnas pueden reservar su clase solas?", "a": "Sí, desde el link de tu estudio, a cualquier hora, y les llega la confirmación y el recordatorio."}, {"q": "¿Sirve para un estudio con varias sedes?", "a": "Sí: cada sede con sus precios y horarios, y tú ves todo desde el mismo panel."}, {"q": "¿Se integra con Wellhub (Gympass)?", "a": "Sí: cupos de Wellhub aparte en cada clase, link de reserva para el convenio, y el check-in de la app de Wellhub llega solo a la reserva y valida la visita. Más detalle en synaptechspa.cl/wellhub."}, {"q": "¿Cuánto cuesta?", "a": "Desde $29.900 + IVA al mes por local, con profesionales ilimitados. Cada sede adicional se cotiza por WhatsApp."}];
 
 export default function Pagina() {
   return (
@@ -35,6 +36,19 @@ export default function Pagina() {
           celular={{ src: "/panel/reserva-2-horario.webp", alt: "Reserva online en el celular", w: 780, h: 1688 }}
         />
         <Dolores titulo={"Lo que más se repite en un estudio de pilates, resuelto."} items={DOLORES} />
+        {/* Integración con Wellhub (23-10-2026): enlace visible a su página. */}
+        <section className="pb-16 md:pb-20">
+          <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10">
+            <Link href="/wellhub" className="group flex flex-col sm:flex-row sm:items-center justify-between gap-6 rounded-[28px] bg-[#05080D] text-white p-8 md:p-12">
+              <div>
+                <p className="text-[13px] font-semibold text-white/50">Nuevo · SynapTech + Wellhub</p>
+                <p className="mt-2 font-display text-[clamp(1.6rem,3vw,2.4rem)] font-bold tracking-tight leading-tight">Integración con Wellhub: el check-in se valida solo.</p>
+                <p className="mt-3 text-white/65 max-w-2xl">Cupos de convenio en cada clase, check-in automático y la visita validada sin entrar al portal.</p>
+              </div>
+              <span className="shrink-0 inline-flex items-center justify-center bg-white text-[#05080D] font-semibold px-7 py-3.5 rounded-full group-hover:bg-white/90 transition-colors">Ver la integración</span>
+            </Link>
+          </div>
+        </section>
         <TiempoPerdido origen="pilates" />
         <Cambiate />
         <LogosLocales />

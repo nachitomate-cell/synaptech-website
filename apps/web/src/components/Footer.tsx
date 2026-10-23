@@ -13,6 +13,7 @@ const LINKS: Record<string, { l: string; h: string }[]> = {
     { l: "Calculadora de comisiones", h: "/funciones/comisiones" },
     { l: "Cuadratura de caja", h: "/funciones/control-de-caja" },
     { l: "Cápsulas en video", h: "/como-funciona#capsulas" },
+    { l: "Integración con Wellhub", h: "/wellhub" },
     { l: "Nivel por nivel (8-bit)", h: "/niveles" },
     { l: "Precios", h: "/#precios" },
     { l: "Comparaciones", h: "/comparar" },

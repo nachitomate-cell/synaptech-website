@@ -3,7 +3,8 @@ import TiempoPerdido from "@/components/TiempoPerdido";
 import HeroOscuro    from "@/components/HeroOscuro";
 import Cifras        from "@/components/Cifras";
 import Confianza     from "@/components/Confianza";
-import Familias      from "@/components/Familias";
+import VitrinaPlataforma from "@/components/VitrinaPlataforma";
+import TiraPortada   from "@/components/TiraPortada";
 import PromoMeses    from "@/components/PromoMeses";
 import PlataEnOrden  from "@/components/PlataEnOrden";
 import Rubros        from "@/components/Rubros";
@@ -30,6 +31,9 @@ export const metadata = metaPagina({
    composición de capturas reales → confianza → familias de producto → oferta
    → la plata del local (IVA, 50 %, arriendo) → rubros → mudanza y comparación
    de precio → prueba social → integraciones → precios → preguntas → cierre. */
+/* 23-10-2026 (2ª vuelta, "toque Apple y NVIDIA"): tira de pestañas bajo la
+   portada, la plataforma como repisa de la Apple Store y las integraciones
+   como carrusel de NVIDIA, con Wellhub. */
 /* 23-10-2026: portada y cierre oscuros al estilo de /beneficios/fibra, con
    las cifras re-medidas a la vista (Cifras.tsx) justo después de la portada. */
 /* La franja del directorio lee la lista viva una vez al día. */
@@ -42,10 +46,11 @@ export default function Home() {
       <AvisoPais />
       <main>
         <HeroOscuro />
+        <TiraPortada />
         <Cifras />
         <Confianza />
         <TiempoPerdido />
-        <Familias />
+        <VitrinaPlataforma />
         <PromoMeses />
         <PlataEnOrden />
         <Rubros />
