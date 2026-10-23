@@ -24,12 +24,13 @@ const waSergio = `https://wa.me/${WA_SERGIO}?text=${encodeURIComponent(
 const PASOS = [
   { n: "1", t: "Escríbele a Sergio", d: "Cuéntale cómo se llama tu local y su dirección. Él revisa si hay fibra Entel disponible ahí." },
   { n: "2", t: "Contrata con él", d: "Eliges el plan con Sergio y él gestiona la contratación. Tiene que ser con él, no por la página de Entel." },
-  { n: "3", t: "Recibe tu gift card", d: "Sergio te entrega una gift card de $20.000 que puedes usar en miles de comercios." },
+  { n: "3", t: "Recibe tu gift card", d: "Cuando la fibra queda instalada en tu local, Sergio te entrega una gift card de $20.000 que puedes usar en miles de comercios." },
 ];
 
 const FAQ = [
   { q: "¿Quién puede usar el beneficio?", a: "Los locales que tienen su agenda con SynapTech, los que ya la usan y los que se sumen." },
   { q: "¿Por qué tengo que contratar con Sergio?", a: "Porque el beneficio lo entrega él. Si contratas por la página de Entel o en una tienda, la venta no queda a su nombre y no puede darte la gift card." },
+  { q: "¿Cuándo recibo la gift card?", a: "Cuando la fibra queda instalada en tu local. Ahí Sergio te la entrega." },
   { q: "¿Dónde puedo usar la gift card?", a: "Es una gift card de Apprecio, que se puede canjear en miles de comercios." },
   { q: "¿Qué pasa si no hay fibra en la dirección de mi local?", a: "Sergio lo revisa antes de contratar y te dice si hay cobertura." },
   { q: "¿SynapTech vende internet?", a: "No. SynapTech es la agenda de tu local. La fibra la contratas con Entel a través de Sergio, y la instalación y el servicio son de Entel." },
@@ -71,7 +72,7 @@ export default function BeneficioFibra() {
               <p className="font-semibold text-ink">Condiciones</p>
               <p className="text-text-secondary text-sm leading-relaxed mt-2">
                 Válido para locales con agenda SynapTech activa que contraten fibra Entel con Sergio Ledezma.
-                La gift card la entrega Sergio. SynapTech no vende ni instala servicios de internet: la contratación,
+                La gift card la entrega Sergio una vez instalado el servicio. SynapTech no vende ni instala servicios de internet: la contratación,
                 la instalación y el servicio son de Entel. Entel es una marca registrada de su titular.
               </p>
             </div>
