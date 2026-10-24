@@ -35,7 +35,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   return [
     { url: BASE,                          lastModified: now, priority: 1.0 },
     { url: `${BASE}/como-funciona`,       lastModified: now, priority: 0.9 },
-    { url: `${BASE}/niveles`,             lastModified: new Date("2026-10-14"), priority: 0.6 },
+    { url: `${BASE}/niveles`,             lastModified: new Date("2026-10-24"), priority: 0.6 },
+    { url: `${BASE}/aprende`,             lastModified: new Date("2026-10-24"), priority: 0.7 },
     { url: `${BASE}/barberias`,           lastModified: now, priority: 0.9 },
     { url: `${BASE}/peluquerias`,         lastModified: now, priority: 0.9 },
     { url: `${BASE}/asistente-ia-whatsapp`, lastModified: now, priority: 0.9 },
