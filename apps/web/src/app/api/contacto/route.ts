@@ -3,6 +3,33 @@ import { NextResponse } from "next/server";
 
 const DEST = process.env.CONTACT_EMAIL ?? "hola@synaptechspa.cl";
 
+/* 23-10-2026: un escáner mandó 19 formularios en un minuto (una comilla en
+   cada campo, buscando inyección SQL). Acá no hay base de datos, pero el
+   endpoint no tenía freno ni escapaba nada: cualquiera podía llenar hola@ y
+   meter HTML (enlaces falsos) en un correo firmado por contacto@. */
+const LARGO = { nombre: 80, empresa: 80, email: 120, phone: 30, msg: 3000 };
+const EMAIL_OK = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+
+// Escapa todo lo que viene del formulario antes de meterlo en el HTML.
+const esc = (v: string) =>
+  v.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+
+/* Freno por IP: 3 envíos cada 10 min. Vive en la instancia (Fluid Compute
+   la reutiliza), así que no es perfecto, pero corta una ráfaga como la del 23-10. */
+const VENTANA_MS = 10 * 60 * 1000;
+const MAX_POR_VENTANA = 3;
+const envios = new Map<string, number[]>();
+function frenado(ip: string) {
+  const ahora = Date.now();
+  const recientes = (envios.get(ip) ?? []).filter((t) => ahora - t < VENTANA_MS);
+  if (recientes.length >= MAX_POR_VENTANA) { envios.set(ip, recientes); return true; }
+  recientes.push(ahora);
+  envios.set(ip, recientes);
+  if (envios.size > 5000) envios.clear();
+  return false;
+}
+
 function html(nombre: string, empresa: string, email: string, phone: string, msg: string) {
   return `<!DOCTYPE html>
 <html lang="es">
@@ -56,21 +83,34 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid body" }, { status: 400 });
   }
 
-  const { nombre, empresa, email, phone, msg, website } = body;
+  const txt = (v: unknown, max: number) => (typeof v === "string" ? v.trim().slice(0, max) : "");
+  const nombre = txt(body.nombre, LARGO.nombre);
+  const empresa = txt(body.empresa, LARGO.empresa);
+  const email = txt(body.email, LARGO.email);
+  const phone = txt(body.phone, LARGO.phone);
+  const msg = txt(body.msg, LARGO.msg);
 
   // Honeypot
-  if (website) return NextResponse.json({ success: true });
+  if (body.website) return NextResponse.json({ success: true });
 
-  if (!nombre?.trim() || !email?.trim() || !msg?.trim()) {
+  if (!nombre || !email || !msg) {
     return NextResponse.json({ error: "Faltan campos requeridos" }, { status: 422 });
+  }
+  if (!EMAIL_OK.test(email)) {
+    return NextResponse.json({ error: "Email inválido" }, { status: 422 });
+  }
+
+  const ip = (request.headers.get("x-forwarded-for") ?? "").split(",")[0].trim() || "sin-ip";
+  if (frenado(ip)) {
+    return NextResponse.json({ error: "Demasiados envíos, intenta más tarde" }, { status: 429 });
   }
 
   const { error } = await resend.emails.send({
     from: "Synaptech Contacto <contacto@synaptechspa.cl>",
     to: [DEST],
     replyTo: email,
-    subject: `[Contacto] ${empresa ? empresa + " · " : ""}${nombre}`,
-    html: html(nombre, empresa || "", email, phone || "", msg),
+    subject: `[Contacto] ${empresa ? empresa + " · " : ""}${nombre}`.replace(/[\r\n]+/g, " "),
+    html: html(esc(nombre), esc(empresa), esc(email), esc(phone), esc(msg)),
   });
 
   if (error) {
