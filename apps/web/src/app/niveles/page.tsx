@@ -3,8 +3,24 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CtaFinal from "@/components/CtaFinal";
 import { TarjetaCapsula } from "@/components/Capsulas";
-import { NIVELES, VIDEO_8BIT } from "@/content/niveles";
+import { NIVELES, VIDEO_8BIT, JEFES, MISIONES, EXTRAS_8BIT, type Episodio } from "@/content/niveles";
 import { metaPagina, SITIO } from "@/lib/seo";
+
+function Serie({ titulo, bajada, episodios }: { titulo: string; bajada: string; episodios: Episodio[] }) {
+  return (
+    <div className="mt-14 first:mt-0">
+      <h3 className="text-ink text-xl md:text-2xl font-semibold">{titulo}</h3>
+      <p className="text-text-secondary mt-2 max-w-2xl">{bajada}</p>
+      <div className="mt-6 flex gap-4 overflow-x-auto pb-3 -mx-4 px-4 sm:mx-0 sm:px-0 snap-x [scrollbar-width:thin]">
+        {episodios.map((e) => (
+          <div key={e.id} className="snap-start">
+            <TarjetaCapsula c={{ id: e.id, titulo: e.titulo, bajada: e.bajada, duracion: e.duracion, modulo: "general" }} />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 /* Página aparte y discreta (no va en el menú principal): el video 8-bit de Syna
    completo y cada nivel explicado con su versión vertical. Se llega desde
@@ -81,6 +97,20 @@ export default function Niveles() {
               ¿Y además? Tienda online, gift cards, reseñas, boletas electrónicas y más:
               están en <Link href="/funciones" className="underline underline-offset-2 hover:text-ink">todas las funciones</Link>.
             </p>
+          </div>
+        </section>
+
+        <section id="series" className="py-16 md:py-24 bg-mist scroll-mt-28">
+          <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10">
+            <h2 className="text-ink text-2xl md:text-3xl">Más partidas con Syna</h2>
+            <p className="text-text-secondary mt-3 max-w-2xl">
+              Episodios cortos en vertical, con el mismo panel de verdad. Para verlos de una pasada o mandárselos a tu equipo.
+            </p>
+            <div className="mt-12">
+              <Serie titulo="Jefes finales" bajada="Los cinco problemas de todo local, y el ataque especial de Syna contra cada uno." episodios={JEFES} />
+              <Serie titulo="Misiones del panel" bajada="Ocho tareas para sacarle el jugo a tu cuenta. También están en Misiones, dentro del panel." episodios={MISIONES} />
+              <Serie titulo="Power-ups y lecciones" bajada="Funciones nuevas y lo básico de la plata del local." episodios={EXTRAS_8BIT} />
+            </div>
           </div>
         </section>
 

@@ -89,7 +89,7 @@ export const MODULOS: Modulo[] = [
       p("app-barbero-celular", "proximaCita", "El profesional lleva su día en el celular", "Ve su próxima cita, cuántas lleva y cuánto ha generado en el día."),
       p("app-barbero-celular", "nuevaCita", "Y agenda desde ahí mismo", "Con el botón + crea una cita desde su teléfono, sin pasar por recepción."),
     ],
-    capsulas: ["tutorial-agenda-barbero", "tutorial-agenda-barbero-completo"],
+    capsulas: ["tutorial-agenda-barbero", "tutorial-agenda-barbero-completo", "tutorial-agenda-1-tu-agenda", "tutorial-agenda-2-agendar-una-cita"],
   },
   {
     id: "reserva",
@@ -103,7 +103,7 @@ export const MODULOS: Modulo[] = [
       p("reserva-3-confirmar", "datos", "Deja sus datos", "Nombre, teléfono y correo. Si quiere, su cumpleaños para recibir un regalo del club."),
       p("reserva-3-confirmar", "confirmar", "Y confirma", "La cita aparece en tu agenda en el mismo segundo."),
     ],
-    capsulas: ["presentacion-synaptech-2"],
+    capsulas: ["presentacion-synaptech-2", "reel-hito-google"],
   },
   {
     id: "asistente",
@@ -117,7 +117,7 @@ export const MODULOS: Modulo[] = [
       p("asistente-bandeja", "tomarControl", "Tomas el control cuando quieras", "Si prefieres responder tú, el asistente se hace a un lado en esa conversación."),
       p("asistente-orden", "pasos", "Tú decides qué pregunta y en qué orden", "Servicio, profesional, día y hora, nombre: prendes, apagas y ordenas cada pregunta."),
     ],
-    capsulas: ["reel-asistente-whatsapp"],
+    capsulas: ["reel-asistente-whatsapp", "reel-proveedor-meta"],
   },
   {
     id: "caja",
@@ -131,7 +131,7 @@ export const MODULOS: Modulo[] = [
       p("caja", "egreso", "Anotas lo que entra y sale", "Ingresos y egresos de efectivo, como la compra de insumos o un vuelto, quedan en la caja del día."),
       p("caja", "cerrarCaja", "Cierras y cuadras", "Al final del día cierras la caja y comparas lo esperado con lo contado."),
     ],
-    capsulas: ["capsula-1-caja", "reel-boletas-syna"],
+    capsulas: ["capsula-1-caja", "tutorial-caja-vender", "reel-boletas-syna", "facturacion-comision-partida"],
   },
   {
     id: "comisiones",

@@ -73,9 +73,14 @@ export default function ComoFunciona() {
           <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10">
             <div className="max-w-3xl mb-10">
               <p className="eyebrow mb-3">Cápsulas</p>
-              <h2 className="text-ink">Todo en video, en menos de dos minutos.</h2>
+              <h2 className="text-ink">Todo en video, en un par de minutos.</h2>
               <p className="text-text-secondary text-lg mt-4 leading-relaxed">
                 Grabadas sobre el panel de verdad. Tócalas para verlas.
+              </p>
+              <p className="text-sm mt-3">
+                <Link href="/aprende" className="text-text-secondary underline underline-offset-4 decoration-border-subtle hover:text-ink hover:decoration-ink transition-colors">
+                  Cursos completos: administración, productos y sorteos →
+                </Link>
               </p>
             </div>
             <FilaCapsulas />

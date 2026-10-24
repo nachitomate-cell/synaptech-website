@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { CAPSULAS, capsula, type Capsula } from "@/content/capsulas";
+import { CAPSULAS, capsula, posterCapsula, srcCapsula, type Capsula } from "@/content/capsulas";
 
 /* Reproductor de cápsulas: todas son verticales (9:16), así que se abren en un
    visor a pantalla completa como una historia. El video solo se descarga al
@@ -22,13 +22,24 @@ function Visor({ c, onClose }: { c: Capsula; onClose: () => void }) {
       className="fixed inset-0 z-[80] bg-black/85 backdrop-blur-sm flex items-center justify-center p-4"
       onClick={onClose}>
       <div className={`relative ${c.formato === "horizontal" ? "w-full max-w-5xl aspect-video" : "h-full max-h-[86vh] aspect-[9/16] max-w-full"}`} onClick={(e) => e.stopPropagation()}>
-        <video ref={ref} src={`/capsulas/${c.id}.mp4`} poster={`/capsulas/${c.id}.jpg`}
+        <video ref={ref} src={srcCapsula(c)} poster={posterCapsula(c)}
           controls playsInline preload="auto" className="w-full h-full rounded-2xl bg-black object-contain" />
         <button onClick={onClose} aria-label="Cerrar"
           className="absolute -top-3 -right-3 sm:-right-12 sm:top-0 w-10 h-10 rounded-full bg-white text-ink flex items-center justify-center shadow-lg">
           <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg>
         </button>
-        <p className="absolute -bottom-9 inset-x-0 text-center text-white/80 text-sm">{c.titulo} · {c.duracion}</p>
+        {c.capitulos && c.capitulos.length > 1 ? (
+          <div className="absolute top-full inset-x-0 mt-3 flex gap-2 overflow-x-auto pb-1 [scrollbar-width:thin]">
+            {c.capitulos.map((k) => (
+              <button key={k.t} onClick={() => { const v = ref.current; if (v) { v.currentTime = k.t; v.play().catch(() => {}); } }}
+                className="shrink-0 text-[13px] text-white/90 bg-white/10 hover:bg-white/20 rounded-full px-3 py-1.5 transition-colors">
+                <span className="text-white/55 tabular-nums mr-1.5">{Math.floor(k.t / 60)}:{String(Math.floor(k.t % 60)).padStart(2, "0")}</span>{k.texto}
+              </button>
+            ))}
+          </div>
+        ) : (
+          <p className="absolute -bottom-9 inset-x-0 text-center text-white/80 text-sm">{c.titulo} · {c.duracion}</p>
+        )}
       </div>
     </div>
   );
@@ -48,7 +59,7 @@ export function TarjetaCapsula({ c, compacta = false, oscuro = false }: { c: Cap
         className={`group text-left shrink-0 ${c.formato === "horizontal" ? "w-[300px] sm:w-[400px]" : compacta ? "w-[150px]" : "w-[190px] sm:w-[210px]"}`}>
         <span className={`relative block ${c.formato === "horizontal" ? "aspect-video" : "aspect-[9/16]"} rounded-2xl overflow-hidden bg-[#0d1424]`}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={`/capsulas/${c.id}.jpg`} alt="" loading="lazy" decoding="async"
+          <img src={posterCapsula(c)} alt="" loading="lazy" decoding="async"
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]" />
           <span className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/0 to-black/0" />
           <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 rounded-full bg-white/95 text-ink flex items-center justify-center shadow-xl transition-transform group-hover:scale-110">

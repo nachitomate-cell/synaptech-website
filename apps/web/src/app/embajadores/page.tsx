@@ -1,6 +1,7 @@
 import Header   from "@/components/Header";
 import Footer   from "@/components/Footer";
 import FaqSeo   from "@/components/FaqSeo";
+import { BotonCapsula } from "@/components/Capsulas";
 import { waLink } from "@/content/catalogo";
 import { EMBAJADORES, LINK_EMBAJADOR } from "@/content/embajadores";
 import { metaPagina } from "@/lib/seo";
@@ -46,6 +47,7 @@ export default function Embajadores() {
               className="mt-8 inline-flex justify-center items-center bg-ink text-white font-semibold px-7 py-4 rounded-full hover:bg-black transition-colors">
               Quiero mi código
             </a>
+            <div className="mt-6"><BotonCapsula id="reel-embajadores" texto="Míralo en video" /></div>
           </div>
         </section>
 

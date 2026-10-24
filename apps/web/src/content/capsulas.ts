@@ -10,6 +10,11 @@ export type Capsula = {
   modulo: "agenda" | "reserva" | "asistente" | "caja" | "comisiones" | "club" | "metricas" | "plata" | "general";
   /** Por defecto vertical (9:16). Las lecciones del curso son horizontales. */
   formato?: "vertical" | "horizontal";
+  /** Por defecto /capsulas/<id>.mp4 y .jpg. Los cursos de /aprende viven en Storage. */
+  src?: string;
+  poster?: string;
+  /** Saltos dentro del video (segundos), se muestran bajo el reproductor. */
+  capitulos?: { t: number; texto: string }[];
 };
 
 export const CAPSULAS: Capsula[] = [
@@ -27,6 +32,20 @@ export const CAPSULAS: Capsula[] = [
   { id: "reel-club-wallet",                titulo: "La tarjeta en el teléfono",   bajada: "Sellos en Google Wallet y Apple Wallet.", duracion: "0:32", modulo: "club" },
   { id: "leccion1-sueldo-comision-arriendo", titulo: "¿Sueldo, comisión o arriendo de sillón?", bajada: "Lección 1 del curso de gestión: cuánto IVA paga el local en cada caso.", duracion: "2:09", modulo: "plata", formato: "horizontal" },
   { id: "reel-migracion-agendapro",        titulo: "Cámbiate sin perder a nadie", bajada: "Traemos tus clientes, servicios y equipo sin costo.", duracion: "0:33", modulo: "general" },
+  /* 24-10-2026: tutoriales y reels que ya existían en 06_Videos (local de práctica o datos tapados). */
+  { id: "tutorial-caja-vender",            titulo: "Cobrar en la caja",           bajada: "Efectivo con vuelto, máquina POS y varias citas en un solo pago.", duracion: "1:15", modulo: "caja" },
+  { id: "reel-hito-google",                titulo: "Reserva desde Google Maps",   bajada: "El botón «Reservar en línea» de tu ficha, conectado a tu agenda.", duracion: "0:35", modulo: "reserva" },
+  { id: "reel-proveedor-meta",             titulo: "Proveedor de Tecnología de Meta", bajada: "Conecta el WhatsApp oficial de tu local con SynapTech.", duracion: "0:31", modulo: "asistente" },
+  { id: "reel-embajadores",                titulo: "Da 1 mes, recibe 1 mes",      bajada: "El programa de embajadores, en medio minuto.", duracion: "0:28", modulo: "general" },
+  { id: "reel-expansion-synaptech",        titulo: "De Viña al continente",       bajada: "La red de locales que hoy reserva con SynapTech.", duracion: "0:12", modulo: "general" },
+  { id: "tutorial-agenda-1-tu-agenda",     titulo: "Tu agenda en un minuto",      bajada: "Leer el día, cambiar de fecha, ver el detalle y los colores.", duracion: "0:46", modulo: "agenda", formato: "horizontal" },
+  { id: "tutorial-agenda-2-agendar-una-cita", titulo: "Agendar una cita a mano",  bajada: "Cliente, servicio, profesional y hora, desde el panel.", duracion: "0:42", modulo: "agenda", formato: "horizontal" },
+  { id: "tutorial-agenda-3-cerrar-y-cobrar", titulo: "Cerrar y cobrar una cita",  bajada: "Marcarla completada y registrar el pago.", duracion: "0:44", modulo: "agenda", formato: "horizontal" },
+  { id: "tutorial-agenda-4-bloquear-horas", titulo: "Bloquear horas o cerrar el día", bajada: "Para que nadie reserve cuando no atiendes.", duracion: "0:40", modulo: "agenda", formato: "horizontal" },
+  { id: "facturacion-comision-partida",    titulo: "Boletas con comisión partida", bajada: "La boleta del local y la de honorarios del profesional, solas en cada cita.", duracion: "2:23", modulo: "caja", formato: "horizontal" },
+  { id: "conectar-tv-paso-a-paso",         titulo: "Conecta la tele de tu local", bajada: "La agenda del día y tus ofertas en la pantalla, con un código y un QR.", duracion: "2:17", modulo: "general", formato: "horizontal" },
 ];
 
 export const capsula = (id: string) => CAPSULAS.find((c) => c.id === id);
+export const srcCapsula = (c: Capsula) => c.src ?? `/capsulas/${c.id}.mp4`;
+export const posterCapsula = (c: Capsula) => c.poster ?? `/capsulas/${c.id}.jpg`;
