@@ -17,6 +17,8 @@
 export const SIGNUP_URL = "https://bioo.cl/agenda";
 /** Mis reservas: la app de la persona que reserva (citas, sellos y premios de todos sus locales). */
 export const APP_CLIENTES = "https://mi.synaptechspa.cl";
+/** Ingresar: el panel de los dueños y su equipo. El local se resuelve con la cuenta. */
+export const APP_DUENOS = "https://app.synaptechspa.cl/";
 export const alta = (medio: string) =>
   `${SIGNUP_URL}?utm_source=synaptechspa&utm_medium=${encodeURIComponent(medio)}`;
 /** El plan Gratis se crea en la misma alta (bioo, sin asistente). */

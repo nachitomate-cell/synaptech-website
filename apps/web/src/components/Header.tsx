@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { altaIA, FAMILIAS, RUBROS, APP_CLIENTES } from "@/content/catalogo";
+import { altaIA, FAMILIAS, RUBROS, APP_CLIENTES, APP_DUENOS } from "@/content/catalogo";
 
 /* Menú al estilo Square: cada familia abre un panel ancho con todo lo que
    contiene. Los productos y rubros salen de content/catalogo.ts, el mismo
@@ -127,8 +127,10 @@ export default function Header() {
             <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
             Mis reservas
           </a>
-          <a href="https://app.synaptechspa.cl/"
-            className="px-4 py-2 rounded-full text-[15px] font-medium text-text-secondary hover:text-ink transition-colors">
+          {/* La puerta de los dueños (25-10-2026): con borde, para que no se
+              confunda con un link más del menú. */}
+          <a href={APP_DUENOS}
+            className="px-4 py-2 rounded-full border border-border-subtle text-[15px] font-semibold text-ink hover:border-ink transition-colors">
             Ingresar
           </a>
           <a href={altaIA(`header`)}
@@ -137,7 +139,14 @@ export default function Header() {
           </a>
         </div>
 
-        <button className="lg:hidden ml-auto p-2 -mr-2 text-ink" onClick={() => setMobileOpen((v) => !v)}
+        {/* En el celular "Ingresar" estaba solo al fondo del menú: un dueño
+            que llega desde el teléfono no lo encontraba. Ahora va a la vista,
+            al lado del menú (25-10-2026). */}
+        <a href={APP_DUENOS}
+          className="lg:hidden ml-auto min-[360px]:mr-0.5 px-2 min-[360px]:px-3.5 py-1.5 rounded-full border border-border-subtle text-[13px] min-[360px]:text-[14px] font-semibold text-ink whitespace-nowrap">
+          Ingresar
+        </a>
+        <button className="lg:hidden p-2 -mr-2 text-ink" onClick={() => setMobileOpen((v) => !v)}
           aria-label={mobileOpen ? "Cerrar menú" : "Abrir menú"} aria-expanded={mobileOpen}>
           <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
             {mobileOpen ? <path d="M6 6l12 12M18 6L6 18" /> : <path d="M4 7h16M4 12h16M4 17h16" />}
@@ -252,7 +261,7 @@ export default function Header() {
               className="block text-center bg-ink text-white font-semibold py-3.5 rounded-full">
               Empezar gratis
             </a>
-            <a href="https://app.synaptechspa.cl/"
+            <a href={APP_DUENOS}
               className="block text-center border border-border-subtle text-ink font-semibold py-3.5 rounded-full">
               Ingresar
             </a>
