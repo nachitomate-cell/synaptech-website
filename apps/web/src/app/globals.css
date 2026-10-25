@@ -276,4 +276,13 @@ h2 {
 .maplibregl-popup-content strong { display: block; color: #0F1A2B; font-size: 14px; line-height: 1.25; }
 .maplibregl-popup-content span { display: block; color: #5F6B7A; font-size: 12.5px; margin-top: 3px; }
 .maplibregl-popup-content a { display: inline-block; margin-top: 8px; font-weight: 600; font-size: 13px; color: #0F1A2B; border-bottom: 2px solid #9CCC3C; }
-@media (prefers-reduced-motion: reduce) { .marcador-local { transition: none; } }
+/* Varios locales encimados en pantalla: una burbuja con el número (MapaLocales). */
+.grupo-locales {
+  min-width: 46px; height: 46px; padding: 0 10px; border-radius: 9999px; border: 3px solid #fff; cursor: pointer;
+  background: #0F1A2B; color: #fff; font: 700 15px/1 var(--font-dm-sans), system-ui, sans-serif;
+  box-shadow: 0 0 0 6px rgba(156, 204, 60, .35), 0 8px 18px -6px rgba(15, 26, 43, .5);
+  transition: transform .18s ease;
+}
+.grupo-locales:hover { transform: scale(1.1); }
+.grupo-locales.activo { box-shadow: 0 0 0 4px #9CCC3C, 0 10px 22px -6px rgba(15, 26, 43, .5); }
+@media (prefers-reduced-motion: reduce) { .marcador-local, .grupo-locales { transition: none; } }
