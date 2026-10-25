@@ -26,9 +26,12 @@ const DIA = { next: { revalidate: 86400 } } as const;
 const HORA: { next: { revalidate: number; tags: string[] } } = { next: { revalidate: 3600, tags: ["directorio"] } };
 /* Países (16-10-2026): también salen los locales de Perú, Colombia y Argentina.
    Sus precios van en SU moneda y no entran a las tablas en pesos chilenos. */
-export const PAISES: Record<string, { nombre: string; moneda: string }> = {
-  CL: { nombre: "Chile", moneda: "CLP" }, PE: { nombre: "Perú", moneda: "PEN" }, CO: { nombre: "Colombia", moneda: "COP" },
-  AR: { nombre: "Argentina", moneda: "ARS" }, MX: { nombre: "México", moneda: "MXN" },
+export const PAISES: Record<string, { nombre: string; moneda: string; tz: string }> = {
+  CL: { nombre: "Chile", moneda: "CLP", tz: "America/Santiago" },
+  MX: { nombre: "México", moneda: "MXN", tz: "America/Mexico_City" },
+  PE: { nombre: "Perú", moneda: "PEN", tz: "America/Lima" },
+  AR: { nombre: "Argentina", moneda: "ARS", tz: "America/Argentina/Buenos_Aires" },
+  CO: { nombre: "Colombia", moneda: "COP", tz: "America/Bogota" },
 };
 /** "$14.000" en Chile; "S/ 45", "$35.000 COP", "$12.000 ARS" afuera. */
 export function precioEn(pais: string, n: number) {
@@ -40,6 +43,8 @@ export function precioEn(pais: string, n: number) {
 
 export type { Rubro };
 export type Servicio = { id?: string; nombre: string; precio: number | null; duracion?: number | null };
+/** Horario semanal del local (settings/general.horario): índice 0 = domingo; null = cerrado. */
+export type Horario = ([string, string] | null)[];
 /** Módulos públicos que el local usa (metricas-publicas): para insignias y el sitemap. */
 export type Modulos = { productos: number; giftcards: boolean; evento: boolean; lookbook: number };
 export type LocalDirectorio = {
@@ -75,6 +80,9 @@ export type LocalDirectorio = {
   preciosTipo: Record<string, number>;
   modulos: Modulos;
   rating: number | null; opiniones: number | null;
+  /** Para "Abierto ahora": el horario del local en su huso. null si no lo publica o la
+      tarjeta es de una sede (cada sede puede tener el suyo y no lo sabemos). */
+  horario: Horario | null;
 };
 
 export type PaginaDirectorio = { slug: string; titulo: string; bajada: string };
@@ -132,6 +140,25 @@ function titulo(s: string) {
   const letras = (s.match(/\p{L}/gu) || []).length, mays = (s.match(/\p{Lu}/gu) || []).length;
   if (!letras || mays / letras < 0.6) return s;
   return s.toLowerCase().replace(/(^|\s)(\p{L})/gu, (_, a, b) => a + b.toUpperCase());
+}
+/* Servicios escritos en mayúsculas ("CORTE DE PELO Y BARBA", Enbarvados) →
+   "Corte de Pelo y Barba". Los que ya vienen en mayúsculas y minúsculas no se tocan. */
+const MENORES = new Set(["de", "del", "y", "e", "o", "u", "con", "a", "al", "en", "la", "el", "los", "las", "para", "por", "sin", "and", "&"]);
+export function nombreServicio(s: string) {
+  const t = titulo(s.trim());
+  if (t === s.trim()) return t;
+  return t.split(/(\s+)/).map((p, i) => (i > 0 && MENORES.has(p.toLowerCase()) ? p.toLowerCase() : p)).join("");
+}
+
+/* settings/general.horario: { "0": { activo, inicio: "10:00", fin: "20:00" }, … }. */
+function leerHorario(h: unknown): Horario | null {
+  if (!h || typeof h !== "object") return null;
+  const dias: Horario = [0, 1, 2, 3, 4, 5, 6].map((d) => {
+    const x = (h as Record<string, { activo?: boolean; inicio?: string; fin?: string }>)[String(d)];
+    const ok = (v?: string) => typeof v === "string" && /^\d{1,2}:\d{2}$/.test(v);
+    return x && x.activo === true && ok(x.inicio) && ok(x.fin) ? [x.inicio!, x.fin!] : null;
+  });
+  return dias.some(Boolean) ? dias : null;
 }
 
 /* `tipo` del doc del local → filtro del directorio. Lo que no calza (estudio, otro, sin
@@ -200,7 +227,12 @@ export async function obtenerLocales(): Promise<LocalDirectorio[]> {
     ids = Object.entries(AJUSTES).map(([id, a]) => ({ id, nombre: a.nombre ?? id }));
   }
 
-  const sistema = await batchGet(ids.map((x) => `_system/${x.id}`), ["directorioPublico"]);
+  const raizLocal = (id: string) => (id === "elegance" ? "" : `tenants/${id}/`);
+  const [sistema, generales] = await Promise.all([
+    batchGet(ids.map((x) => `_system/${x.id}`), ["directorioPublico"]),
+    // El horario que el local publica en su reserva (lectura pública, como la de su página).
+    batchGet(ids.map((x) => `${raizLocal(x.id)}settings/general`), ["horario"]),
+  ]);
 
   return ids
     .filter((x) => sistema.get(`_system/${x.id}`)?.directorioPublico !== false)
@@ -234,11 +266,13 @@ export async function obtenerLocales(): Promise<LocalDirectorio[]> {
         logo: !!logoSrc, logoSrc,
         pinSrc: logo ? `/directorio-logos/${x.id}-pin.webp` : logoSrc,
         fondo: a.fondo ?? "#0f1a2b", oscuro: a.oscuro ?? true,
-        servicios: s.servicios ?? [], precioMin: s.precioMin ?? null, precioMax: s.precioMax ?? null,
+        servicios: (s.servicios ?? []).map((sv) => ({ ...sv, nombre: nombreServicio(sv.nombre) })),
+        precioMin: s.precioMin ?? null, precioMax: s.precioMax ?? null,
         preciosTipo: s.preciosTipo ?? {},
         modulos: { productos: Number(s.modulos?.productos) || 0, giftcards: s.modulos?.giftcards === true, evento: s.modulos?.evento === true, lookbook: Number(s.modulos?.lookbook) || 0 },
         rating: typeof s.rating === "number" && s.rating > 0 ? s.rating : null,
         opiniones: typeof s.totalReviews === "number" && s.totalReviews > 0 ? s.totalReviews : null,
+        horario: leerHorario(generales.get(`${raizLocal(x.id)}settings/general`)?.horario),
       };
       /* Un local con dos o más sedes sale una vez por sede: cada una en su comuna y
          su punto del mapa (Oren en Reñaca y Villa Alemana; Punto Pilates en siete
@@ -255,6 +289,7 @@ export async function obtenerLocales(): Promise<LocalDirectorio[]> {
           comuna: c, region: pais === "CL" ? (sd.region ?? base.region) : base.region,
           lat: sd.geo?.lat ?? null, lng: sd.geo?.lng ?? null,
           url: `${base.url}?sede=${encodeURIComponent(sd.id)}`,
+          horario: null,
         };
       });
     })
