@@ -1,4 +1,4 @@
-import { PLANES, ANUAL, ADICIONALES, COMPARATIVA, fmt, bolsasWaTexto } from "@/content/precios";
+import { PLANES, HOME_STUDIO, ANUAL, ADICIONALES, COMPARATIVA, fmt, bolsasWaTexto } from "@/content/precios";
 import { FAMILIAS, RUBROS, WA_NUMERO } from "@/content/catalogo";
 import { HILOS } from "@/content/comparar";
 import { COMPETIDORES, fechaDe } from "@/content/competidores";
@@ -22,6 +22,7 @@ export function seccionPlanes() {
   const adicionales = ADICIONALES.map((a) => `- ${a.nombre}: ${a.precio} + IVA${a.nota ? ` (${a.nota})` : ""}. ${a.desc}`).join("\n");
   return `## Planes y precios (netos, en pesos chilenos; se suma IVA del 19 %)
 ${planes}
+- ${HOME_STUDIO.nombre}: ${fmt(HOME_STUDIO.mes)} + IVA al mes, para quien atiende solo (1 profesional, por ejemplo un barbero independiente o un estudio en casa). Es el plan Básico a precio de una persona; desde el segundo profesional pasa al Básico. Se activa escribiéndonos por WhatsApp.
 - Plan anual: ${fmt(ANUAL.anio)} + IVA, todo el ${ANUAL.base} pagando una vez al año (equivale a ${ANUAL.equivaleMeses} meses).
 - Profesionales ilimitados en todos los planes. Sin comisión por reserva. Sin permanencia.
 - Cómo se parte (desde el 21-10-2026): el local crea su agenda solo en https://crear.synaptechspa.cl, con Syna (el asistente con IA) encendido desde el primer día y 30 días gratis del plan Pro. No pedimos tarjeta para la prueba. Al terminar elige su plan desde su panel; no se cobra nada solo. Quien solo quiere la agenda, sin IA, la crea en https://bioo.cl/agenda con 14 días gratis del plan Pro (bioo es la marca de agenda de autoservicio de SynapTech: misma plataforma, mismo equipo). Lo A MEDIDA (varias sedes, equipo grande, diseño propio) lo arma el equipo: eso va por WhatsApp. A quien nos escribe por WhatsApp, el primer mes va por nuestra cuenta (lo coordina el equipo por ahí).
@@ -106,7 +107,7 @@ ${seccionComparaciones()}
 ${seccionGuias()}
 
 ## Otros datos
-- La mudanza desde otra agenda (AgendaPro, WeiBook, AgendaYA, Fresha, una planilla) es gratis: servicios con precios y duraciones, equipo con horarios y lista de clientes. Al 4 de octubre de 2026 se habían importado 28.978 fichas de clientes.
+- La mudanza desde otra agenda (AgendaPro, WeiBook, AgendaYA, Fresha, una planilla) es gratis: servicios con precios y duraciones, equipo con horarios y lista de clientes. Al 26 de octubre de 2026 se habían importado 78.876 fichas de clientes.
 - El asistente con IA de los locales (también se llama Syna) funciona con Claude, de Anthropic.
 - La app SynapTech Studio está en App Store y Google Play, para el dueño y su equipo.
 - Programa de embajadores (/embajadores): un local que ya usa SynapTech comparte su código (ej. EL10) o su link bioo.cl/agenda?codigo=EL10; el local nuevo que llega con ese código parte con su primer mes gratis, y el embajador suma un mes gratis cuando ese local paga su primera mensualidad, sin tope. El código se pide por WhatsApp.
