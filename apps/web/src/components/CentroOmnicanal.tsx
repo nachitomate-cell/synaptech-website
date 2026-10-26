@@ -73,9 +73,13 @@ export default function CentroOmnicanal() {
                     className={n.foto ? "w-[86%] h-auto rounded-md" : n.ancho ? "w-[86%] h-auto" : "w-[62%] h-auto"} />
                 )}
                 {n.texto && (
-                  <p className="text-[clamp(6px,1.05vw,11px)] leading-tight font-semibold text-[#1d1d1f] text-center">
-                    {n.texto[0]}<br />{n.texto[1]}
-                  </p>
+                  <>
+                    {/* En celular el mosaico mide ~40 px: la dirección completa no cabe. */}
+                    <p className="sm:hidden text-[10px] leading-tight font-bold text-[#1d1d1f] text-center">Tu web</p>
+                    <p className="hidden sm:block text-[clamp(6px,1.05vw,11px)] leading-tight font-semibold text-[#1d1d1f] text-center">
+                      {n.texto[0]}<br />{n.texto[1]}
+                    </p>
+                  </>
                 )}
               </div>
             </div>
