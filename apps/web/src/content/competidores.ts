@@ -57,11 +57,7 @@ export const SYNAPTECH = {
   pro: "$49.900 + IVA",
 };
 
-/* Plan Gratis (11-10-2026): hasta 4 profesionales, para siempre, en bioo
-   (functions/lib/plan-gratis.js en la plataforma). Va APARTE de SYNAPTECH.precios:
-   las comparaciones lado a lado siguen con el Básico, que es lo que trae
-   WhatsApp, caja y club; el Gratis se nombra junto a los otros planes gratis. */
-export const SYNAPTECH_GRATIS = { tope: 4, precio: { valor: "$0", nota: "Gratis: hasta 4 profesionales, recordatorios por correo y 50 avisos por WhatsApp al mes, en bioo.cl/agenda" } as Precio };
+/* 26-10-2026: el plan Gratis ya no se publica; lo ofrece Ignacio en persona. */
 
 const [AGENDA_LATAM, IA_LATAM] = PLANES_LATAM;
 const NOSOTROS_USD: Precio = { valor: `US$${AGENDA_LATAM.precio}`, nota: `Fuera de Chile, profesionales ilimitados. En Chile, ${NOSOTROS_PRECIO.valor}` };
@@ -284,9 +280,9 @@ export const COMPETIDORES: Competidor[] = [
       { valor: "$59.900 + IVA", nota: "One + 6 integrantes" },
     ],
     notaPrecios: "Leído en su página de precios.",
-    resumen: "Si solo necesitas la agenda y son hasta cuatro, en SynapTech es gratis y en Agendapia cuesta $29.900 + IVA desde el primer profesional. En los planes pagados, hasta tres profesionales cuestan lo mismo; desde cuatro, Agendapia suma $5.000 por persona y SynapTech no.",
+    resumen: "Hasta tres profesionales cuestan lo mismo, $29.900 + IVA al mes; desde cuatro, Agendapia suma $5.000 por persona y SynapTech no.",
     filas: [
-      { tema: "Plan gratis", ellos: "Prueba de 14 días; después, $29.900 + IVA al mes", nosotros: "Gratis para siempre hasta 4 profesionales: agenda, reserva online y recordatorios, sin el asistente con IA" },
+      { tema: "Prueba gratis", ellos: "14 días; después, $29.900 + IVA al mes", nosotros: "14 días con todo el plan Pro (30 con el asistente con IA), sin tarjeta; después, $29.900 + IVA al mes" },
       { tema: "Cómo cobra", ellos: "3 integrantes incluidos; +$5.000 + IVA cada uno más", nosotros: "Por local, con profesionales ilimitados" },
       { tema: "Asistente con IA", ellos: "Pía, incluida con 400 créditos al mes; después se compran créditos", nosotros: "Syna, en el plan Pro, con 200 conversaciones al mes" },
       { tema: "WhatsApp del local", ellos: "Parte con un número de Agendapia. Si conectas el tuyo, deja de funcionar en la app de WhatsApp del celular", nosotros: "Sigue funcionando en tu teléfono mientras Syna responde y agenda" },
@@ -295,7 +291,6 @@ export const COMPETIDORES: Competidor[] = [
     ],
     cuandoEllos: "Quieres que la IA también conteste llamadas telefónicas, o emites boletas con un solo RUT.",
     cuandoNosotros: [
-      "Solo necesitas la agenda y son hasta cuatro: en SynapTech es gratis.",
       "Tienes más de tres profesionales.",
       "Quieres seguir usando el WhatsApp de tu local en tu teléfono.",
       "Tus profesionales emiten boleta de honorarios con su propio RUT: pagas por local, no por RUT.",
@@ -305,7 +300,7 @@ export const COMPETIDORES: Competidor[] = [
     verificado: "20 de octubre de 2026",
     faq: [
       { q: "¿Cuánto cuesta Agendapia?", a: "Según su página al 20 de octubre de 2026: plan One a $29.900 + IVA al mes con 3 integrantes y 1 ubicación, y $5.000 + IVA por cada integrante o ubicación adicional. Las boletas ante el SII se suman a $9.900 + IVA por RUT y las llamadas con IA a $29.900 + IVA." },
-      { q: "¿Agendapia tiene plan gratis?", a: "No: tiene una prueba gratis de 14 días sin tarjeta y después se paga el plan One. SynapTech tiene un plan Gratis para siempre con hasta 4 profesionales, en bioo.cl/agenda." },
+      { q: "¿Agendapia tiene plan gratis?", a: "No: tiene una prueba gratis de 14 días sin tarjeta y después se paga el plan One. SynapTech también tiene una prueba de 14 días con todo el plan Pro, sin tarjeta." },
       { q: "¿Qué alternativa a Agendapia mantiene el WhatsApp en mi teléfono?", a: "SynapTech: el WhatsApp del local sigue funcionando en tu celular mientras Syna responde y agenda desde ese número." },
     ],
     fuentes: [
@@ -434,7 +429,6 @@ export const COMPETIDORES: Competidor[] = [
       { tema: "Asistente con IA que agenda", ellos: null, nosotros: "Syna, incluida en el plan Pro ($49.900 + IVA)" },
       { tema: "Boletas ante el SII", ellos: "En el plan Pro, con FacturaLibre: un RUT emisor, para citas pagadas online; +$8.990 + IVA por RUT adicional", nosotros: "Adicional de $24.900 + IVA al mes: la boleta de honorarios de cada profesional y la del local salen solas al cerrar la cita" },
       { tema: "Tarjeta del club en Google Wallet y Apple Wallet", ellos: null, nosotros: "Incluida en todos los planes" },
-      { tema: "Plan gratis", ellos: "Hasta 2 profesionales y 80 citas al mes, sin WhatsApp", nosotros: "Hasta 4 profesionales, para siempre, con citas ilimitadas; recordatorios por correo y 50 avisos al mes por la vía oficial de WhatsApp (en bioo.cl/agenda)" },
     ],
     cuandoEllos: "Tu equipo es de hasta 8 profesionales y buscas el precio más bajo con recordatorios por WhatsApp.",
     cuandoNosotros: [
@@ -546,7 +540,7 @@ export const COMPETIDORES: Competidor[] = [
     notaPrecios: "Precios en dólares de su página; no dice si incluyen impuestos. Con el Pro pagado anual, que es lo que muestra por defecto, son US$30 (6 usuarios) y US$45 (9) al mes. El plan Free no trae SMS ni sincronización bidireccional del calendario.",
     resumen: "Setmore es gratis hasta 4 usuarios, y con pago anual su plan Pro es barato. No publica WhatsApp ni un asistente con IA que agende: su recepcionista es una persona, por US$99 al mes y solo en EE. UU.",
     filas: [
-      { tema: "Plan gratis", ellos: "Hasta 4 usuarios: reservas y recordatorios por correo, sin SMS", nosotros: "Hasta 4 profesionales, para siempre: reservas, recordatorios por correo y 50 avisos al mes por la vía oficial de WhatsApp (en bioo.cl/agenda)" },
+      { tema: "Plan gratis", ellos: "Hasta 4 usuarios: reservas y recordatorios por correo, sin SMS", nosotros: "Prueba de 14 días con todo el plan Pro, sin tarjeta; después, $29.900 + IVA al mes por local, con profesionales ilimitados" },
       { tema: "Cómo cobra", ellos: "Por usuario: gratis hasta 4; Pro US$12 al mes (US$5 con pago anual)", nosotros: "Por local, con profesionales ilimitados" },
       { tema: "Recordatorios", ellos: "Por correo en el plan Free; SMS en el Pro (500 al mes por miembro)", nosotros: "Confirmación y recordatorio por WhatsApp" },
       { tema: "WhatsApp", ellos: null, nosotros: "Avisos por la vía oficial de WhatsApp, y Syna responde desde el número de tu local (plan Pro)" },

@@ -148,7 +148,7 @@ export default async function LocalesPage() {
                             {n <= 2 && (
                               <p className="text-[13px] text-text-muted mt-1">
                                 Quedan cupos para posicionar tu negocio en {c.comuna}.{" "}
-                                <a href="https://bioo.cl/agenda?utm_source=directorio&utm_medium=seo&utm_campaign=cta-duenos" className="underline underline-offset-2 hover:text-ink">Súmate gratis</a>
+                                <a href="https://bioo.cl/agenda?utm_source=directorio&utm_medium=seo&utm_campaign=cta-duenos" className="underline underline-offset-2 hover:text-ink">Súmate</a>
                               </p>
                             )}
                           </li>

@@ -1,4 +1,4 @@
-import { altaIA, agendaGratis, CTA_IA, CTA_GRATIS, waLink } from "@/content/catalogo";
+import { altaIA, agendaSinIA, CTA_IA, CTA_SIN_IA, waLink } from "@/content/catalogo";
 
 /* `oscuro` (23-10-2026): el cierre del inicio en el estilo de su portada. */
 export default function CtaFinal({ origen = "home-final", oscuro = false }: { origen?: string; oscuro?: boolean }) {
@@ -23,8 +23,8 @@ export default function CtaFinal({ origen = "home-final", oscuro = false }: { or
           </a>
         </div>
         <p className="mt-5 text-sm text-text-muted">
-          No pedimos tarjeta para la prueba. Si no pagas, sigues gratis con la agenda, sin el asistente.{" "}
-          <a href={agendaGratis(`${origen}-gratis`)} className="font-semibold text-ink underline decoration-lime decoration-2 underline-offset-4 hover:decoration-ink">{CTA_GRATIS}</a>
+          No pedimos tarjeta para la prueba: no se cobra nada solo.{" "}
+          <a href={agendaSinIA(`${origen}-sin-ia`)} className="font-semibold text-ink underline decoration-lime decoration-2 underline-offset-4 hover:decoration-ink">{CTA_SIN_IA}</a>
         </p>
       </div>
     </section>
@@ -55,8 +55,8 @@ function CtaOscuro({ origen }: { origen: string }) {
           </a>
         </div>
         <p className="mt-6 text-sm text-white/45">
-          No pedimos tarjeta para la prueba. Si no pagas, sigues gratis con la agenda, sin el asistente.{" "}
-          <a href={agendaGratis(`${origen}-gratis`)} className="text-white/75 underline underline-offset-4 decoration-white/30 hover:decoration-white">{CTA_GRATIS}</a>
+          No pedimos tarjeta para la prueba: no se cobra nada solo.{" "}
+          <a href={agendaSinIA(`${origen}-sin-ia`)} className="text-white/75 underline underline-offset-4 decoration-white/30 hover:decoration-white">{CTA_SIN_IA}</a>
         </p>
       </div>
     </section>

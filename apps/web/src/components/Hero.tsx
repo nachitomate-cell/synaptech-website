@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { altaIA, agendaGratis, CTA_IA, CTA_GRATIS, waLink, A_MEDIDA_WA } from "@/content/catalogo";
+import { altaIA, agendaSinIA, CTA_IA, CTA_SIN_IA, waLink, A_MEDIDA_WA } from "@/content/catalogo";
 
 /* Cifras medidas en Firestore el 12-10-2026 (count() por local, solo lectura),
    SOLO locales vigentes: los 26 clientes de _publico/metricas.directorio + 5 en
@@ -53,7 +53,7 @@ export default function Hero() {
             </a>
           </div>
           <p className="mt-4 text-sm text-text-muted">
-            <a href={agendaGratis("home-hero-gratis")} className="font-semibold text-ink underline decoration-lime decoration-2 underline-offset-4 hover:decoration-ink">{CTA_GRATIS}</a>
+            <a href={agendaSinIA("home-hero-sin-ia")} className="font-semibold text-ink underline decoration-lime decoration-2 underline-offset-4 hover:decoration-ink">{CTA_SIN_IA}</a>
           </p>
           <ul className="flex flex-wrap gap-x-5 gap-y-2 mt-6 text-sm text-text-muted">
             {["No pedimos tarjeta para la prueba", "Profesionales ilimitados", "Te mudamos gratis"].map((t) => (
@@ -63,7 +63,7 @@ export default function Hero() {
               </li>
             ))}
           </ul>
-          {/* Autoservicio = bioo (12-10-2026): "Empezar gratis" lleva a
+          {/* Autoservicio = bioo (12-10-2026): "Probar gratis" lleva a
               bioo.cl/agenda. Se dice acá, antes del clic, para que nadie crea
               que se equivocó de página; y lo a medida queda como camino aparte. */}
           <p className="mt-6 text-[15px] text-text-secondary leading-relaxed max-w-xl">

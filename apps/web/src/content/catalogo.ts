@@ -21,14 +21,14 @@ export const APP_CLIENTES = "https://mi.synaptechspa.cl";
 export const APP_DUENOS = "https://app.synaptechspa.cl/";
 export const alta = (medio: string) =>
   `${SIGNUP_URL}?utm_source=synaptechspa&utm_medium=${encodeURIComponent(medio)}`;
-/** El plan Gratis se crea en la misma alta (bioo, sin asistente). */
-export const agendaGratis = alta;
+/** La agenda sola, sin asistente: la misma alta de bioo (14 días del Pro). */
+export const agendaSinIA = alta;
 
 /* ALTA CON ASISTENTE IA (21-10-2026). El botón principal del sitio lleva a
    crear.synaptechspa.cl: crea la agenda con Syna encendido desde el primer día
-   y 30 días gratis del plan Pro. Si no paga, la agenda sigue en el plan Gratis
-   (hasta 4 profesionales), sin el asistente. bioo (agendaGratis) queda como
-   enlace secundario: "Solo quiero la agenda gratis". Los links de embajadores
+   y 30 días gratis del plan Pro. bioo (agendaSinIA) queda como enlace
+   secundario: "Solo quiero la agenda, sin IA". 26-10-2026: el plan Gratis ya no
+   se publica; lo ofrece Ignacio en persona. Los links de embajadores
    (?codigo=) y las páginas LATAM (PaisLanding) NO usan esto: tienen su oferta.
    · rubro: barberia | salon | estetica | unas | clinica | pilates | mascotas | spa */
 export const ALTA_IA_URL = "https://crear.synaptechspa.cl/";
@@ -37,7 +37,7 @@ export const altaIA = (medio: string, rubro?: RubroAlta) =>
   `${ALTA_IA_URL}?utm_source=synaptechspa&utm_medium=${encodeURIComponent(medio)}${rubro ? `&rubro=${rubro}` : ""}`;
 /** Textos de los botones del alta. */
 export const CTA_IA = "Prueba 30 días con asistente IA";
-export const CTA_GRATIS = "Solo quiero la agenda gratis";
+export const CTA_SIN_IA = "Solo quiero la agenda, sin IA";
 /** El rubro del alta según el `origen` de un botón ("barberias-hero" → "barberia", "tiempo-unas" → "unas"). */
 const RUBRO_POR_ORIGEN: [string, RubroAlta][] = [
   ["barberias", "barberia"], ["peluquerias", "salon"], ["salones", "salon"], ["estetica", "estetica"],
