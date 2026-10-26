@@ -5,21 +5,24 @@
    con ficha de cobro (_billing), sin bajas, propuestas, demos ni cuentas
    internas o que no son agenda, + la base de marca de Kronnos (clientes
    reales de sus 3 sedes). Así quedan fuera las ~240 demos de los lotes.
-     · Locales y sedes: 41 cuentas con uso en Chile + 6 sedes extra de Punto
-       Pilates + 1 de Oren = 48 en Chile; afuera 12 (Perú: Bargo, Enbarvados,
-       Roloz, Wolf's Den ×2 · México: Anders, Bonto, Mad Dogs · Colombia:
-       El Edén, Danieri ×2 · Argentina: The Brito) → 60 → "+60", en 5 países.
-     · Fichas de clientes (users − fusionadas): 74.670 → "+70.000".
-     · Citas: 152.163, de ellas 129.737 migradas desde otros sistemas →
-       22.426 agendadas en SynapTech → "+22.000".
+     Re-medido el 26-10-2026 con el mismo criterio (antes: 23-10, +70.000 /
+     +22.000 / +4.500):
+     · Locales y sedes: 42 cuentas con uso en Chile + 6 sedes extra de Punto
+       Pilates + 1 de Oren = 49 en Chile; afuera 15 (Perú: Bargo, Enbarvados,
+       Roloz, Wolf's Den ×2 · México: Londres ×2, Montecarlo, Anders, Bonto,
+       Mad Dogs · Colombia: El Edén, Danieri ×2 · Argentina: The Brito) → 64
+       → sigue "+60", en 5 países.
+     · Fichas de clientes (users − fusionadas): 89.531 → "+85.000".
+     · Citas: 178.253, de ellas 154.442 migradas desde otros sistemas →
+       23.811 agendadas en SynapTech → "+23.000".
      · Conversaciones de WhatsApp (wa_conversaciones, 1 doc por contacto):
-       4.915 → "+4.500".
+       5.443 → "+5.000".
    Se redondean hacia abajo. Volver a medir antes de cambiarlas. */
 const CIFRAS = [
   { valor: "+60",     label: "locales y sedes", nota: "en Chile, Perú, México, Colombia y Argentina" },
-  { valor: "+70.000", label: "clientes", nota: "en las fichas de esos locales" },
-  { valor: "+22.000", label: "reservas", nota: "agendadas en SynapTech" },
-  { valor: "+4.500",  label: "conversaciones", nota: "por WhatsApp, en la bandeja de la plataforma" },
+  { valor: "+85.000", label: "clientes", nota: "en las fichas de esos locales" },
+  { valor: "+23.000", label: "reservas", nota: "agendadas en SynapTech" },
+  { valor: "+5.000",  label: "conversaciones", nota: "por WhatsApp, en la bandeja de la plataforma" },
 ];
 
 export default function Cifras() {
@@ -39,7 +42,7 @@ export default function Cifras() {
             </div>
           ))}
         </div>
-        <p className="mt-14 text-center text-[13px] text-text-muted">Medido en la plataforma el 23 de octubre de 2026.</p>
+        <p className="mt-14 text-center text-[13px] text-text-muted">Medido en la plataforma el 26 de octubre de 2026.</p>
       </div>
     </section>
   );

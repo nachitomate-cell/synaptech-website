@@ -51,9 +51,11 @@ export type Competidor = {
 export const FECHA_VERIFICACION = "9 de octubre de 2026";
 
 const NOSOTROS_PRECIO: Precio = { valor: "$29.900 + IVA", nota: "Básico, profesionales ilimitados" };
+/* Con 1 profesional va el Home Studio (26-10-2026, content/precios.ts → HOME_STUDIO). */
+const NOSOTROS_SOLO: Precio = { valor: "$14.900 + IVA", nota: "Home Studio, para quien atiende solo" };
 
 export const SYNAPTECH = {
-  precios: [NOSOTROS_PRECIO, NOSOTROS_PRECIO, NOSOTROS_PRECIO, NOSOTROS_PRECIO] as [Precio, Precio, Precio, Precio],
+  precios: [NOSOTROS_SOLO, NOSOTROS_PRECIO, NOSOTROS_PRECIO, NOSOTROS_PRECIO] as [Precio, Precio, Precio, Precio],
   pro: "$49.900 + IVA",
 };
 
@@ -83,7 +85,7 @@ export const COMPETIDORES: Competidor[] = [
       { valor: "$69.900 + IVA", nota: "Básico" },
     ],
     notaPrecios: "Leído en el selector de profesionales de su página de planes.",
-    resumen: "Con un solo profesional, AgendaPro es más barato. Desde dos, SynapTech cuesta menos, y con 9 profesionales la diferencia es de $40.000 al mes: $480.000 al año.",
+    resumen: "Con un solo profesional, el Home Studio de SynapTech ($14.900 + IVA) cuesta $1.000 menos que su Individual. Desde dos, el Básico de SynapTech cuesta menos, y con 9 profesionales la diferencia es de $40.000 al mes: $480.000 al año.",
     filas: [
       { tema: "Cómo cobra", ellos: "Por profesional (+$5.000 + IVA sobre los 2 primeros)", nosotros: "Por local, con profesionales ilimitados" },
       { tema: "Confirmaciones por WhatsApp", ellos: "50 al mes en el Básico. En una reserva de prueba llegaron desde un número de AgendaPro", nosotros: "Por la vía oficial de WhatsApp, con el nombre de tu local; bolsas desde $1.990 + IVA por 100 avisos" },
@@ -93,7 +95,7 @@ export const COMPETIDORES: Competidor[] = [
       { tema: "Marketplace", ellos: "Comisión sobre la primera reserva de cada cliente nuevo (porcentaje no publicado)", nosotros: "Directorio de locales sin comisión por reserva" },
       { tema: "Tarjeta del club en Google Wallet y Apple Wallet", ellos: null, nosotros: "Incluida en todos los planes" },
     ],
-    cuandoEllos: "Trabajas solo y buscas el plan más barato, o quieres un ecosistema grande con marketplace propio y varias integraciones.",
+    cuandoEllos: "Quieres un ecosistema grande con marketplace propio y varias integraciones.",
     cuandoNosotros: [
       "Tienes equipo: el precio no sube por cada profesional.",
       "Quieres que el asistente responda desde el WhatsApp de tu local, que sigue funcionando en tu teléfono.",
@@ -280,7 +282,7 @@ export const COMPETIDORES: Competidor[] = [
       { valor: "$59.900 + IVA", nota: "One + 6 integrantes" },
     ],
     notaPrecios: "Leído en su página de precios.",
-    resumen: "Hasta tres profesionales cuestan lo mismo, $29.900 + IVA al mes; desde cuatro, Agendapia suma $5.000 por persona y SynapTech no.",
+    resumen: "Con un profesional, SynapTech cuesta $14.900 + IVA (Home Studio) y Agendapia $29.900 + IVA. Con dos o tres cuestan lo mismo, $29.900 + IVA al mes; desde cuatro, Agendapia suma $5.000 por persona y SynapTech no.",
     filas: [
       { tema: "Prueba gratis", ellos: "14 días; después, $29.900 + IVA al mes", nosotros: "14 días con todo el plan Pro (30 con el asistente con IA), sin tarjeta; después, $29.900 + IVA al mes" },
       { tema: "Cómo cobra", ellos: "3 integrantes incluidos; +$5.000 + IVA cada uno más", nosotros: "Por local, con profesionales ilimitados" },
@@ -613,7 +615,7 @@ export const COMPETIDORES: Competidor[] = [
       { valor: "$149.000", nota: "Pro, IVA incluido" },
     ],
     notaPrecios: "Leído en su página de planes, con IVA incluido. SynapTech publica sin IVA: $29.900 + IVA son $35.581 con IVA. Zitoria no vende profesionales sueltos: al llegar al tope se sube de plan.",
-    resumen: "Con un profesional Zitoria es más barato. Con 3 a 9, el Básico de SynapTech cuesta menos. Con el asistente con IA, nuestro plan Pro ($49.900 + IVA, $59.381 con IVA) cuesta casi lo mismo que su Growth ($59.000) con 3 a 6 profesionales, y mucho menos que su Pro ($149.000) con 9.",
+    resumen: "Con un profesional cuestan casi lo mismo: $17.990 con IVA en Zitoria y $17.731 con IVA el Home Studio de SynapTech ($14.900 + IVA). Con 2, Zitoria es más barato. Con 3 a 9, el Básico de SynapTech cuesta menos. Con el asistente con IA, nuestro plan Pro ($49.900 + IVA, $59.381 con IVA) cuesta casi lo mismo que su Growth ($59.000) con 3 a 6 profesionales, y mucho menos que su Pro ($149.000) con 9.",
     filas: [
       { tema: "Cómo cobra", ellos: "Planes con tope de 1, 2, 6 o ilimitados profesionales; IVA incluido", nosotros: "Por local, con profesionales ilimitados; más IVA" },
       { tema: "Asistente con IA", ellos: "Según su centro de ayuda, prepara respuestas o, en piloto automático, responde y agenda solo; 20 a 500 acciones al mes según el plan", nosotros: "Syna responde y agenda en el WhatsApp del local; 200 conversaciones al mes en el Pro" },
@@ -622,7 +624,7 @@ export const COMPETIDORES: Competidor[] = [
       { tema: "Boletas ante el SII", ellos: "Boleta o factura de cada venta con SimpleFactura (tu cuenta, certificado y folios); costo no publicado", nosotros: "Adicional de $24.900 + IVA al mes: la boleta de honorarios de cada profesional y la del local salen solas al cerrar la cita" },
       { tema: "Tarjeta de sellos", ellos: "En la ficha del cliente, con cupón al completarla", nosotros: "En Google Wallet y Apple Wallet, en el teléfono del cliente" },
     ],
-    cuandoEllos: "Atiendes solo o son hasta 2, prefieres el precio con IVA incluido y emitir boletas de venta con SimpleFactura.",
+    cuandoEllos: "Son dos profesionales, prefieres el precio con IVA incluido y emitir boletas de venta con SimpleFactura.",
     cuandoNosotros: [
       "Son 3 o más: el precio no salta por pasar un tope de profesionales.",
       "Quieres que el asistente responda desde el WhatsApp de tu local, no desde un número de la plataforma.",

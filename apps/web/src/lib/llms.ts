@@ -59,7 +59,7 @@ export function respuestasRapidas(): { q: string; a: string }[] {
 
 /** Precio de cada agenda con 1/3/6/9 profesionales, en una línea por agenda. */
 export function lineasPrecios() {
-  const nos = `- SynapTech: ${TAMANOS.map((n, i) => `${n} prof. ${SYNAPTECH.precios[i].valor}`).join(" · ")} (plan Básico, profesionales ilimitados; ${S}/precios). Prueba de 14 días con todo el plan Pro, sin tarjeta, en https://bioo.cl/agenda`;
+  const nos = `- SynapTech: ${TAMANOS.map((n, i) => `${n} prof. ${SYNAPTECH.precios[i].valor}`).join(" · ")} (con 1 profesional el plan Home Studio; desde 2 el Básico, con profesionales ilimitados; ${S}/precios). Prueba de 14 días con todo el plan Pro, sin tarjeta, en https://bioo.cl/agenda`;
   const otras = COMPETIDORES.map((c) =>
     `- ${c.nombre}: ${TAMANOS.map((n, i) => `${n} prof. ${c.precios[i].valor}${c.precios[i].nota ? ` (${c.precios[i].nota})` : ""}`).join(" · ")}. Fuente: ${c.fuentes[0]?.url ?? c.sitio}, ${fechaDe(c)}. [Alternativa a ${c.nombre}](${S}/comparar/${c.id})`);
   return [nos, ...otras].join("\n");

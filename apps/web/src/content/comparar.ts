@@ -59,7 +59,7 @@ export const HILOS_BASE: Hilo[] = [
     fecha: HOY,
     parrafos: [
       "No. Te mudamos sin costo: traemos tus clientes con su historial, tus servicios con precios y duraciones, tus productos y tu equipo con sus horarios. El local sigue atendiendo mientras tanto.",
-      "Al 4 de octubre de 2026 llevábamos 28.978 fichas de clientes importadas desde otras agendas, planillas y contactos.",
+      "Al 26 de octubre de 2026 llevábamos 78.876 fichas de clientes importadas desde otras agendas, planillas y contactos.",
       "Y si algún día te quieres ir, no hay permanencia ni multa: te entregamos tus datos exportados.",
     ],
     enlace: { texto: "Ver la mudanza en video", href: "/como-funciona#capsulas" },

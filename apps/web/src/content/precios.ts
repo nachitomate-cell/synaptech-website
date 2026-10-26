@@ -75,6 +75,11 @@ export const PLANES: Plan[] = [
   },
 ];
 
+/* Home Studio (vigente, Ignacio 23-10-2026): el Básico para quien atiende
+   solo, $14.900 + IVA mientras haya UN profesional; desde el segundo pasa al
+   Básico. No se elige en el panel: se activa por WhatsApp. */
+export const HOME_STUDIO = { nombre: "Home Studio", mes: 14900, profesionales: 1 };
+
 export const ANUAL = { anio: 399000, equivaleMeses: 8, base: "Pro" };
 
 /* Tabla comparativa: true = incluido, false = no, string = detalle. */

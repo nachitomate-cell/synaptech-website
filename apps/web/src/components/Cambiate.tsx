@@ -1,14 +1,14 @@
 "use client";
 import { useState } from "react";
-import { AGENDAPRO, PLANES, fmt } from "@/content/precios";
+import { AGENDAPRO, HOME_STUDIO, PLANES, fmt } from "@/content/precios";
 import { waLink } from "@/content/catalogo";
 import { BotonCapsula } from "./Capsulas";
 
 /* "Cámbiate desde AgendaPro": mudanza sin costo + comparación de precio por
    número de profesionales. Los precios de AgendaPro salen de
    content/precios.ts (AGENDAPRO), con su fuente y fecha a la vista: si se
-   publican, se publican verificables. Con 1 profesional AgendaPro es más
-   barato, y la tabla lo dice tal cual. */
+   publican, se publican verificables. Con 1 profesional se compara contra
+   el Home Studio ($14.900 + IVA, 26-10-2026); desde 2, contra el Básico. */
 
 const MUDANZA = [
   "Tus clientes con su historial",
@@ -19,7 +19,8 @@ const MUDANZA = [
 
 export default function Cambiate() {
   const [n, setN] = useState(6);
-  const nuestro = PLANES[0].mes;
+  const solo = n === HOME_STUDIO.profesionales;
+  const nuestro = solo ? HOME_STUDIO.mes : PLANES[0].mes;
   const suyo = AGENDAPRO.precio(n);
   const dif = suyo - nuestro;
 
@@ -31,7 +32,7 @@ export default function Cambiate() {
           <h2 className="text-ink">¿Vienes de AgendaPro u otra agenda? Te mudamos gratis.</h2>
           <p className="text-text-secondary text-lg mt-5 leading-relaxed">
             Traemos todo lo que tienes y tu local sigue atendiendo mientras tanto. Ya
-            migramos casi 29 mil fichas de clientes.
+            migramos más de 75 mil fichas de clientes.
           </p>
           <ul className="mt-7 grid sm:grid-cols-2 gap-3">
             {MUDANZA.map((m) => (
@@ -50,7 +51,7 @@ export default function Cambiate() {
             </a>
             <BotonCapsula id="reel-migracion-agendapro" texto="Así es la mudanza" />
           </div>
-          <p className="text-xs text-text-muted mt-4">28.978 fichas de clientes importadas a la plataforma al 4 de octubre de 2026.</p>
+          <p className="text-xs text-text-muted mt-4">78.876 fichas de clientes importadas a la plataforma al 26 de octubre de 2026.</p>
         </div>
 
         <div className="rounded-[28px] bg-ink text-white p-7 sm:p-10">
@@ -73,17 +74,17 @@ export default function Cambiate() {
               <p className="text-xs text-white/50 mt-1">+ IVA al mes</p>
             </div>
             <div className="rounded-2xl bg-lime text-ink p-5">
-              <p className="text-sm text-ink/70">SynapTech Básico</p>
+              <p className="text-sm text-ink/70">SynapTech {solo ? HOME_STUDIO.nombre : PLANES[0].nombre}</p>
               <p className="font-display font-bold text-3xl tracking-tight mt-1">{fmt(nuestro)}</p>
-              <p className="text-xs text-ink/60 mt-1">+ IVA al mes, con profesionales ilimitados</p>
+              <p className="text-xs text-ink/60 mt-1">{solo ? "+ IVA al mes, para quien atiende solo" : "+ IVA al mes, con profesionales ilimitados"}</p>
             </div>
           </div>
 
           <p className="mt-6 text-lg leading-snug min-h-[3.5rem]">
-            {dif > 0 ? (
-              <>Con {n} profesionales te ahorras <span className="text-lime font-bold">{fmt(dif)} al mes</span>, {fmt(dif * 12)} al año.</>
+            {solo ? (
+              <>Si trabajas solo, el plan {HOME_STUDIO.nombre} cuesta <span className="text-lime font-bold">{fmt(HOME_STUDIO.mes)} + IVA</span>, con todo el Básico. Desde 2 profesionales, SynapTech no cobra por cada uno.</>
             ) : (
-              <>Si trabajas solo, el plan Individual de AgendaPro cuesta menos. Desde 2 profesionales, SynapTech no cobra por cada uno.</>
+              <>Con {n} profesionales te ahorras <span className="text-lime font-bold">{fmt(dif)} al mes</span>, {fmt(dif * 12)} al año.</>
             )}
           </p>
           <p className="text-xs text-white/45 mt-5 leading-relaxed">
