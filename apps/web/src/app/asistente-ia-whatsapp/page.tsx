@@ -10,6 +10,7 @@ import { FilaCapsulas } from "@/components/Capsulas";
 import { MODULOS } from "@/content/recorrido";
 import { FAQ_ASISTENTE } from "@/content/faq-rubros";
 import { metaPagina } from "@/lib/seo";
+import VideoSyna from "@/components/VideoSyna";
 
 /* Página propia del asistente (09-10-2026). "chatbot WhatsApp para agendar
    citas" y "sistema de reservas por WhatsApp" tienen demanda en Chile y hoy
@@ -43,6 +44,11 @@ export default function AsistentePage() {
           mensajeWa="Hola, quiero ver el asistente de WhatsApp de SynapTech"
           escritorio={{ src: "/panel/clinica-asistente.webp", alt: "Bandeja con el asistente pidiendo datos y agendando a una clienta por WhatsApp", w: 2880, h: 1800 }}
         />
+
+        {/* El video de Syna (26-10-2026). */}
+        <section className="py-16 md:py-24 bg-[#05080D] px-4 sm:px-6">
+          <VideoSyna oscuro titulo="Mírala trabajar." bajada="Responde, ofrece horas reales y deja la cita agendada, desde el número de tu local." />
+        </section>
 
         <Dolores titulo="Lo que hace Syna por tu local." items={DOLORES} />
 

@@ -17,7 +17,7 @@ const ANCHO = 1000, ALTO = 620;
 
 type Nodo = { etq: string; x: number; y: number; img?: string; foto?: boolean; ancho?: boolean; texto?: [string, string] };
 const NODOS: Nodo[] = [
-  { etq: "WhatsApp", img: "/integraciones/whatsapp.svg", x: 180, y: 150 },
+  { etq: "WhatsApp", img: "/hub/whatsapp.webp", x: 180, y: 150 },
   { etq: "Instagram", img: "/integraciones/instagram.png", x: 385, y: 62 },
   { etq: "Google Maps", img: "/integraciones/google-maps.svg", x: 615, y: 62 },
   { etq: "Reserva web", texto: ["tulocal", ".synaptechspa.cl"], x: 820, y: 150 },
