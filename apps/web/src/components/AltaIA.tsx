@@ -1,6 +1,9 @@
-import { altaIA, agendaGratis, CTA_IA, CTA_GRATIS, waLink, type RubroAlta } from "@/content/catalogo";
+import { altaIA, agendaSinIA, CTA_IA, CTA_SIN_IA, waLink, type RubroAlta } from "@/content/catalogo";
 import { CIFRAS_IA, PRO_IA, type EjemploChat } from "@/content/alta-ia";
 import { SITIO } from "@/lib/seo";
+import { PLANES, fmt } from "@/content/precios";
+
+const BASICO = PLANES.find((p) => p.id === "basico")!;
 
 /* Piezas de las páginas del alta con asistente IA (/agenda-con-asistente-ia y
    /agenda-con-ia/...). Todo lo que afirman está en content/alta-ia.ts. */
@@ -8,7 +11,7 @@ import { SITIO } from "@/lib/seo";
 const BOTON = "inline-flex justify-center items-center text-center bg-ink text-white font-semibold px-7 py-4 rounded-full hover:bg-black transition-colors";
 const ENLACE = "font-semibold text-ink underline decoration-lime decoration-2 underline-offset-4 hover:decoration-ink";
 
-/** Botón principal + "Solo quiero la agenda gratis". */
+/** Botón principal + "Solo quiero la agenda, sin IA". */
 export function BotonesIA({ origen, rubro, centrado = false }: { origen: string; rubro?: RubroAlta; centrado?: boolean }) {
   return (
     <div className={centrado ? "text-center" : ""}>
@@ -21,7 +24,7 @@ export function BotonesIA({ origen, rubro, centrado = false }: { origen: string;
       </div>
       <p className="mt-4 text-sm text-text-muted">
         No pedimos tarjeta para la prueba.{" "}
-        <a href={agendaGratis(`${origen}-gratis`)} className={ENLACE}>{CTA_GRATIS}</a>
+        <a href={agendaSinIA(`${origen}-sin-ia`)} className={ENLACE}>{CTA_SIN_IA}</a>
       </p>
     </div>
   );
@@ -138,13 +141,13 @@ export function Despues30({ origen, rubro }: { origen: string; rubro?: RubroAlta
             <a href={altaIA(`${origen}-pro`, rubro)} className="mt-6 inline-flex justify-center items-center text-center bg-lime text-ink font-semibold px-6 py-3.5 rounded-full hover:bg-white transition-colors">{CTA_IA}</a>
           </article>
           <article className="rounded-[28px] bg-white p-7 sm:p-8">
-            <p className="text-accent text-xs font-semibold uppercase tracking-[0.12em]">O sigues gratis</p>
-            <h3 className="font-display font-bold text-3xl tracking-tight mt-1 text-ink">Plan Gratis</h3>
-            <p className="mt-4"><span className="font-display font-bold text-[34px] tracking-tight text-ink">$0</span> <span className="text-text-muted text-sm">para siempre</span></p>
+            <p className="text-accent text-xs font-semibold uppercase tracking-[0.12em]">O sin el asistente</p>
+            <h3 className="font-display font-bold text-3xl tracking-tight mt-1 text-ink">Plan Básico</h3>
+            <p className="mt-4"><span className="font-display font-bold text-[34px] tracking-tight text-ink">{fmt(BASICO.mes)}</span> <span className="text-text-muted text-sm">+ IVA / mes por local</span></p>
             <p className="text-text-secondary mt-4 leading-relaxed">
-              Si no pagas, tu agenda sigue funcionando gratis, hasta 4 profesionales, sin el asistente.
+              La agenda, la reserva online, la caja y el club, con profesionales ilimitados. Lo eliges desde tu panel; no se cobra nada solo.
             </p>
-            <a href={agendaGratis(`${origen}-gratis`)} className={`mt-6 inline-block ${ENLACE}`}>{CTA_GRATIS}</a>
+            <a href={agendaSinIA(`${origen}-sin-ia`)} className={`mt-6 inline-block ${ENLACE}`}>{CTA_SIN_IA}</a>
           </article>
         </div>
       </div>

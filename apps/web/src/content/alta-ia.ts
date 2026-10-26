@@ -5,8 +5,7 @@ import type { LocalDirectorio } from "@/lib/directorio";
 
 /* Páginas "agenda con asistente de IA" por rubro y ciudad (21-10-2026).
    Llevan al alta con Syna encendido: crear.synaptechspa.cl, 30 días gratis del
-   plan Pro; si no paga, la agenda sigue en el plan Gratis (hasta 4
-   profesionales) sin el asistente.
+   plan Pro. 26-10-2026: el plan Gratis ya no se publica; lo ofrece Ignacio en persona.
 
    REGLAS (mismas que content/comparar.ts y content/competidores.ts):
    - Cifras: SOLO las de CIFRAS_IA, siempre con su fecha. Nada de "miles de
@@ -61,7 +60,7 @@ export type RubroIA = {
 
 /* Preguntas que valen para todos los rubros (se suman a las de cada uno). */
 const faqComun = (tuLocal: string): Pregunta[] => [
-  { q: "¿Qué pasa cuando terminan los 30 días?", a: `Eliges: pagas el plan Pro, ${PRO_IA.precio}, y Syna sigue atendiendo, o sigues gratis con la agenda de ${tuLocal} (plan Gratis, hasta 4 profesionales), sin el asistente. No pedimos tarjeta para la prueba.` },
+  { q: "¿Qué pasa cuando terminan los 30 días?", a: `Eliges tu plan: el Pro, ${PRO_IA.precio}, y Syna sigue atendiendo, o el Básico, $29.900 + IVA, con la agenda de ${tuLocal} sin el asistente. No se cobra nada solo: no pedimos tarjeta para la prueba. Antes de que termine te escribimos para que elijas.` },
   { q: "¿Escribe desde mi número de WhatsApp?", a: `Sí. Syna responde desde el número de ${tuLocal}, que sigue funcionando en tu teléfono. Vinculas tu WhatsApp escaneando un QR y puedes tomar el control de cualquier chat cuando quieras.` },
 ];
 
@@ -230,7 +229,7 @@ export const RUBROS_IA: RubroIA[] = [
       ] },
     ],
     faq: [
-      { q: "¿Sirve si trabajo sola?", a: "Sí. Syna responde mientras trabajas y te agenda en tus horas libres. Si al terminar los 30 días no pagas, sigues gratis con la agenda, sin el asistente." },
+      { q: "¿Sirve si trabajo sola?", a: "Sí. Syna responde mientras trabajas y te agenda en tus horas libres. Pruébalo 30 días gratis, sin tarjeta, y al terminar eliges tu plan." },
       { q: "¿Cuánto cuesta el asistente para mi salón de uñas?", a: `Viene en el plan Pro, ${PRO_IA.precio} por local, con ${PRO_IA.conversaciones} conversaciones al mes. Los primeros 30 días son gratis.` },
       { q: "¿Respeta la duración de cada servicio?", a: "Sí. Ofrece las horas libres según tu agenda real, así un set largo no se agenda en un espacio corto." },
       ...faqComun("tu salón de uñas"),

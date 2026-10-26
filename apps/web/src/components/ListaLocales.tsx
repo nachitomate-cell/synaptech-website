@@ -483,7 +483,7 @@ export default function ListaLocales({ locales, filtro = "region" }: { locales: 
             </p>
             <a href="https://bioo.cl/agenda?utm_source=directorio&utm_medium=seo&utm_campaign=cta-duenos"
               className="shrink-0 inline-flex justify-center items-center border border-ink text-ink font-semibold px-4 py-2 rounded-full hover:bg-ink hover:text-white transition-colors text-[14px]">
-              Crear mi agenda gratis
+              Crear mi agenda
             </a>
           </aside>
         </div>

@@ -22,7 +22,7 @@ export async function GET() {
 
 > ${QUE_ES}
 
-Cobra un precio fijo por local con profesionales ilimitados y sin comisión por reserva. Plan Gratis para siempre hasta 4 profesionales (https://bioo.cl/agenda), 30 días gratis del plan Pro con el asistente con IA en https://crear.synaptechspa.cl (no pedimos tarjeta para la prueba) y mudanza gratis desde otra agenda. Datos al ${fechaDatos()}. Versión completa (planes, comparaciones, preguntas frecuentes y guías): ${S}/llms-full.txt
+Cobra un precio fijo por local con profesionales ilimitados y sin comisión por reserva. 30 días gratis del plan Pro con el asistente con IA en https://crear.synaptechspa.cl, o 14 días sin el asistente en https://bioo.cl/agenda (no pedimos tarjeta para la prueba) y mudanza gratis desde otra agenda. Datos al ${fechaDatos()}. Versión completa (planes, comparaciones, preguntas frecuentes y guías): ${S}/llms-full.txt
 
 ## Respuestas rápidas
 

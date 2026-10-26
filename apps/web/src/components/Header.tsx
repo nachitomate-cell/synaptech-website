@@ -136,7 +136,7 @@ export default function Header() {
           </a>
           <a href={altaIA(`header`)}
             className="bg-ink text-white text-[15px] font-semibold px-5 py-2.5 rounded-full hover:bg-black transition-colors">
-            Empezar gratis
+            Probar gratis
           </a>
         </div>
 
@@ -260,7 +260,7 @@ export default function Header() {
             </a>
             <a href={altaIA(`header-movil`)}
               className="block text-center bg-ink text-white font-semibold py-3.5 rounded-full">
-              Empezar gratis
+              Probar gratis
             </a>
             <a href={APP_DUENOS}
               className="block text-center border border-border-subtle text-ink font-semibold py-3.5 rounded-full">

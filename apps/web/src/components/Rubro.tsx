@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { altaIA, agendaGratis, rubroDeOrigen, CTA_IA, CTA_GRATIS, waLink, type RubroAlta } from "@/content/catalogo";
+import { altaIA, agendaSinIA, rubroDeOrigen, CTA_IA, CTA_SIN_IA, waLink, type RubroAlta } from "@/content/catalogo";
 
 /* Piezas de las páginas por rubro (/barberias, /estetica). Las imágenes son
    capturas reales del panel con un local ficticio (ver content/recorrido.ts). */
@@ -31,7 +31,7 @@ export function HeroRubro({ eyebrow, titulo, bajada, origen, escritorio, celular
           </div>
           <p className="mt-4 text-sm text-text-muted">
             No pedimos tarjeta para la prueba.{" "}
-            <a href={agendaGratis(`${origen}-gratis`)} className="font-semibold text-ink underline decoration-lime decoration-2 underline-offset-4 hover:decoration-ink">{CTA_GRATIS}</a>
+            <a href={agendaSinIA(`${origen}-sin-ia`)} className="font-semibold text-ink underline decoration-lime decoration-2 underline-offset-4 hover:decoration-ink">{CTA_SIN_IA}</a>
           </p>
         </div>
         <div className={`relative ${celular ? "pb-[10%] pl-[10%]" : ""}`}>

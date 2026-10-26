@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { altaIA, agendaGratis, CTA_IA, CTA_GRATIS, waLink, A_MEDIDA_WA } from "@/content/catalogo";
+import { altaIA, agendaSinIA, CTA_IA, CTA_SIN_IA, waLink, A_MEDIDA_WA } from "@/content/catalogo";
 import CentroOmnicanal from "@/components/CentroOmnicanal";
 
 /* Portada del inicio al estilo de la página de alianza (/beneficios/fibra),
@@ -47,7 +47,7 @@ export default function HeroOscuro() {
         </p>
         {/* Autoservicio = bioo (12-10-2026): se avisa antes del clic. */}
         <p className="mt-2 text-sm text-white/45">
-          <a href={agendaGratis("home-hero-gratis")} className="text-white/75 underline underline-offset-4 decoration-white/30 hover:decoration-white">{CTA_GRATIS}</a>
+          <a href={agendaSinIA("home-hero-sin-ia")} className="text-white/75 underline underline-offset-4 decoration-white/30 hover:decoration-white">{CTA_SIN_IA}</a>
           {" "}en bioo, nuestra agenda de autoservicio ·{" "}
           <a href={A_MEDIDA_WA} target="_blank" rel="noopener noreferrer" className="text-white/75 underline underline-offset-4 decoration-white/30 hover:decoration-white whitespace-nowrap">varias sedes, a medida</a>
         </p>

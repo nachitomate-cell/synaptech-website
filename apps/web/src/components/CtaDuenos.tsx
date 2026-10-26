@@ -4,7 +4,7 @@ const UTM = "utm_source=directorio&utm_medium=seo&utm_campaign=cta-duenos";
 
 /* Para dueños de locales, en el directorio: discreto, al final de cada zona.
    Quien busca dónde cortarse el pelo no lo necesita ver arriba; el dueño que
-   llegó buscando su comuna, sí. Dos salidas: el alta gratis en bioo y hablar
+   llegó buscando su comuna, sí. Dos salidas: el alta en bioo y hablar
    con SynapTech. */
 export default function CtaDuenos({ zona, compacto = false }: { zona: string; compacto?: boolean }) {
   const texto = `¿Tienes una barbería, peluquería, spa o centro estético en ${zona}? Súmate al directorio y posiciona tu negocio en Google con agenda online 24/7.`;
@@ -12,7 +12,7 @@ export default function CtaDuenos({ zona, compacto = false }: { zona: string; co
     <div className="flex flex-wrap gap-2">
       <a href={`https://bioo.cl/agenda?${UTM}`}
         className="inline-flex items-center bg-lime text-ink font-semibold px-4 py-2 rounded-full hover:brightness-95 text-[14px]">
-        Crear mi agenda gratis
+        Crear mi agenda
       </a>
       {/* WhatsApp no lleva UTM: la marca viaja en el texto para saber de dónde vino. */}
       <a href={waLink(`Hola, tengo un local en ${zona} y quiero aparecer en el directorio de SynapTech (vengo de /locales)`)} target="_blank" rel="noopener noreferrer"

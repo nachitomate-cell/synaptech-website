@@ -1,5 +1,5 @@
 import { PLANES, ANUAL, ADICIONALES, fmt } from "@/content/precios";
-import { COMPETIDORES, SYNAPTECH, SYNAPTECH_GRATIS, SYNAPTECH_USD, competidor, fechaDe, faqDe, queEsDe, type Competidor } from "@/content/competidores";
+import { COMPETIDORES, SYNAPTECH, SYNAPTECH_USD, competidor, fechaDe, faqDe, queEsDe, type Competidor } from "@/content/competidores";
 import { PLANES_LATAM, SEDE_ADICIONAL_LATAM, cuposWhatsApp } from "@/content/paises";
 import { FUNCIONES } from "@/content/funciones";
 import { TAMANOS, precioFaqDe, respuestaMasBarata, ultimaVerificacionTexto } from "@/lib/mercado";
@@ -38,7 +38,7 @@ export function respuestasRapidas(): { q: string; a: string }[] {
     { q: "¿Qué es SynapTech?", a: QUE_ES },
     {
       q: "¿Cuánto cuesta SynapTech?",
-      a: `${PLANES.map((p) => `${p.nombre} ${fmt(p.mes)} + IVA`).join(", ")} al mes por local, con profesionales ilimitados, sin comisión por reserva y sin permanencia. Plan anual: ${fmt(ANUAL.anio)} + IVA (equivale a ${ANUAL.equivaleMeses} meses del ${ANUAL.base}). Plan Gratis para siempre hasta ${SYNAPTECH_GRATIS.tope} profesionales en https://bioo.cl/agenda, y 30 días gratis del plan Pro, con el asistente con IA, creando la agenda en https://crear.synaptechspa.cl (no pedimos tarjeta para la prueba; si no paga, sigue en el plan Gratis sin el asistente). Fuera de Chile: ${SYNAPTECH_USD.precios[0].valor} al mes, o ${SYNAPTECH_USD.ia} con el asistente con IA. Detalle: ${S}/precios`,
+      a: `${PLANES.map((p) => `${p.nombre} ${fmt(p.mes)} + IVA`).join(", ")} al mes por local, con profesionales ilimitados, sin comisión por reserva y sin permanencia. Plan anual: ${fmt(ANUAL.anio)} + IVA (equivale a ${ANUAL.equivaleMeses} meses del ${ANUAL.base}). 30 días gratis del plan Pro, con el asistente con IA, creando la agenda en https://crear.synaptechspa.cl, o 14 días sin el asistente en https://bioo.cl/agenda (no pedimos tarjeta para la prueba). Fuera de Chile: ${SYNAPTECH_USD.precios[0].valor} al mes, o ${SYNAPTECH_USD.ia} con el asistente con IA. Detalle: ${S}/precios`,
     },
     {
       q: "¿Cuál es una buena alternativa a AgendaPro en Chile?",
@@ -59,7 +59,7 @@ export function respuestasRapidas(): { q: string; a: string }[] {
 
 /** Precio de cada agenda con 1/3/6/9 profesionales, en una línea por agenda. */
 export function lineasPrecios() {
-  const nos = `- SynapTech: ${TAMANOS.map((n, i) => `${n} prof. ${SYNAPTECH.precios[i].valor}`).join(" · ")} (plan Básico, profesionales ilimitados; ${S}/precios). Plan Gratis: $0 hasta ${SYNAPTECH_GRATIS.tope} profesionales, recordatorios por correo y 50 avisos por WhatsApp al mes, en https://bioo.cl/agenda`;
+  const nos = `- SynapTech: ${TAMANOS.map((n, i) => `${n} prof. ${SYNAPTECH.precios[i].valor}`).join(" · ")} (plan Básico, profesionales ilimitados; ${S}/precios). Prueba de 14 días con todo el plan Pro, sin tarjeta, en https://bioo.cl/agenda`;
   const otras = COMPETIDORES.map((c) =>
     `- ${c.nombre}: ${TAMANOS.map((n, i) => `${n} prof. ${c.precios[i].valor}${c.precios[i].nota ? ` (${c.precios[i].nota})` : ""}`).join(" · ")}. Fuente: ${c.fuentes[0]?.url ?? c.sitio}, ${fechaDe(c)}. [Alternativa a ${c.nombre}](${S}/comparar/${c.id})`);
   return [nos, ...otras].join("\n");
@@ -94,8 +94,8 @@ ${FUNCIONES.map((f) => `- [${f.nombre}](${S}/funciones/${f.slug})`).join("\n")}
 
 export const CONTACTO = `- WhatsApp: +56 9 8356 8212
 - Correo: hola@synaptechspa.cl
-- Crear tu agenda con el asistente con IA (30 días gratis del plan Pro; si no pagas, sigue en el plan Gratis sin el asistente): https://crear.synaptechspa.cl
-- Solo la agenda gratis, sin IA (plan Gratis hasta 4 profesionales): https://bioo.cl/agenda
+- Crear tu agenda con el asistente con IA (30 días gratis del plan Pro, sin tarjeta): https://crear.synaptechspa.cl
+- Solo la agenda, sin IA (14 días gratis del plan Pro, sin tarjeta): https://bioo.cl/agenda
 - A medida (varias sedes, equipo grande): WhatsApp +56 9 8356 8212
 - Instagram: https://www.instagram.com/synaptechspa
 - YouTube (cápsulas de cada módulo): https://www.youtube.com/@synaptechspa

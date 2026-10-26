@@ -28,7 +28,7 @@ const QUE_HACE: Dolor[] = [
 const FAQ: Pregunta[] = [
   { q: "¿Qué es la agenda con asistente de IA?", a: "Es tu agenda online de SynapTech con Syna encendido desde el primer día: un asistente que responde tu WhatsApp, ofrece las horas libres reales de cada profesional y deja la cita agendada." },
   { q: "¿Cuánto cuesta?", a: `Los primeros 30 días son gratis, con todo el plan Pro. Después, el plan Pro cuesta ${PRO_IA.precio} por local, con ${PRO_IA.conversaciones} conversaciones al mes incluidas.` },
-  { q: "¿Qué pasa si no pago al terminar la prueba?", a: "Tu agenda sigue gratis en el plan Gratis, hasta 4 profesionales, sin el asistente. No pedimos tarjeta para la prueba." },
+  { q: "¿Qué pasa si no pago al terminar la prueba?", a: "No se cobra nada solo: no pedimos tarjeta para la prueba. Antes de que termine te escribimos para que elijas tu plan." },
   { q: "¿Escribe desde mi número de WhatsApp?", a: "Sí. Vinculas tu WhatsApp escaneando un QR y Syna responde desde el número de tu local, que sigue funcionando en tu teléfono. Puedes tomar el control de cualquier chat." },
   { q: "¿Puede inventar precios u horarios?", a: "No. Responde con tu catálogo y la agenda real de cada profesional. Si algo se complica, pasa la conversación a una persona y avisa." },
   { q: "¿Qué inteligencia artificial usa?", a: "Syna funciona con Claude, de Anthropic." },
@@ -42,7 +42,7 @@ export default function Pagina() {
         <HeroIA
           eyebrow="Agenda + asistente de IA para WhatsApp"
           titulo="Crea tu agenda con asistente de IA. 30 días gratis."
-          bajada="Syna responde el WhatsApp de tu local, ofrece tus horas libres reales y agenda por ti. Si al terminar no pagas, sigues gratis con la agenda, sin el asistente."
+          bajada="Syna responde el WhatsApp de tu local, ofrece tus horas libres reales y agenda por ti. No pedimos tarjeta para la prueba."
           origen="ia-landing"
           chat={RUBROS_IA[0].ejemplos[0]}
         />
