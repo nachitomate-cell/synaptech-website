@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { altaIA, agendaGratis, CTA_IA, CTA_GRATIS, waLink, A_MEDIDA_WA } from "@/content/catalogo";
+import CentroOmnicanal from "@/components/CentroOmnicanal";
 
 /* Portada del inicio al estilo de la página de alianza (/beneficios/fibra),
    pedida por Ignacio el 23-10-2026: "te quedó muy bueno ese diseño estilo
@@ -52,8 +53,12 @@ export default function HeroOscuro() {
         </p>
       </div>
 
-      {/* Vitrina: la agenda del panel, cortada por el borde inferior. */}
-      <div className="relative max-w-5xl mx-auto px-4 sm:px-6 mt-16 md:mt-20">
+      {/* Los canales llegan a Syna y bajan a la agenda (26-10-2026). */}
+      <CentroOmnicanal />
+
+      {/* Vitrina: la agenda del panel, cortada por el borde inferior. La línea
+          de datos del centro omnicanal termina justo en su borde superior. */}
+      <div className="relative max-w-5xl mx-auto px-4 sm:px-6">
         <div className="hero-entra relative rounded-t-[22px] sm:rounded-t-[28px] border border-b-0 border-white/12 bg-white/[.04] p-2 sm:p-3 pb-0 sm:pb-0 shadow-[0_-30px_80px_-20px_rgba(156,204,60,.25)]">
           <Image src="/panel/agenda-escritorio.webp" alt="Agenda del día con tres profesionales en el panel de SynapTech"
             width={2880} height={1800} priority sizes="(min-width: 1024px) 980px, 94vw"

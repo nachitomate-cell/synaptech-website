@@ -20,6 +20,7 @@ import { metaPagina } from "@/lib/seo";
 import VienesDe from "@/components/VienesDe";
 import VelocidadVideo from "@/components/VelocidadVideo";
 import AvisoPais from "@/components/AvisoPais";
+import VideoSyna, { VideoSynaJsonLd } from "@/components/VideoSyna";
 
 export const metadata = metaPagina({
   title: "SynapTech: agenda online, cobros y WhatsApp con IA",
@@ -46,6 +47,11 @@ export default function Home() {
       <AvisoPais />
       <main>
         <HeroOscuro />
+        {/* El video de Syna (26-10-2026), pegado a la portada oscura. */}
+        <VideoSynaJsonLd url="https://www.synaptechspa.cl/syna" />
+        <section id="video-syna" className="bg-[#05080D] pt-16 md:pt-24 pb-20 md:pb-28 px-4 sm:px-6">
+          <VideoSyna oscuro titulo="Mira a Syna en acción." bajada="Un minuto y medio: los canales de tu local, Syna agendando sola y todo cayendo en una sola agenda." />
+        </section>
         <TiraPortada />
         <Cifras />
         <Confianza />

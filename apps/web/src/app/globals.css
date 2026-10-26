@@ -263,6 +263,31 @@ h2 {
   .hero-entra, .hero-flota { animation: none; }
 }
 
+/* ── Centro omnicanal (CentroOmnicanal.tsx) ───────────────────────────────
+   Orden, igual que en el video pitch: aparece Syna → los canales saltan a su
+   lugar → las líneas se trazan hacia ella → los datos viajan sin parar por las
+   líneas y bajan a la agenda. Las líneas usan pathLength=1: dasharray/offset
+   van en fracciones del largo. */
+@keyframes hub-aparece { from { opacity: 0; transform: translateY(14px) scale(.96); filter: blur(8px); } to { opacity: 1; transform: none; filter: none; } }
+@keyframes hub-nodo { 0% { opacity: 0; transform: scale(.55); } 70% { opacity: 1; transform: scale(1.06); } 100% { opacity: 1; transform: scale(1); } }
+@keyframes hub-linea { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@keyframes hub-flujo { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -1; } }
+@keyframes hub-flujo-ver { from { opacity: 0; } to { opacity: 1; } }
+@keyframes hub-pulso { 0%, 100% { opacity: .55; transform: scale(.92); } 50% { opacity: 1; transform: scale(1.06); } }
+.hub-aparece { animation: hub-aparece .9s cubic-bezier(.2,.8,.2,1) both; }
+.hub-nodo { animation: hub-nodo .7s cubic-bezier(.3,1.4,.5,1) both; }
+.hub-linea { stroke-dasharray: 1; stroke-dashoffset: 1; animation: hub-linea .9s cubic-bezier(.65,0,.35,1) forwards; }
+/* Un punto de datos cada 25 % del largo; viaja del canal hacia Syna. */
+.hub-flujo { stroke-dasharray: .001 .249; opacity: 0;
+  animation: hub-flujo-ver .4s ease-out forwards, hub-flujo 2.6s linear infinite; }
+.hub-flujo-rapido { animation-duration: .4s, 1.6s; }
+.hub-pulso { animation: hub-pulso 4s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .hub-aparece, .hub-nodo, .hub-pulso { animation: none; }
+  .hub-linea { animation: none; stroke-dashoffset: 0; }
+  .hub-flujo { display: none; }
+}
+
 /* ── Mapa del directorio (MapaLocales.tsx) ─────────────────────────────── */
 .marcador-local {
   width: 44px; height: 44px; border-radius: 9999px; border: 3px solid #fff;
