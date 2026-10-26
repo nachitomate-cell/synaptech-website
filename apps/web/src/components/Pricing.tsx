@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { PLANES, ANUAL, fmt } from "@/content/precios";
-import { altaIA, agendaSinIA, A_MEDIDA_WA, CTA_IA, CTA_SIN_IA } from "@/content/catalogo";
+import { PLANES, ANUAL, HOME_STUDIO, fmt } from "@/content/precios";
+import { altaIA, agendaSinIA, waLink, A_MEDIDA_WA, CTA_IA, CTA_SIN_IA } from "@/content/catalogo";
 
 /* Planes en tarjetas. Los datos salen de content/precios.ts, espejo de la
    lista oficial de la plataforma (admin-panel/src/lib/precios.js). El detalle
@@ -62,6 +62,26 @@ export default function Pricing({ conEnlace = true }: { conEnlace?: boolean }) {
               </a>
             </article>
           ))}
+        </div>
+
+        {/* Home Studio (26-10-2026): el Básico para quien atiende solo. Se activa
+            por WhatsApp, no se elige en el panel: por eso el botón es un chat. */}
+        <div className="mt-5 rounded-[28px] bg-lime p-6 sm:px-8 flex flex-col md:flex-row md:items-center gap-5 justify-between">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-ink/70">¿Atiendes solo?</p>
+            <p className="mt-1 text-ink">
+              <span className="font-display font-bold text-2xl tracking-tight">{HOME_STUDIO.nombre}: {fmt(HOME_STUDIO.mes)}</span>
+              <span className="text-sm text-ink/70 ml-1 whitespace-nowrap">+ IVA / mes</span>
+            </p>
+            <p className="text-ink/80 mt-1 leading-relaxed">
+              Todo el plan Básico para un profesional: barberos independientes y estudios en casa.
+              Cuando sumas a alguien, pasas al Básico.
+            </p>
+          </div>
+          <a href={waLink(`Hola, atiendo solo y quiero el plan ${HOME_STUDIO.nombre}`)} target="_blank" rel="noopener noreferrer"
+            className="shrink-0 inline-flex justify-center items-center font-semibold px-6 py-3.5 rounded-full bg-ink text-white hover:bg-black transition-colors">
+            Quiero el {HOME_STUDIO.nombre}
+          </a>
         </div>
 
         <p className="mt-5 text-sm text-text-muted">

@@ -1,6 +1,6 @@
 "use client";
 import { usePathname } from "next/navigation";
-import { PLANES, COMPARATIVA } from "@/content/precios";
+import { PLANES, HOME_STUDIO, COMPARATIVA } from "@/content/precios";
 import { esRutaPais } from "@/content/paises";
 import { SITE_DESC } from "@/lib/sitio";
 
@@ -73,7 +73,16 @@ const JSON_LD = {
         priceSpecification: { "@type": "UnitPriceSpecification", price: String(p.mes), priceCurrency: "CLP", valueAddedTaxIncluded: false, unitText: "mes, por local" },
         eligibleRegion: { "@type": "Country", name: "CL" },
         url: "https://www.synaptechspa.cl/precios",
-      })),
+      })).concat([{
+        "@type": "Offer",
+        name: HOME_STUDIO.nombre,
+        description: "Todo el plan Básico para quien atiende solo (1 profesional). Con el segundo profesional pasa al Básico.",
+        price: String(HOME_STUDIO.mes),
+        priceCurrency: "CLP",
+        priceSpecification: { "@type": "UnitPriceSpecification", price: String(HOME_STUDIO.mes), priceCurrency: "CLP", valueAddedTaxIncluded: false, unitText: "mes, 1 profesional" },
+        eligibleRegion: { "@type": "Country", name: "CL" },
+        url: "https://www.synaptechspa.cl/precios",
+      }]),
     },
   ],
 };
