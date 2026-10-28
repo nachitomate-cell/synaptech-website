@@ -11,9 +11,11 @@ import CentroOmnicanal from "@/components/CentroOmnicanal";
 
    Las capturas son las mismas de la portada anterior (local ficticio en el
    emulador, ver content/recorrido.ts). Las cifras viven ahora en Cifras.tsx. */
-export default function HeroOscuro() {
+/* Desde el 27-10-2026 el video de marca va arriba: entonces la portada ya no
+   necesita dejar espacio para el encabezado fijo. */
+export default function HeroOscuro({ despuesDeVideo = false }: { despuesDeVideo?: boolean }) {
   return (
-    <section className="relative overflow-hidden bg-[#05080D] text-white pt-32 md:pt-40">
+    <section className={`relative overflow-hidden bg-[#05080D] text-white ${despuesDeVideo ? "pt-14 md:pt-20" : "pt-32 md:pt-40"}`}>
       {/* Halo de color detrás de la captura: el verde de marca y un celeste. */}
       <div aria-hidden className="absolute left-1/2 top-[58%] -translate-x-1/2 w-[1100px] max-w-[160vw] aspect-[2/1] rounded-full opacity-60 blur-[110px]"
         style={{ background: "radial-gradient(closest-side, rgba(156,204,60,.55), rgba(94,200,242,.28) 55%, transparent)" }} />
@@ -25,7 +27,7 @@ export default function HeroOscuro() {
         <h1 className="mt-6 text-white !text-[clamp(2.4rem,5vw,4.6rem)]">
           La agenda online de tu local.
           <span className="block bg-gradient-to-r from-[#B8E36A] via-[#9CCC3C] to-[#5EC8F2] bg-clip-text text-transparent pb-2">
-            Con IA que agenda por WhatsApp.
+            Con IA que responde en todos tus canales.
           </span>
         </h1>
         <p className="mt-7 text-lg md:text-xl text-white/65 leading-relaxed max-w-2xl mx-auto">

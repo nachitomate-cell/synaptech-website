@@ -22,6 +22,7 @@ import VelocidadVideo from "@/components/VelocidadVideo";
 import AvisoPais from "@/components/AvisoPais";
 import VideoSyna, { VideoSynaJsonLd, VIDEO_SECRETARIA } from "@/components/VideoSyna";
 import SynaSecretaria from "@/components/SynaSecretaria";
+import VideoMarca, { VideoMarcaJsonLd } from "@/components/VideoMarca";
 
 export const metadata = metaPagina({
   title: "SynapTech: agenda online, cobros y WhatsApp con IA",
@@ -47,7 +48,10 @@ export default function Home() {
       <Header />
       <AvisoPais />
       <main>
-        <HeroOscuro />
+        {/* El video de marca de SynapTech (27-10-2026): lo primero que se ve, antes de la portada. */}
+        <VideoMarcaJsonLd />
+        <VideoMarca />
+        <HeroOscuro despuesDeVideo />
         {/* "Syna, tu secretaria" (27-10-2026) en primer plano, pegada a la portada oscura. */}
         <VideoSynaJsonLd url="https://www.synaptechspa.cl/" video={VIDEO_SECRETARIA} />
         <SynaSecretaria />
