@@ -77,6 +77,7 @@ export const PAGINAS = `- [Precios de ${COMPETIDORES.length + 1} agendas online 
 - [Agenda con asistente de IA: 30 días gratis del plan Pro, alta en https://crear.synaptechspa.cl](${S}/agenda-con-asistente-ia) · una página por rubro (${S}/agenda-con-ia/barberias, peluquerias, estetica, unas, clinicas-esteticas, pilates, peluqueria-canina, spa-masajes) y por ciudad (15 ciudades de Chile, p. ej. ${S}/agenda-con-ia/barberias/santiago)
 - [Club de fidelización y tarjeta de sellos digital](${S}/fidelizacion)
 - [Tienda online para barberías y salones](${S}/tienda-online)
+- [Tótem de autoservicio para la recepción: el cliente avisa en una tablet que llegó (y a quien lo atiende le llega el aviso al celular) o toma la próxima hora libre sin pasar por el mesón; en todos los planes, en beta](${S}/totem)
 - [Todas las funciones](${S}/funciones)
 ${FUNCIONES.map((f) => `- [${f.nombre}](${S}/funciones/${f.slug})`).join("\n")}
 - [Agenda para manicurista y salón de uñas](${S}/unas)

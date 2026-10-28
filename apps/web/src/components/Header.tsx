@@ -25,6 +25,7 @@ const RECURSOS = [
   { label: "Mis reservas", desc: "Para clientes: tus citas y sellos de todos tus locales", href: "/mis-reservas" },
   { label: "Clientes",       desc: "Lo que dicen los locales que ya lo usan", href: "/#testimonios" },
   { label: "Integraciones",  desc: "Pagos, WhatsApp, SII, Wallet y más", href: "/#integraciones" },
+  { label: "Tótem de autoservicio", desc: "Tus clientes se anuncian solos en el mesón", href: "/totem" },
   { label: "Integración con Wellhub", desc: "Check-in y visitas validadas solas", href: "/wellhub" },
   { label: "Preguntas frecuentes", desc: "Precios, prueba, datos y contrato", href: "/#faq" },
   { label: "Nosotros",       desc: "Quiénes somos y desde dónde trabajamos", href: "/nosotros" },
