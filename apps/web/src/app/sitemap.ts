@@ -63,6 +63,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE}/comparar/precios`,    lastModified: now, priority: 0.9 },
     { url: `${BASE}/embajadores`,         lastModified: now, priority: 0.6 },
     { url: `${BASE}/tienda-online`,       lastModified: now, priority: 0.8 },
+    { url: `${BASE}/totem`,               lastModified: new Date("2026-10-28"), priority: 0.8 },
     { url: `${BASE}/funciones`,           lastModified: now, priority: 0.8 },
     ...FUNCIONES.map((f) => ({ url: `${BASE}/funciones/${f.slug}`, lastModified: now, priority: 0.8 })),
     { url: `${BASE}/unas`,                lastModified: now, priority: 0.8 },
