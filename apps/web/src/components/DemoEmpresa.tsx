@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { waLink } from "@/content/catalogo";
+import { sesionSyna } from "@/lib/syna/sesion";
 
 /* Demo de /empresas (28-10-2026): el visitante describe su empresa (o elige
    un ejemplo) y le escribe al agente como si fuera su cliente. Habla con
@@ -70,6 +71,8 @@ export default function DemoEmpresa() {
   const [esperando, setEsperando] = useState(false);
   const caja = useRef<HTMLDivElement>(null);
   const telefono = useRef<HTMLDivElement>(null);
+  // Cada demo es una conversación aparte en la plataforma: sesión del sitio + n.
+  const demos = useRef(0);
 
   useEffect(() => {
     fetch("/api/syna").then((r) => r.json()).then((j) => setActiva(!!j.activa)).catch(() => setActiva(false));
@@ -86,6 +89,7 @@ export default function DemoEmpresa() {
     ev.preventDefault();
     if (!empresa.nombre.trim() || !empresa.descripcion.trim()) return;
     if (!EJEMPLOS.some((e) => e.nombre === empresa.nombre)) setSugeridas(SUGERIDAS_PROPIAS);
+    demos.current += 1;
     setTurnos([]);
     setEnChat(true);
     /* En el celular el teléfono queda abajo del formulario: se centra para que
@@ -109,7 +113,7 @@ export default function DemoEmpresa() {
     setEsperando(true);
     const escribir = (t: string) => setTurnos((prev) => { const c = [...prev]; c[c.length - 1] = { role: "assistant", content: t }; return c; });
     try {
-      const res = await fetch("/api/syna", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ mensajes: historial, demo: empresa }) });
+      const res = await fetch("/api/syna", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ mensajes: historial, demo: empresa, sesion: `${sesionSyna()}-demo-${demos.current}`, pagina: "/empresas#demo" }) });
       if (!res.ok || !res.body) {
         escribir(res.status === 429 ? "Fueron varios mensajes seguidos: dame unos minutos y seguimos." : "Ahora no puedo responder. Prueba de nuevo en un rato.");
         return;

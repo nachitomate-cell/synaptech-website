@@ -19,7 +19,7 @@ export default function Privacidad() {
         </Link>
 
         <h1 className="text-text-primary mb-4">Política de Privacidad</h1>
-        <p className="font-mono text-[11px] text-text-muted mb-12">Última actualización: mayo 2026</p>
+        <p className="font-mono text-[11px] text-text-muted mb-12">Última actualización: octubre 2026</p>
 
         <div className="prose prose-invert max-w-none font-body text-text-secondary leading-relaxed space-y-8">
           <section>
@@ -40,6 +40,14 @@ export default function Privacidad() {
               <li>Teléfono (opcional)</li>
               <li>Descripción del proyecto o desafío</li>
             </ul>
+            <p id="syna" className="mt-4 scroll-mt-28">
+              <strong className="text-text-primary">Chat con Syna.</strong> Cuando conversas con Syna, el asistente
+              con IA de este sitio, guardamos la conversación (lo que escribes y lo que Syna responde), la página
+              desde la que escribes y el país aproximado de la conexión. La usamos para responderte, para que
+              nuestro equipo te contacte si dejas tu nombre, teléfono o correo, y para mejorar las respuestas de
+              Syna. No guardamos tu dirección IP. Puedes pedir que borremos tu conversación escribiendo a{" "}
+              <a href="mailto:hola@synaptechspa.cl" className="text-accent hover:underline">hola@synaptechspa.cl</a>.
+            </p>
           </section>
 
           <section>
@@ -82,7 +90,8 @@ export default function Privacidad() {
             <h2 className="font-display text-lg font-semibold text-text-primary mb-3">7. Compartición con terceros</h2>
             <p>
               No vendemos ni cedemos datos personales a terceros. Podemos compartir datos con proveedores
-              de servicios tecnológicos (hosting, correo) únicamente en la medida necesaria para operar
+              de servicios tecnológicos (hosting, correo y el modelo de IA que responde el chat, Claude, de
+              Anthropic) únicamente en la medida necesaria para operar
               el servicio, bajo acuerdos de confidencialidad.
             </p>
           </section>

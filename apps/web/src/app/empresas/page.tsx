@@ -7,6 +7,7 @@ import VideoSyna     from "@/components/VideoSyna";
 import FormEmpresas  from "@/components/FormEmpresas";
 import AreasEmpresas from "@/components/AreasEmpresas";
 import DemoEmpresa   from "@/components/DemoEmpresa";
+import BotonSyna     from "@/components/BotonSyna";
 import { metaPagina } from "@/lib/seo";
 
 /* Página para empresas (28-10-2026). Sale de la reunión de CORFO del 27-10:
@@ -73,16 +74,21 @@ export default function EmpresasPage() {
                 cotiza, agenda, cobra y le pasa a tu equipo lo que necesita una persona.
               </p>
               <div className="flex flex-col sm:flex-row gap-3">
+                <BotonSyna className="inline-flex justify-center items-center gap-2.5 bg-ink text-white font-semibold pl-3 pr-7 py-3 rounded-full hover:bg-black transition-colors">
+                  <span className="w-8 h-8 rounded-full bg-white flex items-center justify-center">
+                    <Image src="/assets/synaptech-icon.png" alt="" width={20} height={20} />
+                  </span>
+                  Prueba a Syna: conversa con ella
+                </BotonSyna>
                 <a href="#demo"
-                  className="inline-flex justify-center items-center bg-ink text-white font-semibold px-7 py-4 rounded-full hover:bg-black transition-colors">
-                  Pruébalo con tu empresa
-                </a>
-                <a href="#cuentanos"
                   className="inline-flex justify-center items-center border border-ink/15 text-ink font-semibold px-7 py-4 rounded-full hover:border-ink/40 transition-colors">
-                  Cuéntanos qué quieres delegar
+                  Mírala atender a tu cliente
                 </a>
               </div>
-              <p className="mt-4 text-sm text-text-muted">Precio mensual cerrado. Sin cobro por hora.</p>
+              <p className="mt-4 text-sm text-text-muted">
+                Cuéntale de tu empresa y te dice cómo te ayudaría. Precio mensual cerrado, sin cobro por hora.{" "}
+                <a href="#cuentanos" className="font-semibold text-ink underline decoration-lime decoration-2 underline-offset-4 hover:decoration-ink">Cuéntanos qué quieres delegar</a>
+              </p>
             </div>
             <div className="hero-entra rounded-[28px] bg-lime/20 p-2.5 sm:p-4">
               <Image src="/panel/agencia-bandeja.webp" alt="Bandeja con conversaciones de WhatsApp e Instagram atendidas por el agente y el equipo de ventas"
