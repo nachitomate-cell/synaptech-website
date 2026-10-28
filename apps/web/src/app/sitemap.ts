@@ -48,6 +48,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE}/estetica`,            lastModified: now, priority: 0.9 },
     { url: `${BASE}/clinicas`,            lastModified: now, priority: 0.9 },
     { url: `${BASE}/agencias`,            lastModified: now, priority: 0.8 },
+    { url: `${BASE}/empresas`,            lastModified: now, priority: 0.8 },
     { url: `${BASE}/recursos/ficha-clinica-estetica`, lastModified: now, priority: 0.7 },
     { url: `${BASE}/recursos/consentimiento-informado-estetica`, lastModified: now, priority: 0.7 },
     { url: `${BASE}/mis-reservas`, lastModified: now, priority: 0.6 },

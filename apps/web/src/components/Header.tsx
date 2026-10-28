@@ -112,9 +112,17 @@ export default function Header() {
             className={`px-3 py-2 rounded-full text-[15px] font-medium transition-colors ${pathname === "/precios" ? "text-ink" : "text-text-secondary hover:text-ink"}`}>
             Precios
           </Link>
-          {/* En pantallas medianas no cabe: queda dentro de Recursos. */}
+          {/* Empresas (28-10-2026): el agente de IA para empresas. Entre lg y xl no
+              cabe en la barra: queda al final del panel Rubros. */}
+          <Link href="/empresas" onClick={cerrar}
+            className={`hidden xl:inline-flex px-3 py-2 rounded-full text-[15px] font-medium transition-colors ${pathname === "/empresas" ? "text-ink" : "text-text-secondary hover:text-ink"}`}>
+            Empresas
+          </Link>
+          {/* En pantallas medianas no cabe: queda dentro de Recursos. Desde el
+              28-10-2026 aparece desde 1600 px: antes su lugar es de Empresas (con los
+              dos, "Probar gratis" se salía de la barra a 1280 px). */}
           <Link href="/locales" onClick={cerrar}
-            className={`hidden xl:inline-flex whitespace-nowrap px-3 py-2 rounded-full text-[15px] font-medium transition-colors ${pathname === "/locales" ? "text-ink" : "text-text-secondary hover:text-ink"}`}>
+            className={`hidden min-[1600px]:inline-flex whitespace-nowrap px-3 py-2 rounded-full text-[15px] font-medium transition-colors ${pathname === "/locales" ? "text-ink" : "text-text-secondary hover:text-ink"}`}>
             Encuentra un local
           </Link>
         </nav>
@@ -190,6 +198,10 @@ export default function Header() {
                     <span className="block text-[13px] text-text-muted leading-snug mt-1">{r.titular}</span>
                   </Link>
                 ))}
+                <Link href="/empresas" onClick={cerrar} className="group block">
+                  <span className="block font-display font-bold text-[15px] text-ink group-hover:text-accent">Empresas</span>
+                  <span className="block text-[13px] text-text-muted leading-snug mt-1">Un agente de IA que atiende, agenda, cobra y hace seguimiento.</span>
+                </Link>
               </div>
             )}
 
@@ -244,6 +256,9 @@ export default function Header() {
             </li>
             <li className="border-b border-border-subtle">
               <Link href="/precios" onClick={cerrar} className="block py-4 text-[17px] font-semibold text-ink">Precios</Link>
+            </li>
+            <li className="border-b border-border-subtle">
+              <Link href="/empresas" onClick={cerrar} className="block py-4 text-[17px] font-semibold text-ink">Empresas</Link>
             </li>
             <li className="border-b border-border-subtle">
               <Link href="/locales" onClick={cerrar} className="block py-4 text-[17px] font-semibold text-ink">Encuentra un local</Link>
