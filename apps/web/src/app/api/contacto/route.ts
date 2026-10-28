@@ -89,6 +89,8 @@ export async function POST(request: Request) {
   const email = txt(body.email, LARGO.email);
   const phone = txt(body.phone, LARGO.phone);
   const msg = txt(body.msg, LARGO.msg);
+  // /empresas manda origen "empresas": el asunto lo separa de los locales.
+  const etiqueta = body.origen === "empresas" ? "Empresas" : "Contacto";
 
   // Honeypot
   if (body.website) return NextResponse.json({ success: true });
@@ -109,7 +111,7 @@ export async function POST(request: Request) {
     from: "Synaptech Contacto <contacto@synaptechspa.cl>",
     to: [DEST],
     replyTo: email,
-    subject: `[Contacto] ${empresa ? empresa + " · " : ""}${nombre}`.replace(/[\r\n]+/g, " "),
+    subject: `[${etiqueta}] ${empresa ? empresa + " · " : ""}${nombre}`.replace(/[\r\n]+/g, " "),
     html: html(esc(nombre), esc(empresa), esc(email), esc(phone), esc(msg)),
   });
 
