@@ -28,6 +28,14 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 const MODELO = "claude-haiku-5-5";
+/* Modo empresa (28-10-2026): Sonnet 5.5. Con Haiku las respuestas eran de
+   folleto y a veces inventaba límites (le dijo a una clínica dental que
+   SynapTech no era para ella); en la batería de 5 conversaciones Sonnet
+   conversa, arma una escena del caso de cada empresa y recibe bien el
+   contacto. Cuesta ~US$0,01 por respuesta (Haiku ~US$0,0007): vale para
+   /empresas, que es poco tráfico y cada conversación es un posible cliente
+   grande. El chat del resto del sitio y la demo siguen con Haiku. */
+const MODELO_EMPRESA = "claude-sonnet-5-5";
 const MAX_CARACTERES = 600;
 const MAX_TURNOS = 12;
 const VENTANA_MS = 10 * 60 * 1000;
@@ -120,11 +128,16 @@ export async function POST(req: Request) {
   const pagina = typeof extra.pagina === "string" && extra.pagina.startsWith("/") ? extra.pagina.slice(0, 200) : "/";
   const pais = req.headers.get("x-vercel-ip-country") ?? "";
 
+  /* max_tokens incluye lo que el modelo piensa antes de escribir: con 700 a
+     Haiku se le cortaban respuestas a mitad de palabra ("con Mercado P", 28-10).
+     El largo de lo que se ve lo controla el prompt, no este tope. */
   const client = new Anthropic();
-  const stream = client.messages.stream({
-    model: MODELO,
-    max_tokens: demo ? 350 : 700,
+  const stream = client.beta.messages.stream({
+    model: modo === "empresa" ? MODELO_EMPRESA : MODELO,
+    max_tokens: modo === "empresa" ? 4000 : 2500,
     output_config: { effort: "low" },
+    /* Si Sonnet se niega a responder, el servidor reintenta con otro modelo. */
+    ...(modo === "empresa" ? { betas: ["server-side-fallback-2026-07-01"], fallbacks: "default" as const } : {}),
     system: demo
       ? [{ type: "text", text: SYSTEM_DEMO_EMPRESA, cache_control: { type: "ephemeral" } }, { type: "text", text: bloqueEmpresa(demo) }]
       : modo === "empresa"
