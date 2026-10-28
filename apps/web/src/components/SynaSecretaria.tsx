@@ -8,9 +8,12 @@ import VideoSyna, { VIDEO_SECRETARIA } from "@/components/VideoSyna";
    en vitrina y un solo llamado. Lo que Syna hace por el dueño se muestra como
    disponible (decisión de Ignacio, igual que la campaña de autoservicio): el
    llamado es "pídela", que llega por WhatsApp y así se mide quién la quiere. */
+/* 28-10-2026: se fue de la portada a /empresas (pedido de Ignacio). `para`
+   cambia el llamado y el mensaje de WhatsApp: "tu local" o "tu empresa". */
 const TAREAS = ["Agenda", "Ventas", "Gastos por audio", "Boletas", "Facturas", "Instagram", "Correo", "Reuniones", "Recordatorios"];
 
-export default function SynaSecretaria() {
+export default function SynaSecretaria({ para = "local" }: { para?: "local" | "empresa" }) {
+  const destino = para === "empresa" ? "empresa" : "local";
   return (
     <section id="syna-secretaria" className="relative overflow-hidden bg-[#05080D] text-white pt-20 md:pt-28 pb-20 md:pb-28 px-4 sm:px-6">
       <div aria-hidden className="absolute left-1/2 top-[62%] -translate-x-1/2 w-[1000px] max-w-[150vw] aspect-[2/1] rounded-full opacity-40 blur-[120px]"
@@ -36,9 +39,9 @@ export default function SynaSecretaria() {
           ))}
         </ul>
         <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8">
-          <a href={waLink("Hola, quiero a Syna como secretaria para mi local")} target="_blank" rel="noopener noreferrer"
+          <a href={waLink(`Hola, quiero a Syna como secretaria para mi ${destino}`)} target="_blank" rel="noopener noreferrer"
             className="inline-flex justify-center items-center bg-white text-[#05080D] font-semibold px-8 py-4 rounded-full hover:bg-white/90 transition-colors">
-            Pídela para tu local
+            Pídela para tu {destino}
           </a>
           <a href="/syna" className="text-[#B8E36A] font-semibold hover:underline underline-offset-4">Conoce a Syna ›</a>
         </div>
