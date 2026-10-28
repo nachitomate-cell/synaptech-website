@@ -6,7 +6,7 @@ import { useState } from "react";
    Ignacio ve de un vistazo si es un local que se da de alta solo o una
    cuenta grande que vale una reunión. */
 
-const RUBROS = ["Salud o clínica", "Estética o belleza", "Deporte o bienestar", "Ventas o agencia", "Educación", "Servicios técnicos", "Otro"];
+const RUBROS = ["Salud o clínica", "Inmobiliaria", "Educación", "Comercio o distribución", "Turismo", "Servicios técnicos", "Servicios profesionales", "Estética o belleza", "Deporte o bienestar", "Otro"];
 const TAMANOS = ["Solo yo", "2 a 5 personas", "6 a 20 personas", "Más de 20 personas", "Varias sedes"];
 const CANALES = ["WhatsApp", "Instagram", "Sitio web", "Teléfono"];
 const VOLUMENES = ["Menos de 300 al mes", "300 a 1.000 al mes", "1.000 a 5.000 al mes", "Más de 5.000 al mes", "No sé"];
