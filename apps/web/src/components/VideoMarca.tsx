@@ -45,7 +45,7 @@ export default function VideoMarca() {
             <source src={VIDEO_MARCA.mp4} type="video/mp4" />
           </video>
           <button type="button" onClick={alternar}
-            className="absolute right-3 bottom-3 sm:right-5 sm:bottom-5 inline-flex items-center gap-2 rounded-full bg-black/55 backdrop-blur px-4 py-2 text-sm font-semibold text-white border border-white/15 hover:bg-black/70 transition-colors">
+            className="absolute right-2.5 bottom-2.5 sm:right-5 sm:bottom-5 inline-flex items-center gap-1.5 sm:gap-2 rounded-full bg-black/55 backdrop-blur px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-semibold text-white border border-white/15 hover:bg-black/70 transition-colors">
             <span aria-hidden>{mudo ? "🔇" : "🔊"}</span>
             {mudo ? "Activar sonido" : "Silenciar"}
           </button>
