@@ -8,6 +8,8 @@ import FormEmpresas  from "@/components/FormEmpresas";
 import AreasEmpresas from "@/components/AreasEmpresas";
 import DemoEmpresa   from "@/components/DemoEmpresa";
 import BotonSyna     from "@/components/BotonSyna";
+import SynaSecretaria from "@/components/SynaSecretaria";
+import { VideoSynaJsonLd, VIDEO_SECRETARIA } from "@/components/VideoSyna";
 import { metaPagina } from "@/lib/seo";
 
 /* Página para empresas (28-10-2026). Sale de la reunión de CORFO del 27-10:
@@ -125,6 +127,10 @@ export default function EmpresasPage() {
             </div>
           </div>
         </section>
+
+        {/* "Syna, tu secretaria" (28-10-2026): venía de la portada; aquí, para el dueño de la empresa. */}
+        <VideoSynaJsonLd url="https://www.synaptechspa.cl/empresas" video={VIDEO_SECRETARIA} />
+        <SynaSecretaria para="empresa" />
 
         <section className="py-16 md:py-20">
           <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10">

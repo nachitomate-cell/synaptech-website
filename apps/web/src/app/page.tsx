@@ -20,8 +20,7 @@ import { metaPagina } from "@/lib/seo";
 import VienesDe from "@/components/VienesDe";
 import VelocidadVideo from "@/components/VelocidadVideo";
 import AvisoPais from "@/components/AvisoPais";
-import VideoSyna, { VideoSynaJsonLd, VIDEO_SECRETARIA } from "@/components/VideoSyna";
-import SynaSecretaria from "@/components/SynaSecretaria";
+import VideoSyna, { VideoSynaJsonLd } from "@/components/VideoSyna";
 import VideoMarca, { VideoMarcaJsonLd } from "@/components/VideoMarca";
 
 export const metadata = metaPagina({
@@ -52,9 +51,7 @@ export default function Home() {
         <VideoMarcaJsonLd />
         <VideoMarca />
         <HeroOscuro despuesDeVideo />
-        {/* "Syna, tu secretaria" (27-10-2026) en primer plano, pegada a la portada oscura. */}
-        <VideoSynaJsonLd url="https://www.synaptechspa.cl/" video={VIDEO_SECRETARIA} />
-        <SynaSecretaria />
+        {/* "Syna, tu secretaria" estuvo aquí del 27 al 28-10-2026; Ignacio la pasó a /empresas. */}
         <TiraPortada />
         <Cifras />
         <Confianza />
