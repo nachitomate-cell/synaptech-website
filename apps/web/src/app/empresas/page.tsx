@@ -6,7 +6,7 @@ import FaqSeo, { type Pregunta } from "@/components/FaqSeo";
 import VideoSyna     from "@/components/VideoSyna";
 import FormEmpresas  from "@/components/FormEmpresas";
 import AreasEmpresas from "@/components/AreasEmpresas";
-import { waLink } from "@/content/catalogo";
+import DemoEmpresa   from "@/components/DemoEmpresa";
 import { metaPagina } from "@/lib/seo";
 
 /* Página para empresas (28-10-2026). Sale de la reunión de CORFO del 27-10:
@@ -40,10 +40,12 @@ const RUBROS: { nombre: string; href?: string }[] = [
   { nombre: "Turismo y agencias", href: "/agencias" },
   { nombre: "Estudios y gimnasios", href: "/pilates" },
   { nombre: "Estética y belleza", href: "/estetica" },
+  { nombre: "Alimentos" },
+  { nombre: "Logística" },
+  { nombre: "Agencias digitales" },
   { nombre: "Inmobiliarias" },
   { nombre: "Educación y academias" },
   { nombre: "Servicios técnicos" },
-  { nombre: "Comercio y distribución" },
 ];
 
 const FAQ: Pregunta[] = [
@@ -71,13 +73,13 @@ export default function EmpresasPage() {
                 cotiza, agenda, cobra y le pasa a tu equipo lo que necesita una persona.
               </p>
               <div className="flex flex-col sm:flex-row gap-3">
-                <a href="#cuentanos"
+                <a href="#demo"
                   className="inline-flex justify-center items-center bg-ink text-white font-semibold px-7 py-4 rounded-full hover:bg-black transition-colors">
-                  Cuéntanos qué quieres delegar
+                  Pruébalo con tu empresa
                 </a>
-                <a href={waLink("Hola, vengo de la página de empresas y quiero ver el agente de IA de SynapTech")} target="_blank" rel="noopener noreferrer"
+                <a href="#cuentanos"
                   className="inline-flex justify-center items-center border border-ink/15 text-ink font-semibold px-7 py-4 rounded-full hover:border-ink/40 transition-colors">
-                  Hablar por WhatsApp
+                  Cuéntanos qué quieres delegar
                 </a>
               </div>
               <p className="mt-4 text-sm text-text-muted">Precio mensual cerrado. Sin cobro por hora.</p>
@@ -91,6 +93,8 @@ export default function EmpresasPage() {
         </section>
 
         <AreasEmpresas />
+
+        <DemoEmpresa />
 
         <section className="py-16 md:py-24 bg-[#05080D] px-4 sm:px-6">
           <VideoSyna oscuro titulo="Mírala trabajar." bajada="Syna responde, ofrece horas reales y deja la tarea hecha, desde el número de la empresa." />

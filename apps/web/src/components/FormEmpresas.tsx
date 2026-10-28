@@ -1,12 +1,12 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 /* Formulario de /empresas (28-10-2026). Va a /api/contacto con origen
    "empresas" (asunto [Empresas]) y arma el mensaje con las respuestas, así
    Ignacio ve de un vistazo si es un local que se da de alta solo o una
    cuenta grande que vale una reunión. */
 
-const RUBROS = ["Salud o clínica", "Inmobiliaria", "Educación", "Comercio o distribución", "Turismo", "Servicios técnicos", "Servicios profesionales", "Estética o belleza", "Deporte o bienestar", "Otro"];
+const RUBROS = ["Alimentos", "Logística", "Agencia digital o páginas web", "Atención al cliente", "Salud o clínica", "Inmobiliaria", "Educación", "Comercio o distribución", "Turismo", "Servicios técnicos", "Servicios profesionales", "Estética o belleza", "Deporte o bienestar", "Otro"];
 const TAMANOS = ["Solo yo", "2 a 5 personas", "6 a 20 personas", "Más de 20 personas", "Varias sedes"];
 const CANALES = ["WhatsApp", "Instagram", "Sitio web", "Teléfono"];
 const VOLUMENES = ["Menos de 300 al mes", "300 a 1.000 al mes", "1.000 a 5.000 al mes", "Más de 5.000 al mes", "No sé"];
@@ -20,6 +20,16 @@ export default function FormEmpresas() {
   const [loading, setLoading] = useState(false);
   const [errMsg, setErrMsg] = useState("");
   const [honeypot, setHoneypot] = useState("");
+
+  /* La demo (DemoEmpresa) avisa con qué empresa probó, para no escribirla dos veces. */
+  useEffect(() => {
+    const alProbar = (e: Event) => {
+      const nombre = (e as CustomEvent<{ empresa?: string }>).detail?.empresa ?? "";
+      if (nombre) setForm((f) => (f.empresa ? f : { ...f, empresa: nombre }));
+    };
+    window.addEventListener("empresa-demo", alProbar);
+    return () => window.removeEventListener("empresa-demo", alProbar);
+  }, []);
 
   const upd = (k: keyof typeof form) =>
     (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>

@@ -22,8 +22,8 @@ const AREAS: Area[] = [
     ],
     ejemplos: [
       { rubro: "Inmobiliaria", caso: "Responde por cada proyecto, pregunta presupuesto y comuna, y le pasa el interesado al corredor de turno." },
-      { rubro: "Distribuidora", caso: "Cotiza con la lista de precios, arma el pedido y se lo deja al vendedor para cerrarlo." },
-      { rubro: "Turismo", caso: "Cotiza cada paseo con precio residente o turista, y reparte las ventas entre el equipo." },
+      { rubro: "Alimentos", caso: "Toma el pedido de cafeterías y restaurantes con la lista de precios y el pedido mínimo, y se lo deja al vendedor." },
+      { rubro: "Agencia digital", caso: "Pregunta qué sitio necesita y su presupuesto, y agenda la primera reunión con el ejecutivo." },
     ],
   },
   {
@@ -38,7 +38,7 @@ const AREAS: Area[] = [
     ],
     ejemplos: [
       { rubro: "Educación", caso: "Responde por cursos, horarios y aranceles, y pasa a secretaría lo que es de matrícula." },
-      { rubro: "Comercio", caso: "Responde horarios, formas de pago y cambios, y deriva los reclamos a una persona." },
+      { rubro: "Logística", caso: "Responde tarifas y cobertura; si preguntan por un envío, pide el número y se lo pasa al equipo." },
       { rubro: "Salud", caso: "Explica cada prestación y su preparación, y deja los temas clínicos al equipo." },
     ],
   },
@@ -54,7 +54,7 @@ const AREAS: Area[] = [
     ],
     ejemplos: [
       { rubro: "Servicio técnico", caso: "Agenda la visita con el técnico que tiene hora, con la dirección y el problema ya anotados." },
-      { rubro: "Inmobiliaria", caso: "Agenda la visita a la propiedad con el corredor y le recuerda al cliente el día antes." },
+      { rubro: "Logística", caso: "Agenda el retiro en la bodega del cliente, con la dirección y el tamaño de la carga anotados." },
       { rubro: "Estudios y gimnasios", caso: "Agenda la clase de prueba y reserva cupos por sede." },
     ],
   },
