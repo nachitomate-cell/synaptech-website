@@ -7,6 +7,7 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import SynaChat from "@/components/SynaChat";
 import TrackingScripts from "@/components/TrackingScripts";
 import JsonLdSitio from "@/components/JsonLdSitio";
+import PestanaVuelve from "@/components/PestanaVuelve";
 import { SITE_TITLE, SITE_DESC } from "@/lib/sitio";
 
 /* Titulares en una grotesca apretada, como Square; el cuerpo sigue en DM Sans. */
@@ -96,6 +97,7 @@ export default function RootLayout({
         <WhatsAppButton />
         <SynaChat />
         <TrackingScripts />
+        <PestanaVuelve />
         <Analytics />
         <SpeedInsights />
       </body>
