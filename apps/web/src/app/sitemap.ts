@@ -52,7 +52,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE}/recursos/ficha-clinica-estetica`, lastModified: now, priority: 0.7 },
     { url: `${BASE}/recursos/consentimiento-informado-estetica`, lastModified: now, priority: 0.7 },
     { url: `${BASE}/mis-reservas`, lastModified: now, priority: 0.6 },
-    { url: `${BASE}/guias/boleta-honorarios-y-comisiones-barberos`, lastModified: now, priority: 0.7 },
+    { url: `${BASE}/guias/boleta-honorarios-y-comisiones-barberos`, lastModified: new Date("2026-10-30"), priority: 0.7 },
+    /* Recursos gratis para barberías (30-10-2026). */
+    { url: `${BASE}/recursos/calculadora-comision-arriendo-sillon`, lastModified: new Date("2026-10-30"), priority: 0.7 },
+    { url: `${BASE}/recursos/calculadora-inasistencias`, lastModified: new Date("2026-10-30"), priority: 0.7 },
     { url: `${BASE}/precios`,             lastModified: now, priority: 0.9 },
     { url: `${BASE}/locales`,             lastModified: dir, priority: 0.8 },
     ...zonas.map((z) => ({ url: `${BASE}/locales/${z.slug}`, lastModified: dir, priority: 0.7 })),

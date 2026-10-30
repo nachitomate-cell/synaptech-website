@@ -11,6 +11,10 @@ import type { Pregunta } from "@/components/FaqSeo";
 const FECHA = "9 de octubre de 2026";
 
 /* ── Guía: boleta de honorarios, comisiones y arriendo de sillón ─────────── */
+/* 30-10-2026: en arriendo el 15,25 % va sobre TODO lo que el barbero boletea a
+   sus clientes (SII 001_120_0889: "el 15.25% de los honorarios cobrados al
+   cliente"), no sobre lo que le queda tras el arriendo. El ejemplo decía
+   $137.250 en las dos columnas; en arriendo son $274.500. */
 
 export const BHE_MODELOS: { titulo: string; bajada: string; filas: [string, string][] }[] = [
   {
@@ -37,7 +41,7 @@ export const BHE_MODELOS: { titulo: string; bajada: string; filas: [string, stri
     filas: [
       ["Qué documento emite", "El barbero emite boleta de honorarios a sus clientes. El local le cobra el arriendo con factura, o boleta si el barbero no es contribuyente de IVA."],
       ["IVA", "El arriendo del sillón lleva IVA (19 %). El barbero que trabaja solo no paga IVA por sus cortes."],
-      ["Retención", "Si sus clientes son personas, nadie le retiene: el barbero paga él mismo el 15,25 % en su Formulario 29."],
+      ["Retención", "Si sus clientes son personas, nadie le retiene: el barbero paga él mismo el 15,25 % de todo lo que les cobra en su Formulario 29."],
     ],
   },
 ];
@@ -54,13 +58,13 @@ export const BHE_RETENCION = {
 
 export const BHE_EJEMPLO = {
   titulo: "Un barbero, 100 cortes de $18.000 en el mes.",
-  intro: "La misma venta, $1.800.000, con dos formas de pagarle al barbero el 50 %. Lo que cambia es cuánto IVA paga el local y quién entera la retención.",
+  intro: "La misma venta, $1.800.000, con dos formas de pagarle al barbero el 50 %. Lo que cambia es cuánto IVA paga el local, quién entera el 15,25 % y sobre qué monto.",
   columnas: ["", "Comisión a honorarios", "Arriendo de sillón (50 %)"],
   filas: [
     ["Qué boletea el local", "$1.800.000 (cada servicio completo)", "$900.000 (el arriendo)"],
     ["IVA que paga el local", "$287.395", "$143.697"],
-    ["Lo que recibe el barbero (bruto)", "$900.000, con su boleta de honorarios al local", "$900.000, con sus boletas de honorarios a sus clientes"],
-    ["Retención del 15,25 %", "$137.250, la retiene y la paga el local", "$137.250, la paga el barbero en su Formulario 29"],
+    ["Lo que recibe el barbero (bruto)", "$900.000, con su boleta de honorarios al local", "$900.000: boletea $1.800.000 a sus clientes y paga $900.000 de arriendo"],
+    ["El 15,25 %", "$137.250 (sobre sus $900.000), la retiene y la paga el local", "$274.500 (sobre los $1.800.000 que boletea), la paga el barbero en su Formulario 29"],
   ],
   nota: "Ejemplo ilustrativo con precios con IVA incluido (IVA = precio × 19/119). Con contrato de trabajo el IVA es el del primer caso, más el sueldo base y las cotizaciones. Revisa tu caso con tu contador.",
 };

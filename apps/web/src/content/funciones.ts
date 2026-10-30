@@ -56,7 +56,7 @@ export const FUNCIONES: Funcion[] = [
       { q: "¿Los recordatorios por WhatsApp son gratis?", a: "WhatsApp cobra por cada mensaje que envía una empresa. En SynapTech se compran bolsas al costo: 100 avisos por $1.990 + IVA, 300 por $5.990 + IVA y 1.000 por $19.990 + IVA. Los recordatorios por correo no tienen costo." },
       { q: "¿Sirve para bajar las inasistencias?", a: "Es lo que más ayuda, junto con pedir un abono al reservar los servicios largos. El cliente recibe el aviso antes de la hora y puede guardar la cita en su calendario." },
     ],
-    relacionadas: ["abono-al-reservar", "pagina-web-reservas", "/asistente-ia-whatsapp"],
+    relacionadas: ["abono-al-reservar", "pagina-web-reservas", "/asistente-ia-whatsapp", "/recursos/calculadora-inasistencias"],
   },
   {
     slug: "comisiones",
@@ -83,7 +83,7 @@ export const FUNCIONES: Funcion[] = [
       { q: "¿Se puede calcular en Excel?", a: "Sí, pero hay que anotar cada atención a mano. En SynapTech cada cita y cada venta queda con su profesional, y la liquidación sale sola por período." },
       { q: "¿Qué pasa con el arriendo de sillón?", a: "Si el profesional arrienda, no hay comisión: paga un arriendo. SynapTech emite su boleta de honorarios al cerrar la cita con el adicional de facturación automática." },
     ],
-    relacionadas: ["control-de-caja", "app-para-profesionales", "/guias/boleta-honorarios-y-comisiones-barberos"],
+    relacionadas: ["control-de-caja", "app-para-profesionales", "/guias/boleta-honorarios-y-comisiones-barberos", "/recursos/calculadora-comision-arriendo-sillon"],
   },
   {
     slug: "control-de-caja",
@@ -160,7 +160,7 @@ export const FUNCIONES: Funcion[] = [
       { q: "¿Cuánto cobra Mercado Pago?", a: "La comisión de Mercado Pago depende de tu cuenta y del medio de pago; la cobra Mercado Pago, no SynapTech." },
       { q: "¿Qué pasa si el cliente no llega?", a: "Lo define tu política de cancelación, que el cliente acepta al reservar. El abono queda registrado en su cita." },
     ],
-    relacionadas: ["recordatorios-whatsapp", "control-de-caja", "/clinicas"],
+    relacionadas: ["recordatorios-whatsapp", "control-de-caja", "/clinicas", "/recursos/calculadora-inasistencias"],
   },
   {
     slug: "gift-cards",

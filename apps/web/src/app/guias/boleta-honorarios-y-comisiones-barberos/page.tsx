@@ -26,7 +26,7 @@ export default function GuiaBoletas() {
     "@type": "Article",
     headline: "Boleta de honorarios y comisiones en barberías (2026)",
     datePublished: "2026-10-09",
-    dateModified: "2026-10-09",
+    dateModified: "2026-10-30",
     author: { "@type": "Organization", name: "SynapTech" },
     publisher: { "@type": "Organization", name: "Synaptech SpA", logo: { "@type": "ImageObject", url: "https://www.synaptechspa.cl/assets/synaptech-icon.png" } },
     mainEntityOfPage: "https://www.synaptechspa.cl/guias/boleta-honorarios-y-comisiones-barberos",
@@ -104,6 +104,11 @@ export default function GuiaBoletas() {
               </table>
             </div>
             <p className="text-sm text-text-muted mt-4">{BHE_EJEMPLO.nota}</p>
+            <p className="text-text-secondary mt-6">
+              ¿Con tus números? La{" "}
+              <Link href="/recursos/calculadora-comision-arriendo-sillon" className="text-ink font-semibold underline underline-offset-2">calculadora de comisión o arriendo de sillón</Link>{" "}
+              hace esta cuenta con tu venta, tu porcentaje y tu arriendo, y te dice en qué arriendo les conviene a los dos.
+            </p>
           </div>
         </section>
 

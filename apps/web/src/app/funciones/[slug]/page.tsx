@@ -35,6 +35,8 @@ const NOMBRES_RUTAS: Record<string, string> = {
   "/fidelizacion": "Club de fidelización",
   "/tienda-online": "Tienda online",
   "/barberias": "Software para barberías",
+  "/recursos/calculadora-comision-arriendo-sillon": "Comisión o arriendo de sillón (calculadora)",
+  "/recursos/calculadora-inasistencias": "Calculadora de inasistencias",
 };
 
 export default function PaginaFuncion({ params }: { params: { slug: string } }) {
