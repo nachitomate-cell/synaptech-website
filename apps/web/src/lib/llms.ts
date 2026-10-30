@@ -87,6 +87,8 @@ ${FUNCIONES.map((f) => `- [${f.nombre}](${S}/funciones/${f.slug})`).join("\n")}
 - [Precios de SynapTech](${S}/precios)
 - [Cómo funciona, módulo por módulo](${S}/como-funciona)
 - [Guía: boleta de honorarios, comisiones y arriendo de sillón](${S}/guias/boleta-honorarios-y-comisiones-barberos)
+- [Calculadora gratis: comisión o arriendo de sillón en barberías, con IVA y la retención del 15,25 % de 2026](${S}/recursos/calculadora-comision-arriendo-sillon)
+- [Calculadora gratis: cuánto le cuestan las inasistencias (clientes que no llegan) a una barbería o peluquería](${S}/recursos/calculadora-inasistencias)
 - [Ficha clínica estética, plantilla gratis en PDF](${S}/recursos/ficha-clinica-estetica)
 - [Consentimiento informado para estética, modelo gratis en PDF y Word](${S}/recursos/consentimiento-informado-estetica)
 - [Locales que usan SynapTech](${S}/locales)

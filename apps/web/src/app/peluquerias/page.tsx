@@ -8,6 +8,7 @@ import LogosLocales from "@/components/LogosLocales";
 import Pricing      from "@/components/Pricing";
 import CtaFinal     from "@/components/CtaFinal";
 import FaqSeo       from "@/components/FaqSeo";
+import RecursosGratis from "@/components/RecursosGratis";
 import { HeroRubro, Dolores, type Dolor } from "@/components/Rubro";
 import { FilaCapsulas } from "@/components/Capsulas";
 import { MODULOS, MODULOS_ESTETICA } from "@/content/recorrido";
@@ -89,6 +90,7 @@ export default function PeluqueriasPage() {
 
         <Testimonials />
         <LogosLocales />
+        <RecursosGratis titulo="Recursos gratis para tu peluquería o salón." />
         <FaqSeo titulo="Software para peluquerías: lo que más nos preguntan." preguntas={FAQ_PELUQUERIAS} />
         <Pricing />
         <CtaFinal />

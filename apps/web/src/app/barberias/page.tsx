@@ -16,6 +16,7 @@ import FaqSeo from "@/components/FaqSeo";
 import { FAQ_BARBERIAS } from "@/content/faq-rubros";
 import VienesDe from "@/components/VienesDe";
 import TiempoPerdido from "@/components/TiempoPerdido";
+import RecursosGratis from "@/components/RecursosGratis";
 
 export const metadata = metaPagina({
   title: "Software y agenda online para barberías en Chile | SynapTech",
@@ -85,6 +86,7 @@ export default function BarberiasPage() {
 
         <Testimonials />
         <LogosLocales />
+        <RecursosGratis />
         <FaqSeo titulo="Software para barberías: lo que más nos preguntan." preguntas={FAQ_BARBERIAS} />
         <Pricing />
         <CtaFinal />

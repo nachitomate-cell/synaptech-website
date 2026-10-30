@@ -9,10 +9,10 @@ import { useState } from "react";
    se comparte y se enlaza. Son cuentas simples y transparentes: todo lo que
    se suma o se resta está a la vista. */
 
-const fmt = (n: number) => "$" + Math.round(n || 0).toLocaleString("es-CL");
-const num = (v: string) => Number(String(v).replace(/\D/g, "")) || 0;
+export const fmt = (n: number) => "$" + Math.round(n || 0).toLocaleString("es-CL");
+export const num = (v: string) => Number(String(v).replace(/\D/g, "")) || 0;
 
-function Campo({ label, valor, set, sufijo, ayuda }: { label: string; valor: string; set: (v: string) => void; sufijo?: string; ayuda?: string }) {
+export function Campo({ label, valor, set, sufijo, ayuda }: { label: string; valor: string; set: (v: string) => void; sufijo?: string; ayuda?: string }) {
   return (
     <label className="block">
       <span className="block text-[15px] font-semibold text-ink">{label}</span>
@@ -21,7 +21,7 @@ function Campo({ label, valor, set, sufijo, ayuda }: { label: string; valor: str
         {!sufijo && <span className="pl-3 text-text-muted">$</span>}
         <input inputMode="numeric" value={valor} onChange={(e) => set(e.target.value.replace(/[^\d]/g, ""))}
           className="w-full bg-transparent px-3 py-3 text-[16px] text-ink outline-none tabular-nums" aria-label={label} />
-        {sufijo && <span className="pr-3 text-text-muted">{sufijo}</span>}
+        {sufijo && <span className="pr-3 text-text-muted whitespace-nowrap">{sufijo}</span>}
       </span>
     </label>
   );

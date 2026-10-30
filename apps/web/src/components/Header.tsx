@@ -20,6 +20,8 @@ const RECURSOS = [
   { label: "Cápsulas en video", desc: "Todo el panel en videos de menos de 2 minutos", href: "/como-funciona#capsulas" },
   { label: "Comparaciones",  desc: "Preguntas reales frente a otras agendas", href: "/comparar" },
   { label: "Guía: boletas y comisiones", desc: "Sueldo, comisión o arriendo de sillón en 2026", href: "/guias/boleta-honorarios-y-comisiones-barberos" },
+  { label: "Comisión o arriendo de sillón", desc: "Gratis: cuánto le queda al barbero y al local", href: "/recursos/calculadora-comision-arriendo-sillon" },
+  { label: "Calculadora de inasistencias", desc: "Gratis: cuánto te cuestan los que no llegan", href: "/recursos/calculadora-inasistencias" },
   { label: "Ficha clínica estética", desc: "Plantilla gratis en PDF, facial y corporal", href: "/recursos/ficha-clinica-estetica" },
   { label: "Consentimiento informado", desc: "Modelo gratis en PDF y Word, por tratamiento", href: "/recursos/consentimiento-informado-estetica" },
   { label: "Mis reservas", desc: "Para clientes: tus citas y sellos de todos tus locales", href: "/mis-reservas" },

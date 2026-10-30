@@ -19,6 +19,8 @@ const LINKS: Record<string, { l: string; h: string }[]> = {
     { l: "Precios", h: "/#precios" },
     { l: "Comparaciones", h: "/comparar" },
     { l: "Guía: boletas y comisiones", h: "/guias/boleta-honorarios-y-comisiones-barberos" },
+    { l: "Comisión o arriendo de sillón", h: "/recursos/calculadora-comision-arriendo-sillon" },
+    { l: "Calculadora de inasistencias", h: "/recursos/calculadora-inasistencias" },
     { l: "Ficha clínica estética (PDF)", h: "/recursos/ficha-clinica-estetica" },
     { l: "Consentimiento informado (PDF y Word)", h: "/recursos/consentimiento-informado-estetica" },
     { l: "Preguntas frecuentes", h: "/#faq" },
