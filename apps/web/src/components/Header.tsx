@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { CalendarDays, Sparkles, CreditCard, ShoppingBag, Gift, BarChart3, type LucideIcon } from "lucide-react";
 import { altaIA, FAMILIAS, RUBROS, APP_CLIENTES, APP_DUENOS } from "@/content/catalogo";
 
 /* Menú al estilo Square: cada familia abre un panel ancho con todo lo que
@@ -37,6 +38,19 @@ const PANEL_LABELS: { id: Exclude<Panel, null>; label: string }[] = [
   { id: "rubros",    label: "Rubros" },
   { id: "recursos",  label: "Recursos" },
 ];
+
+/* Menú móvil de Productos (30-10-2026): la lista gris de funciones separadas
+   por "·" se leía como un bloque de texto ("se ve medio fome"). Ahora va al
+   estilo Apple: icono de color, nombre y la bajada de una línea; el detalle
+   vive en la página de cada producto. */
+const ICONO_FAMILIA: Record<string, { Icono: LucideIcon; fondo: string }> = {
+  agenda:       { Icono: CalendarDays, fondo: "from-[#3B82F6] to-[#1D4ED8]" },
+  asistente:    { Icono: Sparkles,     fondo: "from-[#9CCC3C] to-[#4F7A12]" },
+  cobros:       { Icono: CreditCard,   fondo: "from-[#334155] to-[#0F1A2B]" },
+  tienda:       { Icono: ShoppingBag,  fondo: "from-[#FB923C] to-[#EA580C]" },
+  fidelizacion: { Icono: Gift,         fondo: "from-[#F472B6] to-[#DB2777]" },
+  gestion:      { Icono: BarChart3,    fondo: "from-[#A78BFA] to-[#7C3AED]" },
+};
 
 function Chevron({ open }: { open: boolean }) {
   return (
@@ -234,12 +248,30 @@ export default function Header() {
                 </button>
                 {mobileSub === p.id && (
                   <div className="pb-4 flex flex-col gap-4">
-                    {p.id === "productos" && FAMILIAS.map((f) => (
-                      <Link key={f.id} href={`/#${f.id}`} onClick={cerrar}>
-                        <span className="block font-semibold text-[15px] text-ink">{f.nombre}</span>
-                        <span className="block text-[13px] text-text-muted">{f.items.map((i) => i.label).join(" · ")}</span>
+                    {p.id === "productos" && FAMILIAS.map((f) => {
+                      const ic = ICONO_FAMILIA[f.id];
+                      return (
+                        <Link key={f.id} href={f.pagina?.href ?? `/#${f.id}`} onClick={cerrar}
+                          className="flex items-center gap-3.5 active:opacity-70">
+                          {ic && (
+                            <span aria-hidden className={`shrink-0 w-11 h-11 rounded-[12px] bg-gradient-to-b ${ic.fondo} flex items-center justify-center shadow-[0_2px_6px_rgba(15,26,43,0.15)]`}>
+                              <ic.Icono className="w-[22px] h-[22px] text-white" strokeWidth={2} />
+                            </span>
+                          )}
+                          <span className="flex-1 min-w-0">
+                            <span className="block font-semibold text-[16px] text-ink leading-tight">{f.nombre}</span>
+                            <span className="block text-[13px] text-text-muted leading-snug mt-0.5">{f.bajada}</span>
+                          </span>
+                          <span aria-hidden className="shrink-0 text-accent text-[20px] leading-none">›</span>
+                        </Link>
+                      );
+                    })}
+                    {p.id === "productos" && (
+                      <Link href="/funciones" onClick={cerrar}
+                        className="self-center mt-1 text-[15px] font-medium text-accent">
+                        Ver todas las funciones ›
                       </Link>
-                    ))}
+                    )}
                     {p.id === "rubros" && RUBROS.map((r) => (
                       <Link key={r.id} href={r.href ?? `/#rubro-${r.id}`} onClick={cerrar}
                         className="block font-medium text-[15px] text-text-primary">{r.nombre}</Link>
