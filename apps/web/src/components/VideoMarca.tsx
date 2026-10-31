@@ -11,14 +11,16 @@ import { useRef, useState } from "react";
    Está pensado en bucle (el último cuadro es el primero), por eso parte solo,
    mudo y en loop; el teclado ASMR es la mitad de la pieza, así que el botón
    para activar el sonido está a la vista. Vive en Storage (assets/) para no
-   cargar el ancho de banda de Vercel; el celular baja la versión de 720p. */
+   cargar el ancho de banda de Vercel; el celular baja la versión de 720p.
+   v6 (30-10-2026, 55 s): el tecleo del principio va más rápido (terminaba a
+   los 41 s; ahora a los 22). Archivos -v6 aparte: la v5 sigue en Storage. */
 const STORAGE = "https://firebasestorage.googleapis.com/v0/b/barberia-elegance.firebasestorage.app/o";
 export const VIDEO_MARCA = {
-  mp4: `${STORAGE}/assets%2Fsynaptech-marca-es.mp4?alt=media`,
-  mp4Movil: `${STORAGE}/assets%2Fsynaptech-marca-es-720.mp4?alt=media`,
-  portada: `${STORAGE}/assets%2Fsynaptech-marca-es.jpg?alt=media`,
-  duracion: "PT1M13S",
-  subido: "2026-10-27",
+  mp4: `${STORAGE}/assets%2Fsynaptech-marca-es-v6.mp4?alt=media`,
+  mp4Movil: `${STORAGE}/assets%2Fsynaptech-marca-es-v6-720.mp4?alt=media`,
+  portada: `${STORAGE}/assets%2Fsynaptech-marca-es-v6.jpg?alt=media`,
+  duracion: "PT55S",
+  subido: "2026-10-30",
   nombre: "SynapTech: todo en un solo lugar",
   descripcion: "El logo de SynapTech se arma punto a punto mientras se escriben sus funciones: Syna responde en todos tus canales, boletas ante el SII, Wallet, club de sellos, reseñas en Google, comisiones, tótem y más. Todo en un solo lugar.",
 };
