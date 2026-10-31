@@ -142,8 +142,8 @@ export default function EmpresasPage() {
                 </h3>
                 <p className="text-white/70 leading-relaxed mt-4">
                   Clínicas, una agencia de turismo con su equipo de ventas, un estudio de pilates con 7 sedes,
-                  centros de estética y más. Más de 5.000 conversaciones por WhatsApp y más de 23.000 reservas,
-                  medido el 26 de octubre de 2026.
+                  centros de estética y más. Más de 6.500 conversaciones por WhatsApp y más de 27.000 reservas,
+                  medido el 31 de octubre de 2026.
                 </p>
               </div>
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3">

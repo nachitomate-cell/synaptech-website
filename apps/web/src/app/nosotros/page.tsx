@@ -23,15 +23,15 @@ export const metadata = metaPagina({
      · 01-09 Google Play · 05-09 primeras BHE con folio real (El 10) · 07-10
      partner certificado de Mercado Pago · 14-10 45 locales que trabajan con
      SynapTech (Chile, Perú y Argentina; medición del video "La velocidad de SynapTech").
-   "+85.000" y "+23.000": re-medidas el 26-10-2026 (ver components/Cifras.tsx).
+   "+80.000" y "+27.000": re-medidas el 31-10-2026 (ver components/Cifras.tsx).
    "+1.300 cambios": 1.320 PRs mergeados en la plataforma al 09-10-2026.
    "31 %": reservas online antes de las 10, después de las 20 o en domingo,
    auditoría del 04-10-2026 (la misma cifra de la postulación al Banco de Chile). */
 
 const NUMEROS = [
   { v: "+45", l: "locales y sedes en Chile" },
-  { v: "+85.000", l: "clientes en sus fichas" },
-  { v: "+23.000", l: "citas y reservas agendadas" },
+  { v: "+80.000", l: "clientes en sus fichas" },
+  { v: "+27.000", l: "citas y reservas agendadas" },
   { v: "+1.300", l: "cambios publicados desde abril" },
 ];
 

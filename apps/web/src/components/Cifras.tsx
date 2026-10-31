@@ -17,12 +17,20 @@
        23.811 agendadas en SynapTech → "+23.000".
      · Conversaciones de WhatsApp (wa_conversaciones, 1 doc por contacto):
        5.443 → "+5.000".
+     Re-medido el 31-10-2026, mismo criterio:
+     · Locales y sedes: 54 cuentas con ≥10 fichas y ≥5 reservas propias + 7
+       sedes extra (Pilates 6, Oren 1) = 61 → sigue "+60". Con un criterio
+       más laxo (≥10 fichas o alguna reserva) son 65 + 7 = 72.
+     · Fichas: 84.543 → "+80.000". BAJÓ: Barbería Diego Carratu pasó a baja
+       en _billing y se llevó 8.957 fichas (sin eso, habría subido).
+     · Citas: 179.918 − 152.623 migradas = 27.295 → "+27.000".
+     · WhatsApp (wa_conversaciones): 6.645 → "+6.500".
    Se redondean hacia abajo. Volver a medir antes de cambiarlas. */
 const CIFRAS = [
   { valor: "+60",     label: "locales y sedes", nota: "en Chile, Perú, México, Colombia y Argentina" },
-  { valor: "+85.000", label: "clientes", nota: "en las fichas de esos locales" },
-  { valor: "+23.000", label: "reservas", nota: "agendadas en SynapTech" },
-  { valor: "+5.000",  label: "conversaciones", nota: "por WhatsApp, en la bandeja de la plataforma" },
+  { valor: "+80.000", label: "clientes", nota: "en las fichas de esos locales" },
+  { valor: "+27.000", label: "reservas", nota: "agendadas en SynapTech" },
+  { valor: "+6.500",  label: "conversaciones", nota: "por WhatsApp, en la bandeja de la plataforma" },
 ];
 
 export default function Cifras() {
@@ -42,7 +50,7 @@ export default function Cifras() {
             </div>
           ))}
         </div>
-        <p className="mt-14 text-center text-[13px] text-text-muted">Medido en la plataforma el 26 de octubre de 2026.</p>
+        <p className="mt-14 text-center text-[13px] text-text-muted">Medido en la plataforma el 31 de octubre de 2026.</p>
       </div>
     </section>
   );
