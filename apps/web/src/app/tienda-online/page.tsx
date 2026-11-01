@@ -4,7 +4,6 @@ import Footer   from "@/components/Footer";
 import CtaFinal from "@/components/CtaFinal";
 import FaqSeo   from "@/components/FaqSeo";
 import { altaIA, CTA_IA, waLink } from "@/content/catalogo";
-import { ADICIONALES } from "@/content/precios";
 import { metaPagina } from "@/lib/seo";
 
 /* Tienda online (11-10-2026). Ignacio: "la tienda que tienen las barberías
@@ -39,14 +38,13 @@ const TIENDAS = [
   { nombre: "El 10 Salón Masculino", url: "https://el10salonmasculino.synaptechspa.cl/tienda" },
 ];
 
-const vende = ADICIONALES.find((a) => /vende/i.test(a.nombre));
 
 const FAQ = [
   { q: "¿La tienda tiene un costo aparte?", a: "No: viene con tu plan de SynapTech. Si cobras con tarjeta, Mercado Pago cobra su comisión por cada pago, como en cualquier venta con Mercado Pago." },
   { q: "¿Necesito Mercado Pago?", a: "Solo para cobrar con tarjeta en la tienda. Sin él, tus clientes igual ven tus productos y los apartan para pagarlos en el local." },
   { q: "¿Cómo cargo mis productos?", a: "Desde el panel, en Productos: nombre, precio, foto, categoría y stock. Si ya los tienes en otra agenda o en una planilla, te los cargamos nosotros." },
   { q: "¿Sirve si no tengo muchos productos?", a: "Sí. Hay tiendas con 4 productos y con más de 200. Puedes empezar con los que más vendes en el mesón." },
-  ...(vende ? [{ q: "¿El asistente puede vender por WhatsApp?", a: `Sí, con el adicional "${vende.nombre}" (${vende.precio} + IVA): ${vende.desc.charAt(0).toLowerCase()}${vende.desc.slice(1)}` }] : []),
+  { q: "¿El asistente puede vender por WhatsApp?", a: "Sí, en los planes con IA (Independiente IA, Local IA y Todo Incluido): responde por tus productos con precio y stock, y se los aparta al cliente para su cita. Es parte del asistente, así que no existe en los planes sin IA." },
 ];
 
 export default function TiendaOnline() {
