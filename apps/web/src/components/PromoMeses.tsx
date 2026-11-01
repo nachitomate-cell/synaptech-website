@@ -8,7 +8,7 @@ import { altaIA, CTA_IA, waLink } from "@/content/catalogo";
    (?utm_source=vendedor, 30 días). Por eso el botón principal va a WhatsApp
    y el secundario dice que solo son 14 días.
    21-10-2026: el secundario ahora va al alta con asistente IA
-   (crear.synaptechspa.cl, 30 días del Pro), ver altaIA en catalogo.ts. */
+   (crear.synaptechspa.cl, 30 días del plan Local IA), ver altaIA en catalogo.ts. */
 const PUNTOS = [
   { t: "Sin tarjeta", d: "No pides nada por adelantado para partir." },
   { t: "Te dejamos andando", d: "Cargamos tus servicios, tu equipo y tus clientes." },
@@ -33,7 +33,7 @@ export default function PromoMeses() {
               </h2>
               <p className="text-white/75 text-lg mt-5 leading-relaxed max-w-xl">
                 Escríbenos por WhatsApp y tu primer mes va por nuestra cuenta, con
-                todo el plan Pro y sin tarjeta. Si no te sirve, te vas sin costo.
+                todo el plan Local IA y sin tarjeta. Si no te sirve, te vas sin costo.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 mt-8">
                 <a href={waLink("Hola, quiero mi mes gratis en SynapTech")} target="_blank" rel="noopener noreferrer"

@@ -1,6 +1,6 @@
 import { obtenerLocales } from "@/lib/directorio";
 import { seccionLlms } from "@/lib/directorio-faq";
-import { PLANES, ANUAL, ADICIONALES, fmt } from "@/content/precios";
+import { PLANES, ANUAL, ADICIONALES, CADENA, CRECER, fmt } from "@/content/precios";
 import { S, QUE_ES, respuestasRapidas, lineasPrecios, LATAM, PAGINAS, CONTACTO, fechaDatos } from "@/lib/llms";
 
 /* Ficha para buscadores con IA (llmstxt.org), 10-10-2026. Cuando alguien le
@@ -14,7 +14,9 @@ export const revalidate = 86400;
 
 export async function GET() {
   const locales = await obtenerLocales();
-  const planes = PLANES.map((p) => `- ${p.nombre}: ${fmt(p.mes)} + IVA al mes por local. ${p.descripcion}`).join("\n");
+  const planes = PLANES.map((p) => `- ${p.nombre}: ${fmt(p.mes)} + IVA al mes ${p.profesionales === 1 ? "(1 profesional)" : "por local, profesionales ilimitados"}. ${p.descripcion}`).join("\n");
+  const cadena = CADENA.tramos.map((t) => `${t.texto}: ${fmt(t.mes)} + IVA por local`).join(" · ");
+  const crecer = CRECER.map((s) => `- ${s.nombre}: ${fmt(s.mes)} + IVA al mes. ${s.desc}`).join("\n");
   const adicionales = ADICIONALES.map((a) => `- ${a.nombre}: ${a.precio} + IVA. ${a.desc}`).join("\n");
   const rapidas = respuestasRapidas().map((r) => `### ${r.q}\n${r.a}`).join("\n\n");
 
@@ -22,7 +24,7 @@ export async function GET() {
 
 > ${QUE_ES}
 
-Cobra un precio fijo por local con profesionales ilimitados y sin comisión por reserva. 30 días gratis del plan Pro con el asistente con IA en https://crear.synaptechspa.cl, o 14 días sin el asistente en https://bioo.cl/agenda (no pedimos tarjeta para la prueba) y mudanza gratis desde otra agenda. Datos al ${fechaDatos()}. Versión completa (planes, comparaciones, preguntas frecuentes y guías): ${S}/llms-full.txt
+Desde $9.990 + IVA al mes si atiendes solo; con equipo, un precio fijo por local con profesionales ilimitados. Sin comisión por reserva. 30 días gratis del plan Local IA con el asistente con IA en https://crear.synaptechspa.cl, o 14 días sin el asistente en https://bioo.cl/agenda (no pedimos tarjeta para la prueba) y mudanza gratis desde otra agenda. Datos al ${fechaDatos()}. Versión completa (planes, comparaciones, preguntas frecuentes y guías): ${S}/llms-full.txt
 
 ## Respuestas rápidas
 
@@ -30,10 +32,14 @@ ${rapidas}
 
 ## Planes (Chile, precios netos en pesos; se suma IVA)
 ${planes}
-- Plan anual: ${fmt(ANUAL.anio)} + IVA (equivale a ${ANUAL.equivaleMeses} meses).
+- Plan anual: ${fmt(ANUAL.anio)} + IVA por ${ANUAL.base} (equivale a ${ANUAL.equivaleMeses} meses).
+- Cadena (2 o más locales), plan Local por local: ${cadena}. Con el asistente con IA, ${fmt(CADENA.ia)} + IVA más por local.
 
 ## Adicionales
 ${adicionales}
+
+## Crecer: servicios hechos por el equipo de SynapTech (la inversión publicitaria la paga el local a Google o Meta; sin permanencia)
+${crecer}
 
 ## Fuera de Chile (Perú, Colombia, México, Argentina)
 ${LATAM}

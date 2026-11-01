@@ -11,7 +11,7 @@ import { metaPagina } from "@/lib/seo";
 
 export const metadata = metaPagina({
   title: "Alternativas a AgendaPro, Fresha y WeiBook: comparar agendas",
-  description: "SynapTech frente a AgendaPro, Fresha, WeiBook, Booksy, Novai, AgendaLibre y más: precios según tu equipo, WhatsApp, IA y boletas, con fuente y fecha.",
+  description: "SynapTech frente a Keo Planner, Usekora, AgendAPP, AgendaLibre, AgendaPro, Fresha y más: precios según tu equipo, WhatsApp, IA y boletas, con fuente.",
   path: "/comparar",
 });
 

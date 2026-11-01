@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { AGENDAPRO, HOME_STUDIO, PLANES, fmt } from "@/content/precios";
+import { AGENDAPRO, INDEPENDIENTE, LOCAL, fmt } from "@/content/precios";
 import { waLink } from "@/content/catalogo";
 import { BotonCapsula } from "./Capsulas";
 
@@ -8,7 +8,8 @@ import { BotonCapsula } from "./Capsulas";
    número de profesionales. Los precios de AgendaPro salen de
    content/precios.ts (AGENDAPRO), con su fuente y fecha a la vista: si se
    publican, se publican verificables. Con 1 profesional se compara contra
-   el Home Studio ($14.900 + IVA, 26-10-2026); desde 2, contra el Básico. */
+   el plan Independiente ($9.990 + IVA, escalera de noviembre 2026); desde 2,
+   contra el plan Local. */
 
 const MUDANZA = [
   "Tus clientes con su historial",
@@ -19,8 +20,8 @@ const MUDANZA = [
 
 export default function Cambiate() {
   const [n, setN] = useState(6);
-  const solo = n === HOME_STUDIO.profesionales;
-  const nuestro = solo ? HOME_STUDIO.mes : PLANES[0].mes;
+  const solo = n === 1;
+  const nuestro = solo ? INDEPENDIENTE.mes : LOCAL.mes;
   const suyo = AGENDAPRO.precio(n);
   const dif = suyo - nuestro;
 
@@ -74,7 +75,7 @@ export default function Cambiate() {
               <p className="text-xs text-white/50 mt-1">+ IVA al mes</p>
             </div>
             <div className="rounded-2xl bg-lime text-ink p-5">
-              <p className="text-sm text-ink/70">SynapTech {solo ? HOME_STUDIO.nombre : PLANES[0].nombre}</p>
+              <p className="text-sm text-ink/70">SynapTech {solo ? INDEPENDIENTE.nombre : LOCAL.nombre}</p>
               <p className="font-display font-bold text-3xl tracking-tight mt-1">{fmt(nuestro)}</p>
               <p className="text-xs text-ink/60 mt-1">{solo ? "+ IVA al mes, para quien atiende solo" : "+ IVA al mes, con profesionales ilimitados"}</p>
             </div>
@@ -82,7 +83,7 @@ export default function Cambiate() {
 
           <p className="mt-6 text-lg leading-snug min-h-[3.5rem]">
             {solo ? (
-              <>Si trabajas solo, el plan {HOME_STUDIO.nombre} cuesta <span className="text-lime font-bold">{fmt(HOME_STUDIO.mes)} + IVA</span>, con todo el Básico. Desde 2 profesionales, SynapTech no cobra por cada uno.</>
+              <>Si trabajas solo, el plan {INDEPENDIENTE.nombre} cuesta <span className="text-lime font-bold">{fmt(INDEPENDIENTE.mes)} + IVA</span>, con todo el panel: {fmt(suyo - nuestro)} menos al mes. Desde 2 profesionales, SynapTech no cobra por cada uno.</>
             ) : (
               <>Con {n} profesionales te ahorras <span className="text-lime font-bold">{fmt(dif)} al mes</span>, {fmt(dif * 12)} al año.</>
             )}

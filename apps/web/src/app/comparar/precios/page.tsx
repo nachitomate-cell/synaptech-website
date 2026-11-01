@@ -33,7 +33,7 @@ export default function PreciosAgendas() {
   const preguntasMarca = COMPETIDORES.map((c) => ({ c, f: precioFaqDe(c) })).filter((x) => x.f);
   const faqGeneral = [
     { q: "¿Cuál es la agenda online más barata en Chile?", a: respuestaMasBarata() },
-    { q: "¿Cuánto cuesta SynapTech?", a: `El plan Básico cuesta ${SYNAPTECH.precios[1].valor} al mes por local, con profesionales ilimitados: el precio es el mismo con 2 o con 20 profesionales. Si atiendes solo, el plan Home Studio cuesta ${SYNAPTECH.precios[0].valor}. Se prueba 14 días gratis con todo el plan Pro, sin tarjeta. El plan Pro, con el asistente con IA que responde y agenda en el WhatsApp del local, cuesta ${SYNAPTECH.pro}. Fuera de Chile: ${SYNAPTECH_USD.precios[0].valor} al mes, o ${SYNAPTECH_USD.ia} con el asistente.` },
+    { q: "¿Cuánto cuesta SynapTech?", a: `Si atiendes solo, el plan Independiente cuesta ${SYNAPTECH.precios[0].valor} al mes, o ${SYNAPTECH.ia1} con el asistente con IA (Independiente IA). Con equipo, el plan Local cuesta ${SYNAPTECH.precios[1].valor} al mes por local, con profesionales ilimitados: el precio es el mismo con 2 o con 20 profesionales. El plan Local IA, con el asistente con IA que responde y agenda en el WhatsApp del local, cuesta ${SYNAPTECH.pro}, y Todo Incluido, con boletas ante el SII, $79.900 + IVA. Se prueba gratis sin tarjeta: 14 días, o 30 con el asistente. Fuera de Chile: ${SYNAPTECH_USD.precios[0].valor} al mes, o ${SYNAPTECH_USD.ia} con el asistente.` },
     { q: "¿Los precios incluyen IVA?", a: "Depende de cada empresa, y en la tabla va tal como lo publica cada una: \"+ IVA\" cuando lo dice, \"+ imp.\" si dice impuestos, y sin nada cuando su página no lo aclara. Los precios de SynapTech son netos: se suma IVA." },
     { q: "¿Por qué el precio cambia tanto según el número de profesionales?", a: "Porque la mayoría de las agendas cobra por profesional, por usuario o por cuenta. Con un equipo chico la diferencia es poca; con 6 o 9 profesionales puede duplicar la mensualidad. SynapTech cobra por local, con profesionales ilimitados." },
   ];
@@ -148,7 +148,7 @@ export default function PreciosAgendas() {
               </table>
             </div>
             <p className="text-sm text-text-muted mt-4 max-w-3xl">
-              SynapTech: plan Básico, por local y con profesionales ilimitados; con el asistente con IA (plan Pro), {SYNAPTECH.pro}.
+              SynapTech: con 1 profesional, plan Independiente ({SYNAPTECH.ia1} con el asistente con IA); desde 2, plan Local, por local y con profesionales ilimitados ({SYNAPTECH.pro} con el asistente, en Local IA).
               Fuera de Chile, {SYNAPTECH_USD.precios[0].valor} o {SYNAPTECH_USD.ia} al mes. Si ves un precio desactualizado, escríbenos y lo volvemos a revisar.
             </p>
           </div>

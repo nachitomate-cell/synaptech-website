@@ -26,7 +26,7 @@ const DOLORES: Dolor[] = [
   { dolor: "Responder mensajes todo el día en vez de atender", solucion: "Syna responde y agenda", detalle: "El asistente con IA contesta por cada tratamiento, pide nombre completo y RUT, y deja la hora agendada en el WhatsApp de tu clínica." },
   { dolor: "Pedir los datos del paciente a mano", solucion: "Reserva con todos sus datos", detalle: "Nombre, apellidos, edad y RUT con dígito verificador, directo a la ficha." },
   { dolor: "Consentimientos en papel", solucion: "Consentimiento antes de agendar", detalle: "El paciente acepta tu consentimiento informado al reservar, y puede firmar en pantalla en la clínica." },
-  { dolor: "Pacientes que no llegan a un tratamiento caro", solucion: "Abono y recordatorio", detalle: "Un abono con Mercado Pago al reservar, confirmación y recordatorio por WhatsApp y correo." },
+  { dolor: "Pacientes que no llegan a un tratamiento caro", solucion: "Abono y recordatorio", detalle: "Un abono con Mercado Pago al reservar, confirmación y recordatorio por correo, y por WhatsApp con el asistente (planes con IA)." },
   { dolor: "Historias clínicas en cuadernos", solucion: "Ficha clínica digital", detalle: "Alergias destacadas, notas del equipo y la evolución de cada sesión, imprimible en PDF." },
   { dolor: "Indicaciones que se olvidan después de la sesión", solucion: "Avisos a los pacientes", detalle: "Indicaciones post-atención y aviso de control, enviados por la plataforma." },
 ];

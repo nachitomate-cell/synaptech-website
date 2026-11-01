@@ -117,9 +117,12 @@ export default function GuiaBoletas() {
                 SII, y la liquidación de cada uno se calcula con su porcentaje o su arriendo, propinas y adelantos.
                 Todo el mes queda en Excel para tu contador.
               </p>
-              <Link href="/barberias" className="inline-flex mt-7 bg-lime text-ink font-semibold px-6 py-3.5 rounded-full hover:bg-white transition-colors">
-                Ver el software para barberías
-              </Link>
+              <div className="flex flex-wrap items-center gap-x-6 gap-y-3 mt-7">
+                <Link href="/boletas-electronicas-sii" className="inline-flex bg-lime text-ink font-semibold px-6 py-3.5 rounded-full hover:bg-white transition-colors">
+                  Ver las boletas automáticas ante el SII
+                </Link>
+                <Link href="/barberias" className="font-semibold text-white/80 underline underline-offset-4 hover:text-white">Software para barberías</Link>
+              </div>
             </div>
             <div className="rounded-[24px] bg-white p-2.5">
               {/* eslint-disable-next-line @next/next/no-img-element */}

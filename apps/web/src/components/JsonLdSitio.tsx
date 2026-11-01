@@ -1,6 +1,6 @@
 "use client";
 import { usePathname } from "next/navigation";
-import { PLANES, HOME_STUDIO, COMPARATIVA } from "@/content/precios";
+import { PLANES, ANUAL, LOCAL_IA, TODO_EL_PANEL, MODULOS_EQUIPO } from "@/content/precios";
 import { esRutaPais } from "@/content/paises";
 import { SITE_DESC } from "@/lib/sitio";
 
@@ -57,29 +57,31 @@ const JSON_LD = {
         "https://apps.apple.com/cl/app/synaptech-studio/id6794530086",
         "https://play.google.com/store/apps/details?id=cl.synaptechspa.studio",
       ],
-      featureList: COMPARATIVA.flatMap((g) => g.filas.filter((f) => f.basico === true).map((f) => f.label)),
+      // "Todo el panel" (todos los planes) + módulos de equipo (desde Local).
+      featureList: [...TODO_EL_PANEL, MODULOS_EQUIPO].flatMap((g) => g.filas.filter((f) => f.v[2] === true).map((f) => f.label)),
       description: SITE_DESC,
       publisher: { "@id": "https://www.synaptechspa.cl/#org" },
       areaServed: "CL",
       // Lista pública oficial (netos + IVA, por local), desde content/precios.ts.
       // El 10-10 un buscador con IA leyó estos precios desde acá y dijo "no
       // encontré qué incluye cada plan": por eso cada oferta lleva su detalle.
+      // Escalera de noviembre 2026: Independiente, Independiente IA, Local, Local IA y Todo Incluido, más el anual.
       offers: PLANES.map((p) => ({
         "@type": "Offer",
-        name: p.nombre,
+        name: `Plan ${p.nombre}: ${p.seo}`,
         description: `${p.descripcion} Incluye: ${p.destacados.join("; ")}.`,
         price: String(p.mes),
         priceCurrency: "CLP",
-        priceSpecification: { "@type": "UnitPriceSpecification", price: String(p.mes), priceCurrency: "CLP", valueAddedTaxIncluded: false, unitText: "mes, por local" },
+        priceSpecification: { "@type": "UnitPriceSpecification", price: String(p.mes), priceCurrency: "CLP", valueAddedTaxIncluded: false, unitText: p.profesionales === 1 ? "mes, 1 profesional" : "mes, por local" },
         eligibleRegion: { "@type": "Country", name: "CL" },
-        url: "https://www.synaptechspa.cl/precios",
+        url: `https://www.synaptechspa.cl/precios#plan-${p.id}`,
       })).concat([{
         "@type": "Offer",
-        name: HOME_STUDIO.nombre,
-        description: "Todo el plan Básico para quien atiende solo (1 profesional). Con el segundo profesional pasa al Básico.",
-        price: String(HOME_STUDIO.mes),
+        name: `Plan anual ${ANUAL.base}`,
+        description: `Todo el plan ${ANUAL.base} pagando una vez al año: equivale a ${ANUAL.equivaleMeses} meses de ${LOCAL_IA.mes.toLocaleString("es-CL")}.`,
+        price: String(ANUAL.anio),
         priceCurrency: "CLP",
-        priceSpecification: { "@type": "UnitPriceSpecification", price: String(HOME_STUDIO.mes), priceCurrency: "CLP", valueAddedTaxIncluded: false, unitText: "mes, 1 profesional" },
+        priceSpecification: { "@type": "UnitPriceSpecification", price: String(ANUAL.anio), priceCurrency: "CLP", valueAddedTaxIncluded: false, unitText: "año, por local" },
         eligibleRegion: { "@type": "Country", name: "CL" },
         url: "https://www.synaptechspa.cl/precios",
       }]),

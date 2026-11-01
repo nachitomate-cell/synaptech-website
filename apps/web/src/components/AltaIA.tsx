@@ -1,9 +1,7 @@
 import { altaIA, agendaSinIA, CTA_IA, CTA_SIN_IA, waLink, type RubroAlta } from "@/content/catalogo";
 import { CIFRAS_IA, PRO_IA, type EjemploChat } from "@/content/alta-ia";
 import { SITIO } from "@/lib/seo";
-import { PLANES, fmt } from "@/content/precios";
-
-const BASICO = PLANES.find((p) => p.id === "basico")!;
+import { INDEPENDIENTE, INDEPENDIENTE_IA, LOCAL, LOCAL_IA, fmt } from "@/content/precios";
 
 /* Piezas de las páginas del alta con asistente IA (/agenda-con-asistente-ia y
    /agenda-con-ia/...). Todo lo que afirman está en content/alta-ia.ts. */
@@ -133,19 +131,21 @@ export function Despues30({ origen, rubro }: { origen: string; rubro?: RubroAlta
         <div className="grid md:grid-cols-2 gap-5">
           <article className="rounded-[28px] bg-ink text-white p-7 sm:p-8">
             <p className="text-lime text-xs font-semibold uppercase tracking-[0.12em]">Sigues con Syna</p>
-            <h3 className="font-display font-bold text-3xl tracking-tight mt-1">Plan Pro</h3>
-            <p className="mt-4"><span className="font-display font-bold text-[34px] tracking-tight">$49.900</span> <span className="text-white/60 text-sm">+ IVA / mes por local</span></p>
+            <h3 className="font-display font-bold text-3xl tracking-tight mt-1">Plan {LOCAL_IA.nombre}</h3>
+            <p className="mt-4"><span className="font-display font-bold text-[34px] tracking-tight">{fmt(LOCAL_IA.mes)}</span> <span className="text-white/60 text-sm">+ IVA / mes por local</span></p>
             <p className="text-white/80 mt-4 leading-relaxed">
               El asistente sigue respondiendo y agendando por WhatsApp, con {PRO_IA.conversaciones} conversaciones al mes incluidas.
+              ¿Atiendes solo? {INDEPENDIENTE_IA.nombre}, {fmt(INDEPENDIENTE_IA.mes)} + IVA, con {INDEPENDIENTE_IA.conversaciones}.
             </p>
             <a href={altaIA(`${origen}-pro`, rubro)} className="mt-6 inline-flex justify-center items-center text-center bg-lime text-ink font-semibold px-6 py-3.5 rounded-full hover:bg-white transition-colors">{CTA_IA}</a>
           </article>
           <article className="rounded-[28px] bg-white p-7 sm:p-8">
             <p className="text-accent text-xs font-semibold uppercase tracking-[0.12em]">O sin el asistente</p>
-            <h3 className="font-display font-bold text-3xl tracking-tight mt-1 text-ink">Plan Básico</h3>
-            <p className="mt-4"><span className="font-display font-bold text-[34px] tracking-tight text-ink">{fmt(BASICO.mes)}</span> <span className="text-text-muted text-sm">+ IVA / mes por local</span></p>
+            <h3 className="font-display font-bold text-3xl tracking-tight mt-1 text-ink">Plan {LOCAL.nombre}</h3>
+            <p className="mt-4"><span className="font-display font-bold text-[34px] tracking-tight text-ink">{fmt(LOCAL.mes)}</span> <span className="text-text-muted text-sm">+ IVA / mes por local</span></p>
             <p className="text-text-secondary mt-4 leading-relaxed">
-              La agenda, la reserva online, la caja y el club, con profesionales ilimitados. Lo eliges desde tu panel; no se cobra nada solo.
+              La agenda, la reserva online, la caja y el club, con profesionales ilimitados. ¿Atiendes solo? {INDEPENDIENTE.nombre}, {fmt(INDEPENDIENTE.mes)} + IVA.
+              Lo eliges desde tu panel; no se cobra nada solo.
             </p>
             <a href={agendaSinIA(`${origen}-sin-ia`)} className={`mt-6 inline-block ${ENLACE}`}>{CTA_SIN_IA}</a>
           </article>

@@ -67,7 +67,7 @@ export default async function Pagina({ params }: Params) {
         <HeroIA
           eyebrow={`${r.nombre} · ${c.nombre}`}
           titulo={`Agenda con asistente de IA para ${r.plural} en ${c.nombre}.`}
-          bajada={`${r.bajada} 30 días gratis del plan Pro. Funciona en ${c.nombre} y en todo Chile.`}
+          bajada={`${r.bajada} 30 días gratis del plan Local IA. Funciona en ${c.nombre} y en todo Chile.`}
           origen={origen}
           rubro={r.rubro}
           chat={r.ejemplos[0]}
@@ -155,7 +155,7 @@ export default async function Pagina({ params }: Params) {
           </div>
         </section>
 
-        <CtaIA titulo={`Que Syna responda el WhatsApp de ${r.tuLocal} en ${c.nombre}.`} bajada="Crea tu agenda en minutos. 30 días gratis del plan Pro con el asistente." origen={origen} rubro={r.rubro} />
+        <CtaIA titulo={`Que Syna responda el WhatsApp de ${r.tuLocal} en ${c.nombre}.`} bajada="Crea tu agenda en minutos. 30 días gratis del plan Local IA con el asistente." origen={origen} rubro={r.rubro} />
       </main>
       <Footer />
     </>

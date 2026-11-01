@@ -160,7 +160,7 @@ export default function CompararCompetidor({ params }: { params: { competidor: s
               ))}
             </div>
             <p className="text-sm text-text-muted mt-5 max-w-3xl">
-              {c.notaPrecios} {c.enDolares ? "SynapTech con el asistente con IA" : "SynapTech Pro, con el asistente con IA,"} cuesta {nosotros.pro} al mes, también con profesionales ilimitados.
+              {c.notaPrecios} {c.enDolares ? "SynapTech con el asistente con IA" : "SynapTech Local IA, con el asistente con IA,"} cuesta {nosotros.pro} al mes, también con profesionales ilimitados.
             </p>
             <Link href="/comparar/precios" className="inline-block mt-4 font-semibold text-ink border-b-2 border-lime pb-0.5 hover:border-ink">
               Ver los precios de las {COMPETIDORES.length + 1} agendas en una tabla →
