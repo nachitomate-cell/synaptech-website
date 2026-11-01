@@ -8,6 +8,7 @@ import SynaChat from "@/components/SynaChat";
 import TrackingScripts from "@/components/TrackingScripts";
 import JsonLdSitio from "@/components/JsonLdSitio";
 import PestanaVuelve from "@/components/PestanaVuelve";
+import AtribucionPrimerToque from "@/components/AtribucionPrimerToque";
 import { SITE_TITLE, SITE_DESC } from "@/lib/sitio";
 
 /* Titulares en una grotesca apretada, como Square; el cuerpo sigue en DM Sans. */
@@ -98,6 +99,7 @@ export default function RootLayout({
         <SynaChat />
         <TrackingScripts />
         <PestanaVuelve />
+        <AtribucionPrimerToque />
         <Analytics />
         <SpeedInsights />
       </body>

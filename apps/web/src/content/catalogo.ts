@@ -13,14 +13,21 @@
    · alta(medio): el link de alta etiquetado con utm. NO usar ?ref= desde el
      sitio: `ref` es de vendedores y locales embajadores, y uno desconocido le
      llega a Ignacio como alerta ("Ref DESCONOCIDO").
+   · 01-11-2026: el botón (`medio`) viaja en utm_content y `cta`, NO en
+     utm_medium. `utm_source=synaptechspa` queda solo como respaldo de quien
+     entró directo: si la persona llegó por una campaña o desde otra página,
+     AtribucionPrimerToque reescribe el link al apretarlo con esa campaña
+     (lib/atribucion.ts). Antes el botón pisaba la campaña y las altas de la
+     prueba de ChatGPT Ads quedaron como "synaptechspa".
    · SIGNUP_URL: la dirección a secas, para textos. */
 export const SIGNUP_URL = "https://bioo.cl/agenda";
 /** Mis reservas: la app de la persona que reserva (citas, sellos y premios de todos sus locales). */
 export const APP_CLIENTES = "https://mi.synaptechspa.cl";
 /** Ingresar: el panel de los dueños y su equipo. El local se resuelve con la cuenta. */
 export const APP_DUENOS = "https://app.synaptechspa.cl/";
-export const alta = (medio: string) =>
-  `${SIGNUP_URL}?utm_source=synaptechspa&utm_medium=${encodeURIComponent(medio)}`;
+const etiquetaBoton = (medio: string) =>
+  `utm_source=synaptechspa&utm_medium=sitio&utm_content=${encodeURIComponent(medio)}&cta=${encodeURIComponent(medio)}`;
+export const alta = (medio: string) => `${SIGNUP_URL}?${etiquetaBoton(medio)}`;
 /** La agenda sola, sin asistente: la misma alta de bioo (14 días del plan Local IA). */
 export const agendaSinIA = alta;
 
@@ -34,7 +41,7 @@ export const agendaSinIA = alta;
 export const ALTA_IA_URL = "https://crear.synaptechspa.cl/";
 export type RubroAlta = "barberia" | "salon" | "estetica" | "unas" | "clinica" | "pilates" | "mascotas" | "spa";
 export const altaIA = (medio: string, rubro?: RubroAlta) =>
-  `${ALTA_IA_URL}?utm_source=synaptechspa&utm_medium=${encodeURIComponent(medio)}${rubro ? `&rubro=${rubro}` : ""}`;
+  `${ALTA_IA_URL}?${etiquetaBoton(medio)}${rubro ? `&rubro=${rubro}` : ""}`;
 /** Textos de los botones del alta. */
 export const CTA_IA = "Prueba 30 días con asistente IA";
 export const CTA_SIN_IA = "Solo quiero la agenda, sin IA";
