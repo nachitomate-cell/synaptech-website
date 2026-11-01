@@ -5,6 +5,7 @@ import CtaFinal from "@/components/CtaFinal";
 import FaqSeo   from "@/components/FaqSeo";
 import { COMPETIDORES, SYNAPTECH, SYNAPTECH_USD } from "@/content/competidores";
 import { metaPagina } from "@/lib/seo";
+import { PLANES, fmt } from "@/content/precios";
 import { MarcaCompetidor } from "@/components/MarcaCompetidor";
 import { TAMANOS, filasMercado, masBaratas, gratisCon, precioFaqDe, respuestaMasBarata, ultimaVerificacion, ultimaVerificacionTexto } from "@/lib/mercado";
 
@@ -22,7 +23,7 @@ const FECHA_TXT = ultimaVerificacionTexto();
 
 export const metadata = metaPagina({
   title: `Precios de agendas online en Chile ${A}: ${N} sistemas`,
-  description: `Cuánto cuestan AgendaPro, Fresha, WeiBook, Booksy, AgendaLibre y otras agendas con 1, 3, 6 y 9 profesionales, con la fuente y la fecha de cada precio.`,
+  description: `Cuánto cuestan AgendaPro, Fresha, WeiBook y ${N - 4} agendas más con 1 a 9 profesionales, con fuente. SynapTech desde ${fmt(PLANES[0].mes)} + IVA, con IA en WhatsApp, Wallet y mudanza gratis.`,
   path: "/comparar/precios",
 });
 

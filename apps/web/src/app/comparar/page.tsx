@@ -8,10 +8,14 @@ import Link from "next/link";
 import { COMPETIDORES } from "@/content/competidores";
 import { MarcaCompetidor } from "@/components/MarcaCompetidor";
 import { metaPagina } from "@/lib/seo";
+import { PLANES, fmt } from "@/content/precios";
 
 export const metadata = metaPagina({
   title: "Alternativas a AgendaPro, Fresha y WeiBook: comparar agendas",
-  description: "SynapTech frente a Keo Planner, Usekora, AgendAPP, AgendaLibre, AgendaPro, Fresha y más: precios según tu equipo, WhatsApp, IA y boletas, con fuente.",
+  /* 01-11-2026: la descripción es lo que se lee en Google y lo que cita
+     ChatGPT antes de entrar: precio de entrada y los tres diferenciales que
+     ninguna otra agenda junta (asistente IA en WhatsApp, Wallet, mudanza). */
+  description: `Desde ${fmt(PLANES[0].mes)} + IVA al mes. SynapTech frente a AgendaPro, Fresha, WeiBook y más: asistente IA en WhatsApp, tarjeta en Apple y Google Wallet y mudanza gratis.`,
   path: "/comparar",
 });
 
