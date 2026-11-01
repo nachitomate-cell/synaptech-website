@@ -5,7 +5,7 @@ import type { LocalDirectorio } from "@/lib/directorio";
 
 /* Páginas "agenda con asistente de IA" por rubro y ciudad (21-10-2026).
    Llevan al alta con Syna encendido: crear.synaptechspa.cl, 30 días gratis del
-   plan Pro. 26-10-2026: el plan Gratis ya no se publica; lo ofrece Ignacio en persona.
+   plan Local IA (antes "Pro"). 26-10-2026: el plan Gratis ya no se publica; lo ofrece Ignacio en persona.
 
    REGLAS (mismas que content/comparar.ts y content/competidores.ts):
    - Cifras: SOLO las de CIFRAS_IA, siempre con su fecha. Nada de "miles de
@@ -15,8 +15,9 @@ import type { LocalDirectorio } from "@/lib/directorio";
      libres reales de cada profesional, no inventa precios (usa tu catálogo),
      pide los datos que definas, pasa la conversación a una persona y avisa, y
      puedes tomar el control. Funciona con Claude, de Anthropic.
-   - Pro: $49.900 + IVA al mes con 200 conversaciones. NO "ilimitado", NO
-     recordatorios por WhatsApp gratis, NO Instagram (eso es el plan Full).
+   - Planes con IA (01-11-2026): Local IA $49.900 + IVA al mes con 300
+     conversaciones; Independiente IA $24.900 + IVA con 150 (1 profesional).
+     NO "ilimitado", NO Instagram (eso es Todo Incluido o un adicional).
    - Tarjeta: solo "No pedimos tarjeta para la prueba".
    - Los chats de ejemplo son ilustrativos y se dicen como tales: los precios
      y las horas salen del catálogo y la agenda de cada local. */
@@ -31,7 +32,9 @@ export const CIFRAS_IA = {
   ],
 };
 
-export const PRO_IA = { precio: "$49.900 + IVA al mes", conversaciones: 200 };
+/** Plan Local IA (antes "Pro") y su versión para quien atiende solo. */
+export const PRO_IA = { nombre: "Local IA", precio: "$49.900 + IVA al mes", conversaciones: 300 };
+export const INDEPENDIENTE_IA_TXT = { nombre: "Independiente IA", precio: "$24.900 + IVA al mes", conversaciones: 150 };
 
 export type MensajeChat = { de: "cliente" | "syna"; texto: string };
 export type EjemploChat = { titulo: string; mensajes: MensajeChat[] };
@@ -60,7 +63,7 @@ export type RubroIA = {
 
 /* Preguntas que valen para todos los rubros (se suman a las de cada uno). */
 const faqComun = (tuLocal: string): Pregunta[] => [
-  { q: "¿Qué pasa cuando terminan los 30 días?", a: `Eliges tu plan: el Pro, ${PRO_IA.precio}, y Syna sigue atendiendo, o el Básico, $29.900 + IVA, con la agenda de ${tuLocal} sin el asistente. No se cobra nada solo: no pedimos tarjeta para la prueba. Antes de que termine te escribimos para que elijas.` },
+  { q: "¿Qué pasa cuando terminan los 30 días?", a: `Eliges tu plan: Local IA, ${PRO_IA.precio}, y Syna sigue atendiendo (o Independiente IA, ${INDEPENDIENTE_IA_TXT.precio}, si atiendes solo), o el plan Local, $29.900 + IVA, con la agenda de ${tuLocal} sin el asistente. No se cobra nada solo: no pedimos tarjeta para la prueba. Antes de que termine te escribimos para que elijas.` },
   { q: "¿Escribe desde mi número de WhatsApp?", a: `Sí. Syna responde desde el número de ${tuLocal}, que sigue funcionando en tu teléfono. Vinculas tu WhatsApp escaneando un QR y puedes tomar el control de cualquier chat cuando quieras.` },
 ];
 
@@ -105,7 +108,7 @@ export const RUBROS_IA: RubroIA[] = [
     ],
     faq: [
       { q: "¿Sirve para una barbería con varios barberos?", a: "Sí. Cada barbero tiene su agenda y sus horarios, y Syna ofrece las horas libres reales de cada uno. Si el cliente pide a un barbero, busca las horas de ese barbero." },
-      { q: "¿Cuánto cuesta el asistente para mi barbería?", a: `Viene en el plan Pro, ${PRO_IA.precio} por local, con ${PRO_IA.conversaciones} conversaciones al mes y barberos ilimitados. Los primeros 30 días son gratis.` },
+      { q: "¿Cuánto cuesta el asistente para mi barbería?", a: `Viene en el plan Local IA, ${PRO_IA.precio} por local, con ${PRO_IA.conversaciones} conversaciones al mes y barberos ilimitados. Si atiendes solo, en Independiente IA, ${INDEPENDIENTE_IA_TXT.precio}, con ${INDEPENDIENTE_IA_TXT.conversaciones}. Los primeros 30 días son gratis.` },
       { q: "¿Y si un cliente pregunta algo que Syna no sabe?", a: "Le pasa la conversación a una persona de tu equipo y avisa. Syna no inventa precios: responde con los servicios y precios de tu catálogo." },
       ...faqComun("tu barbería"),
     ],
@@ -147,7 +150,7 @@ export const RUBROS_IA: RubroIA[] = [
     ],
     faq: [
       { q: "¿Sirve para un salón con varias estilistas?", a: "Sí. Cada profesional tiene su agenda y Syna ofrece las horas libres reales de cada una, para el servicio que pide la clienta." },
-      { q: "¿Cuánto cuesta el asistente para mi peluquería?", a: `Viene en el plan Pro, ${PRO_IA.precio} por local, con ${PRO_IA.conversaciones} conversaciones al mes y profesionales ilimitados. Los primeros 30 días son gratis.` },
+      { q: "¿Cuánto cuesta el asistente para mi peluquería?", a: `Viene en el plan Local IA, ${PRO_IA.precio} por local, con ${PRO_IA.conversaciones} conversaciones al mes y profesionales ilimitados. Si atiendes solo, en Independiente IA, ${INDEPENDIENTE_IA_TXT.precio}. Los primeros 30 días son gratis.` },
       { q: "¿Puede cotizar servicios como color o mechas?", a: "Responde con los servicios y precios que cargues en tu catálogo. Si un servicio necesita evaluación, pasa la conversación a tu equipo y avisa." },
       ...faqComun("tu peluquería"),
     ],
@@ -189,7 +192,7 @@ export const RUBROS_IA: RubroIA[] = [
     ],
     faq: [
       { q: "¿Sirve para un catálogo largo de tratamientos?", a: "Sí. Syna responde con los tratamientos, precios y duraciones que cargues en tu catálogo, y ofrece las horas libres que calzan con cada uno." },
-      { q: "¿Cuánto cuesta el asistente para mi centro de estética?", a: `Viene en el plan Pro, ${PRO_IA.precio} por local, con ${PRO_IA.conversaciones} conversaciones al mes. Los primeros 30 días son gratis.` },
+      { q: "¿Cuánto cuesta el asistente para mi centro de estética?", a: `Viene en el plan Local IA, ${PRO_IA.precio} por local, con ${PRO_IA.conversaciones} conversaciones al mes. Si atiendes sola o solo, en Independiente IA, ${INDEPENDIENTE_IA_TXT.precio}. Los primeros 30 días son gratis.` },
       { q: "¿Qué pasa con las preguntas médicas o delicadas?", a: "Puedes elegir qué temas no quieres que responda. En esos casos pasa la conversación a una persona de tu equipo y avisa." },
       ...faqComun("tu centro de estética"),
     ],
@@ -230,7 +233,7 @@ export const RUBROS_IA: RubroIA[] = [
     ],
     faq: [
       { q: "¿Sirve si trabajo sola?", a: "Sí. Syna responde mientras trabajas y te agenda en tus horas libres. Pruébalo 30 días gratis, sin tarjeta, y al terminar eliges tu plan." },
-      { q: "¿Cuánto cuesta el asistente para mi salón de uñas?", a: `Viene en el plan Pro, ${PRO_IA.precio} por local, con ${PRO_IA.conversaciones} conversaciones al mes. Los primeros 30 días son gratis.` },
+      { q: "¿Cuánto cuesta el asistente para mi salón de uñas?", a: `Viene en el plan Local IA, ${PRO_IA.precio} por local, con ${PRO_IA.conversaciones} conversaciones al mes. Si atiendes sola o solo, en Independiente IA, ${INDEPENDIENTE_IA_TXT.precio}. Los primeros 30 días son gratis.` },
       { q: "¿Respeta la duración de cada servicio?", a: "Sí. Ofrece las horas libres según tu agenda real, así un set largo no se agenda en un espacio corto." },
       ...faqComun("tu salón de uñas"),
     ],
@@ -272,7 +275,7 @@ export const RUBROS_IA: RubroIA[] = [
     ],
     faq: [
       { q: "¿Puede pedir el RUT antes de agendar?", a: "Sí. Syna pide los datos que tú definas, como nombre completo y RUT, antes de confirmar la hora." },
-      { q: "¿Cuánto cuesta el asistente para mi clínica?", a: `Viene en el plan Pro, ${PRO_IA.precio} por clínica, con ${PRO_IA.conversaciones} conversaciones al mes y profesionales ilimitados. Los primeros 30 días son gratis.` },
+      { q: "¿Cuánto cuesta el asistente para mi clínica?", a: `Viene en el plan Local IA, ${PRO_IA.precio} por clínica, con ${PRO_IA.conversaciones} conversaciones al mes y profesionales ilimitados. Los primeros 30 días son gratis.` },
       { q: "¿Responde preguntas médicas?", a: "Eliges qué temas no quieres que responda. En esos casos pasa la conversación a una persona de tu equipo y avisa." },
       ...faqComun("tu clínica"),
     ],
@@ -313,7 +316,7 @@ export const RUBROS_IA: RubroIA[] = [
     ],
     faq: [
       { q: "¿Sirve para un estudio con varias instructoras?", a: "Sí. Cada profesional tiene su agenda y Syna ofrece las horas libres reales de cada una." },
-      { q: "¿Cuánto cuesta el asistente para mi estudio?", a: `Viene en el plan Pro, ${PRO_IA.precio} por local, con ${PRO_IA.conversaciones} conversaciones al mes. Los primeros 30 días son gratis.` },
+      { q: "¿Cuánto cuesta el asistente para mi estudio?", a: `Viene en el plan Local IA, ${PRO_IA.precio} por local, con ${PRO_IA.conversaciones} conversaciones al mes. Si atiendes sola o solo, en Independiente IA, ${INDEPENDIENTE_IA_TXT.precio}. Los primeros 30 días son gratis.` },
       { q: "¿Puedo tener varias sedes?", a: "Sí, la plataforma maneja varias sedes con sus precios y horarios. Cada sede adicional se cotiza por WhatsApp." },
       ...faqComun("tu estudio"),
     ],
@@ -352,7 +355,7 @@ export const RUBROS_IA: RubroIA[] = [
     ],
     faq: [
       { q: "¿Puede preguntar por la mascota antes de agendar?", a: "Sí. Syna pide los datos que tú definas, como el nombre, la raza o el tamaño de la mascota." },
-      { q: "¿Cuánto cuesta el asistente para mi peluquería canina?", a: `Viene en el plan Pro, ${PRO_IA.precio} por local, con ${PRO_IA.conversaciones} conversaciones al mes. Los primeros 30 días son gratis.` },
+      { q: "¿Cuánto cuesta el asistente para mi peluquería canina?", a: `Viene en el plan Local IA, ${PRO_IA.precio} por local, con ${PRO_IA.conversaciones} conversaciones al mes. Si atiendes sola o solo, en Independiente IA, ${INDEPENDIENTE_IA_TXT.precio}. Los primeros 30 días son gratis.` },
       { q: "¿Sirve si atiendo a domicilio?", a: "La reserva puede pedir la dirección del cliente para ir a domicilio. Syna agenda en tus horas libres reales." },
       ...faqComun("tu peluquería canina"),
     ],
@@ -391,7 +394,7 @@ export const RUBROS_IA: RubroIA[] = [
     ],
     faq: [
       { q: "¿Sirve para un spa con varios terapeutas?", a: "Sí. Cada terapeuta tiene su agenda y Syna ofrece las horas libres reales de cada uno." },
-      { q: "¿Cuánto cuesta el asistente para mi spa?", a: `Viene en el plan Pro, ${PRO_IA.precio} por local, con ${PRO_IA.conversaciones} conversaciones al mes. Los primeros 30 días son gratis.` },
+      { q: "¿Cuánto cuesta el asistente para mi spa?", a: `Viene en el plan Local IA, ${PRO_IA.precio} por local, con ${PRO_IA.conversaciones} conversaciones al mes. Si atiendes sola o solo, en Independiente IA, ${INDEPENDIENTE_IA_TXT.precio}. Los primeros 30 días son gratis.` },
       { q: "¿Responde según la duración de cada masaje?", a: "Sí. Responde con los servicios, duraciones y precios de tu catálogo, y ofrece las horas libres que calzan." },
       ...faqComun("tu spa"),
     ],
@@ -439,6 +442,6 @@ export const faqCiudad = (r: RubroIA, c: CiudadIA): Pregunta[] => [
 
 /** Description ≤ 155 caracteres para Google. */
 export function descripcionCiudad(r: RubroIA, c: CiudadIA) {
-  const larga = `Syna responde el WhatsApp de ${r.tuLocal} en ${c.nombre} y agenda con tus horas libres reales. 30 días gratis del plan Pro con asistente IA.`;
-  return larga.length <= 155 ? larga : `Syna responde el WhatsApp de ${r.tuLocal} en ${c.nombre} y agenda con tus horas reales. 30 días gratis del plan Pro.`;
+  const larga = `Syna responde el WhatsApp de ${r.tuLocal} en ${c.nombre} y agenda con tus horas libres reales. 30 días gratis con asistente IA.`;
+  return larga.length <= 155 ? larga : `Syna responde el WhatsApp de ${r.tuLocal} en ${c.nombre} y agenda con tus horas reales. 30 días gratis con IA.`;
 }

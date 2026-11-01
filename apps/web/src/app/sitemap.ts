@@ -32,6 +32,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // con new Date() cada pedido traía una fecha nueva y Google deja de creerle.
   const now = new Date("2026-10-09");
   const ia = new Date("2026-10-21");
+  /* Escalera de noviembre, competencia re-verificada y landings nuevas (01-11-2026). */
+  const nov = new Date("2026-11-01");
   return [
     { url: BASE,                          lastModified: now, priority: 1.0 },
     { url: `${BASE}/como-funciona`,       lastModified: now, priority: 0.9 },
@@ -53,14 +55,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE}/recursos/consentimiento-informado-estetica`, lastModified: now, priority: 0.7 },
     { url: `${BASE}/mis-reservas`, lastModified: now, priority: 0.6 },
     { url: `${BASE}/guias/boleta-honorarios-y-comisiones-barberos`, lastModified: now, priority: 0.7 },
-    { url: `${BASE}/precios`,             lastModified: now, priority: 0.9 },
+    { url: `${BASE}/precios`,             lastModified: nov, priority: 0.9 },
+    { url: `${BASE}/agenda-barbero-independiente`, lastModified: nov, priority: 0.9 },
+    { url: `${BASE}/boletas-electronicas-sii`, lastModified: nov, priority: 0.8 },
+    { url: `${BASE}/pagina-web-para-barberias`, lastModified: nov, priority: 0.8 },
+    { url: `${BASE}/google-ads-para-barberias`, lastModified: nov, priority: 0.7 },
+    { url: `${BASE}/publicidad-instagram-facebook-barberias`, lastModified: nov, priority: 0.7 },
+    { url: `${BASE}/integraciones`,       lastModified: nov, priority: 0.8 },
     { url: `${BASE}/locales`,             lastModified: dir, priority: 0.8 },
     ...zonas.map((z) => ({ url: `${BASE}/locales/${z.slug}`, lastModified: dir, priority: 0.7 })),
     { url: `${BASE}/fidelizacion`,        lastModified: now, priority: 0.8 },
     { url: `${BASE}/nosotros`,            lastModified: now, priority: 0.6 },
     { url: `${BASE}/contacto`,            lastModified: now, priority: 0.6 },
-    { url: `${BASE}/comparar`,            lastModified: now, priority: 0.8 },
-    { url: `${BASE}/comparar/precios`,    lastModified: now, priority: 0.9 },
+    { url: `${BASE}/comparar`,            lastModified: nov, priority: 0.8 },
+    { url: `${BASE}/comparar/precios`,    lastModified: nov, priority: 0.9 },
     { url: `${BASE}/embajadores`,         lastModified: now, priority: 0.6 },
     { url: `${BASE}/tienda-online`,       lastModified: now, priority: 0.8 },
     { url: `${BASE}/totem`,               lastModified: new Date("2026-10-28"), priority: 0.8 },
@@ -73,7 +81,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE}/mascotas`,            lastModified: now, priority: 0.8 },
     /* "<agenda> vs SynapTech": las páginas que compiten por las búsquedas de
        la competencia (content/competidores.ts). */
-    ...COMPETIDORES.map((c) => ({ url: `${BASE}/comparar/${c.id}`, lastModified: now, priority: 0.8 })),
+    ...COMPETIDORES.map((c) => ({ url: `${BASE}/comparar/${c.id}`, lastModified: nov, priority: 0.8 })),
     /* Las páginas por rubro y zona (rutas de este sitio desde el 18-10-2026).
        Prioridad alta: compiten con las de AgendaPro por "barberia en <comuna>". */
     ...PAGINAS_RUBRO.map((p) => ({ url: `${BASE}/${p.slug}`, lastModified: dir, priority: 0.8 })),

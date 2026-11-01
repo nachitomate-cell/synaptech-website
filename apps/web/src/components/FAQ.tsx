@@ -7,7 +7,7 @@ import RevealHeading from "./RevealHeading";
 const FAQS = [
   {
     q: "¿Qué incluye y cuánto cuesta?",
-    a: "Desde $29.900 + IVA al mes por local, con profesionales ilimitados: agenda online, ficha de clientes, caja, comisiones, métricas y club de fidelización con tarjeta en Google Wallet y Apple Wallet. El asistente con IA por WhatsApp viene en el plan Pro ($49.900 + IVA). El plan anual son $399.000 + IVA, equivalente a ocho meses. El detalle completo está en la página de precios.",
+    a: "Si atiendes solo, desde $9.990 + IVA al mes (plan Independiente). Con equipo, $29.900 + IVA al mes por local con profesionales ilimitados (plan Local): agenda online, ficha de clientes, caja, comisiones, métricas y club de fidelización con tarjeta en Google Wallet y Apple Wallet. El asistente con IA por WhatsApp viene en los planes Independiente IA ($24.900 + IVA) y Local IA ($49.900 + IVA). Todo Incluido, con boletas ante el SII, Instagram y Reactivación IA, cuesta $79.900 + IVA. El plan anual son $399.000 + IVA por Local IA, equivalente a ocho meses. El detalle completo está en la página de precios.",
   },
   {
     q: "¿Cobran por profesional o por silla?",
@@ -31,7 +31,7 @@ const FAQS = [
   },
   {
     q: "¿Y los documentos tributarios?",
-    a: "Si arriendas sillón, la plataforma emite sola la boleta de honorarios de cada profesional al cerrar la cita — con su propio RUT, pague el cliente como pague, efectivo incluido — y la boleta afecta del local por los productos, según la estructura que indica el SII. Ya está funcionando en locales reales. Requiere que cada profesional autorice la emisión en su nombre ante el SII; es un trámite único y te guiamos paso a paso. Es un adicional de $24.900 + IVA al mes.",
+    a: "Si arriendas sillón, la plataforma emite sola la boleta de honorarios de cada profesional al cerrar la cita — con su propio RUT, pague el cliente como pague, efectivo incluido — y la boleta afecta del local por los productos, según la estructura que indica el SII. Ya está funcionando en locales reales. Requiere que cada profesional autorice la emisión en su nombre ante el SII; es un trámite único y te guiamos paso a paso. Es un adicional de $24.900 + IVA al mes, sin costo de instalación ($12.900 en los planes Independiente), o viene incluido en el plan Todo Incluido.",
   },
   {
     q: "¿Sirve si tengo más de un local?",

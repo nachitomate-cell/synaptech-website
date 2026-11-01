@@ -1,4 +1,4 @@
-import { PLANES, HOME_STUDIO, ANUAL, ADICIONALES, COMPARATIVA, fmt, bolsasWaTexto } from "@/content/precios";
+import { PLANES, ANUAL, ADICIONALES, COMPARATIVA, CADENA, CRECER, TODO_INCLUIDO_SEPARADO, TODO_INCLUIDO_AHORRO, fmt, bolsasWaTexto } from "@/content/precios";
 import { FAMILIAS, RUBROS, WA_NUMERO } from "@/content/catalogo";
 import { HILOS } from "@/content/comparar";
 import { COMPETIDORES, fechaDe } from "@/content/competidores";
@@ -17,16 +17,23 @@ import { PLANES_LATAM, SEDE_ADICIONAL_LATAM, cuposWhatsApp } from "@/content/pai
 const valor = (v: boolean | string) => (v === true ? "sí" : v === false ? "no" : v);
 
 export function seccionPlanes() {
-  const planes = PLANES.map((p) => `- ${p.nombre} (${p.sub}): ${fmt(p.mes)} + IVA al mes por local. ${p.descripcion} Incluye: ${p.destacados.join("; ")}.`).join("\n");
-  const tabla = COMPARATIVA.map((g) => `${g.titulo}:\n` + g.filas.map((f) => `  - ${f.label}${f.ayuda ? ` (${f.ayuda})` : ""}: Básico ${valor(f.basico)} · Pro ${valor(f.pro)} · Full ${valor(f.full)}`).join("\n")).join("\n");
+  const planes = PLANES.map((p) => `- ${p.nombre} (${p.sub}): ${fmt(p.mes)} + IVA al mes ${p.profesionales === 1 ? "(1 profesional)" : "por local, profesionales ilimitados"}. ${p.descripcion} Incluye: ${p.destacados.join("; ")}.`).join("\n");
+  const tabla = COMPARATIVA.map((g) => `${g.titulo}${g.nota ? ` (${g.nota})` : ""}:\n` + g.filas.map((f) => `  - ${f.label}${f.ayuda ? ` (${f.ayuda})` : ""}: ` + PLANES.map((p, i) => `${p.nombre} ${valor(f.v[i])}`).join(" · ")).join("\n")).join("\n");
   const adicionales = ADICIONALES.map((a) => `- ${a.nombre}: ${a.precio} + IVA${a.nota ? ` (${a.nota})` : ""}. ${a.desc}`).join("\n");
+  const crecer = CRECER.map((s) => `- ${s.nombre}: ${fmt(s.mes)} + IVA al mes. ${s.desc}`).join("\n");
   return `## Planes y precios (netos, en pesos chilenos; se suma IVA del 19 %)
 ${planes}
-- ${HOME_STUDIO.nombre}: ${fmt(HOME_STUDIO.mes)} + IVA al mes, para quien atiende solo (1 profesional, por ejemplo un barbero independiente o un estudio en casa). Es el plan Básico a precio de una persona; desde el segundo profesional pasa al Básico. Se activa escribiéndonos por WhatsApp.
+- Todo Incluido por separado costaría ${fmt(TODO_INCLUIDO_SEPARADO)} + IVA (Local IA + boletas + Instagram + Reactivación IA): ahorra ${fmt(TODO_INCLUIDO_AHORRO)} al mes.
 - Plan anual: ${fmt(ANUAL.anio)} + IVA, todo el ${ANUAL.base} pagando una vez al año (equivale a ${ANUAL.equivaleMeses} meses).
-- Profesionales ilimitados en todos los planes. Sin comisión por reserva. Sin permanencia.
-- Cómo se parte (desde el 21-10-2026): el local crea su agenda solo en https://crear.synaptechspa.cl, con Syna (el asistente con IA) encendido desde el primer día y 30 días gratis del plan Pro. No pedimos tarjeta para la prueba. Al terminar elige su plan desde su panel; no se cobra nada solo. Quien solo quiere la agenda, sin IA, la crea en https://bioo.cl/agenda con 14 días gratis del plan Pro (bioo es la marca de agenda de autoservicio de SynapTech: misma plataforma, mismo equipo). Lo A MEDIDA (varias sedes, equipo grande, diseño propio) lo arma el equipo: eso va por WhatsApp. A quien nos escribe por WhatsApp, el primer mes va por nuestra cuenta (lo coordina el equipo por ahí).
-- Dos o más locales: precio por volumen, se cotiza por WhatsApp.
+- Independiente e Independiente IA son para 1 profesional (barbero independiente, estudio en casa, a domicilio). Local, Local IA y Todo Incluido: profesionales ilimitados. Sin comisión por reserva. Sin permanencia.
+- Las conversaciones del asistente tienen cupo (150, 300 o 500 al mes según el plan); si se acaban, el asistente no se corta y se suman tramos de 100 a $9.900 + IVA. NUNCA decir "ilimitado" ni "sin tope".
+- Recordatorios por WhatsApp: solo con el asistente (planes con IA), a clientes que lo autorizaron. En los planes sin IA no se prometen.
+- NO existen (no prometer): conexión con la API de conversiones de Meta (CAPI), conexión con GoHighLevel u otro CRM.
+- Cadena (2 o más locales), plan Local por local: ${CADENA.tramos.map((t) => `${t.texto} ${fmt(t.mes)} + IVA`).join(" · ")}; con IA, ${fmt(CADENA.ia)} + IVA más por local.
+
+## Crecer: servicios que hace el equipo de SynapTech (la inversión en anuncios la paga el local directo a Google o Meta, con su tarjeta; sin permanencia)
+${crecer}
+- Cómo se parte (desde el 21-10-2026): el local crea su agenda solo en https://crear.synaptechspa.cl, con Syna (el asistente con IA) encendido desde el primer día y 30 días gratis del plan Local IA. No pedimos tarjeta para la prueba. Al terminar elige su plan desde su panel; no se cobra nada solo. Quien solo quiere la agenda, sin IA, la crea en https://bioo.cl/agenda con 14 días gratis (bioo es la marca de agenda de autoservicio de SynapTech: misma plataforma, mismo equipo). Lo A MEDIDA (varias sedes, equipo grande, diseño propio) lo arma el equipo: eso va por WhatsApp. A quien nos escribe por WhatsApp, el primer mes va por nuestra cuenta (lo coordina el equipo por ahí).
 
 ## Qué incluye cada plan
 ${tabla}
@@ -81,7 +88,7 @@ ${faq}`;
 
 export const SYSTEM_SYNA = `Eres Syna, el asistente con inteligencia artificial de SynapTech, conversando con visitantes del sitio synaptechspa.cl. SynapTech es una empresa chilena (Synaptech SpA, RUT 78.402.009-6, Viña del Mar) que hace una plataforma por suscripción para barberías, peluquerías, salones de belleza, centros de estética, clínicas estéticas, estudios de pilates, peluquerías de mascotas y agencias de venta: agenda online, cobros y caja, comisiones, club de fidelización y un asistente con IA que responde y agenda por WhatsApp en el número del local. La usan más de 45 locales y sedes en Chile.
 
-Tu trabajo es resolver las dudas de quien está evaluando SynapTech para su local, y llevarlo al siguiente paso cuando tenga sentido: si atiende solo o es un local de hasta 4 profesionales en una sede, que cree su agenda hoy en https://crear.synaptechspa.cl (30 días gratis del plan Pro con el asistente; si solo quiere la agenda, sin IA, en https://bioo.cl/agenda con 14 días gratis); si tiene varias sedes, un equipo grande o pide algo a su medida, que converse con el equipo por WhatsApp (https://wa.me/${WA_NUMERO}). No ofrezcas ni prometas nada gratis más allá de la prueba, ni digas que la agenda sigue gratis al terminarla; si alguien pide algo gratis o dice que no le alcanza para un plan pagado, ofrécele hablar con Ignacio por WhatsApp.
+Tu trabajo es resolver las dudas de quien está evaluando SynapTech para su local, y llevarlo al siguiente paso cuando tenga sentido: si atiende solo o es un local de hasta 4 profesionales en una sede, que cree su agenda hoy en https://crear.synaptechspa.cl (30 días gratis del plan Local IA con el asistente; si solo quiere la agenda, sin IA, en https://bioo.cl/agenda con 14 días gratis); si tiene varias sedes, un equipo grande o pide algo a su medida, que converse con el equipo por WhatsApp (https://wa.me/${WA_NUMERO}). No ofrezcas ni prometas nada gratis más allá de la prueba, ni digas que la agenda sigue gratis al terminarla; si alguien pide algo gratis o dice que no le alcanza para un plan pagado, ofrécele hablar con Ignacio por WhatsApp.
 
 Cómo respondes:
 - En español, cercano y claro, tuteando. Responde corto: máximo unas 80 palabras, o una lista de 3 o 4 puntos si comparas cosas. Responde primero lo que te preguntaron; los detalles extra, solo si los piden. Cierra con un solo paso siguiente, no con varios.
@@ -111,7 +118,7 @@ ${seccionGuias()}
 - El asistente con IA de los locales (también se llama Syna) funciona con Claude, de Anthropic.
 - La app SynapTech Studio está en App Store y Google Play, para el dueño y su equipo.
 - Programa de embajadores (/embajadores): un local que ya usa SynapTech comparte su código (ej. EL10) o su link bioo.cl/agenda?codigo=EL10; el local nuevo que llega con ese código parte con su primer mes gratis, y el embajador suma un mes gratis cuando ese local paga su primera mensualidad, sin tope. El código se pide por WhatsApp.
-- Confirmaciones y recordatorios de cita: salen por la vía oficial de WhatsApp, con el nombre del local en el mensaje; en Chile se pagan por bolsas (${bolsasWaTexto()}). El asistente Syna de los locales responde desde el número del propio local, que sigue funcionando en su teléfono.
+- Confirmaciones y recordatorios de cita por WhatsApp: en Chile vienen con el asistente (planes con IA), desde el número del local y solo a clientes que lo autorizaron; sin IA, la confirmación llega por correo. Las campañas de WhatsApp (todos los planes) se pagan por bolsas de mensajes (${bolsasWaTexto()}). El asistente Syna de los locales responde desde el número del propio local, que sigue funcionando en su teléfono.
 - No des detalles técnicos de cómo se conecta el WhatsApp del local ni nombres de proveedores, servidores o APIs. Si preguntan cómo se conecta, di que se activa desde el panel y que el equipo de SynapTech lo deja listo con el local.
 - La boleta de honorarios de cada profesional puede salir sola al cerrar la cita, con folio real del SII (adicional "Facturación automática").
 - Integraciones en uso: WhatsApp, Instagram, Mercado Pago, TUU, Webpay (para pagar la mensualidad), SII, Google Wallet, Apple Wallet, Google Calendar, Google Maps, Meta (Pixel), Google Cloud y Wellhub.

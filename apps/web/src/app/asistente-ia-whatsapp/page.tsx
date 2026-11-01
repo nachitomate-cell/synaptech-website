@@ -19,7 +19,7 @@ import VideoSyna from "@/components/VideoSyna";
    asistente) y en la lista de precios. */
 export const metadata = metaPagina({
   title: "Asistente IA que agenda citas por WhatsApp | SynapTech",
-  description: "Syna responde a tus clientes por WhatsApp desde el número de tu local, ofrece las horas libres y agenda sola. Incluido en el plan Pro, $49.900 + IVA.",
+  description: "Syna responde a tus clientes por WhatsApp desde el número de tu local, ofrece las horas libres y agenda sola. En los planes con IA, desde $24.900 + IVA.",
   path: "/asistente-ia-whatsapp",
 });
 

@@ -20,7 +20,7 @@ export function generateMetadata({ params }: { params: { rubro: string } }) {
   if (!r) return {};
   return metaPagina({
     title: `Agenda con asistente de IA para ${r.plural} | SynapTech`,
-    description: `Syna responde el WhatsApp de ${r.tuLocal} y agenda con tus horas libres reales. 30 días gratis del plan Pro con el asistente.`,
+    description: `Syna responde el WhatsApp de ${r.tuLocal} y agenda con tus horas libres reales. 30 días gratis del plan Local IA con el asistente.`,
     path: `/agenda-con-ia/${r.slug}`,
   });
 }
@@ -76,7 +76,7 @@ export default function Pagina({ params }: { params: { rubro: string } }) {
         </section>
 
         <FaqSeo titulo={`Agenda con IA para ${r.plural}: lo que más nos preguntan.`} preguntas={r.faq} />
-        <CtaIA titulo={`Que Syna responda el WhatsApp de ${r.tuLocal}.`} bajada="Crea tu agenda en minutos. 30 días gratis del plan Pro con el asistente." origen={origen} rubro={r.rubro} />
+        <CtaIA titulo={`Que Syna responda el WhatsApp de ${r.tuLocal}.`} bajada="Crea tu agenda en minutos. 30 días gratis del plan Local IA con el asistente." origen={origen} rubro={r.rubro} />
       </main>
       <Footer />
     </>

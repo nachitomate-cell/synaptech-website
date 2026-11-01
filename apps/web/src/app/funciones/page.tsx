@@ -9,7 +9,7 @@ import { metaPagina } from "@/lib/seo";
    función, más las que viven en su propia ruta. */
 export const metadata = metaPagina({
   title: "Funciones de SynapTech: agenda, caja, comisiones y más",
-  description: "Todo lo que hace SynapTech por tu local: recordatorios por WhatsApp, comisiones, caja, ficha clínica, abono al reservar, gift cards, tienda online y más.",
+  description: "Todo lo que hace SynapTech por tu local: recordatorios de citas, comisiones, caja, ficha clínica, abono al reservar, gift cards, tienda online y más.",
   path: "/funciones",
 });
 

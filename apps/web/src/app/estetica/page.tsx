@@ -17,7 +17,7 @@ import VienesDe from "@/components/VienesDe";
 
 export const metadata = metaPagina({
   title: "Software para centros de estética y spa en Chile | SynapTech",
-  description: "Agenda online de tratamientos 24/7, ficha de cada clienta, abonos online, gift cards y un asistente con IA en WhatsApp. Desde $29.900 + IVA por local.",
+  description: "Agenda online de tratamientos 24/7, ficha de cada clienta, abonos online, gift cards y asistente con IA en WhatsApp. Desde $9.990 + IVA al mes.",
   path: "/estetica",
 });
 

@@ -9,7 +9,7 @@ export default function CtaFinal({ origen = "home-final", oscuro = false }: { or
         <h2 className="text-ink">Empieza hoy con SynapTech.</h2>
         <p className="text-text-secondary text-lg mt-5 leading-relaxed">
           Crea tu agenda en minutos con Syna, el asistente con IA, respondiendo tu WhatsApp
-          desde el primer día: 30 días gratis del plan Pro. ¿Varias sedes o un equipo
+          desde el primer día: 30 días gratis del plan Local IA. ¿Varias sedes o un equipo
           grande? Escríbenos y te la armamos a medida.
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-3 mt-8">
@@ -42,7 +42,7 @@ function CtaOscuro({ origen }: { origen: string }) {
           <span className="block bg-gradient-to-r from-[#B8E36A] via-[#9CCC3C] to-[#5EC8F2] bg-clip-text text-transparent pb-1">Desde hoy.</span>
         </h2>
         <p className="mt-6 text-lg text-white/65 leading-relaxed">
-          30 días gratis del plan Pro, con Syna respondiendo tu WhatsApp desde el primer día.
+          30 días gratis del plan Local IA, con Syna respondiendo tu WhatsApp desde el primer día.
         </p>
         <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8">
           <a href={altaIA(origen)}

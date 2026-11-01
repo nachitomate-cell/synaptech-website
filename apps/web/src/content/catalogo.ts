@@ -21,12 +21,12 @@ export const APP_CLIENTES = "https://mi.synaptechspa.cl";
 export const APP_DUENOS = "https://app.synaptechspa.cl/";
 export const alta = (medio: string) =>
   `${SIGNUP_URL}?utm_source=synaptechspa&utm_medium=${encodeURIComponent(medio)}`;
-/** La agenda sola, sin asistente: la misma alta de bioo (14 días del Pro). */
+/** La agenda sola, sin asistente: la misma alta de bioo (14 días del plan Local IA). */
 export const agendaSinIA = alta;
 
 /* ALTA CON ASISTENTE IA (21-10-2026). El botón principal del sitio lleva a
    crear.synaptechspa.cl: crea la agenda con Syna encendido desde el primer día
-   y 30 días gratis del plan Pro. bioo (agendaSinIA) queda como enlace
+   y 30 días gratis del plan Local IA. bioo (agendaSinIA) queda como enlace
    secundario: "Solo quiero la agenda, sin IA". 26-10-2026: el plan Gratis ya no
    se publica; lo ofrece Ignacio en persona. Los links de embajadores
    (?codigo=) y las páginas LATAM (PaisLanding) NO usan esto: tienen su oferta.
@@ -100,7 +100,7 @@ export const FAMILIAS: Familia[] = [
     capsula: "reel-asistente-whatsapp",
     items: [
       { label: "Asistente en WhatsApp", desc: "Contesta precios, horarios y agenda la hora" },
-      { label: "Asistente en Instagram", desc: "Atiende los mensajes directos (plan Full)" },
+      { label: "Asistente en Instagram", desc: "Atiende los mensajes directos (en Todo Incluido o como adicional)" },
       { label: "Bandeja compartida", desc: "Todo el equipo ve y responde las conversaciones" },
       { label: "Escala a una persona", desc: "Cuando la conversación se complica, avisa" },
     ],

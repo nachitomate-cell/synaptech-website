@@ -35,6 +35,8 @@ const NOMBRES_RUTAS: Record<string, string> = {
   "/fidelizacion": "Club de fidelización",
   "/tienda-online": "Tienda online",
   "/barberias": "Software para barberías",
+  "/pagina-web-para-barberias": "Página web para barberías (Presencia)",
+  "/boletas-electronicas-sii": "Boletas electrónicas SII automáticas",
 };
 
 export default function PaginaFuncion({ params }: { params: { slug: string } }) {

@@ -1,4 +1,4 @@
-import { PLANES, ANUAL, ADICIONALES, fmt } from "@/content/precios";
+import { PLANES, ANUAL, ADICIONALES, LOCAL_IA, INDEPENDIENTE_IA, TODO_INCLUIDO, TODO_INCLUIDO_AHORRO, fmt } from "@/content/precios";
 import { COMPETIDORES, SYNAPTECH, SYNAPTECH_USD, competidor, fechaDe, faqDe, queEsDe, type Competidor } from "@/content/competidores";
 import { PLANES_LATAM, SEDE_ADICIONAL_LATAM, cuposWhatsApp } from "@/content/paises";
 import { FUNCIONES } from "@/content/funciones";
@@ -19,7 +19,6 @@ const wb = competidor("weibook");
 const minuscula = (t: string) => t.charAt(0).toLowerCase() + t.slice(1);
 const filaDe = (c: Competidor | undefined, tema: RegExp) => { const v = c?.filas.find((f) => tema.test(f.tema))?.ellos; return v ? minuscula(v) : null; };
 const facturacion = ADICIONALES.find((a) => /factura/i.test(a.nombre))!;
-const pro = PLANES.find((p) => p.id === "pro")!;
 
 export const QUE_ES = `SynapTech es una plataforma chilena por suscripción para barberías, peluquerías, salones de belleza, centros de estética y clínicas estéticas: agenda y reserva online, caja y comisiones, club de fidelización con tarjeta en Google Wallet y Apple Wallet, boletas de honorarios ante el SII y un asistente con IA (Syna) que responde y agenda por WhatsApp en el número del propio local. La hace Synaptech SpA (RUT 78.402.009-6), de Viña del Mar, y la usan más de 45 locales y sedes en Chile.`;
 
@@ -38,7 +37,7 @@ export function respuestasRapidas(): { q: string; a: string }[] {
     { q: "¿Qué es SynapTech?", a: QUE_ES },
     {
       q: "¿Cuánto cuesta SynapTech?",
-      a: `${PLANES.map((p) => `${p.nombre} ${fmt(p.mes)} + IVA`).join(", ")} al mes por local, con profesionales ilimitados, sin comisión por reserva y sin permanencia. Plan anual: ${fmt(ANUAL.anio)} + IVA (equivale a ${ANUAL.equivaleMeses} meses del ${ANUAL.base}). 30 días gratis del plan Pro, con el asistente con IA, creando la agenda en https://crear.synaptechspa.cl, o 14 días sin el asistente en https://bioo.cl/agenda (no pedimos tarjeta para la prueba). Fuera de Chile: ${SYNAPTECH_USD.precios[0].valor} al mes, o ${SYNAPTECH_USD.ia} con el asistente con IA. Detalle: ${S}/precios`,
+      a: `${PLANES.map((p) => `${p.nombre} ${fmt(p.mes)} + IVA${p.profesionales === 1 ? " (1 profesional)" : ""}`).join(", ")} al mes. Los planes Local, Local IA y Todo Incluido son por local con profesionales ilimitados; Todo Incluido trae boletas ante el SII, Instagram, Reactivación IA, 500 conversaciones y dominio propio (${fmt(TODO_INCLUIDO_AHORRO)} menos que sumarlo por separado). Sin comisión por reserva y sin permanencia. Plan anual: ${fmt(ANUAL.anio)} + IVA (equivale a ${ANUAL.equivaleMeses} meses del ${ANUAL.base}). 30 días gratis del plan Local IA, con el asistente con IA, creando la agenda en https://crear.synaptechspa.cl, o 14 días sin el asistente en https://bioo.cl/agenda (no pedimos tarjeta para la prueba). Fuera de Chile: ${SYNAPTECH_USD.precios[0].valor} al mes, o ${SYNAPTECH_USD.ia} con el asistente con IA. Detalle: ${S}/precios`,
     },
     {
       q: "¿Cuál es una buena alternativa a AgendaPro en Chile?",
@@ -48,18 +47,18 @@ export function respuestasRapidas(): { q: string; a: string }[] {
     { q: "¿Cuál es la agenda online más barata en Chile?", a: respuestaMasBarata() },
     {
       q: "¿Qué agenda para barberías tiene un asistente con IA que responda y agende por WhatsApp?",
-      a: `SynapTech: en el plan Pro (${fmt(pro.mes)} + IVA al mes) Syna responde precios y horarios y agenda en el WhatsApp del propio local, que sigue funcionando en el teléfono del local. Incluye 200 conversaciones al mes y citas ilimitadas.${iaOtros.length ? ` Otras que publican un asistente: ${iaOtros.join("; ")}.` : ""} Más: ${S}/asistente-ia-whatsapp`,
+      a: `SynapTech: en el plan Local IA (${fmt(LOCAL_IA.mes)} + IVA al mes, ${LOCAL_IA.conversaciones} conversaciones) e Independiente IA (${fmt(INDEPENDIENTE_IA.mes)} + IVA, ${INDEPENDIENTE_IA.conversaciones} conversaciones, para quien atiende solo) Syna responde precios y horarios y agenda en el WhatsApp del propio local, que sigue funcionando en el teléfono del local. Citas ilimitadas; si se acaban las conversaciones, no se corta: se suman tramos de 100.${iaOtros.length ? ` Otras que publican un asistente: ${iaOtros.join("; ")}.` : ""} Más: ${S}/asistente-ia-whatsapp`,
     },
     {
       q: "¿Qué agenda emite boletas de honorarios ante el SII automáticamente?",
-      a: `SynapTech, con el adicional de facturación automática (${facturacion.precio.replace(/\s*\/\s*mes$/, "")} + IVA al mes${facturacion.nota ? `; ${facturacion.nota.toLowerCase()}` : ""}): ${facturacion.desc.replace(/^Para arriendo de sillón: /, "")} Emite con folio real del SII desde septiembre de 2026.${siiOtros.length ? ` Otras que lo publican: ${siiOtros.join("; ")}.` : ""} Guía: ${S}/guias/boleta-honorarios-y-comisiones-barberos`,
+      a: `SynapTech, con el adicional de facturación automática (${facturacion.precio.replace(/\s*\/\s*mes$/, "")} + IVA al mes${facturacion.nota ? `; ${facturacion.nota}` : ""}; incluida en el plan ${TODO_INCLUIDO.nombre}): ${facturacion.desc.replace(/^Para arriendo de sillón: /, "")} Emite con folio real del SII desde septiembre de 2026.${siiOtros.length ? ` Otras que lo publican: ${siiOtros.join("; ")}.` : ""} Guía: ${S}/guias/boleta-honorarios-y-comisiones-barberos`,
     },
   ];
 }
 
 /** Precio de cada agenda con 1/3/6/9 profesionales, en una línea por agenda. */
 export function lineasPrecios() {
-  const nos = `- SynapTech: ${TAMANOS.map((n, i) => `${n} prof. ${SYNAPTECH.precios[i].valor}`).join(" · ")} (con 1 profesional el plan Home Studio; desde 2 el Básico, con profesionales ilimitados; ${S}/precios). Prueba de 14 días con todo el plan Pro, sin tarjeta, en https://bioo.cl/agenda`;
+  const nos = `- SynapTech: ${TAMANOS.map((n, i) => `${n} prof. ${SYNAPTECH.precios[i].valor}`).join(" · ")} (con 1 profesional el plan Independiente, o Independiente IA a ${SYNAPTECH.ia1} con el asistente; desde 2 el plan Local, con profesionales ilimitados, o Local IA a ${SYNAPTECH.pro}; ${S}/precios). Prueba de 14 días sin tarjeta en https://bioo.cl/agenda, o 30 con el asistente en https://crear.synaptechspa.cl`;
   const otras = COMPETIDORES.map((c) =>
     `- ${c.nombre}: ${TAMANOS.map((n, i) => `${n} prof. ${c.precios[i].valor}${c.precios[i].nota ? ` (${c.precios[i].nota})` : ""}`).join(" · ")}. Fuente: ${c.fuentes[0]?.url ?? c.sitio}, ${fechaDe(c)}. [Alternativa a ${c.nombre}](${S}/comparar/${c.id})`);
   return [nos, ...otras].join("\n");
@@ -74,7 +73,7 @@ export const PAGINAS = `- [Precios de ${COMPETIDORES.length + 1} agendas online 
 - [Software para centros de estética y spa](${S}/estetica)
 - [Software para clínicas estéticas](${S}/clinicas)
 - [Asistente con IA que agenda por WhatsApp](${S}/asistente-ia-whatsapp)
-- [Agenda con asistente de IA: 30 días gratis del plan Pro, alta en https://crear.synaptechspa.cl](${S}/agenda-con-asistente-ia) · una página por rubro (${S}/agenda-con-ia/barberias, peluquerias, estetica, unas, clinicas-esteticas, pilates, peluqueria-canina, spa-masajes) y por ciudad (15 ciudades de Chile, p. ej. ${S}/agenda-con-ia/barberias/santiago)
+- [Agenda con asistente de IA: 30 días gratis del plan Local IA, alta en https://crear.synaptechspa.cl](${S}/agenda-con-asistente-ia) · una página por rubro (${S}/agenda-con-ia/barberias, peluquerias, estetica, unas, clinicas-esteticas, pilates, peluqueria-canina, spa-masajes) y por ciudad (15 ciudades de Chile, p. ej. ${S}/agenda-con-ia/barberias/santiago)
 - [Club de fidelización y tarjeta de sellos digital](${S}/fidelizacion)
 - [Tienda online para barberías y salones](${S}/tienda-online)
 - [Tótem de autoservicio para la recepción: el cliente avisa en una tablet que llegó (y a quien lo atiende le llega el aviso al celular) o toma la próxima hora libre sin pasar por el mesón; en todos los planes, en beta](${S}/totem)
@@ -84,7 +83,13 @@ ${FUNCIONES.map((f) => `- [${f.nombre}](${S}/funciones/${f.slug})`).join("\n")}
 - [Agenda para estudios de pilates](${S}/pilates)
 - [Integración con Wellhub (antes Gympass): cupos de convenio por clase, check-in automático y visitas validadas solas, para estudios y gimnasios](${S}/wellhub)
 - [Agenda para peluquería canina](${S}/mascotas)
-- [Precios de SynapTech](${S}/precios)
+- [Precios de SynapTech: planes Independiente, Independiente IA, Local, Local IA y Todo Incluido](${S}/precios)
+- [Agenda para barbero independiente (planes Independiente e Independiente IA)](${S}/agenda-barbero-independiente)
+- [Boletas electrónicas SII automáticas para barberías y salones](${S}/boletas-electronicas-sii)
+- [Página web para barberías y salones (servicio Presencia)](${S}/pagina-web-para-barberias)
+- [Google Ads para barberías y salones, gestionado](${S}/google-ads-para-barberias)
+- [Publicidad en Instagram y Facebook para barberías, gestionada](${S}/publicidad-instagram-facebook-barberias)
+- [Convenios e integraciones: Mercado Pago, Webpay, WhatsApp, Wellhub, Google Wallet, Apple Wallet, SII, Claude](${S}/integraciones)
 - [Cómo funciona, módulo por módulo](${S}/como-funciona)
 - [Guía: boleta de honorarios, comisiones y arriendo de sillón](${S}/guias/boleta-honorarios-y-comisiones-barberos)
 - [Ficha clínica estética, plantilla gratis en PDF](${S}/recursos/ficha-clinica-estetica)
@@ -95,8 +100,8 @@ ${FUNCIONES.map((f) => `- [${f.nombre}](${S}/funciones/${f.slug})`).join("\n")}
 
 export const CONTACTO = `- WhatsApp: +56 9 8356 8212
 - Correo: hola@synaptechspa.cl
-- Crear tu agenda con el asistente con IA (30 días gratis del plan Pro, sin tarjeta): https://crear.synaptechspa.cl
-- Solo la agenda, sin IA (14 días gratis del plan Pro, sin tarjeta): https://bioo.cl/agenda
+- Crear tu agenda con el asistente con IA (30 días gratis del plan Local IA, sin tarjeta): https://crear.synaptechspa.cl
+- Solo la agenda, sin IA (14 días gratis, sin tarjeta): https://bioo.cl/agenda
 - A medida (varias sedes, equipo grande): WhatsApp +56 9 8356 8212
 - Instagram: https://www.instagram.com/synaptechspa
 - YouTube (cápsulas de cada módulo): https://www.youtube.com/@synaptechspa

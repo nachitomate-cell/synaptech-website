@@ -19,7 +19,7 @@ import TiempoPerdido from "@/components/TiempoPerdido";
 
 export const metadata = metaPagina({
   title: "Software y agenda online para barberías en Chile | SynapTech",
-  description: "Agenda online por barbero, asistente con IA que agenda por WhatsApp, comisiones, arriendo de sillón con boleta y club de sellos. Desde $29.900 + IVA.",
+  description: "Agenda online por barbero, asistente con IA que agenda por WhatsApp, comisiones, arriendo de sillón con boleta y club de sellos. Desde $9.990 + IVA.",
   path: "/barberias",
 });
 
