@@ -32,6 +32,10 @@ export type PrimerToque = {
   utm_term?: string;
   gclid?: string;
   fbclid?: string;
+  /** Clic de un anuncio de ChatGPT (OpenAI lo agrega a la URL). Viaja al alta
+   *  para que el backend mande trial_started/subscription_created por la
+   *  Conversions API de OpenAI con su atribución (02-11-2026). */
+  oppref?: string;
   /** De dónde venía ANTES de entrar al sitio (chatgpt.com, google.com…). */
   referrer?: string;
   landing?: string;
@@ -60,11 +64,12 @@ export function toqueDeVisita(search: string, referrer: string, landing: string,
   if (t.utm_source === FUENTE_INTERNA) for (const c of UTM) delete t[c];
   const gclid = texto(q.get("gclid"), 255); if (gclid) t.gclid = gclid;
   const fbclid = texto(q.get("fbclid"), 255); if (fbclid) t.fbclid = fbclid;
+  const oppref = texto(q.get("oppref"), 255); if (oppref) t.oppref = oppref;
   try {
     const u = referrer ? new URL(referrer) : null;
     if (u && !esHostPropio(u.hostname)) t.referrer = referrer.slice(0, 200);
   } catch { /* referrer ilegible: no cuenta */ }
-  if (!t.utm_source && !t.gclid && !t.fbclid && !t.referrer) return null;
+  if (!t.utm_source && !t.gclid && !t.fbclid && !t.oppref && !t.referrer) return null;
   t.landing = texto(landing || "/", 80);
   t.at = ahora.toISOString();
   return t;
@@ -114,7 +119,7 @@ export function reescribirAlta(href: string, toque: PrimerToque | null): string 
   const boton = botonDe(u);
   // Se borra todo lo que esta función pone y se vuelve a poner en orden fijo:
   // pointerdown y click la llaman dos veces sobre el mismo link.
-  for (const c of [...UTM, "cta", "gclid", "fbclid", "ref0"]) p.delete(c);
+  for (const c of [...UTM, "cta", "gclid", "fbclid", "oppref", "ref0"]) p.delete(c);
   if (toque.utm_source) {
     for (const c of UTM) if (toque[c]) p.set(c, toque[c]!);
   }
@@ -123,6 +128,7 @@ export function reescribirAlta(href: string, toque: PrimerToque | null): string 
   if (boton) p.set("cta", boton);
   if (toque.gclid) p.set("gclid", toque.gclid);
   if (toque.fbclid) p.set("fbclid", toque.fbclid);
+  if (toque.oppref) p.set("oppref", toque.oppref);
   if (toque.referrer) p.set("ref0", toque.referrer);
   return u.toString();
 }
@@ -153,6 +159,7 @@ export function refDeToque(t: PrimerToque | null): string {
   if (t.utm_source) partes = [t.utm_source, t.utm_medium ?? "", t.utm_campaign ?? ""];
   else if (t.gclid) partes = ["google", "cpc"];
   else if (t.fbclid) partes = ["meta", "paid"];
+  else if (t.oppref) partes = ["chatgpt", "cpc"];
   else if (t.referrer) {
     let host = "";
     try { host = new URL(t.referrer).hostname.replace(/^www\./, ""); } catch { /* ilegible */ }
