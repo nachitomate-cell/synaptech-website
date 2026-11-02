@@ -126,3 +126,42 @@ export function reescribirAlta(href: string, toque: PrimerToque | null): string 
   if (toque.referrer) p.set("ref0", toque.referrer);
   return u.toString();
 }
+
+/* Código de campaña al final del texto prellenado de WhatsApp (01-11-2026).
+   El chat comercial no ve la cookie: la campaña viaja en el mensaje mismo,
+   al final y entre paréntesis, para que el vendedor la lea con
+   `/\(ref: ([^)]+)\)/` sin estorbar al que escribe.
+
+   FORMATO · `(ref: <source>/<medium>/<campaign>)`, en minúsculas y solo con
+   [a-z0-9._-] (lo demás se cambia por "-"), cada parte hasta 40 caracteres.
+   Las partes vacías del final se omiten y una vacía al medio va como "-":
+     ?utm_source=chatgpt&utm_medium=cpc&utm_campaign=comparativa-agendapro
+                                → (ref: chatgpt/cpc/comparativa-agendapro)
+     solo gclid                 → (ref: google/cpc)
+     solo fbclid                → (ref: meta/paid)
+     solo referrer de afuera    → (ref: chatgpt.com/referral)
+     sin toque (entró directo)  → (ref: directo) */
+export const REF_DIRECTO = "directo";
+
+function parteRef(v: string | undefined): string {
+  return String(v ?? "").toLowerCase().replace(/[^a-z0-9._-]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 40);
+}
+
+export function refDeToque(t: PrimerToque | null): string {
+  if (!t) return REF_DIRECTO;
+  let partes: string[];
+  if (t.utm_source) partes = [t.utm_source, t.utm_medium ?? "", t.utm_campaign ?? ""];
+  else if (t.gclid) partes = ["google", "cpc"];
+  else if (t.fbclid) partes = ["meta", "paid"];
+  else if (t.referrer) {
+    let host = "";
+    try { host = new URL(t.referrer).hostname.replace(/^www\./, ""); } catch { /* ilegible */ }
+    partes = host ? [host, "referral"] : [];
+  } else partes = [];
+  const limpias = partes.map(parteRef);
+  while (limpias.length && !limpias[limpias.length - 1]) limpias.pop();
+  return limpias.length ? limpias.map((p) => p || "-").join("/") : REF_DIRECTO;
+}
+
+/** El texto con su código al final: "… (ref: chatgpt/cpc/x)". */
+export const conRef = (texto: string, t: PrimerToque | null) => `${texto} (ref: ${refDeToque(t)})`;

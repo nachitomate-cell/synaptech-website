@@ -7,6 +7,7 @@ import { COMPETIDORES, SYNAPTECH, SYNAPTECH_USD } from "@/content/competidores";
 import { metaPagina } from "@/lib/seo";
 import { PLANES, fmt } from "@/content/precios";
 import { MarcaCompetidor } from "@/components/MarcaCompetidor";
+import CtaWhatsAppComparar from "@/components/CtaWhatsAppComparar";
 import { TAMANOS, filasMercado, masBaratas, gratisCon, precioFaqDe, respuestaMasBarata, ultimaVerificacion, ultimaVerificacionTexto } from "@/lib/mercado";
 
 /* "Cuánto cuesta una agenda online en Chile" (10-10-2026). Una sola tabla con
@@ -81,6 +82,7 @@ export default function PreciosAgendas() {
               Cada valor está copiado de la página pública de la empresa, con el enlace y la fecha en que lo revisamos.
               SynapTech va primero porque es la nuestra; donde otra es más barata, la tabla lo muestra.
             </p>
+            <CtaWhatsAppComparar />
           </div>
         </section>
 
@@ -188,6 +190,7 @@ export default function PreciosAgendas() {
         </section>
 
         <FaqSeo titulo="Precios de agendas online: lo que más se pregunta." preguntas={faq} />
+        <CtaWhatsAppComparar variante="final" />
         <CtaFinal />
       </main>
       <Footer />
