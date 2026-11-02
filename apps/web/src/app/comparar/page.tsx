@@ -3,14 +3,13 @@ import Footer   from "@/components/Footer";
 import Hilo     from "@/components/Hilo";
 import CtaFinal from "@/components/CtaFinal";
 import { HILOS } from "@/content/comparar";
-import { waLink } from "@/content/catalogo";
 import Link from "next/link";
 import { COMPETIDORES } from "@/content/competidores";
 import { MarcaCompetidor } from "@/components/MarcaCompetidor";
 import { metaPagina } from "@/lib/seo";
 import { PLANES, fmt, precioTexto } from "@/content/precios";
 import TiempoPerdido from "@/components/TiempoPerdido";
-import CtaWhatsAppComparar from "@/components/CtaWhatsAppComparar";
+import CtaWhatsAppComparar, { LinkWhatsAppConRef } from "@/components/CtaWhatsAppComparar";
 
 export const metadata = metaPagina({
   title: "Alternativas a AgendaPro, Fresha y WeiBook: comparar agendas",
@@ -127,10 +126,10 @@ export default function CompararPage() {
                 <p className="font-display font-bold text-2xl tracking-tight">¿Tienes otra pregunta, o un dato cambió?</p>
                 <p className="text-white/70 mt-2">Escríbenos: la respondemos y, si sirve a otros locales, la sumamos acá.</p>
               </div>
-              <a href={waLink("Hola, tengo una pregunta para comparar SynapTech con lo que uso hoy")} target="_blank" rel="noopener noreferrer"
+              <LinkWhatsAppConRef texto="Hola, tengo una pregunta para comparar SynapTech con lo que uso hoy en mi local"
                 className="shrink-0 inline-flex justify-center items-center bg-lime text-ink font-semibold px-6 py-3.5 rounded-full hover:bg-white transition-colors">
                 Preguntar por WhatsApp
-              </a>
+              </LinkWhatsAppConRef>
             </div>
           </div>
         </section>
