@@ -8,7 +8,9 @@ import Link from "next/link";
 import { COMPETIDORES } from "@/content/competidores";
 import { MarcaCompetidor } from "@/components/MarcaCompetidor";
 import { metaPagina } from "@/lib/seo";
-import { PLANES, fmt } from "@/content/precios";
+import { PLANES, fmt, precioTexto } from "@/content/precios";
+import TiempoPerdido from "@/components/TiempoPerdido";
+import CtaWhatsAppComparar from "@/components/CtaWhatsAppComparar";
 
 export const metadata = metaPagina({
   title: "Alternativas a AgendaPro, Fresha y WeiBook: comparar agendas",
@@ -39,6 +41,7 @@ export default function CompararPage() {
             <Link href="/comparar/precios" className="inline-flex items-center gap-2 mt-6 bg-ink text-white font-semibold px-6 py-3.5 rounded-full hover:bg-black transition-colors">
               Ver los precios de todas, en una tabla →
             </Link>
+            <CtaWhatsAppComparar />
             <div className="flex flex-wrap gap-2 mt-7">
               {etiquetas.map((e) => (
                 <span key={e} className="px-3 py-1.5 rounded-full bg-mist text-[13px] font-semibold text-text-secondary">{e}</span>
@@ -63,6 +66,24 @@ export default function CompararPage() {
                 </li>
               ))}
             </ul>
+          </div>
+        </section>
+
+        {/* Los planes de SynapTech (content/precios.ts, los cinco de noviembre 2026) */}
+        <section className="pb-12">
+          <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10">
+            <p className="font-semibold text-ink mb-4">Lo que cuesta SynapTech, plan por plan</p>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 m-0 p-0 list-none">
+              {PLANES.map((p) => (
+                <li key={p.id} className={`rounded-[20px] border p-4 ${p.popular ? "border-ink bg-lime/15" : "border-border-subtle bg-white"}`}>
+                  <span className="block font-semibold text-ink">{p.nombre}</span>
+                  <span className="block text-[13px] text-text-muted">{p.sub}</span>
+                  <span className="block mt-3 font-display font-bold text-xl text-ink tabular-nums">{precioTexto(p)}</span>
+                  <span className="block text-[13px] text-text-muted">al mes</span>
+                </li>
+              ))}
+            </ul>
+            <Link href="/precios" className="inline-block mt-4 text-[14px] font-semibold text-ink hover:text-accent">Qué trae cada plan →</Link>
           </div>
         </section>
 
@@ -94,6 +115,10 @@ export default function CompararPage() {
             {HILOS.map((h) => <Hilo key={h.id} h={h} />)}
           </div>
         </section>
+
+        <TiempoPerdido origen="comparar" />
+
+        <CtaWhatsAppComparar variante="final" />
 
         <section className="pb-16 md:pb-24">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 md:px-10">
