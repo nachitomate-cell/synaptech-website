@@ -2,7 +2,8 @@
 
    QUIÉN aparece lo decide la plataforma, en vivo: la lista `_publico/metricas.directorio`
    (los clientes según functions/metricas-publicas.js), menos los que están en prueba y los
-   que pidieron no aparecer (`_system/{id}.directorioPublico === false`). Es el mismo criterio
+   que pidieron no aparecer (`directorioPublico === false`, que se lee del espejo público
+   `_system_publico/{id}`: desde el 01-11-2026 `_system/{id}` ya no se lee sin sesión). Es el mismo criterio
    que usa scripts/gen-directorio-vina.mjs para las cuatro páginas por zona.
 
    LOS DATOS de cada local también salen de la plataforma (16-10-2026): `_publico/directorio_seo`
@@ -229,13 +230,13 @@ export async function obtenerLocales(): Promise<LocalDirectorio[]> {
 
   const raizLocal = (id: string) => (id === "elegance" ? "" : `tenants/${id}/`);
   const [sistema, generales] = await Promise.all([
-    batchGet(ids.map((x) => `_system/${x.id}`), ["directorioPublico"]),
+    batchGet(ids.map((x) => `_system_publico/${x.id}`), ["directorioPublico"]),
     // El horario que el local publica en su reserva (lectura pública, como la de su página).
     batchGet(ids.map((x) => `${raizLocal(x.id)}settings/general`), ["horario"]),
   ]);
 
   return ids
-    .filter((x) => sistema.get(`_system/${x.id}`)?.directorioPublico !== false)
+    .filter((x) => sistema.get(`_system_publico/${x.id}`)?.directorioPublico !== false)
     .flatMap((x): LocalDirectorio[] => {
       const a = AJUSTES[x.id] ?? {};
       const s: FilaSeo = seo.get(x.id) ?? { id: x.id };
