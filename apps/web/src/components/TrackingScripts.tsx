@@ -5,6 +5,10 @@ import Script from "next/script";
 // visitan la web ni forma de medir qué páginas llevan a WhatsApp. El id es público.
 const META_PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID || "1486229456859656";
 const LINKEDIN_PARTNER_ID = process.env.NEXT_PUBLIC_LINKEDIN_PARTNER_ID;
+// Pixel de OpenAI (ChatGPT Ads, origen de datos "synaptechspa.cl", 02-11-2026). Mide
+// "Lead web (WhatsApp o alta)" = lead_created: el clic a WhatsApp o a un link de alta.
+// El id es público. `?oaiq_debug=1` en la URL prende el modo debug del SDK.
+const OPENAI_PIXEL_ID = process.env.NEXT_PUBLIC_OPENAI_PIXEL_ID || "T1bJQ8QvzGekrsYn73SKVk";
 
 export default function TrackingScripts() {
   return (
@@ -19,6 +23,15 @@ export default function TrackingScripts() {
           fbq('init','${META_PIXEL_ID}');fbq('track','PageView');
           document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&e.target.closest('a[href*="wa.me"],a[href*="api.whatsapp.com"]');
             if(a&&window.fbq)fbq('track','Contact',{content_name:location.pathname});},true);
+        `}</Script>
+      )}
+
+      {OPENAI_PIXEL_ID && (
+        <Script id="openai-pixel" strategy="afterInteractive">{`
+          !function(w,d,s,u){if(w.oaiq)return;var q=function(){q.q.push(arguments)};q.q=[];w.oaiq=q;var j=d.createElement(s);j.async=1;j.src=u;var f=d.getElementsByTagName(s)[0];f.parentNode.insertBefore(j,f)}(window,document,"script","https://bzrcdn.openai.com/sdk/oaiq.min.js");
+          oaiq("init",{pixelId:"${OPENAI_PIXEL_ID}",debug:/[?&]oaiq_debug=1/.test(location.search)});
+          document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&e.target.closest('a[href*="wa.me"],a[href*="api.whatsapp.com"],a[href*="crear.synaptechspa.cl"],a[href*="crea.synaptechspa.cl"],a[href*="empieza.synaptechspa.cl"],a[href*="bioo.cl/agenda"]');
+            if(a&&window.oaiq)oaiq("measure","lead_created",{type:"customer_action"});},true);
         `}</Script>
       )}
 
