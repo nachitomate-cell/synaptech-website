@@ -116,7 +116,6 @@ export default function Pagina() {
           { texto: "Software para barberías con equipo", href: "/barberias" },
           { texto: "Agenda con IA para barberías", href: "/agenda-con-ia/barberias" },
           { texto: "Boletas electrónicas SII", href: "/boletas-electronicas-sii" },
-          { texto: "Página web para barberías", href: "/pagina-web-para-barberias" },
           { texto: "App para barberos", href: "/funciones/app-para-profesionales" },
         ]} />
       </main>

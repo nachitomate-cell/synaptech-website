@@ -49,7 +49,7 @@ const PREGUNTAS = [
   { q: "¿Tengo que pagar el año completo?", a: `No. Los planes son mensuales y sin permanencia. El plan anual es una opción para quien prefiere pagar una vez: ${fmt(ANUAL.anio)} + IVA por todo el plan ${ANUAL.base}, que equivale a ${ANUAL.equivaleMeses} meses.` },
   { q: "¿Cómo pago la mensualidad?", a: "Con tarjeta de débito o crédito por Webpay, desde tu panel, o por transferencia a la cuenta de Synaptech SpA." },
   { q: "Tengo más de un local, ¿cuánto cuesta?", a: `Cada local paga el plan Local a precio de cadena: ${CADENA.tramos.map((t) => `${t.texto}, ${fmt(t.mes)} + IVA cada uno`).join("; ")}. Con el asistente con IA, ${fmt(CADENA.ia)} + IVA más por local. Te mueves entre las sedes desde el mismo panel.` },
-  { q: "¿Qué es Crecer?", a: "Son servicios que hace el equipo de SynapTech por tu local: Presencia (página web propia con dominio .cl, ficha de Google optimizada e informe mensual), Google Ads gestionado y Meta Ads gestionado (Facebook e Instagram). La inversión en anuncios la pagas tú directo a Google o Meta, con tu tarjeta. Sin permanencia." },
+  { q: "¿Qué es Crecer?", a: "Son complementos que se suman a cualquier plan de SynapTech: Presencia (página web propia con dominio .cl, ficha de Google optimizada e informe mensual), Google Ads y Meta Ads (Facebook e Instagram), con la configuración incluida y conectados a tu agenda. La inversión en anuncios la pagas tú directo a Google o Meta, con tu tarjeta. Sin permanencia." },
   { q: "¿Hay prueba gratis?", a: `Sí, sin tarjeta: ${PRUEBA.conIA} días del plan ${PRUEBA.plan} con el asistente con IA (son ${fmt(PRUEBA.valor)} + IVA que no pagas), creando tu agenda en crear.synaptechspa.cl, o ${PRUEBA.sinIA} días sin el asistente en bioo.cl/agenda. Al terminar eliges tu plan; no se cobra nada solo.` },
 ];
 
@@ -199,13 +199,11 @@ export default function PreciosPage() {
         <section id="crecer" className="py-16 md:py-24 bg-mist scroll-mt-20">
           <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10">
             <div className="max-w-3xl mb-10">
-              <p className="eyebrow mb-4">Crecer · servicios hechos por nuestro equipo</p>
-              <h2 className="text-ink">Página web, Google Ads y anuncios en Instagram, sin que tengas que aprender a hacerlos.</h2>
+              <p className="eyebrow mb-4">Crecer · complementos para suscriptores</p>
+              <h2 className="text-ink">Página web propia y anuncios en Google e Instagram, conectados a tu agenda.</h2>
               <p className="text-text-secondary text-lg mt-5 leading-relaxed">
-                Lo arma y lo administra el equipo de SynapTech, conectado a tu agenda para medir reservas.{" "}
-                <Link href="/pagina-web-para-barberias" className="font-semibold text-ink underline decoration-lime decoration-2 underline-offset-4">Página web</Link>,{" "}
-                <Link href="/google-ads-para-barberias" className="font-semibold text-ink underline decoration-lime decoration-2 underline-offset-4">Google Ads</Link> y{" "}
-                <Link href="/publicidad-instagram-facebook-barberias" className="font-semibold text-ink underline decoration-lime decoration-2 underline-offset-4">Meta Ads</Link>, en detalle.
+                Se suman a cualquier plan, mes a mes, con la configuración incluida, y llevan a tus clientes
+                directo a reservar en tu agenda.
               </p>
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -294,9 +292,6 @@ export default function PreciosPage() {
               {[
                 { t: "Agenda para barbero independiente", h: "/agenda-barbero-independiente" },
                 { t: "Boletas electrónicas SII automáticas", h: "/boletas-electronicas-sii" },
-                { t: "Página web para barberías", h: "/pagina-web-para-barberias" },
-                { t: "Google Ads para barberías", h: "/google-ads-para-barberias" },
-                { t: "Publicidad en Instagram y Facebook", h: "/publicidad-instagram-facebook-barberias" },
                 { t: "Asistente con IA en WhatsApp", h: "/asistente-ia-whatsapp" },
                 { t: "Convenios e integraciones", h: "/integraciones" },
               ].map((l) => (

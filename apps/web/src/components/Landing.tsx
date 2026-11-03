@@ -89,7 +89,7 @@ export function TarjetaServicio({ s, destacado = false }: { s: ServicioCrecer; d
           </li>
         ))}
       </ul>
-      <a href={waLink(`Hola, quiero el servicio ${s.nombre} de SynapTech para mi local`)} target="_blank" rel="noopener noreferrer"
+      <a href={waLink(`Hola, quiero sumar ${s.nombre} a mi plan de SynapTech`)} target="_blank" rel="noopener noreferrer"
         className={`mt-7 inline-flex justify-center items-center font-semibold px-6 py-3.5 rounded-full transition-colors ${destacado ? "bg-lime text-ink hover:bg-white" : "bg-ink text-white hover:bg-black"}`}>
         Quiero {s.nombre}
       </a>

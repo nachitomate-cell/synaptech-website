@@ -233,7 +233,7 @@ export const FUNCIONES: Funcion[] = [
       { q: "¿Necesito un dominio propio?", a: "No. Tu local tiene su dirección en synaptechspa.cl desde el primer día. Si quieres tu propio dominio, es un adicional de $15.000 + IVA al año, y viene incluido en el plan Todo Incluido y en Presencia." },
       { q: "¿Mis clientes pueden reservar desde Instagram?", a: "Sí: pones el link en tu bio y en tus historias, y reservan sin escribirte." },
     ],
-    relacionadas: ["/pagina-web-para-barberias", "recordatorios-whatsapp", "/tienda-online", "/fidelizacion"],
+    relacionadas: ["recordatorios-whatsapp", "/tienda-online", "/fidelizacion"],
   },
 ];
 
