@@ -1,30 +1,20 @@
 "use client";
 import { animate, motion, useInView, useReducedMotion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import Aparece from "@/components/Aparece";
+
+export { Aparece };
 
 /* Animaciones de /seguridad (02-11-2026), en el tono de las páginas de
    producto de Apple: poco movimiento, lento al final (ease 0.16,1,0.3,1),
    una sola vez por elemento y nada que se mueva solo después de llegar.
-   - Aparece: sube 24 px, se desenfoca y se aclara al entrar en pantalla.
+   - Aparece: el de todo el sitio (components/Aparece.tsx).
    - Iconos de línea que se dibujan (pathLength 0 → 1).
    - Escudo del inicio que se traza y cierra con el check.
    - Números grandes que cuentan hasta su valor.
    Con "reducir movimiento" todo queda quieto y visible desde el principio. */
 
 const EASE = [0.16, 1, 0.3, 1] as const;
-
-export function Aparece({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
-  const quieto = useReducedMotion();
-  return (
-    <motion.div className={className}
-      initial={quieto ? false : { opacity: 0, y: 24, filter: "blur(6px)" }}
-      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.9, ease: EASE, delay }}>
-      {children}
-    </motion.div>
-  );
-}
 
 /* Trazos de 24×24, línea de 1.5 como los SF Symbols finos. */
 const ICONOS: Record<string, string[]> = {

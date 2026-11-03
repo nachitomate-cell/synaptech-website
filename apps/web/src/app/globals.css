@@ -311,3 +311,14 @@ h2 {
 .grupo-locales:hover { transform: scale(1.1); }
 .grupo-locales.activo { box-shadow: 0 0 0 4px #9CCC3C, 0 10px 22px -6px rgba(15, 26, 43, .5); }
 @media (prefers-reduced-motion: reduce) { .marcador-local, .grupo-locales { transition: none; } }
+
+/* ── Aparece (components/Aparece.tsx): entrada al hacer scroll ─────────────
+   "oculto" lo pone el navegador solo a lo que está bajo la pantalla; el HTML
+   del servidor no trae estado y se ve normal. */
+[data-aparece="oculto"] { opacity: 0; transform: translateY(24px); filter: blur(6px); }
+[data-aparece="visto"] {
+  transition: opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1), filter .9s cubic-bezier(.16,1,.3,1);
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-aparece] { opacity: 1 !important; transform: none !important; filter: none !important; transition: none !important; }
+}

@@ -1,12 +1,13 @@
 import { altaIA, agendaSinIA, CTA_IA, CTA_SIN_IA, waLink } from "@/content/catalogo";
 import { PRUEBA, fmt } from "@/content/precios";
+import Aparece from "@/components/Aparece";
 
 /* `oscuro` (23-10-2026): el cierre del inicio en el estilo de su portada. */
 export default function CtaFinal({ origen = "home-final", oscuro = false }: { origen?: string; oscuro?: boolean }) {
   if (oscuro) return <CtaOscuro origen={origen} />;
   return (
     <section className="py-16 md:py-24 bg-mist">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
+      <Aparece className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
         <h2 className="text-ink">Empieza hoy con SynapTech.</h2>
         <p className="text-text-secondary text-lg mt-5 leading-relaxed">
           Crea tu agenda en minutos con Syna, el asistente con IA, respondiendo tu WhatsApp
@@ -27,7 +28,7 @@ export default function CtaFinal({ origen = "home-final", oscuro = false }: { or
           No pedimos tarjeta para la prueba: no se cobra nada solo.{" "}
           <a href={agendaSinIA(`${origen}-sin-ia`)} className="font-semibold text-ink underline decoration-lime decoration-2 underline-offset-4 hover:decoration-ink">{CTA_SIN_IA}</a>
         </p>
-      </div>
+      </Aparece>
     </section>
   );
 }
@@ -37,7 +38,7 @@ function CtaOscuro({ origen }: { origen: string }) {
     <section className="relative overflow-hidden py-28 md:py-40 bg-[#05080D] text-white">
       <div aria-hidden className="absolute left-1/2 top-full -translate-x-1/2 -translate-y-1/2 w-[900px] max-w-[150vw] aspect-[2/1] rounded-full opacity-50 blur-[110px]"
         style={{ background: "radial-gradient(closest-side, rgba(156,204,60,.5), rgba(94,200,242,.25) 55%, transparent)" }} />
-      <div className="relative max-w-3xl mx-auto px-4 sm:px-6 text-center">
+      <Aparece className="relative max-w-3xl mx-auto px-4 sm:px-6 text-center">
         <h2 className="text-white">
           Tu local, en orden.
           <span className="block bg-gradient-to-r from-[#B8E36A] via-[#9CCC3C] to-[#5EC8F2] bg-clip-text text-transparent pb-1">Desde hoy.</span>
@@ -59,7 +60,7 @@ function CtaOscuro({ origen }: { origen: string }) {
           No pedimos tarjeta para la prueba: no se cobra nada solo.{" "}
           <a href={agendaSinIA(`${origen}-sin-ia`)} className="text-white/75 underline underline-offset-4 decoration-white/30 hover:decoration-white">{CTA_SIN_IA}</a>
         </p>
-      </div>
+      </Aparece>
     </section>
   );
 }

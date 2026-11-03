@@ -1,4 +1,5 @@
 import { obtenerLocales, unoPorNegocio, type LocalDirectorio } from "@/lib/directorio";
+import Aparece from "@/components/Aparece";
 
 /* Lo que dicen los locales, TEXTUAL (rehecho el 09-10-2026).
    Cada cita es copia exacta de un mensaje de WhatsApp: mismas faltas, mismos
@@ -193,16 +194,20 @@ export default async function Testimonials() {
   return (
     <section id="testimonios" className="py-16 md:py-24 scroll-mt-20">
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10">
-        <div className="max-w-3xl mb-10 md:mb-12">
+        <Aparece className="max-w-3xl mb-10 md:mb-12">
           <p className="eyebrow mb-4">Lo que dicen los locales</p>
           <h2 className="text-ink">Palabra por palabra, como nos lo escribieron.</h2>
           <p className="text-text-secondary text-lg mt-5 leading-relaxed">
             Mensajes reales de dueños y administradores, copiados tal cual de WhatsApp. Cada
             tarjeta lleva al Instagram del local y a su página de reservas.
           </p>
-        </div>
+        </Aparece>
         <div className="grid lg:grid-cols-3 gap-5 mb-5 items-start">
-          {destacados.map((t) => <Tarjeta key={t.local + t.fecha} t={t} vivo={porId.get(t.local)} nota={notas.get(t.local)} />)}
+          {destacados.map((t, i) => (
+            <Aparece key={t.local + t.fecha} delay={(i % 3) * 0.08}>
+              <Tarjeta t={t} vivo={porId.get(t.local)} nota={notas.get(t.local)} />
+            </Aparece>
+          ))}
         </div>
         <div className="columns-1 sm:columns-2 lg:columns-3 gap-5">
           {resto.map((t) => <Tarjeta key={t.local + t.fecha} t={t} vivo={porId.get(t.local)} nota={notas.get(t.local)} />)}

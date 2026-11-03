@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Aparece from "@/components/Aparece";
 import { altaIA, agendaSinIA, rubroDeOrigen, CTA_IA, CTA_SIN_IA, waLink, type RubroAlta } from "@/content/catalogo";
 
 /* Piezas de las páginas por rubro (/barberias, /estetica). Las imágenes son
@@ -59,13 +60,14 @@ export function Dolores({ titulo, items }: { titulo: string; items: Dolor[] }) {
   return (
     <section className="py-16 md:py-24 bg-mist">
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10">
-        <div className="max-w-3xl mb-10">
+        <Aparece className="max-w-3xl mb-10">
           <p className="eyebrow mb-4">Lo que te resuelve</p>
           <h2 className="text-ink">{titulo}</h2>
-        </div>
+        </Aparece>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {items.map((d) => (
-            <article key={d.dolor} className="rounded-[28px] bg-white p-7 flex flex-col">
+          {items.map((d, i) => (
+            <Aparece key={d.dolor} delay={(i % 3) * 0.08} className="h-full">
+            <article className="h-full rounded-[28px] bg-white p-7 flex flex-col">
               <p className="text-text-muted line-through decoration-text-muted/40">{d.dolor}</p>
               <h3 className="font-display font-bold text-ink text-xl tracking-tight mt-3 flex gap-2.5">
                 <span className="w-6 h-6 shrink-0 mt-0.5 rounded-full bg-lime flex items-center justify-center">
@@ -75,6 +77,7 @@ export function Dolores({ titulo, items }: { titulo: string; items: Dolor[] }) {
               </h3>
               <p className="text-text-secondary mt-3 leading-relaxed">{d.detalle}</p>
             </article>
+            </Aparece>
           ))}
         </div>
       </div>

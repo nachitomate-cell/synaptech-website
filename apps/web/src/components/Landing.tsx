@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Aparece from "@/components/Aparece";
 import { fmt, type ServicioCrecer } from "@/content/precios";
 import { waLink } from "@/content/catalogo";
 import type { Miga } from "@/lib/ld";
@@ -50,17 +51,19 @@ export function Puntos({ eyebrow, titulo, bajada, items, fondo = false, columnas
   return (
     <section className={`py-16 md:py-24 ${fondo ? "bg-mist" : ""}`}>
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10">
-        <div className="max-w-3xl mb-10">
+        <Aparece className="max-w-3xl mb-10">
           {eyebrow && <p className="eyebrow mb-4">{eyebrow}</p>}
           <h2 className="text-ink">{titulo}</h2>
           {bajada && <p className="text-text-secondary text-lg mt-5 leading-relaxed">{bajada}</p>}
-        </div>
+        </Aparece>
         <div className={`grid sm:grid-cols-2 ${columnas === 3 ? "lg:grid-cols-3" : ""} gap-5`}>
-          {items.map((x) => (
-            <article key={x.t} className={`rounded-[24px] p-6 sm:p-7 ${fondo ? "bg-white" : "border border-border-subtle"}`}>
-              <h3 className="font-display font-bold text-ink text-xl tracking-tight">{x.t}</h3>
-              <p className="text-text-secondary mt-2 leading-relaxed">{x.d}</p>
-            </article>
+          {items.map((x, i) => (
+            <Aparece key={x.t} delay={(i % columnas) * 0.08} className="h-full">
+              <article className={`h-full rounded-[24px] p-6 sm:p-7 ${fondo ? "bg-white" : "border border-border-subtle"}`}>
+                <h3 className="font-display font-bold text-ink text-xl tracking-tight">{x.t}</h3>
+                <p className="text-text-secondary mt-2 leading-relaxed">{x.d}</p>
+              </article>
+            </Aparece>
           ))}
         </div>
       </div>

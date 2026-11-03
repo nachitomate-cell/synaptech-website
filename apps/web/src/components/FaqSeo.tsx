@@ -1,4 +1,5 @@
 import { faqJsonLd } from "@/lib/seo";
+import Aparece from "@/components/Aparece";
 
 /* Preguntas frecuentes de una página de rubro, con su FAQPage en JSON-LD.
    Las preguntas salen de lo que la gente busca en Google (autocompletado de
@@ -11,8 +12,10 @@ export default function FaqSeo({ titulo, preguntas }: { titulo: string; pregunta
     <section className="py-16 md:py-24">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(preguntas)) }} />
       <div className="max-w-3xl mx-auto px-4 sm:px-6">
-        <p className="eyebrow mb-4">Preguntas frecuentes</p>
-        <h2 className="text-ink mb-8">{titulo}</h2>
+        <Aparece>
+          <p className="eyebrow mb-4">Preguntas frecuentes</p>
+          <h2 className="text-ink mb-8">{titulo}</h2>
+        </Aparece>
         <div className="divide-y divide-border-subtle border-y border-border-subtle">
           {preguntas.map((f) => (
             <details key={f.q} className="group py-5">

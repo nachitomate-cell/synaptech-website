@@ -26,6 +26,8 @@
      · Citas: 179.918 − 152.623 migradas = 27.295 → "+27.000".
      · WhatsApp (wa_conversaciones): 6.645 → "+6.500".
    Se redondean hacia abajo. Volver a medir antes de cambiarlas. */
+import Aparece, { Cuenta } from "@/components/Aparece";
+
 const CIFRAS = [
   { valor: "+60",     label: "locales y sedes", nota: "en Chile, Perú, México, Colombia y Argentina" },
   { valor: "+80.000", label: "clientes", nota: "en las fichas de esos locales" },
@@ -37,17 +39,17 @@ export default function Cifras() {
   return (
     <section aria-label="SynapTech en cifras" className="py-24 md:py-32">
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10">
-        <div className="text-center max-w-5xl mx-auto">
+        <Aparece className="text-center max-w-5xl mx-auto">
           <p className="eyebrow">SynapTech hoy</p>
           <h2 className="text-ink mt-5">Locales reales. Números reales.</h2>
-        </div>
+        </Aparece>
         <div className="mt-16 grid grid-cols-2 lg:grid-cols-4 gap-y-12 gap-x-4 sm:gap-x-8">
-          {CIFRAS.map((c) => (
-            <div key={c.label} className="text-center">
-              <p className="font-display font-bold tracking-[-0.045em] leading-none text-ink text-[clamp(2.2rem,4.4vw,4.2rem)]">{c.valor}</p>
+          {CIFRAS.map((c, i) => (
+            <Aparece key={c.label} delay={(i % 4) * 0.08} className="text-center">
+              <p className="font-display font-bold tracking-[-0.045em] leading-none text-ink text-[clamp(2.2rem,4.4vw,4.2rem)]"><Cuenta valor={c.valor} /></p>
               <p className="mt-3 sm:mt-4 text-base sm:text-lg font-semibold text-ink">{c.label}</p>
               <p className="mt-1 text-sm sm:text-base text-text-muted leading-snug max-w-[16rem] mx-auto">{c.nota}</p>
-            </div>
+            </Aparece>
           ))}
         </div>
         <p className="mt-14 text-center text-[13px] text-text-muted">Medido en la plataforma el 31 de octubre de 2026.</p>
