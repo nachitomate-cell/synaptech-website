@@ -51,7 +51,7 @@ export default function HeroOscuro({ despuesDeVideo = false }: { despuesDeVideo?
         <p className="mt-2 text-sm text-white/45">
           <a href={agendaSinIA("home-hero-sin-ia")} className="text-white/75 underline underline-offset-4 decoration-white/30 hover:decoration-white">{CTA_SIN_IA}</a>
           {" "}en bioo, nuestra agenda de autoservicio ·{" "}
-          <a href={A_MEDIDA_WA} target="_blank" rel="noopener noreferrer" className="text-white/75 underline underline-offset-4 decoration-white/30 hover:decoration-white whitespace-nowrap">varias sedes, a medida</a>
+          <a href={A_MEDIDA_WA} target="_blank" rel="noopener noreferrer" className="text-white/75 underline underline-offset-4 decoration-white/30 hover:decoration-white whitespace-nowrap">varias sedes, te ayudamos a configurarla</a>
         </p>
       </div>
 
