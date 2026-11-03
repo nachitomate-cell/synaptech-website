@@ -70,7 +70,7 @@ export default function Hero() {
             Tu agenda se crea en minutos en <b className="text-ink">bioo</b>, nuestra agenda de autoservicio.
             ¿Varias sedes o un equipo grande?{" "}
             <a href={A_MEDIDA_WA} target="_blank" rel="noopener noreferrer" className="font-semibold text-ink border-b-2 border-lime pb-0.5 hover:border-ink transition-colors whitespace-nowrap">
-              Te la armamos a medida →
+              Te ayudamos a configurarla →
             </a>
           </p>
         </div>

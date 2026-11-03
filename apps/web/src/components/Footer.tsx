@@ -29,6 +29,7 @@ const LINKS: Record<string, { l: string; h: string }[]> = {
     { l: "Consentimiento informado (PDF y Word)", h: "/recursos/consentimiento-informado-estetica" },
     { l: "Preguntas frecuentes", h: "/#faq" },
     { l: "Nosotros", h: "/nosotros" },
+    { l: "Empresa y tecnología", h: "/empresa" },
     { l: "Seguridad de tus datos", h: "/seguridad" },
     { l: "Contacto", h: "/contacto" },
   ],
@@ -119,6 +120,12 @@ export default async function Footer() {
                   <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/>
                 </svg>
               </a>
+              <a href="https://www.linkedin.com/in/ignacio-mateluna-b46a87441/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn del fundador"
+                className="w-10 h-10 rounded-full bg-mist flex items-center justify-center text-ink hover:bg-lime transition-colors">
+                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+                  <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/>
+                </svg>
+              </a>
               <a href="https://www.youtube.com/@synaptechspa" target="_blank" rel="noopener noreferrer" aria-label="YouTube"
                 className="w-10 h-10 rounded-full bg-mist flex items-center justify-center text-ink hover:bg-lime transition-colors">
                 <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
@@ -159,7 +166,7 @@ export default async function Footer() {
         </div>
 
         <div className="border-t border-border-subtle pt-6 flex flex-col md:flex-row items-center justify-between gap-3 text-[13px] text-text-muted">
-          <p>© {YEAR} Synaptech SpA · RUT 78.402.009-6</p>
+          <p>© {YEAR} Synaptech SpA · RUT 78.402.009-6 · Viña del Mar, Chile · <a href="/empresa" className="hover:text-ink">Empresa</a></p>
           <div className="flex items-center gap-5">
             <a href="/privacidad" className="hover:text-ink">Privacidad</a>
             <a href="/terminos" className="hover:text-ink">Términos</a>
