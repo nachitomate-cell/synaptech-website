@@ -3,6 +3,7 @@ import Footer   from "@/components/Footer";
 import CtaFinal from "@/components/CtaFinal";
 import { waLink } from "@/content/catalogo";
 import { metaPagina, faqJsonLd } from "@/lib/seo";
+import { Aparece, Escudo, Numeros, Puntos, type Numero, type Punto } from "@/components/SeguridadAnimada";
 
 export const metadata = metaPagina({
   title: "Seguridad y respaldo de datos | SynapTech",
@@ -25,18 +26,26 @@ export const metadata = metaPagina({
    - Exportar clientes a Excel: Clientes.jsx (exportarClientes).
    - Pagos: Webpay Oneclick (Transbank) y Mercado Pago; la tarjeta se inscribe
      en sus páginas, no en las nuestras.
-   Si algo de esto cambia (región, retención, 2FA), cambiar esta página. */
+   Si algo de esto cambia (región, retención, 2FA), cambiar esta página.
+   Las animaciones viven en components/SeguridadAnimada.tsx. */
 
-const PUNTOS = [
-  { t: "Tus datos están en Chile", d: "La base de datos vive en los servidores de Google Cloud en Santiago. Tu agenda y tus clientes no salen del país para guardarse." },
-  { t: "Respaldo todos los días", d: "Se respalda la base completa cada día (se guardan los últimos 7) y cada domingo (se guardan 14 semanas)." },
-  { t: "Vuelta atrás al minuto", d: "Si algo se borra por error, podemos recuperar cómo estaba en cualquier minuto de los últimos 7 días." },
-  { t: "Protegida contra borrado", d: "La base de datos tiene la protección contra eliminación encendida: no se puede eliminar por accidente." },
-  { t: "Todo viaja cifrado", d: "Todo viaja cifrado (HTTPS) entre tu teléfono y la plataforma, y se guarda cifrado en los servidores." },
-  { t: "Verificación en dos pasos", d: "Puedes pedir, además de tu contraseña, un código de 6 dígitos de una app de autenticación como Google Authenticator." },
-  { t: "No guardamos tu tarjeta", d: "La tarjeta se inscribe en la página de Transbank (Webpay Oneclick) o de Mercado Pago. Su número nunca pasa por nuestros servidores." },
-  { t: "Cada uno con su cuenta", d: "Dueño y equipo entran cada uno con su propia cuenta, y cada local tiene sus datos separados de los demás." },
-  { t: "Tus datos son tuyos", d: "Exportas tus clientes a Excel cuando quieras. Sin permanencia: si te vas, te entregamos tu información." },
+const PUNTOS: Punto[] = [
+  { t: "Tus datos están en Chile", icono: "chile", d: "La base de datos vive en los servidores de Google Cloud en Santiago. Tu agenda y tus clientes no salen del país para guardarse." },
+  { t: "Respaldo todos los días", icono: "respaldo", d: "Se respalda la base completa cada día (se guardan los últimos 7) y cada domingo (se guardan 14 semanas)." },
+  { t: "Vuelta atrás al minuto", icono: "atras", d: "Si algo se borra por error, podemos recuperar cómo estaba en cualquier minuto de los últimos 7 días." },
+  { t: "Protegida contra borrado", icono: "borrado", d: "La base de datos tiene la protección contra eliminación encendida: no se puede eliminar por accidente." },
+  { t: "Todo viaja cifrado", icono: "cifrado", d: "Entre tu teléfono y la plataforma la información viaja por HTTPS, y en los servidores se guarda cifrada." },
+  { t: "Verificación en dos pasos", icono: "dospasos", d: "Puedes pedir, además de tu contraseña, un código de 6 dígitos de una app de autenticación como Google Authenticator." },
+  { t: "No guardamos tu tarjeta", icono: "tarjeta", d: "La tarjeta se inscribe en la página de Transbank (Webpay Oneclick) o de Mercado Pago. Su número nunca pasa por nuestros servidores." },
+  { t: "Cada uno con su cuenta", icono: "cuentas", d: "Dueño y equipo entran cada uno con su propia cuenta, y cada local tiene sus datos separados de los demás." },
+  { t: "Tus datos son tuyos", icono: "tuyos", d: "Exportas tus clientes a Excel cuando quieras. Sin permanencia: si te vas, te entregamos tu información." },
+];
+
+/* Mismos números de arriba (backupSchedules y PITR), en grande. */
+const NUMEROS: Numero[] = [
+  { v: 7,  unidad: "días",    l: "de respaldos diarios guardados, uno por día" },
+  { v: 14, unidad: "semanas", l: "de respaldos de cada domingo" },
+  { v: 7,  unidad: "días",    l: "hacia atrás para volver a cualquier minuto" },
 ];
 
 const FAQ = [
@@ -53,33 +62,45 @@ export default function SeguridadPage() {
       <Header />
       <main>
         <section className="pt-28 md:pt-36 pb-14">
-          <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10">
-            <p className="eyebrow mb-5">Seguridad</p>
-            <h1 className="text-ink max-w-5xl">Tu agenda y tus clientes, guardados en Chile y respaldados todos los días.</h1>
-            <p className="text-text-secondary text-lg md:text-xl leading-relaxed max-w-2xl mt-6">
-              Tu local depende de esa información. Esto es lo que hacemos para que no se pierda,
-              no la vea quien no debe y siga siendo tuya.
-            </p>
+          <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10 grid lg:grid-cols-[1.4fr_1fr] gap-10 lg:gap-16 items-center">
+            <div>
+              <Aparece><p className="eyebrow mb-5">Seguridad</p></Aparece>
+              <Aparece delay={0.08}>
+                <h1 className="text-ink max-w-4xl">Tu agenda y tus clientes, guardados en Chile y respaldados todos los días.</h1>
+              </Aparece>
+              <Aparece delay={0.18}>
+                <p className="text-text-secondary text-lg md:text-xl leading-relaxed max-w-2xl mt-6">
+                  Tu local depende de esa información. Esto es lo que hacemos para que no se pierda,
+                  no la vea quien no debe y siga siendo tuya.
+                </p>
+              </Aparece>
+            </div>
+            <Escudo />
           </div>
         </section>
 
         <section className="py-16 md:py-24 bg-mist">
           <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10">
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              {PUNTOS.map((p) => (
-                <article key={p.t} className="rounded-[28px] bg-white p-7">
-                  <h2 className="font-display font-bold text-ink text-xl tracking-tight">{p.t}</h2>
-                  <p className="text-text-secondary mt-3 leading-relaxed">{p.d}</p>
-                </article>
-              ))}
-            </div>
+            <Puntos puntos={PUNTOS} />
+          </div>
+        </section>
+
+        <section className="py-24 md:py-32 bg-ink text-white">
+          <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10">
+            <Aparece className="text-center max-w-3xl mx-auto mb-16">
+              <p className="eyebrow !text-lime mb-4">El respaldo, en números</p>
+              <h2 className="text-white">Si algo se pierde, hay de dónde sacarlo.</h2>
+            </Aparece>
+            <Numeros numeros={NUMEROS} />
           </div>
         </section>
 
         <section className="py-16 md:py-24">
           <div className="max-w-3xl mx-auto px-4 sm:px-6">
-            <p className="eyebrow mb-4">Preguntas frecuentes</p>
-            <h2 className="text-ink">Lo que más nos preguntan.</h2>
+            <Aparece>
+              <p className="eyebrow mb-4">Preguntas frecuentes</p>
+              <h2 className="text-ink">Lo que más nos preguntan.</h2>
+            </Aparece>
             <div className="mt-10 divide-y divide-border-subtle border-y border-border-subtle">
               {FAQ.map((f) => (
                 <details key={f.q} className="group py-5">
