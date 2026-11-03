@@ -312,8 +312,10 @@ export const crecer = (id: string) => CRECER.find((s) => s.id === id)!;
 
 /* ── Prueba gratis ────────────────────────────────────────────────────────
    Como lo dice el sitio desde el 21-10-2026: 30 días con el asistente en
-   crear.synaptechspa.cl; 14 días sin el asistente en bioo.cl/agenda. Sin tarjeta. */
-export const PRUEBA = { conIA: 30, sinIA: 14, plan: "Local IA" };
+   crear.synaptechspa.cl; 14 días sin el asistente en bioo.cl/agenda. Sin tarjeta.
+   `valor` (02-11-2026): lo que cuesta ese mes del plan, para decir cuánto vale
+   la prueba y no solo "gratis" (idea tomada de netexplora.com/cl). */
+export const PRUEBA = { conIA: 30, sinIA: 14, plan: "Local IA", valor: LOCAL_IA.mes };
 
 /* Comparación con AgendaPro. Precios NETOS mensuales publicados en
    agendapro.com/cl/planes, re-verificados el 01-11-2026 (tabla del selector:

@@ -1,4 +1,5 @@
 import { altaIA, agendaSinIA, CTA_IA, CTA_SIN_IA, waLink } from "@/content/catalogo";
+import { PRUEBA, fmt } from "@/content/precios";
 
 /* `oscuro` (23-10-2026): el cierre del inicio en el estilo de su portada. */
 export default function CtaFinal({ origen = "home-final", oscuro = false }: { origen?: string; oscuro?: boolean }) {
@@ -9,7 +10,7 @@ export default function CtaFinal({ origen = "home-final", oscuro = false }: { or
         <h2 className="text-ink">Empieza hoy con SynapTech.</h2>
         <p className="text-text-secondary text-lg mt-5 leading-relaxed">
           Crea tu agenda en minutos con Syna, el asistente con IA, respondiendo tu WhatsApp
-          desde el primer día: 30 días gratis del plan Local IA. ¿Varias sedes o un equipo
+          desde el primer día: {PRUEBA.conIA} días gratis del plan {PRUEBA.plan}, que valen {fmt(PRUEBA.valor)} + IVA. ¿Varias sedes o un equipo
           grande? Escríbenos y te la armamos a medida.
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-3 mt-8">
@@ -42,7 +43,7 @@ function CtaOscuro({ origen }: { origen: string }) {
           <span className="block bg-gradient-to-r from-[#B8E36A] via-[#9CCC3C] to-[#5EC8F2] bg-clip-text text-transparent pb-1">Desde hoy.</span>
         </h2>
         <p className="mt-6 text-lg text-white/65 leading-relaxed">
-          30 días gratis del plan Local IA, con Syna respondiendo tu WhatsApp desde el primer día.
+          {PRUEBA.conIA} días gratis del plan {PRUEBA.plan} ({fmt(PRUEBA.valor)} + IVA que no pagas), con Syna respondiendo tu WhatsApp desde el primer día.
         </p>
         <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8">
           <a href={altaIA(origen)}

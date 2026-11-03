@@ -96,7 +96,8 @@ ${FUNCIONES.map((f) => `- [${f.nombre}](${S}/funciones/${f.slug})`).join("\n")}
 - [Consentimiento informado para estética, modelo gratis en PDF y Word](${S}/recursos/consentimiento-informado-estetica)
 - [Locales que usan SynapTech](${S}/locales)
 - [Mis reservas: la app gratis de los clientes, con sus citas, sellos y premios de todos sus locales](${S}/mis-reservas)
-- [Nosotros](${S}/nosotros)`;
+- [Nosotros](${S}/nosotros)
+- [Seguridad: datos en Santiago de Chile, respaldo diario y semanal, recuperación de los últimos 7 días, verificación en dos pasos](${S}/seguridad)`;
 
 export const CONTACTO = `- WhatsApp: +56 9 8356 8212
 - Correo: hola@synaptechspa.cl
