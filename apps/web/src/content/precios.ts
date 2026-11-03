@@ -297,16 +297,16 @@ export const CADENA = {
 };
 export const precioCadena = (locales: number) => CADENA.tramos.find((t) => locales >= t.desde && locales <= t.hasta)!.mes;
 
-/* ── Crecer: servicios que hace el equipo de SynapTech ────────────────────
+/* ── Crecer: complementos de la suscripción. Los configura y ajusta el equipo de SynapTech; en el sitio se presentan como complementos (03-11-2026) ────────────────────
    La inversión publicitaria la paga el local directo a Google o Meta, con su
    tarjeta. Sin permanencia. */
 export type ServicioCrecer = { id: string; nombre: string; mes: number; desc: string; incluye: string[]; href?: string };
 export const CRECER: ServicioCrecer[] = [
-  { id: "presencia", nombre: "Presencia", mes: 24900, href: "/pagina-web-para-barberias", desc: "Tu página web propia con dominio .cl, tu ficha de Google optimizada y un informe cada mes.", incluye: ["Página web con dominio .cl", "Ficha de Google optimizada", "Informe mensual"] },
-  { id: "google-ads", nombre: "Google Ads gestionado", mes: 49900, href: "/google-ads-para-barberias", desc: "Armamos y administramos tus campañas en Google para que te encuentren quienes buscan tu servicio cerca.", incluye: ["Armado de tus campañas en Google", "Administración y ajustes", "Medición con Google Analytics 4 y Tag Manager en tu dominio"] },
-  { id: "meta-ads", nombre: "Meta Ads gestionado", mes: 49900, href: "/publicidad-instagram-facebook-barberias", desc: "Tus anuncios en Instagram y Facebook, armados y administrados por nuestro equipo.", incluye: ["Armado de tus anuncios en Instagram y Facebook", "Administración y ajustes", "Medición con Meta Pixel en tu dominio"] },
-  { id: "combo-anuncios", nombre: "Combo Anuncios", mes: 79900, desc: "Google Ads y Meta Ads gestionados, juntos.", incluye: ["Google Ads gestionado", "Meta Ads gestionado"] },
-  { id: "combo-crecer", nombre: "Combo Crecer total", mes: 99900, desc: "Presencia, Google Ads y Meta Ads gestionados.", incluye: ["Presencia", "Google Ads gestionado", "Meta Ads gestionado"] },
+  { id: "presencia", nombre: "Presencia", mes: 24900, desc: "Tu página web propia con dominio .cl, tu ficha de Google optimizada y un informe cada mes.", incluye: ["Página web con dominio .cl", "Ficha de Google optimizada", "Informe mensual"] },
+  { id: "google-ads", nombre: "Complemento Google Ads", mes: 49900, desc: "Campañas en Google conectadas a tu página de reservas, para que te encuentren quienes buscan tu servicio cerca.", incluye: ["Campañas en Google conectadas a tu agenda", "Configuración y ajustes mensuales incluidos", "Medición con Google Analytics 4 y Tag Manager en tu dominio"] },
+  { id: "meta-ads", nombre: "Complemento Meta Ads", mes: 49900, desc: "Anuncios en Instagram y Facebook que llevan a reservar en tu agenda.", incluye: ["Anuncios en Instagram y Facebook conectados a tu agenda", "Configuración y ajustes mensuales incluidos", "Medición con Meta Pixel en tu dominio"] },
+  { id: "combo-anuncios", nombre: "Combo Anuncios", mes: 79900, desc: "Los complementos Google Ads y Meta Ads, juntos.", incluye: ["Complemento Google Ads", "Complemento Meta Ads"] },
+  { id: "combo-crecer", nombre: "Combo Crecer total", mes: 99900, desc: "Presencia y los complementos Google Ads y Meta Ads.", incluye: ["Presencia", "Complemento Google Ads", "Complemento Meta Ads"] },
 ];
 export const crecer = (id: string) => CRECER.find((s) => s.id === id)!;
 
