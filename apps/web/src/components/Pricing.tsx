@@ -137,7 +137,7 @@ export default function Pricing({ conEnlace = true, conEncabezado = true }: { co
         <p className="text-sm text-text-muted mt-4">
           Precios netos en pesos chilenos; se suma IVA. ¿Dos o más locales? Hay precio de cadena desde {fmt(19900)} + IVA por local{" "}
           (<Link href="/precios#cadena" className="underline underline-offset-2 hover:text-ink">ver tramos</Link>), o{" "}
-          <a href={A_MEDIDA_WA} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-ink">te la armamos a medida</a>.
+          <a href={A_MEDIDA_WA} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-ink">te ayudamos a configurarla</a>.
         </p>
       </div>
     </section>

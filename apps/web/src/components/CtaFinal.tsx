@@ -12,7 +12,7 @@ export default function CtaFinal({ origen = "home-final", oscuro = false }: { or
         <p className="text-text-secondary text-lg mt-5 leading-relaxed">
           Crea tu agenda en minutos con Syna, el asistente con IA, respondiendo tu WhatsApp
           desde el primer día: {PRUEBA.conIA} días gratis del plan {PRUEBA.plan}, que valen {fmt(PRUEBA.valor)} + IVA. ¿Varias sedes o un equipo
-          grande? Escríbenos y te la armamos a medida.
+          grande? Escríbenos y te ayudamos a configurarla.
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-3 mt-8">
           <a href={altaIA(origen)}

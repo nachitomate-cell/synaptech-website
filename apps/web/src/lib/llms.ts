@@ -104,7 +104,7 @@ export const CONTACTO = `- WhatsApp: +56 9 8356 8212
 - Correo: hola@synaptechspa.cl
 - Crear tu agenda con el asistente con IA (30 días gratis del plan Local IA, sin tarjeta): https://crear.synaptechspa.cl
 - Solo la agenda, sin IA (14 días gratis, sin tarjeta): https://bioo.cl/agenda
-- A medida (varias sedes, equipo grande): WhatsApp +56 9 8356 8212
+- Configuración asistida (varias sedes, equipo grande): WhatsApp +56 9 8356 8212
 - Instagram: https://www.instagram.com/synaptechspa
 - YouTube (cápsulas de cada módulo): https://www.youtube.com/@synaptechspa
 - App del equipo: https://apps.apple.com/cl/app/synaptech-studio/id6794530086 · https://play.google.com/store/apps/details?id=cl.synaptechspa.studio`;
