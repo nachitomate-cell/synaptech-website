@@ -64,16 +64,13 @@ export default function SeguridadPage() {
         <section className="pt-28 md:pt-36 pb-14">
           <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10 grid lg:grid-cols-[1.4fr_1fr] gap-10 lg:gap-16 items-center">
             <div>
-              <Aparece><p className="eyebrow mb-5">Seguridad</p></Aparece>
-              <Aparece delay={0.08}>
-                <h1 className="text-ink max-w-4xl">Tu agenda y tus clientes, guardados en Chile y respaldados todos los días.</h1>
-              </Aparece>
-              <Aparece delay={0.18}>
-                <p className="text-text-secondary text-lg md:text-xl leading-relaxed max-w-2xl mt-6">
-                  Tu local depende de esa información. Esto es lo que hacemos para que no se pierda,
-                  no la vea quien no debe y siga siendo tuya.
-                </p>
-              </Aparece>
+              {/* El inicio entra con CSS (hero-entra), sin esperar al JavaScript. */}
+              <p className="eyebrow mb-5 hero-entra">Seguridad</p>
+              <h1 className="text-ink max-w-4xl hero-entra" style={{ animationDelay: ".08s" }}>Tu agenda y tus clientes, guardados en Chile y respaldados todos los días.</h1>
+              <p className="text-text-secondary text-lg md:text-xl leading-relaxed max-w-2xl mt-6 hero-entra" style={{ animationDelay: ".18s" }}>
+                Tu local depende de esa información. Esto es lo que hacemos para que no se pierda,
+                no la vea quien no debe y siga siendo tuya.
+              </p>
             </div>
             <Escudo />
           </div>

@@ -2,6 +2,7 @@ import Header   from "@/components/Header";
 import Footer   from "@/components/Footer";
 import CtaFinal from "@/components/CtaFinal";
 import VelocidadVideo from "@/components/VelocidadVideo";
+import Aparece, { Cuenta } from "@/components/Aparece";
 import { waLink } from "@/content/catalogo";
 import { metaPagina } from "@/lib/seo";
 
@@ -73,7 +74,7 @@ export default function NosotrosPage() {
             <div className="grid grid-cols-2 md:grid-cols-4 border-y border-border-subtle">
               {NUMEROS.map((n, i) => (
                 <div key={n.l} className={`py-7 px-4 text-center ${i % 2 ? "border-l border-border-subtle" : ""} ${i === 2 ? "md:border-l" : ""} ${i > 1 ? "border-t md:border-t-0 border-border-subtle" : ""}`}>
-                  <p className="font-display font-bold text-ink text-3xl sm:text-4xl tracking-tight">{n.v}</p>
+                  <p className="font-display font-bold text-ink text-3xl sm:text-4xl tracking-tight"><Cuenta valor={n.v} /></p>
                   <p className="text-sm text-text-muted mt-1">{n.l}</p>
                 </div>
               ))}
@@ -121,11 +122,13 @@ export default function NosotrosPage() {
               <h2 className="text-ink">Lo que puedes esperar de nosotros.</h2>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-              {PRINCIPIOS.map((p) => (
-                <article key={p.t} className="rounded-[28px] bg-mist p-7">
-                  <h3 className="font-display font-bold text-ink text-xl tracking-tight">{p.t}</h3>
-                  <p className="text-text-secondary mt-3 leading-relaxed">{p.d}</p>
-                </article>
+              {PRINCIPIOS.map((p, i) => (
+                <Aparece key={p.t} delay={(i % 4) * 0.08} className="h-full">
+                  <article className="h-full rounded-[28px] bg-mist p-7">
+                    <h3 className="font-display font-bold text-ink text-xl tracking-tight">{p.t}</h3>
+                    <p className="text-text-secondary mt-3 leading-relaxed">{p.d}</p>
+                  </article>
+                </Aparece>
               ))}
             </div>
           </div>
@@ -135,6 +138,7 @@ export default function NosotrosPage() {
             Stiven Solano (Stiven Barber), 09-10-2026. Fragmentos exactos. */}
         <section className="pb-16 md:pb-24">
           <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10">
+            <Aparece>
             <figure className="rounded-[28px] bg-mist p-7 sm:p-10 grid lg:grid-cols-[auto_1fr] gap-6 lg:gap-10 items-start">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/directorio-logos/stivenbarber-pin.webp" alt="Logo de Stiven Barber" width={72} height={72} className="w-16 h-16 sm:w-[72px] sm:h-[72px] rounded-full ring-1 ring-black/10" />
@@ -148,6 +152,7 @@ export default function NosotrosPage() {
                 </figcaption>
               </div>
             </figure>
+            </Aparece>
           </div>
         </section>
 
@@ -161,8 +166,10 @@ export default function NosotrosPage() {
               {HITOS.map((h) => (
                 <li key={h.f} className="pl-8 pb-10 last:pb-0 relative">
                   <span className="absolute -left-[7px] top-1.5 w-3.5 h-3.5 rounded-full bg-lime ring-4 ring-ink" aria-hidden />
-                  <p className="text-lime font-semibold">{h.f}</p>
-                  <p className="text-white/85 text-lg mt-1 leading-relaxed">{h.t}</p>
+                  <Aparece>
+                    <p className="text-lime font-semibold">{h.f}</p>
+                    <p className="text-white/85 text-lg mt-1 leading-relaxed">{h.t}</p>
+                  </Aparece>
                 </li>
               ))}
             </ol>

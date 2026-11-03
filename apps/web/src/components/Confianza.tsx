@@ -16,6 +16,8 @@
    - SII: logotipo en Wikimedia Commons, de dominio público.
    Indican integración con cada servicio, no un respaldo de ellos. */
 
+import Aparece from "@/components/Aparece";
+
 const APP_STORE = "https://apps.apple.com/cl/app/synaptech-studio/id6794530086";
 const GOOGLE_PLAY = "https://play.google.com/store/apps/details?id=cl.synaptechspa.studio";
 
@@ -25,7 +27,8 @@ export default function Confianza() {
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10">
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
           {/* SII */}
-          <div className="rounded-2xl bg-mist px-5 py-5 flex flex-col justify-between gap-4">
+          <Aparece className="h-full">
+          <div className="h-full rounded-2xl bg-mist px-5 py-5 flex flex-col justify-between gap-4">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/marcas-terceros/sii.svg" alt="Servicio de Impuestos Internos" width={120} height={44}
               className="h-11 w-auto self-start" />
@@ -33,9 +36,11 @@ export default function Confianza() {
               <span className="font-semibold text-ink">Boletas ante el SII</span>, con folio real y emitidas solas al cerrar la cita.
             </p>
           </div>
+          </Aparece>
 
           {/* Mercado Pago */}
-          <div className="rounded-2xl bg-mist px-5 py-5 flex flex-col justify-between gap-4">
+          <Aparece delay={0.08} className="h-full">
+          <div className="h-full rounded-2xl bg-mist px-5 py-5 flex flex-col justify-between gap-4">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/marcas-terceros/mercado-pago.png" alt="Mercado Pago" width={138} height={36}
               className="h-9 w-auto self-start" />
@@ -43,9 +48,11 @@ export default function Confianza() {
               <span className="font-semibold text-ink">Partner certificado de Mercado Pago</span>: pagos online integrados a tu agenda.
             </p>
           </div>
+          </Aparece>
 
           {/* Apps */}
-          <div className="rounded-2xl bg-mist px-5 py-5 flex flex-col justify-between gap-4">
+          <Aparece delay={0.16} className="h-full">
+          <div className="h-full rounded-2xl bg-mist px-5 py-5 flex flex-col justify-between gap-4">
             <div className="flex flex-wrap gap-2">
               <a href={APP_STORE} target="_blank" rel="noopener noreferrer" aria-label="Descárgalo en el App Store">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -60,9 +67,11 @@ export default function Confianza() {
               <span className="font-semibold text-ink">SynapTech Studio</span>, la app para tu equipo, en iPhone y Android.
             </p>
           </div>
+          </Aparece>
 
           {/* Empresa */}
-          <div className="rounded-2xl bg-ink text-white px-5 py-5 flex flex-col justify-between gap-4">
+          <Aparece delay={0.24} className="h-full">
+          <div className="h-full rounded-2xl bg-ink text-white px-5 py-5 flex flex-col justify-between gap-4">
             <div className="flex items-center gap-2.5">
               <span className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center">
                 <svg className="w-[18px] h-[18px] text-lime" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
@@ -76,6 +85,7 @@ export default function Confianza() {
               <a href="/seguridad" className="text-lime font-semibold hover:underline underline-offset-4">Cómo los cuidamos ›</a>
             </p>
           </div>
+          </Aparece>
         </div>
       </div>
     </section>

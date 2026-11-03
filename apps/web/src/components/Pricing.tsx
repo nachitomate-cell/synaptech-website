@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Aparece from "@/components/Aparece";
 import {
   ANUAL, INDEPENDIENTE, INDEPENDIENTE_IA, LOCAL, LOCAL_IA, TODO_INCLUIDO, TODO_INCLUIDO_AHORRO, TODO_INCLUIDO_SEPARADO, PRUEBA, fmt, type Plan,
 } from "@/content/precios";
@@ -19,7 +20,8 @@ export function TarjetaPlan({ p }: { p: Plan }) {
   const oscuro = !!p.popular;
   const href = p.ia ? altaIA(`precios-${p.id}`) : agendaSinIA(`precios-${p.id}`);
   return (
-    <article id={`plan-${p.id}`} className={`relative rounded-[28px] p-7 sm:p-8 flex flex-col scroll-mt-24 ${oscuro ? "bg-ink text-white" : "bg-white"}`}>
+    <Aparece delay={p.ia ? 0.08 : 0} className="h-full">
+    <article id={`plan-${p.id}`} className={`relative h-full rounded-[28px] p-7 sm:p-8 flex flex-col scroll-mt-24 ${oscuro ? "bg-ink text-white" : "bg-white"}`}>
       {p.popular && <span className="absolute -top-3 left-7 bg-lime text-ink text-xs font-bold px-3 py-1 rounded-full">Más elegido</span>}
       <p className={`text-xs font-semibold uppercase tracking-[0.12em] ${oscuro ? "text-lime" : "text-accent"}`}>{p.sub}</p>
       <h3 className="font-display font-bold text-3xl tracking-tight mt-1">Plan {p.nombre}</h3>
@@ -40,6 +42,7 @@ export function TarjetaPlan({ p }: { p: Plan }) {
         {p.ia ? `Probar ${PRUEBA.conIA} días con IA` : `Probar ${PRUEBA.sinIA} días gratis`}
       </a>
     </article>
+    </Aparece>
   );
 }
 
@@ -89,6 +92,7 @@ export default function Pricing({ conEnlace = true, conEncabezado = true }: { co
         </div>
 
         {/* Todo Incluido: el ancla de valor */}
+        <Aparece>
         <article id={`plan-${TODO_INCLUIDO.id}`} className="mt-5 rounded-[28px] bg-ink text-white p-7 sm:p-10 grid lg:grid-cols-[1.1fr_1fr] gap-8 items-center scroll-mt-24">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.12em] text-lime">{TODO_INCLUIDO.sub}</p>
@@ -112,6 +116,7 @@ export default function Pricing({ conEnlace = true, conEncabezado = true }: { co
             </a>
           </div>
         </article>
+        </Aparece>
 
         <p className="mt-5 text-sm text-text-muted">
           No pedimos tarjeta para la prueba.{" "}
