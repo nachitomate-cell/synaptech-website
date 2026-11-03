@@ -66,6 +66,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...zonas.map((z) => ({ url: `${BASE}/locales/${z.slug}`, lastModified: dir, priority: 0.7 })),
     { url: `${BASE}/fidelizacion`,        lastModified: now, priority: 0.8 },
     { url: `${BASE}/nosotros`,            lastModified: now, priority: 0.6 },
+    { url: `${BASE}/empresa`,             lastModified: now, priority: 0.6 },
     { url: `${BASE}/seguridad`,           lastModified: new Date("2026-11-02"), priority: 0.6 },
     { url: `${BASE}/contacto`,            lastModified: now, priority: 0.6 },
     { url: `${BASE}/comparar`,            lastModified: nov, priority: 0.8 },
