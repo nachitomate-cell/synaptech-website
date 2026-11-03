@@ -29,6 +29,7 @@ const LINKS: Record<string, { l: string; h: string }[]> = {
     { l: "Consentimiento informado (PDF y Word)", h: "/recursos/consentimiento-informado-estetica" },
     { l: "Preguntas frecuentes", h: "/#faq" },
     { l: "Nosotros", h: "/nosotros" },
+    { l: "Seguridad de tus datos", h: "/seguridad" },
     { l: "Contacto", h: "/contacto" },
   ],
   /* SynapTech Studio, la app del dueño: publicada y distribuida en ambas

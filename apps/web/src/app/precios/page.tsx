@@ -50,7 +50,7 @@ const PREGUNTAS = [
   { q: "¿Cómo pago la mensualidad?", a: "Con tarjeta de débito o crédito por Webpay, desde tu panel, o por transferencia a la cuenta de Synaptech SpA." },
   { q: "Tengo más de un local, ¿cuánto cuesta?", a: `Cada local paga el plan Local a precio de cadena: ${CADENA.tramos.map((t) => `${t.texto}, ${fmt(t.mes)} + IVA cada uno`).join("; ")}. Con el asistente con IA, ${fmt(CADENA.ia)} + IVA más por local. Te mueves entre las sedes desde el mismo panel.` },
   { q: "¿Qué es Crecer?", a: "Son servicios que hace el equipo de SynapTech por tu local: Presencia (página web propia con dominio .cl, ficha de Google optimizada e informe mensual), Google Ads gestionado y Meta Ads gestionado (Facebook e Instagram). La inversión en anuncios la pagas tú directo a Google o Meta, con tu tarjeta. Sin permanencia." },
-  { q: "¿Hay prueba gratis?", a: `Sí, sin tarjeta: ${PRUEBA.conIA} días con el asistente con IA creando tu agenda en crear.synaptechspa.cl, o ${PRUEBA.sinIA} días sin el asistente en bioo.cl/agenda. Al terminar eliges tu plan; no se cobra nada solo.` },
+  { q: "¿Hay prueba gratis?", a: `Sí, sin tarjeta: ${PRUEBA.conIA} días del plan ${PRUEBA.plan} con el asistente con IA (son ${fmt(PRUEBA.valor)} + IVA que no pagas), creando tu agenda en crear.synaptechspa.cl, o ${PRUEBA.sinIA} días sin el asistente en bioo.cl/agenda. Al terminar eliges tu plan; no se cobra nada solo.` },
 ];
 
 export default function PreciosPage() {

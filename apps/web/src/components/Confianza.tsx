@@ -72,7 +72,8 @@ export default function Confianza() {
               <span className="font-display font-bold text-lg">Synaptech SpA</span>
             </div>
             <p className="text-[13.5px] leading-snug text-white/70">
-              RUT 78.402.009-6 · Viña del Mar. Sin permanencia: tus datos son tuyos y te los entregamos exportados.
+              RUT 78.402.009-6 · Viña del Mar. Sin permanencia: tus datos son tuyos y te los entregamos exportados.{" "}
+              <a href="/seguridad" className="text-lime font-semibold hover:underline underline-offset-4">Cómo los cuidamos ›</a>
             </p>
           </div>
         </div>

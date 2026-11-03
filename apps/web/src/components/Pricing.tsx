@@ -59,7 +59,7 @@ export default function Pricing({ conEnlace = true, conEncabezado = true }: { co
                 con Syna encendido y 30 días con el asistente. La agenda sola, sin IA,
                 en bioo (14 días). 26-10-2026: el plan Gratis ya no se publica. */}
             <p className="text-text-secondary mt-4 leading-relaxed">
-              Creas tu agenda en <b className="text-ink">crear.synaptechspa.cl</b> con {PRUEBA.conIA} días gratis del plan {PRUEBA.plan},
+              Creas tu agenda en <b className="text-ink">crear.synaptechspa.cl</b> con {PRUEBA.conIA} días gratis del plan {PRUEBA.plan} (son {fmt(PRUEBA.valor)} + IVA que no pagas),
               con el asistente respondiendo tu WhatsApp desde el primer día. ¿Solo quieres la agenda, sin IA? Pruébala {PRUEBA.sinIA} días
               en <b className="text-ink">bioo.cl/agenda</b>. Al terminar eliges tu plan; no se cobra nada solo.
             </p>
