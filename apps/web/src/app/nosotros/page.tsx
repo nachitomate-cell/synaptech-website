@@ -8,7 +8,7 @@ import { metaPagina } from "@/lib/seo";
 
 export const metadata = metaPagina({
   title: "Nosotros: SynapTech, software chileno para locales",
-  description: "SynapTech nació en abril de 2026 como la página de reservas de una barbería. Hoy la usan más de 45 locales y sedes en Chile. Synaptech SpA, Viña del Mar.",
+  description: "SynapTech nació en abril de 2026 como la página de reservas de una barbería. Hoy la usan más de 60 locales en Chile, México, Perú, Colombia y Argentina. Synaptech SpA, Viña del Mar.",
   path: "/nosotros",
 });
 
@@ -63,7 +63,7 @@ export default function NosotrosPage() {
         <section className="pt-28 md:pt-36 pb-14">
           <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10">
             <p className="eyebrow mb-5">Nosotros</p>
-            <h1 className="text-ink max-w-5xl">Empezó con la agenda de una barbería. Hoy la usan más de 45 locales.</h1>
+            <h1 className="text-ink max-w-5xl">Empezó con la agenda de una barbería. Hoy la usan más de 60 locales.</h1>
             <p className="text-text-secondary text-lg md:text-xl leading-relaxed max-w-2xl mt-6">
               SynapTech es una empresa chilena, de Viña del Mar. Hacemos una sola
               plataforma —agenda, cobros, asistente con IA y club de fidelización— y la
@@ -160,7 +160,7 @@ export default function NosotrosPage() {
           <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10 grid lg:grid-cols-[0.8fr_1.2fr] gap-10">
             <div>
               <p className="eyebrow !text-lime mb-4">Hitos</p>
-              <h2 className="text-white">De una barbería a más de 45 locales.</h2>
+              <h2 className="text-white">De una barbería a más de 60 locales.</h2>
             </div>
             <ol className="relative border-l border-white/15 ml-2">
               {HITOS.map((h) => (

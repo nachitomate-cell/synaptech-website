@@ -19,7 +19,7 @@ export default function Terminos() {
         </Link>
 
         <h1 className="text-text-primary mb-4">Términos de Servicio</h1>
-        <p className="font-mono text-[11px] text-text-muted mb-12">Última actualización: mayo 2026</p>
+        <p className="font-mono text-[11px] text-text-muted mb-12">Última actualización: noviembre 2026</p>
 
         <div className="font-body text-text-secondary leading-relaxed space-y-8">
           <section>
@@ -33,18 +33,19 @@ export default function Terminos() {
           <section>
             <h2 className="font-display text-lg font-semibold text-text-primary mb-3">2. Descripción del servicio</h2>
             <p>
-              Synaptech SpA es una empresa chilena de tecnología que desarrolla y opera una plataforma SaaS de agenda, fidelización, cobros e inteligencia
-              artificial y automatización de procesos para empresas B2B. Este sitio web tiene como
-              propósito presentar nuestros servicios y facilitar el contacto inicial con potenciales clientes.
+              Synaptech SpA es una empresa chilena de software. Desarrolla y opera SynapTech, una
+              plataforma por suscripción (SaaS) de agenda online, cobros, fidelización y asistente con IA
+              para negocios que trabajan con citas. Este sitio presenta la plataforma, sus funciones y sus planes.
             </p>
           </section>
 
           <section>
             <h2 className="font-display text-lg font-semibold text-text-primary mb-3">3. Uso del sitio</h2>
             <p>
-              El contenido de este sitio es de carácter informativo. La prueba sin costo es una
-              herramienta de evaluación preliminar y no constituye compromiso contractual de ninguna
-              parte. Cualquier acuerdo de servicios debe formalizarse mediante contrato escrito.
+              El contenido de este sitio es de carácter informativo. La plataforma se contrata como
+              suscripción mensual, en los planes y precios publicados en{" "}
+              <Link href="/precios" className="text-accent hover:underline">/precios</Link>. La prueba sin
+              costo sirve para evaluarla y no obliga a contratar.
             </p>
           </section>
 
