@@ -32,13 +32,13 @@ export default function Privacidad() {
 
           <section>
             <h2 className="font-display text-lg font-semibold text-text-primary mb-3">2. Datos que recopilamos</h2>
-            <p>A través del formulario de diagnóstico y contacto recopilamos:</p>
+            <p>Si nos escribes por un formulario de contacto del sitio, recopilamos:</p>
             <ul className="list-disc list-inside space-y-1 mt-2 text-sm">
               <li>Nombre completo</li>
               <li>Correo electrónico</li>
               <li>Nombre de la empresa</li>
               <li>Teléfono (opcional)</li>
-              <li>Descripción del proyecto o desafío</li>
+              <li>Tu mensaje o consulta</li>
             </ul>
             <p id="syna" className="mt-4 scroll-mt-28">
               <strong className="text-text-primary">Chat con Syna.</strong> Cuando conversas con Syna, el asistente
