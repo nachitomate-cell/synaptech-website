@@ -39,7 +39,7 @@ export default function GuiaBoletas() {
         <section className="pt-28 md:pt-36 pb-14">
           <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10 grid lg:grid-cols-[1.2fr_1fr] gap-10 items-center">
             <div>
-              <nav aria-label="Ruta" className="text-sm text-text-muted mb-6">Guías <span aria-hidden>›</span> Boletas y comisiones</nav>
+              <nav aria-label="Ruta" className="text-sm text-text-muted mb-6"><Link href="/guias" className="hover:text-ink hover:underline underline-offset-4">Guías</Link> <span aria-hidden>›</span> Boletas y comisiones</nav>
               <p className="eyebrow mb-5">Guía para dueños de barbería · 2026</p>
               <h1 className="text-ink !text-[clamp(2.2rem,4.4vw,3.8rem)]">Boleta de honorarios, comisiones y arriendo de sillón en barberías.</h1>
               <p className="text-text-secondary text-lg md:text-xl leading-relaxed mt-6 max-w-xl">

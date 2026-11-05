@@ -5,6 +5,7 @@ import { fechaDirectorio, obtenerLocales } from "@/lib/directorio";
 import { PAGINAS_RUBRO } from "@/lib/paginas-directorio";
 import { zonasDirectorio } from "@/lib/precios";
 import { RUBROS_IA, CIUDADES } from "@/content/alta-ia";
+import { GUIAS } from "@/content/guias-duenos";
 
 const BASE = "https://www.synaptechspa.cl";
 
@@ -55,6 +56,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE}/recursos/consentimiento-informado-estetica`, lastModified: now, priority: 0.7 },
     { url: `${BASE}/mis-reservas`, lastModified: now, priority: 0.6 },
     { url: `${BASE}/guias/boleta-honorarios-y-comisiones-barberos`, lastModified: now, priority: 0.7 },
+    /* Guías para dueños (04-11-2026, content/guias-duenos.ts). */
+    { url: `${BASE}/guias`, lastModified: new Date("2026-11-04"), priority: 0.7 },
+    ...GUIAS.map((g) => ({ url: `${BASE}/guias/${g.slug}`, lastModified: new Date(g.publicada), priority: 0.7 })),
     { url: `${BASE}/precios`,             lastModified: nov, priority: 0.9 },
     { url: `${BASE}/agenda-barbero-independiente`, lastModified: nov, priority: 0.9 },
     { url: `${BASE}/boletas-electronicas-sii`, lastModified: nov, priority: 0.8 },

@@ -1,3 +1,4 @@
+import { GUIAS } from "@/content/guias-duenos";
 import { PLANES, ANUAL, ADICIONALES, LOCAL_IA, INDEPENDIENTE_IA, TODO_INCLUIDO, TODO_INCLUIDO_AHORRO, fmt } from "@/content/precios";
 import { COMPETIDORES, SYNAPTECH, SYNAPTECH_USD, competidor, fechaDe, faqDe, queEsDe, type Competidor } from "@/content/competidores";
 import { PLANES_LATAM, SEDE_ADICIONAL_LATAM, cuposWhatsApp } from "@/content/paises";
@@ -89,6 +90,8 @@ ${FUNCIONES.map((f) => `- [${f.nombre}](${S}/funciones/${f.slug})`).join("\n")}
 - [Convenios e integraciones: Mercado Pago, Webpay, WhatsApp, Wellhub, Google Wallet, Apple Wallet, SII, Claude](${S}/integraciones)
 - [Cómo funciona, módulo por módulo](${S}/como-funciona)
 - [Guía: boleta de honorarios, comisiones y arriendo de sillón](${S}/guias/boleta-honorarios-y-comisiones-barberos)
+- [Guías gratis para dueños: Google Maps, reseñas, inasistencias, WhatsApp Business, precios e Instagram](${S}/guias)
+${GUIAS.map((g) => `- [Guía: ${g.title}](${S}/guias/${g.slug})`).join("\n")}
 - [Ficha clínica estética, plantilla gratis en PDF](${S}/recursos/ficha-clinica-estetica)
 - [Consentimiento informado para estética, modelo gratis en PDF y Word](${S}/recursos/consentimiento-informado-estetica)
 - [Locales que usan SynapTech](${S}/locales)
