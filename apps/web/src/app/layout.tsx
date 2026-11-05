@@ -6,6 +6,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import SynaChat from "@/components/SynaChat";
 import TrackingScripts from "@/components/TrackingScripts";
+import AvisoCookies from "@/components/AvisoCookies";
 import JsonLdSitio from "@/components/JsonLdSitio";
 import PestanaVuelve from "@/components/PestanaVuelve";
 import AtribucionPrimerToque from "@/components/AtribucionPrimerToque";
@@ -100,6 +101,7 @@ export default function RootLayout({
         <TrackingScripts />
         <PestanaVuelve />
         <AtribucionPrimerToque />
+        <AvisoCookies />
         <Analytics />
         <SpeedInsights />
       </body>

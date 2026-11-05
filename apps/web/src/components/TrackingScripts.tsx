@@ -1,4 +1,7 @@
+"use client";
+
 import Script from "next/script";
+import { useConsentimiento } from "@/lib/useConsentimiento";
 
 // "SynapTech Studio — Pixel" (cuenta de anuncios act_2625197834231867). La variable
 // nunca se cargó en Vercel y el sitio salía sin Pixel: sin audiencias de quienes
@@ -10,7 +13,13 @@ const LINKEDIN_PARTNER_ID = process.env.NEXT_PUBLIC_LINKEDIN_PARTNER_ID;
 // El id es público. `?oaiq_debug=1` en la URL prende el modo debug del SDK.
 const OPENAI_PIXEL_ID = process.env.NEXT_PUBLIC_OPENAI_PIXEL_ID || "T1bJQ8QvzGekrsYn73SKVk";
 
+/* Desde el 05-11-2026 los tres pixels se cargan SOLO si la persona aceptó
+   "Anuncios" en el aviso de cookies (lib/consentimiento.ts). Antes se cargaban
+   en cada visita mientras /privacidad decía que no usábamos cookies de
+   publicidad. Si revoca, guardarConsentimiento recarga la página. */
 export default function TrackingScripts() {
+  const consentimiento = useConsentimiento();
+  if (!consentimiento?.anuncios) return null;
   return (
     <>
       {META_PIXEL_ID && (
