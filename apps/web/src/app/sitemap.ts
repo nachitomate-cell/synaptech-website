@@ -57,6 +57,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE}/mis-reservas`, lastModified: now, priority: 0.6 },
     { url: `${BASE}/guias/boleta-honorarios-y-comisiones-barberos`, lastModified: now, priority: 0.7 },
     /* Guías para dueños (04-11-2026, content/guias-duenos.ts). */
+    { url: `${BASE}/producto`, lastModified: new Date("2026-11-04"), priority: 0.8 },
     { url: `${BASE}/guias`, lastModified: new Date("2026-11-04"), priority: 0.7 },
     ...GUIAS.map((g) => ({ url: `${BASE}/guias/${g.slug}`, lastModified: new Date(g.publicada), priority: 0.7 })),
     { url: `${BASE}/precios`,             lastModified: nov, priority: 0.9 },

@@ -48,6 +48,8 @@ const DATOS: [string, ReactNode][] = [
   ["Modelo · Business model", "Suscripción mensual a precio público · SaaS subscription"],
   ["Financiamiento · Funding", "Sin inversionistas · Bootstrapped"],
   ["Fundador · Founder", <a key="li" href="https://www.linkedin.com/in/ignacio-mateluna-b46a87441/" target="_blank" rel="noopener noreferrer" className="text-ink font-semibold hover:text-accent">Ignacio Mateluna (LinkedIn)</a>],
+  ["Perfiles públicos · Public profiles", <span key="pp" className="flex flex-wrap gap-x-4 gap-y-1"><a href="https://www.crunchbase.com/organization/synaptech-efb4" target="_blank" rel="noopener noreferrer" className="text-ink font-semibold hover:text-accent">Crunchbase</a><a href="https://apps.apple.com/cl/app/synaptech-studio/id6794530086" target="_blank" rel="noopener noreferrer" className="text-ink font-semibold hover:text-accent">App Store</a><a href="https://play.google.com/store/apps/details?id=cl.synaptechspa.studio" target="_blank" rel="noopener noreferrer" className="text-ink font-semibold hover:text-accent">Google Play</a></span>],
+  ["Producto · Product", <a key="pr" href="/producto" className="text-ink font-semibold hover:text-accent">La plataforma por dentro · Product screenshots</a>],
   ["Correo · Email", <a key="m" href="mailto:hola@synaptechspa.cl" className="text-ink font-semibold hover:text-accent">hola@synaptechspa.cl</a>],
 ];
 
