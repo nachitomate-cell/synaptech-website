@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FAMILIAS, RUBROS } from "@/content/catalogo";
+import BotonCookies from "@/components/BotonCookies";
 
 /* Footer grande al estilo Square: todo el catálogo enlazado. Productos y
    rubros salen de content/catalogo.ts, igual que el menú. */
@@ -168,6 +169,7 @@ export default async function Footer() {
           <p>© {YEAR} Synaptech SpA · RUT 78.402.009-6 · Viña del Mar, Chile · <a href="/empresa" className="hover:text-ink">Empresa</a></p>
           <div className="flex items-center gap-5">
             <a href="/privacidad" className="hover:text-ink">Privacidad</a>
+            <BotonCookies className="hover:text-ink" />
             <a href="/terminos" className="hover:text-ink">Términos</a>
             <a href="https://app.synaptechspa.cl/terminos-saas.html" className="hover:text-ink">Contrato SaaS</a>
             <a href="/reembolsos" className="hover:text-ink">Reembolsos</a>
