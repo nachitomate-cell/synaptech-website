@@ -14,6 +14,7 @@ type Panel = "productos" | "rubros" | "recursos" | null;
 
 const RECURSOS = [
   { label: "Conoce a Syna", desc: "El video: todos tus canales en una sola agenda", href: "/syna" },
+  { label: "El producto por dentro", desc: "Pantallas reales: reserva, Syna, agenda, caja y más", href: "/producto" },
   { label: "Encuentra un local", desc: "Barberías y salones con reserva online", href: "/locales" },
   { label: "Cómo funciona",  desc: "Cada módulo, paso a paso, con capturas reales", href: "/como-funciona" },
   { label: "Todas las funciones", desc: "Recordatorios, comisiones, caja, ficha clínica y más", href: "/funciones" },
