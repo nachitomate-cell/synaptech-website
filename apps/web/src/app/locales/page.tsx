@@ -11,6 +11,7 @@ import { preciosPorComuna, tablaPrecios, zonasDirectorio, slugZona, clp, enZona 
 import { jsonLdDirectorio } from "@/lib/ld-directorio";
 import { altaIA, CTA_IA, waLink } from "@/content/catalogo";
 import { metaPagina, SITIO } from "@/lib/seo";
+import { paginasComuna } from "@/lib/comunas-rubro";
 
 /* Portada del directorio de locales (Red Synaptech). Se regenera cada hora con
    la lista viva del directorio y los datos de cada local que publica la
@@ -50,11 +51,11 @@ const tituloZona = (slug: string) => PAGINAS.find((p) => p.slug === slug)?.titul
 
 /* Matriz rubro × comuna: a dónde lleva cada combinación. La página por zona si
    existe, si no la landing de la comuna (/locales/{comuna}), si no su ancla. */
-const RUBROS_MATRIZ: { id: LocalDirectorio["rubro"]; plural: string; zonaVina?: string; zonaRegion?: string }[] = [
-  { id: "barberia", plural: "Barberías", zonaVina: "barberias-vina-del-mar", zonaRegion: "barberias-quinta-region" },
-  { id: "salon", plural: "Peluquerías y salones", zonaVina: "peluquerias-vina-del-mar", zonaRegion: "peluquerias-quinta-region" },
-  { id: "estetica", plural: "Estética, clínicas y spas" },
-  { id: "pilates", plural: "Pilates" },
+const RUBROS_MATRIZ: { id: LocalDirectorio["rubro"]; slug: string; plural: string; zonaVina?: string; zonaRegion?: string }[] = [
+  { id: "barberia", slug: "barberias", plural: "Barberías", zonaVina: "barberias-vina-del-mar", zonaRegion: "barberias-quinta-region" },
+  { id: "salon", slug: "peluquerias", plural: "Peluquerías y salones", zonaVina: "peluquerias-vina-del-mar", zonaRegion: "peluquerias-quinta-region" },
+  { id: "estetica", slug: "estetica", plural: "Estética, clínicas y spas" },
+  { id: "pilates", slug: "pilates", plural: "Pilates" },
 ];
 
 export default async function LocalesPage() {
@@ -68,8 +69,16 @@ export default async function LocalesPage() {
   const preciosComuna = preciosPorComuna(locales);
   const preciosRed = tablaPrecios(locales);
   const bajada = `${negocios.length} barberías, peluquerías, spas, clínicas estéticas y estudios en ${comunas} comunas y ciudades de ${paisesDe(locales)} trabajan con SynapTech. Búscalos en el mapa, compara precios reales y reserva tu hora online, a cualquier hora y sin llamar.`;
+  /* Páginas "{rubro} en {comuna}" (lib/comunas-rubro.ts, 06-11-2026): la matriz
+     enlaza a la del rubro cuando existe, y suma las comunas que tienen página
+     sin tener local propio ("Barberías cerca de San Miguel"). */
+  const porComuna = paginasComuna(locales);
+  const paginaDe = (rubro: (typeof RUBROS_MATRIZ)[number], comuna: string) =>
+    porComuna.find((p) => p.rubro.slug === rubro.slug && p.comuna.nombre === comuna);
   const destinoMatriz = (rubro: (typeof RUBROS_MATRIZ)[number], comuna: string, region: string) => {
     if (comuna === "Viña del Mar" && rubro.zonaVina) return `/${rubro.zonaVina}`;
+    const p = paginaDe(rubro, comuna);
+    if (p) return `/locales/${p.comuna.slug}/${p.rubro.slug}`;
     if (region === "Región de Valparaíso" && rubro.zonaRegion) return `/${rubro.zonaRegion}`;
     return landing.get(comuna) ?? `#comuna-${slugZona(comuna)}`;
   };
@@ -191,13 +200,15 @@ export default async function LocalesPage() {
               {RUBROS_MATRIZ.map((rb) => {
                 const cs = new Map<string, string>();
                 for (const l of locales) if (l.rubro === rb.id && l.comuna && !cs.has(l.comuna)) cs.set(l.comuna, l.region);
+                const conLocal = new Set(cs.keys());
+                for (const p of porComuna) if (p.rubro.slug === rb.slug && !cs.has(p.comuna.nombre)) cs.set(p.comuna.nombre, p.comuna.region);
                 if (!cs.size) return null;
                 return (
                   <div key={rb.id}>
                     <h3 className="font-display font-bold text-ink text-lg tracking-tight mb-2">{rb.plural}</h3>
                     <ul className="space-y-1.5 text-[14.5px]">
                       {[...cs.entries()].sort((a, b) => a[0].localeCompare(b[0], "es")).map(([c, r]) => (
-                        <li key={c}><a href={destinoMatriz(rb, c, r)} className="text-text-secondary hover:text-ink hover:underline underline-offset-4">{rb.plural} en {c}</a></li>
+                        <li key={c}><a href={destinoMatriz(rb, c, r)} className="text-text-secondary hover:text-ink hover:underline underline-offset-4">{rb.plural} {conLocal.has(c) ? "en" : "cerca de"} {c}</a></li>
                       ))}
                     </ul>
                   </div>

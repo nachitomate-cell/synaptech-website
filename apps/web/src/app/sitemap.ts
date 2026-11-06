@@ -4,6 +4,7 @@ import { FUNCIONES } from "@/content/funciones";
 import { fechaDirectorio, obtenerLocales } from "@/lib/directorio";
 import { PAGINAS_RUBRO } from "@/lib/paginas-directorio";
 import { zonasDirectorio } from "@/lib/precios";
+import { paginasComuna } from "@/lib/comunas-rubro";
 import { RUBROS_IA, CIUDADES } from "@/content/alta-ia";
 import { GUIAS } from "@/content/guias-duenos";
 
@@ -24,7 +25,10 @@ const BASE = "https://www.synaptechspa.cl";
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   /* Landings del directorio por región y comuna (/locales/{zona}): salen de los
      datos vivos, así que una zona nueva entra sola al sitemap (16-10-2026). */
-  const zonas = zonasDirectorio(await obtenerLocales().catch(() => []));
+  const locales = await obtenerLocales().catch(() => []);
+  const zonas = zonasDirectorio(locales);
+  /* "{rubro} en {comuna}" (/locales/{comuna}/{rubro}, 06-11-2026): también de los datos vivos. */
+  const porComuna = paginasComuna(locales);
   /* <lastmod> de todo el directorio (/locales, zonas y páginas por rubro): la
      última vez que cambió de verdad un local o la lista (contenidoActualizado,
      18-10-2026). Antes eran fechas escritas a mano que no decían nada. */
@@ -66,6 +70,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE}/integraciones`,       lastModified: nov, priority: 0.8 },
     { url: `${BASE}/locales`,             lastModified: dir, priority: 0.8 },
     ...zonas.map((z) => ({ url: `${BASE}/locales/${z.slug}`, lastModified: dir, priority: 0.7 })),
+    ...porComuna.map((p) => ({ url: `${BASE}/locales/${p.comuna.slug}/${p.rubro.slug}`, lastModified: dir, priority: 0.6 })),
     { url: `${BASE}/fidelizacion`,        lastModified: now, priority: 0.8 },
     { url: `${BASE}/nosotros`,            lastModified: now, priority: 0.6 },
     { url: `${BASE}/empresa`,             lastModified: now, priority: 0.6 },

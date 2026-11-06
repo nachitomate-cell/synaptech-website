@@ -6,16 +6,23 @@ const UTM = "utm_source=directorio&utm_medium=seo&utm_campaign=cta-duenos";
    Quien busca dónde cortarse el pelo no lo necesita ver arriba; el dueño que
    llegó buscando su comuna, sí. Dos salidas: el alta en bioo y hablar
    con SynapTech. */
-export default function CtaDuenos({ zona, compacto = false }: { zona: string; compacto?: boolean }) {
-  const texto = `¿Tienes una barbería, peluquería, spa o centro estético en ${zona}? Súmate al directorio y posiciona tu negocio en Google con agenda online 24/7.`;
+export default function CtaDuenos({ zona, compacto = false, texto: propio, desde = "/locales", titulo = "Para dueños" }: {
+  zona: string; compacto?: boolean;
+  /** Texto propio (las páginas por comuna y rubro: "serías la primera de San Miguel"). */
+  texto?: string;
+  /** Página de origen, para saber desde dónde escribió el dueño. */
+  desde?: string;
+  titulo?: string;
+}) {
+  const texto = propio ?? `¿Tienes una barbería, peluquería, spa o centro estético en ${zona}? Súmate al directorio y posiciona tu negocio en Google con agenda online 24/7.`;
   const botones = (
     <div className="flex flex-wrap gap-2">
-      <a href={`https://bioo.cl/agenda?${UTM}`}
+      <a href={`https://bioo.cl/agenda?${UTM}&utm_content=${encodeURIComponent(desde)}`}
         className="inline-flex items-center bg-lime text-ink font-semibold px-4 py-2 rounded-full hover:brightness-95 text-[14px]">
         Crear mi agenda
       </a>
       {/* WhatsApp no lleva UTM: la marca viaja en el texto para saber de dónde vino. */}
-      <a href={waLink(`Hola, tengo un local en ${zona} y quiero aparecer en el directorio de SynapTech (vengo de /locales)`)} target="_blank" rel="noopener noreferrer"
+      <a href={waLink(`Hola, tengo un local en ${zona} y quiero aparecer en el directorio de SynapTech (vengo de ${desde})`)} target="_blank" rel="noopener noreferrer"
         className="inline-flex items-center border border-current font-semibold px-4 py-2 rounded-full text-[14px] opacity-90 hover:opacity-100">
         Hablar con SynapTech
       </a>
@@ -31,7 +38,7 @@ export default function CtaDuenos({ zona, compacto = false }: { zona: string; co
   }
   return (
     <div className="rounded-[24px] bg-ink text-white p-6 sm:p-8">
-      <p className="text-lime text-xs font-bold uppercase tracking-[0.12em]">Para dueños</p>
+      <p className="text-lime text-xs font-bold uppercase tracking-[0.12em]">{titulo}</p>
       <p className="text-white/85 text-lg mt-2 mb-4 max-w-2xl">{texto}</p>
       {botones}
     </div>
