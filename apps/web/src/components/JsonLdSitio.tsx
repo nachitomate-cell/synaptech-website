@@ -42,6 +42,8 @@ const JSON_LD = {
       sameAs: [
         "https://www.instagram.com/synaptechspa",
         "https://www.youtube.com/@synaptechspa",
+        // Página de Facebook (la de los anuncios de Meta, page id 1196873966836681).
+        "https://www.facebook.com/61590616084932",
         "https://apps.apple.com/cl/app/synaptech-studio/id6794530086",
         "https://play.google.com/store/apps/details?id=cl.synaptechspa.studio",
       ],
