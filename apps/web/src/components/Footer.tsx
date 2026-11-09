@@ -167,7 +167,7 @@ export default async function Footer() {
 
         <div className="border-t border-border-subtle pt-6 flex flex-col md:flex-row items-center justify-between gap-3 text-[13px] text-text-muted">
           <p>© {YEAR} Synaptech SpA · RUT 78.402.009-6 · Viña del Mar, Chile · <a href="/empresa" className="hover:text-ink">Empresa</a></p>
-          <div className="flex items-center gap-5">
+          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
             <a href="/privacidad" className="hover:text-ink">Privacidad</a>
             <BotonCookies className="hover:text-ink" />
             <a href="/terminos" className="hover:text-ink">Términos</a>

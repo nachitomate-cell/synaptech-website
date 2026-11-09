@@ -17,7 +17,7 @@ export function breadcrumbLd(migas: Miga[]) {
   };
 }
 
-const oferta = (precio: number, url: string, unidad: string) => ({
+export const oferta = (precio: number, url: string, unidad: string) => ({
   "@type": "Offer",
   price: String(precio),
   priceCurrency: "CLP",
