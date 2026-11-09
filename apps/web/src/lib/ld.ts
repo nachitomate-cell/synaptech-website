@@ -1,5 +1,6 @@
 import { SITIO } from "@/lib/seo";
 import { ANUAL, type Plan, type ServicioCrecer } from "@/content/precios";
+import { AGENCIA_EQUIPO, AGENCIA_EQUIPO_ANUAL, PLANES_AGENCIA } from "@/content/agencias";
 
 /* JSON-LD compartido de las páginas de planes y servicios (01-11-2026).
    Precios netos en CLP: valueAddedTaxIncluded false en cada oferta. */
@@ -64,6 +65,30 @@ export function servicioLd(s: ServicioCrecer, tipo: string) {
     provider: ORG,
     areaServed: { "@type": "Country", name: "CL" },
     offers: oferta(s.mes, `${SITIO}${s.href ?? "/precios#crecer"}`, "mes"),
+  };
+}
+
+/** El asistente para agencias como Service, con los planes de content/agencias.ts
+    como ofertas (09-11-2026). `path` es la página; cada oferta apunta a su tarjeta. */
+export function servicioAgenciaLd({ nombre, tipo, descripcion, path, audiencia }: {
+  nombre: string; tipo: string; descripcion: string; path: string; audiencia: string;
+}) {
+  const url = `${SITIO}${path}`;
+  return {
+    "@type": "Service",
+    name: nombre,
+    serviceType: tipo,
+    description: descripcion,
+    provider: ORG,
+    brand: { "@type": "Brand", name: "SynapTech" },
+    areaServed: { "@type": "Country", name: "CL" },
+    availableLanguage: ["es", "pt", "en"],
+    audience: { "@type": "BusinessAudience", audienceType: audiencia },
+    url,
+    offers: [
+      ...PLANES_AGENCIA.map((p) => ({ ...oferta(p.mes, `${url}#${p.id}`, "mes"), name: p.nombre })),
+      { ...oferta(AGENCIA_EQUIPO_ANUAL.anio, `${url}#${AGENCIA_EQUIPO.id}`, "año"), name: `${AGENCIA_EQUIPO.nombre} anual` },
+    ],
   };
 }
 

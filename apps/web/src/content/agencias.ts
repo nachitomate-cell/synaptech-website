@@ -2,7 +2,9 @@
    Precios netos en CLP: se suma IVA. Los usa /agencias (tarjetas, tabla,
    JSON-LD) y la imagen /og/agencias. Si cambia un precio, cambia acá y nada más.
    El alta de agencias no es autoservicio todavía: todos los botones van al
-   WhatsApp comercial. */
+   WhatsApp comercial.
+   09-11-2026 (tarde): también lo usan /agencias/[tipo] (content/agencias-tipos.ts),
+   /agente-ia-omnicanal, /crm-whatsapp y la sección de agencias de /llms.txt. */
 
 export type PlanAgencia = {
   id: string;
@@ -18,9 +20,15 @@ export type PlanAgencia = {
   etiqueta?: string;
   /** Texto del WhatsApp prellenado de la tarjeta. */
   wa: string;
+  /** Conversaciones al mes que trae (o suma) el plan. */
+  conversaciones: number;
 };
 
 export const WA_AGENCIAS = "Hola, tengo una agencia y quiero saber de los planes para agencias";
+
+const CONV_SOLO = 150;
+const CONV_EQUIPO = 500;
+const CONV_MARCA = 300;
 
 export const AGENCIA_SOLO: PlanAgencia = {
   id: "agencia-solo",
@@ -28,8 +36,9 @@ export const AGENCIA_SOLO: PlanAgencia = {
   mes: 24900,
   unidad: "+ IVA / mes",
   para: "Para quien vende solo o con un socio.",
+  conversaciones: CONV_SOLO,
   incluye: [
-    "Asistente con IA en tu WhatsApp, con 150 conversaciones al mes",
+    `Asistente con IA en tu WhatsApp, con ${CONV_SOLO} conversaciones al mes`,
     "Responde en español, portugués e inglés, y cotiza en pesos o en reales",
     "Cargas tu catálogo pegando la lista de precios o una foto del afiche",
     "Tablero de ventas con quién preguntó, a quién se le cotizó y quién compró",
@@ -46,10 +55,11 @@ export const AGENCIA_EQUIPO: PlanAgencia = {
   mes: 79900,
   unidad: "+ IVA / mes",
   para: "Para agencias con un equipo de vendedoras.",
+  conversaciones: CONV_EQUIPO,
   incluye: [
     "Todo lo de Agencia Solo",
     "El asistente también en los mensajes de Instagram",
-    "500 conversaciones al mes entre WhatsApp e Instagram",
+    `${CONV_EQUIPO} conversaciones al mes entre WhatsApp e Instagram`,
     "Vendedoras ilimitadas, cada una con su app y su cartera",
     "Reparto automático de chats y aviso al celular de quien le toca",
     "Cierre de venta desde el mismo chat, con monto y pasajeros",
@@ -71,9 +81,10 @@ export const MARCA_ADICIONAL: PlanAgencia = {
   unidad: "+ IVA / mes",
   suma: true,
   para: "Si vendes con dos marcas o necesitas un segundo número.",
+  conversaciones: CONV_MARCA,
   incluye: [
     "Un segundo WhatsApp con su propio asistente y su catálogo",
-    "300 conversaciones más al mes",
+    `${CONV_MARCA} conversaciones más al mes`,
     "Las mismas vendedoras atienden las dos marcas desde una sola app",
     "Ventas y comisiones separadas por marca",
   ],
@@ -102,3 +113,30 @@ export const ADICIONALES_AGENCIA: AdicionalAgencia[] = [
 
 /** Temporada baja: hasta 3 meses al año, Agencia Equipo a este precio. */
 export const TEMPORADA_BAJA = { mes: 39900, meses: 3, conversaciones: 150 };
+
+/** Lo que trae siempre la instalación (tarjeta "Sin costo de instalación"). En
+    palabras de turismo: los otros tipos de agencia lo pasan por adaptar(). */
+export const INSTALACION_AGENCIA = [
+  "Conectamos tu WhatsApp e Instagram",
+  "Cargamos tu catálogo de paseos y traslados",
+  "Capacitamos a tus vendedoras por videollamada",
+  "30 días de prueba",
+  "Sin permanencia",
+];
+
+export const adicionalAgencia = (id: string) => ADICIONALES_AGENCIA.find((a) => a.id === id)!;
+
+/** Pares [texto de la versión de turismo, texto para otro tipo de agencia]. */
+export type Reemplazos = [string, string][];
+
+/* Cambia las palabras de turismo ("vendedoras", "pasajeros", "paseos") por las
+   de otro tipo de agencia. Los nombres de los planes y los precios no cambian. */
+export function adaptar(texto: string, reemplazos: Reemplazos = []) {
+  return reemplazos.reduce((t, [de, a]) => t.split(de).join(a), texto);
+}
+
+export function adaptarPlan(p: PlanAgencia, reemplazos: Reemplazos = []): PlanAgencia {
+  if (!reemplazos.length) return p;
+  const r = (t: string) => adaptar(t, reemplazos);
+  return { ...p, para: r(p.para), incluye: p.incluye.map(r), nota: p.nota && r(p.nota), wa: r(p.wa) };
+}

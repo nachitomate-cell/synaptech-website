@@ -25,6 +25,7 @@ const COLOR: Record<string, string> = {
   "Google y redes":    "bg-[#DBEAFE] text-[#1D4ED8]",
   "Agenda y clientes": "bg-syn-lime-tint text-accent",
   "Plata y precios":   "bg-[#FCE7F3] text-[#BE185D]",
+  "Agencias y ventas": "bg-[#FEF3C7] text-[#92400E]",
 };
 
 export default function IndiceGuias() {

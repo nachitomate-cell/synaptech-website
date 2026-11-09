@@ -1,13 +1,21 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FAMILIAS, RUBROS } from "@/content/catalogo";
+import { TIPOS_AGENCIA } from "@/content/agencias-tipos";
 import BotonCookies from "@/components/BotonCookies";
 
 /* Footer grande al estilo Square: todo el catálogo enlazado. Productos y
    rubros salen de content/catalogo.ts, igual que el menú. */
 const LINKS: Record<string, { l: string; h: string }[]> = {
   "Productos": FAMILIAS.map((f) => ({ l: f.nombre, h: `/#${f.id}` })),
-  "Rubros":    [...RUBROS.map((r) => ({ l: r.nombre, h: r.href ?? `/#rubro-${r.id}` })), { l: "Empresas", h: "/empresas" }],
+  /* 09-11-2026: tras Empresas, las páginas de agencias y equipos de venta. */
+  "Rubros":    [
+    ...RUBROS.map((r) => ({ l: r.nombre, h: r.href ?? `/#rubro-${r.id}` })),
+    { l: "Empresas", h: "/empresas" },
+    { l: "Agente de IA omnicanal", h: "/agente-ia-omnicanal" },
+    { l: "CRM de WhatsApp", h: "/crm-whatsapp" },
+    ...TIPOS_AGENCIA.map((t) => ({ l: t.etiqueta, h: `/agencias/${t.slug}` })),
+  ],
   "Recursos":  [
     { l: "El producto por dentro", h: "/producto" },
     { l: "Cómo funciona", h: "/como-funciona" },

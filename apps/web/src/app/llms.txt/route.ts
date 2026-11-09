@@ -1,7 +1,7 @@
 import { obtenerLocales } from "@/lib/directorio";
 import { seccionLlms } from "@/lib/directorio-faq";
 import { PLANES, ANUAL, ADICIONALES, CADENA, CRECER, fmt } from "@/content/precios";
-import { S, QUE_ES, respuestasRapidas, lineasPrecios, LATAM, PAGINAS, CONTACTO, fechaDatos } from "@/lib/llms";
+import { S, QUE_ES, respuestasRapidas, lineasPrecios, LATAM, PAGINAS, CONTACTO, fechaDatos, seccionAgencias } from "@/lib/llms";
 
 /* Ficha para buscadores con IA (llmstxt.org), 10-10-2026. Cuando alguien le
    pregunta a ChatGPT, Perplexity o Claude por "una alternativa a AgendaPro en
@@ -51,6 +51,8 @@ ${lineasPrecios()}
 Barberías, peluquerías, spas y centros de estética de Chile que agendan con SynapTech. Directorio con mapa: ${S}/locales
 
 ${seccionLlms(locales)}
+
+${seccionAgencias()}
 
 ## Páginas
 ${PAGINAS}

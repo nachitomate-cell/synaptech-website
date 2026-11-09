@@ -7,6 +7,7 @@ import { zonasDirectorio } from "@/lib/precios";
 import { paginasComuna } from "@/lib/comunas-rubro";
 import { RUBROS_IA, CIUDADES } from "@/content/alta-ia";
 import { GUIAS } from "@/content/guias-duenos";
+import { TIPOS_AGENCIA } from "@/content/agencias-tipos";
 
 const BASE = "https://www.synaptechspa.cl";
 
@@ -55,6 +56,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE}/estetica`,            lastModified: now, priority: 0.9 },
     { url: `${BASE}/clinicas`,            lastModified: now, priority: 0.9 },
     { url: `${BASE}/agencias`,            lastModified: new Date("2026-11-09"), priority: 0.9 },
+    /* Agencias por tipo y páginas por palabra clave (09-11-2026, content/agencias-tipos.ts). */
+    ...TIPOS_AGENCIA.map((t) => ({ url: `${BASE}/agencias/${t.slug}`, lastModified: new Date("2026-11-09"), priority: 0.8 })),
+    { url: `${BASE}/agente-ia-omnicanal`, lastModified: new Date("2026-11-09"), priority: 0.9 },
+    { url: `${BASE}/crm-whatsapp`,        lastModified: new Date("2026-11-09"), priority: 0.9 },
     { url: `${BASE}/empresas`,            lastModified: now, priority: 0.8 },
     { url: `${BASE}/recursos/ficha-clinica-estetica`, lastModified: now, priority: 0.7 },
     { url: `${BASE}/recursos/consentimiento-informado-estetica`, lastModified: now, priority: 0.7 },

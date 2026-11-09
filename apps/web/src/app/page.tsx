@@ -8,6 +8,7 @@ import TiraPortada   from "@/components/TiraPortada";
 import PromoMeses    from "@/components/PromoMeses";
 import PlataEnOrden  from "@/components/PlataEnOrden";
 import Rubros        from "@/components/Rubros";
+import EnlacesAgencias from "@/components/EnlacesAgencias";
 import Cambiate      from "@/components/Cambiate";
 import Testimonials  from "@/components/Testimonials";
 import LogosLocales  from "@/components/LogosLocales";
@@ -65,6 +66,10 @@ export default function Home() {
         <PromoMeses />
         <PlataEnOrden />
         <Rubros />
+        {/* Agencias y equipos de venta (09-11-2026): enlaces en el HTML a las páginas por tipo, omnicanal y CRM. */}
+        <EnlacesAgencias variante="franja" fondo="!pt-0" eyebrow="Agencias y equipos de venta"
+          titulo="¿Vendes por WhatsApp con un equipo?"
+          bajada="Un agente de IA responde tu WhatsApp e Instagram en una sola bandeja, reparte los chats entre tus vendedores y deja cada venta en un tablero." />
         <Cambiate />
         <VienesDe />
         <Testimonials />

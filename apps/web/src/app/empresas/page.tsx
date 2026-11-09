@@ -9,6 +9,7 @@ import AreasEmpresas from "@/components/AreasEmpresas";
 import DemoEmpresa   from "@/components/DemoEmpresa";
 import BotonSyna     from "@/components/BotonSyna";
 import SynaSecretaria from "@/components/SynaSecretaria";
+import EnlacesAgencias from "@/components/EnlacesAgencias";
 import { VideoSynaJsonLd, VIDEO_SECRETARIA } from "@/components/VideoSyna";
 import { metaPagina } from "@/lib/seo";
 
@@ -46,7 +47,7 @@ const RUBROS: { nombre: string; href?: string }[] = [
   { nombre: "Alimentos" },
   { nombre: "Logística" },
   { nombre: "Agencias digitales" },
-  { nombre: "Inmobiliarias" },
+  { nombre: "Inmobiliarias", href: "/agencias/inmobiliarias" },
   { nombre: "Educación y academias" },
   { nombre: "Servicios técnicos" },
 ];
@@ -127,6 +128,11 @@ export default function EmpresasPage() {
             </div>
           </div>
         </section>
+
+        {/* Equipos de venta (09-11-2026): el agente omnicanal, el CRM y las páginas por tipo de agencia. */}
+        <EnlacesAgencias variante="franja" fondo="!pt-0" eyebrow="Para equipos de venta"
+          titulo="¿Tu empresa vende por WhatsApp e Instagram con un equipo?"
+          bajada="Mira cómo el agente comparte la bandeja con tus vendedores, el tablero de ventas y cómo se usa en agencias, corredoras y automotoras." />
 
         {/* "Syna, tu secretaria" (28-10-2026): venía de la portada; aquí, para el dueño de la empresa. */}
         <VideoSynaJsonLd url="https://www.synaptechspa.cl/empresas" video={VIDEO_SECRETARIA} />

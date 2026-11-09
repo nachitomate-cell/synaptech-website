@@ -5,6 +5,9 @@ import Footer   from "@/components/Footer";
 import CtaFinal from "@/components/CtaFinal";
 import FaqSeo   from "@/components/FaqSeo";
 import { GUIAS, guia, REVISADAS, type BloqueGuia } from "@/content/guias-duenos";
+import { WA_AGENCIAS } from "@/content/agencias";
+import { LinkWhatsAppConRef } from "@/components/CtaWhatsAppComparar";
+import { IconoWa } from "@/components/PlanesAgencia";
 import { metaPagina, SITIO } from "@/lib/seo";
 
 /* Una página por guía práctica (content/guias-duenos.ts, 04-11-2026).
@@ -18,7 +21,7 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: { params: { slug: string } }) {
   const g = guia(params.slug);
   if (!g) return {};
-  return metaPagina({ title: g.title, description: g.description, path: `/guias/${g.slug}` });
+  return metaPagina({ title: g.title, description: g.description, path: `/guias/${g.slug}`, imagen: g.imagen });
 }
 
 function Bloque({ b }: { b: BloqueGuia }) {
@@ -61,7 +64,12 @@ export default function PaginaGuia({ params }: { params: { slug: string } }) {
   const g = guia(params.slug);
   if (!g) notFound();
   const url = `${SITIO}/guias/${g.slug}`;
-  const otras = GUIAS.filter((o) => o.slug !== g.slug).slice(0, 3);
+  /* Primero las de su misma categoría (09-11-2026: las de agencias no deben
+     mandar a leer de Google Maps para barberías si hay otras de agencias). */
+  const otras = [
+    ...GUIAS.filter((o) => o.slug !== g.slug && o.categoria === g.categoria),
+    ...GUIAS.filter((o) => o.categoria !== g.categoria),
+  ].slice(0, 3);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -154,7 +162,29 @@ export default function PaginaGuia({ params }: { params: { slug: string } }) {
           </div>
         </section>
 
-        <CtaFinal origen={`guia-${g.slug}`} />
+        {g.cierre === "agencias" ? (
+          <section className="py-16 md:py-24 bg-mist">
+            <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
+              <h2 className="text-ink">¿Vendes por WhatsApp con un equipo?</h2>
+              <p className="text-text-secondary text-lg mt-5 leading-relaxed">
+                El asistente de SynapTech responde tu WhatsApp e Instagram, reparte los chats entre tus vendedores y deja cada venta en un tablero.
+                30 días de prueba, instalación sin costo y sin permanencia.
+              </p>
+              <div className="flex flex-col sm:flex-row justify-center gap-3 mt-8">
+                <LinkWhatsAppConRef texto={WA_AGENCIAS}
+                  className="inline-flex justify-center items-center gap-2 bg-ink text-white font-semibold px-7 py-4 rounded-full hover:bg-black transition-colors">
+                  <IconoWa /> Hablar por WhatsApp
+                </LinkWhatsAppConRef>
+                <Link href="/agencias#planes"
+                  className="inline-flex justify-center items-center border border-ink/15 bg-white text-ink font-semibold px-7 py-4 rounded-full hover:border-ink/40 transition-colors">
+                  Ver planes para agencias
+                </Link>
+              </div>
+            </div>
+          </section>
+        ) : (
+          <CtaFinal origen={`guia-${g.slug}`} />
+        )}
       </main>
       <Footer />
     </>
