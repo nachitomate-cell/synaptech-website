@@ -25,14 +25,21 @@
        en _billing y se llevó 8.957 fichas (sin eso, habría subido).
      · Citas: 179.918 − 152.623 migradas = 27.295 → "+27.000".
      · WhatsApp (wa_conversaciones): 6.645 → "+6.500".
+     Re-medido el 09-11-2026, mismo criterio (tras la baja en lote del 08-11):
+     · Locales y sedes: 67 cuentas con ≥10 fichas y ≥5 reservas propias + 7
+       sedes extra (Pilates 6, Oren 1) = 74 → "+70". Siguen 5 países.
+     · Fichas: 116.853 → "+115.000". Subió por las migraciones de AgendaPro
+       (Brymer 3.165 y Distrito 2.934 entran en fichas, aún no en locales).
+     · Citas: 313.217 − 279.693 migradas = 33.524 → "+33.000".
+     · Conversaciones: WhatsApp 8.835 + Instagram 254 = 9.089 → "+9.000".
    Se redondean hacia abajo. Volver a medir antes de cambiarlas. */
 import Aparece, { Cuenta } from "@/components/Aparece";
 
 const CIFRAS = [
-  { valor: "+60",     label: "locales y sedes", nota: "en Chile, Perú, México, Colombia y Argentina" },
-  { valor: "+80.000", label: "clientes", nota: "en las fichas de esos locales" },
-  { valor: "+27.000", label: "reservas", nota: "agendadas en SynapTech" },
-  { valor: "+6.500",  label: "conversaciones", nota: "por WhatsApp, en la bandeja de la plataforma" },
+  { valor: "+70",     label: "locales y sedes", nota: "en Chile, Perú, México, Colombia y Argentina" },
+  { valor: "+115.000", label: "clientes", nota: "en las fichas de esos locales" },
+  { valor: "+33.000", label: "reservas", nota: "agendadas en SynapTech" },
+  { valor: "+9.000",  label: "conversaciones", nota: "por WhatsApp e Instagram, en la bandeja de la plataforma" },
 ];
 
 export default function Cifras() {
@@ -46,13 +53,13 @@ export default function Cifras() {
         <div className="mt-16 grid grid-cols-2 lg:grid-cols-4 gap-y-12 gap-x-4 sm:gap-x-8">
           {CIFRAS.map((c, i) => (
             <Aparece key={c.label} delay={(i % 4) * 0.08} className="text-center">
-              <p className="font-display font-bold tracking-[-0.045em] leading-none text-ink text-[clamp(2.2rem,4.4vw,4.2rem)]"><Cuenta valor={c.valor} /></p>
+              <p className="font-display font-bold tracking-[-0.045em] leading-none text-ink text-[clamp(2rem,4.4vw,4.2rem)]"><Cuenta valor={c.valor} /></p>
               <p className="mt-3 sm:mt-4 text-base sm:text-lg font-semibold text-ink">{c.label}</p>
               <p className="mt-1 text-sm sm:text-base text-text-muted leading-snug max-w-[16rem] mx-auto">{c.nota}</p>
             </Aparece>
           ))}
         </div>
-        <p className="mt-14 text-center text-[13px] text-text-muted">Medido en la plataforma el 31 de octubre de 2026.</p>
+        <p className="mt-14 text-center text-[13px] text-text-muted">Medido en la plataforma el 9 de noviembre de 2026.</p>
       </div>
     </section>
   );
