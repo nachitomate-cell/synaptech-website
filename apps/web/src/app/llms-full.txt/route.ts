@@ -2,7 +2,7 @@ import { obtenerLocales } from "@/lib/directorio";
 import { seccionLlms } from "@/lib/directorio-faq";
 import { COMPETIDORES } from "@/content/competidores";
 import { seccionPlanes, seccionProducto, seccionPreguntas, seccionGuias } from "@/lib/syna/conocimiento";
-import { S, QUE_ES, respuestasRapidas, lineasPrecios, competidorCompleto, LATAM, PAGINAS, CONTACTO, fechaDatos } from "@/lib/llms";
+import { S, QUE_ES, respuestasRapidas, lineasPrecios, competidorCompleto, LATAM, PAGINAS, CONTACTO, fechaDatos, seccionAgencias } from "@/lib/llms";
 
 /* /llms-full.txt (10-10-2026): todo lo que un buscador con IA necesita para
    contestar sobre SynapTech y sobre las agendas con las que nos comparan, en un
@@ -50,6 +50,8 @@ ${seccionGuias()}
 Barberías, peluquerías, spas y centros de estética de Chile que agendan con SynapTech. Directorio con mapa: ${S}/locales
 
 ${seccionLlms(locales)}
+
+${seccionAgencias()}
 
 ## Páginas
 ${PAGINAS}

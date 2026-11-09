@@ -21,6 +21,8 @@ const RECURSOS = [
   { label: "Calculadora de comisiones", desc: "Gratis: cuánto le corresponde a cada profesional", href: "/funciones/comisiones" },
   { label: "Cápsulas en video", desc: "Todo el panel en videos de menos de 2 minutos", href: "/como-funciona#capsulas" },
   { label: "Comparaciones",  desc: "Preguntas reales frente a otras agendas", href: "/comparar" },
+  { label: "Agente de IA omnicanal", desc: "WhatsApp e Instagram en una bandeja, con tu equipo", href: "/agente-ia-omnicanal" },
+  { label: "CRM de WhatsApp", desc: "Embudo, cartera por vendedor y comisiones", href: "/crm-whatsapp" },
   { label: "Guías para dueños", desc: "Google Maps, reseñas, inasistencias, precios y más", href: "/guias" },
   { label: "Guía: boletas y comisiones", desc: "Sueldo, comisión o arriendo de sillón en 2026", href: "/guias/boleta-honorarios-y-comisiones-barberos" },
   { label: "Ficha clínica estética", desc: "Plantilla gratis en PDF, facial y corporal", href: "/recursos/ficha-clinica-estetica" },

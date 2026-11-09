@@ -11,6 +11,7 @@ import { MODULOS } from "@/content/recorrido";
 import { FAQ_ASISTENTE } from "@/content/faq-rubros";
 import { metaPagina } from "@/lib/seo";
 import VideoSyna from "@/components/VideoSyna";
+import EnlacesAgencias from "@/components/EnlacesAgencias";
 
 /* Página propia del asistente (09-10-2026). "chatbot WhatsApp para agendar
    citas" y "sistema de reservas por WhatsApp" tienen demanda en Chile y hoy
@@ -84,6 +85,11 @@ export default function AsistentePage() {
             <FilaCapsulas ids={["reel-asistente-whatsapp"]} />
           </div>
         </section>
+
+        {/* Para quien vende con un equipo y no agenda horas (09-11-2026). */}
+        <EnlacesAgencias variante="franja" fondo="!pt-0" eyebrow="Si vendes con un equipo"
+          titulo="¿No agendas horas, vendes? El asistente también trabaja con tus vendedores."
+          bajada="WhatsApp e Instagram en una sola bandeja, reparto de chats, tablero de ventas y comisiones. Para agencias de tours, viajes, corredoras, automotoras y más." />
 
         <FaqSeo titulo="Asistente de WhatsApp: lo que más nos preguntan." preguntas={FAQ_ASISTENTE} />
         <Pricing />

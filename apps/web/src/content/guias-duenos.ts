@@ -18,7 +18,7 @@ export type BloqueGuia =
 
 export type SeccionGuia = { titulo: string; bloques: BloqueGuia[] };
 
-export type CategoriaGuia = "Google y redes" | "Agenda y clientes" | "Plata y precios";
+export type CategoriaGuia = "Google y redes" | "Agenda y clientes" | "Plata y precios" | "Agencias y ventas";
 
 export type Guia = {
   slug: string;
@@ -35,6 +35,10 @@ export type Guia = {
   producto: { titulo: string; texto: string; href: string; cta: string };
   faq: { q: string; a: string }[];
   fuentes: { texto: string; url: string }[];
+  /** Imagen Open Graph propia (si no, la del sitio). */
+  imagen?: string;
+  /** "agencias": cierra con el WhatsApp de agencias y no con el alta de locales. */
+  cierre?: "agencias";
 };
 
 export const REVISADAS = "04-11-2026";
@@ -467,6 +471,258 @@ export const GUIAS: Guia[] = [
     ],
     fuentes: [],
   },
+
+  /* ── 7 · Agencias y ventas (09-11-2026) ──────────────────────────────
+     Las tres de agencias están escritas para que un buscador con IA pueda
+     citarlas: definición al principio, párrafos cortos y sin cifras de
+     mercado. Cierran con el WhatsApp de agencias, no con el alta de locales. */
+  {
+    slug: "que-es-un-agente-de-ia-omnicanal",
+    categoria: "Agencias y ventas",
+    titulo: "Qué es un agente de IA omnicanal (y en qué se diferencia de un chatbot).",
+    title: "Qué es un agente de IA omnicanal, comparado con un chatbot",
+    description: "Qué es un agente de IA omnicanal, en qué se diferencia de un chatbot y cuándo conviene: WhatsApp e Instagram en una bandeja, con tu equipo.",
+    resumen: "La definición corta, la diferencia con un chatbot de menú y qué revisar antes de elegir uno.",
+    minutos: 5,
+    publicada: "2026-11-09",
+    intro: "Un agente de IA omnicanal es un asistente con inteligencia artificial que responde a tus clientes en más de un canal, por ejemplo WhatsApp e Instagram, y deja todas esas conversaciones en un solo lugar donde también trabaja tu equipo. Esta guía explica qué significa cada parte, en qué se diferencia de un chatbot y cuándo vale la pena tener uno.",
+    secciones: [
+      {
+        titulo: "1. La definición, en tres partes",
+        bloques: [
+          { tipo: "p", texto: "Un agente de IA omnicanal tiene tres piezas. La IA, que entiende el mensaje y arma la respuesta. Los canales, que son los lugares por donde te escriben. Y la bandeja, donde el agente y las personas del equipo se reparten las conversaciones." },
+          { tipo: "p", texto: "Si falta una de las tres, no es omnicanal. Un asistente que responde solo en WhatsApp es un agente de un canal. Una bandeja que junta WhatsApp e Instagram pero donde nadie contesta solo es una bandeja compartida." },
+        ],
+      },
+      {
+        titulo: "2. Agente de IA y chatbot no son lo mismo",
+        bloques: [
+          { tipo: "p", texto: "La palabra chatbot se usa para todo, pero hay una diferencia práctica. Un chatbot clásico sigue un menú: «escribe 1 para precios, 2 para horarios». Un agente de IA lee lo que el cliente escribió, aunque venga con faltas o en otro idioma, y responde con tu información." },
+          { tipo: "tabla", columnas: ["", "Chatbot de respuestas fijas", "Agente de IA"], filas: [
+            ["Cómo entiende", "Por palabras clave o menús", "Lee el mensaje completo"],
+            ["Qué responde", "Textos escritos de antemano", "Una respuesta armada con tu catálogo y tus reglas"],
+            ["Qué hace después", "Manda el siguiente mensaje del menú", "Pide datos y le pasa la conversación a una persona"],
+            ["Cuándo falla", "Cuando el cliente escribe algo no previsto", "Cuando le falta información, y por eso debe derivar"],
+          ] },
+        ],
+      },
+      {
+        titulo: "3. Qué significa omnicanal en la práctica",
+        bloques: [
+          { tipo: "lista", items: [
+            "El cliente escribe por donde quiera y la conversación cae en la misma bandeja.",
+            "Cada conversación tiene un responsable, aunque primero la haya atendido el agente.",
+            "El historial queda junto: quien toma el chat ve lo que ya se habló.",
+            "Las reglas son las mismas en todos los canales: mismos precios y mismo tono.",
+          ] },
+          { tipo: "ojo", texto: "Omnicanal no es lo mismo que multicanal. Multicanal es estar en varios canales. Omnicanal es que esos canales compartan bandeja, historial y equipo." },
+        ],
+      },
+      {
+        titulo: "4. Cuándo conviene uno",
+        bloques: [
+          { tipo: "p", texto: "Conviene cuando las preguntas se repiten, cuando llegan fuera de horario o cuando hay más de una persona respondiendo el mismo WhatsApp. Ahí el agente responde lo repetitivo al minuto y tu equipo se queda con lo que necesita a una persona: negociar, resolver un caso especial, cerrar." },
+          { tipo: "p", texto: "Si recibes pocos mensajes al día y siempre los contestas tú a tiempo, todavía no lo necesitas. Las respuestas rápidas de WhatsApp Business te alcanzan." },
+        ],
+      },
+      {
+        titulo: "5. Qué preguntar antes de elegir uno",
+        bloques: [
+          { tipo: "lista", numerada: true, items: [
+            "¿Responde desde tu número de siempre o te obliga a usar otro?",
+            "¿Qué canales atiende de verdad hoy, no «próximamente»?",
+            "¿Puedes tomar cualquier conversación cuando quieras?",
+            "¿Qué hace cuando no sabe algo: inventa o deriva?",
+            "¿Cómo reparte las conversaciones entre tu equipo?",
+            "¿Qué cuenta como una conversación y cuánto cuesta pasarse del plan?",
+          ] },
+        ],
+      },
+    ],
+    tarea: [
+      "Cuenta cuántos mensajes recibiste ayer por WhatsApp y por Instagram.",
+      "Marca cuántos eran preguntas repetidas: precio, horario, qué incluye.",
+      "Anota cuántos esperaron más de una hora por una respuesta.",
+    ],
+    producto: {
+      titulo: "El agente omnicanal de SynapTech.",
+      texto: "Responde tu WhatsApp y tu Instagram con tu catálogo, en español, portugués e inglés, reparte las conversaciones entre tus vendedores con aviso al celular y deja cada venta en un tablero.",
+      href: "/agente-ia-omnicanal",
+      cta: "Ver cómo funciona",
+    },
+    faq: [
+      { q: "¿Un agente de IA reemplaza a los vendedores?", a: "No. Responde lo repetitivo y deja la conversación lista, con los datos pedidos. La venta la cierra una persona." },
+      { q: "¿Qué canales atiende un agente omnicanal?", a: "Depende de la herramienta. El agente de SynapTech atiende WhatsApp y los mensajes directos de Instagram, en la misma bandeja." },
+      { q: "¿Un agente de IA puede inventar precios?", a: "Puede pasar cuando no tiene la información. Por eso conviene que responda solo con tu catálogo y que derive a tu equipo lo que no sabe." },
+    ],
+    fuentes: [],
+    imagen: "/og/agencias/agente-ia-omnicanal",
+    cierre: "agencias",
+  },
+
+  /* ── 8 ─────────────────────────────────────────────────────────────── */
+  {
+    slug: "vender-tours-por-whatsapp-a-turistas-brasilenos",
+    categoria: "Agencias y ventas",
+    titulo: "Cómo vender tours por WhatsApp a turistas brasileños.",
+    title: "Cómo vender tours por WhatsApp a turistas brasileños",
+    description: "Responder en portugués, dar el precio en reales, decir qué incluye cada paseo y hacer un solo seguimiento. Guía para agencias de turismo en Chile.",
+    resumen: "Portugués simple, precio en reales, qué incluye cada paseo y un solo seguimiento. Con frases listas para copiar.",
+    minutos: 6,
+    publicada: "2026-11-09",
+    intro: "Para muchas agencias de turismo receptivo en Chile, el pasajero brasileño es uno de los clientes más importantes del año. Escribe por WhatsApp, pregunta en portugués y quiere saber el precio en reales. Esta guía junta lo que conviene hacer para que esa conversación termine en una venta.",
+    secciones: [
+      {
+        titulo: "1. Responde en portugués, aunque sea simple",
+        bloques: [
+          { tipo: "p", texto: "Un pasajero que escribe en portugués y recibe la respuesta en español entiende casi todo, pero le cuesta más y duda más. Responder en su idioma, con frases cortas, baja esa duda. No hace falta un portugués perfecto: hace falta que sea claro." },
+          { tipo: "tabla", columnas: ["Para", "En portugués"], filas: [
+            ["Saludo", "Olá! Obrigado por escrever. Em que posso ajudar?"],
+            ["Precio", "O passeio custa R$ 260 por pessoa, com almoço incluído."],
+            ["Recogida", "Buscamos você no hotel às 7h30."],
+            ["Cierre", "Posso reservar sua vaga para amanhã?"],
+            ["Seguimiento", "Oi! Ainda tem interesse no passeio?"],
+          ], nota: "Los precios y horarios son de ejemplo." },
+        ],
+      },
+      {
+        titulo: "2. Da el precio en reales",
+        bloques: [
+          { tipo: "p", texto: "El pasajero brasileño piensa en reales. Si le das el precio en pesos chilenos, lo primero que hace es abrir la calculadora, y en ese momento se enfría. Define el tipo de cambio que vas a usar para tus precios en reales, actualízalo cada cierto tiempo y escríbelo claro: «R$ 260 por pessoa»." },
+          { tipo: "ojo", texto: "Si cobras en pesos, aclara en qué moneda se paga y quién asume la diferencia del cambio. Es una duda muy común después del precio." },
+        ],
+      },
+      {
+        titulo: "3. Di qué incluye antes de que pregunten",
+        bloques: [
+          { tipo: "p", texto: "Cada pregunta que el pasajero tiene que hacer es una oportunidad de que se vaya. Manda junto con el precio:" },
+          { tipo: "lista", items: [
+            "Hora y lugar de recogida: hotel o punto de encuentro.",
+            "Duración y hora aproximada de regreso.",
+            "Qué incluye: transporte, guía, almuerzo, entradas.",
+            "Qué no incluye y qué conviene llevar: ropa de abrigo, protector solar, efectivo.",
+            "Si el guía habla portugués.",
+          ] },
+        ],
+      },
+      {
+        titulo: "4. Contesta rápido, también de noche",
+        bloques: [
+          { tipo: "p", texto: "El pasajero arma el día siguiente en la noche, desde el hotel. Si escribe a las diez de la noche y le respondes a las nueve de la mañana, es probable que ya haya comprado en otra parte o en el mesón del hotel. Un mensaje de ausencia ayuda, pero no vende. El que vende es el que responde con precio." },
+        ],
+      },
+      {
+        titulo: "5. Un seguimiento, no cinco",
+        bloques: [
+          { tipo: "p", texto: "Si el pasajero preguntó y dejó de responder, escríbele una vez, uno o dos días después, con una pregunta corta. Si dice que no, no insistas. Un seguimiento a tiempo recupera ventas; cinco mensajes seguidos te mandan a la lista de bloqueados." },
+        ],
+      },
+      {
+        titulo: "6. Anota en qué quedó cada pasajero",
+        bloques: [
+          { tipo: "p", texto: "En temporada alta pasan muchas conversaciones por el mismo WhatsApp. Si no anotas quién preguntó, a quién le cotizaste y quién compró, no sabes qué anuncio funcionó ni a quién volver a escribirle. Una planilla sirve al principio; con un equipo de vendedoras se queda corta." },
+        ],
+      },
+    ],
+    tarea: [
+      "Traduce al portugués la ficha de tus tres paseos más vendidos, con el precio en reales.",
+      "Escribe qué incluye cada uno y guárdalo como respuesta rápida.",
+      "Revisa los chats de ayer y escríbele una vez a quien quedó sin responder.",
+    ],
+    producto: {
+      titulo: "Un asistente que cotiza en portugués y en reales.",
+      texto: "El asistente de SynapTech responde tu WhatsApp en el idioma del pasajero, cotiza en pesos o en reales con tus precios, y a las 48 horas le pregunta una vez a quien quedó callado si sigue interesado.",
+      href: "/agencias/tours-y-excursiones",
+      cta: "Ver el plan para agencias de tours",
+    },
+    faq: [
+      { q: "¿Conviene cobrar en reales?", a: "Depende de cómo recibes los pagos. Lo importante es que el precio que muestras en reales y lo que cobras al final coincidan, y que el pasajero sepa en qué moneda paga." },
+      { q: "¿Qué hago si no hablo portugués?", a: "Arma una vez tus respuestas más comunes en portugués y guárdalas como respuestas rápidas. Para el resto, un asistente con IA puede responder en portugués por ti." },
+      { q: "¿Cuándo hago el seguimiento?", a: "Una vez, uno o dos días después del último mensaje, y solo si el pasajero no dijo que no." },
+    ],
+    fuentes: [],
+    imagen: "/og/agencias/tours-y-excursiones",
+    cierre: "agencias",
+  },
+
+  /* ── 9 ─────────────────────────────────────────────────────────────── */
+  {
+    slug: "repartir-chats-de-whatsapp-entre-vendedores",
+    categoria: "Agencias y ventas",
+    titulo: "Cómo repartir los chats de WhatsApp entre vendedores, sin que se pisen.",
+    title: "Cómo repartir los chats de WhatsApp entre vendedores",
+    description: "Un número o varios, reparto por turnos o por cartera, tiempos de respuesta y qué hacer cuando un vendedor no está. Cómo ordenar el WhatsApp de un equipo.",
+    resumen: "Un número para todos, una forma de repartir y una regla de oro: cada cliente con un solo responsable.",
+    minutos: 5,
+    publicada: "2026-11-09",
+    intro: "Cuando un mismo WhatsApp lo atienden tres o cuatro personas pasan dos cosas: clientes que reciben dos respuestas distintas y clientes que no reciben ninguna. Repartir bien los chats es primero un tema de reglas y después de herramientas. Esta guía explica las reglas y cómo aplicarlas.",
+    secciones: [
+      {
+        titulo: "1. Un número para todos, no uno por vendedor",
+        bloques: [
+          { tipo: "p", texto: "Si cada vendedor usa su propio número, los clientes quedan en el teléfono de esa persona, y si se va, se lleva la cartera. Lo más ordenado es un número del negocio, el que sale en tus anuncios, tu Instagram y tu web, y repartir desde ahí." },
+        ],
+      },
+      {
+        titulo: "2. Elige una forma de repartir",
+        bloques: [
+          { tipo: "tabla", columnas: ["Forma", "Cómo funciona", "Cuándo sirve"], filas: [
+            ["Por turnos", "Cada conversación nueva va al siguiente vendedor de la lista.", "Equipos parejos, donde todos venden lo mismo."],
+            ["Por cartera", "El cliente que ya conversó vuelve con el mismo vendedor.", "Ventas que se repiten o que toman semanas."],
+            ["Por producto o marca", "Cada vendedor atiende una línea o una marca.", "Catálogos muy distintos entre sí."],
+          ] },
+          { tipo: "ojo", texto: "Mezclarlas está bien: por turnos para los clientes nuevos y por cartera para los que vuelven." },
+        ],
+      },
+      {
+        titulo: "3. Un cliente, un responsable",
+        bloques: [
+          { tipo: "p", texto: "Cada conversación tiene que tener un nombre al lado. Si dos vendedores pueden contestarle al mismo cliente, tarde o temprano le van a dar dos precios distintos. Si nadie es responsable, nadie contesta." },
+        ],
+      },
+      {
+        titulo: "4. Define cuánto puede esperar un cliente",
+        bloques: [
+          { tipo: "p", texto: "Pon un tiempo máximo de respuesta en horario de trabajo, por ejemplo quince minutos, y revisa quién lo cumple. Fuera de horario, decide si alguien queda de turno o si responde un asistente." },
+        ],
+      },
+      {
+        titulo: "5. Qué pasa cuando el vendedor no está",
+        bloques: [
+          { tipo: "lista", items: [
+            "Vacaciones o licencia: sus chats pasan a otra persona, con el historial.",
+            "Se va de la empresa: la cartera queda en el número del negocio, no en su teléfono.",
+            "Está con otro cliente: el dueño o el supervisor puede reasignar la conversación.",
+          ] },
+        ],
+      },
+      {
+        titulo: "6. Mide por vendedor",
+        bloques: [
+          { tipo: "p", texto: "Con el reparto ordenado ya puedes ver lo que importa: cuántas conversaciones recibió cada uno, a cuántos les cotizó y cuántos compraron. Ahí aparece quién necesita ayuda y cómo se reparte la comisión." },
+        ],
+      },
+    ],
+    tarea: [
+      "Decide cómo vas a repartir: por turnos, por cartera o por producto.",
+      "Fija un tiempo máximo de respuesta y compártelo con el equipo.",
+      "Define quién toma los chats de un vendedor cuando no está.",
+    ],
+    producto: {
+      titulo: "Reparto automático y aviso al celular.",
+      texto: "En SynapTech cada conversación nueva se asigna sola a un vendedor por turnos y le llega el aviso al celular. Cada uno ve solo su cartera, el dueño ve todo y puede reasignar, y a fin de mes las comisiones salen calculadas.",
+      href: "/crm-whatsapp",
+      cta: "Ver el CRM de WhatsApp",
+    },
+    faq: [
+      { q: "¿Varios vendedores pueden atender el mismo número de WhatsApp?", a: "Sí, con una herramienta que conecte ese número a una bandeja compartida. Cada vendedor entra con su usuario y ve los chats que le tocan." },
+      { q: "¿Es mejor repartir por turnos o por cartera?", a: "Por turnos es lo más parejo para los clientes nuevos. Por cartera es mejor cuando la venta toma semanas o el cliente vuelve a comprar. Se pueden usar las dos." },
+      { q: "¿Cómo evito que dos vendedores le respondan al mismo cliente?", a: "Asigna cada conversación a una sola persona y que solo esa persona la vea. El dueño o el supervisor es el único que reasigna." },
+    ],
+    fuentes: [],
+    imagen: "/og/agencias/crm-whatsapp",
+    cierre: "agencias",
+  },
 ];
 
 /* La guía de boletas vive en su propia ruta (más rica, con tabla y video)
@@ -479,7 +735,7 @@ export const GUIA_BOLETAS = {
   minutos: 8,
 };
 
-export const CATEGORIAS: CategoriaGuia[] = ["Google y redes", "Agenda y clientes", "Plata y precios"];
+export const CATEGORIAS: CategoriaGuia[] = ["Google y redes", "Agenda y clientes", "Plata y precios", "Agencias y ventas"];
 
 export function guia(slug: string) {
   return GUIAS.find((g) => g.slug === slug);

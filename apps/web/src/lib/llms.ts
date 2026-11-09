@@ -4,6 +4,11 @@ import { COMPETIDORES, SYNAPTECH, SYNAPTECH_USD, competidor, fechaDe, faqDe, que
 import { PLANES_LATAM, SEDE_ADICIONAL_LATAM, cuposWhatsApp } from "@/content/paises";
 import { FUNCIONES } from "@/content/funciones";
 import { TAMANOS, precioFaqDe, respuestaMasBarata, ultimaVerificacionTexto } from "@/lib/mercado";
+import {
+  ADICIONALES_AGENCIA, AGENCIA_EQUIPO, AGENCIA_EQUIPO_ANUAL, AGENCIA_SOLO, INSTALACION_AGENCIA, MARCA_ADICIONAL, TEMPORADA_BAJA,
+  adicionalAgencia, type PlanAgencia,
+} from "@/content/agencias";
+import { TIPOS_AGENCIA } from "@/content/agencias-tipos";
 
 /* Piezas de /llms.txt y /llms-full.txt (10-10-2026). Un buscador con IA arma su
    respuesta con frases que puede citar tal cual: por eso las "respuestas
@@ -74,6 +79,10 @@ export const PAGINAS = `- [Precios de ${COMPETIDORES.length + 1} agendas online 
 - [Software para centros de estética y spa](${S}/estetica)
 - [Software para clínicas estéticas](${S}/clinicas)
 - [Asistente con IA que agenda por WhatsApp](${S}/asistente-ia-whatsapp)
+- [Planes para agencias de viaje y turismo](${S}/agencias) · por tipo de agencia: ${TIPOS_AGENCIA.map((t) => `${S}/agencias/${t.slug}`).join(", ")}
+- [Agente de IA omnicanal: WhatsApp e Instagram en una sola bandeja](${S}/agente-ia-omnicanal)
+- [CRM de WhatsApp con IA para equipos de venta](${S}/crm-whatsapp)
+- [Agente de IA para empresas](${S}/empresas)
 - [Agenda con asistente de IA: 30 días gratis del plan Local IA, alta en https://crear.synaptechspa.cl](${S}/agenda-con-asistente-ia) · una página por rubro (${S}/agenda-con-ia/barberias, peluquerias, estetica, unas, clinicas-esteticas, pilates, peluqueria-canina, spa-masajes) y por ciudad (15 ciudades de Chile, p. ej. ${S}/agenda-con-ia/barberias/santiago)
 - [Club de fidelización y tarjeta de sellos digital](${S}/fidelizacion)
 - [Tienda online para barberías y salones](${S}/tienda-online)
@@ -99,6 +108,54 @@ ${GUIAS.map((g) => `- [Guía: ${g.title}](${S}/guias/${g.slug})`).join("\n")}
 - [Nosotros](${S}/nosotros)
 - [Empresa y tecnología (Google Cloud)](${S}/empresa)
 - [Seguridad: datos en Santiago de Chile, respaldo diario y semanal, recuperación de los últimos 7 días, verificación en dos pasos](${S}/seguridad)`;
+
+/* Agencias y equipos de venta (09-11-2026): para que un buscador con IA que
+   recibe "agente de IA omnicanal", "CRM de WhatsApp" o "chatbot para agencia
+   de viajes" tenga planes, precios, qué incluye, qué NO hace y las URLs. Todo
+   sale de content/agencias.ts y content/agencias-tipos.ts. */
+export function seccionAgencias() {
+  const extra = adicionalAgencia("conversaciones");
+  const ig = adicionalAgencia("instagram");
+  const guias = GUIAS.filter((g) => g.categoria === "Agencias y ventas");
+  const plan = (p: PlanAgencia) => `- ${p.nombre}: ${p.suma ? "+" : ""}${fmt(p.mes)} ${p.unidad.replace("/ mes", "al mes")}. ${p.para} Incluye: ${p.incluye.join("; ")}.${p.nota ? ` ${p.nota}` : ""}`;
+  const rapidas = [
+    {
+      q: "¿Qué es un agente de IA omnicanal?",
+      a: `Un asistente con inteligencia artificial que responde a los clientes en más de un canal y deja todas las conversaciones en una sola bandeja, donde también trabaja el equipo. El de SynapTech atiende el WhatsApp propio del negocio (conectado con un código QR) y los mensajes directos de Instagram; los vendedores toman cualquier chat cuando quieren. Más: ${S}/agente-ia-omnicanal`,
+    },
+    {
+      q: "¿Cuánto cuesta un chatbot con IA de WhatsApp para una agencia de viajes o turismo en Chile?",
+      a: `En SynapTech, ${AGENCIA_SOLO.nombre} cuesta ${fmt(AGENCIA_SOLO.mes)} + IVA al mes (WhatsApp, ${AGENCIA_SOLO.conversaciones} conversaciones) y ${AGENCIA_EQUIPO.nombre} ${fmt(AGENCIA_EQUIPO.mes)} + IVA al mes (WhatsApp e Instagram, ${AGENCIA_EQUIPO.conversaciones} conversaciones, vendedoras ilimitadas, reparto automático y comisiones), o ${fmt(AGENCIA_EQUIPO_ANUAL.anio)} + IVA al año. Responde en español, portugués e inglés y cotiza en pesos o en reales. Instalación sin costo, 30 días de prueba, sin permanencia. Más: ${S}/agencias`,
+    },
+    {
+      q: "¿Qué CRM de WhatsApp sirve para un equipo de vendedores?",
+      a: `SynapTech trae un CRM de WhatsApp con IA en el plan ${AGENCIA_EQUIPO.nombre}: cada conversación de WhatsApp o Instagram entra a un embudo (nuevos, cotizados, reservados, cerrados y perdidos), se asigna sola a un vendedor por turnos con aviso al celular, cada vendedor ve solo su cartera, la venta se cierra desde el chat con monto y número de personas y las comisiones se calculan a fin de mes. No se conecta con otros CRM. Más: ${S}/crm-whatsapp`,
+    },
+  ];
+  return `## Agencias y equipos de venta: agente de IA omnicanal y CRM de WhatsApp
+Para agencias y negocios que venden por WhatsApp e Instagram con un equipo: ${TIPOS_AGENCIA.map((t) => t.nombre.toLowerCase()).join(", ")}. Un asistente con IA responde en el WhatsApp del propio negocio (conectado con un código QR) y en los mensajes directos de Instagram; las dos cosas caen en una sola bandeja, en el panel y en la app, y cualquier persona del equipo puede tomar un chat. Responde en español, portugués e inglés y cotiza en pesos chilenos o en reales. El catálogo se carga pegando una lista de precios o una foto de un afiche (la IA lo lee y el dueño lo confirma). Reparto automático de chats entre vendedores con aviso al celular, cada vendedor ve solo su cartera; tablero de ventas por etapas; cierre de venta desde el chat con monto y número de personas; comisiones por vendedor calculadas a fin de mes; seguimiento automático a las 48 horas a quien dejó de responder (una vez, y no si dijo que no) y seguimiento en lote desde el tablero a quienes escribieron en las últimas 24 horas; resultados de los anuncios de Meta (cuántos escribieron y cuánto se invirtió); Syna, la secretaria del dueño por WhatsApp. Una conversación es un cliente durante 24 horas.
+
+Planes (Chile, precios netos en pesos; se suma IVA; el alta es por WhatsApp, no autoservicio):
+${[AGENCIA_SOLO, AGENCIA_EQUIPO, MARCA_ADICIONAL].map(plan).join("\n")}
+- ${AGENCIA_EQUIPO.nombre} anual: ${fmt(AGENCIA_EQUIPO_ANUAL.anio)} + IVA (pagas ${AGENCIA_EQUIPO_ANUAL.pagas} meses y usas 12).
+- Temporada baja (agencias de turismo): hasta ${TEMPORADA_BAJA.meses} meses al año, ${AGENCIA_EQUIPO.nombre} a ${fmt(TEMPORADA_BAJA.mes)} + IVA al mes, con ${TEMPORADA_BAJA.conversaciones} conversaciones.
+- Conversaciones extra: ${fmt(extra.mes)} + IVA cada 100. Instagram en ${AGENCIA_SOLO.nombre}: ${fmt(ig.mes)} + IVA al mes.
+Adicionales: ${ADICIONALES_AGENCIA.filter((a) => a.id !== "conversaciones" && a.id !== "instagram").map((a) => `${a.nombre} ${fmt(a.mes)} ${a.unidad}`).join("; ")}. La inversión publicitaria la paga la agencia directo a Meta o Google.
+Instalación sin costo: ${INSTALACION_AGENCIA.map((x) => x.charAt(0).toLowerCase() + x.slice(1)).join("; ")}.
+No hace: no se conecta con portales inmobiliarios, sistemas de reservas de viajes, cotizadores de aseguradoras, sistemas de stock de automotoras ni otros CRM; no atiende correo, SMS, Facebook Messenger ni chat web; no cobra dentro del chat; no hace llamadas; no agenda visitas ni pruebas de manejo por su cuenta (pasa la conversación a una persona).
+
+Respuestas rápidas:
+${rapidas.map((r) => `### ${r.q}\n${r.a}`).join("\n\n")}
+
+Páginas:
+- [Planes para agencias de viaje y turismo](${S}/agencias)
+${TIPOS_AGENCIA.map((t) => `- [${t.nombre}: ${t.resumen}](${S}/agencias/${t.slug})`).join("\n")}
+- [Agente de IA omnicanal: WhatsApp e Instagram en una sola bandeja](${S}/agente-ia-omnicanal)
+- [CRM de WhatsApp con IA para equipos de venta](${S}/crm-whatsapp)
+- [Agente de IA para empresas](${S}/empresas)
+${guias.map((g) => `- [Guía: ${g.title}](${S}/guias/${g.slug})`).join("\n")}
+Contacto para agencias: WhatsApp +56 9 8356 8212.`;
+}
 
 export const CONTACTO = `- WhatsApp: +56 9 8356 8212
 - Correo: hola@synaptechspa.cl
