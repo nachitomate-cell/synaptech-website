@@ -19,6 +19,9 @@ import { breadcrumbLd, grafo } from "@/lib/ld";
    3. ChatGPT Ads gestionados: la cuenta es del negocio (OpenAI lo exige), la
       inversión la paga el local a OpenAI. Sin anuncios de salud (política de
       OpenAI), por eso las clínicas quedan fuera.
+   09-11: OpenAI rechazó el anuncio "Que ChatGPT recomiende tu local" por
+   "Platform integrity and misrepresentation"; la página es su destino, así que
+   el titular pasó a "Más clientes desde ChatGPT" (igual que el anuncio).
    NO prometer: clientes garantizados, posición en las respuestas, fecha de la
    ficha. Sin precio publicado hasta que Ignacio lo fije (se conversa por WA).
    Sin logo de OpenAI: "ChatGPT" va solo como texto.
@@ -26,7 +29,7 @@ import { breadcrumbLd, grafo } from "@/lib/ld";
    el sitio. */
 
 export const metadata = metaPagina({
-  title: "Que ChatGPT recomiende tu local | SynapTech",
+  title: "Más clientes desde ChatGPT para tu local | SynapTech",
   description: "Te ayudamos a aparecer cuando alguien le pregunta a ChatGPT dónde atenderse: tu información al día, tu ficha cuando ChatGPT la abra y anuncios en ChatGPT gestionados por nosotros.",
   path: "/chatgpt-para-tu-local",
   noindex: true,
@@ -68,8 +71,8 @@ export default function Pagina() {
         <JsonLd data={grafo(breadcrumbLd(MIGAS))} />
 
         <HeroLanding migas={MIGAS} eyebrow="Crecer · nuevo"
-          h1="Que ChatGPT recomiende tu local."
-          bajada="Cada vez más gente le pregunta a ChatGPT dónde cortarse el pelo, hacerse las uñas o una limpieza facial. Te ayudamos a estar en esa respuesta.">
+          h1="Más clientes desde ChatGPT."
+          bajada="Cada vez más gente le pregunta a ChatGPT dónde cortarse el pelo, hacerse las uñas o una limpieza facial. Te ayudamos a que ahí también te encuentren: con tu información al día y con anuncios que gestionamos por ti.">
           <div className="flex flex-col sm:flex-row gap-3">
             <a href={QUIERO} target="_blank" rel="noopener noreferrer" className={BOTON}>Quiero aparecer</a>
             <a href="#como" className={BOTON_BORDE}>Cómo funciona</a>
