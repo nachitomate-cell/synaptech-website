@@ -10,7 +10,28 @@ import { altaIA, rubroDeOrigen, CTA_IA } from "@/content/catalogo";
    de lunes a sábado. */
 const DIAS_MES = 26;
 
+/* Textos por rubro (12-11-2026): en /pilates decía "tiempo que no estás
+   cortando". Un estudio no corta pelo: agenda clases y atiende alumnas. */
+const TEXTOS: Record<string, { titulo: string; unidad: string; solucion: string }> = {
+  pilates: {
+    titulo: "Cada clase que coordinas por WhatsApp es tiempo que no estás dando clase.",
+    unidad: "Reservas al día",
+    solucion: "Con la reserva online tus alumnas eligen su clase solas, y con Syna el WhatsApp se responde y agenda mientras haces clase.",
+  },
+  mascotas: {
+    titulo: "Cada hora que agendas por WhatsApp o por teléfono es tiempo que no estás atendiendo.",
+    unidad: "Citas al día",
+    solucion: "Con la reserva online tus clientes eligen hora solos, y con Syna el WhatsApp se responde y agenda mientras atiendes.",
+  },
+};
+const TEXTO_BASE = {
+  titulo: "Cada cita que agendas por WhatsApp o por teléfono es tiempo que no estás cortando.",
+  unidad: "Citas al día",
+  solucion: "Con la reserva online tus clientes eligen hora solos, y con Syna el WhatsApp se responde y agenda mientras atiendes.",
+};
+
 export default function TiempoPerdido({ origen = "home" }: { origen?: string }) {
+  const t = TEXTOS[origen] ?? TEXTO_BASE;
   const [citas, setCitas] = useState(20);
   const [min, setMin] = useState(3);
   const minDia = citas * min;
@@ -24,19 +45,19 @@ export default function TiempoPerdido({ origen = "home" }: { origen?: string }) 
           <div>
             <p className="text-lime text-[13px] font-semibold uppercase tracking-[0.14em] mb-4">Haz la cuenta</p>
             <h2 className="!text-white !text-[clamp(1.9rem,3.6vw,3rem)] leading-tight">
-              Cada cita que agendas por WhatsApp o por teléfono es tiempo que no estás cortando.
+              {t.titulo}
             </h2>
             <p className="text-white/70 text-lg mt-5 leading-relaxed max-w-xl">
-              Responder, ofrecer horas, esperar la respuesta, confirmar. Mueve los controles con los números de tu local.
+              Responder, ofrecer horas, esperar la respuesta, confirmar. Mueve los controles con tus propios números.
             </p>
             <div className="mt-8 space-y-7 max-w-md">
               <label className="block">
-                <span className="flex justify-between text-[15px] font-semibold"><span>Citas al día</span><span className="text-lime tabular-nums">{citas}</span></span>
+                <span className="flex justify-between text-[15px] font-semibold"><span>{t.unidad}</span><span className="text-lime tabular-nums">{citas}</span></span>
                 <input type="range" min={4} max={60} step={1} value={citas} onChange={(e) => setCitas(Number(e.target.value))}
-                  className="w-full mt-3 accent-lime" aria-label="Citas al día" />
+                  className="w-full mt-3 accent-lime" aria-label={t.unidad} />
               </label>
               <label className="block">
-                <span className="flex justify-between text-[15px] font-semibold"><span>Minutos que te toma agendar cada una</span><span className="text-lime tabular-nums">{min}</span></span>
+                <span className="flex justify-between text-[15px] font-semibold"><span>Minutos que te toma coordinar cada una</span><span className="text-lime tabular-nums">{min}</span></span>
                 <input type="range" min={1} max={8} step={1} value={min} onChange={(e) => setMin(Number(e.target.value))}
                   className="w-full mt-3 accent-lime" aria-label="Minutos por cita" />
               </label>
@@ -48,7 +69,7 @@ export default function TiempoPerdido({ origen = "home" }: { origen?: string }) 
             <p className="text-white/60 text-[15px] mt-6">Al mes, de lunes a sábado</p>
             <p className="font-display font-bold text-lime text-6xl sm:text-7xl tracking-tight mt-1 tabular-nums">{horasMes} horas</p>
             <p className="text-white/70 mt-6 leading-relaxed">
-              Con la reserva online tus clientes eligen hora solos, y con Syna el WhatsApp se responde y agenda mientras atiendes.
+              {t.solucion}
             </p>
             <a href={altaIA(`tiempo-${origen}`, rubroDeOrigen(origen))}
               className="mt-7 inline-flex justify-center items-center bg-lime text-ink font-semibold px-7 py-4 rounded-full hover:bg-white transition-colors">
