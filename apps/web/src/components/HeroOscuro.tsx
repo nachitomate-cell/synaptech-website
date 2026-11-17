@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { altaIA, agendaSinIA, CTA_IA, CTA_SIN_IA, waLink, A_MEDIDA_WA } from "@/content/catalogo";
 import CentroOmnicanal from "@/components/CentroOmnicanal";
+import ChatAsistente from "@/components/ChatAsistente";
 
 /* Portada del inicio al estilo de la página de alianza (/beneficios/fibra),
    pedida por Ignacio el 23-10-2026: "te quedó muy bueno ese diseño estilo
@@ -53,6 +54,15 @@ export default function HeroOscuro({ despuesDeVideo = false }: { despuesDeVideo?
           {" "}en bioo, nuestra agenda de autoservicio ·{" "}
           <a href={A_MEDIDA_WA} target="_blank" rel="noopener noreferrer" className="text-white/75 underline underline-offset-4 decoration-white/30 hover:decoration-white whitespace-nowrap">varias sedes, te ayudamos a configurarla</a>
         </p>
+      </div>
+
+      {/* La conversación escribiéndose sola (17-11-2026, idea de notpato.app):
+          lo primero que se entiende del producto, antes de los canales. */}
+      <div className="relative mt-14 md:mt-20 px-4 sm:px-6">
+        <p className="text-center text-[13px] sm:text-[15px] font-semibold tracking-tight text-white/60 mb-5">
+          Así responde tu WhatsApp mientras duermes
+        </p>
+        <ChatAsistente />
       </div>
 
       {/* Los canales llegan a Syna y bajan a la agenda (26-10-2026). */}
