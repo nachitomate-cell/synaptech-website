@@ -56,9 +56,14 @@ export default function Pricing({ conEnlace = true, conEncabezado = true }: { co
         {conEncabezado && (
           <div className="max-w-3xl mb-10">
             <p className="eyebrow mb-4">Planes y precios</p>
-            <h2 className="text-ink">Atiendes solo o con equipo. Con IA o sin IA.</h2>
+            {/* 17-11-2026: el ancla de precio es el cliente que no vuelve, no
+                "cuesta menos que un café" (notpato.app). Sirve en todas las
+                páginas que usan este bloque: barberías, estética, clínicas. */}
+            <h2 className="text-ink">Cuesta menos que los clientes que no vuelven.</h2>
             <p className="text-text-secondary text-lg mt-5 leading-relaxed">
-              Todo el panel viene en todos los planes: agenda, reserva online, caja, clientes y el club en Wallet.
+              El club con sellos y premios en Google Wallet y Apple Wallet viene en todos los planes: con que vuelvan
+              unos pocos clientes al mes, el plan se paga solo. Atiendes solo o con equipo, con IA o sin IA, y todo el
+              panel va incluido: agenda, reserva online, caja y clientes.
               Los planes de equipo cobran por local, no por silla, y ninguno cobra comisión por cita.
             </p>
             {/* Cómo se parte (21-10-2026): el alta principal es crear.synaptechspa.cl,
