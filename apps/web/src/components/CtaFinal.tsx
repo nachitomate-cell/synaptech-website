@@ -1,9 +1,11 @@
+import Image from "next/image";
 import { altaIA, agendaSinIA, CTA_IA, CTA_SIN_IA, waLink } from "@/content/catalogo";
 import { PRUEBA, fmt } from "@/content/precios";
 import Aparece from "@/components/Aparece";
 
 /* `oscuro` (23-10-2026): el cierre del inicio en el estilo de su portada. */
-export default function CtaFinal({ origen = "home-final", oscuro = false }: { origen?: string; oscuro?: boolean }) {
+export default function CtaFinal({ origen = "home-final", oscuro = false, club = false }: { origen?: string; oscuro?: boolean; club?: boolean }) {
+  if (oscuro && club) return <CtaClub origen={origen} />;
   if (oscuro) return <CtaOscuro origen={origen} />;
   return (
     <section className="py-16 md:py-24 bg-mist">
@@ -45,6 +47,45 @@ function CtaOscuro({ origen }: { origen: string }) {
         </h2>
         <p className="mt-6 text-lg text-white/65 leading-relaxed">
           {PRUEBA.conIA} días gratis del plan {PRUEBA.plan} ({fmt(PRUEBA.valor)} + IVA que no pagas), con Syna respondiendo tu WhatsApp desde el primer día.
+        </p>
+        <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8">
+          <a href={altaIA(origen)}
+            className="inline-flex justify-center items-center bg-white text-[#05080D] font-semibold px-8 py-4 rounded-full hover:bg-white/90 transition-colors">
+            {CTA_IA}
+          </a>
+          <a href={waLink("Hola, quiero conocer SynapTech para mi local")} target="_blank" rel="noopener noreferrer"
+            className="text-[#B8E36A] font-semibold hover:underline underline-offset-4">
+            Hablar por WhatsApp ›
+          </a>
+        </div>
+        <p className="mt-6 text-sm text-white/45">
+          No pedimos tarjeta para la prueba: no se cobra nada solo.{" "}
+          <a href={agendaSinIA(`${origen}-sin-ia`)} className="text-white/75 underline underline-offset-4 decoration-white/30 hover:decoration-white">{CTA_SIN_IA}</a>
+        </p>
+      </Aparece>
+    </section>
+  );
+}
+
+/* El cierre del inicio desde el 17-11-2026 (idea de notpato.app: la mascota,
+   una pregunta que pica y un solo botón). El ángulo es la fidelización, que
+   Ignacio pidió destacar: lo que pierde un local no es una cita, es el
+   cliente que no vuelve. /syna y /totem siguen con CtaOscuro. */
+function CtaClub({ origen }: { origen: string }) {
+  return (
+    <section className="relative overflow-hidden pt-20 md:pt-28 pb-24 md:pb-36 bg-[#05080D] text-white rounded-t-[36px] md:rounded-t-[56px]">
+      <div aria-hidden className="absolute left-1/2 top-full -translate-x-1/2 -translate-y-1/2 w-[900px] max-w-[150vw] aspect-[2/1] rounded-full opacity-50 blur-[110px]"
+        style={{ background: "radial-gradient(closest-side, rgba(156,204,60,.5), rgba(94,200,242,.25) 55%, transparent)" }} />
+      <Aparece className="relative max-w-3xl mx-auto px-4 sm:px-6 text-center">
+        <Image src="/hub/syna.webp" alt="Syna, el asistente con IA de SynapTech" width={276} height={520}
+          sizes="120px" className="mx-auto w-[96px] md:w-[120px] h-auto drop-shadow-[0_20px_40px_rgba(156,204,60,.35)]" />
+        <h2 className="mt-8 text-white">
+          ¿Cuántos clientes no volvieron este mes?
+          <span className="block bg-gradient-to-r from-[#B8E36A] via-[#9CCC3C] to-[#5EC8F2] bg-clip-text text-transparent pb-1">Que el próximo vuelva solo.</span>
+        </h2>
+        <p className="mt-6 text-lg text-white/65 leading-relaxed">
+          Sus sellos en el teléfono, el aviso cuando tiene un premio y un asistente que le agenda a cualquier hora.
+          Pruébalo {PRUEBA.conIA} días gratis con el plan {PRUEBA.plan} ({fmt(PRUEBA.valor)} + IVA que no pagas).
         </p>
         <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8">
           <a href={altaIA(origen)}

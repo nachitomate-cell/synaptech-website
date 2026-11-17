@@ -12,7 +12,8 @@ import EnlacesAgencias from "@/components/EnlacesAgencias";
 import Cambiate      from "@/components/Cambiate";
 import Testimonials  from "@/components/Testimonials";
 import LogosLocales  from "@/components/LogosLocales";
-import Integraciones from "@/components/Integraciones";
+import Conecta from "@/components/Conecta";
+import ClubFidelizacion from "@/components/ClubFidelizacion";
 import Pricing       from "@/components/Pricing";
 import FAQ           from "@/components/FAQ";
 import CtaFinal      from "@/components/CtaFinal";
@@ -56,6 +57,8 @@ export default function Home() {
         <TiraPortada />
         <Cifras />
         <Confianza />
+        {/* 17-11-2026 (idea de notpato.app): los logos grandes, en oscuro, empalmando con el video de Syna. Reemplaza al carrusel de Integraciones de más abajo. */}
+        <Conecta />
         {/* El video del omnicanal (26-10-2026) bajó aquí cuando la secretaria tomó su lugar. */}
         <VideoSynaJsonLd url="https://www.synaptechspa.cl/syna" />
         <section id="video-syna" className="bg-[#05080D] pt-16 md:pt-24 pb-20 md:pb-28 px-4 sm:px-6">
@@ -63,6 +66,8 @@ export default function Home() {
         </section>
         <TiempoPerdido />
         <VitrinaPlataforma />
+        {/* 17-11-2026: el club con sección propia (la tira de arriba apunta a /#club). */}
+        <ClubFidelizacion />
         <PromoMeses />
         <PlataEnOrden />
         <Rubros />
@@ -75,10 +80,9 @@ export default function Home() {
         <Testimonials />
         <VelocidadVideo />
         <LogosLocales />
-        <Integraciones />
         <Pricing />
         <FAQ />
-        <CtaFinal oscuro />
+        <CtaFinal oscuro club />
       </main>
       <Footer />
     </>
