@@ -263,6 +263,10 @@ h2 {
   .hero-entra, .hero-flota { animation: none; }
 }
 
+/* ── Chat del asistente (ChatAsistente.tsx): los tres puntitos de "escribiendo" ── */
+@keyframes chat-punto { 0%, 60%, 100% { opacity: .35; transform: translateY(0); } 30% { opacity: 1; transform: translateY(-3px); } }
+.chat-punto { animation: chat-punto 1s ease-in-out infinite; }
+
 /* ── Centro omnicanal (CentroOmnicanal.tsx) ───────────────────────────────
    Orden, igual que en el video pitch: aparece Syna → los canales saltan a su
    lugar → las líneas se trazan hacia ella → los datos viajan sin parar por las

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Aparece from "@/components/Aparece";
+import PrecioConAnual from "@/components/PrecioConAnual";
 import {
   ANUAL, INDEPENDIENTE, INDEPENDIENTE_IA, LOCAL, LOCAL_IA, TODO_INCLUIDO, TODO_INCLUIDO_AHORRO, TODO_INCLUIDO_SEPARADO, PRUEBA, fmt, type Plan,
 } from "@/content/precios";
@@ -25,10 +26,12 @@ export function TarjetaPlan({ p }: { p: Plan }) {
       {p.popular && <span className="absolute -top-3 left-7 bg-lime text-ink text-xs font-bold px-3 py-1 rounded-full">Más elegido</span>}
       <p className={`text-xs font-semibold uppercase tracking-[0.12em] ${oscuro ? "text-lime" : "text-accent"}`}>{p.sub}</p>
       <h3 className="font-display font-bold text-3xl tracking-tight mt-1">Plan {p.nombre}</h3>
-      <p className="mt-5">
-        <span className="font-display font-bold text-[40px] tracking-tight leading-none">{fmt(p.mes)}</span>
-        <span className={`text-sm ml-1 ${oscuro ? "text-white/60" : "text-text-muted"}`}>+ IVA / mes</span>
-      </p>
+      {p.id === "local-ia" ? <PrecioConAnual mes={p.mes} oscuro={oscuro} /> : (
+        <p className="mt-5">
+          <span className="font-display font-bold text-[40px] tracking-tight leading-none">{fmt(p.mes)}</span>
+          <span className={`text-sm ml-1 ${oscuro ? "text-white/60" : "text-text-muted"}`}>+ IVA / mes</span>
+        </p>
+      )}
       <p className={`text-sm mt-1 ${oscuro ? "text-white/60" : "text-text-muted"}`}>
         {p.profesionales === 1 ? "1 profesional" : "por local, profesionales ilimitados"}
       </p>
