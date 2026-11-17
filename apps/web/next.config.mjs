@@ -48,7 +48,12 @@ const nextConfig = {
      medida"). Hasta el 09-10-2026 seguían respondiendo 200 con noindex; ahora
      no existen y cada una lleva a la página del producto que la reemplaza. */
   async redirects() {
+    /* synaptechads.cl (17-11-2026): dominio de los correos de prospección de
+       publicidad en ChatGPT. Todo lo que llegue ahí va a la página del servicio. */
+    const ADS = "https://synaptechspa.cl/publicidad-en-chatgpt";
     return [
+      { source: "/:path*", has: [{ type: "host", value: "synaptechads.cl" }], destination: ADS, permanent: true },
+      { source: "/:path*", has: [{ type: "host", value: "www.synaptechads.cl" }], destination: ADS, permanent: true },
       { source: "/saas-comercial", destination: "/barberias", permanent: true },
       { source: "/casos", destination: "/locales", permanent: true },
       { source: "/casos/:slug*", destination: "/locales", permanent: true },
