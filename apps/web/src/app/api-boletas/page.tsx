@@ -26,7 +26,7 @@ function Seccion({ id, titulo, children }: { id: string; titulo: string; childre
 
 function Codigo({ children }: { children: string }) {
   return (
-    <pre className="font-mono text-[12.5px] leading-relaxed bg-bg-secondary border border-border-subtle rounded-xl p-4 overflow-x-auto text-text-primary">
+    <pre className="font-mono text-[11px] sm:text-[12.5px] leading-relaxed bg-bg-secondary border border-border-subtle rounded-xl p-4 overflow-x-auto text-text-primary">
       <code>{children}</code>
     </pre>
   );
@@ -36,9 +36,21 @@ function C({ children }: { children: ReactNode }) {
   return <code className="font-mono text-[0.9em] bg-bg-secondary border border-border-subtle rounded px-1.5 py-0.5 text-text-primary break-words">{children}</code>;
 }
 
+/* En celular cada fila es una tarjeta apilada (la tabla de 3 columnas dejaba
+   la explicación en una columna de una palabra por línea a 360 px); desde sm,
+   tabla normal. */
 function Tabla({ cabecera, filas }: { cabecera: string[]; filas: ReactNode[][] }) {
   return (
-    <div className="overflow-x-auto border border-border-subtle rounded-xl">
+    <>
+    <ul className="sm:hidden border border-border-subtle rounded-xl divide-y divide-border-subtle">
+      {filas.map((f, i) => (
+        <li key={i} className="px-4 py-3 space-y-1.5 text-sm">
+          <div className="flex flex-wrap items-center gap-2">{f.slice(0, f.length - 1).map((celda, j) => <span key={j} className={j === 0 ? "" : "text-text-muted"}>{celda}</span>)}</div>
+          <div>{f[f.length - 1]}</div>
+        </li>
+      ))}
+    </ul>
+    <div className="hidden sm:block overflow-x-auto border border-border-subtle rounded-xl">
       <table className="w-full text-left text-sm">
         <thead>
           <tr className="text-text-muted border-b border-border-subtle bg-bg-secondary">
@@ -52,6 +64,7 @@ function Tabla({ cabecera, filas }: { cabecera: string[]; filas: ReactNode[][] }
         </tbody>
       </table>
     </div>
+    </>
   );
 }
 
