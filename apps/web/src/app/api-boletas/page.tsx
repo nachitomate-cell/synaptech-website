@@ -74,6 +74,7 @@ const INDICE = [
   ["sucursales", "Sucursales y profesionales"],
   ["emitir", "Emitir las boletas"],
   ["estado", "Consultar el estado"],
+  ["listado", "Listar lo emitido"],
   ["errores", "Errores"],
   ["sandbox", "Probar en el sandbox"],
   ["anulaciones", "Anulaciones"],
@@ -251,7 +252,60 @@ export default function ApiBoletas() {
             </p>
           </Seccion>
 
-          <Seccion id="errores" titulo="6. Errores">
+          <Seccion id="listado" titulo="6. Listar lo emitido">
+            <Codigo>{"GET /sucursales/{sucursal}/boletas?desde=2026-11-01&hasta=2026-11-22"}</Codigo>
+            <p>
+              Devuelve todas las atenciones de la sucursal que pasaron por boleta en esas fechas, se hayan emitido por esta API o desde el
+              panel de SynapTech. Sirve para cuadrar día a día lo que se está emitiendo desde tu propio sistema. El rango máximo es de 31
+              días y la fecha es la de la atención.
+            </p>
+            <Tabla
+              cabecera={["Parámetro", "Qué es"]}
+              filas={[
+                [<C key="p">desde</C>, "AAAA-MM-DD. Si falta, es igual a hasta."],
+                [<C key="p">hasta</C>, "AAAA-MM-DD. Si falta, es hoy (hora de Chile)."],
+                [<C key="p">sede</C>, "Filtra por sede cuando la sucursal tiene más de una."],
+                [<C key="p">incluir_omitidas</C>, "true para listar también las atenciones que no llevaban boleta (estado omitida, con su motivo). Siempre se cuentan en resumen."],
+              ]}
+            />
+            <Codigo>{`{
+  "sucursal": "oren",
+  "desde": "2026-11-19",
+  "hasta": "2026-11-19",
+  "resumen": {
+    "atenciones": 12, "emitidas": 3, "omitidas": 9,
+    "con_error": 0, "procesando": 0,
+    "monto_boletas_local": 9000, "monto_honorarios": 0
+  },
+  "boletas": [
+    {
+      "cita_id": "IKbRBQpXZHfM7n1s9wGs",
+      "fecha": "2026-11-19", "hora": "18:00",
+      "sede": "villaalemana",
+      "profesional": "Barbero Pablo",
+      "servicio": "Corte de Cabello",
+      "total_atencion": 10000,
+      "medio_pago": "Efectivo",
+      "estado": "emitida",
+      "documentos": [
+        { "tipo": "afecta", "tipo_dte": 39, "folio": 103,
+          "neto": 2521, "iva": 479, "total": 3000,
+          "estado": "emitida",
+          "emitida_en": "2026-11-20T06:34:45.303Z",
+          "pdf": "https://..." }
+      ],
+      "honorarios": null
+    }
+  ]
+}`}</Codigo>
+            <p>
+              <strong className="text-text-primary">Claves de solo lectura.</strong> Un local que emite desde el panel y solo quiere controlar
+              lo emitido recibe una clave <C>stk_live_</C> de solo lectura: funcionan todos los GET y un POST responde{" "}
+              <C>403 solo_lectura</C>, así que no puede timbrar nada.
+            </p>
+          </Seccion>
+
+          <Seccion id="errores" titulo="7. Errores">
             <Codigo>{`{
   "error": {
     "codigo": "profesional_no_listo",
@@ -265,6 +319,7 @@ export default function ApiBoletas() {
                 ["400", <C key="c">datos_invalidos</C>, "Faltan campos o vienen mal. detalles lista cada problema."],
                 ["401", <C key="c">no_autorizado</C>, "Falta la clave o no es válida."],
                 ["404", <C key="c">sucursal_no_encontrada</C>, "La sucursal no está habilitada para tu clave. También boleta_no_encontrada y ruta_no_encontrada."],
+                ["403", <C key="c">solo_lectura</C>, "La clave es de solo lectura y se intentó emitir."],
                 ["409", <C key="c">id_externo_repetido</C>, "Ese id_externo ya se usó con otros datos."],
                 ["422", <C key="c">sucursal_no_lista</C>, "A la sucursal le falta configuración (mensaje dice qué)."],
                 ["422", <C key="c">profesional_no_listo</C>, "El profesional todavía no puede emitir. También profesional_no_encontrado."],
@@ -275,7 +330,7 @@ export default function ApiBoletas() {
             <p>Los errores 4xx se validan antes de emitir: si recibes uno, no salió ninguna boleta.</p>
           </Seccion>
 
-          <Seccion id="sandbox" titulo="7. Probar en el sandbox">
+          <Seccion id="sandbox" titulo="8. Probar en el sandbox">
             <p>
               Con una clave <C>stk_test_</C> la única sucursal es <C>prueba</C>. <C>pro-prueba-1</C> está listo para emitir y{" "}
               <C>pro-prueba-2</C> responde <C>profesional_no_listo</C>, para que pruebes ese caso.
@@ -288,7 +343,7 @@ export default function ApiBoletas() {
        "porcentaje_profesional":50,"medio_pago":"efectivo"}'`}</Codigo>
           </Seccion>
 
-          <Seccion id="anulaciones" titulo="8. Anulaciones">
+          <Seccion id="anulaciones" titulo="9. Anulaciones">
             <p>
               En esta versión las boletas se anulan desde el panel de SynapTech: nota de crédito para la del local y anulación en el SII
               para la de honorarios. La consulta de la sección 5 refleja el estado <C>anulada</C>.
