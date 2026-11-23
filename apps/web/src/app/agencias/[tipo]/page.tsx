@@ -145,7 +145,7 @@ export default function PaginaTipoAgencia({ params }: { params: { tipo: string }
               ))}
             </div>
             <p className="mt-8 text-text-secondary leading-relaxed max-w-3xl">
-              Todo pasa en una sola bandeja con WhatsApp e Instagram.{" "}
+              Todo pasa en una sola bandeja con WhatsApp, Instagram y Messenger.{" "}
               <Link href="/agente-ia-omnicanal" className="font-semibold text-ink underline decoration-lime decoration-2 underline-offset-4 hover:decoration-ink">Cómo funciona el agente omnicanal</Link>
               {" "}y{" "}
               <Link href="/crm-whatsapp" className="font-semibold text-ink underline decoration-lime decoration-2 underline-offset-4 hover:decoration-ink">el tablero de ventas</Link>.

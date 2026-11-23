@@ -7,7 +7,7 @@ import RevealHeading from "./RevealHeading";
 const FAQS = [
   {
     q: "¿Qué incluye y cuánto cuesta?",
-    a: "Si atiendes solo, desde $9.990 + IVA al mes (plan Independiente). Con equipo, $29.900 + IVA al mes por local con profesionales ilimitados (plan Local): agenda online, ficha de clientes, caja, comisiones, métricas y club de fidelización con tarjeta en Google Wallet y Apple Wallet. El asistente con IA por WhatsApp viene en los planes Independiente IA ($24.900 + IVA) y Local IA ($49.900 + IVA). Todo Incluido, con boletas ante el SII, Instagram y Reactivación IA, cuesta $79.900 + IVA. El plan anual son $399.000 + IVA por Local IA, equivalente a ocho meses. El detalle completo está en la página de precios.",
+    a: "Si atiendes solo, desde $9.990 + IVA al mes (plan Independiente). Con equipo, $29.900 + IVA al mes por local con profesionales ilimitados (plan Local): agenda online, ficha de clientes, caja, comisiones, métricas y club de fidelización con tarjeta en Google Wallet y Apple Wallet. El asistente con IA viene en los planes Independiente IA ($24.900 + IVA) y Local IA ($49.900 + IVA), y responde por WhatsApp, Instagram y Facebook Messenger sin costo extra. Todo Incluido, con boletas ante el SII y Reactivación IA, cuesta $79.900 + IVA. El plan anual son $399.000 + IVA por Local IA, equivalente a ocho meses. El detalle completo está en la página de precios.",
   },
   {
     q: "¿Cobran por profesional o por silla?",

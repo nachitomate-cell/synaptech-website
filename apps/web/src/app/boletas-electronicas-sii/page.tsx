@@ -84,8 +84,8 @@ export default function Pagina() {
               <p className="eyebrow mb-4">Cuánto cuesta</p>
               <h2 className="text-ink">Incluidas en Todo Incluido, o como adicional de tu plan.</h2>
               <p className="text-text-secondary text-lg mt-5 leading-relaxed">
-                Todo Incluido trae Local IA con boletas, Instagram, Reactivación IA y dominio por {fmt(TODO_INCLUIDO.mes)} + IVA:
-                por separado serían {fmt(TODO_INCLUIDO_SEPARADO)}, ahorras {fmt(TODO_INCLUIDO_AHORRO)} al mes.
+                Todo Incluido trae Local IA con boletas, Reactivación IA, más conversaciones y dominio por {fmt(TODO_INCLUIDO.mes)} + IVA.
+                Por separado serían {fmt(TODO_INCLUIDO_SEPARADO)}, ahorras {fmt(TODO_INCLUIDO_AHORRO)} al mes.
               </p>
             </div>
             <div className="grid md:grid-cols-2 gap-5 max-w-4xl">

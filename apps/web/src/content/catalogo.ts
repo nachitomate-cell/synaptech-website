@@ -99,7 +99,7 @@ export const FAMILIAS: Familia[] = [
   {
     id: "asistente",
     nombre: "Asistente con IA",
-    bajada: "Responde y agenda por WhatsApp e Instagram en el número del local.",
+    bajada: "Responde y agenda en el WhatsApp del local, y también en Instagram y Messenger.",
     imagen: "/panel/asistente-bandeja.webp",
     imagenAlt: "Bandeja de WhatsApp con una conversación atendida por el asistente",
     href: "/asistente-ia-whatsapp",
@@ -107,7 +107,7 @@ export const FAMILIAS: Familia[] = [
     capsula: "reel-asistente-whatsapp",
     items: [
       { label: "Asistente en WhatsApp", desc: "Contesta precios, horarios y agenda la hora" },
-      { label: "Asistente en Instagram", desc: "Atiende los mensajes directos (en Todo Incluido o como adicional)" },
+      { label: "Instagram y Messenger", desc: "Atiende los mensajes directos y de Facebook, sin costo extra" },
       { label: "Bandeja compartida", desc: "Todo el equipo ve y responde las conversaciones" },
       { label: "Escala a una persona", desc: "Cuando la conversación se complica, avisa" },
     ],

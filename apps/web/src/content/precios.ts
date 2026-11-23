@@ -6,8 +6,14 @@
      · Para quién: Independiente (1 profesional) o Local (profesionales ilimitados).
      · Con o sin IA: el plan "IA" suma el asistente de WhatsApp, Syna tu
        secretaria y "el asistente vende".
-   Y arriba, Todo Incluido: Local IA + boletas ante el SII + Instagram +
-   Reactivación IA + 500 conversaciones + dominio propio.
+   Y arriba, Todo Incluido: Local IA + boletas ante el SII + Reactivación IA +
+   500 conversaciones + dominio propio.
+   23-11-2026 (Ignacio): el asistente responde en WhatsApp, Instagram y Facebook
+   Messenger SIN COSTO en todo plan con asistente (también el anual y los de
+   agencia). Las conversaciones del plan son una sola bolsa para los 3 canales
+   (en copy nuevo no destacar el número). El adicional "Asistente en Instagram"
+   ($19.900) ya no existe. Se activa pidiéndolo desde el panel y lo conecta
+   SynapTech.
    Nombres viejos: Básico = Local, Pro = Local IA. Home Studio ($14.900) y Full
    ($69.900) ya no se publican (los clientes actuales mantienen lo pactado).
 
@@ -129,11 +135,11 @@ export const PLANES: Plan[] = [
     profesionales: "ilimitados",
     ia: true,
     conversaciones: 500,
-    descripcion: "El plan Local IA con boletas ante el SII, Instagram, Reactivación IA y tu dominio, sin adicionales.",
+    descripcion: "El plan Local IA con boletas ante el SII, Reactivación IA, más conversaciones y tu dominio, sin adicionales.",
     destacados: [
       "Todo el plan Local IA",
       "Boletas y facturas ante el SII automáticas, sin instalación",
-      "Asistente también en Instagram y Reactivación IA",
+      "Reactivación IA: les escribe a los clientes que dejaron de venir",
       "500 conversaciones al mes y dominio propio",
     ],
   },
@@ -155,22 +161,24 @@ export const ANUAL = { anio: 399000, equivaleMeses: 8, base: "Local IA" };
 export const PRECIO = {
   boletasLocal: 24900,
   boletasIndependiente: 12900,
-  instagram: 19900,
   conversacionesExtra: 9900,
   secretaria: 9900,
   reactivacion: 9900,
   dominioAnio: 15000,
 };
 
-/* El ancla de Todo Incluido: lo que costaría armarlo por separado sobre Local IA. */
-export const TODO_INCLUIDO_SEPARADO = LOCAL_IA.mes + PRECIO.boletasLocal + PRECIO.instagram + PRECIO.reactivacion; // 104.600
-export const TODO_INCLUIDO_AHORRO = TODO_INCLUIDO_SEPARADO - TODO_INCLUIDO.mes; // 24.700
+/* El ancla de Todo Incluido: lo que costaría armarlo por separado sobre Local IA.
+   Desde el 23-11-2026 Instagram ya no suma (va sin costo en todo plan con
+   asistente); entran las conversaciones que trae de más (500 vs 300 = 2 tramos
+   de 100). El dominio ($15.000 al año) no se cuenta. */
+export const TODO_INCLUIDO_CONV_EXTRA = ((TODO_INCLUIDO.conversaciones ?? 0) - (LOCAL_IA.conversaciones ?? 0)) / 100 * PRECIO.conversacionesExtra; // 19.800
+export const TODO_INCLUIDO_SEPARADO = LOCAL_IA.mes + PRECIO.boletasLocal + PRECIO.reactivacion + TODO_INCLUIDO_CONV_EXTRA; // 104.500
+export const TODO_INCLUIDO_AHORRO = TODO_INCLUIDO_SEPARADO - TODO_INCLUIDO.mes; // 24.600
 
 export type Adicional = { id: string; nombre: string; desc: string; precio: string; nota?: string };
 
 export const ADICIONALES: Adicional[] = [
   { id: "boletas", nombre: "Boletas y facturas ante el SII", desc: "La boleta del local y la boleta de honorarios de cada profesional salen solas al cerrar la cita, directo ante el SII.", precio: `${fmt(PRECIO.boletasLocal)} / mes`, nota: `${fmt(PRECIO.boletasIndependiente)} en Independiente e Independiente IA. Incluidas en Todo Incluido. Sin costo de instalación` },
-  { id: "instagram", nombre: "Asistente en Instagram", desc: "El asistente también responde y agenda por mensaje directo de Instagram.", precio: `${fmt(PRECIO.instagram)} / mes`, nota: "Para Independiente IA y Local IA. Incluido en Todo Incluido" },
   { id: "conversaciones", nombre: "Conversaciones extra", desc: "Si se acaba el cupo del mes, el asistente no se corta: se suma un tramo de 100 conversaciones.", precio: `${fmt(PRECIO.conversacionesExtra)} cada 100` },
   { id: "secretaria", nombre: "Syna, tu secretaria", desc: "Le escribes por WhatsApp, por texto o audio, y revisa tu agenda, te cuenta cuánto vendiste y te recuerda lo pendiente.", precio: `${fmt(PRECIO.secretaria)} / mes`, nota: "Para Independiente y Local. Incluida en los planes con IA" },
   { id: "reactivacion", nombre: "Reactivación IA", desc: "Detecta a los clientes que dejaron de venir y les escribe a tiempo para que vuelvan.", precio: `${fmt(PRECIO.reactivacion)} / mes`, nota: "Incluida en Todo Incluido" },
@@ -262,7 +270,7 @@ export const COMPARATIVA: Grupo[] = [
       { label: "Recordatorios de cita por WhatsApp", ayuda: "Con el asistente conectado al número del local, a clientes que lo autorizaron", v: [false, true, false, true, true] },
       { label: "Syna, tu secretaria por WhatsApp", v: [add(PRECIO.secretaria), true, add(PRECIO.secretaria), true, true] },
       { label: "El asistente vende tus productos", ayuda: "Es parte del asistente: solo en los planes con IA", v: [false, true, false, true, true] },
-      { label: "Asistente en Instagram", v: [false, add(PRECIO.instagram), false, add(PRECIO.instagram), true] },
+      { label: "Asistente en Instagram y Facebook Messenger", ayuda: "Sin costo extra. Lo pides desde el panel y lo conectamos", v: [false, true, false, true, true] },
       { label: "Reactivación IA", v: [add(PRECIO.reactivacion), add(PRECIO.reactivacion), add(PRECIO.reactivacion), add(PRECIO.reactivacion), true] },
     ],
   },

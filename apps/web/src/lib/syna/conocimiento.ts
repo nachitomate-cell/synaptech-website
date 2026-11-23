@@ -23,7 +23,8 @@ export function seccionPlanes() {
   const crecer = CRECER.map((s) => `- ${s.nombre}: ${fmt(s.mes)} + IVA al mes. ${s.desc}`).join("\n");
   return `## Planes y precios (netos, en pesos chilenos; se suma IVA del 19 %)
 ${planes}
-- Todo Incluido por separado costaría ${fmt(TODO_INCLUIDO_SEPARADO)} + IVA (Local IA + boletas + Instagram + Reactivación IA): ahorra ${fmt(TODO_INCLUIDO_AHORRO)} al mes.
+- Todo Incluido por separado costaría ${fmt(TODO_INCLUIDO_SEPARADO)} + IVA (Local IA + boletas + Reactivación IA + 200 conversaciones extra): ahorra ${fmt(TODO_INCLUIDO_AHORRO)} al mes.
+- Instagram y Facebook Messenger (desde el 23-11-2026): el asistente responde también ahí SIN COSTO EXTRA en todo plan con asistente (Independiente IA, Local IA, anual y Todo Incluido, y los de agencia). Las conversaciones del plan sirven para los 3 canales, no se cuentan aparte. Se pide desde el panel y SynapTech lo conecta. El adicional "Asistente en Instagram" ya no existe.
 - Plan anual: ${fmt(ANUAL.anio)} + IVA, todo el ${ANUAL.base} pagando una vez al año (equivale a ${ANUAL.equivaleMeses} meses).
 - Independiente e Independiente IA son para 1 profesional (barbero independiente, estudio en casa, a domicilio). Local, Local IA y Todo Incluido: profesionales ilimitados. Sin comisión por reserva. Sin permanencia.
 - Las conversaciones del asistente tienen cupo (150, 300 o 500 al mes según el plan); si se acaban, el asistente no se corta y se suman tramos de 100 a $9.900 + IVA. NUNCA decir "ilimitado" ni "sin tope".
