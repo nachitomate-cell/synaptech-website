@@ -7,7 +7,7 @@ import Link from "next/link";
    última, a la página de Wellhub. */
 const PESTANAS = [
   { etiqueta: "Agenda online", texto: "Tus clientes reservan solos, a cualquier hora", href: "/#agenda" },
-  { etiqueta: "Inteligencia artificial", texto: "Syna responde y agenda por WhatsApp", href: "/#asistente" },
+  { etiqueta: "Inteligencia artificial", texto: "Syna responde por WhatsApp, Instagram y Messenger", href: "/#tres-canales" },
   { etiqueta: "Cobros", texto: "Caja, comisiones y boletas ante el SII", href: "/#cobros" },
   { etiqueta: "Fidelización", texto: "Sellos, premios y tarjeta en Wallet", href: "/#club" },
   { etiqueta: "Nuevo · Wellhub", texto: "El check-in de tus alumnas, validado solo", href: "/wellhub" },

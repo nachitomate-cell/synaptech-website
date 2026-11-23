@@ -18,6 +18,7 @@ import Pricing       from "@/components/Pricing";
 import FAQ           from "@/components/FAQ";
 import CtaFinal      from "@/components/CtaFinal";
 import Footer        from "@/components/Footer";
+import TresCanales   from "@/components/TresCanales";
 import { metaPagina } from "@/lib/seo";
 import VienesDe from "@/components/VienesDe";
 import VelocidadVideo from "@/components/VelocidadVideo";
@@ -53,6 +54,8 @@ export default function Home() {
         <VideoMarcaJsonLd />
         <VideoMarca />
         <HeroOscuro despuesDeVideo />
+        {/* 23-11-2026: novedad, el asistente en los 3 canales sin costo extra. */}
+        <TresCanales />
         {/* "Syna, tu secretaria" estuvo aquí del 27 al 28-10-2026; Ignacio la pasó a /empresas. */}
         <TiraPortada />
         <Cifras />
@@ -74,7 +77,7 @@ export default function Home() {
         {/* Agencias y equipos de venta (09-11-2026): enlaces en el HTML a las páginas por tipo, omnicanal y CRM. */}
         <EnlacesAgencias variante="franja" fondo="!pt-0" eyebrow="Agencias y equipos de venta"
           titulo="¿Vendes por WhatsApp con un equipo?"
-          bajada="Un agente de IA responde tu WhatsApp e Instagram en una sola bandeja, reparte los chats entre tus vendedores y deja cada venta en un tablero." />
+          bajada="Un agente de IA responde tu WhatsApp, Instagram y Messenger en una sola bandeja, reparte los chats entre tus vendedores y deja cada venta en un tablero." />
         <Cambiate />
         <VienesDe />
         <Testimonials />
