@@ -24,7 +24,6 @@ import { breadcrumbLd, grafo, servicioAgenciaLd } from "@/lib/ld";
 const PATH = "/crm-whatsapp";
 const MIGAS = [{ nombre: "CRM de WhatsApp", path: PATH }];
 const EXTRA = adicionalAgencia("conversaciones");
-const IG = adicionalAgencia("instagram");
 
 export const metadata = metaPagina({
   title: "CRM de WhatsApp con IA para equipos de venta | SynapTech",
@@ -79,7 +78,7 @@ const FAQ: Pregunta[] = [
   { q: "¿Cada vendedor ve solo sus clientes?", a: "Sí. Cada vendedor entra con su usuario, desde el panel o la app, y ve sus conversaciones, su embudo y sus comisiones. El dueño ve todo y puede cambiar a quién está asignado un cliente." },
   { q: "¿Cómo se calculan las comisiones?", a: "Al cerrar la venta queda el monto. Lo que se paga a terceros se descuenta antes de calcular la comisión, y a fin de mes ves cuánto le corresponde a cada vendedor, con una planilla en Excel para pagar." },
   { q: "¿Se conecta con otro CRM que ya uso?", a: "No. El embudo, las carteras y las comisiones viven en SynapTech. Si hoy llevas las ventas en una planilla, el tablero la reemplaza." },
-  { q: "¿Cuánto cuesta?", a: `El CRM con reparto, cartera por vendedor, cierre y comisiones viene en ${AGENCIA_EQUIPO.nombre}: ${fmt(AGENCIA_EQUIPO.mes)} + IVA al mes, con el asistente en WhatsApp e Instagram, ${AGENCIA_EQUIPO.conversaciones} conversaciones y vendedores ilimitados. Si vendes solo, ${AGENCIA_SOLO.nombre} cuesta ${fmt(AGENCIA_SOLO.mes)} + IVA, con tablero de ventas. Conversaciones extra: ${fmt(EXTRA.mes)} + IVA cada 100; Instagram en ${AGENCIA_SOLO.nombre}: ${fmt(IG.mes)} + IVA.` },
+  { q: "¿Cuánto cuesta?", a: `El CRM con reparto, cartera por vendedor, cierre y comisiones viene en ${AGENCIA_EQUIPO.nombre}: ${fmt(AGENCIA_EQUIPO.mes)} + IVA al mes, con el asistente en WhatsApp, Instagram y Messenger, ${AGENCIA_EQUIPO.conversaciones} conversaciones y vendedores ilimitados. Si vendes solo, ${AGENCIA_SOLO.nombre} cuesta ${fmt(AGENCIA_SOLO.mes)} + IVA, con tablero de ventas y los mismos tres canales sin costo extra. Conversaciones extra: ${fmt(EXTRA.mes)} + IVA cada 100.` },
 ];
 
 const REEMPLAZOS: [string, string][] = [
@@ -102,7 +101,7 @@ export default function CrmWhatsappPage() {
       tipo: "CRM de WhatsApp con asistente de IA para equipos de venta",
       descripcion: "Embudo de ventas por etapas (nuevos, cotizados, reservados, cerrados y perdidos) a partir de las conversaciones de WhatsApp e Instagram, reparto automático entre vendedores con aviso al celular, cartera por vendedor, cierre de venta desde el chat con monto y número de personas, comisiones calculadas a fin de mes y seguimiento automático a las 48 horas. Un asistente con IA responde los chats en español, portugués e inglés.",
       path: PATH,
-      audiencia: "Equipos de venta que atienden por WhatsApp e Instagram",
+      audiencia: "Equipos de venta que atienden por WhatsApp, Instagram y Messenger",
     }),
   );
 

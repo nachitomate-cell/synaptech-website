@@ -14,13 +14,14 @@ import { fmt } from "@/content/precios";
 
    Reglas (mismas que /agencias):
    - Solo se afirma lo que la plataforma hace hoy: asistente en el WhatsApp
-     propio (QR) y en los mensajes de Instagram, una sola bandeja, reparto por
+     propio (QR), en los mensajes de Instagram y en Facebook Messenger (sin costo
+     en los dos planes desde el 23-11-2026), una sola bandeja, reparto por
      turnos con aviso al celular, tablero por etapas, cierre desde el chat,
      comisiones, seguimiento a las 48 horas (una vez, no si dijo que no) y en
      lote, español/portugués/inglés, pesos o reales.
    - NO se promete: conexión con portales (Portal Inmobiliario, Booking),
      sistemas de reservas (Amadeus), cotizadores de aseguradoras, DMS ni otros
-     CRM; correo, SMS, Messenger, chat web ni llamadas; cobro dentro del chat;
+     CRM; correo, SMS, chat web ni llamadas; cobro dentro del chat;
      agendar visitas, pruebas de manejo o fechas por su cuenta.
    - Sin nombres de clientes, testimonios, cifras de resultados ni competencia.
      Los chats de ejemplo son inventados y lo dicen. */
@@ -58,7 +59,6 @@ export type TipoAgencia = {
   og: { pill: string; titular: string; bajada: string };
 };
 
-const IG = adicionalAgencia("instagram");
 const EXTRA = adicionalAgencia("conversaciones");
 
 /* Reemplazos de los textos de los planes. La base está en palabras de turismo. */
@@ -78,9 +78,9 @@ const catalogo = (c: string): Reemplazos => [["catálogo de paseos y traslados",
 
 /* Respuestas que se repiten con datos de los planes (nunca precios escritos a mano). */
 const respuestaInstagram = (clientes: string) =>
-  `Sí. En ${AGENCIA_EQUIPO.nombre} el asistente responde también los mensajes directos de Instagram, y ${clientes} caen en la misma bandeja que los de WhatsApp. En ${AGENCIA_SOLO.nombre}, Instagram se suma por ${fmt(IG.mes)} + IVA al mes.`;
+  `Sí. En los dos planes el asistente responde también los mensajes directos de Instagram y los de Facebook Messenger, sin costo extra, y ${clientes} caen en la misma bandeja que los de WhatsApp. Lo pides desde el panel y nosotros lo conectamos.`;
 const respuestaConversaciones = (cliente: string) =>
-  `Una conversación es ${cliente} durante 24 horas, mande los mensajes que mande. ${AGENCIA_SOLO.nombre} trae ${AGENCIA_SOLO.conversaciones} al mes y ${AGENCIA_EQUIPO.nombre} ${AGENCIA_EQUIPO.conversaciones}, entre WhatsApp e Instagram. Si te pasas, el asistente sigue contestando y las extra cuestan ${fmt(EXTRA.mes)} + IVA cada 100.`;
+  `Una conversación es ${cliente} durante 24 horas, mande los mensajes que mande. ${AGENCIA_SOLO.nombre} trae ${AGENCIA_SOLO.conversaciones} al mes y ${AGENCIA_EQUIPO.nombre} ${AGENCIA_EQUIPO.conversaciones}, entre WhatsApp, Instagram y Messenger. Si te pasas, el asistente sigue contestando y las extra cuestan ${fmt(EXTRA.mes)} + IVA cada 100.`;
 const respuestaTemporada = `Hasta ${TEMPORADA_BAJA.meses} meses al año, ${AGENCIA_EQUIPO.nombre} baja a ${fmt(TEMPORADA_BAJA.mes)} + IVA al mes, con ${TEMPORADA_BAJA.conversaciones} conversaciones. Tu equipo y tu historial quedan intactos.`;
 const respuestaCatalogo = (que: string) =>
   `Pegas tu lista de precios o subes la foto de un afiche o una publicación. La IA la lee, arma el catálogo de ${que} y tú lo revisas antes de que el asistente lo use. Cuando algo cambia, lo actualizas igual.`;

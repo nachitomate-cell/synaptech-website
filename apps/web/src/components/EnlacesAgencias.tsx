@@ -10,7 +10,7 @@ import { TIPOS_AGENCIA } from "@/content/agencias-tipos";
    - "franja": una línea de enlaces (portada, /empresas, /asistente-ia-whatsapp). */
 
 export const PAGINAS_VENTAS = [
-  { href: "/agente-ia-omnicanal", nombre: "Agente de IA omnicanal", resumen: "WhatsApp e Instagram en una sola bandeja, con tu equipo." },
+  { href: "/agente-ia-omnicanal", nombre: "Agente de IA omnicanal", resumen: "WhatsApp, Instagram y Messenger en una sola bandeja, con tu equipo." },
   { href: "/crm-whatsapp", nombre: "CRM de WhatsApp", resumen: "Embudo, cartera por vendedor, cierre y comisiones." },
 ];
 

@@ -230,10 +230,10 @@ export const MODULOS_AGENCIA: Modulo[] = [
   {
     id: "omnicanal",
     nombre: "Bandeja omnicanal",
-    titular: "WhatsApp e Instagram, en una sola bandeja.",
+    titular: "WhatsApp, Instagram y Messenger, en una sola bandeja.",
     bajada: "Todas las conversaciones del equipo en un lugar, con Syna respondiendo y cotizando mientras tus vendedoras atienden.",
     pasos: [
-      p("agencia-bandeja", "mensajeCliente", "Todos los mensajes, juntos", "Lo que llega por WhatsApp y por Instagram entra a la misma bandeja, con su historial."),
+      p("agencia-bandeja", "mensajeCliente", "Todos los mensajes, juntos", "Lo que llega por WhatsApp, Instagram o Messenger entra a la misma bandeja, con su historial."),
       p("agencia-bandeja", "mensajeSyna", "Syna cotiza con tu catálogo", "Responde precios, horarios y qué incluye cada paseo, arma el pedido y se lo pasa a tu equipo."),
       p("agencia-bandeja", "atiende", "Cada conversación tiene su vendedora", "Se ve quién atiende a cada cliente, y el dueño la puede cambiar."),
       p("agencia-bandeja", "quienResponde", "Tú decides quién responde", "Syna responde, respondes tú, o Syna nunca le responde a ese cliente."),

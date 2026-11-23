@@ -186,7 +186,7 @@ export default function AgenciasPage() {
         {/* Otros tipos de agencia (09-11-2026): cada uno con su página. */}
         <EnlacesAgencias
           titulo="Tours, transfers, viajes, eventos, propiedades, seguros y autos."
-          bajada="Si tu agencia vende por WhatsApp e Instagram con un equipo, sirve igual. Mismos planes y precios; cada página cuenta cómo se usa en ese rubro." />
+          bajada="Si tu agencia vende por WhatsApp, Instagram o Messenger con un equipo, sirve igual. Mismos planes y precios; cada página cuenta cómo se usa en ese rubro." />
 
         <FaqSeo titulo="Planes para agencias: preguntas frecuentes." preguntas={FAQ} />
 

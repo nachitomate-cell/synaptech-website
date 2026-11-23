@@ -17,7 +17,10 @@ import type { LocalDirectorio } from "@/lib/directorio";
      puedes tomar el control. Funciona con Claude, de Anthropic.
    - Planes con IA (01-11-2026): Local IA $49.900 + IVA al mes con 300
      conversaciones; Independiente IA $24.900 + IVA con 150 (1 profesional).
-     NO "ilimitado", NO Instagram (eso es Todo Incluido o un adicional).
+     NO "ilimitado". Desde el 23-11-2026 SÍ se puede decir que el asistente
+     responde también en Instagram y Facebook Messenger sin costo extra (se
+     pide desde el panel y lo conecta SynapTech). Las conversaciones del plan
+     son las mismas para los 3 canales: no destacar un número al decirlo.
    - Tarjeta: solo "No pedimos tarjeta para la prueba".
    - Los chats de ejemplo son ilustrativos y se dicen como tales: los precios
      y las horas salen del catálogo y la agenda de cada local. */

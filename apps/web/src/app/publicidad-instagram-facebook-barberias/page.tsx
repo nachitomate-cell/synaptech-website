@@ -2,7 +2,7 @@ import Header   from "@/components/Header";
 import Footer   from "@/components/Footer";
 import FaqSeo   from "@/components/FaqSeo";
 import { HeroLanding, JsonLd, Puntos, Relacionados, TarjetaServicio, NotaInversion, BOTON, BOTON_BORDE } from "@/components/Landing";
-import { crecer, fmt, PRECIO } from "@/content/precios";
+import { crecer, fmt } from "@/content/precios";
 import { waLink } from "@/content/catalogo";
 import { metaPagina } from "@/lib/seo";
 import { breadcrumbLd, grafo, servicioLd } from "@/lib/ld";
@@ -41,7 +41,7 @@ const COMO = [
 const FAQ = [
   { q: "¿Cuánto cuesta la publicidad en Instagram para una barbería?", a: `El complemento Meta Ads cuesta ${fmt(META.mes)} + IVA al mes. Aparte va la inversión en anuncios, que pagas tú directo a Meta con tu tarjeta y defines tú. Con Google Ads, el Combo Anuncios cuesta ${fmt(COMBO.mes)} + IVA; con página web incluida, el Combo Crecer total, ${fmt(TOTAL.mes)} + IVA.` },
   { q: "¿La inversión en anuncios está incluida?", a: "No. Lo que se gasta en anuncios lo pagas tú a Meta, con tu tarjeta, y tú decides cuánto." },
-  { q: "¿Y si me escriben por Instagram en vez de reservar?", a: `El asistente con IA también puede responder y agendar por mensaje directo de Instagram: viene en el plan Todo Incluido, o como adicional de ${fmt(PRECIO.instagram)} + IVA al mes en Independiente IA y Local IA.` },
+  { q: "¿Y si me escriben por Instagram en vez de reservar?", a: "El asistente con IA también responde y agenda por mensaje directo de Instagram y por Facebook Messenger, sin costo extra, en todos los planes con asistente (Independiente IA, Local IA y Todo Incluido). Lo pides desde tu panel y nosotros lo conectamos." },
   { q: "¿Garantizan una cantidad de clientes?", a: "No. Nadie puede garantizar resultados en publicidad. Los anuncios se miden y se ajustan cada mes para que cada peso rinda más." },
   { q: "¿Tiene permanencia?", a: "No. Es mensual y lo dejas cuando quieras." },
 ];

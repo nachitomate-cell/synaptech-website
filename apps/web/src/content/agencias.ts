@@ -4,7 +4,10 @@
    El alta de agencias no es autoservicio todavía: todos los botones van al
    WhatsApp comercial.
    09-11-2026 (tarde): también lo usan /agencias/[tipo] (content/agencias-tipos.ts),
-   /agente-ia-omnicanal, /crm-whatsapp y la sección de agencias de /llms.txt. */
+   /agente-ia-omnicanal, /crm-whatsapp y la sección de agencias de /llms.txt.
+   23-11-2026: el asistente responde en WhatsApp, Instagram y Facebook Messenger
+   sin costo en los dos planes. Las conversaciones del plan sirven para los 3
+   canales. El adicional "Asistente en Instagram" ya no existe. */
 
 export type PlanAgencia = {
   id: string;
@@ -44,8 +47,9 @@ export const AGENCIA_SOLO: PlanAgencia = {
     "Tablero de ventas con quién preguntó, a quién se le cotizó y quién compró",
     "A las 48 horas le pregunta \"¿sigues interesado?\" a quien quedó callado",
     "Syna, tu secretaria por WhatsApp",
+    "El asistente también responde en Instagram y Facebook Messenger, sin costo extra",
   ],
-  nota: "Instagram se suma por $19.900 + IVA al mes.",
+  nota: "Las conversaciones del plan sirven para WhatsApp, Instagram y Messenger.",
   wa: "Hola, tengo una agencia y me interesa el plan Agencia Solo",
 };
 
@@ -58,8 +62,7 @@ export const AGENCIA_EQUIPO: PlanAgencia = {
   conversaciones: CONV_EQUIPO,
   incluye: [
     "Todo lo de Agencia Solo",
-    "El asistente también en los mensajes de Instagram",
-    `${CONV_EQUIPO} conversaciones al mes entre WhatsApp e Instagram`,
+    `${CONV_EQUIPO} conversaciones al mes entre WhatsApp, Instagram y Messenger`,
     "Vendedoras ilimitadas, cada una con su app y su cartera",
     "Reparto automático de chats y aviso al celular de quien le toca",
     "Cierre de venta desde el mismo chat, con monto y pasajeros",
@@ -88,7 +91,7 @@ export const MARCA_ADICIONAL: PlanAgencia = {
     "Las mismas vendedoras atienden las dos marcas desde una sola app",
     "Ventas y comisiones separadas por marca",
   ],
-  nota: "Ejemplo: dos marcas con Instagram quedan en $119.800 + IVA al mes.",
+  nota: "Ejemplo: Agencia Equipo con dos marcas queda en $119.800 + IVA al mes.",
   wa: "Hola, tengo una agencia con más de una marca y quiero saber cómo funciona la marca adicional",
 };
 
@@ -105,8 +108,6 @@ export const ADICIONALES_AGENCIA: AdicionalAgencia[] = [
     detalle: "Las dos gestiones juntas." },
   { id: "presencia", nombre: "Presencia en Google", mes: 24900, unidad: "+ IVA / mes",
     detalle: "Página web con tu dominio y tu ficha de Google." },
-  { id: "instagram", nombre: "Asistente en Instagram", mes: 19900, unidad: "+ IVA / mes",
-    detalle: "Para Agencia Solo. En Agencia Equipo ya viene incluido." },
   { id: "conversaciones", nombre: "Conversaciones extra", mes: 9900, unidad: "+ IVA cada 100",
     detalle: "Si pasas las de tu plan, el asistente sigue contestando." },
 ];
@@ -117,7 +118,7 @@ export const TEMPORADA_BAJA = { mes: 39900, meses: 3, conversaciones: 150 };
 /** Lo que trae siempre la instalación (tarjeta "Sin costo de instalación"). En
     palabras de turismo: los otros tipos de agencia lo pasan por adaptar(). */
 export const INSTALACION_AGENCIA = [
-  "Conectamos tu WhatsApp e Instagram",
+  "Conectamos tu WhatsApp, Instagram y Messenger",
   "Cargamos tu catálogo de paseos y traslados",
   "Capacitamos a tus vendedoras por videollamada",
   "30 días de prueba",

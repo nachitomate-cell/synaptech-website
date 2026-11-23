@@ -42,7 +42,8 @@ const PREGUNTAS = [
   { q: "¿Qué plan me conviene si atiendo solo?", a: `El plan Independiente, ${fmt(INDEPENDIENTE.mes)} + IVA al mes, trae todo el panel para 1 profesional: agenda y reserva online, caja, clientes, club en Wallet, tienda y tu página. Si quieres que un asistente con IA responda y agende en tu WhatsApp mientras atiendes, el plan Independiente IA cuesta ${fmt(INDEPENDIENTE_IA.mes)} + IVA, con ${INDEPENDIENTE_IA.conversaciones} conversaciones al mes. Cuando sumas a alguien, pasas al plan Local.` },
   { q: "¿Cobran por profesional o por silla?", a: `No. Los planes Local, Local IA y Todo Incluido cobran por local, con profesionales ilimitados: si mañana sumas a alguien al equipo, tu mensualidad no cambia. Los planes Independiente son para 1 profesional.` },
   { q: "¿Cobran comisión por cita o por reserva?", a: "No. Las citas son ilimitadas y no cobramos nada por reserva. Si cobras online, la comisión es la del medio de pago (Mercado Pago, Webpay o TUU), no nuestra." },
-  { q: "¿Qué trae el plan Todo Incluido?", a: `Todo el plan Local IA, más boletas y facturas ante el SII automáticas (sin costo de instalación), el asistente también en Instagram, Reactivación IA, ${TODO_INCLUIDO.conversaciones} conversaciones al mes y tu dominio propio. Cuesta ${fmt(TODO_INCLUIDO.mes)} + IVA al mes; por separado serían ${fmt(TODO_INCLUIDO_SEPARADO)}, así que ahorras ${fmt(TODO_INCLUIDO_AHORRO)} al mes.` },
+  { q: "¿Qué trae el plan Todo Incluido?", a: `Todo el plan Local IA, más boletas y facturas ante el SII automáticas (sin costo de instalación), Reactivación IA, ${TODO_INCLUIDO.conversaciones} conversaciones al mes y tu dominio propio. Cuesta ${fmt(TODO_INCLUIDO.mes)} + IVA al mes. Por separado serían ${fmt(TODO_INCLUIDO_SEPARADO)}, así que ahorras ${fmt(TODO_INCLUIDO_AHORRO)} al mes.` },
+  { q: "¿El asistente responde por Instagram y Facebook?", a: "Sí, sin costo extra. En todos los planes con asistente (Independiente IA, Local IA, el anual y Todo Incluido) responde y agenda por WhatsApp, por mensaje directo de Instagram y por Facebook Messenger. Las conversaciones de tu plan sirven para los tres canales. Lo pides desde tu panel y nosotros lo conectamos." },
   { q: "¿Qué pasa si se acaban las conversaciones del asistente?", a: `El asistente no se corta: se suma un tramo de 100 conversaciones por ${fmt(PRECIO.conversacionesExtra)} + IVA. Cada plan con IA trae su cupo: ${INDEPENDIENTE_IA.conversaciones} en Independiente IA, ${LOCAL_IA.conversaciones} en Local IA y ${TODO_INCLUIDO.conversaciones} en Todo Incluido. Las citas agendadas son ilimitadas.` },
   { q: "¿Los recordatorios por WhatsApp vienen incluidos?", a: "En los planes con IA, sí: con el asistente conectado al número de tu local, los recordatorios de toda tu agenda salen solos a los clientes que aceptaron recibirlos. En los planes sin IA, la confirmación y el recordatorio llegan por correo." },
   { q: "¿Cuánto cuestan las boletas ante el SII?", a: `Vienen incluidas en Todo Incluido. En los demás planes son un adicional de ${fmt(PRECIO.boletasLocal)} + IVA al mes (${fmt(PRECIO.boletasIndependiente)} en Independiente e Independiente IA), sin costo de instalación: la boleta del local y la boleta de honorarios de cada profesional salen solas al cerrar la cita.` },
@@ -110,7 +111,7 @@ export default function PreciosPage() {
                     <th scope="row" className="px-4 py-4 font-semibold">Todo, sin adicionales</th>
                     <td colSpan={2} className="px-4 py-4">
                       <a href={`#plan-${TODO_INCLUIDO.id}`} className="font-semibold hover:text-lime">{TODO_INCLUIDO.nombre}</a>
-                      <span className="block text-white/60 text-[14px]">{fmt(TODO_INCLUIDO.mes)} + IVA · IA, boletas SII, Instagram y dominio</span>
+                      <span className="block text-white/60 text-[14px]">{fmt(TODO_INCLUIDO.mes)} + IVA · IA, boletas SII, Reactivación IA y dominio</span>
                     </td>
                   </tr>
                 </tbody>
@@ -144,7 +145,7 @@ export default function PreciosPage() {
               <h2 className="text-ink">Suma solo lo que tu local necesita.</h2>
               <p className="text-text-secondary text-lg mt-5 leading-relaxed">
                 Se agregan al plan y se quitan cuando quieras. Precios netos, más IVA. En Todo Incluido ya vienen las boletas,
-                Instagram, la Reactivación IA y el dominio.
+                la Reactivación IA y el dominio.
               </p>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">

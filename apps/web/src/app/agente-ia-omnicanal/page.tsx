@@ -19,23 +19,23 @@ import { breadcrumbLd, grafo, servicioAgenciaLd } from "@/lib/ld";
    (qué tareas delega) y /syna por los canales de un local que caen en la
    agenda. Esta explica la bandeja compartida entre el agente y el equipo de
    ventas, con los planes de agencias (content/agencias.ts).
-   Omnicanal acá son DOS canales: WhatsApp (el número propio, por QR) y los
-   mensajes directos de Instagram. Nada de correo, SMS, Messenger ni chat web. */
+   Omnicanal acá son TRES canales (desde el 23-11-2026, sin costo en los dos
+   planes): WhatsApp (el número propio, por QR), los mensajes directos de
+   Instagram y Facebook Messenger. Nada de correo, SMS ni chat web. */
 
 const PATH = "/agente-ia-omnicanal";
 const MIGAS = [{ nombre: "Agente de IA omnicanal", path: PATH }];
-const IG = adicionalAgencia("instagram");
 const EXTRA = adicionalAgencia("conversaciones");
 
 export const metadata = metaPagina({
-  title: "Agente de IA omnicanal para WhatsApp e Instagram | SynapTech",
-  description: `Agente de IA que responde WhatsApp e Instagram en una bandeja, reparte los chats entre vendedores y deja cada venta en un tablero. Desde ${fmt(AGENCIA_SOLO.mes)} + IVA.`,
+  title: "Agente de IA omnicanal para WhatsApp, Instagram y Messenger | SynapTech",
+  description: `Agente de IA que responde WhatsApp, Instagram y Messenger en una bandeja, reparte los chats entre vendedores y deja cada venta en un tablero. Desde ${fmt(AGENCIA_SOLO.mes)} + IVA.`,
   path: PATH,
   imagen: "/og/agencias/agente-ia-omnicanal",
 });
 
 const PASOS = [
-  { titulo: "Llega el mensaje", detalle: "El cliente escribe a tu WhatsApp o a tu Instagram. Las dos conversaciones entran a la misma bandeja, cada una con su historial." },
+  { titulo: "Llega el mensaje", detalle: "El cliente escribe a tu WhatsApp, a tu Instagram o a tu página de Facebook. Todas las conversaciones entran a la misma bandeja, cada una con su historial." },
   { titulo: "Responde el agente", detalle: "Contesta al minuto con tu catálogo, tus precios y tus reglas, en español, portugués o inglés, según cómo escriba el cliente." },
   { titulo: "Se asigna a un vendedor", detalle: "Cada conversación nueva va a un vendedor por turnos, y le llega el aviso al celular. Cada uno ve solo su cartera." },
   { titulo: "Una persona toma el chat", detalle: "El vendedor puede entrar a cualquier conversación cuando quiera. Tú decides si con un cliente responde el agente, responde una persona o el agente no le escribe nunca." },
@@ -44,7 +44,7 @@ const PASOS = [
 ];
 
 const PIEZAS = [
-  { titulo: "Bandeja única", detalle: "WhatsApp e Instagram juntos, en el panel y en la app del equipo. La bandeja marca hace cuánto espera cada cliente." },
+  { titulo: "Bandeja única", detalle: "WhatsApp, Instagram y Messenger juntos, en el panel y en la app del equipo. La bandeja marca hace cuánto espera cada cliente." },
   { titulo: "Reparto a vendedores", detalle: "Automático y por turnos, con aviso al celular de quien le toca. El dueño ve todo y puede cambiar a quién está asignado un cliente." },
   { titulo: "Tablero de ventas", detalle: "Cada conversación en su etapa: nuevos, cotizados, reservados, cerrados y perdidos. Por vendedor y por período." },
   { titulo: "Seguimiento", detalle: "El de las 48 horas, solo, y uno en lote desde el tablero para quienes escribieron en las últimas 24 horas." },
@@ -56,16 +56,16 @@ const COMPARACION: [string, string, string][] = [
   ["Cómo entiende", "Por palabras clave o menús de opciones", "Lee el mensaje completo, aunque venga con faltas o en otro idioma"],
   ["Qué responde", "Textos escritos de antemano", "Arma la respuesta con tu catálogo, tus precios y tus reglas"],
   ["Qué hace después", "Manda el siguiente mensaje del menú", "Pide los datos que definiste y le pasa la conversación a una persona"],
-  ["Canales", "Normalmente uno", "WhatsApp e Instagram, en la misma bandeja"],
+  ["Canales", "Normalmente uno", "WhatsApp, Instagram y Messenger, en la misma bandeja"],
 ];
 
 const FAQ: Pregunta[] = [
-  { q: "¿Qué es un agente de IA omnicanal?", a: "Es un asistente con inteligencia artificial que responde a tus clientes en más de un canal y deja todas esas conversaciones en una sola bandeja, donde también trabaja tu equipo. En SynapTech los canales son WhatsApp e Instagram." },
-  { q: "¿Qué canales incluye?", a: "El WhatsApp de tu negocio, conectado con un código QR, y los mensajes directos de tu cuenta de Instagram. No incluye correo, SMS, Facebook Messenger ni chat en tu página web." },
+  { q: "¿Qué es un agente de IA omnicanal?", a: "Es un asistente con inteligencia artificial que responde a tus clientes en más de un canal y deja todas esas conversaciones en una sola bandeja, donde también trabaja tu equipo. En SynapTech los canales son WhatsApp, Instagram y Facebook Messenger." },
+  { q: "¿Qué canales incluye?", a: "El WhatsApp de tu negocio, conectado con un código QR, los mensajes directos de tu cuenta de Instagram y los de tu página de Facebook por Messenger. Los tres vienen sin costo extra en los dos planes. No incluye correo, SMS ni chat en tu página web." },
   { q: "¿Mis vendedores responden en la misma bandeja?", a: "Sí. Cada vendedor entra desde el panel o desde la app, ve las conversaciones que le tocan y puede tomar cualquiera cuando quiera. El agente y las personas trabajan sobre los mismos chats." },
   { q: "¿Funciona con mi número de WhatsApp actual?", a: "Sí. Conectamos tu WhatsApp de siempre con un código QR y tus clientes te siguen escribiendo al mismo número." },
   { q: "¿En qué se diferencia de las respuestas automáticas de WhatsApp Business?", a: "Las respuestas automáticas de WhatsApp Business son siempre el mismo texto. El agente lee lo que le preguntan, responde con tu catálogo, pide los datos que necesitas y le pasa la conversación al vendedor que le toca." },
-  { q: "¿Cuánto cuesta?", a: `${AGENCIA_SOLO.nombre} cuesta ${fmt(AGENCIA_SOLO.mes)} + IVA al mes, con el agente en WhatsApp y ${AGENCIA_SOLO.conversaciones} conversaciones; Instagram se suma por ${fmt(IG.mes)} + IVA. ${AGENCIA_EQUIPO.nombre} cuesta ${fmt(AGENCIA_EQUIPO.mes)} + IVA al mes, con WhatsApp e Instagram, ${AGENCIA_EQUIPO.conversaciones} conversaciones y vendedores ilimitados. Las conversaciones extra cuestan ${fmt(EXTRA.mes)} + IVA cada 100.` },
+  { q: "¿Cuánto cuesta?", a: `${AGENCIA_SOLO.nombre} cuesta ${fmt(AGENCIA_SOLO.mes)} + IVA al mes, con el agente en WhatsApp, Instagram y Messenger y ${AGENCIA_SOLO.conversaciones} conversaciones. ${AGENCIA_EQUIPO.nombre} cuesta ${fmt(AGENCIA_EQUIPO.mes)} + IVA al mes, con los mismos tres canales, ${AGENCIA_EQUIPO.conversaciones} conversaciones y vendedores ilimitados. Las conversaciones del plan sirven para los tres canales. Las conversaciones extra cuestan ${fmt(EXTRA.mes)} + IVA cada 100.` },
 ];
 
 const REEMPLAZOS: [string, string][] = [
@@ -85,10 +85,10 @@ export default function AgenteOmnicanalPage() {
     breadcrumbLd(MIGAS),
     servicioAgenciaLd({
       nombre: "Agente de IA omnicanal de SynapTech",
-      tipo: "Agente de IA omnicanal para WhatsApp e Instagram",
-      descripcion: "Asistente con IA que responde el WhatsApp propio del negocio y los mensajes directos de Instagram en una sola bandeja compartida con el equipo de ventas: reparto automático de chats entre vendedores con aviso al celular, tablero de ventas por etapas, cierre de venta desde el chat, comisiones por vendedor y seguimiento a las 48 horas. Responde en español, portugués e inglés.",
+      tipo: "Agente de IA omnicanal para WhatsApp, Instagram y Messenger",
+      descripcion: "Asistente con IA que responde el WhatsApp propio del negocio, los mensajes directos de Instagram y Facebook Messenger en una sola bandeja compartida con el equipo de ventas: reparto automático de chats entre vendedores con aviso al celular, tablero de ventas por etapas, cierre de venta desde el chat, comisiones por vendedor y seguimiento a las 48 horas. Responde en español, portugués e inglés.",
       path: PATH,
-      audiencia: "Agencias y equipos de venta que atienden por WhatsApp e Instagram",
+      audiencia: "Agencias y equipos de venta que atienden por WhatsApp, Instagram y Messenger",
     }),
   );
 
@@ -103,9 +103,9 @@ export default function AgenteOmnicanalPage() {
             <div className="min-w-0">
               <Migas migas={MIGAS} />
               <p className="eyebrow mb-5">Agente de IA omnicanal</p>
-              <h1 className="text-ink mb-6 !text-[clamp(2.1rem,4.4vw,3.8rem)]">Agente de IA omnicanal: WhatsApp e Instagram en una sola bandeja.</h1>
+              <h1 className="text-ink mb-6 !text-[clamp(2.1rem,4.4vw,3.8rem)]">Agente de IA omnicanal: WhatsApp, Instagram y Messenger en una sola bandeja.</h1>
               <p className="text-text-secondary text-lg md:text-xl leading-relaxed max-w-xl mb-8">
-                Tus clientes escriben por WhatsApp o por Instagram. El agente responde los dos canales con tu catálogo,
+                Tus clientes escriben por WhatsApp, Instagram o Messenger. El agente responde los tres canales con tu catálogo,
                 y tu equipo trabaja todas las conversaciones desde una sola bandeja, en el panel o en la app.
               </p>
               <div className="flex flex-col sm:flex-row gap-3">
@@ -140,8 +140,8 @@ export default function AgenteOmnicanalPage() {
                 las conversaciones en un mismo lugar, con su historial, para que las atienda el mismo equipo con las mismas reglas.
               </p>
               <p>
-                En SynapTech son dos canales: el WhatsApp de tu negocio, conectado con un código QR, y los mensajes directos de tu
-                cuenta de Instagram. Hoy no incluye correo, SMS, Facebook Messenger ni chat en tu página web.
+                En SynapTech son tres canales, sin costo extra: el WhatsApp de tu negocio, conectado con un código QR, los mensajes
+                directos de tu cuenta de Instagram y Facebook Messenger. Hoy no incluye correo, SMS ni chat en tu página web.
               </p>
               <p>
                 Lo que lo hace distinto de tener WhatsApp en un teléfono e Instagram en otro es la bandeja compartida: cada
@@ -238,7 +238,7 @@ export default function AgenteOmnicanalPage() {
 
         <PlanesAgencia reemplazos={REEMPLAZOS}
           titulo="Los planes del agente omnicanal."
-          bajada={`Precios netos en pesos chilenos, más IVA. ${AGENCIA_SOLO.nombre} trae el agente en WhatsApp; ${AGENCIA_EQUIPO.nombre} suma Instagram, vendedores ilimitados y reparto automático.`} />
+          bajada={`Precios netos en pesos chilenos, más IVA. Los dos planes traen el agente en WhatsApp, Instagram y Messenger. ${AGENCIA_EQUIPO.nombre} suma vendedores ilimitados y reparto automático.`} />
 
         <FaqSeo titulo="Agente de IA omnicanal: preguntas frecuentes." preguntas={FAQ} />
 
